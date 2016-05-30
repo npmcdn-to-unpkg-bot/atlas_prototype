@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Search results</h1>
+    </div>
+    <div class="panel-body">
+        <ul>
+            <li><dp-link payload="{type: 'GO_TO_DETAIL', uri: 'bag/pand/12345'}">Ga naar detailpagina</dp-link></li>
+            <li><dp-link payload="{type: 'GO_TO_STRAATBEELD', id: 12, heading: 90}">Ga naar straatbeeld</dp-link></li>
+        </ul>
+
+        <table class="table table-bordered">
+            <tr>
+                <th scope="row">Query</th>
+                <td>{{vm.query}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

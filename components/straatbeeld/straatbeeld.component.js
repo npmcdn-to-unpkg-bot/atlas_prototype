@@ -2,7 +2,7 @@
     angular
         .module('atlas')
         .component('dpStraatbeeld', {
-            templateUrl: 'components/sidebar/straatbeeld/straatbeeld.html',
+            templateUrl: 'components/straatbeeld/straatbeeld.html',
             controller: dpStraatbeeldController,
             controllerAs: 'vm'
         });

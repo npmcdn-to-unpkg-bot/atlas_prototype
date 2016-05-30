@@ -14,7 +14,7 @@
 
         function updateUrl (state) {
             var hasStraatbeeld;
-
+            return;
             $location.search('zoek', state.query);
 
             $location.search('lat', state.map.location[0]);

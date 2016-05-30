@@ -2,7 +2,7 @@
     angular
         .module('atlas')
         .component('dpDetail', {
-            templateUrl: 'components/sidebar/detail/detail.html',
+            templateUrl: 'components/detail/detail.html',
             controller: dpDetailController,
             controllerAs: 'vm'
         });

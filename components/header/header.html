@@ -1,16 +1,23 @@
-<h1>Header</h1>
-<button ng-click="vm.search()">Zoek door te typen</button>
-<button ng-click="vm.followSuggestion('Weesperstraat 113')">Kies autocomplete suggestie</button>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Header</h1>
+    </div>
+    <div class="panel-body">
+        <button ng-click="vm.search()">Zoek door te typen</button>
+        <button ng-click="vm.followSuggestion('Weesperstraat 113')">Kies autocomplete suggestie</button>
 
-<ul>
-    <li><dp-link payload="{type: 'GO_TO_PAGE', page: 'login'}">Ga naar inloggen</dp-link></li>
-    <li><dp-link payload="{type: 'GO_TO_PAGE', page: 'info'}">Ga naar info</dp-link></li>
-    <li><dp-link payload="{type: 'GO_TO_PAGE', page: 'help'}">Ga naar help</dp-link></li>
-</ul>
+        <ul>
+            <li><dp-link payload="{type: 'GO_TO_PAGE', page: 'login'}">Ga naar inloggen</dp-link></li>
+            <li><dp-link payload="{type: 'GO_TO_PAGE', page: 'info'}">Ga naar info</dp-link></li>
+            <li><dp-link payload="{type: 'GO_TO_PAGE', page: 'help'}">Ga naar help</dp-link></li>
+        </ul>
 
-<table class="table table-bordered">
-    <tr>
-        <th scope="row">Query</th>
-        <td>{{vm.query}}</td>
-    </tr>
-</table>
+        <table class="table table-bordered">
+            <tr>
+                <th scope="row">Query</th>
+                <td>{{vm.query}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+

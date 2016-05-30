@@ -1,20 +1,26 @@
-<h1>Map</h1>
-<button>Zoek door te klikken</button>
-<button ng-click="vm.panTo([52.0, 4.2])">Pan to 52.0, 4.2</button>
-<button ng-click="vm.panTo([52.123, 4.789])">Pan to 52.123, 4.789</button>
-<button ng-click="vm.zoomIn()">Zoom in</button>
-<button ng-click="vm.zoomOut()">Zoom out</button>
-<button>Verander basislaag</button>
-<button>Voeg overlay toe</button>
-<button>Verwijder overlay</button>
-<br><br>
-<table class="table table-bordered">
-    <tr>
-        <th scope="row">Location</th>
-        <td>{{vm.location[0] + ', ' + vm.location[1]}}</td>
-    </tr>
-    <tr>
-        <th scope="row">Zoom</th>
-        <td>{{vm.zoom}}</td>
-    </tr>
-</table>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Map</h1>
+    </div>
+    <div class="panel-body">
+        <button>Zoek door te klikken</button>
+        <button ng-click="vm.panTo([52.0, 4.2])">Pan to 52.0, 4.2</button>
+        <button ng-click="vm.panTo([52.123, 4.789])">Pan to 52.123, 4.789</button>
+        <button ng-click="vm.zoomIn()">Zoom in</button>
+        <button ng-click="vm.zoomOut()">Zoom out</button>
+        <button>Verander basislaag</button>
+        <button>Voeg overlay toe</button>
+        <button>Verwijder overlay</button>
+        <br><br>
+        <table class="table table-bordered">
+            <tr>
+                <th scope="row">Location</th>
+                <td>{{vm.location[0] + ', ' + vm.location[1]}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Zoom</th>
+                <td>{{vm.zoom}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

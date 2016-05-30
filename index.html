@@ -15,6 +15,8 @@
         <script src="app.config.js"></script>
         <script src="app.vendor.js"></script>
 
+        <script src="atlas.controller.js"></script>
+
         <script src="application-state/redux/store.factory.js"></script>
         <script src="application-state/redux/reducer.factory.js"></script>
         <script src="application-state/redux/url-middleware.factory.js"></script>
@@ -24,42 +26,57 @@
         <script src="application-state/link/link.component.js"></script>
 
         <script src="components/api/api.service.js"></script>
+
         <script src="components/header/header.component.js"></script>
         <script src="components/map/map.component.js"></script>
-        <script src="components/sidebar/sidebar.component.js"></script>
-        <script src="components/sidebar/detail/detail.component.js"></script>
-        <script src="components/sidebar/page/page.component.js"></script>
-        <script src="components/sidebar/search-results/search-results.component.js"></script>
-        <script src="components/sidebar/straatbeeld/straatbeeld.component.js"></script>
+        <script src="components/page/page.component.js"></script>
+        <script src="components/detail/detail.component.js"></script>
+        <script src="components/search-results/search-results.component.js"></script>
+        <script src="components/straatbeeld/straatbeeld.component.js"></script>
     </head>
-    <body>
+    <body style="padding-top:20px;" ng-controller="AtlasController as vm">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-8">
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <dp-header></dp-header>
-                                </div>
-                            </div>
+                            <dp-header></dp-header>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <dp-map></dp-map>
-                                </div>
-                            </div>
+                            <dp-map></dp-map>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <dp-sidebar></dp-sidebar>
-                        </div>
+                    <div class="alert" role="alert" ng-class="{
+                        'alert-succes': vm.showDetail,
+                        'alert-danger': !vm.showDetail
+                        }">
+                        <dp-detail></dp-detail>
+                    </div>
+
+
+                    <div class="alert" role="alert" ng-class="{
+                        'alert-success': vm.showPage,
+                        'alert-danger': !vm.showPage
+                        }">
+                        <dp-page></dp-page>
+                    </div>
+
+                    <div class="alert" role="alert" ng-class="{
+                        'alert-success': vm.showSearchResults,
+                        'alert-danger': !vm.showSearchResults
+                        }">
+                        <dp-search-results></dp-search-results>
+                    </div>
+
+                    <div class="alert" role="alert" ng-class="{
+                        'alert-success': vm.showStraatbeeld,
+                        'alert-danger': !vm.showStraatbeeld
+                        }">
+                        <dp-straatbeeld></dp-straatbeeld>
                     </div>
                 </div>
             </div>
