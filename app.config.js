@@ -13,7 +13,8 @@
                 viewCenter: [52.3719, 4.9012],
                 zoom: 12,
                 highlight: null,
-                showLayerSelection: false
+                showLayerSelection: false,
+                isLoading: false
             },
             search: {
                 query: null,

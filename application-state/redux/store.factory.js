@@ -10,7 +10,7 @@
             enhancer;
 
         enhancer = Redux.applyMiddleware(urlMiddleware);
-        store = Redux.createStore(reducer, DEFAULT_STATE, enhancer);
+        store = Redux.createStore(reducer, DEFAULT_STATE);//, enhancer);
 
         return store;
     }

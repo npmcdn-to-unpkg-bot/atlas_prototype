@@ -25,7 +25,10 @@
         vm.followLink = function (event) {
             event.preventDefault();
 
-            store.dispatch(vm.payload);
+            store.dispatch({
+                type: vm.type,
+                payload: vm.payload
+            });
         };
 
     }

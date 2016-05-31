@@ -18,7 +18,7 @@
         function render () {
             var state = store.getState();
 
-            vm.query = state.search;
+            vm.search = state.search;
         }
     }
 })();
