@@ -2,7 +2,6 @@
     <i ng-if="vm.map.isLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
     Status
 </h3>
-
 <table class="table table-bordered table-condensed">
     <tr>
         <th scope="row">map.baseLayer</th>
@@ -32,9 +31,23 @@
         <th scope="row">map.isLoading</th>
         <td>{{vm.map.isLoading}}</td>
     </tr>
+</table>
+
+<h3 style="margin-top:0;">
+    <i ng-if="vm.map.isLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+    Related status
+</h3>
+<table class="table table-bordered table-condensed">
     <tr>
         <th scope="row">search.location</th>
         <td>{{vm.search.location.join(', ')}}</td>
+    </tr>
+    <tr>
+        <th scope="row">straatbeeld.cameraLocation</th>
+        <td>
+            <i ng-if="vm.straatbeeld.isLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+            {{vm.straatbeeld.cameraLocation.join(', ')}}
+        </td>
     </tr>
 </table>
 

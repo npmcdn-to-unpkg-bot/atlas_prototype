@@ -47,6 +47,7 @@
 
             vm.map = state.map;
             vm.search = state.search;
+            vm.straatbeeld = state.straatbeeld;
         }
     }
 })();

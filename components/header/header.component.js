@@ -30,7 +30,9 @@
         };
 
         function render () {
-            vm.search = store.getState().search;
+            var state = store.getState();
+
+            vm.search = state.search;
         }
     }
 })();
