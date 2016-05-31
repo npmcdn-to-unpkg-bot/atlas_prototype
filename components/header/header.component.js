@@ -26,7 +26,7 @@
             store.dispatch({
                 type: 'FOLLOW_AUTOCOMPLETE_SUGGESTION',
                 query: 'Weesperstraat 113',
-                uri: 'bag/verblijfsobject/123'
+                uri: 'bag/verblijfsobject/03630001958552'
             })
         };
 

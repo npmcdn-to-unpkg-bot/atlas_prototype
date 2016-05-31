@@ -20,9 +20,9 @@
         <script src="application-state/redux/store.factory.js"></script>
         <script src="application-state/redux/reducer.factory.js"></script>
         <script src="application-state/redux/url-middleware.factory.js"></script>
-        <script src="application-state/url/state-to-url.service.js"></script>
-        <script src="application-state/url/url-to-state.service.js"></script>
-        <script src="application-state/url/url-to-state.run.js"></script>
+        <script src="application-state/routing/state-to-url.service.js"></script>
+        <script src="application-state/routing/url-to-state.service.js"></script>
+        <script src="application-state/routing/url-to-state.run.js"></script>
         <script src="application-state/link/link.component.js"></script>
 
         <script src="components/api/api.service.js"></script>
@@ -33,6 +33,8 @@
         <script src="components/detail/detail.component.js"></script>
         <script src="components/search-results/search-results.component.js"></script>
         <script src="components/straatbeeld/straatbeeld.component.js"></script>
+
+        <script src="components/ui/panel/panel.component.js"></script>
     </head>
     <body style="padding-top:20px;" ng-controller="AtlasController as vm">
         <div class="container-fluid">
@@ -40,44 +42,35 @@
                 <div class="col-xs-8">
                     <div class="row">
                         <div class="col-xs-12">
-                            <dp-header></dp-header>
+                            <dp-panel heading="Header" is-active="true">
+                                <dp-header></dp-header>
+                            </dp-panel>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <dp-map></dp-map>
+                            <dp-panel heading="Map" is-active="true">
+                                <dp-map></dp-map>
+                            </dp-panel>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <div class="alert" role="alert" ng-class="{
-                        'alert-succes': vm.showDetail,
-                        'alert-danger': !vm.showDetail
-                        }">
+                    <dp-panel heading="Detail" is-active="vm.showDetail">
                         <dp-detail></dp-detail>
-                    </div>
+                    </dp-panel>
 
-
-                    <div class="alert" role="alert" ng-class="{
-                        'alert-success': vm.showPage,
-                        'alert-danger': !vm.showPage
-                        }">
+                    <dp-panel heading="Page" is-active="vm.showPage">
                         <dp-page></dp-page>
-                    </div>
+                    </dp-panel>
 
-                    <div class="alert" role="alert" ng-class="{
-                        'alert-success': vm.showSearchResults,
-                        'alert-danger': !vm.showSearchResults
-                        }">
+                    <dp-panel heading="Search results" is-active="vm.showSearchResults">
                         <dp-search-results></dp-search-results>
-                    </div>
+                    </dp-panel>
 
-                    <div class="alert" role="alert" ng-class="{
-                        'alert-success': vm.showStraatbeeld,
-                        'alert-danger': !vm.showStraatbeeld
-                        }">
+                    <dp-panel heading="Straatbeeld" is-active="vm.showStraatbeeld">
                         <dp-straatbeeld></dp-straatbeeld>
-                    </div>
+                    </dp-panel>
                 </div>
             </div>
         </div>

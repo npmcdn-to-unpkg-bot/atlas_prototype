@@ -1,0 +1,12 @@
+<div class="panel panel-default" ng-class="{
+    'panel-success': vm.isActive,
+    'panel-danger': !vm.isActive
+    }">
+
+    <div class="panel-heading">
+        <h1>{{vm.heading}}</h1>
+    </div>
+    <div class="panel-body">
+        <ng-transclude></ng-transclude>
+    </div>
+</div>

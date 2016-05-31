@@ -9,6 +9,7 @@
             controller: DpLinkController,
             controllerAs: 'vm',
             bindings: {
+                type: '@',
                 payload: '='
             }
         });
