@@ -15,7 +15,7 @@
 
         vm.showPage = angular.isString(state.page);
         vm.showDetail = angular.isString(state.detail);
-        vm.showStraatbeeld = angular.isObject(state.straatbeeld);
+        vm.showStraatbeeld = angular.isNumber(state.straatbeeld.id);
         vm.showSearchResults = angular.isString(state.search.query) || angular.isArray(state.search.location);
     }
 })();

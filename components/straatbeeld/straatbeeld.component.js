@@ -12,7 +12,33 @@
     function dpStraatbeeldController (store) {
         var vm = this;
 
-        vm.id = store.getState().straatbeeld.id;
-        vm.heading = store.getState().straatbeeld.heading;
+        vm.straatbeeld = store.getState().straatbeeld;
+
+        vm.changeHeading = function () {
+            var randomHeading = Math.floor(Math.random() * 360);
+
+            store.dispatch({
+                type: 'STRAATBEELD_SET_HEADING',
+                payload: randomHeading
+            });
+        };
+
+        vm.changePitch = function () {
+            var randomPitch = Math.random() * 2 - 1;
+
+            store.dispatch({
+                type: 'STRAATBEELD_SET_PITCH',
+                payload: randomPitch
+            });
+        };
+
+        vm.changeFov = function () {
+            var randomFov = Math.random() * (180 - 45) + 45;
+
+            store.dispatch({
+                type: 'STRAATBEELD_SET_FOV',
+                payload: randomFov
+            });
+        };
     }
 })();

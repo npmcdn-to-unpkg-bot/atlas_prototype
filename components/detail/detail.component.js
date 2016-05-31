@@ -7,27 +7,24 @@
             controllerAs: 'vm'
         });
 
-    dpDetailController.$inject = ['store', 'api'];
+    dpDetailController.$inject = ['store'];
 
-    function dpDetailController (store, api) {
+    function dpDetailController (store) {
         var vm = this;
 
         store.subscribe(render);
         render();
 
         function render () {
-            vm.uri = store.getState().detail;
+            var state = store.getState();
 
-            api.fetchDetail(vm.uri).then(function (data) {
-                console.log(data);
-            });
+            vm.detail = state.detail;
         }
 
         vm.openStraatbeeld = function (straatbeeldId) {
             store.dispatch({
                 type: 'GO_TO_STRAATBEELD',
-                id: straatbeeldId,
-                heading: 90
+                payload: straatbeeldId
             });
         };
     }

@@ -10,7 +10,7 @@
     function reducerFactory (DEFAULT_STATE) {
         return function reducer (oldState, action) {
             var newState = angular.copy(oldState);
-            console.log(action.type);
+
             switch (action.type) {
                 case 'URL_CHANGED':
                     if (action.params.query) {

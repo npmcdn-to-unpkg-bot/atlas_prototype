@@ -8,34 +8,30 @@
     function configuration ($provide) {
         $provide.constant('DEFAULT_STATE', {
             map: {
-                width: 'wide', //alternatief is small
                 baseLayer: 'topografie',
-                overlays: ['meetbouten'],
-                mapViewCenter: [52.123, 4.789],
+                overlays: [],
+                viewCenter: [52.3719, 4.9012],
                 zoom: 12,
-                isLoading: false,
-                highlight: 'ijburg' //Dit kan een punt of geomterie zijn ala pand, stadsdeel
+                highlight: null
             },
             search: {
                 query: null,
-                location: [],
+                location: null,
                 isLoading: false
             },
             page: 'welcome',
             detail: {
-                uri: 'bag/verblijfsobject/123',
+                uri: null,
                 isLoading: false
             },
             straatbeeld: {
-                id: 1234,
-                location: [543, 123], //plek van de auto die de fotos maakt
-                heading: 0,
-                pitch: 0.5,
-                fov: 90,
+                id: null,
+                cameraLocation: null,
+                heading: null,
+                pitch: null,
+                fov: null,
                 isLoading: false
             }
         });
-
-        //Als er een detail is
     }
 })();
