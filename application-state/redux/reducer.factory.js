@@ -12,6 +12,66 @@
             var newState = angular.copy(oldState);
 
             switch (action.type) {
+                case 'FETCH_SEARCH_RESULTS_BY_QUERY':
+                    newState.search.query = action.payload;
+                    newState.search.isLoading = true;
+
+                    newState.map.highlight = null;
+                    newState.search.location = null;
+                    newState.page = null;
+                    newState.detail = null;
+                    newState.straatbeeld = null;
+
+                    break;
+
+                case 'FETCH_SEARCH_RESULTS_BY_CLICK':
+                    newState.search.location = action.payload;
+                    newState.search.isLoading = true;
+
+                    newState.map.highlight = null;
+                    newState.search.query = null;
+                    newState.page = null;
+                    newState.detail = null;
+                    newState.straatbeeld = null;
+
+                    break;
+
+                case 'SHOW_SEARCH_RESULTS':
+                    newState.search.isLoading = false;
+                    break;
+
+                case 'FETCH_DETAIL':
+                    newState.detail = {
+                        uri: action.payload,
+                        isLoading: true
+                    };
+                    newState.map.isLoading = true;
+
+                    newState.map.highlight = null;
+                    newState.search.query = null;
+                    newState.search.location = null;
+                    newState.page = null;
+                    newState.straatbeeld = null;
+                    newState.map.highlight = null;
+
+                    break;
+
+                case 'SHOW_DETAIL':
+                    //newState.map.viewCenter = ???
+                    //newSTate.map.zoom = ???
+                    newState.map.highlight = action.payload.highlight;
+                    newState.detail.isLoading = false;
+                    break;
+
+                case 'SHOW_LAYERS':
+                    newState.map.showLayerSelection = true;
+                    break;
+
+                case 'HIDE_LAYERS':
+                    newState.map.showLayerSelection = false;
+                    break;
+
+
                 case 'URL_CHANGED':
                     if (action.params.query) {
                         newState.query = action.params.query;
@@ -42,22 +102,8 @@
 
                     break;
 
-                case 'SEARCH_BY_QUERY':
-                    newState.search.query = action.query;
-                    newState.page = 'search_results';
-                    newState.detail = null;
-                    newState.straatbeeld = null;
-                    newState.map.highlight = null;
-                    break;
 
-                case 'FOLLOW_AUTOCOMPLETE_SUGGESTION':
-                    newState.search.query = null;
-                    newState.page = null;
-                    newState.detail = action.uri;
-                    newState.straatbeeld = null;
-                    newState.map.isLoading = true;
-                    newState.map.highlight = null;
-                    break;
+
 
                 case 'GO_TO_PAGE':
                     //newState.query = null;

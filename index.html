@@ -28,6 +28,7 @@
         <!--script src="components/api/api.service.js"></script-->
 
         <script src="components/header/header.component.js"></script>
+        <script src="components/layer-selection/layer-selection.component.js"></script>
         <script src="components/map/map.component.js"></script>
         <script src="components/page/page.component.js"></script>
         <script src="components/detail/detail.component.js"></script>
@@ -39,36 +40,37 @@
     <body style="padding-top:20px;" ng-controller="AtlasController as vm">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-8">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <dp-panel heading="Header" is-active="true">
-                                <dp-header></dp-header>
-                            </dp-panel>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <dp-panel heading="Map" is-active="true">
-                                <dp-map></dp-map>
-                            </dp-panel>
-                        </div>
-                    </div>
+                <div class="col-xs-12">
+                    <dp-panel heading="Header">
+                        <dp-header></dp-header>
+                    </dp-panel>
                 </div>
-                <div class="col-xs-4">
-                    <dp-panel heading="Detail" is-active="vm.showDetail">
+            </div>
+            <div class="row">
+                <div ng-if="vm.sizeLeftColumn" class="col-xs-{{vm.sizeLeftColumn}}">
+                    <dp-panel heading="Layers">
+                        <dp-layers></dp-layers>
+                    </dp-panel>
+                </div>
+                <div class="col-xs-{{vm.sizeMiddleColumn}}">
+                    <dp-panel heading="Map">
+                        <dp-map></dp-map>
+                    </dp-panel>
+                </div>
+                <div ng-if="vm.sizeRightColumn" class="col-xs-{{vm.sizeRightColumn}}">
+                    <dp-panel ng-if="vm.showDetail" heading="Detail">
                         <dp-detail></dp-detail>
                     </dp-panel>
 
-                    <dp-panel heading="Page" is-active="vm.showPage">
+                    <dp-panel ng-if="vm.showPage" heading="Page">
                         <dp-page></dp-page>
                     </dp-panel>
 
-                    <dp-panel heading="Search results" is-active="vm.showSearchResults">
+                    <dp-panel ng-if="vm.showSearchResults" heading="Search results">
                         <dp-search-results></dp-search-results>
                     </dp-panel>
 
-                    <dp-panel heading="Straatbeeld" is-active="vm.showStraatbeeld">
+                    <dp-panel ng-if="vm.showStraatbeeld" heading="Straatbeeld">
                         <dp-straatbeeld></dp-straatbeeld>
                     </dp-panel>
                 </div>

@@ -12,7 +12,8 @@
                 overlays: [],
                 viewCenter: [52.3719, 4.9012],
                 zoom: 12,
-                highlight: null
+                highlight: null,
+                showLayerSelection: false
             },
             search: {
                 query: null,
@@ -20,18 +21,8 @@
                 isLoading: false
             },
             page: 'welcome',
-            detail: {
-                uri: null,
-                isLoading: false
-            },
-            straatbeeld: {
-                id: null,
-                cameraLocation: null,
-                heading: null,
-                pitch: null,
-                fov: null,
-                isLoading: false
-            }
+            detail: null,
+            straatbeeld: null
         });
     }
 })();

@@ -17,7 +17,7 @@
 
         vm.search = function (location) {
             store.dispatch({
-                type: 'SEARCH_BY_CLICK',
+                type: 'FETCH_SEARCH_RESULTS_BY_CLICK',
                 payload: location
             });
         };
@@ -36,33 +36,16 @@
             });
         };
 
-        vm.setBaseLayer = function (baseLayer) {
+        vm.showLayerSelection = function () {
             store.dispatch({
-                type: 'MAP_SET_BASELAYER',
-                payload: baseLayer
-            })
-        };
-
-        vm.addOverlay = function (overlay) {
-            store.dispatch({
-                type: 'MAP_ADD_OVERLAY',
-                payload: overlay
-            })
-        };
-
-        vm.removeOverlay = function (overlay) {
-            store.dispatch({
-                type: 'MAP_REMOVE_OVERLAY',
-                payload: overlay
-            })
+                type: 'SHOW_LAYERS'
+            });
         };
 
         function render () {
             var state = store.getState();
 
             vm.map = state.map;
-
-
         }
     }
 })();

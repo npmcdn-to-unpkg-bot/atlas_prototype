@@ -8,14 +8,25 @@
     AtlasController.$inject = ['store'];
 
     function AtlasController (store) {
-        var vm = this,
-            state;
+        var vm = this;
 
-        state = store.getState();
+        store.subscribe(render);
+        render();
 
-        vm.showPage = angular.isString(state.page);
-        vm.showDetail = angular.isString(state.detail);
-        vm.showStraatbeeld = angular.isNumber(state.straatbeeld.id);
-        vm.showSearchResults = angular.isString(state.search.query) || angular.isArray(state.search.location);
+        function render () {
+            var state;
+
+            state = store.getState();
+
+            vm.showLayerSelection = state.map.showLayerSelection;
+            vm.showPage = angular.isString(state.page);
+            vm.showDetail = angular.isObject(state.detail);
+            vm.showStraatbeeld = angular.isObject(state.straatbeeld);
+            vm.showSearchResults = angular.isString(state.search.query) || angular.isArray(state.search.location);
+
+            vm.sizeLeftColumn = vm.showLayerSelection ? 8 : 0;
+            vm.sizeMiddleColumn = vm.showPage || vm.showDetail || vm.showLayerSelection || vm.showStraatbeeld ? 4 : 8;
+            vm.sizeRightColumn = 12 - vm.sizeLeftColumn - vm.sizeMiddleColumn;
+        }
     }
 })();

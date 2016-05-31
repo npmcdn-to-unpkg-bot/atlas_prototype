@@ -17,16 +17,15 @@
 
         vm.search = function () {
             store.dispatch({
-                type: 'SEARCH_BY_QUERY',
-                query: 'Linnaeus'
+                type: 'FETCH_SEARCH_RESULTS_BY_QUERY',
+                payload: 'Linnaeus'
             });
         };
 
         vm.followSuggestion = function () {
             store.dispatch({
-                type: 'FOLLOW_AUTOCOMPLETE_SUGGESTION',
-                query: 'Linnaeusstraat 2',
-                uri: 'bag/verblijfsobject/03630001958552'
+                type: 'FETCH_DETAIL',
+                payload: 'bag/verblijfsobject/03630001958552'
             })
         };
 

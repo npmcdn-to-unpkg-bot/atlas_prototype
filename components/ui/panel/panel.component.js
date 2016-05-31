@@ -5,8 +5,7 @@
         .module('atlas')
         .component('dpPanel', {
             bindings: {
-                heading: '@',
-                isActive: '='
+                heading: '@'
             },
             templateUrl: 'components/ui/panel/panel.html',
             transclude: true,
@@ -16,6 +15,5 @@
 
     function DpPanelController () {
         var vm = this;
-        console.log(vm.isActive);
     }
 })();
