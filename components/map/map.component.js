@@ -15,7 +15,7 @@
         store.subscribe(render);
         render();
 
-        vm.search = function (location) {
+        vm.triggerSearch = function (location) {
             store.dispatch({
                 type: ACTIONS.FETCH_SEARCH_RESULTS_BY_CLICK,
                 payload: location
@@ -46,6 +46,7 @@
             var state = store.getState();
 
             vm.map = state.map;
+            vm.search = state.search;
         }
     }
 })();

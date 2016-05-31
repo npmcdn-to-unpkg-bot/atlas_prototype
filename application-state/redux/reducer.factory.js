@@ -20,6 +20,7 @@
                     };
 
                     newState.map.highlight = null;
+                    newState.map.showLayerSelection = false;
                     newState.search.location = null;
                     newState.page = null;
                     newState.detail = null;
@@ -35,6 +36,7 @@
                     };
 
                     newState.map.highlight = null;
+                    newState.map.showLayerSelection = false;
                     newState.search.query = null;
                     newState.page = null;
                     newState.detail = null;
@@ -54,6 +56,7 @@
 
                     newState.map.isLoading = true;
                     newState.map.highlight = null;
+                    newState.map.showLayerSelection = false;
 
                     newState.search = null;
                     newState.page = null;
@@ -125,7 +128,6 @@
                     break;
 
                 case ACTIONS.SHOW_STRAATBEELD:
-                    console.log('hallo?', action.payload);
                     newState.straatbeeld.cameraLocation = action.payload.cameraLocation;
 
                     //Only set the heading, pitch and fov if there is no known state for that
