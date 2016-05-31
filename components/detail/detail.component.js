@@ -7,9 +7,9 @@
             controllerAs: 'vm'
         });
 
-    dpDetailController.$inject = ['store'];
+    dpDetailController.$inject = ['store', 'ACTIONS'];
 
-    function dpDetailController (store) {
+    function dpDetailController (store, ACTIONS) {
         var vm = this;
 
         store.subscribe(render);
@@ -23,7 +23,7 @@
 
         vm.openStraatbeeld = function (straatbeeldId) {
             store.dispatch({
-                type: 'GO_TO_STRAATBEELD',
+                type: ACTIONS.FETCH_STRAATBEELD,
                 payload: straatbeeldId
             });
         };

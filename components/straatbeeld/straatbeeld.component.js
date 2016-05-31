@@ -12,7 +12,12 @@
     function dpStraatbeeldController (store) {
         var vm = this;
 
-        vm.straatbeeld = store.getState().straatbeeld;
+        store.subscribe(render);
+        render();
+
+        function render () {
+            vm.straatbeeld = store.getState().straatbeeld;
+        }
 
         vm.changeHeading = function () {
             var randomHeading = Math.floor(Math.random() * 360);

@@ -9,9 +9,9 @@
             controllerAs: 'vm'
         });
 
-    DpLayersController.$inject = ['store'];
+    DpLayersController.$inject = ['store', 'ACTIONS'];
 
-    function DpLayersController (store) {
+    function DpLayersController (store, ACTIONS) {
         var vm = this;
 
         store.subscribe(render);
@@ -24,28 +24,28 @@
 
             vm.setBaseLayer = function (baseLayer) {
                 store.dispatch({
-                    type: 'MAP_SET_BASELAYER',
+                    type: ACTIONS.MAP_SET_BASELAYER,
                     payload: baseLayer
                 })
             };
 
             vm.addOverlay = function (overlay) {
                 store.dispatch({
-                    type: 'MAP_ADD_OVERLAY',
+                    type: ACTIONS.MAP_ADD_OVERLAY,
                     payload: overlay
                 })
             };
 
             vm.removeOverlay = function (overlay) {
                 store.dispatch({
-                    type: 'MAP_REMOVE_OVERLAY',
+                    type: ACTIONS.MAP_REMOVE_OVERLAY,
                     payload: overlay
                 })
             };
 
             vm.hideLayers = function () {
                 store.dispatch({
-                    type: 'HIDE_LAYERS'
+                    type: ACTIONS.HIDE_LAYER_SELECTION
                 });
             };
         }

@@ -7,9 +7,9 @@
             controllerAs: 'vm'
         });
 
-    DpMapController.$inject = ['store'];
+    DpMapController.$inject = ['store', 'ACTIONS'];
 
-    function DpMapController (store) {
+    function DpMapController (store, ACTIONS) {
         var vm = this;
 
         store.subscribe(render);
@@ -17,29 +17,28 @@
 
         vm.search = function (location) {
             store.dispatch({
-                type: 'FETCH_SEARCH_RESULTS_BY_CLICK',
+                type: ACTIONS.FETCH_SEARCH_RESULTS_BY_CLICK,
                 payload: location
             });
         };
 
         vm.panTo = function (location) {
-            console.log(location);
             store.dispatch({
-                type: 'MAP_PAN',
+                type: ACTIONS.MAP_PAN,
                 payload: location
             });
         };
 
         vm.zoom = function (zoomLevel) {
             store.dispatch({
-                type: 'MAP_ZOOM',
+                type: ACTIONS.MAP_ZOOM,
                 payload: zoomLevel
             });
         };
 
         vm.showLayerSelection = function () {
             store.dispatch({
-                type: 'SHOW_LAYERS'
+                type: ACTIONS.SHOW_LAYER_SELECTION
             });
         };
 

@@ -5,9 +5,9 @@
         .module('atlas')
         .service('api', apiService);
 
-    apiService.$inject = ['$timeout', 'store'];
+    apiService.$inject = ['$timeout', 'store', 'ACTIONS'];
 
-    function apiService ($timeout, store) {
+    function apiService ($timeout, store, ACTIONS) {
         return {
             initialize: initializeMocks
         };
@@ -21,7 +21,7 @@
                 if (state.search && state.search.isLoading) {
                     $timeout(function () {
                         store.dispatch({
-                            type: 'SHOW_SEARCH_RESULTS'
+                            type: ACTIONS.SHOW_SEARCH_RESULTS
                         });
                     }, 2000);
                 }
@@ -46,12 +46,41 @@
                         }
 
                         store.dispatch({
-                            type: 'SHOW_DETAIL',
+                            type: ACTIONS.SHOW_DETAIL,
                             payload: {
                                 location: location,
                                 highlight: highlight
                             }
                         });
+                    }, 2000);
+                }
+
+                if (state.straatbeeld && state.straatbeeld.isLoading) {
+                    console.log(state.straatbeeld.id);
+                    $timeout(function () {
+
+                        if (state.straatbeeld.id === 1000017472454) {
+                            console.log('a');
+                            store.dispatch({
+                                type: ACTIONS.SHOW_STRAATBEELD,
+                                payload: {
+                                    cameraLocation: [52.3532714793, 5.001685474],
+                                    heading: 90,
+                                    pitch: 0.1,
+                                    fov: 90
+                                }
+                            });
+                        } else if (state.straatbeeld.id === 1000017472475) {
+                            store.dispatch({
+                                type: ACTIONS.SHOW_STRAATBEELD,
+                                payload: {
+                                    cameraLocation: [52.353326343, 5.0019325333],
+                                    heading: 90,
+                                    pitch: 0.1,
+                                    fov: 90
+                                }
+                            });
+                        }
                     }, 2000);
                 }
             }

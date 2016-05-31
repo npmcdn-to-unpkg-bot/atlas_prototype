@@ -7,9 +7,9 @@
             controllerAs: 'vm'
         });
 
-    DpHeaderController.$inject = ['store'];
+    DpHeaderController.$inject = ['store', 'ACTIONS'];
 
-    function DpHeaderController (store) {
+    function DpHeaderController (store, ACTIONS) {
         var vm = this;
 
         store.subscribe(render);
@@ -17,14 +17,14 @@
 
         vm.triggerSearch = function () {
             store.dispatch({
-                type: 'FETCH_SEARCH_RESULTS_BY_QUERY',
+                type: ACTIONS.FETCH_SEARCH_RESULTS_BY_QUERY,
                 payload: 'Linnaeus'
             });
         };
 
         vm.followSuggestion = function () {
             store.dispatch({
-                type: 'FETCH_DETAIL',
+                type: ACTIONS.FETCH_DETAIL,
                 payload: 'bag/verblijfsobject/03630001958552'
             })
         };

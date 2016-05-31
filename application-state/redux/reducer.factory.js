@@ -80,11 +80,11 @@
 
                     break;
 
-                case ACTIONS.SHOW_LAYERS:
+                case ACTIONS.SHOW_LAYER_SELECTION:
                     newState.map.showLayerSelection = true;
                     break;
 
-                case ACTIONS.HIDE_LAYERS:
+                case ACTIONS.HIDE_LAYER_SELECTION:
                     newState.map.showLayerSelection = false;
                     break;
 
@@ -110,6 +110,51 @@
 
                 case ACTIONS.MAP_ZOOM:
                     newState.map.zoom = action.payload;
+                    break;
+
+                case ACTIONS.FETCH_STRAATBEELD:
+                    newState.straatbeeld = {
+                        id: action.payload,
+                        isLoading: true
+                    };
+
+                    newState.map.highlight = null;
+                    newState.search = null;
+                    newState.page = null;
+                    newState.detail = null;
+                    break;
+
+                case ACTIONS.SHOW_STRAATBEELD:
+                    console.log('hallo?', action.payload);
+                    newState.straatbeeld.cameraLocation = action.payload.cameraLocation;
+
+                    //Only set the heading, pitch and fov if there is no known state for that
+                    if (angular.isUndefined(newState.straatbeeld.heading)) {
+                        newState.straatbeeld.heading = action.payload.heading;
+                    }
+
+                    if (angular.isUndefined(newState.straatbeeld.pitch)) {
+                        newState.straatbeeld.pitch = action.payload.pitch;
+                    }
+
+                    if (angular.isUndefined(newState.straatbeeld.fov)) {
+                        newState.straatbeeld.fov = action.payload.fov;
+                    }
+
+                    newState.straatbeeld.isLoading = false;
+                    console.log(newState.straatbeeld);
+                    break;
+
+                case ACTIONS.STRAATBEELD_SET_HEADING:
+                    newState.straatbeeld.heading = action.payload;
+                    break;
+
+                case ACTIONS.STRAATBEELD_SET_PITCH:
+                    newState.straatbeeld.pitch = action.payload;
+                    break;
+
+                case ACTIONS.STRAATBEELD_SET_FOV:
+                    newState.straatbeeld.fov = action.payload;
                     break;
             }
 
