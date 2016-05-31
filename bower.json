@@ -16,8 +16,8 @@
   ],
   "dependencies": {
     "angular": "^1.5.5",
-    "angular-ui-router": "^0.3.0",
     "bootstrap": "^3.3.6",
-    "redux": "https://npmcdn.com/redux/dist/redux.js"
+    "redux": "https://npmcdn.com/redux/dist/redux.js",
+    "font-awesome": "^4.6.3"
   }
 }
