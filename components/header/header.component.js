@@ -15,7 +15,7 @@
         store.subscribe(render);
         render();
 
-        vm.search = function () {
+        vm.triggerSearch = function () {
             store.dispatch({
                 type: 'FETCH_SEARCH_RESULTS_BY_QUERY',
                 payload: 'Linnaeus'

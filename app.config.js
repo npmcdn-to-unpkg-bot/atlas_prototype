@@ -16,11 +16,7 @@
                 showLayerSelection: false,
                 isLoading: false
             },
-            search: {
-                query: null,
-                location: null,
-                isLoading: false
-            },
+            search: null,
             page: 'welcome',
             detail: null,
             straatbeeld: null

@@ -23,6 +23,7 @@
         };
 
         vm.panTo = function (location) {
+            console.log(location);
             store.dispatch({
                 type: 'MAP_PAN',
                 payload: location

@@ -22,7 +22,8 @@
             vm.showPage = angular.isString(state.page);
             vm.showDetail = angular.isObject(state.detail);
             vm.showStraatbeeld = angular.isObject(state.straatbeeld);
-            vm.showSearchResults = angular.isString(state.search.query) || angular.isArray(state.search.location);
+            vm.showSearchResults = angular.isObject(state.search) &&
+                (angular.isString(state.search.query) || angular.isArray(state.search.location));
 
             vm.sizeLeftColumn = vm.showLayerSelection ? 8 : 0;
             vm.sizeMiddleColumn = vm.showPage || vm.showDetail || vm.showLayerSelection || vm.showStraatbeeld ? 4 : 8;

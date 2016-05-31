@@ -5,16 +5,19 @@
         .module('atlas')
         .factory('reducer', reducerFactory);
 
-    reducerFactory.$inject = ['DEFAULT_STATE'];
+    reducerFactory.$inject = ['ACTIONS'];
 
-    function reducerFactory (DEFAULT_STATE) {
+    function reducerFactory (ACTIONS) {
         return function reducer (oldState, action) {
             var newState = angular.copy(oldState);
 
             switch (action.type) {
-                case 'FETCH_SEARCH_RESULTS_BY_QUERY':
-                    newState.search.query = action.payload;
-                    newState.search.isLoading = true;
+                case ACTIONS.FETCH_SEARCH_RESULTS_BY_QUERY:
+                    newState.search = {
+                        query: action.payload,
+                        location: null,
+                        isLoading: true
+                    };
 
                     newState.map.highlight = null;
                     newState.search.location = null;
@@ -24,9 +27,12 @@
 
                     break;
 
-                case 'FETCH_SEARCH_RESULTS_BY_CLICK':
-                    newState.search.location = action.payload;
-                    newState.search.isLoading = true;
+                case ACTIONS.FETCH_SEARCH_RESULTS_BY_CLICK:
+                    newState.search = {
+                        query: null,
+                        location: action.payload,
+                        isLoading: true
+                    };
 
                     newState.map.highlight = null;
                     newState.search.query = null;
@@ -36,28 +42,26 @@
 
                     break;
 
-                case 'SHOW_SEARCH_RESULTS':
+                case ACTIONS.SHOW_SEARCH_RESULTS:
                     newState.search.isLoading = false;
-
                     break;
 
-                case 'FETCH_DETAIL':
+                case ACTIONS.FETCH_DETAIL:
                     newState.detail = {
                         uri: action.payload,
                         isLoading: true
                     };
-                    newState.map.isLoading = true;
 
+                    newState.map.isLoading = true;
                     newState.map.highlight = null;
-                    newState.search.query = null;
-                    newState.search.location = null;
+
+                    newState.search = null;
                     newState.page = null;
                     newState.straatbeeld = null;
-                    newState.map.highlight = null;
 
                     break;
 
-                case 'SHOW_DETAIL':
+                case ACTIONS.SHOW_DETAIL:
                     newState.map.viewCenter = action.payload.location;
                     newState.map.highlight = action.payload.highlight;
                     newState.map.isLoading = false;
@@ -65,12 +69,47 @@
 
                     break;
 
-                case 'SHOW_LAYERS':
+                case ACTIONS.SHOW_PAGE:
+                    newState.page = action.payload;
+
+                    newState.map.highlight = null;
+                    newState.map.showLayerSelection = false;
+                    newState.search = null;
+                    newState.detail = null;
+                    newState.staatbeeld = null;
+
+                    break;
+
+                case ACTIONS.SHOW_LAYERS:
                     newState.map.showLayerSelection = true;
                     break;
 
-                case 'HIDE_LAYERS':
+                case ACTIONS.HIDE_LAYERS:
                     newState.map.showLayerSelection = false;
+                    break;
+
+                case ACTIONS.MAP_SET_BASELAYER:
+                    newState.map.baseLayer = action.payload;
+                    break;
+
+                case ACTIONS.MAP_ADD_OVERLAY:
+                    newState.map.overlays.push(action.payload);
+                    break;
+
+                case ACTIONS.MAP_REMOVE_OVERLAY:
+                    var index;
+
+                    index = newState.map.overlays.indexOf(action.payload);
+                    newState.map.overlays.splice(index, 1);
+
+                    break;
+
+                case ACTIONS.MAP_PAN:
+                    newState.map.viewCenter = action.payload;
+                    break;
+
+                case ACTIONS.MAP_ZOOM:
+                    newState.map.zoom = action.payload;
                     break;
             }
 

@@ -18,7 +18,7 @@
             function doFakeDataCall () {
                 var state = store.getState();
 
-                if (state.search.isLoading) {
+                if (state.search && state.search.isLoading) {
                     $timeout(function () {
                         store.dispatch({
                             type: 'SHOW_SEARCH_RESULTS'
