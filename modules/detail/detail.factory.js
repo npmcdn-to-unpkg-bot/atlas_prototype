@@ -12,7 +12,7 @@
             setLoadingIndicator: setLoadingIndicator
         };
 
-        function initialize (HTMLElement, root) {
+        function initialize (HTMLElement, store) {
         }
 
         function setUri (uri) {
