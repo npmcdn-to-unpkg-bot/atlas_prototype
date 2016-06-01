@@ -11,6 +11,9 @@
 
             //Todo: Move dp (datapunt) modules to their own repositories
             'dpMap',
-            'dpStraatbeeld'
+            'dpStraatbeeld',
+
+            //This atlas module uses dpShared directly because the constant with Redux ACTIONS is defined there
+            'dpShared'
         ]);
 })();

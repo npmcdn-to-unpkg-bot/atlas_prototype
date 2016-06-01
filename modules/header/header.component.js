@@ -13,19 +13,21 @@
             controllerAs: 'vm'
         });
 
-    function AtlasHeaderController () {
+    AtlasHeaderController.$inject = ['ACTIONS'];
+
+    function AtlasHeaderController (ACTIONS) {
         var vm = this;
 
         vm.triggerSearch = function () {
             vm.store.dispatch({
-                type: 'SHOW_SEARCH_RESULTS_BY_QUERY',
+                type: ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY,
                 payload: 'Linnaeus'
             });
         };
 
         vm.followSuggestion = function () {
             vm.store.dispatch({
-                type: 'FETCH_DETAIL',
+                type: ACTIONS.FETCH_DETAIL,
                 payload: 'bag/verblijfsobject/03630001958552'
             })
         };

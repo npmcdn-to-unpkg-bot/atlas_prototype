@@ -4,7 +4,7 @@
     angular
         .module('dpShared')
         .component('dpLink', {
-            templateUrl: 'modules/shared/link/link.html',
+            templateUrl: 'modules/shared/components/link/link.html',
             transclude: true,
             controller: DpLinkController,
             controllerAs: 'vm',
