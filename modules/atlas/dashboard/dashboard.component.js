@@ -33,6 +33,5 @@
             vm.sizeMiddleColumn = vm.showPage || vm.showDetail || vm.showLayerSelection || vm.showStraatbeeld ? 4 : 8;
             vm.sizeRightColumn = 12 - vm.sizeLeftColumn - vm.sizeMiddleColumn;
         }
-
     }
 })();
