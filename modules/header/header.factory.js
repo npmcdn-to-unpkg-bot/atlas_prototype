@@ -7,16 +7,17 @@
 
     function HeaderFactory () {
         return {
-            initialize: initialize,
-            setQuery: setQuery
+            initialize: initialize
         };
 
         function initialize (HTMLElement, store) {
+            console.log('initialize', HTMLElement, store);
 
-        }
-
-        function setQuery (query) {
-            //query can be null
+            return {
+                setQuery: function (query) {
+                    console.log('setQuery', query);
+                }
+            };
         }
     }
 })();

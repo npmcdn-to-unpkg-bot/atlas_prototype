@@ -3,7 +3,7 @@
 
     angular
         .module('dpMap')
-        .factory('Header', HeaderFactory);
+        .factory('Map', HeaderFactory);
 
     function HeaderFactory () {
         return {
