@@ -17,9 +17,7 @@
         store.subscribe(setLayout);
 
         function setLayout () {
-            var state;
-
-            state = store.getState();
+            var state = store.getState();
 
             vm.showLayerSelection = state.map.showLayerSelection;
             vm.showPage = angular.isString(state.page);
