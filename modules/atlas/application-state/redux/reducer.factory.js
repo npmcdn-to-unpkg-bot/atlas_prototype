@@ -128,15 +128,15 @@
                     newState.straatbeeld.cameraLocation = action.payload.cameraLocation;
 
                     //Only set the heading, pitch and fov if there is no known previous state for that
-                    if (newState.straatbeeld.heading === null) {
+                    if (oldState.straatbeeld.heading === null) {
                         newState.straatbeeld.heading = action.payload.heading;
                     }
 
-                    if (newState.straatbeeld.pitch === null) {
+                    if (oldState.straatbeeld.pitch === null) {
                         newState.straatbeeld.pitch = action.payload.pitch;
                     }
 
-                    if (newState.straatbeeld.fov === null) {
+                    if (oldState.straatbeeld.fov === null) {
                         newState.straatbeeld.fov = action.payload.fov;
                     }
 

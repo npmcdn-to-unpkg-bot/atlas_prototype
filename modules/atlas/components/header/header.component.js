@@ -2,7 +2,7 @@
     angular
         .module('atlas')
         .component('dpHeader', {
-            templateUrl: 'components/header/header.html',
+            templateUrl: 'modules/atlas/components/header/header.html',
             controller: DpHeaderController,
             controllerAs: 'vm'
         });

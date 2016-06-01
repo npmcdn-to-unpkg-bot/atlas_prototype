@@ -4,42 +4,48 @@
         <meta charset="utf-8">
         <title>Atlas protoype</title>
 
+        <!-- Third party libraries -->
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
 
         <script src="bower_components/redux/index.js"></script>
-
         <script src="bower_components/angular/angular.js"></script>
-        <!--script src="bower_components/angular-route/angular-route.js"></script-->
-        <!--script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script-->
 
-        <script src="app.module.js"></script>
-        <script src="app.config.js"></script>
-        <script src="app.vendor.js"></script>
+        <!-- Atlas modules -->
+        <script src="modules/atlas/atlas.module.js"></script>
+        <script src="modules/atlas/atlas.config.js"></script>
+        <script src="modules/atlas/atlas.vendor.js"></script>
+        <script src="modules/atlas/atlas.controller.js"></script>
+        <script src="modules/atlas/api/api.run.js"></script>
+        <script src="modules/atlas/api/api.service.js"></script>
+        <script src="modules/atlas/application-state/redux/actions.constant.js"></script>
+        <script src="modules/atlas/application-state/redux/store.factory.js"></script>
+        <script src="modules/atlas/application-state/redux/reducer.factory.js"></script>
+        <script src="modules/atlas/application-state/redux/url-middleware.factory.js"></script>
+        <script src="modules/atlas/application-state/routing/state-to-url.service.js"></script>
+        <script src="modules/atlas/application-state/routing/url-to-state.service.js"></script>
+        <script src="modules/atlas/application-state/routing/url-to-state.run.js"></script>
+        <script src="modules/atlas/application-state/link/link.component.js"></script>
+        <script src="modules/atlas/components/header/header.component.js"></script>
+        <script src="modules/atlas/components/layer-selection/layer-selection.component.js"></script>
+        <script src="modules/atlas/components/map/map.component.js"></script>
+        <script src="modules/atlas/components/page/page.component.js"></script>
+        <script src="modules/atlas/components/detail/detail.component.js"></script>
+        <script src="modules/atlas/components/search-results/search-results.component.js"></script>
+        <script src="modules/atlas/components/straatbeeld/straatbeeld.component.js"></script>
 
-        <script src="atlas.controller.js"></script>
+        <script src="modules/header/header.module.js"></script>
+        <script src="modules/page/page.module.js"></script>
+        <script src="modules/detail/detail.module.js"></script>
+        <script src="modules/search-results/search-results.module.js"></script>
+        <script src="modules/layer-selection/layer-selection.module.js"></script>
 
-        <script src="api/api.run.js"></script>
-        <script src="api/api.service.js"></script>
+        <!-- Datapunt modules -->
+        <script src="modules/map/map.module.js"></script>
+        <script src="modules/straatbeeld/straatbeeld.module.js"></script>
 
-        <script src="application-state/redux/actions.constant.js"></script>
-        <script src="application-state/redux/store.factory.js"></script>
-        <script src="application-state/redux/reducer.factory.js"></script>
-        <script src="application-state/redux/url-middleware.factory.js"></script>
-        <script src="application-state/routing/state-to-url.service.js"></script>
-        <script src="application-state/routing/url-to-state.service.js"></script>
-        <script src="application-state/routing/url-to-state.run.js"></script>
-        <script src="application-state/link/link.component.js"></script>
-
-        <script src="components/header/header.component.js"></script>
-        <script src="components/layer-selection/layer-selection.component.js"></script>
-        <script src="components/map/map.component.js"></script>
-        <script src="components/page/page.component.js"></script>
-        <script src="components/detail/detail.component.js"></script>
-        <script src="components/search-results/search-results.component.js"></script>
-        <script src="components/straatbeeld/straatbeeld.component.js"></script>
-
-        <script src="components/ui/panel/panel.component.js"></script>
+        <script src="modules/shared/shared.module.js"></script>
+        <script src="modules/shared/panel/panel.component.js"></script>
     </head>
     <body style="padding-top:20px;" ng-controller="AtlasController as vm">
         <div class="container-fluid">

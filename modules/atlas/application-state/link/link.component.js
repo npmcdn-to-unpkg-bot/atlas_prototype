@@ -4,7 +4,7 @@
     angular
         .module('atlas')
         .component('dpLink', {
-            templateUrl: 'application-state/link/link.html',
+            templateUrl: 'modules/atlas/application-state/link/link.html',
             transclude: true,
             controller: DpLinkController,
             controllerAs: 'vm',

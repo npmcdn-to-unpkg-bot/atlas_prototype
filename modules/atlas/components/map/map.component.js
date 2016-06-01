@@ -2,7 +2,7 @@
     angular
         .module('atlas')
         .component('dpMap', {
-            templateUrl: 'components/map/map.html',
+            templateUrl: 'modules/atlas/components/map/map.html',
             controller: DpMapController,
             controllerAs: 'vm'
         });

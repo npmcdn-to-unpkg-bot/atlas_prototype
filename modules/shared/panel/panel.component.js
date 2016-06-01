@@ -7,7 +7,7 @@
             bindings: {
                 heading: '@'
             },
-            templateUrl: 'components/ui/panel/panel.html',
+            templateUrl: 'modules/shared/panel/panel.html',
             transclude: true,
             controller: DpPanelController,
             controllerAs: 'vm'
