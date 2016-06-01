@@ -112,6 +112,9 @@
                 case ACTIONS.FETCH_STRAATBEELD:
                     newState.straatbeeld = {
                         id: action.payload,
+                        heading: angular.isObject(oldState.straatbeeld) ? oldState.straatbeeld.heading : null,
+                        pitch: angular.isObject(oldState.straatbeeld) ? oldState.straatbeeld.pitch : null,
+                        fov: angular.isObject(oldState.straatbeeld) ? oldState.straatbeeld.fov : null,
                         isLoading: true
                     };
 
@@ -124,16 +127,16 @@
                 case ACTIONS.SHOW_STRAATBEELD:
                     newState.straatbeeld.cameraLocation = action.payload.cameraLocation;
 
-                    //Only set the heading, pitch and fov if there is no known state for that
-                    if (angular.isUndefined(newState.straatbeeld.heading)) {
+                    //Only set the heading, pitch and fov if there is no known previous state for that
+                    if (newState.straatbeeld.heading === null) {
                         newState.straatbeeld.heading = action.payload.heading;
                     }
 
-                    if (angular.isUndefined(newState.straatbeeld.pitch)) {
+                    if (newState.straatbeeld.pitch === null) {
                         newState.straatbeeld.pitch = action.payload.pitch;
                     }
 
-                    if (angular.isUndefined(newState.straatbeeld.fov)) {
+                    if (newState.straatbeeld.fov === null) {
                         newState.straatbeeld.fov = action.payload.fov;
                     }
 

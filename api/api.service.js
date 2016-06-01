@@ -48,11 +48,8 @@
                 }
 
                 if (state.straatbeeld && state.straatbeeld.isLoading) {
-                    console.log(state.straatbeeld.id);
                     $timeout(function () {
-
                         if (state.straatbeeld.id === 1000017472454) {
-                            console.log('a');
                             store.dispatch({
                                 type: ACTIONS.SHOW_STRAATBEELD,
                                 payload: {
