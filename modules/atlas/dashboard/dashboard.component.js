@@ -3,11 +3,15 @@
 
     angular
         .module('atlas')
-        .controller('AtlasController', AtlasController);
+        .component('atlasDashboard', {
+            templateUrl: 'modules/atlas/dashboard/dashboard.html',
+            controller: AtlasDashboardController,
+            controllerAs: 'vm'
+        });
 
-    AtlasController.$inject = ['store'];
+    AtlasDashboardController.$inject = ['store'];
 
-    function AtlasController (store) {
+    function AtlasDashboardController (store) {
         var vm = this;
 
         store.subscribe(render);
@@ -29,5 +33,6 @@
             vm.sizeMiddleColumn = vm.showPage || vm.showDetail || vm.showLayerSelection || vm.showStraatbeeld ? 4 : 8;
             vm.sizeRightColumn = 12 - vm.sizeLeftColumn - vm.sizeMiddleColumn;
         }
+
     }
 })();

@@ -1,0 +1,38 @@
+<div class="container-fluid" style="padding-top:20px;">
+    <div class="row">
+        <div class="col-xs-12">
+            <dp-panel heading="Header">
+                <dp-header></dp-header>
+            </dp-panel>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-if="vm.sizeLeftColumn" class="col-xs-{{vm.sizeLeftColumn}}">
+            <dp-panel heading="Layers">
+                <dp-layers></dp-layers>
+            </dp-panel>
+        </div>
+        <div class="col-xs-{{vm.sizeMiddleColumn}}">
+            <dp-panel heading="Map">
+                <dp-map></dp-map>
+            </dp-panel>
+        </div>
+        <div ng-if="vm.sizeRightColumn" class="col-xs-{{vm.sizeRightColumn}}">
+            <dp-panel ng-if="vm.showDetail" heading="Detail">
+                <dp-detail></dp-detail>
+            </dp-panel>
+
+            <dp-panel ng-if="vm.showPage" heading="Page">
+                <dp-page></dp-page>
+            </dp-panel>
+
+            <dp-panel ng-if="vm.showSearchResults" heading="Search results">
+                <dp-search-results></dp-search-results>
+            </dp-panel>
+
+            <dp-panel ng-if="vm.showStraatbeeld" heading="Straatbeeld">
+                <dp-straatbeeld></dp-straatbeeld>
+            </dp-panel>
+        </div>
+    </div>
+</div>

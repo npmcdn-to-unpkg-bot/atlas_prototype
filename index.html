@@ -12,11 +12,11 @@
         <script src="bower_components/leaflet/dist/leaflet.js"></script>
         <script src="bower_components/redux/index.js"></script>
 
+
         <!-- Atlas modules -->
         <script src="modules/atlas/atlas.module.js"></script>
         <script src="modules/atlas/atlas.config.js"></script>
         <script src="modules/atlas/atlas.vendor.js"></script>
-        <script src="modules/atlas/atlas.controller.js"></script>
         <script src="modules/atlas/api/api.run.js"></script>
         <script src="modules/atlas/api/api.service.js"></script>
         <script src="modules/atlas/application-state/redux/actions.constant.js"></script>
@@ -27,6 +27,11 @@
         <script src="modules/atlas/application-state/routing/url-to-state.service.js"></script>
         <script src="modules/atlas/application-state/routing/url-to-state.run.js"></script>
         <script src="modules/atlas/application-state/link/link.component.js"></script>
+        <script src="modules/atlas/dashboard/dashboard.component.js"></script>
+
+        <!--
+        All files in the components folder are temporary, for the prototype only, meant to display the current state.
+        -->
         <script src="modules/atlas/components/header/header.component.js"></script>
         <script src="modules/atlas/components/layer-selection/layer-selection.component.js"></script>
         <script src="modules/atlas/components/map/map.component.js"></script>
@@ -50,6 +55,7 @@
         <script src="modules/layer-selection/layer-selection.module.js"></script>
         <script src="modules/layer-selection/layer-selection.factory.js"></script>
 
+
         <!-- Datapunt modules -->
         <script src="modules/map/map.module.js"></script>
         <script src="modules/map/map.vendor.js"></script>
@@ -61,44 +67,7 @@
         <script src="modules/shared/shared.module.js"></script>
         <script src="modules/shared/panel/panel.component.js"></script>
     </head>
-    <body style="padding-top:20px;" ng-controller="AtlasController as vm">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12">
-                    <dp-panel heading="Header">
-                        <dp-header></dp-header>
-                    </dp-panel>
-                </div>
-            </div>
-            <div class="row">
-                <div ng-if="vm.sizeLeftColumn" class="col-xs-{{vm.sizeLeftColumn}}">
-                    <dp-panel heading="Layers">
-                        <dp-layers></dp-layers>
-                    </dp-panel>
-                </div>
-                <div class="col-xs-{{vm.sizeMiddleColumn}}">
-                    <dp-panel heading="Map">
-                        <dp-map></dp-map>
-                    </dp-panel>
-                </div>
-                <div ng-if="vm.sizeRightColumn" class="col-xs-{{vm.sizeRightColumn}}">
-                    <dp-panel ng-if="vm.showDetail" heading="Detail">
-                        <dp-detail></dp-detail>
-                    </dp-panel>
-
-                    <dp-panel ng-if="vm.showPage" heading="Page">
-                        <dp-page></dp-page>
-                    </dp-panel>
-
-                    <dp-panel ng-if="vm.showSearchResults" heading="Search results">
-                        <dp-search-results></dp-search-results>
-                    </dp-panel>
-
-                    <dp-panel ng-if="vm.showStraatbeeld" heading="Straatbeeld">
-                        <dp-straatbeeld></dp-straatbeeld>
-                    </dp-panel>
-                </div>
-            </div>
-        </div>
+    <body>
+        <atlas-dashboard></atlas-dashboard>
     </body>
 </html>
