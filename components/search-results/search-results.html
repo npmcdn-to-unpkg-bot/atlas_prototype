@@ -11,29 +11,23 @@
         <th scope="row">search.location</th>
         <td>{{vm.search.location.join(', ')}}</td>
     </tr>
-    <tr>
-        <th scope="row">search.isLoading</th>
-        <td>{{vm.search.isLoading}}</td>
-    </tr>
 </table>
 
-<div ng-if="!vm.search.isLoading">
-    <h3 style="margin-top:0;">Actions</h3>
-    <ul>
-        <li>
-            <dp-link type="FETCH_DETAIL" payload="'gebieden/buurt/03630000000583'">
-                Ga naar detailpagina: 'Java-eiland'
-            </dp-link>
-        </li>
-        <li>
-            <dp-link type="FETCH_DETAIL" payload="'bag/openbareruimte/03630011950386'">
-                Ga naar detailpagina: 'Jan Schaeferbrug'
-            </dp-link>
-        </li>
-        <li>
-            <dp-link type="FETCH_STRAATBEELD" payload="1000017472475">
-                Ga naar straatbeeld
-            </dp-link>
-        </li>
-    </ul>
-</div>
+<h3 style="margin-top:0;">Actions</h3>
+<ul>
+    <li>
+        <dp-link type="FETCH_DETAIL" payload="'gebieden/buurt/03630000000583'">
+            Ga naar detailpagina: 'Java-eiland'
+        </dp-link>
+    </li>
+    <li>
+        <dp-link type="FETCH_DETAIL" payload="'bag/openbareruimte/03630011950386'">
+            Ga naar detailpagina: 'Jan Schaeferbrug'
+        </dp-link>
+    </li>
+    <li>
+        <dp-link type="FETCH_STRAATBEELD" payload="1000017472475">
+            Ga naar straatbeeld
+        </dp-link>
+    </li>
+</ul>

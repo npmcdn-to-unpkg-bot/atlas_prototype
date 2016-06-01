@@ -17,7 +17,7 @@
 
         vm.triggerSearch = function () {
             store.dispatch({
-                type: ACTIONS.FETCH_SEARCH_RESULTS_BY_QUERY,
+                type: ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY,
                 payload: 'Linnaeus'
             });
         };

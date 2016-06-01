@@ -18,14 +18,6 @@
             function doFakeDataCall () {
                 var state = store.getState();
 
-                if (state.search && state.search.isLoading) {
-                    $timeout(function () {
-                        store.dispatch({
-                            type: ACTIONS.SHOW_SEARCH_RESULTS
-                        });
-                    }, 2000);
-                }
-
                 if (state.detail && state.detail.isLoading) {
                     $timeout(function () {
                         var location,

@@ -12,11 +12,10 @@
             var newState = angular.copy(oldState);
 
             switch (action.type) {
-                case ACTIONS.FETCH_SEARCH_RESULTS_BY_QUERY:
+                case ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY:
                     newState.search = {
                         query: action.payload,
-                        location: null,
-                        isLoading: true
+                        location: null
                     };
 
                     newState.map.highlight = null;
@@ -28,11 +27,10 @@
 
                     break;
 
-                case ACTIONS.FETCH_SEARCH_RESULTS_BY_CLICK:
+                case ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK:
                     newState.search = {
                         query: null,
-                        location: action.payload,
-                        isLoading: true
+                        location: action.payload
                     };
 
                     newState.map.highlight = null;
@@ -42,10 +40,6 @@
                     newState.detail = null;
                     newState.straatbeeld = null;
 
-                    break;
-
-                case ACTIONS.SHOW_SEARCH_RESULTS:
-                    newState.search.isLoading = false;
                     break;
 
                 case ACTIONS.FETCH_DETAIL:
@@ -144,7 +138,6 @@
                     }
 
                     newState.straatbeeld.isLoading = false;
-                    console.log(newState.straatbeeld);
                     break;
 
                 case ACTIONS.STRAATBEELD_SET_HEADING:
