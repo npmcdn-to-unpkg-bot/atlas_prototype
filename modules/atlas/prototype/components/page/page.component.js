@@ -2,7 +2,7 @@
     angular
         .module('atlas')
         .component('dpPage', {
-            templateUrl: 'modules/atlas/components/page/page.html',
+            templateUrl: 'modules/atlas/prototype/components/page/page.html',
             controller: dpPageController,
             controllerAs: 'vm'
         });

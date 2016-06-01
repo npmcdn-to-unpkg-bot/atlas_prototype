@@ -2,9 +2,9 @@
     'use strict';
 
     angular
-        .module('atlas')
+        .module('dpShared')
         .component('dpLink', {
-            templateUrl: 'modules/atlas/application-state/link/link.html',
+            templateUrl: 'modules/shared/link/link.html',
             transclude: true,
             controller: DpLinkController,
             controllerAs: 'vm',
@@ -14,6 +14,7 @@
             }
         });
 
+    //Todo: deze vriend heeft helemaal geen store, iets voor bedenken
     DpLinkController.$inject = ['store'];
 
     function DpLinkController (store) {

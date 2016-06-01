@@ -4,7 +4,7 @@
     angular
         .module('atlas')
         .component('dpLayers', {
-            templateUrl: 'modules/atlas/components/layer-selection/layer-selection.html',
+            templateUrl: 'modules/atlas/prototype/components/layer-selection/layer-selection.html',
             controller: DpLayersController,
             controllerAs: 'vm'
         });

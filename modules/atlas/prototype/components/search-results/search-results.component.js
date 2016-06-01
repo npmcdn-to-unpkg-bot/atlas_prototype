@@ -2,7 +2,7 @@
     angular
         .module('atlas')
         .component('dpSearchResults', {
-            templateUrl: 'modules/atlas/components/search-results/search-results.html',
+            templateUrl: 'modules/atlas/prototype/components/search-results/search-results.html',
             controller: dpSearchResultsController,
             controllerAs: 'vm'
         });
