@@ -1,11 +1,15 @@
 <div class="container-fluid" style="padding-top:20px;">
     <div class="row">
         <div class="col-xs-12">
-            <atlas-header></atlas-header>
+            <div ng-controller="AtlasHeader as vm">
+                <dp-panel heading="Header">
+                    <atlas-header query="{{vm.query}}" store="vm.store"></atlas-header>
+                </dp-panel>
+            </div>
 
-            <dp-panel heading="Header">
+            <!--dp-panel heading="Header">
                 <dp-header></dp-header>
-            </dp-panel>
+            </dp-panel-->
         </div>
     </div>
     <div class="row">
