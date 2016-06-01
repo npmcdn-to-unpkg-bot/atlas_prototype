@@ -1,5 +1,5 @@
 {
-  "name": "router-test",
+  "name": "atlas_prototype",
   "authors": [
     "Erik Nijland <e.n.nijland@gmail.com>"
   ],
@@ -17,7 +17,8 @@
   "dependencies": {
     "angular": "^1.5.5",
     "bootstrap": "^3.3.6",
-    "redux": "https://npmcdn.com/redux/dist/redux.js",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "leaflet": "^0.7.7",
+    "redux": "https://npmcdn.com/redux/dist/redux.js"
   }
 }
