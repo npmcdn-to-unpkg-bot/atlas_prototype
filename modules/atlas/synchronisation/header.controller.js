@@ -3,7 +3,7 @@
 
     angular
         .module('atlas')
-        .controller('AtlasHeader', AtlasHeaderController);
+        .controller('AtlasHeaderController', AtlasHeaderController);
 
     AtlasHeaderController.$inject = ['store'];
 
@@ -15,7 +15,7 @@
         store.subscribe(update);
 
         function update () {
-            var state = store.getState();
+            var state = angular.copy(store.getState());
 
             vm.query = state.search && state.search.query;
         }

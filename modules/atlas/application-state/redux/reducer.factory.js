@@ -20,7 +20,6 @@
 
                     newState.map.highlight = null;
                     newState.map.showLayerSelection = false;
-                    newState.search.location = null;
                     newState.page = null;
                     newState.detail = null;
                     newState.straatbeeld = null;
@@ -35,7 +34,6 @@
 
                     newState.map.highlight = null;
                     newState.map.showLayerSelection = false;
-                    newState.search.query = null;
                     newState.page = null;
                     newState.detail = null;
                     newState.straatbeeld = null;

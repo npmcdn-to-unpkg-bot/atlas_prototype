@@ -1,15 +1,11 @@
 <div class="container-fluid" style="padding-top:20px;">
     <div class="row">
         <div class="col-xs-12">
-            <div ng-controller="AtlasHeader as vm">
+            <div ng-controller="AtlasHeaderController as vm">
                 <dp-panel heading="Header">
                     <atlas-header query="{{vm.query}}" store="vm.store"></atlas-header>
                 </dp-panel>
             </div>
-
-            <!--dp-panel heading="Header">
-                <dp-header></dp-header>
-            </dp-panel-->
         </div>
     </div>
     <div class="row">
@@ -19,11 +15,11 @@
             </dp-panel>
         </div>
         <div class="col-xs-{{vm.sizeMiddleColumn}}">
-            <atlas-map></atlas-map>
-
-            <dp-panel heading="Map">
-                <dp-map></dp-map>
-            </dp-panel>
+            <div ng-controller="dpMapController as vm">
+                <dp-panel heading="Map">
+                    <dp-map state="vm.map"></dp-map>
+                </dp-panel>
+            </div>
         </div>
         <div ng-if="vm.sizeRightColumn" class="col-xs-{{vm.sizeRightColumn}}">
             <dp-panel ng-if="vm.showDetail" heading="Detail">

@@ -15,6 +15,7 @@
         var vm = this;
 
         store.subscribe(setLayout);
+        setLayout();
 
         function setLayout () {
             var state = store.getState();
