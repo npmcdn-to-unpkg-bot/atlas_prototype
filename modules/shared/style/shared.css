@@ -340,29 +340,9 @@ h4,
 .h4 {
   font-size: 14px; }
 
-/***
-  section: Table
-  description: A regular table (please note the table class, the table element has no styling of it's own)
-  example: |
-    <table class="table">
-      <tbody>
-        <tr>
-          <th scope="row">Naam 24-posities (NEN)</th>
-          <td>Agatha Dekenstraat</td>
-        </tr>
-        <tr>
-          <th scope="row">Naam 17-posities (post)</th>
-          <td>A DEKENSTR</td>
-        </tr>
-        <tr>
-          <th scope="row">Woonplaats</th>
-          <td>Amsterdam</td>
-        </tr>
-      </tbody>
-    </table>
-***/
 .table {
   width: 100%;
+  border-spacing: 0;
   margin-bottom: 24px; }
   .table th {
     text-align: left; }

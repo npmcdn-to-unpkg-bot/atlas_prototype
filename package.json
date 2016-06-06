@@ -5,9 +5,10 @@
   "main": "Gruntfile.js",
   "dependencies": {},
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "jit-grunt": "^0.10.0",
-    "load-grunt-config": "^0.19.2"
+    "dss": "^1.0.4",
+    "grunt": "*",
+    "jit-grunt": "*",
+    "load-grunt-config": "*"
   },
   "scripts": {
     "postinstall": "bower install",

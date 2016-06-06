@@ -1,3 +1,23 @@
+/*
+@name Table
+@markup
+  <table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">Naam 24-posities (NEN)</th>
+        <td>Agatha Dekenstraat</td>
+      </tr>
+      <tr>
+        <th scope="row">Naam 17-posities (post)</th>
+        <td>A DEKENSTR</td>
+      </tr>
+      <tr>
+        <th scope="row">Woonplaats</th>
+        <td>Amsterdam</td>
+      </tr>
+    </tbody>
+  </table>
+*/
 .table {
   width:100%;
   border-spacing:0;
