@@ -1,0 +1,27 @@
+{
+  "name": "atlas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "jit-grunt": "^0.10.0",
+    "load-grunt-config": "^0.19.2"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "test": "grunt test",
+    "start": "grunt serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DatapuntAmsterdam/atlas_prototype.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DatapuntAmsterdam/atlas_prototype/issues"
+  },
+  "homepage": "https://github.com/DatapuntAmsterdam/atlas_prototype#readme"
+}
