@@ -24,7 +24,7 @@
             }
 
             vm.map = state.map;
-            console.log(vm.map);
+
         }
     }
 })();
