@@ -1,6 +1,20 @@
 .btn {
-  &.btn-red {
+  padding:$whitespace-base / 2;
+  border:1px solid $black;
+  border-radius:6px;
 
+  &.btn-white {
+    background-color:$white;
+    color:$black;
+    font-size:inherit;
+
+    &:hover {
+      background-color:$gray;
+    }
+
+    &[disabled] {
+      color:red;
+    }
   }
 
   /*
