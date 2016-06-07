@@ -1,9 +1,15 @@
 <div class="dashboard">
     <div class="dashboard__heading">
-        <div ng-controller="AtlasHeaderController as vm">
-            <dp-panel heading="Header">
-                <atlas-header query="{{vm.query}}" store="vm.store"></atlas-header>
-            </dp-panel>
+        <div class="grid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div ng-controller="AtlasHeaderController as vm">
+                        <dp-panel heading="Header">
+                            <atlas-header query="{{vm.query}}" store="vm.store"></atlas-header>
+                        </dp-panel>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="dashboard__content">
