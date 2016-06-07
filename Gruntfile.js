@@ -7,7 +7,8 @@ module.exports = function(grunt) {
       customTasksDir: 'grunt/tasks'
     },
     data: {
-      foo: 'bar' // accessible with '<%= foo %>'
+      app: 'modules', // accessible with '<%= app %>'
+      dist: 'dist' // accessible with '<%= dist %>'
     }
   });
 };

@@ -20,9 +20,9 @@
                     stateToUrl.updateUrl(store.getState());
 
                     return returnValue;
-                }
-            }
-        }
+                };
+            };
+        };
     }
 })();
 
