@@ -1,7 +1,7 @@
 module.exports = {
-    // options: {
-    //   livereload: true,
-    // },
+    options: {
+      livereload: true,
+    },
     js: {
       files: [
         'Gruntfile.js',
@@ -9,7 +9,7 @@ module.exports = {
         '<%= app %>/**/*.es6'
       ],
       tasks: [
-        'jshint'
+        'newer:jshint'
       ],
 
     }

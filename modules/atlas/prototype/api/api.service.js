@@ -28,7 +28,7 @@
                             highlight = 'GeoJSON Point at 52.32226293447365, 4.9794013795430745';
                         } else if (state.detail.uri === 'bag/openbareruimte/03630000001020') {
                             location = [52.35574887521402, 4.997074072623519];
-                            highlight = 'GeoJSON Polygon for Maria Austriastraat (openbare ruimte)'
+                            highlight = 'GeoJSON Polygon for Maria Austriastraat (openbare ruimte)';
                         } else if (state.detail.uri === 'gebieden/buurt/03630000000583') {
                             location = [52.3788266489935, 4.924849634533546];
                             highlight = 'GeoJSON Polygon for Java-eiland (buurt)';
