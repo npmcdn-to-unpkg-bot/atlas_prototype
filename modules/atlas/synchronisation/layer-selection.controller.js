@@ -21,8 +21,6 @@
             vm.baseLayer = state.map.baseLayer;
             vm.overlays = state.map.overlays;
             vm.zoom = state.map.zoom;
-
-            console.log('in de controller', vm.baseLayer, vm.overlays, vm.zoom);
         }
     }
 })();
