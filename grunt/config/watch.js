@@ -9,7 +9,7 @@ module.exports = {
         '<%= app %>/**/*.es6'
       ],
       tasks: [
-        'jshint'
+        'newer:jshint'
       ],
 
     }
