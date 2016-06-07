@@ -1,24 +1,23 @@
 @import "config/_variables";
 @import "config/_mixins";
 
-.datapunt {
-  @import "base/_reset";
-  @import "base/_typography";
-  @import "base/_link";
+@import "base/_reset";
+@import "base/_typography";
+@import "base/_link";
 
-  @import "layout/_grid";
-  @import "layout/_offset";
-  @import "layout/_push-pull";
-  @import "layout/_quick-pull";
+@import "layout/_grid";
+@import "layout/_offset";
+@import "layout/_push-pull";
+@import "layout/_quick-pull";
 
-  @import "components/_heading";
-  @import "components/_table";
-  @import "components/_list";
-  @import "components/_paragraph";
-  @import "components/_button";
+@import "components/_heading";
+@import "components/_table";
+@import "components/_list";
+@import "components/_paragraph";
+@import "components/_button";
 
-  @import "utilities/_color";
-  @import "utilities/_display";
-  @import "utilities/_margin";
-  @import "utilities/_padding";
-}
+@import "utilities/_color";
+@import "utilities/_display";
+@import "utilities/_height";
+@import "utilities/_margin";
+@import "utilities/_padding";

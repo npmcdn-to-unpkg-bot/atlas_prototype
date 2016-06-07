@@ -1,0 +1,16 @@
+.dashboard {
+    background-color:green;
+    height:100%;
+}
+
+.dashboard__heading {
+    overflow:hidden;
+    height:150px;
+    background-color:red;
+}
+
+.dashboard__content {
+    background-color:blue;
+    overflow:hidden;
+    height:calc(100% - 150px);
+}
