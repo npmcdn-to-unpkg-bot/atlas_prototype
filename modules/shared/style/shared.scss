@@ -1,5 +1,8 @@
-@import "config/_variables";
-@import "config/_mixins";
+@import "config/variables/_breakpoints";
+@import "config/variables/_colors";
+@import "config/variables/_typography";
+@import "config/variables/_whitespace";
+@import "config/mixins/_clearfix";
 
 @import "base/_reset";
 @import "base/_typography";
