@@ -9,5 +9,9 @@
         return {
             initialize: initialize
         };
+
+        function initialize () {
+            //HTMLElement, store
+        }
     }
 })();

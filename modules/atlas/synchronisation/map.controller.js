@@ -20,7 +20,7 @@
             if (state.search && state.search.location) {
                 markers.push({
                     type: ''
-                })
+                });
             }
 
             vm.map = state.map;

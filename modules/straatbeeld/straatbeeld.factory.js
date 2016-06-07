@@ -11,13 +11,16 @@
             loadScene: loadScene
         };
 
-        function initialize (HTMLElement, store) {
+        function initialize () {
+            //HTMLElement, store
         }
 
-        function loadScene (query) {
+        function loadScene () {
+            //query
         }
 
-        function searchByCoordinates (location) {
+        function searchByCoordinates () {
+            //location
         }
     }
 })();

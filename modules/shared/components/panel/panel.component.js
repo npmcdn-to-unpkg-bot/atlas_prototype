@@ -14,6 +14,6 @@
         });
 
     function DpPanelController () {
-        var vm = this;
+        //var vm = this;
     }
 })();

@@ -29,7 +29,7 @@
             vm.store.dispatch({
                 type: ACTIONS.FETCH_DETAIL,
                 payload: 'bag/verblijfsobject/03630001958552'
-            })
+            });
         };
     }
 })();

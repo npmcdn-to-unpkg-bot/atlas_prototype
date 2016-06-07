@@ -1,7 +1,7 @@
 module.exports = {
-    // options: {
-    //   livereload: true,
-    // },
+    options: {
+      livereload: true,
+    },
     js: {
       files: [
         'Gruntfile.js',

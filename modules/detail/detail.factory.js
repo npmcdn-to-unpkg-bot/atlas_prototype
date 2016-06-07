@@ -12,13 +12,16 @@
             setLoadingIndicator: setLoadingIndicator
         };
 
-        function initialize (HTMLElement, store) {
+        function initialize () {
+            //HTMLElement, store
         }
 
-        function setUri (uri) {
+        function setUri () {
+            //uri
         }
 
-        function setLoadingIndicator (isLoading) {
+        function setLoadingIndicator () {
+            //isLoading
         }
     }
 })();

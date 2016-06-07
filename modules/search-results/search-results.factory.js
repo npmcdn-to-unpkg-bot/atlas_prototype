@@ -12,13 +12,16 @@
             searchByCoordinates: searchByCoordinates
         };
 
-        function initialize (HTMLElement, store) {
+        function initialize () {
+        //HTMLElement, store
         }
 
-        function searchByQuery (query) {
+        function searchByQuery () {
+            //query
         }
 
-        function searchByCoordinates (location) {
+        function searchByCoordinates () {
+            //location
         }
     }
 })();
