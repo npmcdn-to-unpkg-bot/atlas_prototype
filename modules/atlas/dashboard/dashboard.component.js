@@ -14,6 +14,8 @@
     function AtlasDashboardController (store) {
         var vm = this;
 
+        vm.store = store;
+
         store.subscribe(setLayout);
         setLayout();
 
