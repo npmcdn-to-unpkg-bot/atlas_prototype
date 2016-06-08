@@ -10,7 +10,7 @@
                 zoom: '=',
                 store: '='
             },
-            templateUrl: 'modules/layer-selection/layer-selection.html',
+            templateUrl: 'modules/layer-selection/components/layer-selection/layer-selection.html',
             controller: AtlasLayerSelectionController,
             controllerAs: 'vm'
         });

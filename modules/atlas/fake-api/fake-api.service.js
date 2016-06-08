@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .service('api', apiService);
+        .service('fakeApi', fakeApiService);
 
-    apiService.$inject = ['$timeout', 'store', 'ACTIONS'];
+    fakeApiService.$inject = ['$timeout', 'store', 'ACTIONS'];
 
-    function apiService ($timeout, store, ACTIONS) {
+    function fakeApiService ($timeout, store, ACTIONS) {
         return {
             initialize: initializeMocks
         };

@@ -11,12 +11,8 @@ module.exports = function (config) {
       'bower_components/leaflet/leaflet.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'modules/shared/**/*.module.js',
-      'modules/shared/**/*.js',
-      'modules/header/**/*.module.js',
-      'modules/header/**/*.js',
-      'modules/atlas/**/*.module.js',
-      'modules/atlas/**/*.js',
+      'modules/**/*.module.js',
+      'modules/**/*.js',
     ],
 
     plugins: [
