@@ -40,9 +40,13 @@
                         <atlas-page name="{{vm.pageName}}"></atlas-page>
                     </div>
 
-                    <dp-panel ng-if="vm.showSearchResults" heading="Search results">
-                        <dp-search-results></dp-search-results>
-                    </dp-panel>
+                    <div ng-if="vm.showSearchResults" ng-controller="SearchResultsController as vm">
+                        <atlas-search-results
+                            query="{{vm.query}}"
+                            location="vm.location">
+
+                        </atlas-search-results>
+                    </div>
 
                     <dp-panel ng-if="vm.showStraatbeeld" heading="Straatbeeld">
                         <dp-straatbeeld></dp-straatbeeld>
