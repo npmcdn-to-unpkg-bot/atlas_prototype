@@ -11,8 +11,7 @@ module.exports = {
     files: [
       'Gruntfile.js',
       'grunt/**/*.js',
-      '<%= app %>/**/*.js',
-      '<%= app %>/**/*.es6'
+      '<%= app %>/**/*.js'
     ],
     tasks: [
       'newer:jshint'
