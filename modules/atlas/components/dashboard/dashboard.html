@@ -67,9 +67,9 @@
                         </atlas-search-results>
                     </div>
 
-                    <dp-panel ng-if="vm.showStraatbeeld" heading="Straatbeeld">
+                    <div ng-if="vm.showStraatbeeld" ng-controller="StraatbeeldController as vm">
                         <dp-straatbeeld></dp-straatbeeld>
-                    </dp-panel>
+                    </div>
                 </div>
             </div>
         </div>

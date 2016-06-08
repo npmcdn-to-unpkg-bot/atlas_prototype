@@ -110,11 +110,24 @@
                 case ACTIONS.FETCH_STRAATBEELD:
                     newState.straatbeeld = {
                         id: action.payload,
-                        heading: angular.isObject(oldState.straatbeeld) ? oldState.straatbeeld.heading : null,
-                        pitch: angular.isObject(oldState.straatbeeld) ? oldState.straatbeeld.pitch : null,
-                        fov: angular.isObject(oldState.straatbeeld) ? oldState.straatbeeld.fov : null,
+                        camera: {
+                            location: null
+                        },
                         isLoading: true
                     };
+
+                    //Save the orientation from the previous state when navigating to another panorama
+                    if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.heading) {
+                        newState.straatbeeld.camera.heading = oldState.staatbeeld.camera.heading;
+                    }
+
+                    if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.pitch) {
+                        newState.straatbeeld.camera.pitch = oldState.staatbeeld.camera.pitch;
+                    }
+
+                    if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.fov) {
+                        newState.straatbeeld.camera.fov = oldState.staatbeeld.camera.fov;
+                    }
 
                     newState.map.highlight = null;
                     newState.search = null;
@@ -123,34 +136,34 @@
                     break;
 
                 case ACTIONS.SHOW_STRAATBEELD:
-                    newState.straatbeeld.cameraLocation = action.payload.cameraLocation;
+                    newState.straatbeeld.camera.location = action.payload.location;
 
-                    //Only set the heading, pitch and fov if there is no known previous state for that
-                    if (oldState.straatbeeld.heading === null) {
-                        newState.straatbeeld.heading = action.payload.heading;
+                    //Only set the heading, pitch and fov if there is no known previous state
+                    if (angular.isUndefined(oldState.straatbeeld.camera.heading)) {
+                        newState.straatbeeld.camera.heading = action.payload.heading;
                     }
 
-                    if (oldState.straatbeeld.pitch === null) {
-                        newState.straatbeeld.pitch = action.payload.pitch;
+                    if (angular.isUndefined(oldState.straatbeeld.camera.pitch)) {
+                        newState.straatbeeld.camera.pitch = action.payload.pitch;
                     }
 
-                    if (oldState.straatbeeld.fov === null) {
-                        newState.straatbeeld.fov = action.payload.fov;
+                    if (angular.isUndefined(oldState.straatbeeld.camera.fov)) {
+                        newState.straatbeeld.camera.fov = action.payload.fov;
                     }
 
                     newState.straatbeeld.isLoading = false;
                     break;
 
                 case ACTIONS.STRAATBEELD_SET_HEADING:
-                    newState.straatbeeld.heading = action.payload;
+                    newState.straatbeeld.camera.heading = action.payload;
                     break;
 
                 case ACTIONS.STRAATBEELD_SET_PITCH:
-                    newState.straatbeeld.pitch = action.payload;
+                    newState.straatbeeld.camera.pitch = action.payload;
                     break;
 
                 case ACTIONS.STRAATBEELD_SET_FOV:
-                    newState.straatbeeld.fov = action.payload;
+                    newState.straatbeeld.camera.fov = action.payload;
                     break;
             }
 

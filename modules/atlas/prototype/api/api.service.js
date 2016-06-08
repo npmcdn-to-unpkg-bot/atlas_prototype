@@ -53,7 +53,7 @@
                             store.dispatch({
                                 type: ACTIONS.SHOW_STRAATBEELD,
                                 payload: {
-                                    cameraLocation: [52.3532714793, 5.001685474],
+                                    location: [52.3532714793, 5.001685474],
                                     heading: 90,
                                     pitch: 0.1,
                                     fov: 90
@@ -63,7 +63,7 @@
                             store.dispatch({
                                 type: ACTIONS.SHOW_STRAATBEELD,
                                 payload: {
-                                    cameraLocation: [52.353326343, 5.0019325333],
+                                    location: [52.353326343, 5.0019325333],
                                     heading: 90,
                                     pitch: 0.1,
                                     fov: 90
