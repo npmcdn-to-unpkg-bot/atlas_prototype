@@ -5,30 +5,17 @@
         .module('atlasPage')
         .component('atlasPage', {
             bindings: {
-                name: '@'
+                name: '@',
+                store: '='
             },
             templateUrl: 'modules/page/components/page/page.html',
             controller: AtlasPageController,
             controllerAs: 'vm'
         });
 
-    AtlasPageController.$inject = ['ACTIONS'];
+    AtlasPageController.$inject = [];
 
-    function AtlasPageController (ACTIONS) {
+    function AtlasPageController () {
         var vm = this;
-
-        vm.triggerSearch = function () {
-            vm.store.dispatch({
-                type: ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY,
-                payload: 'Linnaeus'
-            });
-        };
-
-        vm.followSuggestion = function () {
-            vm.store.dispatch({
-                type: ACTIONS.FETCH_DETAIL,
-                payload: 'bag/verblijfsobject/03630001958552'
-            });
-        };
     }
 })();

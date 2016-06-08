@@ -1,21 +1,21 @@
-<h3 style="margin-top:0;">
-    <i ng-if="vm.detail.isLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+<h3>
+    <i ng-if="vm.isLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
     Status
 </h3>
 
 <table class="table table-bordered table-condensed">
     <tr>
         <th scope="row">detail.uri</th>
-        <td>{{vm.detail.uri}}</td>
+        <td>{{vm.uri}}</td>
     </tr>
     <tr>
         <th scope="row">detail.isLoading</th>
-        <td>{{vm.detail.isLoading}}</td>
+        <td>{{vm.isLoading}}</td>
     </tr>
 </table>
 
-<div ng-if="!vm.detail.isLoading">
-    <h3 style="margin-top:0;">Actions</h3>
+<div ng-if="!vm.isLoading">
+    <h3>Actions</h3>
     <ul>
         <li><dp-link type="FETCH_STRAATBEELD" payload="1000017472454">Ga naar straatbeeld</dp-link></li>
         <li>

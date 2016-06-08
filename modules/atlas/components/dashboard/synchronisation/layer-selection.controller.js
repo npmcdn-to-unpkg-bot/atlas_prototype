@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .controller('AtlasLayerSelectionController', AtlasLayerSelectionController);
+        .controller('LayerSelectionController', LayerSelectionController);
 
-    AtlasLayerSelectionController.$inject = ['store'];
+    LayerSelectionController.$inject = ['store'];
 
-    function AtlasLayerSelectionController (store) {
+    function LayerSelectionController (store) {
         var vm = this;
 
         vm.store = store;

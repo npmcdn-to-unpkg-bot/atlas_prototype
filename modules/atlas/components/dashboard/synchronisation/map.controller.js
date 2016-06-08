@@ -3,12 +3,14 @@
 
     angular
         .module('atlas')
-        .controller('dpMapController', dpMapController);
+        .controller('MapController', MapController);
 
-    dpMapController.$inject = ['store'];
+    MapController.$inject = ['store'];
 
-    function dpMapController (store) {
+    function MapController (store) {
         var vm = this;
+
+        vm.store = store;
 
         store.subscribe(update);
         update();
@@ -25,10 +27,10 @@
                 };
             }
 
-            if (state.straatbeeld && state.straatbeeld.cameraLocation) {
+            if (state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.location) {
                 vm.markers.straatbeeld = {
                     icon: 'red',
-                    location: state.straatbeeld.cameraLocation
+                    location: state.straatbeeld.camera.location
                 };
             }
 

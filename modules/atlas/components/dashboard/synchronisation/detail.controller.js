@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .controller('HeaderController', HeaderController);
+        .controller('DetailController', DetailController);
 
-    HeaderController.$inject = ['store'];
+    DetailController.$inject = ['store'];
 
-    function HeaderController (store) {
+    function DetailController (store) {
         var vm = this;
 
         vm.store = store;
@@ -18,7 +18,8 @@
         function update () {
             var state = store.getState();
 
-            vm.query = state.search && state.search.query;
+            vm.uri = state.detail && state.detail.uri;
+            vm.isLoading = state.detail && state.detail.isLoading;
         }
     }
 })();

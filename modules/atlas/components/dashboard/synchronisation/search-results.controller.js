@@ -3,14 +3,12 @@
 
     angular
         .module('atlas')
-        .controller('HeaderController', HeaderController);
+        .controller('SearchResultsController', SearchResultsController);
 
-    HeaderController.$inject = ['store'];
+    SearchResultsController.$inject = ['store'];
 
-    function HeaderController (store) {
+    function SearchResultsController (store) {
         var vm = this;
-
-        vm.store = store;
 
         store.subscribe(update);
         update();
@@ -19,6 +17,7 @@
             var state = store.getState();
 
             vm.query = state.search && state.search.query;
+            vm.location = state.search && state.search.location;
         }
     }
 })();

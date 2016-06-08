@@ -3,8 +3,12 @@
         <div class="grid">
             <div class="row">
                 <div class="col-sm-12">
-                    <div ng-controller="AtlasHeaderController as vm">
-                        <atlas-header query="{{vm.query}}" store="vm.store"></atlas-header>
+                    <div ng-controller="HeaderController as vm">
+                        <atlas-header
+                            query="{{vm.query}}"
+                            store="vm.store">
+
+                        </atlas-header>
                     </div>
                 </div>
             </div>
@@ -14,7 +18,7 @@
         <div class="grid u-height-100">
             <div class="row u-height-100">
                 <div ng-if="vm.sizeLeftColumn" class="col-sm-{{vm.sizeLeftColumn}} u-height-100">
-                    <div ng-controller="AtlasLayerSelectionController as vm">
+                    <div ng-controller="LayerSelectionController as vm">
                         <atlas-layer-selection
                             base-layer="{{vm.baseLayer}}"
                             overlays="vm.overlays"
@@ -26,27 +30,52 @@
                 </div>
 
                 <div class="col-sm-{{vm.sizeMiddleColumn}} u-height-100 u-pr-0 u-pl-0">
-                    <div ng-controller="dpMapController as vm">
-                        <dp-map map-state="vm.mapState" markers="vm.markers"></dp-map>
+                    <div ng-controller="MapController as vm">
+                        <dp-map
+                            map-state="vm.mapState"
+                            markers="vm.markers"
+                            store="vm.store">
+
+                        </dp-map>
                     </div>
                 </div>
 
                 <div ng-if="vm.sizeRightColumn" class="col-sm-{{vm.sizeRightColumn}} u-height-100">
-                    <dp-panel ng-if="vm.showDetail" heading="Detail">
-                        <dp-detail></dp-detail>
-                    </dp-panel>
+                    <div ng-if="vm.showDetail" ng-controller="DetailController as vm">
+                        <atlas-detail
+                            uri="{{vm.uri}}"
+                            is-loading="vm.isLoading"
+                            store="vm.store">
 
-                    <div ng-if="vm.showPage" ng-controller="AtlasPageController as vm">
-                        <atlas-page name="{{vm.pageName}}"></atlas-page>
+                        </atlas-detail>
                     </div>
 
-                    <dp-panel ng-if="vm.showSearchResults" heading="Search results">
-                        <dp-search-results></dp-search-results>
-                    </dp-panel>
+                    <div ng-if="vm.showPage" ng-controller="PageController as vm">
+                        <atlas-page
+                            name="{{vm.pageName}}"
+                            store="vm.store">
 
-                    <dp-panel ng-if="vm.showStraatbeeld" heading="Straatbeeld">
-                        <dp-straatbeeld></dp-straatbeeld>
-                    </dp-panel>
+                        </atlas-page>
+                    </div>
+
+                    <div ng-if="vm.showSearchResults" ng-controller="SearchResultsController as vm">
+                        <atlas-search-results
+                            query="{{vm.query}}"
+                            location="vm.location"
+                            store="vm.store">
+
+                        </atlas-search-results>
+                    </div>
+
+                    <div ng-if="vm.showStraatbeeld" ng-controller="StraatbeeldController as vm">
+                        <dp-straatbeeld
+                            id="vm.id"
+                            camera="vm.camera"
+                            is-loading="vm.isLoading"
+                            store="vm.store">
+
+                        </dp-straatbeeld>
+                    </div>
                 </div>
             </div>
         </div>
