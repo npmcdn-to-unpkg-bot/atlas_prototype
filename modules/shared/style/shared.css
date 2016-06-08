@@ -430,11 +430,22 @@ p {
   margin-bottom: 24px; }
 
 .btn {
+  padding: 6px;
+  border: 1px solid #000;
+  border-radius: 6px;
   /*
   @name Button w/ link styling
   @markup
     <button class="btn btn-link">Lorem ipsum</button>
   */ }
+  .btn.btn-white {
+    background-color: #fff;
+    color: #000;
+    font-size: inherit; }
+    .btn.btn-white:hover {
+      background-color: #e5e5e5; }
+    .btn.btn-white[disabled] {
+      color: red; }
   .btn.btn-link {
     background-color: transparent;
     color: #f00;
