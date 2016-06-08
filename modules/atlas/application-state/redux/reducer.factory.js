@@ -118,15 +118,15 @@
 
                     //Save the orientation from the previous state when navigating to another panorama
                     if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.heading) {
-                        newState.straatbeeld.camera.heading = oldState.staatbeeld.camera.heading;
+                        newState.straatbeeld.camera.heading = oldState.straatbeeld.camera.heading;
                     }
 
                     if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.pitch) {
-                        newState.straatbeeld.camera.pitch = oldState.staatbeeld.camera.pitch;
+                        newState.straatbeeld.camera.pitch = oldState.straatbeeld.camera.pitch;
                     }
 
                     if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.fov) {
-                        newState.straatbeeld.camera.fov = oldState.staatbeeld.camera.fov;
+                        newState.straatbeeld.camera.fov = oldState.straatbeeld.camera.fov;
                     }
 
                     newState.map.highlight = null;

@@ -18,9 +18,9 @@
         function update () {
             var state = store.getState();
 
-            vm.id = state.straatbeeld.id;
-            vm.camera = state.straatbeeld.camera;
-            vm.isLoading = state.straatbeeld.isLoading;
+            vm.id = state.straatbeeld && state.straatbeeld.id;
+            vm.camera = state.straatbeeld && state.straatbeeld.camera;
+            vm.isLoading = state.straatbeeld && state.straatbeeld.isLoading;
         }
     }
 })();
