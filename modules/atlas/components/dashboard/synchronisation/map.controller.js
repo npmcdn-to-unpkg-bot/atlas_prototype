@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .controller('dpMapController', dpMapController);
+        .controller('MapController', MapController);
 
-    dpMapController.$inject = ['store'];
+    MapController.$inject = ['store'];
 
-    function dpMapController (store) {
+    function MapController (store) {
         var vm = this;
 
         store.subscribe(update);

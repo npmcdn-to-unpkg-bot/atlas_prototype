@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .controller('StraatbeeldController', AtlasHeaderController);
+        .controller('StraatbeeldController', StraatbeeldController);
 
-    AtlasHeaderController.$inject = ['store'];
+    StraatbeeldController.$inject = ['store'];
 
-    function AtlasHeaderController (store) {
+    function StraatbeeldController (store) {
         var vm = this;
 
         vm.store = store;
@@ -18,7 +18,9 @@
         function update () {
             var state = store.getState();
 
-
+            vm.id = state.straatbeeld.id;
+            vm.camera = state.straatbeeld.camera;
+            vm.isLoading = state.straatbeeld.isLoading;
         }
     }
 })();

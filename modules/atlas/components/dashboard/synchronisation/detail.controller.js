@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .controller('AtlasDetailController', AtlasDetailController);
+        .controller('DetailController', DetailController);
 
-    AtlasDetailController.$inject = ['store'];
+    DetailController.$inject = ['store'];
 
-    function AtlasDetailController (store) {
+    function DetailController (store) {
         var vm = this;
 
         vm.store = store;

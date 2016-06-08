@@ -3,7 +3,7 @@
         <div class="grid">
             <div class="row">
                 <div class="col-sm-12">
-                    <div ng-controller="AtlasHeaderController as vm">
+                    <div ng-controller="HeaderController as vm">
                         <atlas-header
                             query="{{vm.query}}"
                             store="vm.store">
@@ -18,7 +18,7 @@
         <div class="grid u-height-100">
             <div class="row u-height-100">
                 <div ng-if="vm.sizeLeftColumn" class="col-sm-{{vm.sizeLeftColumn}} u-height-100">
-                    <div ng-controller="AtlasLayerSelectionController as vm">
+                    <div ng-controller="LayerSelectionController as vm">
                         <atlas-layer-selection
                             base-layer="{{vm.baseLayer}}"
                             overlays="vm.overlays"
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="col-sm-{{vm.sizeMiddleColumn}} u-height-100 u-pr-0 u-pl-0">
-                    <div ng-controller="dpMapController as vm">
+                    <div ng-controller="MapController as vm">
                         <dp-map
                             map-state="vm.mapState"
                             markers="vm.markers"
@@ -41,7 +41,7 @@
                 </div>
 
                 <div ng-if="vm.sizeRightColumn" class="col-sm-{{vm.sizeRightColumn}} u-height-100">
-                    <div ng-if="vm.showDetail" ng-controller="AtlasDetailController as vm">
+                    <div ng-if="vm.showDetail" ng-controller="DetailController as vm">
                         <atlas-detail
                             uri="{{vm.uri}}"
                             is-loading="vm.isLoading"
@@ -50,7 +50,7 @@
                         </atlas-detail>
                     </div>
 
-                    <div ng-if="vm.showPage" ng-controller="AtlasPageController as vm">
+                    <div ng-if="vm.showPage" ng-controller="PageController as vm">
                         <atlas-page
                             name="{{vm.pageName}}"
                             store="vm.store">
@@ -68,6 +68,7 @@
                     </div>
 
                     <div ng-if="vm.showStraatbeeld" ng-controller="StraatbeeldController as vm">
+                        {{vm}}
                         <dp-straatbeeld></dp-straatbeeld>
                     </div>
                 </div>

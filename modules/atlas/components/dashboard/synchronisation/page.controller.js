@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .controller('AtlasPageController', AtlasPageController);
+        .controller('PageController', PageController);
 
-    AtlasPageController.$inject = ['store'];
+    PageController.$inject = ['store'];
 
-    function AtlasPageController (store) {
+    function PageController (store) {
         var vm = this;
 
         store.subscribe(update);

@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .controller('AtlasHeaderController', AtlasHeaderController);
+        .controller('HeaderController', HeaderController);
 
-    AtlasHeaderController.$inject = ['store'];
+    HeaderController.$inject = ['store'];
 
-    function AtlasHeaderController (store) {
+    function HeaderController (store) {
         var vm = this;
 
         vm.store = store;
