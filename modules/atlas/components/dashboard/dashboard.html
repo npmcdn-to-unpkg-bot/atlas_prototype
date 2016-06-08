@@ -36,9 +36,9 @@
                         <dp-detail></dp-detail>
                     </dp-panel>
 
-                    <dp-panel ng-if="vm.showPage" heading="Page">
-                        <dp-page></dp-page>
-                    </dp-panel>
+                    <div ng-if="vm.showPage" ng-controller="AtlasPageController as vm">
+                        <atlas-page name="{{vm.pageName}}"></atlas-page>
+                    </div>
 
                     <dp-panel ng-if="vm.showSearchResults" heading="Search results">
                         <dp-search-results></dp-search-results>

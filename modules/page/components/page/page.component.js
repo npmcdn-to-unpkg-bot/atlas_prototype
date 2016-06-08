@@ -7,7 +7,7 @@
             bindings: {
                 name: '@'
             },
-            templateUrl: 'modules/page/page.html',
+            templateUrl: 'modules/page/components/page/page.html',
             controller: AtlasPageController,
             controllerAs: 'vm'
         });

@@ -6,7 +6,7 @@
                 mapState: '=',
                 markers: '='
             },
-            templateUrl: 'modules/map/map.html',
+            templateUrl: 'modules/map/components/map/map.html',
             controller: DpMapController,
             controllerAs: 'vm'
         });
