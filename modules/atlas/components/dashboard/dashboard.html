@@ -32,9 +32,13 @@
                 </div>
 
                 <div ng-if="vm.sizeRightColumn" class="col-sm-{{vm.sizeRightColumn}} u-height-100">
-                    <dp-panel ng-if="vm.showDetail" heading="Detail">
-                        <dp-detail></dp-detail>
-                    </dp-panel>
+                    <div ng-if="vm.showDetail" ng-controller="AtlasDetailController as vm">
+                        <atlas-detail
+                            uri="{{vm.uri}}"
+                            is-loading="vm.isLoading">
+
+                        </atlas-detail>
+                    </div>
 
                     <div ng-if="vm.showPage" ng-controller="AtlasPageController as vm">
                         <atlas-page name="{{vm.pageName}}"></atlas-page>
