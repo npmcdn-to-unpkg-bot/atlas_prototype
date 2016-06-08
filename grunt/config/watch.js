@@ -2,10 +2,11 @@ module.exports = {
   options: {
     livereload: true,
   },
-  HTML: {
-    files: ['<%= app %>/**/*.html'],
-    tasks: ['ngtemplates:app']
-  },
+  // werkt nog niet, geen prio later naar kijken, taak faalt om onduidelijke reden
+  // HTML: {
+  //   files: ['<%= app %>/**/*.html'],
+  //   tasks: ['angularTemplates']
+  // },
   js: {
     files: [
       'Gruntfile.js',
