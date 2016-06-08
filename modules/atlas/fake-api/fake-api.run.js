@@ -5,9 +5,9 @@
         .module('atlas')
         .run(runBlock);
 
-    runBlock.$inject = ['api'];
+    runBlock.$inject = ['fakeApi'];
 
-    function runBlock (api) {
-        api.initialize();
+    function runBlock (fakeApi) {
+        fakeApi.initialize();
     }
 })();

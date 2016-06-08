@@ -5,7 +5,7 @@
         .module('atlas')
         .factory('reducer', reducerFactory);
 
-    reducerFactory.$inject = ['ACTIONS'];
+    reducerFactory.$inject = ['ACTIONS', 'api'];
 
     function reducerFactory (ACTIONS) {
         return function reducer (oldState, action) {
