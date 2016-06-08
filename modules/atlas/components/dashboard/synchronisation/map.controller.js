@@ -27,10 +27,10 @@
                 };
             }
 
-            if (state.straatbeeld && state.straatbeeld.cameraLocation) {
+            if (state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.location) {
                 vm.markers.straatbeeld = {
                     icon: 'red',
-                    location: state.straatbeeld.cameraLocation
+                    location: state.straatbeeld.camera.location
                 };
             }
 
