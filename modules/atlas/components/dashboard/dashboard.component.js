@@ -4,7 +4,7 @@
     angular
         .module('atlas')
         .component('atlasDashboard', {
-            templateUrl: 'modules/atlas/dashboard/dashboard.html',
+            templateUrl: 'modules/atlas/components/dashboard/dashboard.html',
             controller: AtlasDashboardController,
             controllerAs: 'vm'
         });
@@ -13,6 +13,8 @@
 
     function AtlasDashboardController (store) {
         var vm = this;
+
+        vm.store = store;
 
         store.subscribe(setLayout);
         setLayout();

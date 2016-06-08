@@ -5,7 +5,6 @@
         <title>Atlas protoype</title>
 
         <!-- Third party libraries -->
-        <!--link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"-->
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
 
         <script src="bower_components/angular/angular.js"></script>
@@ -13,7 +12,7 @@
         <script src="bower_components/redux/index.js"></script>
 
 
-        <link rel="stylesheet" href="modules/atlas/dashboard/dashboard.css">
+        <link rel="stylesheet" href="modules/atlas/components/dashboard/dashboard.css">
         <link rel="stylesheet" href="modules/shared/style/shared.css">
 
         <!-- Atlas modules -->
@@ -28,25 +27,27 @@
         <script src="modules/atlas/application-state/routing/state-to-url.service.js"></script>
         <script src="modules/atlas/application-state/routing/url-to-state.service.js"></script>
         <script src="modules/atlas/application-state/routing/url-to-state.run.js"></script>
-        <script src="modules/atlas/dashboard/dashboard.component.js"></script>
+
 
         <!-- The scripts below link Atlas and it's application state to the separate modules. -->
-        <script src="modules/atlas/synchronisation/header.controller.js"></script>
-        <script src="modules/atlas/synchronisation/map.controller.js"></script>
+        <script src="modules/atlas/components/dashboard/dashboard.component.js"></script>
+        <script src="modules/atlas/components/dashboard/synchronisation/header.controller.js"></script>
+        <script src="modules/atlas/components/dashboard/synchronisation/layer-selection.controller.js"></script>
+        <script src="modules/atlas/components/dashboard/synchronisation/map.controller.js"></script>
+        <script src="modules/atlas/components/dashboard/synchronisation/page.controller.js"></script>
 
         <!--
         All files in the prototype folder are temporary, meant to display the current state.
         -->
-        <script src="modules/atlas/prototype/components/layer-selection/layer-selection.component.js"></script>
-        <script src="modules/atlas/prototype/components/page/page.component.js"></script>
         <script src="modules/atlas/prototype/components/detail/detail.component.js"></script>
         <script src="modules/atlas/prototype/components/search-results/search-results.component.js"></script>
         <script src="modules/atlas/prototype/components/straatbeeld/straatbeeld.component.js"></script>
 
         <script src="modules/header/header.module.js"></script>
-        <script src="modules/header/header.component.js"></script>
+        <script src="modules/header/components/header/header.component.js"></script>
 
         <script src="modules/page/page.module.js"></script>
+        <script src="modules/page/components/page/page.component.js"></script>
 
         <script src="modules/detail/detail.module.js"></script>
         <script src="modules/detail/detail.factory.js"></script>
@@ -55,13 +56,13 @@
         <script src="modules/search-results/search-results.factory.js"></script>
 
         <script src="modules/layer-selection/layer-selection.module.js"></script>
-        <script src="modules/layer-selection/layer-selection.factory.js"></script>
+        <script src="modules/layer-selection/components/layer-selection/layer-selection.component.js"></script>
 
 
         <!-- Datapunt modules -->
         <script src="modules/map/map.module.js"></script>
         <script src="modules/map/map.vendor.js"></script>
-        <script src="modules/map/map.directive.js"></script>
+        <script src="modules/map/components/map/map.component.js"></script>
 
         <script src="modules/straatbeeld/straatbeeld.module.js"></script>
         <script src="modules/straatbeeld/straatbeeld.factory.js"></script>

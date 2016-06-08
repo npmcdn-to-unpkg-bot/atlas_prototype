@@ -1,0 +1,26 @@
+(function () {
+    'use strict';
+
+    angular
+        .module('atlas')
+        .controller('AtlasLayerSelectionController', AtlasLayerSelectionController);
+
+    AtlasLayerSelectionController.$inject = ['store'];
+
+    function AtlasLayerSelectionController (store) {
+        var vm = this;
+
+        vm.store = store;
+
+        store.subscribe(update);
+        update();
+
+        function update () {
+            var state = store.getState();
+
+            vm.baseLayer = state.map.baseLayer;
+            vm.overlays = state.map.overlays;
+            vm.zoom = state.map.zoom;
+        }
+    }
+})();

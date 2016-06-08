@@ -1,8 +1,12 @@
 (function () {
     angular
-        .module('atlas')
+        .module('dpMap')
         .component('dpMap', {
-            templateUrl: 'modules/map/map.html',
+            bindings: {
+                mapState: '=',
+                markers: '='
+            },
+            templateUrl: 'modules/map/components/map/map.html',
             controller: DpMapController,
             controllerAs: 'vm'
         });
@@ -11,9 +15,6 @@
 
     function DpMapController (store, ACTIONS) {
         var vm = this;
-
-        store.subscribe(render);
-        render();
 
         vm.triggerSearch = function (location) {
             store.dispatch({
@@ -41,13 +42,5 @@
                 type: ACTIONS.SHOW_LAYER_SELECTION
             });
         };
-
-        function render () {
-            var state = store.getState();
-
-            vm.map = state.map;
-            vm.search = state.search;
-            vm.straatbeeld = state.straatbeeld;
-        }
     }
 })();

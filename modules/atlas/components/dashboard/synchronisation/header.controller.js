@@ -13,9 +13,10 @@
         vm.store = store;
 
         store.subscribe(update);
+        update();
 
         function update () {
-            var state = angular.copy(store.getState());
+            var state = store.getState();
 
             vm.query = state.search && state.search.query;
         }

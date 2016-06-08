@@ -8,7 +8,7 @@
                 query: '@',
                 store: '='
             },
-            templateUrl: 'modules/header/header.html',
+            templateUrl: 'modules/header/components/header/header.html',
             controller: AtlasHeaderController,
             controllerAs: 'vm'
         });
