@@ -17,7 +17,9 @@
     <div class="dashboard__content">
         <div class="grid u-height-100">
             <div class="row u-height-100">
-                <div ng-if="vm.sizeLeftColumn" class="col-sm-{{vm.sizeLeftColumn}} u-height-100">
+                <div ng-if="vm.sizeLeftColumn"
+                    class="col-sm-{{vm.sizeLeftColumn}} dashboard__content__scrollable u-height-100">
+
                     <div ng-controller="LayerSelectionController as vm">
                         <atlas-layer-selection
                             base-layer="{{vm.baseLayer}}"
@@ -40,7 +42,9 @@
                     </div>
                 </div>
 
-                <div ng-if="vm.sizeRightColumn" class="col-sm-{{vm.sizeRightColumn}} u-height-100">
+                <div ng-if="vm.sizeRightColumn"
+                    class="col-sm-{{vm.sizeRightColumn}} dashboard__content__scrollable u-height-100">
+
                     <div ng-if="vm.showDetail" ng-controller="DetailController as vm">
                         <atlas-detail
                             uri="{{vm.uri}}"

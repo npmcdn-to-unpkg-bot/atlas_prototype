@@ -12,3 +12,7 @@ Todo: Bij vertalen naar scss de heading hoogte in een lokale variabele stoppen
 .dashboard__content {
     height:calc(100% - 175px);
 }
+
+.dashboard__content__scrollable {
+    overflow-y:scroll;
+}
