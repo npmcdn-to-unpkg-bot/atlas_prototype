@@ -10,10 +10,13 @@
   "devDependencies": {
     "dss": "*",
     "grunt": "^1.0.1",
+    "grunt-angular-templates": "^1.0.4",
     "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-htmlmin": "^1.4.0",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-newer": "^1.2.0",
+    "grunt-sass": "^1.2.0",
     "jit-grunt": "^0.10.0",
     "jshint-stylish": "^2.2.0",
     "load-grunt-config": "^0.19.2"
