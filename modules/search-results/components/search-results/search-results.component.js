@@ -4,7 +4,8 @@
         .component('atlasSearchResults', {
             bindings: {
                 query: '@',
-                location: '='
+                location: '=',
+                store: '='
             },
             templateUrl: 'modules/search-results/components/search-results/search-results.html',
             controller: dpSearchResultsController,

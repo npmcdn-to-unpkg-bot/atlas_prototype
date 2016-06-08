@@ -4,41 +4,42 @@
         .component('dpMap', {
             bindings: {
                 mapState: '=',
-                markers: '='
+                markers: '=',
+                store: '='
             },
             templateUrl: 'modules/map/components/map/map.html',
             controller: DpMapController,
             controllerAs: 'vm'
         });
 
-    DpMapController.$inject = ['store', 'ACTIONS'];
+    DpMapController.$inject = ['ACTIONS'];
 
-    function DpMapController (store, ACTIONS) {
+    function DpMapController (ACTIONS) {
         var vm = this;
 
         vm.triggerSearch = function (location) {
-            store.dispatch({
+            vm.store.dispatch({
                 type: ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,
                 payload: location
             });
         };
 
         vm.panTo = function (location) {
-            store.dispatch({
+            vm.store.dispatch({
                 type: ACTIONS.MAP_PAN,
                 payload: location
             });
         };
 
         vm.zoom = function (zoomLevel) {
-            store.dispatch({
+            vm.store.dispatch({
                 type: ACTIONS.MAP_ZOOM,
                 payload: zoomLevel
             });
         };
 
         vm.showLayerSelection = function () {
-            store.dispatch({
+            vm.store.dispatch({
                 type: ACTIONS.SHOW_LAYER_SELECTION
             });
         };
