@@ -10,6 +10,7 @@ Todo: Bij vertalen naar scss de heading hoogte in een lokale variabele stoppen
 }
 
 .dashboard__content {
+    overflow-y:hidden;
     height:calc(100% - 175px);
 }
 
