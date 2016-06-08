@@ -1,3 +1,17 @@
+/*
+@name Paragraph
+@markup
+  <p>
+    Donec luctus ut nunc ac pellentesque. Donec velit purus, volutpat a sapien id, porta maximus nibh. In ut dapibus
+    enim, sit amet laoreet risus. Aliquam ornare molestie nisl, ut tempor odio accumsan eu. Aenean luctus, diam eu
+    consequat pulvinar, mi eros cursus mi, sed venenatis lectus est luctus ipsum.
+  </p>
+  <p>
+    Duis ut hendrerit est. Vivamus tempus felis ac pulvinar facilisis. Aenean porttitor lorem urna, id maximus nisl
+    scelerisque sed. Fusce blandit finibus maximus. Proin tincidunt sagittis nisl, quis vehicula arcu lobortis vitae.
+    Vivamus dictum, ligula at porttitor faucibus, odio neque elementum purus.
+  </p>
+*/
 p {
   margin-bottom:2 * $whitespace-base;
 }
