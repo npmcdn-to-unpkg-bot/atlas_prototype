@@ -1,3 +1,5 @@
+/* globals Redux */
+
 (function () {
     'use strict';
 

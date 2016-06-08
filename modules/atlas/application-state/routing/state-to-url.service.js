@@ -5,16 +5,19 @@
         .module('atlas')
         .service('stateToUrl', stateToUrlService);
 
-    stateToUrlService.$inject = ['$location'];
+    stateToUrlService.$inject = [/*'$location'*/];
 
-    function stateToUrlService ($location) {
+    function stateToUrlService (/*$location*/) {
         return {
             updateUrl: updateUrl
         };
 
-        function updateUrl (state) {
-            var hasStraatbeeld;
+        function updateUrl (/*state*/) {
+
             return;
+            /*
+             var hasStraatbeeld;
+
             $location.search('zoek', state.query);
 
             $location.search('lat', state.map.location[0]);
@@ -30,6 +33,7 @@
             $location.search('heading', hasStraatbeeld ? state.straatbeeld.heading : null);
             $location.search('pitch', hasStraatbeeld ? state.straatbeeld.pitch : null);
             $location.search('fov', hasStraatbeeld ? state.straatbeeld.fov : null);
+            */
         }
     }
 })();

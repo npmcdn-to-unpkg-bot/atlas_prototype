@@ -16,6 +16,5 @@
     AtlasPageController.$inject = [];
 
     function AtlasPageController () {
-        var vm = this;
     }
 })();

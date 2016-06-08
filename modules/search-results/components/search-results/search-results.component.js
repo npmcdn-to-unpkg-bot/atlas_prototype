@@ -15,6 +15,5 @@
     dpSearchResultsController.$inject = [];
 
     function dpSearchResultsController () {
-        var vm = this;
     }
 })();

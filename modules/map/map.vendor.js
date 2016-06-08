@@ -1,3 +1,5 @@
+/* globals L */
+
 (function () {
     'use strict';
 

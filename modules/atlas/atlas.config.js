@@ -17,9 +17,33 @@
                 isLoading: false
             },
             search: null,
+            /*
+            search: {
+                query: 'linnaeus',
+                location: [52.123, 4.789]
+            }
+            */
             page: 'welcome',
             detail: null,
+            /*
+            detail: {
+                uri: 'bag/verblijfsobject/123/',
+                isLoading: false
+            }
+            */
             straatbeeld: null
+            /*
+            straatbeeld: {
+                id: 1,
+                camera: {
+                    location: [52.789, 4.123],
+                    heading: 20,
+                    pitch: 0.1,
+                    fov: 80
+                },
+                isLoading: false
+            }
+            */
         });
     }
 })();
