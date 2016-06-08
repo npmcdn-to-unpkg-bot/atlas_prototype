@@ -2,6 +2,10 @@
     angular
         .module('atlas')
         .component('dpMap', {
+            bindings: {
+                mapState: '=',
+                markers: '='
+            },
             templateUrl: 'modules/map/map.html',
             controller: DpMapController,
             controllerAs: 'vm'

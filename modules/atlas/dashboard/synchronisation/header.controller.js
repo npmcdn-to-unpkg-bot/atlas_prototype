@@ -12,10 +12,10 @@
 
         vm.store = store;
 
-        store.subscribe(updateState);
-        updateState();
+        store.subscribe(update);
+        update();
 
-        function updateState () {
+        function update () {
             var state = store.getState();
 
             vm.query = state.search && state.search.query;
