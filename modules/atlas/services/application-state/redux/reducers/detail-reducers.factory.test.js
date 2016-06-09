@@ -1,11 +1,17 @@
 describe('The detailReducers factory', function () {
+    var detailReducers;
+
     beforeEach(function () {
         angular.mock.module('atlas');
+
+        angular.mock.inject(function (_detailReducers_) {
+            detailReducers = _detailReducers_;
+        });
     });
 
     describe('FETCH_DETAIL', function () {
         it('sets the URI for detail', function () {
-
+            console.log(detailReducers);
         });
 
         it('sets loading indicators for map and detail', function () {
