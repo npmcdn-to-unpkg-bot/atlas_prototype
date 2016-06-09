@@ -3,15 +3,9 @@
         .module('atlas')
         .factory('store', storeFactory);
 
-    storeFactory.$inject = ['Redux', 'DEFAULT_STATE'/*, 'urlMiddleware'*/, 'reducer'];
+    storeFactory.$inject = ['Redux', 'DEFAULT_STATE', 'reducer'];
 
-    function storeFactory (Redux, DEFAULT_STATE/*, urlMiddleware*/, reducer) {
-        var store;//,
-            //enhancer;
-
-        //enhancer = Redux.applyMiddleware(urlMiddleware);
-        store = Redux.createStore(reducer, DEFAULT_STATE);//, enhancer);
-
-        return store;
+    function storeFactory (Redux, DEFAULT_STATE, reducer) {
+        return Redux.createStore(reducer, DEFAULT_STATE);
     }
 })();
