@@ -1,7 +1,5 @@
 describe('The api factory', function () {
     var $httpBackend,
-        $http,
-        $q,
         api,
         mockedApiData;
 
@@ -15,10 +13,8 @@ describe('The api factory', function () {
             }
         );
 
-        angular.mock.inject(function (_$httpBackend_, _$http_, _$q_, _api_) {
+        angular.mock.inject(function (_$httpBackend_, _api_) {
             $httpBackend = _$httpBackend_;
-            $http = _$http_;
-            $q = _$q_;
             api = _api_;
         });
 

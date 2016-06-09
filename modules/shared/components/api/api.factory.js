@@ -13,13 +13,15 @@
         };
 
         function getByUri (uri) {
-            return $http.get(
-                environment.API_ROOT + uri,
-                {
-                    method: 'GET',
-                    cache: false
-                }
-            ).then(function (response) {
+            return $http({
+                method: 'GET',
+                url: environment.API_ROOT + uri,
+                /*
+                Caching is set to false to enforece distinction between logged in users and guests. The API doesn't
+                support tokens yet.
+                */
+                cache: false
+            }).then(function (response) {
                 return response.data;
             });
         }
