@@ -8,11 +8,10 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/leaflet/leaflet.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'modules/**/*.module.js',
-      'modules/**/*.js',
+      'modules/**/*.js'
     ],
 
     plugins: [

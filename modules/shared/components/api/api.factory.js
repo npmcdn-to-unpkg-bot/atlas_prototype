@@ -2,22 +2,24 @@
     'use strict';
 
     angular
-        .module('atlas')
+        .module('dpShared')
         .factory('api', apiFactory);
 
     apiFactory.$inject = ['$http', 'environment'];
 
     function apiFactory ($http, environment) {
         return {
-            get: get
+            get: getByUri
         };
 
-        function get (uri) {
-            return $http({
-                method: 'GET',
-                url: environment.API_ROOT + uri,
-                cache: false
-            }).then(function (response) {
+        function getByUri (uri) {
+            return $http.get(
+                environment.API_ROOT + uri,
+                {
+                    method: 'GET',
+                    cache: false
+                }
+            ).then(function (response) {
                 return response.data;
             });
         }

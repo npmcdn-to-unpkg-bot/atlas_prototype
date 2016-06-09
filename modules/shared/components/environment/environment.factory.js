@@ -2,23 +2,13 @@
     'use strict';
 
     angular
-        .module('atlas')
+        .module('dpShared')
         .factory('environment', environmentFactory);
 
-    environmentFactory.$inject = ['$location'];
+    environmentFactory.$inject = ['$location', 'ENVIRONMENT_CONFIG'];
 
-    function environmentFactory ($location) {
-        var variables,
-            environment;
-
-        variables = {
-            DEVELOPMENT: {
-                API_ROOT: 'https://api-acc.datapunt.amsterdam.nl/'
-            },
-            PRODUCTION: {
-                API_ROOT: 'https://api.datapunt.amsterdam.nl/'
-            }
-        };
+    function environmentFactory ($location, ENVIRONMENT_CONFIG) {
+        var environment;
 
         switch ($location.host()) {
             case 'atlas.amsterdam.nl':
@@ -29,6 +19,6 @@
                 environment = 'DEVELOPMENT';
         }
 
-        return variables[environment];
+        return ENVIRONMENT_CONFIG[environment];
     }
 })();
