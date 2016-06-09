@@ -9,7 +9,7 @@
 
     function environmentFactory ($location, ENVIRONMENT_CONFIG) {
         var environment;
-        console.log($location.host());
+
         switch ($location.host()) {
             case 'atlas.amsterdam.nl':
                 environment = 'PRODUCTION';
