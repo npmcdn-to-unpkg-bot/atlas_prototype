@@ -2,10 +2,10 @@
 module.exports = {
     app: {
         cwd: '<%= app %>',
-        src: 'modules/**/*.html',
+        src: '**/*.html',
         dest: 'build/templates.js',
         options: {
-            module: 'atlas'//,
+            module: 'atlas'
         }
     }
 };
