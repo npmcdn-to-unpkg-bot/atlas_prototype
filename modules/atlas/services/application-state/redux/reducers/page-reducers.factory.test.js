@@ -5,25 +5,10 @@ describe('The detailReducers factory', function () {
     beforeEach(function () {
         angular.mock.module('atlas');
 
-        angular.mock.inject(function (_pageReducers_) {
+        angular.mock.inject(function (_pageReducers_, _DEFAULT_STATE_) {
             pageReducers = _pageReducers_;
+            defaultState = _DEFAULT_STATE_;
         });
-
-        defaultState = {
-            map: {
-                baseLayer: 'topografie',
-                overlays: [],
-                viewCenter: [52.3719, 4.9012],
-                zoom: 12,
-                highlight: null,
-                showLayerSelection: false,
-                isLoading: false
-            },
-            search: null,
-            page: 'welcome',
-            detail: null,
-            straatbeeld: null
-        };
     });
 
     describe('SHOW_PAGE', function () {
