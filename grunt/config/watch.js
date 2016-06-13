@@ -2,10 +2,14 @@ module.exports = {
   options: {
     livereload: true,
   },
+  // bower: {
+  //   files: ['bower_components/*'],
+  //   tasks: ['concat:vendorJS', 'concat:vendorCSS']
+  // },
   // werkt nog niet, geen prio later naar kijken, taak faalt om onduidelijke reden
   // HTML: {
-  //   files: ['<%= app %>/**/*.html'],
-  //   tasks: ['angularTemplates']
+  //   files: ['<%= build %>/**/*.html'],
+  //   tasks: ['ngtemplates']
   // },
   js: {
     files: [
@@ -19,7 +23,7 @@ module.exports = {
   },
   sass: {
     files: [
-    '<%= app %>/**/*.scss',
+      '<%= app %>/**/*.scss',
     ],
     tasks: [
       'sass:dev'

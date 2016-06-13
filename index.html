@@ -7,13 +7,17 @@
         <!-- Third party libraries -->
         <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
 
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+        <!-- endbower -->
+
+        <!-- bower:js -->
         <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/leaflet/dist/leaflet.js"></script>
+        <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
         <script src="bower_components/redux/index.js"></script>
+        <!-- endbower -->
 
-
-        <link rel="stylesheet" href="modules/atlas/components/dashboard/dashboard.css">
-        <link rel="stylesheet" href="modules/shared/styles/shared.css">
+        <link rel="stylesheet" href="modules/shared/shared.css">
 
         <!-- Atlas module -->
         <script src="modules/atlas/atlas.module.js"></script>
@@ -29,7 +33,7 @@
         <script src="modules/atlas/services/application-state/redux/reducers/page-reducers.factory.js"></script>
         <script src="modules/atlas/services/application-state/redux/reducers/search-reducers.factory.js"></script>
         <script src="modules/atlas/services/application-state/redux/reducers/straatbeeld-reducers.factory.js"></script>
-        <script src="modules/atlas/services/application-state/redux/url-middleware.factory.js"></script>
+        <!-- <script src="modules/atlas/services/application-state/redux/url-middleware.factory.js"></script> -->
         <script src="modules/atlas/services/application-state/routing/state-to-url.service.js"></script>
         <script src="modules/atlas/services/application-state/routing/url-to-state.service.js"></script>
         <script src="modules/atlas/services/application-state/routing/url-to-state.run.js"></script>
