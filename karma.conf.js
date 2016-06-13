@@ -71,12 +71,6 @@ module.exports = function (config) {
                     functions: 95,
                     lines: 95
                 }
-            },
-            watermarks: {
-                statements: [95, 100],
-                functions: [95, 100],
-                branches: [95, 100],
-                lines: [95, 100]
             }
         },
 
