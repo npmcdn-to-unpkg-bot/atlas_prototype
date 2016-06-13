@@ -4,20 +4,23 @@
         <meta charset="utf-8">
         <title>Atlas protoype</title>
 
-        <!-- Third party libraries -->
-        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
-
         <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
         <!-- endbower -->
+
+        <link rel="stylesheet" href="modules/shared/shared.css">
+
+    </head>
+    <body>
+        <atlas-dashboard></atlas-dashboard>
 
         <!-- bower:js -->
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
         <script src="bower_components/redux/index.js"></script>
+        <script src="bower_components/angular-mocks/angular-mocks.js"></script>
         <!-- endbower -->
-
-        <link rel="stylesheet" href="modules/shared/shared.css">
 
         <!-- Atlas module -->
         <script src="modules/atlas/atlas.module.js"></script>
@@ -77,9 +80,7 @@
         <script src="modules/shared/services/api/api.factory.js"></script>
         <script src="modules/shared/services/redux/actions.constant.js"></script>
         <script src="modules/shared/components/link/link.component.js"></script>
-    </head>
-    <body>
-        <atlas-dashboard></atlas-dashboard>
+
 
         <script src="templates.js"></script>
 

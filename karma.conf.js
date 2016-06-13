@@ -12,6 +12,7 @@ module.exports = function (config) {
         'bower_components/angular-mocks/angular-mocks.js',
         'bower_components/leaflet/dist/leaflet.js',
         'bower_components/redux/index.js',
+
         'modules/shared/shared.module.js',
 
         'modules/header/header.module.js',
@@ -23,6 +24,7 @@ module.exports = function (config) {
         'modules/straatbeeld/straatbeeld.module.js',
 
         'modules/atlas/atlas.module.js',
+
         'modules/**/*.js',
 
         'templates.js'
@@ -49,12 +51,12 @@ module.exports = function (config) {
     // - growl
     // - coverage
     reporters: ['coverage'],
+
     preprocessors: {
       // source files, that you wanna generate coverage for
       // do not include tests or libraries
       // (these files will be instrumented by Istanbul)
-      'modules/**/*.js': ['coverage'],
-      '!**/*.test.js': ['coverage'],
+      'modules/**/!(*.test).js': ['coverage']
     },
 
     // optionally, configure the reporter

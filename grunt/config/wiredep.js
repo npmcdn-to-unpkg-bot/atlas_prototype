@@ -1,6 +1,7 @@
 module.exports = {
   dev: {
-    src: ['index.html']
+    devDependencies: true,
+    src: ['index.html'],
   },
   prod: {
     devdependencies: false,
