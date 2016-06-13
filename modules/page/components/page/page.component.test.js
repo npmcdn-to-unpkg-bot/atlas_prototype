@@ -30,7 +30,7 @@ fdescribe('The page component', function () {
     it('loads an HTML page based on the name binding', function () {
         var component;
 
-        component = getComponent('page_a');
+        component = getComponent('welcome');
         console.log(component);
     });
 

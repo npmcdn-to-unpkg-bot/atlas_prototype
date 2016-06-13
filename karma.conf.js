@@ -27,7 +27,7 @@ module.exports = function (config) {
 
             'modules/**/*.js',
 
-            'templates.js'
+            './*.js'
         ],
 
         plugins: [

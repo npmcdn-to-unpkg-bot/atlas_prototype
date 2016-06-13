@@ -44,7 +44,6 @@ var modules = [
     };
 
 modules.forEach(function (module) {
-    console.log(module);
     ngTemplatesConfig[module.name] = {
         src: 'modules/' + module.slug + '/**/*.html',
         dest: module.slug + '-templates.js'
