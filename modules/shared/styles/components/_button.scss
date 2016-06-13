@@ -14,11 +14,11 @@
     font-size:inherit;
 
     &:hover {
-      background-color:$gray;
+      background-color:$gray-light;
     }
 
     &[disabled] {
-      color:red;
+      color:$brand-primary;
     }
   }
 
@@ -29,7 +29,7 @@
   */
   &.btn-link {
     background-color:transparent;
-    color:$red;
+    color:$brand-primary;
     font-size:inherit;
     text-decoration:underline;
     cursor:pointer;
