@@ -7,7 +7,7 @@ describe('The detailReducers factory', function () {
 
         angular.mock.inject(function (_detailReducers_, _DEFAULT_STATE_) {
             detailReducers = _detailReducers_;
-            defaultState = _DEFAULT_STATE_
+            defaultState = _DEFAULT_STATE_;
         });
     });
 

@@ -4,7 +4,7 @@ module.exports = {
       outputStyle: 'expanded'
     },
     files: {
-      'modules/shared/style/shared.css': 'modules/shared/style/shared.scss'
+      '<%= app %>/shared/shared.css': '<%= app %>/shared/shared.scss'
     }
   },
   dist: {
@@ -12,7 +12,7 @@ module.exports = {
       outputStyle: 'compressed'
     },
     files: {
-      'modules/shared/style/shared.css': 'modules/shared/style/shared.scss'
+      '<%= build %>/style.css': 'modules/shared/style/shared.scss'
     }
   }
 };

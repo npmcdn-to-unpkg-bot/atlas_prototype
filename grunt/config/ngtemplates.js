@@ -3,9 +3,10 @@ module.exports = {
     app: {
         cwd: '<%= app %>',
         src: '**/*.html',
-        dest: 'build/templates.js',
+        dest: 'templates.js',
         options: {
-            module: 'atlas'
+            module: 'atlas',
+            htmlmin: { collapseWhitespace: true, collapseBooleanAttributes: true }
         }
     }
 };

@@ -15,9 +15,9 @@ module.exports = {
       },
       files: [{
         expand: true,
-        cwd: '<%= dist %>',
+        cwd: '<%= build %>',
         src: '{,*/}*.html',
-        dest: '<%= dist %>'
+        dest: '<%= build %>'
       }]
     }
   }
