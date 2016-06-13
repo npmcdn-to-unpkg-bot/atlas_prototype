@@ -57,14 +57,14 @@ describe('The dashboard component', function () {
             expect(columns[0].getAttribute('class')).toContain('col-sm-4');
             expect(columns[0].getAttribute('class')).not.toContain('col-sm-8');
 
-            expect(columns[0].querySelector('dp-map')).toBeDefined();
+            expect(columns[0].querySelector('dp-map')).not.toBeNull();
         });
 
         it('shows a large page (2/3) in the right page', function () {
             expect(columns[1].getAttribute('class')).toContain('col-sm-8');
             expect(columns[1].getAttribute('class')).not.toContain('col-sm-4');
 
-            expect(columns[1].querySelector('atlas-page')).toBeDefined();
+            expect(columns[1].querySelector('atlas-page')).not.toBeNull();
             expect(columns[1].querySelector('atlas-detail')).toBeNull();
             expect(columns[1].querySelector('atlas-search-results')).toBeNull();
             expect(columns[1].querySelector('dp-straatbeeld')).toBeNull();
@@ -108,14 +108,14 @@ describe('The dashboard component', function () {
                 expect(columns[0].getAttribute('class')).toContain('col-sm-8');
                 expect(columns[0].getAttribute('class')).not.toContain('col-sm-4');
 
-                expect(columns[0].querySelector('dp-map')).toBeDefined();
+                expect(columns[0].querySelector('dp-map')).not.toBeNull();
             });
 
             it('shows search results in a small (1/3) in the right column', function () {
                 expect(columns[1].getAttribute('class')).toContain('col-sm-4');
                 expect(columns[1].getAttribute('class')).not.toContain('col-sm-8');
 
-                expect(columns[1].querySelector('atlas-search-results')).toBeDefined();
+                expect(columns[1].querySelector('atlas-search-results')).not.toBeNull();
                 expect(columns[1].querySelector('atlas-page')).toBeNull();
                 expect(columns[1].querySelector('atlas-detail')).toBeNull();
                 expect(columns[1].querySelector('dp-straatbeeld')).toBeNull();
@@ -148,7 +148,7 @@ describe('The dashboard component', function () {
             expect(columns[0].getAttribute('class')).toContain('col-sm-4');
             expect(columns[0].getAttribute('class')).not.toContain('col-sm-8');
 
-            expect(columns[0].querySelector('dp-map')).toBeDefined();
+            expect(columns[0].querySelector('dp-map')).not.toBeNull();
 
         });
 
@@ -156,7 +156,7 @@ describe('The dashboard component', function () {
             expect(columns[1].getAttribute('class')).toContain('col-sm-8');
             expect(columns[1].getAttribute('class')).not.toContain('col-sm-4');
 
-            expect(columns[1].querySelector('atlas-detail')).toBeDefined();
+            expect(columns[1].querySelector('atlas-detail')).not.toBeNull();
             expect(columns[1].querySelector('atlas-search-results')).toBeNull();
             expect(columns[1].querySelector('atlas-page')).toBeNull();
             expect(columns[1].querySelector('dp-straatbeeld')).toBeNull();
@@ -188,14 +188,14 @@ describe('The dashboard component', function () {
             expect(columns[0].getAttribute('class')).toContain('col-sm-4');
             expect(columns[0].getAttribute('class')).not.toContain('col-sm-8');
 
-            expect(columns[0].querySelector('dp-map')).toBeDefined();
+            expect(columns[0].querySelector('dp-map')).not.toBeNull();
         });
 
         it('shows a large straatbeeld (2/3) in the right column', function () {
             expect(columns[1].getAttribute('class')).toContain('col-sm-8');
             expect(columns[1].getAttribute('class')).not.toContain('col-sm-4');
 
-            expect(columns[1].querySelector('dp-straatbeeld')).toBeDefined();
+            expect(columns[1].querySelector('dp-straatbeeld')).not.toBeNull();
             expect(columns[1].querySelector('atlas-detail')).toBeNull();
             expect(columns[1].querySelector('atlas-search-results')).toBeNull();
             expect(columns[1].querySelector('atlas-page')).toBeNull();
@@ -218,14 +218,14 @@ describe('The dashboard component', function () {
         });
 
         it('shows layer selection in a small (1/3) left column', function () {
-            expect(columns[0].querySelector('atlas-layer-selection')).toBeDefined();
+            expect(columns[0].querySelector('atlas-layer-selection')).not.toBeNull();
         });
 
         it('shows a large map (2/3) in the middle column', function () {
             expect(columns[1].getAttribute('class')).toContain('col-sm-8');
             expect(columns[1].getAttribute('class')).not.toContain('col-sm-4');
 
-            expect(columns[1].querySelector('dp-map')).toBeDefined();
+            expect(columns[1].querySelector('dp-map')).not.toBeNull();
         });
 
         it('shows no right column', function () {
