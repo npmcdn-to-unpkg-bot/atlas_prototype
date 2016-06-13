@@ -12,8 +12,8 @@
             updateUrl: updateUrl
         };
 
-        function updateUrl (/*state*/) {
-
+        function updateUrl (searchParams/*state*/) {
+            console.log('updateUrl');
             return;
             /*
              var hasStraatbeeld;
