@@ -22,14 +22,12 @@
 
             if (state.search && state.search.location) {
                 vm.markers.search = {
-                    icon: 'red',
                     location: state.search.location
                 };
             }
 
             if (state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.location) {
                 vm.markers.straatbeeld = {
-                    icon: 'red',
                     location: state.straatbeeld.camera.location
                 };
             }

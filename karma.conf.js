@@ -23,7 +23,9 @@ module.exports = function (config) {
         'modules/straatbeeld/straatbeeld.module.js',
 
         'modules/atlas/atlas.module.js',
-        'modules/**/*.js'
+        'modules/**/*.js',
+
+        'templates.js'
     ],
 
     plugins: [
