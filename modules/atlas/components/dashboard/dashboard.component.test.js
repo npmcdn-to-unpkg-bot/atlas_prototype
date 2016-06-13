@@ -1,4 +1,4 @@
-xdescribe('The dashboard component', function () {
+fdescribe('The dashboard component', function () {
     var $compile,
         $rootScope,
         store,
@@ -42,7 +42,7 @@ xdescribe('The dashboard component', function () {
     it('subscribes to the store to listen for changes', function () {
         spyOn(store, 'subscribe');
 
-        getComponent();
+        console.log(getComponent());
 
         expect(store.subscribe).toHaveBeenCalledWith(jasmine.any(Function));
     });
