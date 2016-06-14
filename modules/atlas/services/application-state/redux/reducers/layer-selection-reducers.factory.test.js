@@ -25,6 +25,7 @@ describe('The detailReducers factory', function () {
                 output;
 
             inputState = angular.copy(defaultState);
+            inputState.showLayerSelection = true;
 
             output = layerSelectionReducers.HIDE_LAYER_SELECTION(inputState);
 
