@@ -31,7 +31,7 @@ fdescribe('The page component', function () {
         var component;
 
         component = getComponent('welcome');
-        console.log(component);
+
     });
 
     it('changes the HTML page when the binding changes', function () {

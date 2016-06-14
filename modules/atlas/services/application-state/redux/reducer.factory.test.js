@@ -71,7 +71,7 @@ describe('The reducer factory', function () {
         reducer(inputState, {type: 'ACTION_E'});
         reducer(inputState, {type: 'ACTION_F'});
 
-        expect(detailReducers.ACTION_A).toHaveBeenCalled();
+        expect(detailReducers.ACTION_A).toHaveBeenCalledTimes(1);
         expect(layerSelectionReducers.ACTION_B).toHaveBeenCalled();
         expect(mapReducers.ACTION_C).toHaveBeenCalled();
         expect(pageReducers.ACTION_D).toHaveBeenCalled();
