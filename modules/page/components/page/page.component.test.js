@@ -1,14 +1,19 @@
 xdescribe('The page component', function () {
     var $compile,
-        $rootScope;
+        $rootScope,
+        $templateCache;
 
     beforeEach(function () {
         angular.mock.module('atlasPage');
 
-        angular.mock.inject(function (_$compile_, _$rootScope_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _$templateCache_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
+            $templateCache = _$templateCache_;
         });
+
+        $templateCache.put('modules/page/components/page/templates/welcome.html', 'THIS_IS_WELCOME');
+        $templateCache.put('modules/page/components/page/templates/about.html', 'THIS_IS_ABOUT');
     });
 
     function getComponent (name) {
@@ -30,11 +35,12 @@ xdescribe('The page component', function () {
     it('loads an HTML page based on the name binding', function () {
         var component;
 
+        //Welcome page
         component = getComponent('welcome');
+        expect(component.text()).toBe('THIS_IS_WELCOME');
 
-    });
-
-    it('changes the HTML page when the binding changes', function () {
-
+        //About page
+        component = getComponent('about');
+        expect(component.text()).toBe('THIS_IS_ABOUT');
     });
 });
