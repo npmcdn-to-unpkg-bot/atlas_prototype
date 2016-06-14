@@ -1,4 +1,4 @@
-xdescribe('The page component', function () {
+describe('The page component', function () {
     var $compile,
         $rootScope,
         $templateCache;
