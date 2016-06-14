@@ -1,4 +1,4 @@
-fdescribe('The page component', function () {
+xdescribe('The page component', function () {
     var $compile,
         $rootScope;
 
