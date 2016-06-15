@@ -6,7 +6,6 @@ module.exports = function (grunt) {
         connect: require('./grunt/connect'),
         copy: require('./grunt/copy'),
         jshint: require('./grunt/jshint'),
-        //Todo: karma doet het nog niet
         karma: require('./grunt/karma'),
         ngtemplates: require('./grunt/angular-templates'),
         tags: require('./grunt/script-link-tags')
@@ -43,9 +42,9 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test', [
-        'jshint'
+        'jshint',
         //'eshint',
-        //'karma:all'
+        'karma:all'
     ]);
 
     grunt.loadNpmTasks('grunt-angular-templates');

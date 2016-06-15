@@ -8,26 +8,9 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'bower_components/angular/angular.js',
+            'build/atlas.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            'bower_components/leaflet/dist/leaflet.js',
-            'bower_components/redux/index.js',
-
-            'modules/shared/shared.module.js',
-
-            'modules/header/header.module.js',
-            'modules/detail/detail.module.js',
-            'modules/layer-selection/layer-selection.module.js',
-            'modules/map/map.module.js',
-            'modules/page/page.module.js',
-            'modules/search-results/search-results.module.js',
-            'modules/straatbeeld/straatbeeld.module.js',
-
-            'modules/atlas/atlas.module.js',
-
-            'modules/**/*.js',
-
-            './*.js'
+            'modules/**/*.test.js'
         ],
 
         plugins: [
