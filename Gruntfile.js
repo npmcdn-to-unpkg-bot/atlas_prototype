@@ -8,7 +8,8 @@ module.exports = function (grunt) {
         jshint: require('./grunt/jshint'),
         karma: require('./grunt/karma'),
         ngtemplates: require('./grunt/angular-templates'),
-        tags: require('./grunt/script-link-tags')
+        tags: require('./grunt/script-link-tags'),
+        watch: require('./grunt/watch')
     });
 
     grunt.registerTask('build', [
@@ -18,8 +19,7 @@ module.exports = function (grunt) {
         'build-js',
         'build-css',
 
-        'clean:temp',
-        'connect:build:keepalive'
+        'clean:temp'
     ]);
 
     /**
@@ -41,10 +41,22 @@ module.exports = function (grunt) {
         //'tags:css'
     ]);
 
-    grunt.registerTask('test', [
+    grunt.registerTask('test-js', [
         'jshint',
         //'eshint',
-        'karma:all'
+        'karma:coverage'
+    ]);
+
+    grunt.registerTask('test-css', [
+
+    ]);
+
+    grunt.registerTask('develop', [
+        'build',
+        'connect:build',
+        'watch:js'
+        //'watch:css',
+
     ]);
 
     grunt.loadNpmTasks('grunt-angular-templates');
@@ -54,6 +66,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-script-link-tags');
 };
