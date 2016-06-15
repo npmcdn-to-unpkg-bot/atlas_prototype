@@ -6,4 +6,4 @@ reports
 *.css
 /.sass-cache
 *-templates.js
-*-compiled.js.*
+*-compiled*

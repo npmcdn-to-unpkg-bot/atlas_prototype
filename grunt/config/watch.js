@@ -2,11 +2,12 @@ module.exports = {
   options: {
     livereload: true,
   },
-  babel: {
+  es6: {
     files: [
       '<%= app %>/**/*.es6'
     ],
     tasks: [
+      'newer:eslint',
       'newer:babel:dev'
     ]
   },
