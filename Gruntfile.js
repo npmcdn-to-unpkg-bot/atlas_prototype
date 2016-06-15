@@ -33,6 +33,7 @@ module.exports = function (grunt) {
         //een_of_andere_scss_linter
     ]);
 
+
     /**
      * The output of build-js is a single file 'build/atlas.js'
      */
@@ -42,6 +43,7 @@ module.exports = function (grunt) {
         'concat:js',
         'tags:js'
     ]);
+
 
     /**
      * The output of build-css is a single file 'build/atlas.css'
@@ -53,6 +55,10 @@ module.exports = function (grunt) {
         'tags:css'
     ]);
 
+
+    /**
+     * 'default' formerly known as 'grunt serve'
+     */
     grunt.registerTask('default', [
         'build',
         'connect:build',
