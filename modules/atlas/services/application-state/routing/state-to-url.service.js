@@ -12,7 +12,7 @@
             updateUrl: updateUrl
         };
 
-        function updateUrl (searchParams/*state*/) {
+        function updateUrl (/*searchParams/*state*/) {
             console.log('updateUrl');
             return;
             /*

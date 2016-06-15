@@ -1,5 +1,5 @@
 module.exports = {
-    build: {
+    index: {
         src: ['*.html'],
         dest: 'build/index.html'
     }

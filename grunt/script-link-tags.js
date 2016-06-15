@@ -1,7 +1,7 @@
 module.exports = {
     js: {
         options: {
-            scriptTemplate: '<script src="{{ path }}"></script>',
+            scriptTemplate: '<script src="{{path}}"></script>',
             openTag: '<!-- SCRIPTS_START -->',
             closeTag: '<!-- SCRIPTS_END -->'
         },
