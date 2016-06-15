@@ -4,14 +4,18 @@ module.exports = function (grunt) {
         clean: require('./grunt/clean'),
         concat: require('./grunt/concat'),
         copy: require('./grunt/copy'),
-        ngtemplates: require('./grunt/ngtemplates')
+        ngtemplates: require('./grunt/angular-templates'),
+        tags: require('./grunt/script-link-tags')
     });
 
     grunt.registerTask('build', [
         'clean:build',
         'copy:build',
+
         'build-js',
-        'build-css'
+        'build-css',
+
+        'clean:temp'
     ]);
 
     /**
@@ -20,10 +24,12 @@ module.exports = function (grunt) {
     grunt.registerTask('build-js', [
         'bower_concat',
         'ngtemplates',
-        'concat:js'
+        'concat:js',
+        'tags:js'
     ]);
 
     grunt.registerTask('build-css', [
+        //'tags:css'
     ]);
 
     grunt.registerTask('test', [
@@ -37,4 +43,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-script-link-tags');
 };

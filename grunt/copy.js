@@ -1,8 +1,6 @@
 module.exports = {
     build: {
-        files: {
-            src: ['index.html'],
-            dest: 'build'
-        }
+        src: ['*.html'],
+        dest: 'build/index.html'
     }
 };
