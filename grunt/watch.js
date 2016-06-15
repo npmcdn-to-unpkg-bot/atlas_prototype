@@ -8,5 +8,14 @@ module.exports = {
             'test-js',
             'build-js'
         ]
+    },
+    css: {
+        files: [
+            'modules/**/*.scss'
+        ],
+        tasks: [
+            'test-css',
+            'build-css'
+        ]
     }
 };

@@ -39,7 +39,7 @@
   "scripts": {
     "postinstall": "bower install",
     "test": "grunt test",
-    "start": "grunt serve"
+    "start": "grunt"
   },
   "repository": {
     "type": "git",

@@ -20,7 +20,17 @@ module.exports = function (grunt) {
         'build-js',
         'build-css',
 
-        //'clean:temp'
+        'clean:temp'
+    ]);
+
+    grunt.registerTask('test-js', [
+        'jshint',
+        //'eshint',
+        'karma:coverage'
+    ]);
+
+    grunt.registerTask('test-css', [
+        //een_of_andere_scss_linter
     ]);
 
     /**
@@ -43,22 +53,15 @@ module.exports = function (grunt) {
         'tags:css'
     ]);
 
-    grunt.registerTask('test-js', [
-        'jshint',
-        //'eshint',
-        'karma:coverage'
-    ]);
-
-    grunt.registerTask('test-css', [
-        //een_of_andere_scss_linter
-    ]);
-
     grunt.registerTask('default', [
         'build',
         'connect:build',
-        'watch:js'
-        //'watch:css',
+        'watch'
+    ]);
 
+    grunt.registerTask('test', [
+        'test-js',
+        'test-css'
     ]);
 
     grunt.loadNpmTasks('grunt-angular-templates');
