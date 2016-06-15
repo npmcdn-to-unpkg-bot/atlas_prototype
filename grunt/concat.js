@@ -4,6 +4,10 @@ var modules = require('./config/modules'),
     cssFiles = ['build/temp/bower_components.css'];
 
 modules.forEach(function (module) {
+    /**
+     * JAVASCRIPT
+     */
+
     //Add the main .module.js file first
     jsFiles.push('modules/' + module.slug + '/' + module.slug + '.module.js');
 
@@ -13,12 +17,17 @@ modules.forEach(function (module) {
 
     //And finally add the output of ngtemplates
     jsFiles.push('build/temp/' + module.slug + '.ngtemplates.js');
+
+
+
+    /**
+     * CSS
+     */
+
+    cssFiles.push('build/temp/' + module.slug + '.css');
 });
 
 concatConfig = {
-    options: {
-        separator: ';'
-    },
     js: {
         src: jsFiles,
         dest: 'build/atlas.js'

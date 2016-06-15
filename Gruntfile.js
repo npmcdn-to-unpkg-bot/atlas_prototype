@@ -8,6 +8,7 @@ module.exports = function (grunt) {
         jshint: require('./grunt/jshint'),
         karma: require('./grunt/karma'),
         ngtemplates: require('./grunt/angular-templates'),
+        sass: require('./grunt/sass'),
         tags: require('./grunt/script-link-tags'),
         watch: require('./grunt/watch')
     });
@@ -19,7 +20,7 @@ module.exports = function (grunt) {
         'build-js',
         'build-css',
 
-        'clean:temp'
+        //'clean:temp'
     ]);
 
     /**
@@ -36,9 +37,10 @@ module.exports = function (grunt) {
      * The output of build-css is a single file 'build/atlas.css'
      */
     grunt.registerTask('build-css', [
-        //'bower_concat:css',
-        //een_of_andere_sass_taak
-        //'tags:css'
+        'bower_concat:css',
+        'sass',
+        'concat:css',
+        'tags:css'
     ]);
 
     grunt.registerTask('test-js', [
@@ -48,10 +50,10 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test-css', [
-
+        //een_of_andere_scss_linter
     ]);
 
-    grunt.registerTask('develop', [
+    grunt.registerTask('default', [
         'build',
         'connect:build',
         'watch:js'
@@ -68,5 +70,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-script-link-tags');
 };
