@@ -6,6 +6,8 @@ module.exports = function (grunt) {
         connect: require('./grunt/connect'),
         copy: require('./grunt/copy'),
         jshint: require('./grunt/jshint'),
+        //Todo: karma doet het nog niet
+        karma: require('./grunt/karma'),
         ngtemplates: require('./grunt/angular-templates'),
         tags: require('./grunt/script-link-tags')
     });
@@ -41,7 +43,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test', [
-        'jshint',
+        'jshint'
         //'eshint',
         //'karma:all'
     ]);
@@ -53,5 +55,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-script-link-tags');
 };
