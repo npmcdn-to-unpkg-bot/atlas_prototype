@@ -7,6 +7,7 @@ module.exports = {
     'Gruntfile.js',
     'grunt/**/*.js',
     '<%= app %>/**/*.js',
-    '<%= app %>/**/*.es6'
+    '!<%= app %>/**/*-compiled.js',
+    '!<%= app %>/**/*.js.map'
   ]
 };

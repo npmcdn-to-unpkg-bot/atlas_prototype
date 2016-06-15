@@ -2,6 +2,14 @@ module.exports = {
   options: {
     livereload: true,
   },
+  babel: {
+    files: [
+      '<%= app %>/**/*.es6'
+    ],
+    tasks: [
+      'newer:babel:dev'
+    ]
+  },
   // bower: {
   //   files: ['bower_components/*'],
   //   tasks: ['concat:vendorJS', 'concat:vendorCSS']
@@ -15,7 +23,9 @@ module.exports = {
     files: [
       'Gruntfile.js',
       'grunt/**/*.js',
-      '<%= app %>/**/*.js'
+      '<%= app %>/**/*.js',
+      '!<%= app %>/**/*-compiled.js',
+      '!<%= app %>/**/*.js.map'
     ],
     tasks: [
       'newer:jshint'
