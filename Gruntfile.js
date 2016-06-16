@@ -40,6 +40,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-js', [
         'bower_concat:js',
         'ngtemplates',
+        //'iets_met_babel_converten_naar_js',
         'concat:js',
         'tags:js'
     ]);

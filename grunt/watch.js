@@ -9,6 +9,11 @@ module.exports = {
             'build-js'
         ]
     },
+    /*
+    es : {
+
+    },
+    */
     css: {
         files: [
             'modules/**/*.scss'
