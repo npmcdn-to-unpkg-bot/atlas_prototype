@@ -1,6 +1,67 @@
 {
   "parser": "babel-eslint",
   "rules": {
+    "no-console": 2,
+    "no-debugger": 2,
+    "no-dupe-args": 1,
+    "no-dupe-keys": 1,
+    "no-duplicate-case": 1,
+    "no-empty": 2,
+    "no-extra-boolean-cast": 1,
+    "no-extra-parens": 2,
+    "no-extra-semi": 2,
+    "no-irregular-whitespace": 1,
+    "no-prototype-builtins": 1,
+    "no-unreachable": 2,
+    "no-unsafe-finally": 2,
+    "use-isnan": 1,
+    "valid-jsdoc": 1,
+    "valid-typeof": 1,
+
+    "complexity": [2, 8],
+    "curly": 1,
+    "eqeqeq": 1,
+    "no-alert": 2,
+    "no-empty-function": 1,
+    "no-eval":2,
+    "no-implicit-globals": 2,
+    "no-implied-eval": 2,
+    "no-invalid-this": 2,
+    "no-new": 1,
+    "vars-on-top": 1,
+
     "strict": 1,
+
+    "no-undef": 1,
+    "no-undefined": 1,
+    "no-unused-vars": 1,
+
+    "consistent-this": [1 , "vm"],
+    "indent": [2, 4],
+    "max-depth": [2, 5],
+    "max-len": [2, 120],
+    "max-nested-callbacks": [2, 5],
+    "max-params": [2, 5],
+    "max-statements": [2, 40],
+    "max-statements-per-line": [2, {"max": 1}],
+    "no-mixed-spaces-and-tabs": 1,
+    "no-multiple-empty-lines": 1,
+    "no-trailing-spaces": 1,
+    "one-var": [1, "always"],
+    "quotes": [1, "single"],
+    "semi": [1, "always"],
+
+    "no-const-assign": 1,
+    "no-dupe-class-members": 1,
+    "no-duplicate-imports": 1,
+    "no-var": 1,
+  },
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "node": true
+  },
+  "globals": {
+    "angular": 1
   }
 }
