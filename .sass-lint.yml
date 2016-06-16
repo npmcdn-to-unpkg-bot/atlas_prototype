@@ -44,7 +44,7 @@ rules:
   force-pseudo-nesting: 1
 
   # Name Formats
-  class-name-format: 1
+  class-name-format: [1, convention: hyphenatedbem]
   function-name-format: 1
   id-name-format: 0
   mixin-name-format: 1
@@ -52,7 +52,7 @@ rules:
   variable-name-format: 1
 
   # Style Guide
-  bem-depth: [1, max-depth: 1]
+  bem-depth: [1, max-depth: 2]
   border-zero: [1, convention: 'none']
   brace-style: 1
   clean-import-paths: 1
@@ -63,7 +63,7 @@ rules:
   leading-zero: 1
   nesting-depth: 1
   property-sort-order: [1, order: 'smacss']
-  quotes: 1
+  quotes: [1, style: double]
   shorthand-values: 1
   url-quotes: 1
   variable-for-property: 1

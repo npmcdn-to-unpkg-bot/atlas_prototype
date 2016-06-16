@@ -1,7 +1,7 @@
 .btn {
-  padding:$whitespace-base / 2;
-  border:1px solid $black;
-  border-radius:6px;
+  padding: $whitespace-base / 2;
+  border: 1px solid $black;
+  border-radius: 6px;
 
   /*
   @name Button - white
@@ -9,16 +9,16 @@
     <button class="btn btn-white">A white button</button>
   */
   &.btn-white {
-    background-color:$white;
-    color:$black;
-    font-size:inherit;
+    background-color: $white;
+    color: $black;
+    font-size: inherit;
 
     &:hover {
-      background-color:$gray-light;
+      background-color: $gray-light;
     }
 
     &[disabled] {
-      color:$brand-primary;
+      color: $brand-primary;
     }
   }
 
@@ -28,10 +28,10 @@
     <button class="btn btn-link">Lorem ipsum</button>
   */
   &.btn-link {
-    background-color:transparent;
-    color:$brand-primary;
-    font-size:inherit;
-    text-decoration:underline;
-    cursor:pointer;
+    background-color: transparent;
+    color: $brand-primary;
+    font-size: inherit;
+    text-decoration: underline;
+    cursor: pointer;
   }
 }

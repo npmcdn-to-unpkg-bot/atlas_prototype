@@ -19,18 +19,18 @@
 </table>
 */
 .table {
-  width:100%;
-  border-spacing:0;
-  margin-bottom:2 * $whitespace-base;
+  width: 100%;
+  margin-bottom: 2 * $whitespace-base;
+  border-spacing: 0;
 
   th {
-    text-align:left;
+    text-align: left;
   }
 
   th,
   td {
-    border-top:1px solid $gray-light;
-    padding-top:$whitespace-base / 2;
-    padding-bottom:$whitespace-base / 2;
+    padding-top: $whitespace-base / 2;
+    padding-bottom: $whitespace-base / 2;
+    border-top: 1px solid $gray-light;
   }
 }
