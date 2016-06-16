@@ -1,6 +1,6 @@
 module.exports = {
     index: {
-        src: ['*.html'],
+        src: ['index.html'],
         dest: 'build/index.html'
     }
 };
