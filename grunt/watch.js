@@ -1,7 +1,9 @@
 module.exports = {
+    /*
     options: {
         livereload: true
     },
+    */
     js: {
         files: [
             'modules/**/*.js',
@@ -19,6 +21,15 @@ module.exports = {
         tasks: [
             'test-css',
             'build-css'
+        ]
+    },
+    livereload: {
+        options: {
+            livereload: true
+        },
+        files: [
+            'build/**/*',
+            '!build/temp/**/*'
         ]
     }
 
