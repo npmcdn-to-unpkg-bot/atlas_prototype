@@ -5,36 +5,46 @@
         .module('atlas')
         .service('stateToUrl', stateToUrlService);
 
-    stateToUrlService.$inject = [/*'$location'*/];
+    stateToUrlService.$inject = ['$location'];
 
-    function stateToUrlService (/*$location*/) {
+    function stateToUrlService ($location) {
         return {
             update: update
         };
 
         function update (state) {
-            console.log(state);
-            //return;
-            /*
-             var hasStraatbeeld;
+            var searchParams = {};
 
-            $location.search('zoek', state.query);
+            //Search
+            if (state.search) {
+                if (angular.isString(state.search.query)) {
+                    searchParams.zoek = state.search.query;
+                } else {
+                    searchParams.zoek = state.search.location.join(',');
+                }
+            }
 
-            $location.search('lat', state.map.location[0]);
-            $location.search('lon', state.map.location[1]);
-            $location.search('zoom', state.map.zoom);
+            //Map
+            searchParams.lat = state.map.viewCenter[0];
+            searchParams.lon = state.map.viewCenter[1];
+            searchParams.basiskaart = state.map.baseLayer;
+            searchParams.lagen = state.map.overlays.length ? state.map.overlays.join(',') : null;
+            searchParams.zoom = state.map.zoom;
+            searchParams.selectie = state.map.highlight;
 
-            $location.search('page', state.page);
-            $location.search('detail', state.detail);
+            //Page
+            searchParams.pagina = state.page;
 
-            hasStraatbeeld = angular.isObject(state.straatbeeld);
+            //Detail
+            searchParams.detail = state.detail && state.detail.uri;
 
-            $location.search('straatbeeld', hasStraatbeeld ? state.straatbeeld.id : null);
-            $location.search('heading', hasStraatbeeld ? state.straatbeeld.heading : null);
-            $location.search('pitch', hasStraatbeeld ? state.straatbeeld.pitch : null);
-            $location.search('fov', hasStraatbeeld ? state.straatbeeld.fov : null);
-            */
+            //Straatbeeld
+            searchParams.id = state.straatbeeld && state.straatbeeld.id;
+            searchParams.heading = state.straatbeeld && state.straatbeeld.heading;
+            searchParams.pitch = state.straatbeeld && state.straatbeeld.pitch;
+            searchParams.fov = state.straatbeeld && state.straatbeeld.fov;
+
+            $location.search(searchParams);
         }
     }
 })();
-

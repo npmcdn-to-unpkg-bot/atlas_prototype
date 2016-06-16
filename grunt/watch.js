@@ -5,7 +5,8 @@ module.exports = {
             'modules/**/*.html'
         ],
         tasks: [
-            'build-js'
+            'build-js',
+            'test-js'
         ]
     },
     /*
@@ -18,6 +19,7 @@ module.exports = {
             'modules/**/*.scss'
         ],
         tasks: [
+            'test-css',
             'build-css'
         ]
     },

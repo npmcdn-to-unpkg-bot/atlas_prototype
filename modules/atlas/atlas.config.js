@@ -23,7 +23,7 @@
                 location: [52.123, 4.789]
             }
             */
-            page: 'welcome',
+            page: 'welkom',
             detail: null,
             /*
             detail: {
