@@ -9,6 +9,7 @@ module.exports = function (grunt) {
         karma: require('./grunt/karma'),
         ngtemplates: require('./grunt/angular-templates'),
         sass: require('./grunt/sass'),
+        sasslint: require('./grunt/sasslint'),
         tags: require('./grunt/script-link-tags'),
         watch: require('./grunt/watch')
     });
@@ -32,7 +33,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test-css', [
-        //een_of_andere_scss_linter
+        'sasslint',
     ]);
 
 
@@ -82,5 +83,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-sass-lint');
     grunt.loadNpmTasks('grunt-script-link-tags');
 };
