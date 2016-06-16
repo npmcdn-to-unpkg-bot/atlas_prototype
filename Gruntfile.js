@@ -35,7 +35,7 @@ module.exports = function (grunt) {
 
 
     /**
-     * The output of build-js is a single file 'build/atlas.js'
+     * The output of build-js are two files 'build/atlas.js' and a source map.
      */
     grunt.registerTask('build-js', [
         'bower_concat:js',
@@ -46,7 +46,7 @@ module.exports = function (grunt) {
 
 
     /**
-     * The output of build-css is a single file 'build/atlas.css'
+     * The output of build-css are two files 'build/atlas.css' and a source map.
      */
     grunt.registerTask('build-css', [
         'bower_concat:css',

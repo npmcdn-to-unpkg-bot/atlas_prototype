@@ -7,8 +7,6 @@ module.exports = {
     css: {
         dest: {
             css: 'build/temp/bower_components.css'
-        },
-        mainFiles: {
         }
     }
 };

@@ -28,6 +28,9 @@ modules.forEach(function (module) {
 });
 
 concatConfig = {
+    options: {
+        sourceMap: true
+    },
     js: {
         src: jsFiles,
         dest: 'build/atlas.js'
