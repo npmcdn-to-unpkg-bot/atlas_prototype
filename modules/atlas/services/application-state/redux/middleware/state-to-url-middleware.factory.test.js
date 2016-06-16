@@ -23,12 +23,16 @@ describe('The stateToUrlMiddleware factory', function () {
     it('calls the next action', function () {
         var returnValue;
 
-        spyOn(stateToUrl, 'update');
-
         returnValue = stateToUrlMiddleware(mockedStore)(mockedNext)(mockedAction);
 
-        expect(stateToUrl.update).toHaveBeenCalledWith('FAKE_STATE');
-
         expect(returnValue).toBe('FAKE_ACTION');
+    });
+
+    it('and call the stateToUrl service', function () {
+        spyOn(stateToUrl, 'update');
+
+        stateToUrlMiddleware(mockedStore)(mockedNext)(mockedAction);
+
+        expect(stateToUrl.update).toHaveBeenCalledWith('FAKE_STATE');
     });
 });
