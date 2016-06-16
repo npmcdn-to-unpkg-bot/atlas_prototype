@@ -18,6 +18,8 @@ describe('The stateToUrlMiddleware factory', function () {
             stateToUrlMiddleware = _stateToUrlMiddleware_;
             stateToUrl = _stateToUrl_;
         });
+
+        spyOn(stateToUrl, 'update');
     });
 
     it('calls the next action', function () {
@@ -29,8 +31,6 @@ describe('The stateToUrlMiddleware factory', function () {
     });
 
     it('and call the stateToUrl service', function () {
-        spyOn(stateToUrl, 'update');
-
         stateToUrlMiddleware(mockedStore)(mockedNext)(mockedAction);
 
         expect(stateToUrl.update).toHaveBeenCalledWith('FAKE_STATE');
