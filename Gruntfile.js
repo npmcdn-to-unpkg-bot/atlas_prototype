@@ -13,19 +13,21 @@ module.exports = function (grunt) {
         watch: require('./grunt/watch')
     });
 
-    grunt.registerTask('build', [
+    grunt.registerTask('build-develop', [
         'clean:build',
         'copy:index',
 
         'build-js',
-        'build-css',
+        'build-css'
+    ]);
 
+    grunt.registerTask('build-release', [
+        'build-develop',
         'clean:temp'
     ]);
 
     grunt.registerTask('test-js', [
         'jshint',
-        //'eshint',
         'karma:coverage'
     ]);
 
@@ -40,7 +42,6 @@ module.exports = function (grunt) {
     grunt.registerTask('build-js', [
         'bower_concat:js',
         'ngtemplates',
-        //'iets_met_babel_converten_naar_js',
         'concat:js',
         'tags:js'
     ]);
@@ -61,7 +62,7 @@ module.exports = function (grunt) {
      * 'default' formerly known as 'grunt serve'
      */
     grunt.registerTask('default', [
-        'build',
+        'build-develop',
         'connect:build',
         'watch'
     ]);
