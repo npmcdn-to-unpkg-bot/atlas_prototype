@@ -1,4 +1,4 @@
-describe('The detailReducers factory', function () {
+describe('The pageReducers factory', function () {
     var pageReducers,
         defaultState;
 
