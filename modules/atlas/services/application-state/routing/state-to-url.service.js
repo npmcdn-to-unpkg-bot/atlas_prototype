@@ -9,12 +9,12 @@
 
     function stateToUrlService (/*$location*/) {
         return {
-            updateUrl: updateUrl
+            update: update
         };
 
-        function updateUrl (/*searchParams/*state*/) {
-            console.log('updateUrl');
-            return;
+        function update (state) {
+            console.log(state);
+            //return;
             /*
              var hasStraatbeeld;
 
