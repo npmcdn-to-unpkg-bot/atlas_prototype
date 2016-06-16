@@ -1,3 +1,3 @@
 module.exports = {
-  target: ['modules/**/*.scss']
+  atlas: ['modules/**/*.scss']
 };
