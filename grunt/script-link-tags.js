@@ -1,7 +1,10 @@
 module.exports = {
+    options: {
+        scriptTemplate: '<script src="{{path}}"></script>',
+        linkTemplate: '<link rel="stylesheet" href="{{path}}">'
+    },
     js: {
         options: {
-            scriptTemplate: '<script src="{{path}}"></script>',
             openTag: '<!-- SCRIPTS_START -->',
             closeTag: '<!-- SCRIPTS_END -->'
         },
@@ -10,7 +13,6 @@ module.exports = {
     },
     css: {
         options: {
-            linkTemplate: '<link rel="stylesheet" href="{{path}}">',
             openTag: '<!-- STYLESHEETS_START -->',
             closeTag: '<!-- STYLESHEETS_END -->'
         },
