@@ -1,4 +1,7 @@
 module.exports = {
+    options: {
+        livereload: true
+    },
     js: {
         files: [
             'modules/**/*.js',
@@ -18,4 +21,5 @@ module.exports = {
             'build-css'
         ]
     }
+
 };
