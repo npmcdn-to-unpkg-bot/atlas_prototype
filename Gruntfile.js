@@ -33,7 +33,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test-css', [
-        //een_of_andere_scss_linter
+        'sasslint',
     ]);
 
 
@@ -53,7 +53,6 @@ module.exports = function (grunt) {
      */
     grunt.registerTask('build-css', [
         'bower_concat:css',
-        'sasslint',
         'sass',
         'concat:css',
         'tags:css'
