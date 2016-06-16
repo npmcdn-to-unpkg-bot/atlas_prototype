@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .service('stateToUrl', stateToUrlService);
+        .service('stateToUrl', stateToUrlFactory);
 
-    stateToUrlService.$inject = ['$location'];
+    stateToUrlFactory.$inject = ['$location'];
 
-    function stateToUrlService ($location) {
+    function stateToUrlFactory ($location) {
         return {
             update: update
         };
