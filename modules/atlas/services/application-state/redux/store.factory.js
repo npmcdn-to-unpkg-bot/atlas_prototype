@@ -3,9 +3,9 @@
         .module('atlas')
         .factory('store', storeFactory);
 
-    storeFactory.$inject = ['Redux', 'DEFAULT_STATE', 'reducer'];
+    storeFactory.$inject = ['Redux', 'reducer', 'DEFAULT_STATE'];
 
-    function storeFactory (Redux, DEFAULT_STATE, reducer) {
+    function storeFactory (Redux, reducer, DEFAULT_STATE) {
         return Redux.createStore(reducer, DEFAULT_STATE);
     }
 })();

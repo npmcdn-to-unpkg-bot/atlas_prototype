@@ -14,11 +14,11 @@
 
         function initialize () {
             $rootScope.$watch(function () {
-                return $location.absUrl();
+                return $location.search();
             }, function () {
                 store.dispatch({
                     type: 'URL_CHANGED',
-                    params: $location.search()
+                    payload: $location.search()
                 });
             });
         }

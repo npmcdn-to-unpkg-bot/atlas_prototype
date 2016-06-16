@@ -21,7 +21,7 @@
         searchReducers,
         straatbeeldReducers) {
 
-        return function reducer (oldState, action) {
+        return function (oldState, action) {
             var actions = angular.merge(
                 detailReducers,
                 layerSelectionReducers,
@@ -31,7 +31,7 @@
                 straatbeeldReducers
             );
 
-            if (angular.isDefined(actions[action.type])) {
+            if (angular.isDefined(action) && angular.isDefined(actions[action.type])) {
                 return actions[action.type](oldState, action.payload);
             } else {
                 return oldState;

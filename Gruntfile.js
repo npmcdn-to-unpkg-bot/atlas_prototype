@@ -1,17 +1,85 @@
 module.exports = function (grunt) {
-    var path = require('path');
+    grunt.initConfig({
+        bower_concat: require('./grunt/bower-concat'),
+        clean: require('./grunt/clean'),
+        concat: require('./grunt/concat'),
+        connect: require('./grunt/connect'),
+        copy: require('./grunt/copy'),
+        jshint: require('./grunt/jshint'),
+        karma: require('./grunt/karma'),
+        ngtemplates: require('./grunt/angular-templates'),
+        sass: require('./grunt/sass'),
+        tags: require('./grunt/script-link-tags'),
+        watch: require('./grunt/watch')
+    });
 
-  require('load-grunt-config')(grunt, {
-    configPath: path.join(process.cwd(), 'grunt/config'),
-    jitGrunt: {
-      customTasksDir: 'grunt/tasks',
-      staticMappings: {
-        ngtemplates: 'grunt-angular-templates'
-      }
-    },
-    data: {
-      build: 'build', // accessible with '<%= build %>'
-      app: 'modules' // accessible with '<%= app %>'
-    }
-  });
+    grunt.registerTask('build', [
+        'clean:build',
+        'copy:index',
+
+        'build-js',
+        'build-css',
+
+        'clean:temp'
+    ]);
+
+    grunt.registerTask('test-js', [
+        'jshint',
+        //'eshint',
+        'karma:coverage'
+    ]);
+
+    grunt.registerTask('test-css', [
+        //een_of_andere_scss_linter
+    ]);
+
+
+    /**
+     * The output of build-js are two files 'build/atlas.js' and a source map.
+     */
+    grunt.registerTask('build-js', [
+        'bower_concat:js',
+        'ngtemplates',
+        //'iets_met_babel_converten_naar_js',
+        'concat:js',
+        'tags:js'
+    ]);
+
+
+    /**
+     * The output of build-css are two files 'build/atlas.css' and a source map.
+     */
+    grunt.registerTask('build-css', [
+        'bower_concat:css',
+        'sass',
+        'concat:css',
+        'tags:css'
+    ]);
+
+
+    /**
+     * 'default' formerly known as 'grunt serve'
+     */
+    grunt.registerTask('default', [
+        'build',
+        'connect:build',
+        'watch'
+    ]);
+
+    grunt.registerTask('test', [
+        'test-js',
+        'test-css'
+    ]);
+
+    grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.loadNpmTasks('grunt-bower-concat');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-sass');
+    grunt.loadNpmTasks('grunt-script-link-tags');
 };

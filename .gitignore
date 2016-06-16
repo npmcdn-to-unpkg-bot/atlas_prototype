@@ -1,8 +1,7 @@
 .idea
+.sass-cache
 bower_components
+build
 docs
 node_modules
 reports
-*.css
-/.sass-cache
-*-templates.js
