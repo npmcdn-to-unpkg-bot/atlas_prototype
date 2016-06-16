@@ -19,8 +19,8 @@ module.exports = {
             'modules/**/*.scss'
         ],
         tasks: [
-            'test-css',
-            'build-css'
+            'build-css',
+            'test-css'
         ]
     },
     static: {
