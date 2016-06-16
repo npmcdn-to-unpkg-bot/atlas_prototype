@@ -1,5 +1,7 @@
-// Karma configuration
-// http://karma-runner.github.io/0.10/config/configuration-file.html
+var jsFiles = require('./grunt/config/js-files');
+
+jsFiles.push('bower_components/angular-mocks/angular-mocks.js');
+jsFiles.push('modules/**/*.test.js');
 
 module.exports = function (config) {
     config.set({
@@ -7,11 +9,7 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
-        files: [
-            'build/atlas.js',
-            'bower_components/angular-mocks/angular-mocks.js',
-            'modules/**/*.test.js'
-        ],
+        files: jsFiles,
 
         plugins: [
             'karma-jasmine',
@@ -49,10 +47,10 @@ module.exports = function (config) {
             dir: 'reports/coverage/',
             check: {
                 global: {
-                    statements: 95,
-                    branches: 95,
-                    functions: 95,
-                    lines: 95
+                    statements: 80,
+                    branches: 80,
+                    functions: 80,
+                    lines: 80
                 }
             }
         },
