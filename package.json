@@ -8,6 +8,8 @@
     "grunt-dss": "^1.0.8"
   },
   "devDependencies": {
+    "connect-inject": "^0.4.0",
+    "connect-livereload": "^0.5.4",
     "dss": "*",
     "grunt": "^1.0.1",
     "grunt-angular-templates": "^1.0.4",

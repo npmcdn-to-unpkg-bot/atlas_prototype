@@ -18,6 +18,14 @@ module.exports = {
             'build-css'
         ]
     },
+    static: {
+        files: [
+            'index.html'
+        ],
+        tasks: [
+            'build'
+        ]
+    },
     livereload: {
         options: {
             livereload: true
