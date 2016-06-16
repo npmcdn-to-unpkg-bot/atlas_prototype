@@ -3,30 +3,12 @@
   "authors": [
     "Erik Nijland <e.n.nijland@gmail.com>"
   ],
-  "description": "",
-  "main": "",
-  "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "angular": "^1.5.5",
-    "font-awesome": "^4.6.3",
     "leaflet": "^0.7.7",
     "redux": "https://npmcdn.com/redux/dist/redux.js"
   },
   "devDependencies": {
     "angular-mocks": "1.5.5"
-  },
-  "overrides":{
-    "font-awesome": {
-      "main": [
-          "css/font-awesome.css"
-      ]
-    }
   }
 }
