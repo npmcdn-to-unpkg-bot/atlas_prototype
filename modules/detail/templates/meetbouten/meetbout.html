@@ -1,0 +1,60 @@
+<dp-plugin-detail-visuals api-data="controller.api_data" has-straatbeeld="true"></dp-plugin-detail-visuals>
+
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header heading="{{controller.api_data.id}}" definition="MEETBOUT"></dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+          <dt>Status</dt>
+          <dd>{{ controller.api_data.status }}</dd>
+          <dt>Adres</dt>
+          <dd>{{ controller.api_data.adres }}</dd>
+          <dt>Locatie</dt>
+          <dd>{{ controller.api_data.locatie }}</dd>
+          <dt>Coördinaten</dt>
+          <dd>{{ controller.api_data.geometrie.coordinates[0] }}, {{ controller.api_data.geometrie.coordinates[1] }}</dd>
+          <dt>Bouwblok</dt>
+          <dd><a dp-api-link="{{controller.api_data.bouwblok_link}}">{{ controller.api_data.bouwblok }}</a></dd>
+          <dt>Bouwblokzijde</dt>
+          <dd>{{ controller.api_data.bouwblokzijde }}</dd>
+          <dt>Bouwblokeenheid</dt>
+          <dd>{{ controller.api_data.blokeenheid }}</dd>
+          <dt>Stadsdeel</dt>
+          <dd><a dp-api-link="{{controller.api_data.stadsdeel_link}}">{{ controller.api_data.stadsdeel }}</a></dd>
+          <dt>Indicatie beveiligd</dt>
+          <dd>{{ controller.api_data.beveiligd | dpYesno }}</dd>
+      </dl>
+    </div>
+
+    <div class="list-box">
+      <dp-stelselpedia-header definition="METING" use-plural="true"></dp-stelselpedia-header>
+
+      <p ng-if="!controller.api_data.metingen.href">Geen metingen beschikbaar</p>
+
+      <dp-plugin-detail-list
+        object="false"
+        href="controller.api_data.metingen.href"
+        page="'metingen-tabel'">
+      </dp-plugin-detail-list>
+
+      <dp-plugin-detail-graph
+        page-size="controller.api_data.metingen.count"
+        href="{{controller.api_data.metingen.href}}">
+      </dp-plugin-detail-graph>
+    </div>
+
+    <div>
+      <dp-stelselpedia-header definition="ROLLAAG" use-plural="true"></dp-stelselpedia-header>
+
+      <p ng-if="!controller.api_data.rollaag">Geen rollaag tekening beschikbaar</p>
+
+      <dp-plugin-detail-partial
+        ng-if="controller.api_data.rollaag"
+        object="false"
+        href="controller.api_data.rollaag"
+        page="'rollaag.html'">
+      </dp-plugin-detail-partial>
+    </div>
+  </div>
+</div>

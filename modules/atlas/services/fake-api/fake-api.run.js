@@ -1,13 +1,13 @@
-(function () {
-    'use strict';
+// (function () {
+//     'use strict';
 
-    angular
-        .module('atlas')
-        .run(runBlock);
+//     angular
+//         .module('atlas')
+//         .run(runBlock);
 
-    runBlock.$inject = ['fakeApi'];
+//     runBlock.$inject = ['fakeApi'];
 
-    function runBlock (fakeApi) {
-        fakeApi.initialize();
-    }
-})();
+//     function runBlock (fakeApi) {
+//         fakeApi.initialize();
+//     }
+// })();

@@ -1,0 +1,23 @@
+<dp-plugin-detail-visuals api-data="controller.api_data" has-straatbeeld="false"></dp-plugin-detail-visuals>
+
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header heading="{{controller.api_data.naam}}" definition="GEBIEDSGERICHTWERKEN">
+      </dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+        <dt>Code</dt>
+        <dd>{{ controller.api_data.code }}</dd>
+        <dt>Stadsdeel</dt>
+        <dd><a dp-api-link="{{controller.api_data.stadsdeel._links.self.href}}">{{ controller.api_data.stadsdeel._display }}</a></dd>
+      </dl>
+
+      <dp-bbga-graphs
+        gebied-heading="{{controller.api_data.naam}}"
+        gebied-code="{{controller.api_data.code}}">
+
+      </dp-bbga-graphs>
+    </div>
+  </div>
+</div>

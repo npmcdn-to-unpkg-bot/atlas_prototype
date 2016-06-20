@@ -1,0 +1,39 @@
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header
+        heading="{{ controller.api_data.inschrijfnummer }}"
+        definition="GEMEENTELIJKE_BEPERKING"
+        meta-data="controller.api_data">
+      </dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+        <dt>Beperkingcode</dt>
+        <dd><a target="_blank" href="https://www.amsterdam.nl/stelselpedia/wkpb-index/handboek-inwinnen/codes-wetten/">{{ controller.api_data.beperkingcode.code}}</a></dd>
+        <dt>Omschrijving</dt>
+        <dd>{{ controller.api_data.beperkingcode.omschrijving }}</dd>
+      </dl>
+
+    </div>
+
+    <div class="default-box" ng-if="controller.api_data.documenten.count === 1">
+      <dp-stelselpedia-header definition="BRONDOCUMENT"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-partial object="false" href="controller.api_data.documenten.href" page="'brondocument.html'">
+
+      </dp-plugin-detail-partial>
+    </div>
+
+    <div class="default-box" ng-if="controller.api_data.documenten.count > 1">
+      <dp-stelselpedia-header definition="BRONDOCUMENT" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="controller.api_data.documenten.href"></dp-plugin-detail-list>
+    </div>
+
+    <div class="default-box" ng-if=" controller.api_data.kadastrale_objecten.count">
+      <dp-stelselpedia-header definition="KADASTRAAL_OBJECT" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="controller.api_data.kadastrale_objecten.href"></dp-plugin-detail-list>
+    </div>
+  </div>
+</div>

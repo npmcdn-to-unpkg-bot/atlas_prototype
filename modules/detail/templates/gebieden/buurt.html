@@ -1,0 +1,49 @@
+<dp-plugin-detail-visuals api-data="controller.api_data" has-straatbeeld="false"></dp-plugin-detail-visuals>
+
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header heading="{{controller.api_data.naam}}" definition="BUURT" meta-data="controller.api_data">
+      </dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+        <dt>Volledige code</dt>
+        <dd>{{ controller.api_data.volledige_code }}</dd>
+      </dl>
+    </div>
+
+    <div class="list-box" ng-if="controller.api_data.bouwblokken.count">
+      <dp-stelselpedia-header definition="BOUWBLOK" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="controller.api_data.bouwblokken.href"></dp-plugin-detail-list>
+    </div>
+
+    <div class="list-box" ng-if="controller.api_data.ligplaatsen.count">
+      <dp-stelselpedia-header definition="LIGPLAATS" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="controller.api_data.ligplaatsen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+    </div>
+
+    <div class="list-box" ng-if="controller.api_data.standplaatsen.count">
+      <dp-stelselpedia-header definition="STANDPLAATS" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="controller.api_data.standplaatsen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+    </div>
+
+    <div class="list-box" ng-if="controller.api_data.verblijfsobjecten.count">
+      <dp-stelselpedia-header definition="VERBLIJFSOBJECT" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="controller.api_data.verblijfsobjecten.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+    </div>
+
+    <dp-bbga-graphs
+      gebied-heading="{{controller.api_data.naam}}"
+      gebied-code="{{controller.api_data.volledige_code}}">
+
+    </dp-bbga-graphs>
+  </div>
+
+  <div class="detail-page__content--sidebar">
+    <dp-parent-relations content="controller.api_data"></dp-parent-relations>
+  </div>
+</div>

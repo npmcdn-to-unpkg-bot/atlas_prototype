@@ -1,0 +1,25 @@
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header
+        heading="{{controller.api_data.naam}}"
+        definition="WOONPLAATS"
+        meta-data="controller.api_data">
+      </dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+          <dt>Naam 17-posities (post)</dt>
+          <dd>{{ controller.api_data.naam_17_posities}}</dd>
+          <dt>Gemeente</dt>
+          <dd>{{ controller.api_data.gemeente._display }}</dd>
+      </dl>
+    </div>
+
+    <div class="list-box" ng-if="controller.api_data.openbare_ruimtes.count">
+      <dp-stelselpedia-header definition="OPENBARE_RUIMTE" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="controller.api_data.openbare_ruimtes.href"></dp-plugin-detail-list>
+    </div>
+  </div>
+</div>
+

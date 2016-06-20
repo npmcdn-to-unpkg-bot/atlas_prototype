@@ -1,0 +1,20 @@
+<div id="plugin-detail" autoscroll='true' ng-click="vm.closeMenu($event);" class="detailpage">
+  <div class="header">
+    <div class="start">
+      <a href ng-click='back()' class="back-btn"><i class="fa fa-arrow-circle-o-left"></i> Terug</a>
+    </div>
+    <div class="end">
+      <a ui-sref="app" class="close-btn fa fa-times fa-2x"></a>
+      <dp-share-and-extras menu-items="'print,share,callback,save'" page="detail"></dp-share-and-extras>
+    </div>
+  </div>
+
+  <div class="content">
+    <div ng-if="!vm.activeUri">
+      <h1>Zoek eerst naar data.</h1>
+      <p>Je hebt nog geen data geselecteerd. Via zoek kan je naar data zoeken.</p>
+    </div>
+    <dp-plugin-detail-page ng-if="vm.api_data" class="detail-page" controller="vm" ng-cloak></dp-plugin-detail-page>
+  </div>
+
+</div>

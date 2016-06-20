@@ -1,0 +1,12 @@
+<dl class="key-value-list">
+    <dt>Inschrijfnummer</dt>
+    <dd>{{ object.inschrijfnummer }}</dd>
+    <dt>Soort besluit</dt>
+    <dd>{{ object.soort_besluit }}</dd>
+    <dt>Bevoegd orgaan</dt>
+    <dd>{{ object.bevoegd_orgaan }}</dd>
+    <dt>Documentnaam</dt>
+    <dd><a target="_blank" href="{{object.url}}">{{ object._display }}</a></dd>
+    <dt>Persoonsgegevens afschermen</dt>
+    <dd>{{ object.persoonsgegevens_afschermen | dpYesno }}</dd>
+</dl>

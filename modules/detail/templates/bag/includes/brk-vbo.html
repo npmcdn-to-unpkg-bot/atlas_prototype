@@ -1,0 +1,18 @@
+
+  <h4 ng-if="count >= 2" class="paginering">1-{{ objects.length }} van {{ count }}</h4>
+
+  <div class="list" ng-repeat="object in objects">
+
+  <a dp-api-link="{{object._links.self.href}}">
+    <i class="fa fa-chevron-right link"></i>{{ object._display}}
+  </a>
+	<div
+		class="brk-indented"
+		ng-include="'./plugins/plugin-detail/templates/common/brk.html'">
+	</div>
+
+
+</div>
+	<a class="loadmore" ng-click="loadMore()" ng-if="next">
+    <i class="fa fa-plus fa-2x link"></i>Meer
+  </a>

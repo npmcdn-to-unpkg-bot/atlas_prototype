@@ -9,7 +9,7 @@
 
     function apiFactory ($http, environment) {
         return {
-            get: getByUri
+            getByUri: getByUri
         };
 
         function getByUri (uri) {

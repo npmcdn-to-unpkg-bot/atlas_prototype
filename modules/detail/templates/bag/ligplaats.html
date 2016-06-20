@@ -1,0 +1,22 @@
+<dp-plugin-detail-visuals api-data="controller.api_data" has-straatbeeld="true"></dp-plugin-detail-visuals>
+
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <!-- nummeraanduiding -->
+    <dp-plugin-detail-partial
+      object="false"
+      href="controller.api_data.hoofdadres._links.self.href"
+      page="'nummeraanduiding.html'">
+    </dp-plugin-detail-partial>
+
+
+    <!-- ligplaats -->
+    <div
+      ng-include="'./plugins/plugin-detail/templates/bag/includes/ligplaats.html'"
+      onload="object=controller.api_data">
+    </div>
+  </div>
+  <div class="detail-page__content--sidebar">
+    <dp-parent-relations content="controller.api_data"></dp-parent-relations>
+  </div>
+</div>

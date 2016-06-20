@@ -1,0 +1,33 @@
+<dp-plugin-detail-visuals api-data="controller.api_data" has-straatbeeld="true"></dp-plugin-detail-visuals>
+
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header
+        heading="{{controller.api_data._display}}"
+        definition="PAND"
+        meta-data="controller.api_data">
+      </dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+        <dt>Oorspronkelijk bouwjaar</dt>
+        <dd ng-if="controller.api_data.bouwjaar !== 1005">{{ controller.api_data.oorspronkelijk_bouwjaar }}</dd>
+        <dd ng-if="controller.api_data.bouwjaar === 1005">onbekend</dd>
+        <dt>Naam</dt>
+        <dd>{{ controller.api_data.pandnummer }}</dd>
+        <dt>Status</dt>
+        <dd>{{ controller.api_data.status.omschrijving }}</dd>
+      </dl>
+    </div>
+
+    <div class="list-box" ng-if="controller.api_data.verblijfsobjecten.count">
+      <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="controller.api_data.verblijfsobjecten.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+    </div>
+  </div>
+
+  <div class="detail-page__content--sidebar">
+    <dp-parent-relations content="controller.api_data"></dp-parent-relations>
+  </div>
+</div>

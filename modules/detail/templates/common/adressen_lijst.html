@@ -1,0 +1,16 @@
+<div>
+  <h4 ng-if="count >= 5" class="paginering">1-{{ objects.length }} van {{count}}</h4>
+
+  <ul class="list">
+    <li ng-repeat="object in objects">
+      <a dp-api-link="{{object._links.self.href}}">
+        <i class="fa fa-chevron-right link"></i>{{ object._display}}
+      </a>
+      <span class="muted" ng-if="object.hoofdadres !== undifined">{{ object.hoofdadres ? "" : "(nevenadres)" }}</span>
+    </li>
+  </ul>
+
+  <a class="loadmore" ng-click="loadMore()" ng-if="next">
+    <i class="fa fa-plus fa-2x link"></i>Meer
+  </a>
+</div>

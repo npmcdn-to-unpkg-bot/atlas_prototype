@@ -1,0 +1,37 @@
+<div>
+  <div class="default-box">
+    <h2>Standplaats</h2>
+    <ul>
+      <li>
+        <label>Identificatie:</label>
+        <span ng-if="controller.api_data.identificatie">{{ controller.api_data.identificatie }}</span>
+        <span ng-if="!controller.api_data.identificatie">-</span>
+      </li>
+      <li>
+        <label>Bron:</label>
+        <span ng-if="controller.api_data.bron.omschrijving">{{ controller.api_data.bron.omschrijving }}</span>
+        <span ng-if="!controller.api_data.bron.omschrijving">-</span>
+      </li>
+      <li>
+        <label>Status:</label>
+        <span ng-if="controller.api_data.status.omschrijving">{{ controller.api_data.status.omschrijving }}</span>
+        <span ng-if="!controller.api_data.status.omschrijving">-</span>
+      </li>
+      <li>
+        <label>Buurt:</label>
+        <span ng-if="controller.api_data.buurt"><a dp-api-link="{{controller.api_data.buurt}}">{{ controller.api_data.buurt }}</a></span>
+        <span ng-if="!controller.api_data.buurt">-</span>
+      </li>
+      <li>
+        <label>Documentdatum mutatie:</label>
+        <span ng-if="controller.api_data.document_mutatie">{{ controller.api_data.document_mutatie }}</span>
+        <span ng-if="!controller.api_data.document_mutatie">-</span>
+      </li>
+      <li>
+        <label>Documentnummer mutatie:</label>
+        <span ng-if="controller.api_data.document_nummer">{{ controller.api_data.document_nummer }}</span>
+        <span ng-if="!controller.api_data.document_nummer">-</span>
+      </li>
+    </ul>
+  </div>
+</div>

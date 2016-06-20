@@ -1,0 +1,29 @@
+<div class="detail-page__table">
+
+  <p ng-if="!objects">Geen metingen beschikbaar</p>
+
+  <table ng-if="objects">
+    <thead>
+      <tr>
+        <th>Datum</th>
+        <th class="util__align-right">Hoogte NAP</th>
+        <th class="util__align-right">Zakking (mm)</th>
+        <th class="util__align-right">Zaksnelheid (mm/j)</th>
+        <th class="util__align-right">Zakking cum. (mm)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="detail-page__table--body" ng-repeat="object in objects">
+        <td>{{ object.datum }}</td>
+        <td class="util__align-right">{{object.hoogte_nap >= 0 ? '+' : ''}}{{ object.hoogte_nap | number:3}}</td>
+        <td class="util__align-right">{{object.zakking >= 0 ? '+' : ''}}{{ object.zakking | number:3}}</td>
+        <td class="util__align-right">{{object.zakkingssnelheid >= 0 ? '+' : ''}}{{ object.zakkingssnelheid | number:3}}</td>
+        <td class="util__align-right">{{object.zakking_cumulatief >= 0 ? '+' : ''}}{{ object.zakking_cumulatief | number:3}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a class="loadmore" ng-click="loadMore()" ng-if="next">
+    <i class="fa fa-plus fa-2x link"></i>Meer
+  </a>
+</div>
