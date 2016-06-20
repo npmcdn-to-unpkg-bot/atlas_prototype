@@ -3,11 +3,11 @@
 
     angular
         .module('atlas')
-        .service('urlToState', urlToStateService);
+        .factory('urlToState', urlToStateFactory);
 
-    urlToStateService.$inject = ['$rootScope', '$location', 'store'];
+    urlToStateFactory.$inject = ['$rootScope', '$location', 'store'];
 
-    function urlToStateService ($rootScope, $location, store) {
+    function urlToStateFactory ($rootScope, $location, store) {
         return {
             initialize: initialize
         };
@@ -17,7 +17,7 @@
                 return $location.search();
             }, function () {
                 store.dispatch({
-                    type: 'URL_CHANGED',
+                    type: 'URL_CHANGE',
                     payload: $location.search()
                 });
             });

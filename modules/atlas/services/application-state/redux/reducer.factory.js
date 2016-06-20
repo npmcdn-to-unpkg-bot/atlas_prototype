@@ -11,7 +11,8 @@
         'mapReducers',
         'pageReducers',
         'searchReducers',
-        'straatbeeldReducers'
+        'straatbeeldReducers',
+        'urlReducers'
     ];
 
     function reducerFactory (detailReducers,
@@ -19,7 +20,8 @@
         mapReducers,
         pageReducers,
         searchReducers,
-        straatbeeldReducers) {
+        straatbeeldReducers,
+        urlReducers) {
 
         return function (oldState, action) {
             var actions = angular.merge(
@@ -28,7 +30,8 @@
                 mapReducers,
                 pageReducers,
                 searchReducers,
-                straatbeeldReducers
+                straatbeeldReducers,
+                urlReducers
             );
 
             if (angular.isDefined(action) && angular.isDefined(actions[action.type])) {

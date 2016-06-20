@@ -23,6 +23,8 @@
             SHOW_LAYER_SELECTION: 'SHOW_LAYER_SELECTION',
             HIDE_LAYER_SELECTION: 'HIDE_LAYER_SELECTION',
 
-            SHOW_PAGE: 'SHOW_PAGE'
+            SHOW_PAGE: 'SHOW_PAGE',
+
+            URL_CHANGE: 'URL_CHANGE'
         });
 })();
