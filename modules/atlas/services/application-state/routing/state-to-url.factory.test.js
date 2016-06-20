@@ -193,9 +193,11 @@ describe('The stateToUrl factory', function () {
         it('sets the id, heading, pitch and fov if there is an active straatbeeld', function () {
             mockedState.straatbeeld = {
                 id: 67890,
-                heading: 7,
-                pitch: 8,
-                fov: 9
+                camera: {
+                    heading: 7,
+                    pitch: 8,
+                    fov: 9
+                }
             };
 
             stateToUrl.update(mockedState);

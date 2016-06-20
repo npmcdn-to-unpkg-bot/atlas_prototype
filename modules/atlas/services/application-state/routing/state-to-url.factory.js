@@ -40,9 +40,9 @@
 
             //Straatbeeld
             searchParams.id = state.straatbeeld && state.straatbeeld.id;
-            searchParams.heading = state.straatbeeld && state.straatbeeld.heading;
-            searchParams.pitch = state.straatbeeld && state.straatbeeld.pitch;
-            searchParams.fov = state.straatbeeld && state.straatbeeld.fov;
+            searchParams.heading = state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.heading;
+            searchParams.pitch = state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.pitch;
+            searchParams.fov = state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.fov;
 
             $location.search(searchParams);
         }
