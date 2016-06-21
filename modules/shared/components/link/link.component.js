@@ -15,14 +15,16 @@
             }
         });
 
-    function DpLinkController () {
+    DpLinkController.$inject = ['ACTIONS'];
+
+    function DpLinkController (ACTIONS) {
         var vm = this;
 
         vm.followLink = function (event) {
             event.preventDefault();
 
             vm.store.dispatch({
-                type: vm.type,
+                type: ACTIONS[vm.type],
                 payload: vm.payload
             });
         };
