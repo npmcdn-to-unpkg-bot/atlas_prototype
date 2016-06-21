@@ -5,16 +5,9 @@
         .module('atlas')
         .run(runBlock);
 
-    runBlock.$inject = ['$rootScope', '$location', 'store'];
+    runBlock.$inject = ['urlToState'];
 
-    function runBlock ($rootScope, $location, store) {
-        $rootScope.$watch(function () {
-            return $location.search();
-        }, function () {
-            store.dispatch({
-                type: 'URL_CHANGE',
-                payload: $location.search()
-            });
-        });
+    function runBlock (urlToState) {
+        urlToState.initialize();
     }
 })();
