@@ -34,7 +34,9 @@
                     if (isLocation(payload.zoek)) {
                         return {
                             query: null,
-                            location: payload.zoek.split(',')
+                            location: payload.zoek.split(',').map(function (coordinate) {
+                                return Number(coordinate);
+                            })
                         };
                     } else {
                         return {
@@ -69,7 +71,7 @@
                         Number(payload.lon)
                     ],
                     zoom: Number(payload.zoom),
-                    highlight: payload.selectie,
+                    highlight: payload.selectie || null,
                     showLayerSelection: angular.copy(oldState.map.showLayerSelection),
                     isLoading: false
                 };
@@ -88,13 +90,18 @@
 
             function getStraatbeeldState (oldState, payload) {
                 if (payload.id) {
+                    var location;
+
+                    if (oldState.straatbeeld && oldState.straatbeeld.id === Number(payload.id)) {
+                        location = oldState.straatbeeld.camera && oldState.straatbeeld.camera.location || null;
+                    } else {
+                        location = null;
+                    }
+
                     return {
-                        id: payload.id,
+                        id: Number(payload.id),
                         camera: {
-                            location:
-                                oldState.straatbeeld &&
-                                oldState.straatbeeld.camera &&
-                                oldState.straatbeeld.camera.location,
+                            location: location,
                             heading: Number(payload.heading),
                             pitch: Number(payload.pitch),
                             fov: Number(payload.fov)

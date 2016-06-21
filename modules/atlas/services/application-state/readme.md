@@ -7,9 +7,13 @@
 | lagen         | map.overlays                    | no, []                 |
 | zoom          | map.zoom                        | yes, see DEFAULT_STATE |
 | selectie      | map.highlight                   | no, null               |
+|               | map.isLoading                   | no                     |
 | pagina        | page                            | yes, see DEFAULT_STATE |
 | detail        | detail.uri                      | no, detail is null     |
+|               | detail.isLoading                | no, detail is null     |
 | id            | straatbeeld.id                  | no                     |
-| heading       | straatbeeld.heading             | no                     |
-| pitch         | straatbeeld.pitch               | no                     |
-| fov           | straatbeeld.fov                 | no                     |
+|               | straatbeeld.camera.location     | no                     |
+| heading       | straatbeeld.camera.heading      | no                     |
+| pitch         | straatbeeld.camera.pitch        | no                     |
+| fov           | straatbeeld.camera.fov          | no                     |
+|               | straatbeeld.isLoading           | no                     |
