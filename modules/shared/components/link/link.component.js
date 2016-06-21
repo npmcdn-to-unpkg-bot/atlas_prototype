@@ -9,28 +9,22 @@
             controller: DpLinkController,
             controllerAs: 'vm',
             bindings: {
+                store: '=',
                 type: '@',
                 payload: '='
             }
         });
 
-    //Todo: deze vriend heeft helemaal geen store, iets voor bedenken
-    DpLinkController.$inject = ['store'];
-
-    function DpLinkController (store) {
+    function DpLinkController () {
         var vm = this;
-
-        //Todo: zet de ng-href, en update deze als de store.getState() veranderd
-        vm.href = 'http://www.example.com/';
 
         vm.followLink = function (event) {
             event.preventDefault();
 
-            store.dispatch({
+            vm.store.dispatch({
                 type: vm.type,
                 payload: vm.payload
             });
         };
-
     }
 })();
