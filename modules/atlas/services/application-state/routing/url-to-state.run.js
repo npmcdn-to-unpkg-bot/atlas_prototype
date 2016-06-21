@@ -5,9 +5,17 @@
         .module('atlas')
         .run(runBlock);
 
-    runBlock.$inject = ['urlToState'];
+    runBlock.$inject = ['$rootScope', '$location', 'store'];
 
-    function runBlock (urlToState) {
-        urlToState.initialize();
+    function runBlock ($rootScope, $location, store) {
+        $rootScope.$watch(function () {
+            return $location.search();
+        }, function () {
+            console.log('url_change afvuren', $location.search());
+            store.dispatch({
+                type: 'URL_CHANGE',
+                payload: $location.search()
+            });
+        });
     }
 })();
