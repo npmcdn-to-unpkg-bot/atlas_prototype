@@ -202,7 +202,7 @@ describe('The dashboard component', function () {
         });
     });
 
-    fdescribe('when using layer selection', function () {
+    describe('when using layer selection', function () {
         var component,
             columns;
 
