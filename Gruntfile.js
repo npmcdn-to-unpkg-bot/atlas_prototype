@@ -69,7 +69,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test', [
-        'build-release',
+        'build-develop',
         'test-js',
         'test-css'
     ]);
