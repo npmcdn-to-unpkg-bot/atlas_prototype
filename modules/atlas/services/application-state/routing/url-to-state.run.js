@@ -11,7 +11,6 @@
         $rootScope.$watch(function () {
             return $location.search();
         }, function () {
-            console.log('url_change afvuren', $location.search());
             store.dispatch({
                 type: 'URL_CHANGE',
                 payload: $location.search()
