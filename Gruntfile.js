@@ -33,7 +33,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test-css', [
-        'sasslint',
+        'sasslint'
     ]);
 
 
@@ -69,6 +69,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('test', [
+        'build-release',
         'test-js',
         'test-css'
     ]);
