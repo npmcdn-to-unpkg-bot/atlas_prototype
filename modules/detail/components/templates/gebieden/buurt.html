@@ -1,49 +1,49 @@
-<dp-plugin-detail-visuals api-data="object" has-straatbeeld="false"></dp-plugin-detail-visuals>
+<dp-plugin-detail-visuals api-data="vm.apiData" has-straatbeeld="false"></dp-plugin-detail-visuals>
 
 <div class="detail-page__content">
   <div class="detail-page__content--main">
     <div class="default-box">
-      <dp-stelselpedia-header heading="{{object.naam}}" definition="BUURT" meta-data="object">
+      <dp-stelselpedia-header heading="{{vm.apiData.naam}}" definition="BUURT" meta-data="vm.apiData">
       </dp-stelselpedia-header>
 
       <dl class="key-value-list">
         <dt>Volledige code</dt>
-        <dd>{{ object.volledige_code }}</dd>
+        <dd>{{ vm.apiData.volledige_code }}</dd>
       </dl>
     </div>
 
-    <div class="list-box" ng-if="object.bouwblokken.count">
+    <div class="list-box" ng-if="vm.apiData.bouwblokken.count">
       <dp-stelselpedia-header definition="BOUWBLOK" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="object.bouwblokken.href"></dp-plugin-detail-list>
+      <dp-plugin-detail-list href="vm.apiData.bouwblokken.href"></dp-plugin-detail-list>
     </div>
 
-    <div class="list-box" ng-if="object.ligplaatsen.count">
+    <div class="list-box" ng-if="vm.apiData.ligplaatsen.count">
       <dp-stelselpedia-header definition="LIGPLAATS" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="object.ligplaatsen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+      <dp-plugin-detail-list href="vm.apiData.ligplaatsen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
     </div>
 
-    <div class="list-box" ng-if="object.standplaatsen.count">
+    <div class="list-box" ng-if="vm.apiData.standplaatsen.count">
       <dp-stelselpedia-header definition="STANDPLAATS" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="object.standplaatsen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+      <dp-plugin-detail-list href="vm.apiData.standplaatsen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
     </div>
 
-    <div class="list-box" ng-if="object.verblijfsobjecten.count">
+    <div class="list-box" ng-if="vm.apiData.verblijfsobjecten.count">
       <dp-stelselpedia-header definition="VERBLIJFSOBJECT" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="object.verblijfsobjecten.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+      <dp-plugin-detail-list href="vm.apiData.verblijfsobjecten.href" page="'adressen_lijst'"></dp-plugin-detail-list>
     </div>
 
     <dp-bbga-graphs
-      gebied-heading="{{object.naam}}"
-      gebied-code="{{object.volledige_code}}">
+      gebied-heading="{{vm.apiData.naam}}"
+      gebied-code="{{vm.apiData.volledige_code}}">
 
     </dp-bbga-graphs>
   </div>
 
   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="object"></dp-parent-relations>
+    <dp-parent-relations content="vm.apiData"></dp-parent-relations>
   </div>
 </div>

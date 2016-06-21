@@ -22,10 +22,6 @@ describe('The dp-stelselpedia-meta directive', function () {
             }
           }
         });
-
-        $provide.value('dpDatumFilter', function () {
-          return '30-03-2016';
-        });
       }
     );
 

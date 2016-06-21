@@ -18,12 +18,12 @@
         </dd>
         <dt>Adres</dt>
         <dd>
-          <span ng-repeat="verblijfsobject in object.verblijfsobjecten">
+          <span ng-repeat="verblijfsobject in vm.apiData.verblijfsobjecten">
             {{verblijfsobject._display}}<span ng-if="!$last">,&nbsp;</span>
           </span>
         </dd>
         <dt>Kadaster</dt>
-        <dd>{{object._display}}</dd>
+        <dd>{{vm.apiData._display}}</dd>
       </dl>
     </div>
 
@@ -31,30 +31,30 @@
       <h2 class="default-box__header">Kadastraal object</h2>
       <dl class="key-value-list">
         <dt>Gemeentecode</dt>
-        <dd>{{object.kadastrale_gemeente._display}}</dd>
+        <dd>{{vm.apiData.kadastrale_gemeente._display}}</dd>
         <dt>Sectie</dt>
-        <dd>{{object.sectie.sectie}}</dd>
+        <dd>{{vm.apiData.sectie.sectie}}</dd>
         <dt>Objectnummer</dt>
-        <dd>{{object.perceelnummer}}</dd>
+        <dd>{{vm.apiData.perceelnummer}}</dd>
         <dt>Indexletter</dt>
-        <dd>{{object.indexletter}}</dd>
+        <dd>{{vm.apiData.indexletter}}</dd>
         <dt>Indexnummer</dt>
-        <dd>{{object.indexnummer}}</dd>
+        <dd>{{vm.apiData.indexnummer}}</dd>
         <dt>Perceeloppervlakte</dt>
         <dd>
-          <span ng-if="object.grootte">
-            {{object.grootte}} m<sup>2</sup>
+          <span ng-if="vm.apiData.grootte">
+            {{vm.apiData.grootte}} m<sup>2</sup>
           </span>
         </dd>
         <dt>Vestigingsdatum</dt>
-        <dd>{{object.toestandsdatum | date:'dd-MM-yyyy'}}</dd>
+        <dd>{{vm.apiData.toestandsdatum | date:'dd-MM-yyyy'}}</dd>
         <dt>Coordinaten</dt>
-        <dd>{{object.geometrie.coordinates[0][0][0].join(', ')}}</dd>
+        <dd>{{vm.apiData.geometrie.coordinates[0][0][0].join(', ')}}</dd>
       </dl>
     </div>
 
-    <div ng-if="object.beperkingen">
-      <div class="default-box" ng-repeat="beperking in object.beperkingen">
+    <div ng-if="vm.apiData.beperkingen">
+      <div class="default-box" ng-repeat="beperking in vm.apiData.beperkingen">
         <h2 class="default-box__header">Gemeentelijke publiekrechtelijke beperking<sup>*</sup></h2>
         <dl class="key-value-list">
           <dt>Inschrijfnummer</dt>

@@ -1,25 +1,25 @@
-<dp-plugin-detail-visuals api-data="object" has-straatbeeld="true"></dp-plugin-detail-visuals>
+<dp-plugin-detail-visuals api-data="vm.apiData" has-straatbeeld="true"></dp-plugin-detail-visuals>
 
 <div class="detail-page__content">
   <div class="detail-page__content--main">
     <div class="default-box">
-      <dp-stelselpedia-header heading="{{object.id}}" definition="NAP_PEILMERK"></dp-stelselpedia-header>
+      <dp-stelselpedia-header heading="{{vm.apiData.id}}" definition="NAP_PEILMERK"></dp-stelselpedia-header>
 
       <dl class="key-value-list">
           <dt>Hoogte NAP</dt>
-          <dd>{{ object.hoogte_nap }} m</dd>
+          <dd>{{ vm.apiData.hoogte_nap }} m</dd>
           <dt>Jaar</dt>
-          <dd>{{ object.jaar }}</dd>
+          <dd>{{ vm.apiData.jaar }}</dd>
           <dt>Merk</dt>
-          <dd>{{ object.merk }}</dd>
+          <dd>{{ vm.apiData.merk }}</dd>
           <dt>Omschrijving</dt>
-          <dd>{{ object.omschrijving }}</dd>
+          <dd>{{ vm.apiData.omschrijving }}</dd>
           <dt>Windrichting</dt>
-          <dd>{{ object.windrichting }}</dd>
+          <dd>{{ vm.apiData.windrichting }}</dd>
           <dt>Muurvlak coördinaten</dt>
-          <dd>{{ object.x_muurvlak }}, {{ object.y_muurvlak }}</dd>
+          <dd>{{ vm.apiData.x_muurvlak }}, {{ vm.apiData.y_muurvlak }}</dd>
           <dt>RWS nummer</dt>
-          <dd>{{ object.rws_nummer }}</dd>
+          <dd>{{ vm.apiData.rws_nummer }}</dd>
       </dl>
     </div>
   </div>

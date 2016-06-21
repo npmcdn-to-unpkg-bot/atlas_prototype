@@ -19,7 +19,7 @@
 
         api.getByUri(vm.uri).then(function (apiData) {
             //koppel data aan de scope
-            vm.api_data = apiData;
+            vm.apiData = apiData;
 
             //koppel de goede template op basis van de uri
             vm.templateUrl = uriToTemplateUrl.getTemplateUrl(vm.uri);

@@ -1,4 +1,4 @@
-<dp-plugin-detail-visuals api-data="object" has-straatbeeld="true"></dp-plugin-detail-visuals>
+<dp-plugin-detail-visuals api-data="vm.apiData" has-straatbeeld="true"></dp-plugin-detail-visuals>
 
 <div class="detail-page__content">
   <div class="detail-page__content--main">
@@ -6,7 +6,7 @@
     <dp-plugin-detail-partial
       class="detail-page__content"
       object="false"
-      href="object.hoofdadres._links.self.href"
+      href="vm.apiData.hoofdadres._links.self.href"
       page="'nummeraanduiding.html'">
     </dp-plugin-detail-partial>
 
@@ -14,11 +14,11 @@
     <div
       class="detail-page__content"
       ng-include="'./plugins/plugin-detail/templates/bag/includes/verblijfsobject.html'"
-      onload="object=object">
+      onload="object=vm.apiData">
     </div>
   </div>
   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="object"></dp-parent-relations>
+    <dp-parent-relations content="vm.apiData"></dp-parent-relations>
   </div>
 </div>
 

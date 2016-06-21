@@ -1,58 +1,58 @@
-<dp-plugin-detail-visuals api-data="object" has-straatbeeld="true"></dp-plugin-detail-visuals>
+<dp-plugin-detail-visuals api-data="vm.apiData" has-straatbeeld="true"></dp-plugin-detail-visuals>
 
 <div class="detail-page__content">
   <div class="detail-page__content--main">
     <div class="default-box">
-      <dp-stelselpedia-header heading="{{object.id}}" definition="MEETBOUT"></dp-stelselpedia-header>
+      <dp-stelselpedia-header heading="{{vm.apiData.id}}" definition="MEETBOUT"></dp-stelselpedia-header>
 
       <dl class="key-value-list">
           <dt>Status</dt>
-          <dd>{{ object.status }}</dd>
+          <dd>{{ vm.apiData.status }}</dd>
           <dt>Adres</dt>
-          <dd>{{ object.adres }}</dd>
+          <dd>{{ vm.apiData.adres }}</dd>
           <dt>Locatie</dt>
-          <dd>{{ object.locatie }}</dd>
+          <dd>{{ vm.apiData.locatie }}</dd>
           <dt>Coördinaten</dt>
-          <dd>{{ object.geometrie.coordinates[0] }}, {{ object.geometrie.coordinates[1] }}</dd>
+          <dd>{{ vm.apiData.geometrie.coordinates[0] }}, {{ vm.apiData.geometrie.coordinates[1] }}</dd>
           <dt>Bouwblok</dt>
-          <dd><a dp-api-link="{{object.bouwblok_link}}">{{ object.bouwblok }}</a></dd>
+          <dd><a dp-api-link="{{vm.apiData.bouwblok_link}}">{{ vm.apiData.bouwblok }}</a></dd>
           <dt>Bouwblokzijde</dt>
-          <dd>{{ object.bouwblokzijde }}</dd>
+          <dd>{{ vm.apiData.bouwblokzijde }}</dd>
           <dt>Bouwblokeenheid</dt>
-          <dd>{{ object.blokeenheid }}</dd>
+          <dd>{{ vm.apiData.blokeenheid }}</dd>
           <dt>Stadsdeel</dt>
-          <dd><a dp-api-link="{{object.stadsdeel_link}}">{{ object.stadsdeel }}</a></dd>
+          <dd><a dp-api-link="{{vm.apiData.stadsdeel_link}}">{{ vm.apiData.stadsdeel }}</a></dd>
           <dt>Indicatie beveiligd</dt>
-          <dd>{{ object.beveiligd | dpYesno }}</dd>
+          <dd>{{ vm.apiData.beveiligd | dpYesno }}</dd>
       </dl>
     </div>
 
     <div class="list-box">
       <dp-stelselpedia-header definition="METING" use-plural="true"></dp-stelselpedia-header>
 
-      <p ng-if="!object.metingen.href">Geen metingen beschikbaar</p>
+      <p ng-if="!vm.apiData.metingen.href">Geen metingen beschikbaar</p>
 
       <dp-plugin-detail-list
         object="false"
-        href="object.metingen.href"
+        href="vm.apiData.metingen.href"
         page="'metingen-tabel'">
       </dp-plugin-detail-list>
 
       <dp-plugin-detail-graph
-        page-size="object.metingen.count"
-        href="{{object.metingen.href}}">
+        page-size="vm.apiData.metingen.count"
+        href="{{vm.apiData.metingen.href}}">
       </dp-plugin-detail-graph>
     </div>
 
     <div>
       <dp-stelselpedia-header definition="ROLLAAG" use-plural="true"></dp-stelselpedia-header>
 
-      <p ng-if="!object.rollaag">Geen rollaag tekening beschikbaar</p>
+      <p ng-if="!vm.apiData.rollaag">Geen rollaag tekening beschikbaar</p>
 
       <dp-plugin-detail-partial
-        ng-if="object.rollaag"
+        ng-if="vm.apiData.rollaag"
         object="false"
-        href="object.rollaag"
+        href="vm.apiData.rollaag"
         page="'rollaag.html'">
       </dp-plugin-detail-partial>
     </div>

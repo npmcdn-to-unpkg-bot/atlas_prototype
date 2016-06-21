@@ -2,23 +2,23 @@
   <div class="detail-page__content--main">
     <div class="default-box">
       <dp-stelselpedia-header
-        heading="{{object.naam}}"
+        heading="{{vm.apiData.naam}}"
         definition="WOONPLAATS"
-        meta-data="object">
+        meta-data="vm.apiData">
       </dp-stelselpedia-header>
 
       <dl class="key-value-list">
           <dt>Naam 17-posities (post)</dt>
-          <dd>{{ object.naam_17_posities}}</dd>
+          <dd>{{ vm.apiData.naam_17_posities}}</dd>
           <dt>Gemeente</dt>
-          <dd>{{ object.gemeente._display }}</dd>
+          <dd>{{ vm.apiData.gemeente._display }}</dd>
       </dl>
     </div>
 
-    <div class="list-box" ng-if="object.openbare_ruimtes.count">
+    <div class="list-box" ng-if="vm.apiData.openbare_ruimtes.count">
       <dp-stelselpedia-header definition="OPENBARE_RUIMTE" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="object.openbare_ruimtes.href"></dp-plugin-detail-list>
+      <dp-plugin-detail-list href="vm.apiData.openbare_ruimtes.href"></dp-plugin-detail-list>
     </div>
   </div>
 </div>
