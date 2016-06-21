@@ -202,7 +202,7 @@ describe('The dashboard component', function () {
         });
     });
 
-    describe('when using layer selection', function () {
+    fdescribe('when using layer selection', function () {
         var component,
             columns;
 
@@ -210,6 +210,10 @@ describe('The dashboard component', function () {
             var mockedState = angular.copy(defaultState);
 
             mockedState.map.showLayerSelection = true;
+            mockedState.detail = {
+                uri: 'blah/blah/123',
+                isLoading: false
+            };
 
             spyOn(store, 'getState').and.returnValue(mockedState);
 
