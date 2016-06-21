@@ -1,4 +1,14 @@
 describe('The urlReducers factory', function () {
+    //var urlReducers;
+
+    beforeEach(function () {
+        angular.mock.module('atlas');
+
+        angular.mock.inject(function () {
+
+        });
+    });
+
     describe('URL_CHANGE', function () {
         it('returns the default state when the payload is empty', function () {
 
