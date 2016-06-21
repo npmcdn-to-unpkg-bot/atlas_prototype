@@ -1,0 +1,89 @@
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header
+        heading="{{object._display}}"
+        definition="KADASTRAAL_SUBJECT"
+        meta-data="object">
+      </dp-stelselpedia-header>
+
+      <!-- niet natuurlijke persoon -->
+      <dl class="key-value-list" ng-if="object.is_natuurlijk_persoon === false">
+        <dt>Statutaire zetel</dt>
+        <dd>{{ object.statutaire_zetel }}</dd>
+        <dt>Rechtsvorm</dt>
+        <dd>{{ object.rechtsvorm.omschrijving }}</dd>
+        <dt>RSIN</dt>
+        <dd>{{ object.rsin }}</dd>
+        <dt>KvK nummer</dt>
+        <dd>{{ object.kvknummer }}</dd>
+        <dt>Woonadres</dt>
+        <dd>
+          {{ object.woonadres.openbareruimte_naam }} {{ object.woonadres.huisnummer }}{{ object.woonadres.huisletter }}{{ object.woonadres.toevoeging }} {{ object.woonadres.postcode }} {{ object.woonadres.woonplaats }}
+        </dd>
+        <dt>Woonadres buitenland</dt>
+        <dd>
+          {{ object.woonadres.buitenland_adres }} {{ object.woonadres.buitenland_woonplaats }} {{ object.woonadres.buitenland_naam }} {{ object.woonadres.buitenland_land.omschrijving }}
+        </dd>
+        <dt>Postadres</dt>
+        <dd>
+          {{ object.postadres.openbareruimte_naam }} {{ object.postadres.huisnummer }}{{ object.postadres.huisletter }}{{ object.postadres.toevoeging }} {{ object.postadres.postcode }} {{ object.postadres.woonplaats }}
+        </dd>
+        <dt>Postadres buitenland</dt>
+        <dd>
+          {{ object.postadres.buitenland_adres }} {{ object.postadres.buitenland_woonplaats }} {{ object.postadres.buitenland_naam }} {{ object.postadres.buitenland_land.omschrijving }}
+        </dd>
+        <dt>Postadres postbus</dt>
+        <dd>
+          {{ object.postadres.postbus_nummer }} {{ object.postadres.postbus_postcode }} {{ object.postadres.postbus_woonplaats }}
+        </dd>
+      </dl>
+
+      <!-- natuurlijke persoon -->
+      <dl class="key-value-list" ng-if="object.is_natuurlijk_persoon === true">
+        <dt>Voornamen</dt>
+        <dd>{{ object.voornamen }}</dd>
+        <dt>Voorvoegsels</dt>
+        <dd>{{ object.voorvoegsels }}</dd>
+        <dt>Geslachtsnaam</dt>
+        <dd>{{ object.naam }}</dd>
+        <dt>Geslacht</dt>
+        <dd>{{ object.geslacht.omschrijving }}</dd>
+        <dt>Geboortedatum</dt>
+        <dd>{{ object.geboortedatum | dpDatum }}</dd>
+        <dt>Geboorteplaats</dt>
+        <dd>{{ object.geboorteplaats }}</dd>
+        <dt>Geboorteland</dt>
+        <dd>{{ object.geboorteland.omschrijving }}</dd>
+        <dt>Datum van overlijden</dt>
+        <dd>{{ object.overlijdensdatum }}</dd>
+        <dt>Woonadres</dt>
+        <dd>
+          {{ object.woonadres.openbareruimte_naam }} {{ object.woonadres.huisnummer }}{{ object.woonadres.huisletter }}{{ object.woonadres.toevoeging }} {{ object.woonadres.postcode }} {{ object.woonadres.woonplaats }}
+        </dd>
+        <dt>Woonadres buitenland</dt>
+        <dd>
+          {{ object.woonadres.buitenland_adres }} {{ object.woonadres.buitenland_woonplaats }} {{ object.woonadres.buitenland_naam }} {{ object.woonadres.buitenland_land.omschrijving }}
+        </dd>
+        <dt>Postadres</dt>
+        <dd>
+          {{ object.postadres.openbareruimte_naam }} {{ object.postadres.huisnummer }}{{ object.postadres.huisletter }}{{ object.postadres.toevoeging }} {{ object.postadres.postcode }} {{ object.postadres.woonplaats }}
+        </dd>
+        <dt>Postadres buitenland</dt>
+        <dd>
+          {{ object.postadres.buitenland_adres }} {{ object.postadres.buitenland_woonplaats }} {{ object.postadres.buitenland_naam }} {{ object.postadres.buitenland_land.omschrijving }}
+        </dd>
+        <dt>Postadres postbus</dt>
+        <dd>
+          {{ object.postadres.postbus_nummer }} {{ object.postadres.postbus_postcode }} {{ object.postadres.postbus_woonplaats }}
+        </dd>
+      </dl>
+    </div>
+
+    <div class="default-box" ng-if="object.rechten.count">
+      <dp-stelselpedia-header definition="ZAKELIJK_RECHT" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list page="'subject-rechten'" href="object.rechten.href"></dp-plugin-detail-list>
+    </div>
+  </div>
+</div>

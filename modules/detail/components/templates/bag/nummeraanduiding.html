@@ -1,4 +1,4 @@
-<dp-plugin-detail-visuals api-data="controller.api_data" has-straatbeeld="true"></dp-plugin-detail-visuals>
+<dp-plugin-detail-visuals api-data="object" has-straatbeeld="true"></dp-plugin-detail-visuals>
 
 <div class="detail-page__content">
   <div class="detail-page__content--main">
@@ -6,16 +6,16 @@
     <div
       class="detail-page__content"
       ng-include="'./plugins/plugin-detail/templates/bag/includes/nummeraanduiding.html'"
-      onload="object=controller.api_data">
+      onload="object=object">
     </div>
 
 
     <!-- verblijfsobject -->
     <dp-plugin-detail-partial
       class="detail-page__content"
-      ng-if="controller.api_data.type === 'Verblijfsobject'"
+      ng-if="object.type === 'Verblijfsobject'"
       object="false"
-      href="controller.api_data.verblijfsobject"
+      href="object.verblijfsobject"
       page="'verblijfsobject.html'">
     </dp-plugin-detail-partial>
 
@@ -23,9 +23,9 @@
     <!-- standplaats -->
     <dp-plugin-detail-partial
       class="detail-page__content"
-      ng-if="controller.api_data.type === 'Standplaats'"
+      ng-if="object.type === 'Standplaats'"
       object="false"
-      href="controller.api_data.standplaats"
+      href="object.standplaats"
       page="'standplaats.html'">
     </dp-plugin-detail-partial>
 
@@ -33,13 +33,13 @@
     <!-- ligplaats -->
     <dp-plugin-detail-partial
       class="detail-page__content"
-      ng-if="controller.api_data.type === 'Ligplaats'"
+      ng-if="object.type === 'Ligplaats'"
       object="false"
-      href="controller.api_data.ligplaats"
+      href="object.ligplaats"
       page="'ligplaats.html'">
     </dp-plugin-detail-partial>
   </div>
   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="controller.api_data"></dp-parent-relations>
+    <dp-parent-relations content="object"></dp-parent-relations>
   </div>
 </div>

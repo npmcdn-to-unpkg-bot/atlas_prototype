@@ -1,0 +1,26 @@
+<dp-plugin-detail-visuals api-data="object" has-straatbeeld="true"></dp-plugin-detail-visuals>
+
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header heading="{{object.id}}" definition="NAP_PEILMERK"></dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+          <dt>Hoogte NAP</dt>
+          <dd>{{ object.hoogte_nap }} m</dd>
+          <dt>Jaar</dt>
+          <dd>{{ object.jaar }}</dd>
+          <dt>Merk</dt>
+          <dd>{{ object.merk }}</dd>
+          <dt>Omschrijving</dt>
+          <dd>{{ object.omschrijving }}</dd>
+          <dt>Windrichting</dt>
+          <dd>{{ object.windrichting }}</dd>
+          <dt>Muurvlak coördinaten</dt>
+          <dd>{{ object.x_muurvlak }}, {{ object.y_muurvlak }}</dd>
+          <dt>RWS nummer</dt>
+          <dd>{{ object.rws_nummer }}</dd>
+      </dl>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<dp-plugin-detail-visuals api-data="object" has-straatbeeld="true"></dp-plugin-detail-visuals>
+
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header
+        heading="{{object._display}}"
+        definition="KADASTRAAL_OBJECT"
+        meta-data="object">
+      </dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+        <dt>Kadastrale gemeentecode</dt>
+        <dd>{{ object.kadastrale_gemeente._display }}</dd>
+        <dt>Sectie</dt>
+        <dd>{{ object.sectie.sectie }}</dd>
+        <dt>Objectnummer</dt>
+        <dd>{{ object.objectnummer  }}</dd>
+        <dt>Indexletter</dt>
+        <dd>{{ object.indexletter }}</dd>
+        <dt>Indexnummer</dt>
+        <dd>{{ object.indexnummer }}</dd>
+        <dt>Kadastrale gemeente</dt>
+        <dd>{{ object.kadastrale_gemeente.naam }}</dd>
+        <dt>Gemeente</dt>
+        <dd>{{ object.kadastrale_gemeente.gemeente._display }}</dd>
+        <dt>Koopsom</dt>
+        <dd>{{ object.koopsom }}</dd>
+        <dt>Koopjaar</dt>
+        <dd>{{ object.koopjaar }}</dd>
+        <dt>Grootte</dt>
+        <dd>{{ object.grootte }} <span ng-if="object.grootte">m<sup>2</sup></span></dd>
+        <dt>Cultuur bebouwd</dt>
+        <dd>{{ object.cultuur_bebouwd }}</dd>
+        <dt>Cultuur onbebouwd</dt>
+        <dd>{{ object.cultuur_onbebouwd }}</dd>
+      </dl>
+    </div>
+
+    <dp-plugin-detail-list href="object._links.self.href" page="'brk'" expand="true"></dp-plugin-detail-list>
+
+    <div class="list-box" ng-if="object.verblijfsobjecten.count">
+      <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="object.verblijfsobjecten.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+    </div>
+  </div>
+</div>

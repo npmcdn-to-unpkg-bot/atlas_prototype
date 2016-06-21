@@ -12,24 +12,29 @@
             controllerAs: 'vm'
         });
 
-    AtlasDetailController.$inject = ['ACTIONS', 'api'];
+    AtlasDetailController.$inject = ['ACTIONS', 'api', 'uriToTemplateUrl'];
 
-    function AtlasDetailController (ACTIONS, api) {
+    function AtlasDetailController (ACTIONS, api, uriToTemplateUrl) {
         var vm = this;
 
-        console.log(vm.uri);
+        api.getByUri(vm.uri).then(function (apiData) {
+            //koppel data aan de scope
+            vm.api_data = apiData;
 
-            api.getByUri(vm.uri).then(function (apiData) {
-                vm.api_data = apiData;
+            //koppel de goede template op basis van de uri
+            vm.templateUrl = uriToTemplateUrl.getTemplateUrl(vm.uri);
+            console.log(vm.templateUrl);
 
-                vm.store.dispatch({
-                    type: ACTIONS.SHOW_DETAIL,
-                    payload: {
-                        location: [52.378086874951386, 4.922568081008677],
-                        highlight: vm.api_data.geometrie
-                    }
-                });
+            //trap de actie show_detail af als alle api informatie binnen is
+            vm.store.dispatch({
+                type: ACTIONS.SHOW_DETAIL,
+                payload: {
+                    //TODO placeholders vervangen voor echte data
+                    location: [52.378086874951386, 4.922568081008677],
+                    highlight: {}
+                }
             });
+        });
 
         vm.openStraatbeeld = function (straatbeeldId) {
             vm.store.dispatch({

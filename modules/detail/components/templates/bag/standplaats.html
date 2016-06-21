@@ -1,4 +1,4 @@
-<dp-plugin-detail-visuals api-data="controller.api_data" has-straatbeeld="true"></dp-plugin-detail-visuals>
+<dp-plugin-detail-visuals api-data="object" has-straatbeeld="true"></dp-plugin-detail-visuals>
 
 <div class="detail-page__content">
   <div class="detail-page__content--main">
@@ -6,7 +6,7 @@
     <dp-plugin-detail-partial
       class="detail-page__content"
       object="false"
-      href="controller.api_data.hoofdadres._links.self.href"
+      href="object.hoofdadres._links.self.href"
       page="'nummeraanduiding.html'">
     </dp-plugin-detail-partial>
 
@@ -15,10 +15,10 @@
     <div
       class="detail-page__content"
       ng-include="'./plugins/plugin-detail/templates/bag/includes/standplaats.html'"
-      onload="object=controller.api_data">
+      onload="object=object">
     </div>
   </div>
   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="controller.api_data"></dp-parent-relations>
+    <dp-parent-relations content="object"></dp-parent-relations>
   </div>
 </div>

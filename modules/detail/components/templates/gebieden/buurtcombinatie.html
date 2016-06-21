@@ -1,0 +1,34 @@
+<dp-plugin-detail-visuals api-data="object" has-straatbeeld="false"></dp-plugin-detail-visuals>
+
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <dp-stelselpedia-header
+        heading="{{object.naam}}"
+        definition="BUURTCOMBINATIE"
+        meta-data="object">
+      </dp-stelselpedia-header>
+
+      <dl class="key-value-list">
+        <dt>Volledige code</dt>
+        <dd>{{ object.code }}</dd>
+      </dl>
+    </div>
+
+    <div class="list-box" ng-if="object.buurten.count">
+      <dp-stelselpedia-header definition="BUURT" use-plural="true"></dp-stelselpedia-header>
+
+      <dp-plugin-detail-list href="object.buurten.href"></dp-plugin-detail-list>
+    </div>
+
+    <dp-bbga-graphs
+      gebied-heading="{{object.naam}}"
+      gebied-code="{{object.volledige_code}}">
+
+    </dp-bbga-graphs>
+  </div>
+
+  <div class="detail-page__content--sidebar">
+    <dp-parent-relations content="object"></dp-parent-relations>
+  </div>
+</div>

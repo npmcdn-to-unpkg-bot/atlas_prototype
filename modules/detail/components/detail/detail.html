@@ -27,5 +27,7 @@
 </div>
 
 <div
-  ng-if="vm.api_data" ng-include="'modules/detail/templates/gebieden/buurt.html'">
+  ng-if="vm.api_data"
+  ng-include="vm.templateUrl"
+  onload="object=vm.api_data">
 </div>
