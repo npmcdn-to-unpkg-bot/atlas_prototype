@@ -61,6 +61,8 @@
             }
 
             function getMapState (payload) {
+                var hasLoadingIndicator = hasDetailChanged() || hasStraatbeeldChanged();
+
                 return {
                     baseLayer: payload.basiskaart,
                     overlays: payload.lagen ? payload.lagen.split(',') : [],
@@ -101,6 +103,14 @@
                 } else {
                     return null;
                 }
+            }
+
+            function hasDetailChanged (oldState, payload) {
+
+            }
+
+            function hasStraatbeeldChanged (oldState, payload) {
+
             }
         }
     }
