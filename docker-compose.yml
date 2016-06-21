@@ -4,3 +4,4 @@ atlas:
     - "80:80"
   volumes:
     - "./reports:/app/reports"
+
