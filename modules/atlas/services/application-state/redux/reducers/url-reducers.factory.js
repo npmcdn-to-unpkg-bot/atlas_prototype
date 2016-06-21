@@ -24,7 +24,7 @@
                 newState.map = getMapState(payload);
                 newState.page = payload.pagina;
                 newState.detail = getDetailState(payload);
-                newState.straatbeeld = getStraatbeeldState(payload);
+                newState.straatbeeld = getStraatbeeldState(oldState, payload);
 
                 return newState;
             }
@@ -86,12 +86,15 @@
                 }
             }
 
-            function getStraatbeeldState (payload) {
+            function getStraatbeeldState (oldState, payload) {
                 if (payload.id) {
                     return {
                         id: payload.id,
                         camera: {
-                            location: null,
+                            location:
+                                oldState.straatbeeld &&
+                                oldState.straatbeeld.camera &&
+                                oldState.straatbeeld.camera.location,
                             heading: Number(payload.heading),
                             pitch: Number(payload.pitch),
                             fov: Number(payload.fov)
