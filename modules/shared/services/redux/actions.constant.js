@@ -2,7 +2,6 @@
     angular
         .module('dpShared')
         .constant('ACTIONS', {
-            INITIALIZE: 'INITIALIZE',
             URL_CHANGE: 'URL_CHANGE',
 
             SHOW_SEARCH_RESULTS_BY_QUERY: 'SHOW_SEARCH_RESULTS_BY_QUERY',

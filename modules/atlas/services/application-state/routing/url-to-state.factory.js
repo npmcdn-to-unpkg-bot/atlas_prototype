@@ -5,9 +5,9 @@
         .module('atlas')
         .factory('urlToState', urlToStateFactory);
 
-    urlToStateFactory.$inject = ['$rootScope', '$location', 'store'];
+    urlToStateFactory.$inject = ['$rootScope', '$location', 'store', 'ACTIONS'];
 
-    function urlToStateFactory ($rootScope, $location, store) {
+    function urlToStateFactory ($rootScope, $location, store, ACTIONS) {
         return {
             initialize: initialize
         };
@@ -17,7 +17,7 @@
                 return $location.search();
             }, function () {
                 store.dispatch({
-                    type: 'URL_CHANGE',
+                    type: ACTIONS.URL_CHANGE,
                     payload: $location.search()
                 });
             });

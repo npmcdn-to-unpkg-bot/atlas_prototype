@@ -20,12 +20,8 @@
         setLayout();
 
         function setLayout () {
-            console.log('setLayout');
             var state = store.getState();
-console.log(state);
-            if (!state) {
-                return;
-            }
+
             vm.showLayerSelection = state.map.showLayerSelection;
             vm.showPage = !vm.showLayerSelection && angular.isString(state.page);
             vm.showDetail = angular.isObject(state.detail);

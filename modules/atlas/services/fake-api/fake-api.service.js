@@ -22,7 +22,7 @@
                     $timeout(function () {
                         var location,
                             highlight;
-console.log(state.detail.uri);
+
                         if (state.detail.uri === 'bag/verblijfsobject/03630001958552') {
                             location = [52.32226293447365, 4.9794013795430745];
                             highlight = 'GeoJSON Point at 52.32226293447365, 4.9794013795430745';
