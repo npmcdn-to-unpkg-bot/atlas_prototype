@@ -42,18 +42,10 @@ describe('The urlReducers factory', function () {
             it('preserves the showLayerSelection status from the previous state', function () {
 
             });
-
-            it('sets the isLoading to true if detail or straatbeeld has changed', function () {
-
-            });
         });
 
         describe('detail', function () {
             it('can set a detail uri', function () {
-
-            });
-
-            it('sets isLoading to true if the detail uri has changed', function () {
 
             });
         });
@@ -62,8 +54,18 @@ describe('The urlReducers factory', function () {
             it('can set a straatbeeld ID, heading, pitch and fov', function () {
 
             });
+        });
 
-            it('resets the location and changes isLoading to true if the straatbeeld ID has changed', function () {
+        describe('has no support for loading indicators', function () {
+            it('sets map.isLoading to false', function () {
+
+            });
+
+            it('sets detail.isLoading to false if there is a detail page active', function () {
+
+            });
+
+            it('sets straatbeeld.isLoading to false if there is a straatbeeld active', function () {
 
             });
         });
