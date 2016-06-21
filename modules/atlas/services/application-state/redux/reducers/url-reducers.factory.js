@@ -5,9 +5,9 @@
         .module('atlas')
         .factory('urlReducers', urlReducersFactory);
 
-    urlReducersFactory.$inject  =['ACTIONS', 'urlToState', 'DEFAULT_STATE'];
+    urlReducersFactory.$inject = ['ACTIONS', 'DEFAULT_STATE'];
 
-    function urlReducersFactory (ACTIONS, urlToState, DEFAULT_STATE) {
+    function urlReducersFactory (ACTIONS, DEFAULT_STATE) {
         var reducers = {};
 
         reducers[ACTIONS.URL_CHANGE] = urlChangeReducer;
@@ -15,32 +15,33 @@
         return reducers;
 
         function urlChangeReducer (oldState, payload) {
-            //The oldState doesn't matter here (denk ik???), only look at the new URL
-            var newState = {};
+            if (angular.equals(payload, {})) {
+                return DEFAULT_STATE;
+            } else {
+                var newState = {};
 
-            /**
-             * isLoading ook zetten hier!@!! of niet? hmmmm
-             */
+                newState.search = getSearchState(payload);
+                newState.map = getMapState(payload);
+                newState.page = payload.pagina;
+                newState.detail = getDetailState(payload);
+                newState.straatbeeld = getStraatbeeldState(payload);
 
-            newState.search = getSearchState(payload);
-            newState.map = getMapState(payload);
-            newState.page = payload.pagina || DEFAULT_STATE.page;
-            newState.detail = payload.detail ? {uri: payload.detail} : DEFAULT_STATE.detail;
-            newState.straatbeeld = getStraatbeeldState(payload);
-
-            return newState;
+                return newState;
+            }
 
             function getSearchState (payload) {
-                if (isLocation(payload.zoek)) {
-                    return {
-                        query: null,
-                        location: payload.zoek.split(',')
-                    };
-                } else if (angular.isString(payload.zoek)) {
-                    return {
-                        query: payload.zoek,
-                        location: null
-                    };
+                if (angular.isString(payload.zoek)) {
+                    if (isLocation(payload.zoek)) {
+                        return {
+                            query: null,
+                            location: payload.zoek.split(',')
+                        };
+                    } else {
+                        return {
+                            query: payload.zoek,
+                            location: null
+                        };
+                    }
                 } else {
                     return null;
                 }
@@ -61,15 +62,28 @@
 
             function getMapState (payload) {
                 return {
-                    baseLayer: payload.basiskaart || DEFAULT_STATE.map.baseLayer,
-                    overlays: payload.lagen ? payload.lagen.join(',') : DEFAULT_STATE.map.overlays,
+                    baseLayer: payload.basiskaart,
+                    overlays: payload.lagen ? payload.lagen.split(',') : [],
                     viewCenter: [
-                        payload.lat || DEFAULT_STATE.map.viewCenter[0],
-                        payload.lon || DEFAULT_STATE.map.viewCenter[1]
+                        Number(payload.lat),
+                        Number(payload.lon)
                     ],
-                    zoom: payload.zoom || DEFAULT_STATE.map.zoom,
-                    highlight: payload.selectie || DEFAULT_STATE.map.highlight
+                    zoom: Number(payload.zoom),
+                    highlight: payload.selectie,
+                    showLayerSelection: angular.copy(oldState.map.showLayerSelection),
+                    isLoading: false
                 };
+            }
+
+            function getDetailState (payload) {
+                if (angular.isString(payload.detail)) {
+                    return {
+                        uri: payload.detail,
+                        isLoading: false
+                    };
+                } else {
+                    return null;
+                }
             }
 
             function getStraatbeeldState (payload) {
@@ -78,10 +92,11 @@
                         id: payload.id,
                         camera: {
                             location: null,
-                            heading: payload.heading || 0,
-                            pitch: payload.pitch || 0,
-                            fov: payload.fov
-                        }
+                            heading: Number(payload.heading),
+                            pitch: Number(payload.pitch),
+                            fov: Number(payload.fov)
+                        },
+                        isLoading: false
                     };
                 } else {
                     return null;

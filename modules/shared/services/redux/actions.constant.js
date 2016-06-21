@@ -2,6 +2,9 @@
     angular
         .module('dpShared')
         .constant('ACTIONS', {
+            INITIALIZE: 'INITIALIZE',
+            URL_CHANGE: 'URL_CHANGE',
+
             SHOW_SEARCH_RESULTS_BY_QUERY: 'SHOW_SEARCH_RESULTS_BY_QUERY',
             SHOW_SEARCH_RESULTS_BY_CLICK: 'SHOW_SEARCH_RESULTS_BY_CLICK',
 
@@ -23,8 +26,6 @@
             SHOW_LAYER_SELECTION: 'SHOW_LAYER_SELECTION',
             HIDE_LAYER_SELECTION: 'HIDE_LAYER_SELECTION',
 
-            SHOW_PAGE: 'SHOW_PAGE',
-
-            URL_CHANGE: 'URL_CHANGE'
+            SHOW_PAGE: 'SHOW_PAGE'
         });
 })();

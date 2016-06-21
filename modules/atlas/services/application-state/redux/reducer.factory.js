@@ -6,32 +6,32 @@
         .factory('reducer', reducerFactory);
 
     reducerFactory.$inject = [
+        'urlReducers',
         'detailReducers',
         'layerSelectionReducers',
         'mapReducers',
         'pageReducers',
         'searchReducers',
-        'straatbeeldReducers',
-        'urlReducers'
+        'straatbeeldReducers'
     ];
 
-    function reducerFactory (detailReducers,
+    function reducerFactory (urlReducers,
+        detailReducers,
         layerSelectionReducers,
         mapReducers,
         pageReducers,
         searchReducers,
-        straatbeeldReducers,
-        urlReducers) {
+        straatbeeldReducers) {
 
         return function (oldState, action) {
             var actions = angular.merge(
+                urlReducers,
                 detailReducers,
                 layerSelectionReducers,
                 mapReducers,
                 pageReducers,
                 searchReducers,
-                straatbeeldReducers,
-                urlReducers
+                straatbeeldReducers
             );
 
             if (angular.isDefined(action) && angular.isDefined(actions[action.type])) {

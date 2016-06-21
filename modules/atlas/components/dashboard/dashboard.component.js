@@ -20,6 +20,7 @@
         setLayout();
 
         function setLayout () {
+            console.log('setLayout');
             var state = store.getState();
 
             vm.showLayerSelection = state.map.showLayerSelection;
