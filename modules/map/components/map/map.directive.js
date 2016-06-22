@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'crsService', 'MAP_CONFIG'];
+    dpMapDirective.$inject = ['L', 'crsService', 'MAP_CONFIG', 'layers'];
 
-    function dpMapDirective (L, crsService, MAP_CONFIG) {
+    function dpMapDirective (L, crsService, MAP_CONFIG, layers) {
         return {
             restrict: 'E',
             scope: {
@@ -38,8 +38,7 @@
             leafletMap = L.map(container, options);
 
             scope.$watch('mapState.baseLayer', function (baseLayer) {
-                console.log(baseLayer);
-                //layerService.setBaseLayer(leafletMap, baseLayer, scope.isInteractive);
+                layers.setBaseLayer(leafletMap, baseLayer);
             });
         }
     }
