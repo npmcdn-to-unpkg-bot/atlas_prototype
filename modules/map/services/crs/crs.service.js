@@ -13,8 +13,8 @@
         activate();
 
         return {
-            'getRd': getRd,
-            'getRdObject': getRdObject
+            getRd: getRd,
+            getRdObject: getRdObject
         };
 
         function activate () {
