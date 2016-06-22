@@ -5,18 +5,18 @@
         .module('atlas')
         .controller('LayerSelectionController', LayerSelectionController);
 
-    LayerSelectionController.$inject = ['store'];
+    LayerSelectionController.$inject = ['applicationState'];
 
-    function LayerSelectionController (store) {
+    function LayerSelectionController (applicationState) {
         var vm = this;
 
-        vm.store = store;
+        vm.store = applicationState.getStore();
 
-        store.subscribe(update);
+        vm.store.subscribe(update);
         update();
 
         function update () {
-            var state = store.getState();
+            var state = vm.store.getState();
 
             vm.baseLayer = state.map.baseLayer;
             vm.overlays = state.map.overlays;

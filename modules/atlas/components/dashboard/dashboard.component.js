@@ -9,18 +9,18 @@
             controllerAs: 'vm'
         });
 
-    AtlasDashboardController.$inject = ['store'];
+    AtlasDashboardController.$inject = ['applicationState'];
 
-    function AtlasDashboardController (store) {
+    function AtlasDashboardController (applicationState) {
         var vm = this;
 
-        vm.store = store;
+        vm.store = applicationState.getStore();
 
-        store.subscribe(setLayout);
+        vm.store.subscribe(setLayout);
         setLayout();
 
         function setLayout () {
-            var state = store.getState();
+            var state = vm.store.getState();
 
             vm.showLayerSelection = state.map.showLayerSelection;
             vm.showPage = !vm.showLayerSelection && angular.isString(state.page);

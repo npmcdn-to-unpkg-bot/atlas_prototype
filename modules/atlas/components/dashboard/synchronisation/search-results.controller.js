@@ -5,18 +5,18 @@
         .module('atlas')
         .controller('SearchResultsController', SearchResultsController);
 
-    SearchResultsController.$inject = ['store'];
+    SearchResultsController.$inject = ['applicationState'];
 
-    function SearchResultsController (store) {
+    function SearchResultsController (applicationState) {
         var vm = this;
 
-        vm.store = store;
+        vm.store = applicationState.getStore();
 
-        store.subscribe(update);
+        vm.store.subscribe(update);
         update();
 
         function update () {
-            var state = store.getState();
+            var state = vm.store.getState();
 
             vm.query = state.search && state.search.query;
             vm.location = state.search && state.search.location;

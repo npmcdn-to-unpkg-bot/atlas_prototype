@@ -50,7 +50,6 @@ describe('The dp-link component', function () {
         expect(component.find('button').length).toBe(1);
         expect(component.find('button').attr('class')).toContain('btn');
         expect(component.find('button').attr('class')).toContain('btn-link');
-
     });
 
     it('does a call to store.dispatch when clicked', function () {
