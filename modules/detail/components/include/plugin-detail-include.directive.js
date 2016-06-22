@@ -29,9 +29,9 @@
       var templateName;
 
       if(scope.page) {
-        templateName = 'plugins/plugin-detail/templates/common/' + scope.page + '.html';
+        templateName = 'modules/detail/components/templates/common/' + scope.page + '.html';
       } else {
-        templateName = 'plugins/plugin-detail/templates/common/default-list-objects.html';
+        templateName = 'modules/detail/components/templates/common/default-list-objects.html';
       }
 
       scope.objects = scope.data;

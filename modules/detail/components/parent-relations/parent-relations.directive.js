@@ -11,7 +11,7 @@
       scope: {
         content: '='
       },
-      templateUrl: 'plugins/plugin-detail/parent-relations/parent-relations.html',
+      templateUrl: 'modules/detail/components/parent-relations/parent-relations.html',
       controller: DpParentRelationsController,
       controllerAs: 'vm',
       bindToController: true

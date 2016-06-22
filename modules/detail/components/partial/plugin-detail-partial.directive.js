@@ -5,7 +5,7 @@
     .module('atlasDetail')
     .directive('dpPluginDetailPartial', dpPluginDetailPartialDirective);
 
-  dpPluginDetailPartialDirective.$inject = ['pluginDetailService', 'dataService', 'URIParser'];
+  dpPluginDetailPartialDirective.$inject = ['pluginDetailService', 'api', 'URIParser'];
 
   /*
    * @description Directive to render a reuseable partial in the include directory of where the template is located
@@ -16,7 +16,7 @@
    * @example
    * <plugin-detail-partial page="'woonplaats.html'" href="controller.api_data.woonplaats"></plugin-detail-partial>
    */
-  function dpPluginDetailPartialDirective (pluginDetailService, dataService, URIParser) {
+  function dpPluginDetailPartialDirective (pluginDetailService, api, URIParser) {
     return {
       restrict: 'E',
       scope: {
@@ -49,7 +49,7 @@
               scope.controller.api_data = object;
             }
 
-            var templatePath = 'plugins/plugin-detail/templates/' +
+            var templatePath = 'modules/detail/components/templates' +
               URIParser.parseUri(object._links.self.href).dataset;
             var templateName = isInclude ? templatePath + '/includes/' +
             scope.page : templatePath + '/' + scope.page;
@@ -68,7 +68,7 @@
       // wait for it to be available
       scope.$watch('href', function (newVal) {
         if (newVal) {
-          dataService.getApiData(newVal).then(function (response) {
+          api.getByUri(newVal).then(function (response) {
             // include templates expect the data to be located in 'object'
             if (response.count === 1) {
               response = response.results[0];
@@ -81,7 +81,7 @@
               scope.controller.api_data = response;
             }
 
-            var templatePath = 'plugins/plugin-detail/templates/' + URIParser.parseUri(newVal).dataset;
+            var templatePath = 'modules/detail/components/templates' + URIParser.parseUri(newVal).dataset;
 
             var templateName = isInclude ? templatePath + '/includes/' + scope.page
               : templatePath + '/' + scope.page;

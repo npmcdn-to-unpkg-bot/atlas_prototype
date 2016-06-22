@@ -3,7 +3,7 @@
 
     angular
         .module('atlasDetail')
-        .factory('uriToTemplateUrl', uriToTemplateUrlFactory);
+        .factory('uriparser', uriToTemplateUrlFactory);
 
     function uriToTemplateUrlFactory () {
         return {

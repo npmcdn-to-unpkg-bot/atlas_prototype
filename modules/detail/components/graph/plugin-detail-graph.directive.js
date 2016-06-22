@@ -5,9 +5,9 @@
     .module('atlasDetail')
     .directive('dpPluginDetailGraph', dpPluginDetailGraphDirective);
 
-  dpPluginDetailGraphDirective.$inject = ['dataService', 'd3', 'dateConverter'];
+  dpPluginDetailGraphDirective.$inject = ['api', 'd3', 'dateConverter'];
 
-  function dpPluginDetailGraphDirective (dataService, d3, dateConverter) {
+  function dpPluginDetailGraphDirective (api, d3, dateConverter) {
     return {
       restrict: 'E',
       scope: {
@@ -25,7 +25,7 @@
 
       //parse url om alle metingen te krijgen voor de meetbout
       var href = scope.href + '&page_size=' + scope.pageSize;
-      dataService.getApiData(href).then(function (response) {
+      api.getByUri(href).then(function (response) {
         //data laden
         scope.objects = response.results;
 

@@ -5,9 +5,9 @@
     .module('atlasDetail')
     .directive('dpPluginDetailList', dpPluginDetailListDirective);
 
-  dpPluginDetailListDirective.$inject = ['pluginDetailService', 'dataService', 'URIParser'];
+  dpPluginDetailListDirective.$inject = ['pluginDetailService', 'api', 'URIParser'];
 
-  function dpPluginDetailListDirective (pluginDetailService, dataService, URIParser) {
+  function dpPluginDetailListDirective (pluginDetailService, api, URIParser) {
     return {
       restrict: 'E',
       scope: {
@@ -33,21 +33,21 @@
       var templateName;
 
       var templates = {
-        'aantekening': 'plugins/plugin-detail/templates/common/aantekening.html',
-        'adressen_lijst': 'plugins/plugin-detail/templates/common/adressen_lijst.html',
-        'brk': 'plugins/plugin-detail/templates/common/brk.html',
-        'brk-vbo': 'plugins/plugin-detail/templates/bag/includes/brk-vbo.html',
-        'rechten': 'plugins/plugin-detail/templates/common/rechten.html'
+        'aantekening': 'modules/detail/components/templates/common/aantekening.html',
+        'adressen_lijst': 'modules/detail/components/templates/common/adressen_lijst.html',
+        'brk': 'modules/detail/components/templates/common/brk.html',
+        'brk-vbo': 'modules/detail/components/templates/bag/includes/brk-vbo.html',
+        'rechten': 'modules/detail/components/templates/common/rechten.html'
       };
 
       if (scope.page) {
         templateName = templates[scope.page] || templatePath + '/includes/' + scope.page +
           (scope.page.indexOf('.html') === -1 ? '.html' : '');
       } else {
-        templateName = 'plugins/plugin-detail/templates/common/default-list-objects.html';
+        templateName = 'modules/detail/components/templates/common/default-list-objects.html';
       }
 
-      dataService.getApiData(scope.href).then(function (response) {
+      api.getByUri(scope.href).then(function (response) {
         if(response.results) { //VBO & nummeraanduiding
           scope.objects = response.results;
         } else if(response.id) { //KOT
@@ -66,7 +66,7 @@
           return;
         }
 
-        dataService.getApiData(scope.next).then(function (response) {
+        api.getByUri.getTemplateUrl(scope.next).then(function (response) {
           scope.next = response._links.next.href;
           scope.objects.push.apply(scope.objects, response.results);  // push results to end of scope.objects
         });
