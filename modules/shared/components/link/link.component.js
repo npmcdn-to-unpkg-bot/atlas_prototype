@@ -20,9 +20,7 @@
     function DpLinkController (ACTIONS) {
         var vm = this;
 
-        vm.followLink = function (event) {
-            event.preventDefault();
-
+        vm.followLink = function () {
             vm.store.dispatch({
                 type: ACTIONS[vm.type],
                 payload: vm.payload
