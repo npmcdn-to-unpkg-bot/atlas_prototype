@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'crsService', 'MAP_CONFIG', 'layers'];
+    dpMapDirective.$inject = ['L', 'crsService', 'mapConfig', 'layers'];
 
-    function dpMapDirective (L, crsService, MAP_CONFIG, layers) {
+    function dpMapDirective (L, crsService, mapConfig, layers) {
         return {
             restrict: 'E',
             scope: {
@@ -33,7 +33,7 @@
                 crs: crsService.getRd(),
                 zoomControl: false,
                 attributionControl: false,
-                maxBounds: MAP_CONFIG.AMSTERDAM_BOUNDS
+                maxBounds: mapConfig.AMSTERDAM_BOUNDS
             };
 
             leafletMap = L.map(container, options);

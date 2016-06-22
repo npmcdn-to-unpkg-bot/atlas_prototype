@@ -5,9 +5,9 @@
         .module('dpMap')
         .factory('layers', layersFactory);
 
-        layersFactory.$inject = ['L', 'BASE_LAYERS'];
+        layersFactory.$inject = ['L', 'BASE_LAYERS', 'mapConfig'];
 
-    function layersFactory (L, BASE_LAYERS) {
+    function layersFactory (L, BASE_LAYERS, mapConfig) {
         var baseLayer;
 
         return {
@@ -21,7 +21,7 @@
         function setBaseLayer (map, layerName) {
             var options = BASE_LAYERS.OPTIONS;
 
-            options.subdomains = ['t1', 't2', 't3', 't4'];//urls.TILE_DOMAINS;
+            options.subdomains = mapConfig.TILE_DOMAINS;
 
             if (map.hasLayer(baseLayer)) {
                 map.removeLayer(baseLayer);
