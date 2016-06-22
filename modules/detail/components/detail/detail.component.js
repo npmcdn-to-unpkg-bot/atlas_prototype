@@ -12,9 +12,9 @@
             controllerAs: 'vm'
         });
 
-    AtlasDetailController.$inject = ['$scope', 'ACTIONS', 'api', 'uriParser'];
+    AtlasDetailController.$inject = ['$scope', 'ACTIONS', 'api', 'pathParser'];
 
-    function AtlasDetailController ($scope, ACTIONS, api, uriParser) {
+    function AtlasDetailController ($scope, ACTIONS, api, pathParser) {
         var vm = this;
 
         $scope.$watch('vm.uri', function(newValue) {
@@ -23,7 +23,7 @@
                 vm.apiData = apiData;
 
                 //koppel de goede template op basis van de uri
-                vm.templateUrl = uriParser.getTemplateUrl(newValue);
+                vm.templateUrl = pathParser.parsePath(newValue).templateUrl;
                 console.log(vm.templateUrl);
 
                 //trap de actie show_detail af als alle api informatie binnen is

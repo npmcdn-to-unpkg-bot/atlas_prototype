@@ -5,9 +5,9 @@
     .module('atlasDetail')
     .directive('dpPluginDetailList', dpPluginDetailListDirective);
 
-  dpPluginDetailListDirective.$inject = ['pluginDetailService', 'api', 'URIParser'];
+  dpPluginDetailListDirective.$inject = ['pluginDetailService', 'api', 'pathParser'];
 
-  function dpPluginDetailListDirective (pluginDetailService, api, URIParser) {
+  function dpPluginDetailListDirective (pluginDetailService, api, pathParser) {
     return {
       restrict: 'E',
       scope: {
@@ -28,26 +28,25 @@
         scope.href = scope.href.replace('brk/object', 'brk/object-expand');
       }
 
-      var templatePath = 'plugins/plugin-detail/templates/' + URIParser.parseUri(scope.href).dataset;
+      var templatePath = 'modules/detail/components/detail/templates/' + pathParser.parsePath(scope.href).templateUri;
 
       var templateName;
 
       var templates = {
-        'aantekening': 'modules/detail/components/templates/common/aantekening.html',
-        'adressen_lijst': 'modules/detail/components/templates/common/adressen_lijst.html',
-        'brk': 'modules/detail/components/templates/common/brk.html',
-        'brk-vbo': 'modules/detail/components/templates/bag/includes/brk-vbo.html',
-        'rechten': 'modules/detail/components/templates/common/rechten.html'
+        'aantekening': 'modules/detail/components/detail/templates/common/aantekening.html',
+        'adressen_lijst': 'modules/detail/components/detail/templates/common/adressen_lijst.html',
+        'brk': 'modules/detail/components/detail/templates/common/brk.html',
+        'brk-vbo': 'modules/detail/components/detail/templates/bag/includes/brk-vbo.html',
+        'rechten': 'modules/detail/components/detail/templates/common/rechten.html'
       };
 
       if (scope.page) {
-        templateName = templates[scope.page] || templatePath + '/includes/' + scope.page +
-          (scope.page.indexOf('.html') === -1 ? '.html' : '');
+        templateName = templates[scope.page] || templatePath + '/includes/' + scope.page + '.html';
       } else {
-        templateName = 'modules/detail/components/templates/common/default-list-objects.html';
+        templateName = 'modules/detail/components/detail/templates/common/default-list-objects.html';
       }
 
-      api.getByUri(scope.href).then(function (response) {
+      api.getByUrl(scope.href).then(function (response) {
         if(response.results) { //VBO & nummeraanduiding
           scope.objects = response.results;
         } else if(response.id) { //KOT
