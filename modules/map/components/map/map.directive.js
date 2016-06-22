@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'crsService', 'mapConfig', 'layers'];
+    dpMapDirective.$inject = ['$window', 'L', 'crsService', 'mapConfig', 'layers'];
 
-    function dpMapDirective (L, crsService, mapConfig, layers) {
+    function dpMapDirective ($window, L, crsService, mapConfig, layers) {
         return {
             restrict: 'E',
             scope: {
@@ -37,6 +37,14 @@
             };
 
             leafletMap = L.map(container, options);
+
+            //Als de parent wijzigt van 1/3 naar 2/3 dan moet Leaflet meer tiles tekenen
+            scope.$watch(function () {
+                return container.clientWidth;
+            }, function () {
+                console.log('invalidate');
+                leafletMap.invalidateSize();
+            });
 
             scope.$watch('vm.mapState.baseLayer', function (baseLayer) {
                 layers.setBaseLayer(leafletMap, baseLayer);
