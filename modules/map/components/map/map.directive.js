@@ -16,6 +16,7 @@
             templateUrl: 'modules/map/components/map/map.html',
             controller: DpMapController,
             controllerAs: 'vm',
+            bindToController: true,
             link: linkFunction
         };
 
@@ -27,8 +28,8 @@
             container = element[0].querySelector('.js-leaflet-map');
 
             options = {
-                center: L.latLng.apply(null, scope.mapState.viewCenter),
-                zoom: scope.mapState.zoom,
+                center: L.latLng.apply(null, scope.vm.mapState.viewCenter),
+                zoom: scope.vm.mapState.zoom,
                 crs: crsService.getRd(),
                 zoomControl: false,
                 attributionControl: false,
@@ -37,7 +38,7 @@
 
             leafletMap = L.map(container, options);
 
-            scope.$watch('mapState.baseLayer', function (baseLayer) {
+            scope.$watch('vm.mapState.baseLayer', function (baseLayer) {
                 layers.setBaseLayer(leafletMap, baseLayer);
             });
         }
@@ -63,6 +64,7 @@
         };
 
         vm.zoom = function (zoomLevel) {
+            console.log(vm.store);
             vm.store.dispatch({
                 type: ACTIONS.MAP_ZOOM,
                 payload: zoomLevel
