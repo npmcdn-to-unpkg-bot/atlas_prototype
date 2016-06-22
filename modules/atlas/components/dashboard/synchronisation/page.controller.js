@@ -5,18 +5,16 @@
         .module('atlas')
         .controller('PageController', PageController);
 
-    PageController.$inject = ['applicationState'];
+    PageController.$inject = ['store'];
 
-    function PageController (applicationState) {
+    function PageController (store) {
         var vm = this;
 
-        vm.store = applicationState.getStore();
-
-        vm.store.subscribe(update);
+        store.subscribe(update);
         update();
 
         function update () {
-            var state = vm.store.getState();
+            var state = store.getState();
 
             vm.pageName = state.page;
         }

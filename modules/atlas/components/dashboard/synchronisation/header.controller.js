@@ -5,18 +5,16 @@
         .module('atlas')
         .controller('HeaderController', HeaderController);
 
-    HeaderController.$inject = ['applicationState'];
+    HeaderController.$inject = ['store'];
 
-    function HeaderController (applicationState) {
+    function HeaderController (store) {
         var vm = this;
 
-        vm.store = applicationState.getStore();
-
-        vm.store.subscribe(update);
+        store.subscribe(update);
         update();
 
         function update () {
-            var state = vm.store.getState();
+            var state = store.getState();
 
             vm.query = state.search && state.search.query;
         }

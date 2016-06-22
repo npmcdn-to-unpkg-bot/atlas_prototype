@@ -4,21 +4,20 @@
         .component('atlasDetail', {
             bindings: {
                 uri: '@',
-                isLoading: '=',
-                store: '='
+                isLoading: '='
             },
             templateUrl: 'modules/detail/components/detail/detail.html',
             controller: AtlasDetailController,
             controllerAs: 'vm'
         });
 
-    AtlasDetailController.$inject = ['ACTIONS'];
+    AtlasDetailController.$inject = ['store', 'ACTIONS'];
 
-    function AtlasDetailController (ACTIONS) {
+    function AtlasDetailController (store, ACTIONS) {
         var vm = this;
 
         vm.openStraatbeeld = function (straatbeeldId) {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.FETCH_STRAATBEELD,
                 payload: straatbeeldId
             });

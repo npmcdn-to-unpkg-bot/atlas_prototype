@@ -5,18 +5,16 @@
         .module('atlas')
         .controller('StraatbeeldController', StraatbeeldController);
 
-    StraatbeeldController.$inject = ['applicationState'];
+    StraatbeeldController.$inject = ['store'];
 
-    function StraatbeeldController (applicationState) {
+    function StraatbeeldController (store) {
         var vm = this;
 
-        vm.store = applicationState.getStore();
-
-        vm.store.subscribe(update);
+        store.subscribe(update);
         update();
 
         function update () {
-            var state = vm.store.getState();
+            var state = store.getState();
 
             vm.id = state.straatbeeld && state.straatbeeld.id;
             vm.camera = state.straatbeeld && state.straatbeeld.camera;

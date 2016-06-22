@@ -5,18 +5,16 @@
         .module('atlas')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['applicationState'];
+    MapController.$inject = ['store'];
 
-    function MapController (applicationState) {
+    function MapController (store) {
         var vm = this;
 
-        vm.store = applicationState.getStore();
-
-        vm.store.subscribe(update);
+        store.subscribe(update);
         update();
 
         function update () {
-            var state = vm.store.getState();
+            var state = store.getState();
 
             vm.markers = {};
 

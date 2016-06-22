@@ -9,19 +9,18 @@
             controller: DpLinkController,
             controllerAs: 'vm',
             bindings: {
-                store: '=',
                 type: '@',
                 payload: '='
             }
         });
 
-    DpLinkController.$inject = ['ACTIONS'];
+    DpLinkController.$inject = ['store', 'ACTIONS'];
 
-    function DpLinkController (ACTIONS) {
+    function DpLinkController (store, ACTIONS) {
         var vm = this;
 
         vm.followLink = function () {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS[vm.type],
                 payload: vm.payload
             });

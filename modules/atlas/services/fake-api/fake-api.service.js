@@ -5,16 +5,14 @@
         .module('atlas')
         .service('fakeApi', fakeApiService);
 
-    fakeApiService.$inject = ['$timeout', 'applicationState', 'ACTIONS'];
+    fakeApiService.$inject = ['$timeout', 'store', 'ACTIONS'];
 
-    function fakeApiService ($timeout, applicationState, ACTIONS) {
+    function fakeApiService ($timeout, store, ACTIONS) {
         return {
             initialize: initializeMocks
         };
 
         function initializeMocks () {
-            var store = applicationState.getStore();
-
             store.subscribe(doFakeDataCall);
 
             function doFakeDataCall () {
