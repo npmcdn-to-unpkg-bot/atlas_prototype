@@ -1,14 +1,13 @@
-/*
 (function () {
     'use strict';
 
     angular
         .module('atlas')
-        .service('urlToState', urlToStateService);
+        .factory('urlToState', urlToStateFactory);
 
-    urlToStateService.$inject = ['$rootScope', '$location', 'store'];
+    urlToStateFactory.$inject = ['$rootScope', '$location', 'store', 'ACTIONS'];
 
-    function urlToStateService ($rootScope, $location, store) {
+    function urlToStateFactory ($rootScope, $location, store, ACTIONS) {
         return {
             initialize: initialize
         };
@@ -18,11 +17,10 @@
                 return $location.search();
             }, function () {
                 store.dispatch({
-                    type: 'URL_CHANGED',
+                    type: ACTIONS.URL_CHANGE,
                     payload: $location.search()
                 });
             });
         }
     }
 })();
-*/

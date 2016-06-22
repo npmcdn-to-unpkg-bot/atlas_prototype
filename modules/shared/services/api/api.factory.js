@@ -17,7 +17,7 @@
                 method: 'GET',
                 url: environment.API_ROOT + uri,
                 /*
-                Caching is set to false to enforece distinction between logged in users and guests. The API doesn't
+                Caching is set to false to enforce distinction between logged in users and guests. The API doesn't
                 support tokens yet.
                 */
                 cache: false

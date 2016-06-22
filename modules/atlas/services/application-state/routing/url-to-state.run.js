@@ -1,4 +1,3 @@
-/*
 (function () {
     'use strict';
 
@@ -12,4 +11,3 @@
         urlToState.initialize();
     }
 })();
-*/

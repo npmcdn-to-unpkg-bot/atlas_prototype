@@ -29,9 +29,14 @@
             vm.showSearchResults = angular.isObject(state.search) &&
                 (angular.isString(state.search.query) || angular.isArray(state.search.location));
 
-            vm.sizeLeftColumn = vm.showLayerSelection ? 4 : 0;
-            vm.sizeMiddleColumn = vm.showPage || vm.showDetail || vm.showStraatbeeld ? 4 : 8;
-            vm.sizeRightColumn = 12 - vm.sizeLeftColumn - vm.sizeMiddleColumn;
+            if (vm.showLayerSelection) {
+                vm.sizeLeftColumn = 4;
+                vm.sizeMiddleColumn = 8;
+            } else {
+                vm.sizeLeftColumn = 0;
+                vm.sizeMiddleColumn = vm.showPage || vm.showDetail || vm.showStraatbeeld ? 4 : 8;
+                vm.sizeRightColumn = 12 - vm.sizeLeftColumn - vm.sizeMiddleColumn;
+            }
         }
     }
 })();
