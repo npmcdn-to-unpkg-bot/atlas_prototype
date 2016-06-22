@@ -1,3 +1,6 @@
 module.exports = {
-  atlas: ['modules/**/*.scss']
+    options: {
+        configFile: '.sass-lint.yml'
+    },
+    atlas: ['modules/**/*.scss']
 };

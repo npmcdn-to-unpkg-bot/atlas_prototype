@@ -37,7 +37,7 @@
 */
 .grid {
   .row {
-    &:after {
+    &::after {
       @include clearfix;
     }
 
