@@ -1,25 +1,11 @@
 (function () {
     angular
         .module('dpShared')
-        .factory('applicationState', applicationStateFactory);
+        .factory('store', storeFactory);
 
-    applicationStateFactory.$inject = ['Redux'];
+    storeFactory.$inject = ['applicationState'];
 
-    function applicationStateFactory (Redux) {
-        var store;
-
-        return {
-            initialize: initialize,
-            getStore: getStore
-        };
-
-        function initialize (reducer, defaultState, middleware) {
-            var enhancer = Redux.applyMiddleware(middleware);
-            store = Redux.createStore(reducer, defaultState, enhancer);
-        }
-
-        function getStore () {
-            return store;
-        }
+    function storeFactory (applicationState) {
+        return applicationState.getStore();
     }
 })();
