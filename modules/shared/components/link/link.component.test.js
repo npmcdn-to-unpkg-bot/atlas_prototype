@@ -1,41 +1,28 @@
 describe('The dp-link component', function () {
     var $compile,
         $rootScope,
-        mockedStore;
+        store;
 
     beforeEach(function () {
-        angular.mock.module(
-            'atlas',
-            function ($provide) {
-                $provide.constant('ACTIONS', {
-                    ACTION_A: 'ACTION_A',
-                    ACTION_Z: 'ACTION_Z'
-                });
-            }
-        );
+        angular.mock.module('atlas');
 
-        angular.mock.inject(function (_$compile_, _$rootScope_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _store_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
+            store = _store_;
         });
-
-        mockedStore = {
-            dispatch: function () {}
-        };
     });
 
-    function getComponent (store, type, payload) {
+    function getComponent (type, payload) {
         var component,
             element,
             scope;
 
         element = document.createElement('dp-link');
-        element.setAttribute('store', 'store');
         element.setAttribute('type', type);
         element.setAttribute('payload', 'payload');
 
         scope = $rootScope.$new();
-        scope.store = store;
         scope.payload = payload;
 
         component = $compile(element)(scope);
@@ -45,7 +32,7 @@ describe('The dp-link component', function () {
     }
 
     it('is a button styled liked a regular link', function () {
-        var component = getComponent(mockedStore, 'ACTION_A', {uri: 'blah/blah/789'});
+        var component = getComponent('SHOW_PAGE', 'welkom');
 
         expect(component.find('button').length).toBe(1);
         expect(component.find('button').attr('class')).toContain('btn');
@@ -55,30 +42,24 @@ describe('The dp-link component', function () {
     it('does a call to store.dispatch when clicked', function () {
         var component;
 
-        spyOn(mockedStore, 'dispatch');
+        spyOn(store, 'dispatch');
 
         //Scenario A
-        component = getComponent(mockedStore, 'ACTION_A', {uri: 'blah/blah/789'});
+        component = getComponent('SHOW_PAGE', 'welkom');
         component.find('button')[0].click();
 
-        expect(mockedStore.dispatch).toHaveBeenCalledTimes(1);
-        expect(mockedStore.dispatch).toHaveBeenCalledWith({
-            type: 'ACTION_A',
-            payload: {
-                uri: 'blah/blah/789'
-            }
+        expect(store.dispatch).toHaveBeenCalledWith({
+            type: 'SHOW_PAGE',
+            payload: 'welkom'
         });
 
         //Scenario B
-        component = getComponent(mockedStore, 'ACTION_Z', {needsSpecialTreatment: true});
+        component = getComponent('MAP_PAN', [101, 102]);
         component.find('button')[0].click();
 
-        expect(mockedStore.dispatch).toHaveBeenCalledTimes(2);
-        expect(mockedStore.dispatch).toHaveBeenCalledWith({
-            type: 'ACTION_Z',
-            payload: {
-                needsSpecialTreatment: true
-            }
+        expect(store.dispatch).toHaveBeenCalledWith({
+            type: 'MAP_PAN',
+            payload: [101, 102]
         });
     });
 });
