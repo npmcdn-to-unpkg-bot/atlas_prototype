@@ -19,7 +19,7 @@
 
         /*
          * @param {Object} map - A Leaflet map instance
-         * @param {String} layerName - A reference to a key of the BASE_LAYERS.TEMPLATES object
+         * @param {String} layerName - A reference to a slug from base-layers.constant.js
          */
         function setBaseLayer (leafletMap, layerName) {
             var template;
@@ -32,12 +32,7 @@
 
             baseLayer = L.tileLayer(
                 template,
-                {
-                    subdomains: mapConfig.TILE_DOMAINS,
-                    minZoom: 8,
-                    maxZoom: 16,
-                    tms: true
-                }
+                mapConfig.BASE_LAYER_OPTIONS
             );
 
             leafletMap.addLayer(baseLayer);
@@ -72,21 +67,15 @@
             if (angular.isUndefined(wmsLayers[overlayName])) {
                 wmsLayers[overlayName] = [];
 
-                wmsUrl = OVERLAYS[overlayName].url;
+                wmsUrl = OVERLAYS.SOURCES[overlayName].url;
 
-                if (!OVERLAYS[overlayName].external) {
-                    wmsUrl = mapConfig.MAP_ROOT + wmsUrl;
+                if (!OVERLAYS.SOURCES[overlayName].external) {
+                    wmsUrl = mapConfig.OVERLAY_ROOT + wmsUrl;
                 }
 
-                var options = {
-                    identify: false,
-                    format: 'image/png',
-                    transparent: true
-                };
+                wmsSource = L.WMS.source(wmsUrl, mapConfig.OVERLAY_OPTIONS);
 
-                wmsSource = L.WMS.source(wmsUrl, options);
-
-                OVERLAYS[overlayName].layers.forEach(function (layerName) {
+                OVERLAYS.SOURCES[overlayName].layers.forEach(function (layerName) {
                     wmsLayers[overlayName].push(wmsSource.getLayer(layerName));
                 });
             }
