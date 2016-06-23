@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'variableWidth', 'store', 'ACTIONS'];
+    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'variableWidth'];
 
-    function dpMapDirective (L, mapConfig, layers, variableWidth, store, ACTIONS) {
+    function dpMapDirective (L, mapConfig, layers, variableWidth) {
         return {
             restrict: 'E',
             scope: {
@@ -47,9 +47,11 @@
             variableWidth.initialize(container, leafletMap);
 
             scope.showLayerSelection = function () {
+                /*
                 store.dispatch({
                     type: ACTIONS.SHOW_LAYER_SELECTION
                 });
+                */
             };
         }
 
