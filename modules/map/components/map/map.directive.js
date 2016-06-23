@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'crsService', 'mapConfig', 'layers', 'store'];
+    dpMapDirective.$inject = ['L', 'crsService', 'mapConfig', 'layers', 'variableWidth'];
 
-    function dpMapDirective (L, crsService, mapConfig, layers, store) {
+    function dpMapDirective (L, crsService, mapConfig, layers, variableWidth) {
         return {
             restrict: 'E',
             scope: {
@@ -20,8 +20,7 @@
         };
 
         function linkFunction (scope, element) {
-            var leafletMap,
-                container,
+            var container,
                 options;
 
             container = element[0].querySelector('.js-leaflet-map');
@@ -35,18 +34,12 @@
                 maxBounds: mapConfig.AMSTERDAM_BOUNDS
             };
 
-            leafletMap = L.map(container, options);
+            scope.leafletMap = L.map(container, options);
 
-            //Als de parent wijzigt van 1/3 naar 2/3 dan moet Leaflet meer tiles tekenen
-            scope.$watch(function () {
-                return container.clientWidth;
-            }, function () {
-                console.log('invalidate');
-                leafletMap.invalidateSize();
-            });
+            variableWidth.watch(container, scope.leafletMap);
 
             scope.$watch('vm.mapState.baseLayer', function (baseLayer) {
-                layers.setBaseLayer(leafletMap, baseLayer);
+                layers.setBaseLayer(scope.leafletMap, baseLayer);
             });
         }
     }
