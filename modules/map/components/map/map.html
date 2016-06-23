@@ -47,26 +47,7 @@
         Zoek door te klikken: 'Jan Schaeferbrug'
     </button>
 </div>
-<div class="form-group">
-    <button class="btn btn-white"
-        ng-click="vm.panTo([52.3719, 4.9012])"
-        ng-disabled="vm.mapState.viewCenter[0] === 52.3719 && vm.mapState.viewCenter[1] === 4.9012">
 
-        Pan to default viewCenter
-    </button>
-
-    <button class="btn btn-white"
-        ng-click="vm.panTo([52.38855278893656, 4.85112416084341])"
-        ng-disabled="vm.mapState.viewCenter[0] === 52.38855278893656 && vm.mapState.viewCenter[1] === 4.85112416084341">
-        Pan to Amterdam Sloterdijkerweg
-    </button>
-
-    <button class="btn btn-white"
-        ng-click="vm.panTo([52.36358104949824, 4.90237154233286])"
-        ng-disabled="vm.mapState.viewCenter[0] === 52.36358104949824 && vm.mapState.viewCenter[1] === 4.90237154233286">
-        Pan to Magere brug
-    </button>
-</div>
 <div class="form-group">
     <button class="btn btn-white"
             ng-click="vm.zoom(8)"
@@ -91,9 +72,9 @@
 </div>
 <div class="form-group">
     <button class="btn btn-white"
-            ng-click="vm.showLayerSelection()"
-            ng-click="vm.showLayerSelection()"
-            ng-disabled="vm.mapState.showLayerSelection">
+            ng-click="showLayerSelection()"
+            ng-click="showLayerSelection()"
+            ng-disabled="mapState.showLayerSelection">
 
         Show layer selection
     </button>
