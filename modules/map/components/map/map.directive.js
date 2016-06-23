@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'crsService', 'mapConfig', 'layers', 'variableWidth', 'panning', 'store', 'ACTIONS'];
+    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'variableWidth', 'store', 'ACTIONS'];
 
-    function dpMapDirective (L, crsService, mapConfig, layers, variableWidth, panning, store, ACTIONS) {
+    function dpMapDirective (L, mapConfig, layers, variableWidth, store, ACTIONS) {
         return {
             restrict: 'E',
             scope: {
@@ -22,14 +22,10 @@
                 options;
 
             container = element[0].querySelector('.js-leaflet-map');
-            options = {
-                crs: crsService.getRd(),
+            options = angular.merge(mapConfig.MAP_OPTIONS, {
                 center: scope.mapState.viewCenter,
-                zoom: scope.mapState.zoom,
-                maxBounds: mapConfig.AMSTERDAM_BOUNDS,
-                attributionControl: false,
-                zoomControl: false
-            };
+                zoom: scope.mapState.zoom
+            });
 
             leafletMap = L.map(container, options);
 
