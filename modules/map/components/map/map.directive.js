@@ -42,20 +42,22 @@
                 layers.setBaseLayer(leafletMap, baseLayer);
             });
 
+            layers.addOverlay(leafletMap, 'nap');
+
+            /*
             scope.$watch('vm.mapState.overlays', function (newOverlays, oldOverlays) {
                 var addedOverlays = getAddedOverlays(newOverlays, oldOverlays),
                     removedOverlays = getRemovedOverlays(newOverlays, oldOverlays);
-
+                console.log(newOverlays);
                 addedOverlays.forEach(function (overlay) {
-                    console.log('add', overlay);
-                    //layers.addOverlay(overlay);
+                    layers.addOverlay(leafletMap, overlay);
                 });
 
                 removedOverlays.forEach(function (overlay) {
-                    console.log('remove', overlay);
-                    //layers.removeOverlay(overlay);
+                    layers.removeOverlay(leafletMap, overlay);
                 });
             });
+            */
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {

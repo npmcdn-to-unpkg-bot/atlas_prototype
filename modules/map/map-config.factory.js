@@ -20,9 +20,11 @@
 
         environmentConfig = {
             DEVELOPMENT: {
+                MAP_ROOT: 'https://map-acc.datapunt.amsterdam.nl',
                 TILE_DOMAINS: ['t1-acc', 't2-acc', 't3-acc', 't4-acc']
             },
             PRODUCTION: {
+                MAP_ROOT: 'https://map.datapunt.amsterdam.nl',
                 TILE_DOMAINS: ['t1', 't2', 't3', 't4']
             }
         };
