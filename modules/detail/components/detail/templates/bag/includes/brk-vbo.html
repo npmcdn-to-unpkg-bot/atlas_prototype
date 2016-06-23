@@ -3,9 +3,9 @@
 
   <div class="list" ng-repeat="object in objects">
 
-  <a dp-api-link="{{object._links.self.href}}">
+  <dp-link type="FETCH_DETAIL" payload="{{object._links.self.href}}">
     <i class="fa fa-chevron-right link"></i>{{ object._display}}
-  </a>
+  </dp-link>
 	<div
 		class="brk-indented"
 		ng-include="'./plugins/plugin-detail/templates/common/brk.html'">

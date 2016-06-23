@@ -3,17 +3,17 @@
 
   <ul class="list">
     <li ng-repeat="object in objects">
-      <a dp-api-link="{{object._links.self.href}}">
+      <dp-link type="FETCH_DETAIL" payload="{{object._links.self.href}}">
         <i class="fa fa-chevron-right link"></i>{{ object._display }}
-      </a>
+      </dp-link>
 <!-- komt nog in verdere wkpb uitwerking
-     <a ng-if="object._brondocument.count > 1" dp-api-link="{{object._brondocument._links.self.href}}">
+     <dp-link ng-if="object._brondocument.count > 1"type="FETCH_DETAIL" payload="{{object._brondocument._links.self.href}}">
         WKPB-brondocumenten
-      </a>
-      <a ng-if="object.document.count === 1" dp-api-link="{{object._brondocument.results[0].url}}">
+      </dp-link>
+      <dp-link ng-if="object.document.count === 1" type="FETCH_DETAIL" payload="{{object._brondocument.results[0].url}}">
         WKPB-brondocument
         <span ng-if="object.document.results[0].persoonsgegevens_afschermen">(persoonsgegevens afschermen)</span>
-      </a> -->
+      </dp-link> -->
     </li>
   </ul>
 
