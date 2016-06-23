@@ -20,13 +20,13 @@
         };
 
         function linkFunction (scope, element) {
-            var container,
+            var leafletMap,
+                container,
                 options;
 
             container = element[0].querySelector('.js-leaflet-map');
-
             options = {
-                center: L.latLng.apply(null, scope.vm.mapState.viewCenter),
+                center: scope.vm.mapState.viewCenter,
                 zoom: scope.vm.mapState.zoom,
                 crs: crsService.getRd(),
                 zoomControl: false,
@@ -34,12 +34,39 @@
                 maxBounds: mapConfig.AMSTERDAM_BOUNDS
             };
 
-            scope.leafletMap = L.map(container, options);
+            leafletMap = L.map(container, options);
 
-            variableWidth.watch(container, scope.leafletMap);
+            variableWidth.watch(container, leafletMap);
 
             scope.$watch('vm.mapState.baseLayer', function (baseLayer) {
-                layers.setBaseLayer(scope.leafletMap, baseLayer);
+                layers.setBaseLayer(leafletMap, baseLayer);
+            });
+
+            scope.$watch('vm.mapState.overlays', function (newOverlays, oldOverlays) {
+                var addedOverlays = getAddedOverlays(newOverlays, oldOverlays),
+                    removedOverlays = getRemovedOverlays(newOverlays, oldOverlays);
+
+                addedOverlays.forEach(function (overlay) {
+                    console.log('add', overlay);
+                    //layers.addOverlay(overlay);
+                });
+
+                removedOverlays.forEach(function (overlay) {
+                    console.log('remove', overlay);
+                    //layers.removeOverlay(overlay);
+                });
+            });
+        }
+
+        function getAddedOverlays (newOverlays, oldOverlays) {
+            return newOverlays.filter(function (overlay) {
+                return oldOverlays.indexOf(overlay) === -1;
+            });
+        }
+
+        function getRemovedOverlays (newOverlays, oldOverlays) {
+            return oldOverlays.filter(function (overlay) {
+                return newOverlays.indexOf(overlay) === -1;
             });
         }
     }
