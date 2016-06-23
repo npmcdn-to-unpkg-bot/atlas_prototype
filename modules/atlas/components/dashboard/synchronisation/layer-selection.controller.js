@@ -10,8 +10,6 @@
     function LayerSelectionController (store) {
         var vm = this;
 
-        vm.store = store;
-
         store.subscribe(update);
         update();
 

@@ -14,23 +14,16 @@
             }
         });
 
-    //Todo: deze vriend heeft helemaal geen store, iets voor bedenken
-    DpLinkController.$inject = ['store'];
+    DpLinkController.$inject = ['store', 'ACTIONS'];
 
-    function DpLinkController (store) {
+    function DpLinkController (store, ACTIONS) {
         var vm = this;
 
-        //Todo: zet de ng-href, en update deze als de store.getState() veranderd
-        vm.href = 'http://www.example.com/';
-
-        vm.followLink = function (event) {
-            event.preventDefault();
-
+        vm.followLink = function () {
             store.dispatch({
-                type: vm.type,
+                type: ACTIONS[vm.type],
                 payload: vm.payload
             });
         };
-
     }
 })();
