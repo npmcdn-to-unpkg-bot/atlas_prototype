@@ -29,8 +29,6 @@
                 isLoading: true
             };
 
-            console.log(newState.detail);
-
             newState.map.isLoading = true;
             newState.map.highlight = null;
             newState.map.showLayerSelection = false;

@@ -18,11 +18,10 @@
         var vm = this;
 
         $scope.$watch('vm.endpoint', function(newValue) {
-
             api.getByUrl(newValue).then(function (apiData) {
                 //koppel data aan de scope
                 vm.apiData = apiData;
-console.log(apiData);
+
                 //koppel de goede template op basis van het endpoint
                 vm.templateUrl = endpointParser.parseEndpoint(newValue).templateUrl;
 
