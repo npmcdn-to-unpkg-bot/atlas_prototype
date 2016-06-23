@@ -19,20 +19,31 @@
          * @param {String} layerName - A reference to a key of the BASE_LAYERS.TEMPLATES object
          */
         function setBaseLayer (map, layerName) {
-            var options = BASE_LAYERS.OPTIONS;
-
-            options.subdomains = mapConfig.TILE_DOMAINS;
-
             if (map.hasLayer(baseLayer)) {
                 map.removeLayer(baseLayer);
             }
 
             baseLayer = L.tileLayer(
-                BASE_LAYERS.TEMPLATES[layerName],
-                options
+                getBaseLayerTemplate(layerName),
+                {
+                    subdomains: mapConfig.TILE_DOMAINS,
+                    minZoom: 8,
+                    maxZoom: 16,
+                    tms: true
+                }
             );
 
             map.addLayer(baseLayer);
+
+            function getBaseLayerTemplate (layerName) {
+                var baseLayer;
+
+                baseLayer = BASE_LAYERS.filter(function (baseLayer) {
+                    return layerName === baseLayer.slug;
+                })[0];
+
+                return baseLayer.urlTemplate;
+            }
         }
     }
 })();

@@ -3,15 +3,14 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['$window', 'L', 'crsService', 'mapConfig', 'layers'];
+    dpMapDirective.$inject = ['L', 'crsService', 'mapConfig', 'layers', 'store'];
 
-    function dpMapDirective ($window, L, crsService, mapConfig, layers) {
+    function dpMapDirective (L, crsService, mapConfig, layers, store) {
         return {
             restrict: 'E',
             scope: {
                 mapState: '=',
-                markers: '=',
-                store: '='
+                markers: '='
             },
             templateUrl: 'modules/map/components/map/map.html',
             controller: DpMapController,
@@ -52,35 +51,34 @@
         }
     }
 
-    DpMapController.$inject = ['ACTIONS'];
+    DpMapController.$inject = ['ACTIONS', 'store'];
 
-    function DpMapController (ACTIONS) {
+    function DpMapController (ACTIONS, store) {
         var vm = this;
 
         vm.triggerSearch = function (location) {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,
                 payload: location
             });
         };
 
         vm.panTo = function (location) {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.MAP_PAN,
                 payload: location
             });
         };
 
         vm.zoom = function (zoomLevel) {
-            console.log(vm.store);
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.MAP_ZOOM,
                 payload: zoomLevel
             });
         };
 
         vm.showLayerSelection = function () {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.SHOW_LAYER_SELECTION
             });
         };
