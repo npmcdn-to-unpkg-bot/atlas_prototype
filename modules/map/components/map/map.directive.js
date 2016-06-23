@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'crsService', 'mapConfig', 'layers', 'variableWidth'];
+    dpMapDirective.$inject = ['L', 'crsService', 'mapConfig', 'layers', 'variableWidth', 'panning'];
 
-    function dpMapDirective (L, crsService, mapConfig, layers, variableWidth) {
+    function dpMapDirective (L, crsService, mapConfig, layers, variableWidth, panning) {
         return {
             restrict: 'E',
             scope: {
@@ -13,9 +13,6 @@
                 markers: '='
             },
             templateUrl: 'modules/map/components/map/map.html',
-            controller: DpMapController,
-            controllerAs: 'vm',
-            bindToController: true,
             link: linkFunction
         };
 
@@ -26,38 +23,32 @@
 
             container = element[0].querySelector('.js-leaflet-map');
             options = {
-                center: scope.vm.mapState.viewCenter,
-                zoom: scope.vm.mapState.zoom,
                 crs: crsService.getRd(),
-                zoomControl: false,
+                center: scope.mapState.viewCenter,
+                zoom: scope.mapState.zoom,
+                maxBounds: mapConfig.AMSTERDAM_BOUNDS,
                 attributionControl: false,
-                maxBounds: mapConfig.AMSTERDAM_BOUNDS
+                zoomControl: false
             };
 
             leafletMap = L.map(container, options);
 
-            variableWidth.watch(container, leafletMap);
-
-            scope.$watch('vm.mapState.baseLayer', function (baseLayer) {
+            scope.$watch('mapState.baseLayer', function (baseLayer) {
                 layers.setBaseLayer(leafletMap, baseLayer);
             });
 
-            layers.addOverlay(leafletMap, 'nap');
-
-            /*
-            scope.$watch('vm.mapState.overlays', function (newOverlays, oldOverlays) {
-                var addedOverlays = getAddedOverlays(newOverlays, oldOverlays),
-                    removedOverlays = getRemovedOverlays(newOverlays, oldOverlays);
-                console.log(newOverlays);
-                addedOverlays.forEach(function (overlay) {
+            scope.$watch('mapState.overlays', function (newOverlays, oldOverlays) {
+                getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                     layers.addOverlay(leafletMap, overlay);
                 });
 
-                removedOverlays.forEach(function (overlay) {
+                getRemovedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                     layers.removeOverlay(leafletMap, overlay);
                 });
             });
-            */
+
+            panning.initialize(leafletMap);
+            variableWidth.initialize(container, leafletMap);
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {
@@ -73,36 +64,32 @@
         }
     }
 
-    DpMapController.$inject = ['ACTIONS', 'store'];
+    /*
+    vm.triggerSearch = function (location) {
+        store.dispatch({
+            type: ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,
+            payload: location
+        });
+    };
 
-    function DpMapController (ACTIONS, store) {
-        var vm = this;
+    vm.panTo = function (location) {
+        store.dispatch({
+            type: ACTIONS.MAP_PAN,
+            payload: location
+        });
+    };
 
-        vm.triggerSearch = function (location) {
-            store.dispatch({
-                type: ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,
-                payload: location
-            });
-        };
+    vm.zoom = function (zoomLevel) {
+        store.dispatch({
+            type: ACTIONS.MAP_ZOOM,
+            payload: zoomLevel
+        });
+    };
 
-        vm.panTo = function (location) {
-            store.dispatch({
-                type: ACTIONS.MAP_PAN,
-                payload: location
-            });
-        };
-
-        vm.zoom = function (zoomLevel) {
-            store.dispatch({
-                type: ACTIONS.MAP_ZOOM,
-                payload: zoomLevel
-            });
-        };
-
-        vm.showLayerSelection = function () {
-            store.dispatch({
-                type: ACTIONS.SHOW_LAYER_SELECTION
-            });
-        };
-    }
+    vm.showLayerSelection = function () {
+        store.dispatch({
+            type: ACTIONS.SHOW_LAYER_SELECTION
+        });
+    };
+    */
 })();

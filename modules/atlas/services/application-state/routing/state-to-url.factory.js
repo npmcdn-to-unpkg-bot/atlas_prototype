@@ -13,6 +13,7 @@
         };
 
         function update (state) {
+            console.log('stateToUrl.update', state.map.viewCenter);
             var searchParams = {};
 
             //Search

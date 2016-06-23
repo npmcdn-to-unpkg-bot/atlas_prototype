@@ -90,7 +90,7 @@
                     wmsLayers[overlayName].push(wmsSource.getLayer(layerName));
                 });
             }
-            console.log(wmsLayers);
+
             return wmsLayers[overlayName];
         }
     }

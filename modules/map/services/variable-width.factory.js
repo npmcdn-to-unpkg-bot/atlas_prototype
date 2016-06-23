@@ -9,10 +9,10 @@
 
     function variableWidthFactory ($rootScope) {
         return {
-            watch: watch
+            initialize: initialize
         };
 
-        function watch (container, leafletMap) {
+        function initialize (container, leafletMap) {
             $rootScope.$watch(function () {
                 return container.clientWidth;
             }, function () {

@@ -70,7 +70,7 @@
          */
         function mapPanReducer (oldState, payload) {
             var newState = angular.copy(oldState);
-
+console.log('mapPanReducer', payload);
             newState.map.viewCenter = payload;
 
             return newState;
