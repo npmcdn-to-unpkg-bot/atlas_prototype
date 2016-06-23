@@ -18,6 +18,15 @@
 
         return reducers;
 
+        /**
+         * @description If the oldState had an active panorama it will remember the heading, pitch and fov. Otherwise
+         * it'll use the car's orientation for the heading and pitch and a default FOV.
+         *
+         * @param {Object} oldState
+         * @param {Number} payload - A panorama ID
+         *
+         * @returns {Object} newState
+         */
         function fetchStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
@@ -51,6 +60,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {Array} payload - The location of the new panorama, e.g. [52.123, 4.789]
+         *
+         * @returns {Object} newState
+         */
         function showStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
@@ -76,6 +91,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {Number} payload - A number in degrees
+         *
+         * @returns {Object} newState
+         */
         function straatbeeldSetHeadingReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
@@ -84,6 +105,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {Number} payload - A number in degrees
+         *
+         * @returns {Object} newState
+         */
         function straatbeeldSetPitchReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
@@ -92,6 +119,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {Number} payload - A number in degrees
+         *
+         * @returns {Object} newState
+         */
         function straatbeeldSetFovReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 

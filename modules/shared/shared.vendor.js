@@ -4,7 +4,7 @@
     'use strict';
 
     angular
-        .module('atlas')
+        .module('dpShared')
         .config(configuration);
 
     configuration.$inject = ['$provide'];

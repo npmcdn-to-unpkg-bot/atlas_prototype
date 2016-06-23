@@ -1,14 +1,14 @@
 .btn {
-  padding: $whitespace-base / 2;
-  border: 1px solid $black;
-  border-radius: 6px;
-
   /*
   @name Button - white
   @markup
     <button class="btn btn-white">A white button</button>
   */
   &.btn-white {
+    padding: $whitespace-base / 2;
+    border: 1px solid $black;
+    border-radius: 6px;
+
     background-color: $white;
     color: $black;
     font-size: inherit;

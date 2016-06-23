@@ -7,42 +7,41 @@
             bindings: {
                 baseLayer: '@',
                 overlays: '=',
-                zoom: '=',
-                store: '='
+                zoom: '='
             },
             templateUrl: 'modules/layer-selection/components/layer-selection/layer-selection.html',
             controller: AtlasLayerSelectionController,
             controllerAs: 'vm'
         });
 
-    AtlasLayerSelectionController.$inject = ['ACTIONS'];
+    AtlasLayerSelectionController.$inject = ['store', 'ACTIONS'];
 
-    function AtlasLayerSelectionController (ACTIONS) {
+    function AtlasLayerSelectionController (store, ACTIONS) {
         var vm = this;
 
         vm.setBaseLayer = function (baseLayer) {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.MAP_SET_BASELAYER,
                 payload: baseLayer
             });
         };
 
         vm.addOverlay = function (overlay) {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.MAP_ADD_OVERLAY,
                 payload: overlay
             });
         };
 
         vm.removeOverlay = function (overlay) {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.MAP_REMOVE_OVERLAY,
                 payload: overlay
             });
         };
 
         vm.hideLayers = function () {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.HIDE_LAYER_SELECTION
             });
         };
