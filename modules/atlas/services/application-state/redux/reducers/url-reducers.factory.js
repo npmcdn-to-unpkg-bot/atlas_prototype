@@ -80,7 +80,7 @@
             function getDetailState (payload) {
                 if (angular.isString(payload.detail)) {
                     return {
-                        uri: payload.detail,
+                        endpoint: payload.detail,
                         isLoading: false
                     };
                 } else {

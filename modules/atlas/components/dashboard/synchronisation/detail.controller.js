@@ -10,15 +10,13 @@
     function DetailController (store) {
         var vm = this;
 
-        vm.store = store;
-
         store.subscribe(update);
         update();
 
         function update () {
             var state = store.getState();
 
-            vm.uri = state.detail && state.detail.uri;
+            vm.endpoint = state.detail && state.detail.endpoint;
             vm.isLoading = state.detail && state.detail.isLoading;
         }
     }

@@ -3,32 +3,32 @@
 
     angular
         .module('atlasDetail')
-        .factory('pathParser', pathParserFactory);
+        .factory('endpointParser', endpointParserFactory);
 
-    pathParserFactory.$inject = ['environment'];
+    endpointParserFactory.$inject = ['environment'];
 
-    function pathParserFactory (environment) {
+    function endpointParserFactory (environment) {
         return {
-            parsePath: parsePath
+            parseEndpoint: parseEndpoint
         };
 
-        function parsePath (uri) {
-            if(uri.indexOf(environment.API_ROOT) !== -1) {
-                uri = uri.substr(environment.API_ROOT.length);
+        function parseEndpoint (path) {
+            if(path.indexOf(environment.API_ROOT) !== -1) {
+                path = path.substr(environment.API_ROOT.length);
             }
 
-            var parts = uri.split('/');
+            var parts = path.split('/');
 
             var templateUri = parts[0] + '/' + parts[1];
             var templateUrl = 'modules/detail/components/detail/templates/' + templateUri + '.html';
 
-            return new ParseUriResult(
+            return new ParsePathResult(
                 templateUri,
                 templateUrl
             );
         }
 
-        function ParseUriResult(templateUri, templateUrl) {
+        function ParsePathResult(templateUri, templateUrl) {
             this.templateUri = templateUri;
             this.templateUrl = templateUrl;
         }

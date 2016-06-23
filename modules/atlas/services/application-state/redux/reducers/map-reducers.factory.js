@@ -18,6 +18,12 @@
 
         return reducers;
 
+        /**
+         * @param {Object} oldState
+         * @param {String} payload - The name of the baseLayer, it should match a key from base-layers.constant.js
+         *
+         * @returns {Object} newState
+         */
         function mapSetBaselayerReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
@@ -26,6 +32,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {String} payload - The name of the overlay, it should match a key from overlays.constant.js
+         *
+         * @returns {Object} newState
+         */
         function mapAddOverlayReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
@@ -34,6 +46,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {String} payload - The name of the overlay, it should match a key from overlays.constant.js
+         *
+         * @returns {Object} newState
+         */
         function mapRemoveOverlayReducer (oldState, payload) {
             var newState = angular.copy(oldState),
                 index;
@@ -44,6 +62,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {Array} payload - The new position in Array format, e.g. [52.123, 4.789]
+         *
+         * @returns {Object} newState
+         */
         function mapPanReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
@@ -52,6 +76,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {Number} payload - The zoom level
+         *
+         * @returns {Object} newState
+         */
         function mapZoomReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 

@@ -4,11 +4,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div ng-controller="HeaderController as vm">
-                        <atlas-header
-                            query="{{vm.query}}"
-                            store="vm.store">
-
-                        </atlas-header>
+                        <atlas-header query="{{vm.query}}"></atlas-header>
                     </div>
                 </div>
             </div>
@@ -24,8 +20,7 @@
                         <atlas-layer-selection
                             base-layer="{{vm.baseLayer}}"
                             overlays="vm.overlays"
-                            zoom="vm.zoom"
-                            store="vm.store">
+                            zoom="vm.zoom">
 
                         </atlas-layer-selection>
                     </div>
@@ -35,8 +30,7 @@
                     <div ng-controller="MapController as vm">
                         <dp-map
                             map-state="vm.mapState"
-                            markers="vm.markers"
-                            store="vm.store">
+                            markers="vm.markers">
 
                         </dp-map>
                     </div>
@@ -47,26 +41,20 @@
 
                     <div ng-if="vm.showDetail" ng-controller="DetailController as vm">
                         <atlas-detail
-                            uri="{{vm.uri}}"
-                            is-loading="vm.isLoading"
-                            store="vm.store">
+                            endpoint="{{vm.endpoint}}"
+                            is-loading="vm.isLoading">
 
                         </atlas-detail>
                     </div>
 
                     <div ng-if="vm.showPage" ng-controller="PageController as vm">
-                        <atlas-page
-                            name="{{vm.pageName}}"
-                            store="vm.store">
-
-                        </atlas-page>
+                        <atlas-page name="{{vm.pageName}}"></atlas-page>
                     </div>
 
                     <div ng-if="vm.showSearchResults" ng-controller="SearchResultsController as vm">
                         <atlas-search-results
                             query="{{vm.query}}"
-                            location="vm.location"
-                            store="vm.store">
+                            location="vm.location">
 
                         </atlas-search-results>
                     </div>
@@ -75,8 +63,7 @@
                         <dp-straatbeeld
                             id="vm.id"
                             camera="vm.camera"
-                            is-loading="vm.isLoading"
-                            store="vm.store">
+                            is-loading="vm.isLoading">
 
                         </dp-straatbeeld>
                     </div>

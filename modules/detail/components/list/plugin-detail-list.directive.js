@@ -5,9 +5,9 @@
     .module('atlasDetail')
     .directive('dpPluginDetailList', dpPluginDetailListDirective);
 
-  dpPluginDetailListDirective.$inject = ['pluginDetailService', 'api', 'pathParser'];
+  dpPluginDetailListDirective.$inject = ['pluginDetailService', 'api', 'endpointParser'];
 
-  function dpPluginDetailListDirective (pluginDetailService, api, pathParser) {
+  function dpPluginDetailListDirective (pluginDetailService, api, endpointParser) {
     return {
       restrict: 'E',
       scope: {
@@ -28,7 +28,8 @@
         scope.href = scope.href.replace('brk/object', 'brk/object-expand');
       }
 
-      var templatePath = 'modules/detail/components/detail/templates/' + pathParser.parsePath(scope.href).templateUri;
+      var templatePath = 'modules/detail/components/detail/templates/' +
+        endpointParser.parseEndpoint(scope.href).templateUri;
 
       var templateName;
 

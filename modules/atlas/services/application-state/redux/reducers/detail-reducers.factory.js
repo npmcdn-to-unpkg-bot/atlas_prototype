@@ -15,13 +15,21 @@
 
         return reducers;
 
+        /**
+         * @param {Object} oldState
+         * @param {String} payload - An API endpoint
+         *
+         * @returns {Object} newState
+         */
         function fetchDetailReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
             newState.detail = {
-                uri: payload,
+                endpoint: payload,
                 isLoading: true
             };
+
+            console.log(newState.detail);
 
             newState.map.isLoading = true;
             newState.map.highlight = null;
@@ -34,6 +42,12 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {Object} payload - An object with two variables; location (Array) and highlight (GeoJSON).
+         *
+         * @returns {Object} newState
+         */
         function showDetailReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 

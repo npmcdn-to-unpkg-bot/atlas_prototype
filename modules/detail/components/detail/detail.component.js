@@ -3,31 +3,31 @@
         .module('atlasDetail')
         .component('atlasDetail', {
             bindings: {
-                uri: '@',
-                isLoading: '=',
-                store: '='
+                endpoint: '@',
+                isLoading: '='
             },
             templateUrl: 'modules/detail/components/detail/detail.html',
             controller: AtlasDetailController,
             controllerAs: 'vm'
         });
 
-    AtlasDetailController.$inject = ['$scope', 'ACTIONS', 'api', 'pathParser'];
+    AtlasDetailController.$inject = ['$scope', 'ACTIONS', 'api', 'endpointParser', 'store'];
 
-    function AtlasDetailController ($scope, ACTIONS, api, pathParser) {
+    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, store) {
+
         var vm = this;
 
-        $scope.$watch('vm.uri', function(newValue) {
-            api.getByUri(newValue).then(function (apiData) {
+        $scope.$watch('vm.endpoint', function(newValue) {
+
+            api.getByUrl(newValue).then(function (apiData) {
                 //koppel data aan de scope
                 vm.apiData = apiData;
-
-                //koppel de goede template op basis van de uri
-                vm.templateUrl = pathParser.parsePath(newValue).templateUrl;
-                console.log(vm.templateUrl);
+console.log(apiData);
+                //koppel de goede template op basis van het endpoint
+                vm.templateUrl = endpointParser.parseEndpoint(newValue).templateUrl;
 
                 //trap de actie show_detail af als alle api informatie binnen is
-                vm.store.dispatch({
+                store.dispatch({
                     type: ACTIONS.SHOW_DETAIL,
                     payload: {
                         //TODO placeholders vervangen voor echte data
@@ -36,11 +36,10 @@
                     }
                 });
             });
-
         });
 
         vm.openStraatbeeld = function (straatbeeldId) {
-            vm.store.dispatch({
+            store.dispatch({
                 type: ACTIONS.FETCH_STRAATBEELD,
                 payload: straatbeeldId
             });
