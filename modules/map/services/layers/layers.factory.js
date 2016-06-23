@@ -11,7 +11,7 @@
         var baseLayer;
 
         return {
-            'setBaseLayer': setBaseLayer
+            setBaseLayer: setBaseLayer
         };
 
         /*
