@@ -30,6 +30,10 @@
                     value="{{overlay.slug}}">
 
                 {{overlay.label}}
+
+                <span ng-if="vm.isOverlayActive(overlay.slug) && !vm.isOverlayVisible(overlay.slug)">
+                    (<strong>deze kaartlaag is niet zichtbaar op dit zoomniveau</strong>)
+                </span>
             </label>
         </li>
     </ul>

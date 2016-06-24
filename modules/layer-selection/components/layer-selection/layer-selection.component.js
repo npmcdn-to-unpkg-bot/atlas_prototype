@@ -45,6 +45,11 @@
             return vm.activeOverlays.indexOf(overlay) !== -1;
         };
 
+        vm.isOverlayVisible = function (overlay) {
+            return vm.zoom >= OVERLAYS.SOURCES[overlay].minZoom &&
+                vm.zoom <= OVERLAYS.SOURCES[overlay].maxZoom;
+        };
+
         vm.toggleOverlay = function (overlay) {
             var action;
 
