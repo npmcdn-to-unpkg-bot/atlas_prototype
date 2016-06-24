@@ -15,8 +15,10 @@
         function initialize (container, leafletMap) {
             $rootScope.$watch(function () {
                 return container.clientWidth;
-            }, function () {
-                leafletMap.invalidateSize();
+            }, function (newWidth, oldWidth) {
+                if (newWidth !== oldWidth) {
+                    leafletMap.invalidateSize();
+                }
             });
         }
     }
