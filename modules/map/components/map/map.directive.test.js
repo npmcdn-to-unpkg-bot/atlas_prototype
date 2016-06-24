@@ -5,6 +5,7 @@ describe('The dp-map directive', function () {
         layers,
         variableWidth,
         panning,
+        zoom,
         mockedMapState;
 
     beforeEach(function () {
@@ -20,6 +21,10 @@ describe('The dp-map directive', function () {
                 panning: {
                     initialize: function () {},
                     panTo: function () {}
+                },
+                zoom: {
+                    initialize: function () {},
+                    setZoom: function () {}
                 }
             },
             function ($provide) {
@@ -29,13 +34,14 @@ describe('The dp-map directive', function () {
             }
         );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_, _L_, _layers_, _variableWidth_, _panning_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _L_, _layers_, _variableWidth_, _panning_, _zoom_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
             L = _L_;
             layers = _layers_;
             variableWidth = _variableWidth_;
             panning = _panning_;
+            zoom = _zoom_;
         });
 
         spyOn(L, 'map').and.returnValue('I_AM_A_FAKE_LEAFLET_MAP');
@@ -47,6 +53,8 @@ describe('The dp-map directive', function () {
         spyOn(variableWidth, 'initialize');
         spyOn(panning, 'initialize');
         spyOn(panning, 'panTo');
+        spyOn(zoom, 'initialize');
+        spyOn(zoom, 'setZoom');
 
         mockedMapState = {
             baseLayer: 'topografie',

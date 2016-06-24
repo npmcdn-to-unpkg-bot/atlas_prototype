@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'variableWidth', 'panning'];
+    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'variableWidth', 'panning', 'zoom'];
 
-    function dpMapDirective (L, mapConfig, layers, variableWidth, panning) {
+    function dpMapDirective (L, mapConfig, layers, variableWidth, panning, zoom) {
         return {
             restrict: 'E',
             scope: {
@@ -30,9 +30,15 @@
             leafletMap = L.map(container, options);
 
             panning.initialize(leafletMap);
+            zoom.initialize(leafletMap);
+            variableWidth.initialize(container, leafletMap);
 
             scope.$watch('mapState.viewCenter', function (viewCenter) {
                 panning.panTo(leafletMap, viewCenter);
+            });
+
+            scope.$watch('mapState.zoom', function (zoomLevel) {
+                zoom.setZoom(leafletMap, zoomLevel);
             });
 
             scope.$watch('mapState.baseLayer', function (baseLayer) {
@@ -49,7 +55,6 @@
                 });
             });
 
-            variableWidth.initialize(container, leafletMap);
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {
