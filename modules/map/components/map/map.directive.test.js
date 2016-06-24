@@ -162,7 +162,7 @@ describe('The dp-map directive', function () {
             expect(panning.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
         });
 
-        it('is called whenever the location changes', function () {
+        it('is called whenever mapState.viewCenter changes', function () {
             expect(panning.panTo).toHaveBeenCalledTimes(1);
             expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [52.789, 4.123]);
 
@@ -171,6 +171,31 @@ describe('The dp-map directive', function () {
 
             expect(panning.panTo).toHaveBeenCalledTimes(2);
             expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [53, 5]);
+        });
+    });
+
+    describe('zoom factory', function () {
+        var directive,
+            container;
+
+        beforeEach(function () {
+            directive = getDirective(mockedMapState, {});
+            container = directive[0].querySelector('.js-leaflet-map');
+        });
+
+        it('is initialized', function () {
+            expect(zoom.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
+        });
+
+        it('is called whenever mapState.zoom changes', function () {
+            expect(zoom.setZoom).toHaveBeenCalledTimes(1);
+            expect(zoom.setZoom).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 12);
+
+            mockedMapState.zoom = 11;
+            $rootScope.$apply();
+
+            expect(zoom.setZoom).toHaveBeenCalledTimes(2);
+            expect(zoom.setZoom).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 11);
         });
     });
 
