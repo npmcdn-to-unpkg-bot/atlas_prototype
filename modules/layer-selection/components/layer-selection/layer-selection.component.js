@@ -21,6 +21,17 @@
 
         vm.baseLayers = BASE_LAYERS;
 
+        vm.overlays = OVERLAYS.HIERARCHY.map(function (category) {
+            category.overlays = category.overlays.map(function (overlaySlug) {
+                return {
+                    slug: overlaySlug,
+                    label: OVERLAYS.SOURCES[overlaySlug].label
+                };
+            });
+
+            return category;
+        });
+        console.log(vm.overlays);
         vm.setBaseLayer = function (baseLayer) {
             store.dispatch({
                 type: ACTIONS.MAP_SET_BASELAYER,
