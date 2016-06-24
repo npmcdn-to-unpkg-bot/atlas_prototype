@@ -9,7 +9,7 @@
 <div class="u-mb-2">
     <h2 class="h3">Ondergrond</h2>
     <ul>
-        <li ng-repeat="baseLayer in vm.baseLayers">
+        <li ng-repeat="baseLayer in vm.allBaseLayers">
             <label>
                 <input ng-model="vm.activeBaseLayer" ng-change="vm.setBaseLayer(vm.activeBaseLayer)" type="radio" value="{{baseLayer.slug}}">
                 {{baseLayer.label}}
@@ -18,7 +18,7 @@
     </ul>
 </div>
 
-<div class="u-mb-2" ng-repeat="category in vm.overlays">
+<div class="u-mb-2" ng-repeat="category in vm.allOverlays">
     <h2 class="h3">{{category.heading}}</h2>
     <ul>
         <li ng-repeat="overlay in category.overlays">

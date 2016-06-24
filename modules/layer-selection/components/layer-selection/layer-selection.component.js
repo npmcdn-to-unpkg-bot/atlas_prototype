@@ -14,22 +14,24 @@
             controllerAs: 'vm'
         });
 
-    AtlasLayerSelectionController.$inject = ['$rootScope', 'BASE_LAYERS', 'OVERLAYS', 'store', 'ACTIONS'];
+    AtlasLayerSelectionController.$inject = ['BASE_LAYERS', 'OVERLAYS', 'store', 'ACTIONS'];
 
-    function AtlasLayerSelectionController ($rootScope, BASE_LAYERS, OVERLAYS, store, ACTIONS) {
+    function AtlasLayerSelectionController (BASE_LAYERS, OVERLAYS, store, ACTIONS) {
         var vm = this;
 
-        vm.baseLayers = BASE_LAYERS;
+        vm.allBaseLayers = BASE_LAYERS;
 
-        vm.overlays = OVERLAYS.HIERARCHY.map(function (category) {
-            category.overlays = category.overlays.map(function (overlaySlug) {
+        vm.allOverlays = OVERLAYS.HIERARCHY.map(function (category) {
+            var formattedOverlays = angular.copy(category);
+
+            formattedOverlays.overlays = formattedOverlays.overlays.map(function (overlaySlug) {
                 return {
                     slug: overlaySlug,
                     label: OVERLAYS.SOURCES[overlaySlug].label
                 };
             });
 
-            return category;
+            return formattedOverlays;
         });
 
         vm.setBaseLayer = function (baseLayer) {
