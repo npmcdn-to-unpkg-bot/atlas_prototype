@@ -16,6 +16,11 @@ describe('The dp-map directive', function () {
                         someVariable: 4
                     }
                 }
+            },
+            function ($provide) {
+                $provide.factory('dpLinkDirective', function () {
+                    return {};
+                });
             }
         );
 
