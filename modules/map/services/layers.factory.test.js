@@ -12,7 +12,12 @@ describe('The layers factory', function () {
                     BASE_LAYER_OPTIONS: {
                         option_a: false,
                         option_b: 4
-                    }
+                    },
+                    OVERLAY_OPTIONS: {
+                        numberOfThings: 4,
+                        shouldThisWork: true
+                    },
+                    OVERLAY_ROOT: 'http://www.example.com/overlay-root/'
                 }
             },
             function ($provide) {
@@ -27,6 +32,26 @@ describe('The layers factory', function () {
                         urlTemplate: 'https://example.com/mocked-base-layer-b.png'
                     }
                 ]);
+
+                $provide.constant('OVERLAYS', {
+                    SOURCES: {
+                        overlay_a: {
+                            url: 'overlay_a_url',
+                            layers: ['sublayer_1'],
+                            external: false
+                        },
+                        overlay_b: {
+                            url: 'overlay_b_url',
+                            layers: ['sublayer_1', 'sublayer_2'],
+                            external: false
+                        },
+                        overlay_c: {
+                            url: 'http://www.external-url.com/overlay_c_url',
+                            layers: ['sublayer_1'],
+                            external: true
+                        }
+                    }
+                });
             }
         );
 
@@ -43,16 +68,18 @@ describe('The layers factory', function () {
             removeLayer: function () {}
         };
 
-        hasLayer = false;
-
-        spyOn(L, 'tileLayer').and.returnValue('FAKE_BASE_LAYER');
-
         spyOn(mockedLeafletMap, 'hasLayer').and.callThrough();
         spyOn(mockedLeafletMap, 'addLayer');
         spyOn(mockedLeafletMap, 'removeLayer');
     });
 
     describe('baseLayer', function () {
+        beforeEach(function () {
+            hasLayer = false;
+
+            spyOn(L, 'tileLayer').and.returnValue('FAKE_BASE_LAYER');
+        });
+
         it('can set a baseLayer', function () {
             layers.setBaseLayer(mockedLeafletMap, 'baselayer_a');
 
@@ -91,7 +118,59 @@ describe('The layers factory', function () {
     });
 
     describe('overlays', function () {
+        var fakeWmsSource;
+
+        beforeEach(function () {
+            fakeWmsSource = {
+                getLayer: function (layerName) {
+                    return 'FAKE_' + layerName.toUpperCase();
+                }
+            };
+
+            spyOn(L.WMS, 'source').and.returnValue(fakeWmsSource);
+        });
+
         it('can add an overlay', function () {
+            layers.addOverlay(mockedLeafletMap, 'overlay_a');
+
+            expect(L.WMS.source).toHaveBeenCalledWith(
+                'http://www.example.com/overlay-root/overlay_a_url', {
+                    numberOfThings: 4,
+                    shouldThisWork: true
+                }
+            );
+
+            expect(mockedLeafletMap.addLayer).toHaveBeenCalledTimes(1);
+            expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith('FAKE_SUBLAYER_1');
+        });
+
+        it('can add multiples sublayers per overlay', function () {
+            layers.addOverlay(mockedLeafletMap, 'overlay_b');
+
+            expect(L.WMS.source).toHaveBeenCalledWith(
+                'http://www.example.com/overlay-root/overlay_b_url', {
+                    numberOfThings: 4,
+                    shouldThisWork: true
+                }
+            );
+
+            expect(mockedLeafletMap.addLayer).toHaveBeenCalledTimes(2);
+            expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith('FAKE_SUBLAYER_1');
+            expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith('FAKE_SUBLAYER_2');
+        });
+
+        it('can add on overlay from an external source', function () {
+            layers.addOverlay(mockedLeafletMap, 'overlay_c');
+
+            expect(L.WMS.source).toHaveBeenCalledWith(
+                'http://www.external-url.com/overlay_c_url', {
+                    numberOfThings: 4,
+                    shouldThisWork: true
+                }
+            );
+
+            expect(mockedLeafletMap.addLayer).toHaveBeenCalledTimes(1);
+            expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith('FAKE_SUBLAYER_1');
 
         });
 
