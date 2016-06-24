@@ -16,6 +16,10 @@ describe('The dp-map directive', function () {
                         doThisThing: false,
                         someVariable: 4
                     }
+                },
+                panning: {
+                    initialize: function () {},
+                    panTo: function () {}
                 }
             },
             function ($provide) {
@@ -59,7 +63,7 @@ describe('The dp-map directive', function () {
         element = document.createElement('dp-map');
         element.setAttribute('map-state', 'mapState');
         element.setAttribute('markers', 'markers');
-        console.log($rootScope);
+
         scope = $rootScope.$new();
         scope.mapState = mapState;
         scope.markers = markers;
