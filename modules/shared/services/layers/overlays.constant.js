@@ -218,9 +218,6 @@
                         'est=GetLegendGraphic&sld_version=1.1.0&layer=milieu_veiligheid_lpg_station&format=image/png&' +
                         'STYLE=default'
                 },
-
-                // overige risicobedrijven
-
                 milieu_veiligheid_bron: {
                     label: 'Bron - Risicozones',
                     url: 'cgi-bin/mapserv?map=/srv/mapserver/externeveiligheid.map&service=wms',
@@ -231,7 +228,6 @@
                         'est=GetLegendGraphic&sld_version=1.1.0&layer=overigerisicobedrijven&format=image/png&STYLE=d' +
                         'efault'
                 },
-
                 milieu_veiligheid_bedrijf: {
                     label: 'Bedrijf - Risicozones',
                     url: 'cgi-bin/mapserv?map=/srv/mapserver/externeveiligheid.map&service=wms',

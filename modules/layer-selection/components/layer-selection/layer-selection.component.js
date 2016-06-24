@@ -5,7 +5,7 @@
         .module('atlasLayerSelection')
         .component('atlasLayerSelection', {
             bindings: {
-                baseLayer: '@',
+                activeBaseLayer: '@baseLayer',
                 overlays: '=',
                 zoom: '='
             },
@@ -14,10 +14,12 @@
             controllerAs: 'vm'
         });
 
-    AtlasLayerSelectionController.$inject = ['store', 'ACTIONS'];
+    AtlasLayerSelectionController.$inject = ['$rootScope', 'BASE_LAYERS', 'OVERLAYS', 'store', 'ACTIONS'];
 
-    function AtlasLayerSelectionController (store, ACTIONS) {
+    function AtlasLayerSelectionController ($rootScope, BASE_LAYERS, OVERLAYS, store, ACTIONS) {
         var vm = this;
+
+        vm.baseLayers = BASE_LAYERS;
 
         vm.setBaseLayer = function (baseLayer) {
             store.dispatch({
@@ -25,6 +27,7 @@
                 payload: baseLayer
             });
         };
+
 
         vm.addOverlay = function (overlay) {
             store.dispatch({
