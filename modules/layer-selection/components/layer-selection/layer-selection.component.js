@@ -23,7 +23,6 @@
 
         vm.overlays = OVERLAYS.HIERARCHY.map(function (category) {
             category.overlays = category.overlays.map(function (overlaySlug) {
-                console.log(overlaySlug);
                 return {
                     slug: overlaySlug,
                     label: OVERLAYS.SOURCES[overlaySlug].label
