@@ -6,7 +6,7 @@
         .component('atlasLayerSelection', {
             bindings: {
                 activeBaseLayer: '@baseLayer',
-                overlays: '=',
+                activeOverlays: '=overlays',
                 zoom: '='
             },
             templateUrl: 'modules/layer-selection/components/layer-selection/layer-selection.html',
@@ -23,6 +23,7 @@
 
         vm.overlays = OVERLAYS.HIERARCHY.map(function (category) {
             category.overlays = category.overlays.map(function (overlaySlug) {
+                console.log(overlaySlug);
                 return {
                     slug: overlaySlug,
                     label: OVERLAYS.SOURCES[overlaySlug].label
@@ -31,7 +32,7 @@
 
             return category;
         });
-        console.log(vm.overlays);
+
         vm.setBaseLayer = function (baseLayer) {
             store.dispatch({
                 type: ACTIONS.MAP_SET_BASELAYER,
@@ -39,17 +40,21 @@
             });
         };
 
-
-        vm.addOverlay = function (overlay) {
-            store.dispatch({
-                type: ACTIONS.MAP_ADD_OVERLAY,
-                payload: overlay
-            });
+        vm.isOverlayActive = function (overlay) {
+            return vm.activeOverlays.indexOf(overlay) !== -1;
         };
 
-        vm.removeOverlay = function (overlay) {
+        vm.toggleOverlay = function (overlay) {
+            var action;
+
+            if (!vm.isOverlayActive(overlay)) {
+                action = ACTIONS.MAP_ADD_OVERLAY;
+            } else {
+                action = ACTIONS.MAP_REMOVE_OVERLAY;
+            }
+
             store.dispatch({
-                type: ACTIONS.MAP_REMOVE_OVERLAY,
+                type: action,
                 payload: overlay
             });
         };
