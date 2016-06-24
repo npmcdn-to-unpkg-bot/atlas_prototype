@@ -50,7 +50,6 @@
             });
 
             variableWidth.initialize(container, leafletMap);
-
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {

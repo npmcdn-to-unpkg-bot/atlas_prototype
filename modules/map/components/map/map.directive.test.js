@@ -46,6 +46,7 @@ describe('The dp-map directive', function () {
 
         spyOn(variableWidth, 'initialize');
         spyOn(panning, 'initialize');
+        spyOn(panning, 'panTo');
 
         mockedMapState = {
             baseLayer: 'topografie',
@@ -137,6 +138,31 @@ describe('The dp-map directive', function () {
 
             expect(layers.removeOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_overlay');
             expect(layers.removeOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_other_overlay');
+        });
+    });
+
+    describe('panning factory', function () {
+        var directive,
+            container;
+
+        beforeEach(function () {
+            directive = getDirective(mockedMapState, {});
+            container = directive[0].querySelector('.js-leaflet-map');
+        });
+
+        it('is initialized', function () {
+            expect(panning.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
+        });
+
+        it('is called whenever the location changes', function () {
+            expect(panning.panTo).toHaveBeenCalledTimes(1);
+            expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [52.789, 4.123]);
+
+            mockedMapState.viewCenter = [53, 5];
+            $rootScope.$apply();
+
+            expect(panning.panTo).toHaveBeenCalledTimes(2);
+            expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [53, 5]);
         });
     });
 
