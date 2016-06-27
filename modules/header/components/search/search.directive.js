@@ -40,10 +40,7 @@
                         scope.activeSuggestionIndex
                     );
 
-                    store.dispatch({
-                        type: ACTIONS.FETCH_DETAIL,
-                        payload: activeSuggestion.uri
-                    });
+                    scope.goToDetail(activeSuggestion.uri);
                 }
 
                 removeSuggestions();
@@ -108,6 +105,13 @@
                 }
             };
 
+            scope.goToDetail = function (uri) {
+                store.dispatch({
+                    type: ACTIONS.FETCH_DETAIL,
+                    payload: uri
+                });
+            };
+
             scope.setQuery = function (query) {
                 scope.query = query;
             };
@@ -117,8 +121,6 @@
             };
 
             scope.removeSuggestions = removeSuggestions;
-
-            //scope.clearSearchResults = dpSidebar.clearSearchResults;
 
             function removeSuggestions (event) {
                 if (angular.isDefined(event) && event.type === 'blur') {
