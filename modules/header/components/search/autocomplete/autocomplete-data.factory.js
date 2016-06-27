@@ -3,7 +3,7 @@
 
     angular
         .module('atlasHeader')
-        .service('autocompleteData', autocompleteDataService);
+        .factory('autocompleteData', autocompleteDataService);
 
     autocompleteDataService.$inject = ['$q', '$http', 'environment', 'HEADER_CONFIG'];
 
@@ -22,7 +22,7 @@
 
             $http({
                 method: 'GET',
-                url: environment.API_ROOT + HEADER_CONFIG.AUTOCOMPLETE_PATH,
+                url: environment.API_ROOT + HEADER_CONFIG.AUTOCOMPLETE_ENDPOINT,
                 params: {
                     q: query
                 }
