@@ -20,23 +20,24 @@
                 <h4>{{category.label}}</h4>
                 <ul>
                     <li ng-repeat="suggestion in category.content">
-                        <a ui-sref="app.detail({uri: suggestion.uri})"
-                            ng-class="{
-                                'active': activeSuggestionIndex === suggestion.index
+                        <button ng-class="{
+                                active: activeSuggestionIndex === suggestion.index
                             }"
-                            ng-click="clearSearchResults(); setQuery(suggestion.query); setFocus();">
-                            <!--ng-bind-html="suggestion._display | suggestionHighlight : (originalQuery || query)"-->
+                            ng-click="goToDetail(suggestion.uri)">
                             {{suggestion._display | suggestionHighlight : (originalQuery || query)}}
-                        </a>
+                        </button>
+                        <!--a ui-sref="app.detail({uri: })"
+                            ng-click="clearSearchResults(); setQuery(suggestion.query); setFocus();">
+                            <!--ng-bind-html="suggestion._display | suggestionHighlight : (originalQuery || query)">
+                            longname filter dinges
+                        </a-->
                     </li>
                 </ul>
             </div>
         </div>
 
         <button class="search-form__submit" type="submit">
-            <i class="fa fa-search fa-lg"></i>
-
-            <span class="u-sr-only">Zoek</span>
+            Zoek
         </button>
     </fieldset>
 </form>

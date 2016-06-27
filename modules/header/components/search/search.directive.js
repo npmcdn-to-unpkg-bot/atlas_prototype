@@ -5,9 +5,9 @@
         .module('atlasHeader')
         .directive('atlasSearch', atlasSearchDirective);
 
-        atlasSearchDirective.$inject = ['$timeout', 'autocompleteData'];
+        atlasSearchDirective.$inject = ['$timeout', 'autocompleteData', 'store', 'ACTIONS'];
 
-    function atlasSearchDirective ($timeout, autocompleteData) {
+    function atlasSearchDirective ($timeout, autocompleteData, store, ACTIONS) {
         return {
             restrict: 'E',
             scope: {
@@ -30,24 +30,20 @@
 
                 if (scope.activeSuggestionIndex === -1) {
                     //Load the search results
-                    console.log('store dispatch SHOW_SEARCH_BY_QUERY');
-                    //dpSidebar.search(scope.query);
+                    store.dispatch({
+                        type: ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY,
+                        payload: scope.query
+                    });
                 } else {
-                    //Hide old, irrelevant, search results
-                    console.log('store dispatch FETCH_DETAIL');
-                    scope.clearSearchResults();
-
-                    //Open the detail page
                     activeSuggestion = autocompleteData.getSuggestionByIndex(
                         scope.suggestions,
                         scope.activeSuggestionIndex
                     );
 
-                    /*
-                    $state.go('app.detail', {
-                        uri: activeSuggestion.uri
+                    store.dispatch({
+                        type: ACTIONS.FETCH_DETAIL,
+                        payload: activeSuggestion.uri
                     });
-                    */
                 }
 
                 removeSuggestions();
