@@ -1,6 +1,6 @@
 <div class="u-mb-2">
     <button class="btn btn-white"
-            ng-click="vm.hideLayers()">
+        ng-click="vm.hideLayerSelection()">
 
         Hide layer selection
     </button>
@@ -11,7 +11,12 @@
     <ul>
         <li ng-repeat="baseLayer in vm.allBaseLayers">
             <label>
-                <input ng-model="vm.activeBaseLayer" ng-change="vm.setBaseLayer(vm.activeBaseLayer)" type="radio" value="{{baseLayer.slug}}">
+                <input
+                    ng-model="vm.activeBaseLayer"
+                    ng-change="vm.setBaseLayer(vm.activeBaseLayer)"
+                    type="radio"
+                    value="{{baseLayer.slug}}">
+
                 {{baseLayer.label}}
             </label>
         </li>

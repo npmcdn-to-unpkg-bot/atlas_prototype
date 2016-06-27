@@ -21,6 +21,13 @@
 
         vm.allBaseLayers = BASE_LAYERS;
 
+        vm.setBaseLayer = function (baseLayer) {
+            store.dispatch({
+                type: ACTIONS.MAP_SET_BASELAYER,
+                payload: baseLayer
+            });
+        };
+
         vm.allOverlays = OVERLAYS.HIERARCHY.map(function (category) {
             var formattedOverlays = angular.copy(category);
 
@@ -33,22 +40,6 @@
 
             return formattedOverlays;
         });
-
-        vm.setBaseLayer = function (baseLayer) {
-            store.dispatch({
-                type: ACTIONS.MAP_SET_BASELAYER,
-                payload: baseLayer
-            });
-        };
-
-        vm.isOverlayActive = function (overlay) {
-            return vm.activeOverlays.indexOf(overlay) !== -1;
-        };
-
-        vm.isOverlayVisible = function (overlay) {
-            return vm.zoom >= OVERLAYS.SOURCES[overlay].minZoom &&
-                vm.zoom <= OVERLAYS.SOURCES[overlay].maxZoom;
-        };
 
         vm.toggleOverlay = function (overlay) {
             var action;
@@ -65,7 +56,16 @@
             });
         };
 
-        vm.hideLayers = function () {
+        vm.isOverlayActive = function (overlay) {
+            return vm.activeOverlays.indexOf(overlay) !== -1;
+        };
+
+        vm.isOverlayVisible = function (overlay) {
+            return vm.zoom >= OVERLAYS.SOURCES[overlay].minZoom &&
+                vm.zoom <= OVERLAYS.SOURCES[overlay].maxZoom;
+        };
+
+        vm.hideLayerSelection = function () {
             store.dispatch({
                 type: ACTIONS.HIDE_LAYER_SELECTION
             });
