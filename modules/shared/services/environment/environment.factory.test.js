@@ -37,6 +37,7 @@ describe('The environment factory', function () {
 
             angular.mock.inject(function (environment) {
                 expect(environment).toEqual({
+                    NAME: 'PRODUCTION',
                     favorite_animal: 'dog',
                     number_of_hobbies: 3
                 });
@@ -51,6 +52,7 @@ describe('The environment factory', function () {
 
                 angular.mock.inject(function (environment) {
                     expect(environment).toEqual({
+                        NAME: 'DEVELOPMENT',
                         favorite_animal: 'cat',
                         number_of_hobbies: 1
                     });
