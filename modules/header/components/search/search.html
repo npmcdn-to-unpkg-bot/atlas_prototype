@@ -1,0 +1,41 @@
+<form class="search-form" ng-submit="formSubmit($event)">
+    <fieldset>
+        <div class="search-form__input">
+            <input
+                type="text"
+                ng-model="query"
+                placeholder="Zoek..."
+                autocapitalize="off"
+                autocorrect="off"
+                autocomplete="off"
+                spellcheck="false"
+                ng-change="getSuggestions()"
+                ng-keydown="navigateSuggestions($event)"
+                ng-blur="removeSuggestions($event)">
+        </div>
+
+        <div ng-if="numberOfSuggestions" class="search-form__autocomplete">
+            <div class="search-form__autocomplete__category" ng-repeat="category in suggestions">
+                <h4>{{category.label}}</h4>
+                <ul>
+                    <li ng-repeat="suggestion in category.content">
+                        <a ui-sref="app.detail({uri: suggestion.uri})"
+                            ng-class="{
+                                'active': activeSuggestionIndex === suggestion.index
+                            }"
+                            ng-click="clearSearchResults(); setQuery(suggestion.query); setFocus();">
+                            <!--ng-bind-html="suggestion._display | suggestionHighlight : (originalQuery || query)"-->
+                            {{suggestion._display | suggestionHighlight : (originalQuery || query)}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <button class="search-form__submit" type="submit">
+            <i class="fa fa-search fa-lg"></i>
+
+            <span class="u-sr-only">Zoek</span>
+        </button>
+    </fieldset>
+</form>
