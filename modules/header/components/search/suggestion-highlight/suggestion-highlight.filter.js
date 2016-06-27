@@ -1,13 +1,13 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('atlasHeader')
-    .filter('suggestionHighlight', suggestionHighlightFilter);
+    angular
+        .module('atlasHeader')
+        .filter('suggestionHighlight', suggestionHighlightFilter);
 
-  function suggestionHighlightFilter () {
-    return function (suggestion, query) {
-      return suggestion.replace(new RegExp('(' + query + ')', 'gi'), '<strong>$1</strong>');
-    };
-  }
+    function suggestionHighlightFilter () {
+        return function (suggestion, query) {
+            return suggestion.replace(new RegExp('(' + query + ')', 'gi'), '<strong>$1</strong>');
+        };
+    }
 })();
