@@ -19,7 +19,7 @@
 
         function linkFunction (scope, element) {
             var searchbox = element.find('input[type="text"]');
-
+console.log(scope.query);
             scope.activeSuggestionIndex = -1;
             scope.originalQuery = scope.query;
 

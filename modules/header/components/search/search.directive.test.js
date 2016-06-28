@@ -1,18 +1,20 @@
-xdescribe('The dp-search-form directive', function () {
+describe('The atlas-search directive', function () {
     var $compile,
         $rootScope,
-        $location,
-        $state,
         $timeout,
         $q,
+        store,
+        ACTIONS,
         autocompleteData,
-        DpSidebarController,
         fakeAutocompleteData;
 
     beforeEach(function () {
         angular.mock.module(
-            'atlasApp',
+            'atlasHeader',
             {
+                store: {
+                    dispatch: function () {}
+                },
                 autocompleteData: {
                     search: function (query) {
                         var q = $q.defer();
@@ -43,21 +45,16 @@ xdescribe('The dp-search-form directive', function () {
         );
 
         angular.mock.inject(
-            function (_$compile_, _$rootScope_, _$location_, _$state_, _$timeout_, _$q_, _autocompleteData_) {
+            function (_$compile_, _$rootScope_, _$timeout_, _$q_, _store_, _ACTIONS_, _autocompleteData_) {
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
-                $location = _$location_;
-                $state = _$state_;
                 $timeout = _$timeout_;
                 $q = _$q_;
+                store = _store_;
+                ACTIONS = _ACTIONS_;
                 autocompleteData = _autocompleteData_;
             }
         );
-
-        DpSidebarController = {
-            search: function () {},
-            clearSearchResults: function () {}
-        };
 
         fakeAutocompleteData = {
             'query without suggestions': {
@@ -98,15 +95,13 @@ xdescribe('The dp-search-form directive', function () {
         };
     });
 
-    function getDirective () {
+    function getDirective (query) {
         var directive,
             element,
             scope;
 
-        element = document.createElement('dp-search-form');
-
-        //Mock the (required) parent directive
-        angular.element(element).data('$dpSidebarController', DpSidebarController);
+        element = document.createElement('atlas-search');
+        element.setAttribute('query', query);
 
         scope = $rootScope.$new();
 
@@ -116,26 +111,22 @@ xdescribe('The dp-search-form directive', function () {
         return directive;
     }
 
-    it('optionally fills the searchbox with a query from the URL', function () {
+    it('optionally fills the searchbox with a query', function () {
         var directive;
 
-        //Without a query in the URL
-        directive = getDirective();
+        //Without a query
+        directive = getDirective('');
         expect(directive.find('input[type="text"]')[0].value).toBe('');
 
-        //With a query in the URL
-        spyOn($location, 'search').and.returnValue({
-            zoek: 'query without suggestions'
-        });
-
-        directive = getDirective();
+        //With a query
+        directive = getDirective('query without suggestions');
         expect(directive.find('input[type="text"]')[0].value).toBe('query without suggestions');
     });
 
     it('can search (without using a suggestion from autocomplete)', function () {
-        var directive = getDirective();
+        var directive = getDirective('');
 
-        spyOn(DpSidebarController, 'search');
+        spyOn(store, 'dispatch');
 
         //Set a query
         directive.find('input[type="text"]')[0].value = 'query without suggestions';
@@ -144,12 +135,15 @@ xdescribe('The dp-search-form directive', function () {
         //Submit the form
         directive.find('.search-form').trigger('submit');
 
-        expect(DpSidebarController.search).toHaveBeenCalledWith('query without suggestions');
+        expect(store.dispatch).toHaveBeenCalledWith({
+            type: ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY,
+            payload: 'query without suggestions'
+        });
     });
 
     describe('has autocomplete suggestions', function () {
         it('which are loaded when typing', function () {
-            var directive = getDirective();
+            var directive = getDirective('');
 
             //No query and no suggestions
             expect(directive.find('.search-form__autocomplete').length).toBe(0);
@@ -166,18 +160,18 @@ xdescribe('The dp-search-form directive', function () {
 
             expect(directive.find('.search-form__autocomplete').length).toBe(1);
             expect(directive.find('.search-form__autocomplete div:nth-child(1) h4').text()).toBe('Category A');
-            expect(directive.find('.search-form__autocomplete div:nth-child(1) li:nth-child(1)').text())
+            expect(directive.find('.search-form__autocomplete div:nth-child(1) li:nth-child(1)').text().trim())
                 .toBe('Suggestion A1 (extra information)');
-            expect(directive.find('.search-form__autocomplete div:nth-child(1) li:nth-child(2)').text())
+            expect(directive.find('.search-form__autocomplete div:nth-child(1) li:nth-child(2)').text().trim())
                 .toBe('Suggestion A2 (more information)');
 
             expect(directive.find('.search-form__autocomplete div:nth-child(2) h4').text()).toBe('Category B');
-            expect(directive.find('.search-form__autocomplete div:nth-child(2) li:nth-child(1)').text())
+            expect(directive.find('.search-form__autocomplete div:nth-child(2) li:nth-child(1)').text().trim())
                 .toBe('Suggestion B1');
         });
 
         it('won\'t try to fetch suggestions if there is no query', function () {
-            var directive = getDirective();
+            var directive = getDirective('');
 
             spyOn(autocompleteData, 'search').and.callThrough();
 
@@ -197,47 +191,44 @@ xdescribe('The dp-search-form directive', function () {
 
         describe('with mouse support', function () {
             it('opens a detail page when clicking a suggestion', function () {
-                var directive = getDirective();
+                var directive = getDirective('');
 
                 //Load suggestions
                 directive.find('input[type="text"]')[0].value = 'query with suggestions';
                 directive.find('input[type="text"]').trigger('change');
 
-                spyOn($state, 'go');
+                spyOn(store, 'dispatch');
 
                 //First suggestion
-                directive.find('.search-form__autocomplete a').eq(0).click();
-                $timeout.flush();
-                expect($state.go).toHaveBeenCalledWith('app.detail', {uri: 'blah-blah/1'}, jasmine.any(Object));
+                directive.find('.search-form__autocomplete button').eq(0).click();
+
+                expect(store.dispatch).toHaveBeenCalledWith({
+                    type: ACTIONS.FETCH_DETAIL,
+                    payload: 'blah-blah/1'
+                });
 
                 //Second suggestion
-                directive.find('.search-form__autocomplete a').eq(1).click();
-                $timeout.flush();
-                expect($state.go).toHaveBeenCalledWith('app.detail', {uri: 'blah-blah/2'}, jasmine.any(Object));
+                directive.find('.search-form__autocomplete button').eq(1).click();
+
+                expect(store.dispatch).toHaveBeenCalledWith({
+                    type: ACTIONS.FETCH_DETAIL,
+                    payload: 'blah-blah/2'
+                });
 
                 //Third suggestion
-                directive.find('.search-form__autocomplete a').eq(2).click();
-                $timeout.flush();
-                expect($state.go).toHaveBeenCalledWith('app.detail', {uri: 'something/789'}, jasmine.any(Object));
-            });
+                directive.find('.search-form__autocomplete button').eq(2).click();
 
-            it('set the suggested query in the searchbox when clicking a suggestion', function () {
-                var directive = getDirective();
-
-                //Load suggestions
-                directive.find('input[type="text"]')[0].value = 'query with suggestions';
-                directive.find('input[type="text"]').trigger('change');
-
-                //Click a suggestion
-                directive.find('.search-form__autocomplete a').eq(0).click();
-                expect(directive.find('input[type="text"]')[0].value).toBe('Suggestion A1');
+                expect(store.dispatch).toHaveBeenCalledWith({
+                    type: ACTIONS.FETCH_DETAIL,
+                    payload: 'something/789'
+                });
             });
 
             it('hides the suggestions when choosing a suggestion', function () {
                 /**
                  * Clicking on a suggestion link triggers the blur event on the searchbox.
                  */
-                var directive = getDirective();
+                var directive = getDirective('');
 
                 //Load suggestions
                 directive.find('input[type="text"]')[0].value = 'query with suggestions';
@@ -246,7 +237,7 @@ xdescribe('The dp-search-form directive', function () {
                 expect(directive.find('.search-form__autocomplete').length).toBe(1);
 
                 //Click a suggestion
-                directive.find('.search-form__autocomplete a').eq(0).click();
+                directive.find('.search-form__autocomplete button').eq(0).click();
                 directive.find('input[type="text"]').trigger('blur');
                 $timeout.flush();
 
@@ -265,16 +256,19 @@ xdescribe('The dp-search-form directive', function () {
             }
 
             it('can select a query by navigating with the UP and DOWN arrows', function () {
-                var directive = getDirective();
+                var directive = getDirective('');
 
                 //Load suggestions
                 directive.find('input[type="text"]')[0].value = 'query with suggestions';
                 directive.find('input[type="text"]').trigger('change');
 
                 //Make sure no suggestion is highlighted by default
-                expect(directive.find('.search-form__autocomplete li').eq(0).find('a').hasClass('active')).toBe(false);
-                expect(directive.find('.search-form__autocomplete li').eq(1).find('a').hasClass('active')).toBe(false);
-                expect(directive.find('.search-form__autocomplete li').eq(2).find('a').hasClass('active')).toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(0).find('button').hasClass('active'))
+                    .toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(1).find('button').hasClass('active'))
+                    .toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(2).find('button').hasClass('active'))
+                    .toBe(false);
 
 
                 /**
@@ -284,9 +278,12 @@ xdescribe('The dp-search-form directive', function () {
                 $rootScope.$apply();
 
                 //Highlight the active suggestion in the list with suggestions
-                expect(directive.find('.search-form__autocomplete li').eq(0).find('a').hasClass('active')).toBe(true);
-                expect(directive.find('.search-form__autocomplete li').eq(1).find('a').hasClass('active')).toBe(false);
-                expect(directive.find('.search-form__autocomplete li').eq(2).find('a').hasClass('active')).toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(0).find('button').hasClass('active'))
+                    .toBe(true);
+                expect(directive.find('.search-form__autocomplete li').eq(1).find('button').hasClass('active'))
+                    .toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(2).find('button').hasClass('active'))
+                    .toBe(false);
 
                 //Show the highlighted suggestion in the searchbox
                 expect(directive.find('input[type="text"]')[0].value).toBe('Suggestion A1');
@@ -298,9 +295,12 @@ xdescribe('The dp-search-form directive', function () {
                 triggerKeyDownEvent(directive.find('input[type="text"]'), 40);
                 $rootScope.$apply();
 
-                expect(directive.find('.search-form__autocomplete li').eq(0).find('a').hasClass('active')).toBe(false);
-                expect(directive.find('.search-form__autocomplete li').eq(1).find('a').hasClass('active')).toBe(true);
-                expect(directive.find('.search-form__autocomplete li').eq(2).find('a').hasClass('active')).toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(0).find('button').hasClass('active'))
+                    .toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(1).find('button').hasClass('active'))
+                    .toBe(true);
+                expect(directive.find('.search-form__autocomplete li').eq(2).find('button').hasClass('active'))
+                    .toBe(false);
 
                 expect(directive.find('input[type="text"]')[0].value).toBe('Suggestion A2');
 
@@ -311,9 +311,12 @@ xdescribe('The dp-search-form directive', function () {
                 triggerKeyDownEvent(directive.find('input[type="text"]'), 40);
                 $rootScope.$apply();
 
-                expect(directive.find('.search-form__autocomplete li').eq(0).find('a').hasClass('active')).toBe(false);
-                expect(directive.find('.search-form__autocomplete li').eq(1).find('a').hasClass('active')).toBe(false);
-                expect(directive.find('.search-form__autocomplete li').eq(2).find('a').hasClass('active')).toBe(true);
+                expect(directive.find('.search-form__autocomplete li').eq(0).find('button').hasClass('active'))
+                    .toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(1).find('button').hasClass('active'))
+                    .toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(2).find('button').hasClass('active'))
+                    .toBe(true);
 
                 expect(directive.find('input[type="text"]')[0].value).toBe('Suggestion B1');
 
@@ -324,15 +327,18 @@ xdescribe('The dp-search-form directive', function () {
                 triggerKeyDownEvent(directive.find('input[type="text"]'), 38);
                 $rootScope.$apply();
 
-                expect(directive.find('.search-form__autocomplete li').eq(0).find('a').hasClass('active')).toBe(false);
-                expect(directive.find('.search-form__autocomplete li').eq(1).find('a').hasClass('active')).toBe(true);
-                expect(directive.find('.search-form__autocomplete li').eq(2).find('a').hasClass('active')).toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(0).find('button').hasClass('active'))
+                    .toBe(false);
+                expect(directive.find('.search-form__autocomplete li').eq(1).find('button').hasClass('active'))
+                    .toBe(true);
+                expect(directive.find('.search-form__autocomplete li').eq(2).find('button').hasClass('active'))
+                    .toBe(false);
 
                 expect(directive.find('input[type="text"]')[0].value).toBe('Suggestion A2');
             });
 
             it('restores the original query if the UP is used to remove focus from the suggestions', function () {
-                var directive = getDirective();
+                var directive = getDirective('');
 
                 //Load suggestions
                 directive.find('input[type="text"]')[0].value = 'query with suggestions';
@@ -378,10 +384,9 @@ xdescribe('The dp-search-form directive', function () {
                 var directive;
 
                 beforeEach(function () {
-                    spyOn($state, 'go');
-                    spyOn(DpSidebarController, 'clearSearchResults');
+                    spyOn(store, 'dispatch');
 
-                    directive = getDirective();
+                    directive = getDirective('');
 
                     //Load suggestions
                     directive.find('input[type="text"]')[0].value = 'query with suggestions';
@@ -397,7 +402,10 @@ xdescribe('The dp-search-form directive', function () {
                 });
 
                 it('opens the selected suggestion', function () {
-                    expect($state.go).toHaveBeenCalledWith('app.detail', {uri: 'blah-blah/2'});
+                    expect(store.dispatch).toHaveBeenCalledWith({
+                        type: ACTIONS.FETCH_DETAIL,
+                        payload: 'blah-blah/2'
+                    });
                 });
 
                 it('sets the active suggestion in the searchbox', function () {
@@ -407,15 +415,11 @@ xdescribe('The dp-search-form directive', function () {
                 it('hides the suggestions when submitting the form', function () {
                     expect(directive.find('.search-form__autocomplete').length).toBe(0);
                 });
-
-                it('resets the search results', function () {
-                    expect(DpSidebarController.clearSearchResults).toHaveBeenCalled();
-                });
             });
         });
 
         it('hides the suggestions when the searchbox loses focus', function () {
-            var directive = getDirective();
+            var directive = getDirective('');
 
             //Load suggestions
             directive.find('input[type="text"]')[0].value = 'query with suggestions';

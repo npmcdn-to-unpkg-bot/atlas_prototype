@@ -23,14 +23,10 @@
                         <button type="button" ng-class="{
                                 active: activeSuggestionIndex === suggestion.index
                             }"
-                            ng-click="goToDetail(suggestion.uri)">
+                            ng-click="goToDetail(suggestion.uri); setFocus()">
+
                             {{suggestion._display | suggestionHighlight : (originalQuery || query)}}
                         </button>
-                        <!--a ui-sref="app.detail({uri: })"
-                            ng-click="clearSearchResults(); setQuery(suggestion.query); setFocus();">
-                            <!--ng-bind-html="suggestion._display | suggestionHighlight : (originalQuery || query)">
-                            longname filter dinges
-                        </a-->
                     </li>
                 </ul>
             </div>
