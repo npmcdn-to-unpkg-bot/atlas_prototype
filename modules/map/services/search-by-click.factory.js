@@ -13,7 +13,7 @@
         };
 
         function initialize (leafletMap) {
-            leafletMap.addEventListener('click', searchByClick);
+            leafletMap.on('click', searchByClick);
         }
 
         function searchByClick (event) {

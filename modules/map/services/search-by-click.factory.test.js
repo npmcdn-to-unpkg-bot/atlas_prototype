@@ -1,5 +1,6 @@
 describe('The searchByClick factory', function () {
-    var searchByClick,
+    var L,
+        searchByClick,
         store,
         ACTIONS,
         mockedLeafletMap;
@@ -14,13 +15,14 @@ describe('The searchByClick factory', function () {
             }
         );
 
-        angular.mock.inject(function (_searchByClick_, _store_, _ACTIONS_) {
+        angular.mock.inject(function (_L_, _searchByClick_, _store_, _ACTIONS_) {
+            L = _L_;
             searchByClick = _searchByClick_;
             store = _store_;
             ACTIONS = _ACTIONS_;
         });
 
-        mockedLeafletMap = document.createElement('button');
+        mockedLeafletMap = L.map(document.createElement('div'));
     });
 
     it('dispatches an action when the map is clicked', function () {
@@ -29,7 +31,7 @@ describe('The searchByClick factory', function () {
         spyOn(store, 'dispatch');
 
         //Mock the Leaflet click event
-        angular.element(mockedLeafletMap).triggerHandler('click', {
+        mockedLeafletMap.fireEvent('click', {
             latlng: {
                 lat: 52.124,
                 lng: 4.788
