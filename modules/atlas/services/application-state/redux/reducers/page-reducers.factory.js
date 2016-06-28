@@ -30,7 +30,7 @@
             newState.map.showLayerSelection = false;
             newState.search = null;
             newState.detail = null;
-            newState.staatbeeld = null;
+            newState.straatbeeld = null;
 
             return newState;
         }
