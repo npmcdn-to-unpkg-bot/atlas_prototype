@@ -18,7 +18,7 @@
     <div class="list-box" ng-if="vm.apiData.openbare_ruimtes.count">
       <dp-stelselpedia-header definition="OPENBARE_RUIMTE" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.openbare_ruimtes.href"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.openbare_ruimtes.href" partial="adressen_lijst"></atlas-api-call>
     </div>
   </div>
 </div>

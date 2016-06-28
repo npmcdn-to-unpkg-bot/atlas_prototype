@@ -3,19 +3,17 @@
     <!-- nummeraanduiding -->
     <div
       class="detail-page__content"
-      ng-include="'./plugins/plugin-detail/templates/bag/includes/nummeraanduiding.html'"
+      ng-include="'.modules/detail/components/detail/templates/bag/includes/nummeraanduiding.html'"
       onload="object=vm.apiData">
     </div>
 
 
     <!-- verblijfsobject -->
-    <dp-plugin-detail-partial
+    <atlas-api-call
       class="detail-page__content"
       ng-if="vm.apiData.type === 'Verblijfsobject'"
-      object="false"
-      href="vm.apiData.verblijfsobject"
-      page="'verblijfsobject.html'">
-    </dp-plugin-detail-partial>
+      endpoint="vm.apiData.verblijfsobject">
+    </atlas-api-call>
 
 
     <!-- standplaats -->

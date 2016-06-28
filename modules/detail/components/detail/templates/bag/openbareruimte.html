@@ -24,7 +24,7 @@
     <div class="list-box" ng-if="vm.apiData.adressen.count">
       <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.adressen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.adressen.href" partial="adressen_lijst"></atlas-api-call>
     </div>
   </div>
 </div>

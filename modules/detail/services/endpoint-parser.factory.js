@@ -17,18 +17,27 @@
                 path = path.substr(environment.API_ROOT.length);
             }
 
-            var parts = path.split('/');
+            var dataset,
+            parts,
+            templateUri,
+            templateUrl;
 
-            var templateUri = parts[0] + '/' + parts[1];
-            var templateUrl = 'modules/detail/components/detail/templates/' + templateUri + '.html';
+
+            parts = path.split('/');
+
+            dataset = parts[0];
+            templateUri = parts[0] + '/' + parts[1];
+            templateUrl = 'modules/detail/components/detail/templates/' + templateUri + '.html';
 
             return new ParsePathResult(
+                dataset,
                 templateUri,
                 templateUrl
             );
         }
 
-        function ParsePathResult(templateUri, templateUrl) {
+        function ParsePathResult(dataset, templateUri, templateUrl) {
+            this.dataset = dataset;
             this.templateUri = templateUri;
             this.templateUrl = templateUrl;
         }

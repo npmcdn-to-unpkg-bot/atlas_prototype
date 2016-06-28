@@ -1,17 +1,16 @@
 <div class="detail-page__content">
   <div class="detail-page__content--main">
     <!-- nummeraanduiding -->
-    <dp-plugin-detail-partial
+    <atlas-api-call
       class="detail-page__content"
-      object="false"
-      href="vm.apiData.hoofdadres._links.self.href"
-      page="'nummeraanduiding.html'">
-    </dp-plugin-detail-partial>
+      endpoint="vm.apiData.hoofdadres._links.self.href"
+      template="nummeraanduiding">
+    </atlas-api-call>
 
     <!-- verbijfsobject -->
     <div
       class="detail-page__content"
-      ng-include="'./plugins/plugin-detail/templates/bag/includes/verblijfsobject.html'"
+      ng-include="'.modules/detail/components/detail/templates/bag/includes/verblijfsobject.html'"
       onload="object=vm.apiData">
     </div>
   </div>
