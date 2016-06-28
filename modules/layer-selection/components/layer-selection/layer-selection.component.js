@@ -5,8 +5,8 @@
         .module('atlasLayerSelection')
         .component('atlasLayerSelection', {
             bindings: {
-                baseLayer: '@',
-                overlays: '=',
+                activeBaseLayer: '@baseLayer',
+                activeOverlays: '=overlays',
                 zoom: '='
             },
             templateUrl: 'modules/layer-selection/components/layer-selection/layer-selection.html',
@@ -14,10 +14,12 @@
             controllerAs: 'vm'
         });
 
-    AtlasLayerSelectionController.$inject = ['store', 'ACTIONS'];
+    AtlasLayerSelectionController.$inject = ['BASE_LAYERS', 'OVERLAYS', 'store', 'ACTIONS'];
 
-    function AtlasLayerSelectionController (store, ACTIONS) {
+    function AtlasLayerSelectionController (BASE_LAYERS, OVERLAYS, store, ACTIONS) {
         var vm = this;
+
+        vm.allBaseLayers = BASE_LAYERS;
 
         vm.setBaseLayer = function (baseLayer) {
             store.dispatch({
@@ -26,21 +28,44 @@
             });
         };
 
-        vm.addOverlay = function (overlay) {
+        vm.allOverlays = OVERLAYS.HIERARCHY.map(function (category) {
+            var formattedOverlays = angular.copy(category);
+
+            formattedOverlays.overlays = formattedOverlays.overlays.map(function (overlaySlug) {
+                return {
+                    slug: overlaySlug,
+                    label: OVERLAYS.SOURCES[overlaySlug].label
+                };
+            });
+
+            return formattedOverlays;
+        });
+
+        vm.toggleOverlay = function (overlay) {
+            var action;
+
+            if (!vm.isOverlayActive(overlay)) {
+                action = ACTIONS.MAP_ADD_OVERLAY;
+            } else {
+                action = ACTIONS.MAP_REMOVE_OVERLAY;
+            }
+
             store.dispatch({
-                type: ACTIONS.MAP_ADD_OVERLAY,
+                type: action,
                 payload: overlay
             });
         };
 
-        vm.removeOverlay = function (overlay) {
-            store.dispatch({
-                type: ACTIONS.MAP_REMOVE_OVERLAY,
-                payload: overlay
-            });
+        vm.isOverlayActive = function (overlay) {
+            return vm.activeOverlays.indexOf(overlay) !== -1;
         };
 
-        vm.hideLayers = function () {
+        vm.isOverlayVisible = function (overlay) {
+            return vm.zoom >= OVERLAYS.SOURCES[overlay].minZoom &&
+                vm.zoom <= OVERLAYS.SOURCES[overlay].maxZoom;
+        };
+
+        vm.hideLayerSelection = function () {
             store.dispatch({
                 type: ACTIONS.HIDE_LAYER_SELECTION
             });
