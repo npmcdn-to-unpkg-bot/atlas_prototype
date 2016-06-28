@@ -30,6 +30,10 @@
                 identify: false,
                 format: 'image/png',
                 transparent: true
+            },
+            SCALE_OPTIONS: {
+                metric: true,
+                imperial: false
             }
         };
 
