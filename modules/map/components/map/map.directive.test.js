@@ -3,9 +3,10 @@ describe('The dp-map directive', function () {
         $rootScope,
         L,
         layers,
-        variableWidth,
         panning,
         zoom,
+        variableWidth,
+        searchByClick,
         mockedMapState;
 
     beforeEach(function () {
@@ -34,15 +35,18 @@ describe('The dp-map directive', function () {
             }
         );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_, _L_, _layers_, _variableWidth_, _panning_, _zoom_) {
-            $compile = _$compile_;
-            $rootScope = _$rootScope_;
-            L = _L_;
-            layers = _layers_;
-            variableWidth = _variableWidth_;
-            panning = _panning_;
-            zoom = _zoom_;
-        });
+        angular.mock.inject(
+            function (_$compile_, _$rootScope_, _L_, _layers_, _panning_, _zoom_, _variableWidth_, _searchByClick_) {
+                $compile = _$compile_;
+                $rootScope = _$rootScope_;
+                L = _L_;
+                layers = _layers_;
+                panning = _panning_;
+                zoom = _zoom_;
+                variableWidth = _variableWidth_;
+                searchByClick = _searchByClick_;
+            }
+        );
 
         spyOn(L, 'map').and.returnValue('I_AM_A_FAKE_LEAFLET_MAP');
 
@@ -50,11 +54,12 @@ describe('The dp-map directive', function () {
         spyOn(layers, 'addOverlay');
         spyOn(layers, 'removeOverlay');
 
-        spyOn(variableWidth, 'initialize');
         spyOn(panning, 'initialize');
         spyOn(panning, 'panTo');
         spyOn(zoom, 'initialize');
         spyOn(zoom, 'setZoom');
+        spyOn(variableWidth, 'initialize');
+        spyOn(searchByClick, 'initialize');
 
         mockedMapState = {
             baseLayer: 'topografie',
@@ -207,5 +212,11 @@ describe('The dp-map directive', function () {
         container = directive[0].querySelector('.js-leaflet-map');
 
         expect(variableWidth.initialize).toHaveBeenCalledWith(container, 'I_AM_A_FAKE_LEAFLET_MAP');
+    });
+
+    it('initializes the searchByClick factory', function () {
+        getDirective(mockedMapState, {});
+
+        expect(searchByClick.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
     });
 });
