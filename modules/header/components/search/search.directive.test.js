@@ -243,6 +243,19 @@ describe('The atlas-search directive', function () {
 
                 expect(directive.find('.search-form__autocomplete').length).toBe(0);
             });
+
+            it('clears the input when clicking a suggestion', function () {
+                var directive = getDirective('');
+
+                //Load suggestions
+                directive.find('input[type="text"]')[0].value = 'query with suggestions';
+                directive.find('input[type="text"]').trigger('change');
+
+                //First suggestion
+                directive.find('.search-form__autocomplete button').eq(0).click();
+
+                expect(directive.find('input[type="text"]')[0].value).toBe('');
+            });
         });
 
         describe('with keyboard support', function () {
@@ -408,8 +421,8 @@ describe('The atlas-search directive', function () {
                     });
                 });
 
-                it('sets the active suggestion in the searchbox', function () {
-                    expect(directive.find('input[type="text"]')[0].value).toBe('Suggestion A2');
+                it('clears the active suggestion in the searchbox', function () {
+                    expect(directive.find('input[type="text"]')[0].value).toBe('');
                 });
 
                 it('hides the suggestions when submitting the form', function () {

@@ -18,8 +18,8 @@
         };
 
         function linkFunction (scope, element) {
-            var searchbox = element.find('input[type="text"]');
-console.log(scope.query);
+            var searchbox = element[0].querySelector('input[type="text"]');
+
             scope.activeSuggestionIndex = -1;
             scope.originalQuery = scope.query;
 
@@ -106,6 +106,8 @@ console.log(scope.query);
             };
 
             scope.goToDetail = function (uri) {
+                scope.setQuery('');
+
                 store.dispatch({
                     type: ACTIONS.FETCH_DETAIL,
                     payload: uri
