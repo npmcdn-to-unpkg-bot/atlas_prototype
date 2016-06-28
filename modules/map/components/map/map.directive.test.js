@@ -26,6 +26,9 @@ describe('The dp-map directive', function () {
                 zoom: {
                     initialize: function () {},
                     setZoom: function () {}
+                },
+                searchByClick: {
+                    initialize: function () {}
                 }
             },
             function ($provide) {

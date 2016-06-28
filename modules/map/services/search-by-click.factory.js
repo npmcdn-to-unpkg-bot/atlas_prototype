@@ -5,7 +5,9 @@
         .module('dpMap')
         .factory('searchByClick', searchByClickFactory);
 
-    function searchByClickFactory () {
+    searchByClickFactory.$inject = ['store', 'ACTIONS'];
+
+    function searchByClickFactory (store, ACTIONS) {
         return {
             initialize: initialize
         };
@@ -15,7 +17,13 @@
         }
 
         function searchByClick (event) {
-            console.log(event);
+            store.dispatch({
+                type: ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,
+                payload: [
+                    event.latlng.lat,
+                    event.latlng.lng
+                ]
+            });
         }
     }
 })();
