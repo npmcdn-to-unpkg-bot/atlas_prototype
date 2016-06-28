@@ -21,25 +21,32 @@
     </button>
 
     <button class="btn btn-white"
-            ng-click="vm.setBaseLayer('luchtfoto_2016')"
-            ng-disabled="vm.baseLayer === 'luchtfoto_2016'">
+            ng-click="vm.setBaseLayer('luchtfoto_2015')"
+            ng-disabled="vm.baseLayer === 'luchtfoto_2015'">
 
-        Set baseLayer: luchtfoto 2016
+        Set baseLayer: luchtfoto 2015
+    </button>
+
+    <button class="btn btn-white"
+            ng-click="vm.setBaseLayer('luchtfoto_2014')"
+            ng-disabled="vm.baseLayer === 'luchtfoto_2014'">
+
+        Set baseLayer: luchtfoto 2014
     </button>
 </div>
 <div class="form-group">
     <button class="btn btn-white"
-            ng-click="vm.addOverlay('meetbouten')"
-            ng-disabled="vm.overlays.indexOf('meetbouten') !== -1">
+            ng-click="vm.addOverlay('buurt')"
+            ng-disabled="vm.overlays.indexOf('buurt') !== -1">
 
-        Add overlay: meetbouten
+        Add overlay: buurt
     </button>
 
     <button class="btn btn-white"
-            ng-click="vm.removeOverlay('meetbouten')"
-            ng-disabled="vm.overlays.indexOf('meetbouten') === -1">
+            ng-click="vm.removeOverlay('buurt')"
+            ng-disabled="vm.overlays.indexOf('buurt') === -1">
 
-        Remove overlay: meetbouten
+        Remove overlay: buurt
     </button>
 </div>
 <div class="form-group">

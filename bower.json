@@ -1,11 +1,11 @@
 {
   "name": "atlas",
-  "authors": [
-    "Erik Nijland <e.n.nijland@gmail.com>"
-  ],
   "dependencies": {
     "angular": "^1.5.5",
-    "leaflet": "^0.7.7",
+    "leaflet": "https://github.com/DatapuntAmsterdam/atlas_leaflet.git#master",
+    "leaflet.wms": "~0.1.0",
+    "proj4": "*",
+    "proj4leaflet": "https://github.com/DatapuntAmsterdam/proj4leaflet.git#master",
     "redux": "https://npmcdn.com/redux/dist/redux.js"
   },
   "devDependencies": {

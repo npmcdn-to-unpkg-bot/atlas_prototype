@@ -1,22 +1,11 @@
-Atlas Frontend / App / Client
-=============================
-
+Atlas
+=====
 
 Requirements
-------------
+- NPM
+- Bower
+- Grunt
 
-* Docker-Compose (required)
-
-
-Developing
-----------
-
-Use `docker-compose` to build the application
-
-	(sudo) docker-compose build
-	(sudo) docker-compose up -d 
-
-Draai tests:
-
-	docker-compose run -u root atlas npm test
-	 
+Installation
+- npm install
+- grunt
