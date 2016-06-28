@@ -218,9 +218,6 @@
                         'est=GetLegendGraphic&sld_version=1.1.0&layer=milieu_veiligheid_lpg_station&format=image/png&' +
                         'STYLE=default'
                 },
-
-                // overige risicobedrijven
-
                 milieu_veiligheid_bron: {
                     label: 'Bron - Risicozones',
                     url: 'cgi-bin/mapserv?map=/srv/mapserver/externeveiligheid.map&service=wms',
@@ -231,7 +228,6 @@
                         'est=GetLegendGraphic&sld_version=1.1.0&layer=overigerisicobedrijven&format=image/png&STYLE=d' +
                         'efault'
                 },
-
                 milieu_veiligheid_bedrijf: {
                     label: 'Bedrijf - Risicozones',
                     url: 'cgi-bin/mapserv?map=/srv/mapserver/externeveiligheid.map&service=wms',
@@ -426,7 +422,81 @@
                         'GetLegendGraphic&sld_version=1.1.0&layer=parkeervakken_reservering&format=image/png&STYLE=de' +
                         'fault'
                 }
-
-            }
+            },
+            HIERARCHY: [
+                {
+                    heading: 'Geografie: gebieden',
+                    overlays: [
+                        'grootstedelijkgebied',
+                        'unesco',
+                        'stadsdeel',
+                        'gebiedsgericht_werken',
+                        'buurtcombinatie',
+                        'buurt',
+                        'bouwblokken'
+                    ]
+                }, {
+                    heading: 'Geografie: hoogte',
+                    overlays: [
+                        'dsm',
+                        'dtm',
+                        'nap',
+                        'meetbouten_status',
+                        'meetbouten_zaksnelheid',
+                        'meetbouten_referentiepunten'
+                    ]
+                }, {
+                    heading: 'Onroerende zaken',
+                    overlays: [
+                        'kadaster',
+                        'gemeentelijke_beperkingen'
+                    ]
+                }, {
+                    heading: 'Milieu: bodem',
+                    overlays: [
+                        'milieu_bodem_grondmonsters',
+                        'milieu_bodem_grondwatermonsters',
+                        'milieu_bodem_asbest_in_grond'
+                    ]
+                }, {
+                    heading: 'Milieu: veiligheid',
+                    overlays: [
+                        'milieu_veiligheid_lpg_vulpunt',
+                        'milieu_veiligheid_lpg_afleverzuil',
+                        'milieu_veiligheid_lpg_tank',
+                        'milieu_veiligheid_lpg_station',
+                        'milieu_veiligheid_bron',
+                        'milieu_veiligheid_bedrijf',
+                        'milieu_veiligheid_aardgasbuisleidingen',
+                        'milieu_veiligheid_spoorwegen',
+                        'milieu_veiligheid_vaarwegen',
+                        'milieu_veiligheid_wegen',
+                        'milieu_veiligheid_vuurwerkopslag',
+                        'milieu_veiligheid_munitieopslag',
+                        'milieu_veiligheid_gasdrukregel_en_meetstations',
+                        'milieu_veiligheid_sluis',
+                        'milieu_veiligheid_wachtplaatsen',
+                        'milieu_veiligheid_bunkerschepen'
+                    ]
+                }, {
+                    heading: 'Milieu: zones',
+                    overlays: [
+                        'milieu_geluid_planologisch_industrie',
+                        'milieu_geluid_planologisch_spoorwegen',
+                        'milieu_geluid_planologisch_metro',
+                        'milieu_geluid_planologisch_schiphol',
+                        'milieu_hoogtebeperkende_vlakken',
+                        'milieu_veiligheid_vogelvrijwaringsgebied_schiphol'
+                    ]
+                }, {
+                    heading: 'Verkeer',
+                    overlays: [
+                        'parkeervakken',
+                        'parkeervakken_bord',
+                        'parkeervakken_reservering'
+                    ]
+                }
+            ]
         });
 })();
+
