@@ -1,0 +1,33 @@
+{{apiData}}
+{{object}}
+
+<div class="list-box" ng-if="apiData.rechten[0]">
+bbbbfbfbfbffb
+  <dp-stelselpedia-header definition="ZAKELIJK_RECHT" use-plural="true"></dp-stelselpedia-header>
+
+  <partial-select partial="rechten" api-data="apiData.rechten"></partial-select>
+</div>
+
+ <div class="list-box" ng-if="apiData.beperkingen[0]">
+  <dp-stelselpedia-header definition="GEMEENTELIJKE_BEPERKING" use-plural="true" brk="apiData"></dp-stelselpedia-header>
+
+  <partial-select partial="beperking" api-data="apiData.beperkingen"></partial-select>
+</div>
+
+<div class="list-box" ng-if="apiData.aantekeningen[0]">
+  <dp-stelselpedia-header definition="AANTEKENING" use-plural="true"></dp-stelselpedia-header>
+
+  <partial-select partial="aantekening" api-data="apiData.aantekeningen"></partial-select>
+</div>
+
+<div class="list-box" ng-if="apiData.ontstaan_uit[0]">
+  <dp-stelselpedia-header definition="ONTSTAAN_UIT" use-plural="true"></dp-stelselpedia-header>
+
+  <partial-select partial="lijst" api-data="apiData.ontstaan_uit"></partial-select>
+</div>
+
+<div class="list-box" ng-if="apiData.betrokken_bij[0]">
+  <dp-stelselpedia-header definition="BETROKKEN_BIJ" use-plural="true"></dp-stelselpedia-header>
+
+  <partial-select partial="lijst" api-data="apiData.betrokken_bij"></partial-select>
+</div>

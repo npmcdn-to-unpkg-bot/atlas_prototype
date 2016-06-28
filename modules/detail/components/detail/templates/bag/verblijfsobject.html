@@ -2,20 +2,18 @@
   <div class="detail-page__content--main">
     <!-- nummeraanduiding -->
     <atlas-api-call
-      class="detail-page__content"
       endpoint="vm.apiData.hoofdadres._links.self.href"
-      template="nummeraanduiding">
+      partial="bag/nummeraanduiding">
     </atlas-api-call>
 
     <!-- verbijfsobject -->
     <div
       class="detail-page__content"
-      ng-include="'.modules/detail/components/detail/templates/bag/includes/verblijfsobject.html'"
-      onload="object=vm.apiData">
+      ng-include="'modules/detail/components/partial-select/partials/bag/verblijfsobject.html'"
+      onload="apiData=vm.apiData">
     </div>
   </div>
   <div class="detail-page__content--sidebar">
     <dp-parent-relations content="vm.apiData"></dp-parent-relations>
   </div>
 </div>
-

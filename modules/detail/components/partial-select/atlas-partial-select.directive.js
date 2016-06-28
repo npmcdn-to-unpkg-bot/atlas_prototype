@@ -19,20 +19,11 @@
 
     function linkFunction(scope, element) {
       var partialPath,
-      partialRoot,
-      commonPartial;
+      partialRoot;
 
-      partialRoot = 'modules/detail/components/partial-select/partial/';
+      partialRoot = 'modules/detail/components/partial-select/partials/';
 
-      commonPartial = {
-        'aantekening': partialRoot + 'aantekening.html',
-        'adressen_lijst': partialRoot + 'adressen_lijst.html',
-        'brk': partialRoot + 'brk.html',
-        'rechten': partialRoot + 'rechten.html'
-      };
-
-      partialPath = commonPartial[scope.partial] ||
-        partialRoot + '/partial/' + scope.partial + '.html';
+      partialPath = partialRoot + scope.partial + '.html';
 
       pluginDetailService.compileTemplate(scope, element, partialPath);
     }

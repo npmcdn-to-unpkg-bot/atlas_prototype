@@ -2,9 +2,8 @@
   <div class="detail-page__content--main">
     <!-- nummeraanduiding -->
     <div
-      class="detail-page__content"
-      ng-include="'.modules/detail/components/detail/templates/bag/includes/nummeraanduiding.html'"
-      onload="object=vm.apiData">
+      ng-include="'modules/detail/components/partial-select/partials/bag/nummeraanduiding.html'"
+      onload="apiData=vm.apiData">
     </div>
 
 
@@ -12,7 +11,8 @@
     <atlas-api-call
       class="detail-page__content"
       ng-if="vm.apiData.type === 'Verblijfsobject'"
-      endpoint="vm.apiData.verblijfsobject">
+      endpoint="vm.apiData.verblijfsobject"
+      partial="bag/verblijfsobject">
     </atlas-api-call>
 
 

@@ -2,19 +2,19 @@
   <div class="detail-page__content--main">
     <!-- nummeraanduiding -->
     <atlas-api-call 
-
       endpoint="vm.apiData.hoofdadres._links.self.href"
-      partial="nummeraanduiding">
+      partial="bag/nummeraanduiding">
     </atlas-api-call>
-
 
     <!-- ligplaats -->
     <div
-      ng-include="'modules/detail/components/detail/templates/bag/partial/ligplaats.html'"
+      ng-include="'modules/detail/components/partial-select/partials/bag/ligplaats.html'"
       onload="apiData=vm.apiData">
     </div>
   </div>
+
   <div class="detail-page__content--sidebar">
     <dp-parent-relations content="vm.apiData"></dp-parent-relations>
   </div>
+
 </div>

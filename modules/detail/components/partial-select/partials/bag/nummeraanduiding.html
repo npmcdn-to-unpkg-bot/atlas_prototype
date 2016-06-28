@@ -2,14 +2,14 @@
   <div class="default-box">
     <dp-api-data ng-if="apiData.verblijfsobject" uri="{{apiData.verblijfsobject}}" local-scope="verblijfsobject">
       <dp-nummeraanduiding-header
-        heading="{{apiData._display}}"
-        hoofdadres="apiData.hoofdadres"
-        verblijfsapiData="verblijfsapiData"
-        meta-data="apiData">
+        heading="{{object._display}}"
+        hoofdadres="object.hoofdadres"
+        verblijfsobject="verblijfsobject"
+        meta-data="object">
       </dp-nummeraanduiding-header>
     </dp-api-data>
 
-    <dp-stelselpedia-header ng-if="!apiData.verblijfsapiData"
+    <dp-stelselpedia-header ng-if="!apiData.verblijfsobject"
       heading="{{apiData._display}}"
       definition="NUMMERAANDUIDING"
       meta-data="apiData">
@@ -20,7 +20,7 @@
     <dl class="key-value-list">
       <dt>Naam openbare ruimte</dt>
       <dd ng-if="apiData.openbare_ruimte">
-        <dp-link type="FETCH_DETAIL" payload="{{apiData.openbare_ruimte._links.self.href}}">{{ apiData.openbare_ruimte._display }}</dp-link>
+        <a dp-api-link="{{apiData.openbare_ruimte._links.self.href}}">{{ apiData.openbare_ruimte._display }}</a>
       </dd>
       <dt>Huisnummer</dt>
       <dd>{{ apiData.huisnummer }}</dd>
@@ -32,7 +32,7 @@
       <dd>{{ apiData.postcode }}</dd>
       <dt>Woonplaats</dt>
       <dd ng-if="apiData.woonplaats">
-        <dp-link type="FETCH_DETAIL" payload="{{apiData.woonplaats._links.self.href}}">{{ apiData.woonplaats._display }}</dp-link>
+        <a dp-api-link="{{apiData.woonplaats._links.self.href}}">{{ apiData.woonplaats._display }}</a>
       </dd>
       <dt>Status</dt>
       <dd>{{ apiData.status.omschrijving }}</dd>

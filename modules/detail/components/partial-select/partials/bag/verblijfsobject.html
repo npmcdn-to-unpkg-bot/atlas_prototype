@@ -1,0 +1,65 @@
+<div class="detail-page__content--main">
+  <div class="default-box">
+    <dp-stelselpedia-header definition="VERBLIJFSOBJECT" meta-data="apiData"></dp-stelselpedia-header>
+    <dl class="key-value-list">
+        <dt>Gebruiksdoel</dt>
+        <dd>{{ apiData.gebruiksdoel.omschrijving }}</dd>
+        <dt>Feitelijk gebruik</dt>
+        <dd>{{ apiData.gebruik.omschrijving }}</dd>
+        <dt>Oppervlakte</dt>
+        <dd ng-if="apiData.oppervlakte !== 1">{{ apiData.oppervlakte }} m<sup>2</sup></dd>
+        <dd ng-if="apiData.oppervlakte === 1">onbekend</dd>
+        <dt>Aantal kamers</dt>
+        <dd>{{ apiData.aantal_kamers }}</dd>
+        <dt>Type woonobject</dt>
+        <dd>{{ apiData.type_woonapiData.omschrijving }}</dd>
+        <dt>Ligging</dt>
+        <dd>{{ apiData.ligging.omschrijving }}</dd>
+        <dt>Aantal bouwlagen</dt>
+        <dd>{{ apiData.bouwlagen }}</dd>
+        <dt>Verdieping toegang</dt>
+        <dd>{{ apiData.bouwlaag_toegang }}</dd>
+        <dt>Aantal verhuurbare eenheden</dt>
+        <dd>{{ apiData.verhuurbare_eenheden }}</dd>
+        <dt>Eigendomsverhouding</dt>
+        <dd>{{ apiData.eigendomsverhouding.omschrijving }}</dd>
+        <dt>Financieringswijze</dt>
+        <dd>{{ apiData.financieringswijze.omschrijving }}</dd>
+        <dt>Toegang</dt>
+        <dd>{{ apiData.toegang.omschrijving }}</dd>
+        <dt>Indicatie woningvoorraad</dt>
+        <dd>{{ apiData.woningvoorraad | dpYesno }}</dd>
+        <dt>Reden opvoer</dt>
+        <dd>{{ apiData.reden_opvoer.omschrijving }}</dd>
+        <dt>Status</dt>
+        <dd>{{ apiData.status.omschrijving }}</dd>
+        <dt>Coördinaten</dt>
+        <dd>{{ apiData.geometrie.coordinates[0] }}, {{ apiData.geometrie.coordinates[1] }}</dd>
+        <dt>Status coördinaten</dt>
+        <dd>{{ apiData.status_coordinaat.omschrijving }}</dd>
+    </dl>
+  </div>
+
+  <!-- Adres -->
+  <div class="list-box" ng-if="apiData.adressen.count > 1">
+    <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
+
+    <atlas-api-call endpoint="apiData.adressen.href" partial="adressen_lijst"></atlas-api-call>
+  </div>
+
+  <!-- Pand -->
+  <div class="list-box" ng-if="apiData.panden.count">
+    <dp-stelselpedia-header definition="PAND" use-plural="true"></dp-stelselpedia-header>
+
+    <atlas-api-call endpoint="apiData.panden.href" partial="lijst"></atlas-api-call>
+  </div>
+
+  <!-- Kadastraal apiData -->
+  <div class="list-box" ng-if="apiData.kadastrale_objecten.count">
+    <dp-stelselpedia-header definition="KADASTRAAL_OBJECT" use-plural="true"></dp-stelselpedia-header>
+
+    <atlas-api-call endpoint="apiData.kadastrale_objecten.href" partial="bag/brk-vbo" expand="true"></atlas-api-call>
+  </div>
+
+</div>
+
