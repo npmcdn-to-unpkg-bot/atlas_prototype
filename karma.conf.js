@@ -6,12 +6,13 @@ jsFiles.push('modules/**/*.test.js');
 module.exports = function (config) {
     config.set({
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine-jquery', 'jasmine'],
 
         // list of files / patterns to load in the browser
         files: jsFiles,
 
         plugins: [
+            'karma-jasmine-jquery',
             'karma-jasmine',
             'karma-mocha-reporter',
             'karma-coverage',
