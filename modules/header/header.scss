@@ -1,4 +1,8 @@
+//Shared variables & mixins
 @import "../shared/styles/config";
+
+//Module specific variables
+$site-header-height: 50px;
 
 @import "components/header/header";
 @import "components/search/search";
