@@ -19,7 +19,7 @@
           <dt>Bouwblokeenheid</dt>
           <dd>{{ vm.apiData.blokeenheid }}</dd>
           <dt>Stadsdeel</dt>
-          <dd><<dp-link type="FETCH_DETAIL" payload="{{vm.apiData.stadsdeel_link}}">{{ vm.apiData.stadsdeel }}</dp-link></dd>
+          <dd><dp-link type="FETCH_DETAIL" payload="{{vm.apiData.stadsdeel_link}}">{{ vm.apiData.stadsdeel }}</dp-link></dd>
           <dt>Indicatie beveiligd</dt>
           <dd>{{ vm.apiData.beveiligd | dpYesno }}</dd>
       </dl>
@@ -28,18 +28,14 @@
     <div class="list-box">
       <dp-stelselpedia-header definition="METING" use-plural="true"></dp-stelselpedia-header>
 
-      <p ng-if="!vm.apiData.metingen.href">Geen metingen beschikbaar</p>
+      <p ng-if="!vm.apiData.metingen.href">Geen rollaag tekening beschikbaar</p>
 
-      <dp-plugin-detail-list
-        object="false"
-        href="vm.apiData.metingen.href"
-        page="'metingen-tabel'">
-      </dp-plugin-detail-list>
+      <atlas-api-call ng-if="vm.apiData.metingen.href" endpoint="vm.apiData.metingen.href" partial="meetbouten/metingen-tabel"></atlas-api-call>
 
-      <dp-plugin-detail-graph
+<!--       <dp-plugin-detail-graph
         page-size="vm.apiData.metingen.count"
         href="{{vm.apiData.metingen.href}}">
-      </dp-plugin-detail-graph>
+      </dp-plugin-detail-graph> -->
     </div>
 
     <div>
@@ -47,12 +43,7 @@
 
       <p ng-if="!vm.apiData.rollaag">Geen rollaag tekening beschikbaar</p>
 
-      <dp-plugin-detail-partial
-        ng-if="vm.apiData.rollaag"
-        object="false"
-        href="vm.apiData.rollaag"
-        page="'rollaag.html'">
-      </dp-plugin-detail-partial>
+      <atlas-api-call ng-if="vm.apiData.rollaag" endpoint="vm.apiData.rollaag" partial="meetbouten/rollaag"></atlas-api-call>
     </div>
   </div>
 </div>

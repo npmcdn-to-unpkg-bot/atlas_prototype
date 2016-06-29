@@ -20,18 +20,18 @@
     <div class="list-box" ng-if="vm.apiData.buurtcombinaties.count">
       <dp-stelselpedia-header definition="BUURTCOMBINATIE" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.buurtcombinaties.href"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.buurtcombinaties.href" partial="lijst"></atlas-api-call>
     </div>
 
     <div class="list-box" ng-if="vm.apiData.gebiedsgerichtwerken.count">
       <dp-stelselpedia-header definition="GEBIEDSGERICHTWERKEN" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.gebiedsgerichtwerken.href"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.gebiedsgerichtwerken.href" partial="lijst"></atlas-api-call>
     </div>
 
-    <dp-bbga-graphs
+<!--     <dp-bbga-graphs
       gebied-heading="{{vm.apiData.naam}}"
       gebied-code="{{vm.apiData.code}}">
-    </dp-bbga-graphs>
+    </dp-bbga-graphs> -->
   </div>
 </div>

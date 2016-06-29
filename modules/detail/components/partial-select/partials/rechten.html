@@ -3,7 +3,6 @@
 
   <ul class="list">
     <li ng-repeat="object in apiData">
-    {{object.subject_href}}
       <dp-link type="FETCH_DETAIL" payload="{{object.subject_href}}">
         <i class="fa fa-chevron-right link"></i>{{ object._display}}
       </dp-link>

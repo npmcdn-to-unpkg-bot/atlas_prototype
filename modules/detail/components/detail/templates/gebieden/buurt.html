@@ -13,35 +13,34 @@
     <div class="list-box" ng-if="vm.apiData.bouwblokken.count">
       <dp-stelselpedia-header definition="BOUWBLOK" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.bouwblokken.href"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.bouwblokken.href" partial="lijst"></atlas-api-call>
     </div>
 
     <div class="list-box" ng-if="vm.apiData.ligplaatsen.count">
       <dp-stelselpedia-header definition="LIGPLAATS" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.ligplaatsen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.ligplaatsen.href" partial="adressen_lijst"></atlas-api-call>
     </div>
 
     <div class="list-box" ng-if="vm.apiData.standplaatsen.count">
       <dp-stelselpedia-header definition="STANDPLAATS" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.standplaatsen.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.standplaatsen.href" partial="adressen_lijst"></atlas-api-call>
     </div>
 
     <div class="list-box" ng-if="vm.apiData.verblijfsobjecten.count">
       <dp-stelselpedia-header definition="VERBLIJFSOBJECT" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.verblijfsobjecten.href" page="'adressen_lijst'"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.verblijfsobjecten.href" partial="adressen_lijst"></atlas-api-call>
     </div>
 
-    <dp-bbga-graphs
+<!--     <dp-bbga-graphs
       gebied-heading="{{vm.apiData.naam}}"
       gebied-code="{{vm.apiData.volledige_code}}">
-
-    </dp-bbga-graphs>
+    </dp-bbga-graphs> -->
   </div>
 
-  <div class="detail-page__content--sidebar">
+<!--   <div class="detail-page__content--sidebar">
     <dp-parent-relations content="vm.apiData"></dp-parent-relations>
-  </div>
+  </div> -->
 </div>

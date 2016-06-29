@@ -1,8 +1,6 @@
 <div class="detail-page__table">
 
-  <p ng-if="!objects">Geen metingen beschikbaar</p>
-
-  <table ng-if="objects">
+  <table ng-if="apiData">
     <thead>
       <tr>
         <th>Datum</th>
@@ -13,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="detail-page__table--body" ng-repeat="object in objects">
+      <tr class="detail-page__table--body" ng-repeat="object in apiData">
         <td>{{ object.datum }}</td>
         <td class="util__align-right">{{object.hoogte_nap >= 0 ? '+' : ''}}{{ object.hoogte_nap | number:3}}</td>
         <td class="util__align-right">{{object.zakking >= 0 ? '+' : ''}}{{ object.zakking | number:3}}</td>

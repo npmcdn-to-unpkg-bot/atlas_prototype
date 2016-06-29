@@ -11,17 +11,17 @@
     <div class="list-box" ng-if="vm.apiData.panden.count">
       <dp-stelselpedia-header definition="PAND" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.panden.href"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.panden.href" partial="lijst"></atlas-api-call>
     </div>
 
     <div class="list-box" ng-if="vm.apiData.meetbouten">
       <dp-stelselpedia-header definition="MEETBOUT" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.meetbouten"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.meetbouten" partial="lijst"></atlas-api-call>
     </div>
   </div>
 
-  <div class="detail-page__content--sidebar">
+<!--   <div class="detail-page__content--sidebar">
     <dp-parent-relations content="vm.apiData"></dp-parent-relations>
-  </div>
+  </div> -->
 </div>
