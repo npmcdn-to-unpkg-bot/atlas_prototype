@@ -5,9 +5,9 @@
         .module('atlas')
         .controller('SearchResultsController', SearchResultsController);
 
-    SearchResultsController.$inject = ['store'];
+    SearchResultsController.$inject = ['$rootScope', 'store'];
 
-    function SearchResultsController (store) {
+    function SearchResultsController ($rootScope, store) {
         var vm = this;
 
         store.subscribe(update);
@@ -17,7 +17,10 @@
             var state = store.getState();
 
             vm.query = state.search && state.search.query;
-            vm.location = state.search && state.search.location;
+
+            $rootScope.$applyAsync(function () {
+                vm.location = state.search && state.search.location;
+            });
         }
     }
 })();
