@@ -14,13 +14,19 @@
                     <div class="grid">
                         <div class="row">
                             <div class="col-sm-4">
-                                <button class="site-header__navigation__item">Inloggen</button>
+                                <button class="site-header__navigation__item" ng-click="vm.showLoginModal()">
+                                    Inloggen
+                                </button>
                             </div>
                             <div class="col-sm-4">
-                                <button class="site-header__navigation__item">Veelgestelde vragen</button>
+                                <button class="site-header__navigation__item" ng-click="vm.showPage('faq')">
+                                    Veelgestelde vragen
+                                </button>
                             </div>
                             <div class="col-sm-4">
-                                <button class="site-header__navigation__item">Over Atlas</button>
+                                <button class="site-header__navigation__item" ng-click="vm.showPage('over-ons')">
+                                    Over Atlas
+                                </button>
                             </div>
                         </div>
                     </div>

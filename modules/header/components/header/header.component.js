@@ -17,18 +17,15 @@
     function AtlasHeaderController (store, ACTIONS) {
         var vm = this;
 
-        vm.triggerSearch = function () {
+        vm.showPage = function (name) {
             store.dispatch({
-                type: ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY,
-                payload: 'Linnaeus'
+                type: ACTIONS.SHOW_PAGE,
+                payload: name
             });
         };
 
-        vm.followSuggestion = function () {
-            store.dispatch({
-                type: ACTIONS.FETCH_DETAIL,
-                payload: 'bag/verblijfsobject/03630001958552'
-            });
+        vm.showLoginModal = function () {
+
         };
     }
 })();
