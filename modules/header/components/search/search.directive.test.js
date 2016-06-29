@@ -27,13 +27,13 @@ describe('The atlas-search directive', function () {
                     getSuggestionByIndex: function (searchResults, index) {
                         var fakeSuggestions = [
                             {
-                                query: 'Suggestion A1',
+                                _display: 'Suggestion A1',
                                 uri: 'blah-blah/1'
                             }, {
-                                query: 'Suggestion A2',
+                                _display: 'Suggestion A2',
                                 uri: 'blah-blah/2'
                             }, {
-                                query: 'Suggestion B1',
+                                _display: 'Suggestion B1',
                                 uri: 'something/789'
                             }
                         ];
@@ -68,13 +68,11 @@ describe('The atlas-search directive', function () {
                         label: 'Category A',
                         content: [
                             {
-                                _display: 'Suggestion A1 (extra information)',
-                                query: 'Suggestion A1',
+                                _display: 'Suggestion A1',
                                 uri: 'blah-blah/1',
                                 index: 0
                             }, {
-                                _display: 'Suggestion A2 (more information)',
-                                query: 'Suggestion A2',
+                                _display: 'Suggestion A2',
                                 uri: 'blah-blah/2',
                                 index: 1
                             }
@@ -84,7 +82,6 @@ describe('The atlas-search directive', function () {
                         content: [
                             {
                                 _display: 'Suggestion B1',
-                                query: 'Suggestion B1',
                                 uri: 'something/789',
                                 index: 2
                             }
@@ -161,9 +158,9 @@ describe('The atlas-search directive', function () {
             expect(directive.find('.search-form__autocomplete').length).toBe(1);
             expect(directive.find('.search-form__autocomplete div:nth-child(1) h4').text()).toBe('Category A');
             expect(directive.find('.search-form__autocomplete div:nth-child(1) li:nth-child(1)').text().trim())
-                .toBe('Suggestion A1 (extra information)');
+                .toBe('Suggestion A1');
             expect(directive.find('.search-form__autocomplete div:nth-child(1) li:nth-child(2)').text().trim())
-                .toBe('Suggestion A2 (more information)');
+                .toBe('Suggestion A2');
 
             expect(directive.find('.search-form__autocomplete div:nth-child(2) h4').text()).toBe('Category B');
             expect(directive.find('.search-form__autocomplete div:nth-child(2) li:nth-child(1)').text().trim())
