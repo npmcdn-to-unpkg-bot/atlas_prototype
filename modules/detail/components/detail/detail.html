@@ -4,5 +4,6 @@
 
 <div
   ng-if="vm.apiData"
-  ng-include="vm.templateUrl">
+  ng-include="vm.templateUrl"
+  onload="apiData = vm.apiData">
 </div>

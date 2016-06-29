@@ -13,7 +13,7 @@
         <dt>Naam 17-posities (post)</dt>
         <dd>{{ vm.apiData.naam_17_posities }}</dd>
         <dt>Woonplaats</dt>
-        <dd><dp-link type="FETCH_DETAIL" payload="{{vm.apiData.woonplaats._links.self.href}}">{{ vm.apiData.woonplaats._display }}</dp-link></dd>
+        <dd><dp-link type="FETCH_DETAIL" payload="vm.apiData.woonplaats._links.self.href">{{ vm.apiData.woonplaats._display }}</dp-link></dd>
         <dt>Type:</dt>
         <dd>{{ vm.apiData.type }}</dd>
         <dt>Status:</dt>

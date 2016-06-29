@@ -10,7 +10,7 @@
             controllerAs: 'vm',
             bindings: {
                 type: '@',
-                payload: '@'
+                payload: '='
             }
         });
 

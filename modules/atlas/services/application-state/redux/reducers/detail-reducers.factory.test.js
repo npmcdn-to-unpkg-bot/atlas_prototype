@@ -12,13 +12,13 @@ describe('The detailReducers factory', function () {
     });
 
     describe('FETCH_DETAIL', function () {
-        it('sets the URI for detail', function () {
-            var payload = 'bag/thing/123/',
+        it('sets the api endpoint for detail', function () {
+            var payload = 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/',
                 output;
 
             output = detailReducers.FETCH_DETAIL(defaultState, payload);
 
-            expect(output.detail.uri).toBe('bag/thing/123/');
+            expect(output.detail.endpoint).toBe('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/');
         });
 
         it('sets loading indicators for map and detail', function () {

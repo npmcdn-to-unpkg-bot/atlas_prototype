@@ -13,13 +13,13 @@
           <dt>Coördinaten</dt>
           <dd>{{ vm.apiData.geometrie.coordinates[0] }}, {{ vm.apiData.geometrie.coordinates[1] }}</dd>
           <dt>Bouwblok</dt>
-          <dd><dp-link type="FETCH_DETAIL" payload="{{vm.apiData.bouwblok_link}}">{{ vm.apiData.bouwblok }}</dp-link></dd>
+          <dd><dp-link type="FETCH_DETAIL" payload="vm.apiData.bouwblok_link">{{ vm.apiData.bouwblok }}</dp-link></dd>
           <dt>Bouwblokzijde</dt>
           <dd>{{ vm.apiData.bouwblokzijde }}</dd>
           <dt>Bouwblokeenheid</dt>
           <dd>{{ vm.apiData.blokeenheid }}</dd>
           <dt>Stadsdeel</dt>
-          <dd><dp-link type="FETCH_DETAIL" payload="{{vm.apiData.stadsdeel_link}}">{{ vm.apiData.stadsdeel }}</dp-link></dd>
+          <dd><dp-link type="FETCH_DETAIL" payload="vm.apiData.stadsdeel_link">{{ vm.apiData.stadsdeel }}</dp-link></dd>
           <dt>Indicatie beveiligd</dt>
           <dd>{{ vm.apiData.beveiligd | dpYesno }}</dd>
       </dl>

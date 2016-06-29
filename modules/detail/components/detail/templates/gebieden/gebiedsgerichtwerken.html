@@ -8,7 +8,7 @@
         <dt>Code</dt>
         <dd>{{ vm.apiData.code }}</dd>
         <dt>Stadsdeel</dt>
-        <dd><dp-link type="FETCH_DETAIL" payload="{{vm.apiData.stadsdeel._links.self.href}}">{{ vm.apiData.stadsdeel._display }}</dp-link></dd>
+        <dd><dp-link type="FETCH_DETAIL" payload="vm.apiData.stadsdeel._links.self.href">{{ vm.apiData.stadsdeel._display }}</dp-link></dd>
       </dl>
 
 <!--       <dp-bbga-graphs
