@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'variableWidth'];
+    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'panning', 'zoom', 'variableWidth', 'searchByClick'];
 
-    function dpMapDirective (L, mapConfig, layers, variableWidth) {
+    function dpMapDirective (L, mapConfig, layers, panning, zoom, variableWidth, searchByClick) {
         return {
             restrict: 'E',
             scope: {
@@ -29,6 +29,19 @@
 
             leafletMap = L.map(container, options);
 
+            panning.initialize(leafletMap);
+            zoom.initialize(leafletMap);
+            variableWidth.initialize(container, leafletMap);
+            searchByClick.initialize(leafletMap);
+
+            scope.$watch('mapState.viewCenter', function (viewCenter) {
+                panning.panTo(leafletMap, viewCenter);
+            });
+
+            scope.$watch('mapState.zoom', function (zoomLevel) {
+                zoom.setZoom(leafletMap, zoomLevel);
+            });
+
             scope.$watch('mapState.baseLayer', function (baseLayer) {
                 layers.setBaseLayer(leafletMap, baseLayer);
             });
@@ -43,16 +56,6 @@
                 });
             });
 
-            //panning.initialize(leafletMap);
-            variableWidth.initialize(container, leafletMap);
-
-            scope.showLayerSelection = function () {
-                /*
-                store.dispatch({
-                    type: ACTIONS.SHOW_LAYER_SELECTION
-                });
-                */
-            };
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {

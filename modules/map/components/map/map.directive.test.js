@@ -3,7 +3,10 @@ describe('The dp-map directive', function () {
         $rootScope,
         L,
         layers,
+        panning,
+        zoom,
         variableWidth,
+        searchByClick,
         mockedMapState;
 
     beforeEach(function () {
@@ -15,6 +18,17 @@ describe('The dp-map directive', function () {
                         doThisThing: false,
                         someVariable: 4
                     }
+                },
+                panning: {
+                    initialize: function () {},
+                    panTo: function () {}
+                },
+                zoom: {
+                    initialize: function () {},
+                    setZoom: function () {}
+                },
+                searchByClick: {
+                    initialize: function () {}
                 }
             },
             function ($provide) {
@@ -24,13 +38,18 @@ describe('The dp-map directive', function () {
             }
         );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_, _L_, _layers_, _variableWidth_) {
-            $compile = _$compile_;
-            $rootScope = _$rootScope_;
-            L = _L_;
-            layers = _layers_;
-            variableWidth = _variableWidth_;
-        });
+        angular.mock.inject(
+            function (_$compile_, _$rootScope_, _L_, _layers_, _panning_, _zoom_, _variableWidth_, _searchByClick_) {
+                $compile = _$compile_;
+                $rootScope = _$rootScope_;
+                L = _L_;
+                layers = _layers_;
+                panning = _panning_;
+                zoom = _zoom_;
+                variableWidth = _variableWidth_;
+                searchByClick = _searchByClick_;
+            }
+        );
 
         spyOn(L, 'map').and.returnValue('I_AM_A_FAKE_LEAFLET_MAP');
 
@@ -38,7 +57,12 @@ describe('The dp-map directive', function () {
         spyOn(layers, 'addOverlay');
         spyOn(layers, 'removeOverlay');
 
+        spyOn(panning, 'initialize');
+        spyOn(panning, 'panTo');
+        spyOn(zoom, 'initialize');
+        spyOn(zoom, 'setZoom');
         spyOn(variableWidth, 'initialize');
+        spyOn(searchByClick, 'initialize');
 
         mockedMapState = {
             baseLayer: 'topografie',
@@ -133,6 +157,56 @@ describe('The dp-map directive', function () {
         });
     });
 
+    describe('panning factory', function () {
+        var directive,
+            container;
+
+        beforeEach(function () {
+            directive = getDirective(mockedMapState, {});
+            container = directive[0].querySelector('.js-leaflet-map');
+        });
+
+        it('is initialized', function () {
+            expect(panning.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
+        });
+
+        it('is called whenever mapState.viewCenter changes', function () {
+            expect(panning.panTo).toHaveBeenCalledTimes(1);
+            expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [52.789, 4.123]);
+
+            mockedMapState.viewCenter = [53, 5];
+            $rootScope.$apply();
+
+            expect(panning.panTo).toHaveBeenCalledTimes(2);
+            expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [53, 5]);
+        });
+    });
+
+    describe('zoom factory', function () {
+        var directive,
+            container;
+
+        beforeEach(function () {
+            directive = getDirective(mockedMapState, {});
+            container = directive[0].querySelector('.js-leaflet-map');
+        });
+
+        it('is initialized', function () {
+            expect(zoom.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
+        });
+
+        it('is called whenever mapState.zoom changes', function () {
+            expect(zoom.setZoom).toHaveBeenCalledTimes(1);
+            expect(zoom.setZoom).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 12);
+
+            mockedMapState.zoom = 11;
+            $rootScope.$apply();
+
+            expect(zoom.setZoom).toHaveBeenCalledTimes(2);
+            expect(zoom.setZoom).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 11);
+        });
+    });
+
     it('initializes the variableWidth factory', function () {
         var directive,
             container;
@@ -141,5 +215,11 @@ describe('The dp-map directive', function () {
         container = directive[0].querySelector('.js-leaflet-map');
 
         expect(variableWidth.initialize).toHaveBeenCalledWith(container, 'I_AM_A_FAKE_LEAFLET_MAP');
+    });
+
+    it('initializes the searchByClick factory', function () {
+        getDirective(mockedMapState, {});
+
+        expect(searchByClick.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
     });
 });
