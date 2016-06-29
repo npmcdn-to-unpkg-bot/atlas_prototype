@@ -5,11 +5,15 @@ $dashboard-heading-height: 50px;
 }
 
 .dashboard__heading {
+  position: relative;
   height: $dashboard-heading-height;
+  z-index: 2;
 }
 
 .dashboard__content {
+  position: relative;
   height: calc(100% - #{$dashboard-heading-height});
+  z-index: 1;
   overflow-y: hidden;
 }
 
