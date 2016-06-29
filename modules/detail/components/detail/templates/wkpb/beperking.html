@@ -19,21 +19,19 @@
     <div class="default-box" ng-if="vm.apiData.documenten.count === 1">
       <dp-stelselpedia-header definition="BRONDOCUMENT"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-partial object="false" href="vm.apiData.documenten.href" page="'brondocument.html'">
-
-      </dp-plugin-detail-partial>
+      <atlas-api-call endpoint="vm.apiData.documenten.href" partial="wkpb/brondocument"></atlas-api-call>
     </div>
 
     <div class="default-box" ng-if="vm.apiData.documenten.count > 1">
       <dp-stelselpedia-header definition="BRONDOCUMENT" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.documenten.href"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.documenten.href" partial="lijst"></atlas-api-call>
     </div>
 
     <div class="default-box" ng-if=" vm.apiData.kadastrale_objecten.count">
       <dp-stelselpedia-header definition="KADASTRAAL_OBJECT" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list href="vm.apiData.kadastrale_objecten.href"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.kadastrale_objecten.href" partial="lijst"></atlas-api-call>
     </div>
   </div>
 </div>
