@@ -11,4 +11,4 @@ Installation
 - grunt
 
 
-test pull request
+test pull
