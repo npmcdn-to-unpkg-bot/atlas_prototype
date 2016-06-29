@@ -1,4 +1,4 @@
-describe('The dp-wkpb-link directive', function () {
+xdescribe('The dp-wkpb-link directive', function () {
   var $compile,
     $rootScope,
     $state,

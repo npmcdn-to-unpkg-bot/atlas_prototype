@@ -1,4 +1,4 @@
-describe('The dp-plugin-detail-graph directive', function () {
+xdescribe('The dp-plugin-detail-graph directive', function () {
   'use strict';
 
   var dataService,

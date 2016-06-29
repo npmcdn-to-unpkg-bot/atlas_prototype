@@ -1,4 +1,4 @@
-describe('The dp-parent-relations directive', function () {
+xdescribe('The dp-parent-relations directive', function () {
   var $compile,
     $rootScope,
     mockedContent;

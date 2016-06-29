@@ -1,4 +1,4 @@
-describe('The dp-stelselpedia-meta directive', function () {
+xdescribe('The dp-stelselpedia-meta directive', function () {
   var $compile,
     $rootScope;
 
