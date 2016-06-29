@@ -1,13 +1,13 @@
 <div class="detail-page__content--main">
   <div class="default-box">
-<!--     <dp-api-data ng-if="apiData.verblijfsobject" uri="{{apiData.verblijfsobject}}" local-scope="verblijfsobject">
+    <atlas-api-data ng-if="apiData.verblijfsobject" uri="{{apiData.verblijfsobject}}" local-scope="verblijfsobject">
       <dp-nummeraanduiding-header
-        heading="{{object._display}}"
-        hoofdadres="object.hoofdadres"
+        heading="{{apiData._display}}"
+        hoofdadres="apiData.hoofdadres"
         verblijfsobject="verblijfsobject"
-        meta-data="object">
+        meta-data="apiData">
       </dp-nummeraanduiding-header>
-    </dp-api-data> -->
+    </atlas-api-data>
 
     <dp-stelselpedia-header ng-if="!apiData.verblijfsobject"
       heading="{{apiData._display}}"

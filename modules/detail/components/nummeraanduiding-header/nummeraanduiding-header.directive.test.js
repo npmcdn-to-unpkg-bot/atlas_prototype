@@ -1,4 +1,4 @@
-xdescribe('The dp-nummeraanduiding-header directive', function () {
+describe('The dp-nummeraanduiding-header directive', function () {
   var $compile,
     $rootScope,
     verblijfsObjecten = {
