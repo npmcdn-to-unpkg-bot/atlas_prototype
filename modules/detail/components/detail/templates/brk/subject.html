@@ -50,7 +50,7 @@
         <dt>Geslacht</dt>
         <dd>{{ vm.apiData.geslacht.omschrijving }}</dd>
         <dt>Geboortedatum</dt>
-        <dd>{{ vm.apiData.geboortedatum | dpDatum }}</dd>
+        <dd>{{ vm.apiData.geboortedatum }}</dd>
         <dt>Geboorteplaats</dt>
         <dd>{{ vm.apiData.geboorteplaats }}</dd>
         <dt>Geboorteland</dt>
@@ -83,7 +83,7 @@
     <div class="default-box" ng-if="vm.apiData.rechten.count">
       <dp-stelselpedia-header definition="ZAKELIJK_RECHT" use-plural="true"></dp-stelselpedia-header>
 
-      <dp-plugin-detail-list page="'subject-rechten'" href="vm.apiData.rechten.href"></dp-plugin-detail-list>
+      <atlas-api-call endpoint="vm.apiData.rechten.href" partial="brk/subject-rechten"></atlas-api-call>
     </div>
   </div>
 </div>
