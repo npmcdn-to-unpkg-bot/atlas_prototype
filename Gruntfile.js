@@ -16,6 +16,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build-develop', [
         'clean:build',
+
         'copy:index',
         'copy:assets',
 

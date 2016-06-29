@@ -23,10 +23,6 @@
                 payload: name
             });
         };
-
-        vm.showLoginModal = function () {
-
-        };
     }
 })();
 
