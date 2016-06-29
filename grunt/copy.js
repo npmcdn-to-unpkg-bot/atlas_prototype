@@ -1,3 +1,5 @@
+var assetsFiles = require('./config/assets-files');
+
 module.exports = {
     index: {
         src: ['index.html'],
@@ -6,7 +8,7 @@ module.exports = {
     assets: {
         files: [
             {
-                src: ['modules/*/assets/*.png'],
+                src: assetsFiles,
                 dest: 'build/assets/',
                 expand: true,
                 flatten: true
