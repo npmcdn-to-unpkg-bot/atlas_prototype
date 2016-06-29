@@ -1,17 +1,35 @@
-<div class="grid">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <atlas-search query="{{vm.query}}"></atlas-search>
-        </div>
-        <div class="col-sm-4">
-            <ul>
-                <li><dp-link type="SHOW_PAGE" payload="'welkom'">Welcome</dp-link></li>
-                <li><dp-link type="SHOW_PAGE" payload="'over-ons'">About</dp-link></li>
-            </ul>
+<header class="site-header">
+    <div class="grid">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="site-header__logo">
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <atlas-search query="{{vm.query}}"></atlas-search>
+            </div>
+            <div class="col-sm-4">
+                <nav class="site-header__navigation">
+                    <div class="grid">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <button class="site-header__navigation__item">Inloggen</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="site-header__navigation__item">Veelgestelde vragen</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="site-header__navigation__item">Over Atlas</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
         </div>
     </div>
-</div>
+</header>
 
 <!--h3 style="margin-top:0;">Related status</h3>
 <table class="table table-bordered table-condensed">

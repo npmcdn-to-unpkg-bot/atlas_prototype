@@ -2,5 +2,5 @@
 indent_style = space
 indent_size = 4
 
-[{package.json,bower.json}]
+[{*.scss,*.json}]
 indent_size = 2
