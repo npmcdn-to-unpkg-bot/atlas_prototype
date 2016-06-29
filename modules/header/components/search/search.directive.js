@@ -141,7 +141,7 @@
                     scope.suggestions = [];
                     scope.numberOfSuggestions = 0;
                     scope.activeSuggestionIndex = -1;
-                    scope.originalQuery = scope.query;
+                    scope.originalQuery = scope._display;
                 }
             }
 
@@ -149,7 +149,7 @@
                 scope.query = autocompleteData.getSuggestionByIndex(
                     scope.suggestions,
                     scope.activeSuggestionIndex
-                ).query;
+                )._display;
             }
         }
     }
