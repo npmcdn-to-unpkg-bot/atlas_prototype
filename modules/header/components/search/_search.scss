@@ -1,6 +1,5 @@
 @import "autocomplete/autocomplete";
 
-$search-form-height: $site-header-height - $whitespace-base * 2;
 $submit-button-width: 60px;
 
 .search-form {
@@ -18,7 +17,13 @@ $submit-button-width: 60px;
     height: $search-form-height;
     padding-right: $whitespace-base / 2;
     padding-left: $whitespace-base / 2;
+    outline: none;
+    background-color: $gray-light;
     font-size: $base-font-size;
+
+    &:focus {
+      background-color: $white;
+    }
   }
 }
 
