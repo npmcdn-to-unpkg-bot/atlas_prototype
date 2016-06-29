@@ -8,13 +8,14 @@
       page="'nummeraanduiding.html'">
     </dp-plugin-detail-partial>
 
+    <atlas-api-call 
+      endpoint="vm.apiData.hoofdadres._links.self.href"
+      partial="bag/nummeraanduiding">
+    </atlas-api-call>
 
     <!-- standplaats -->
-    <div
-      class="detail-page__content"
-      ng-include="'./plugins/plugin-detail/templates/bag/includes/standplaats.html'"
-      onload="object=vm.apiData">
-    </div>
+    <atlas-partial-select partial="bag/standplaats" api-data="vm.apiData"></atlas-partial-select>
+
   </div>
   <div class="detail-page__content--sidebar">
     <dp-parent-relations content="vm.apiData"></dp-parent-relations>

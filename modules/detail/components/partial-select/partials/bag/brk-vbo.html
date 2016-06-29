@@ -5,11 +5,7 @@
     <i class="fa fa-chevron-right link"></i>{{ object._display}}
   </dp-link>
 
-	<div
-		class="brk-indented"
-		ng-include="modules/detail/components/partial-select/partials/brk.html"
-    onload="apiData=object">
-	</div>
+  <atlas-partial-select partial="brk" api-data="object"></atlas-partial-select>
 
 </div>
 

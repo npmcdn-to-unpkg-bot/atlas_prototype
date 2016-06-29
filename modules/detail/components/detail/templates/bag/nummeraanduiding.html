@@ -6,34 +6,27 @@
       onload="apiData=vm.apiData">
     </div>
 
-
     <!-- verblijfsobject -->
     <atlas-api-call
-      class="detail-page__content"
       ng-if="vm.apiData.type === 'Verblijfsobject'"
       endpoint="vm.apiData.verblijfsobject"
       partial="bag/verblijfsobject">
     </atlas-api-call>
 
-
     <!-- standplaats -->
-    <dp-plugin-detail-partial
-      class="detail-page__content"
+    <atlas-api-call
       ng-if="vm.apiData.type === 'Standplaats'"
-      object="false"
-      href="vm.apiData.standplaats"
-      page="'standplaats.html'">
-    </dp-plugin-detail-partial>
-
+      endpoint="vm.apiData.standplaats"
+      partial="bag/standplaats">
+    </atlas-api-call>
 
     <!-- ligplaats -->
-    <dp-plugin-detail-partial
-      class="detail-page__content"
+    <atlas-api-call
       ng-if="vm.apiData.type === 'Ligplaats'"
-      object="false"
-      href="vm.apiData.ligplaats"
-      page="'ligplaats.html'">
-    </dp-plugin-detail-partial>
+      endpoint="vm.apiData.ligplaats"
+      partial="bag/ligplaats">
+    </atlas-api-call>
+
   </div>
   <div class="detail-page__content--sidebar">
     <dp-parent-relations content="vm.apiData"></dp-parent-relations>

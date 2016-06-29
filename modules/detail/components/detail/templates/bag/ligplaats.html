@@ -7,10 +7,8 @@
     </atlas-api-call>
 
     <!-- ligplaats -->
-    <div
-      ng-include="'modules/detail/components/partial-select/partials/bag/ligplaats.html'"
-      onload="apiData=vm.apiData">
-    </div>
+    <atlas-partial-select partial="bag/ligplaats" api-data="vm.apiData"></atlas-partial-select>
+
   </div>
 
   <div class="detail-page__content--sidebar">

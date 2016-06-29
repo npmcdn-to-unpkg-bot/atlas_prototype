@@ -7,11 +7,8 @@
     </atlas-api-call>
 
     <!-- verbijfsobject -->
-    <div
-      class="detail-page__content"
-      ng-include="'modules/detail/components/partial-select/partials/bag/verblijfsobject.html'"
-      onload="apiData=vm.apiData">
-    </div>
+    <atlas-partial-select partial="bag/verblijfsobject" api-data="vm.apiData"></atlas-partial-select>
+
   </div>
   <div class="detail-page__content--sidebar">
     <dp-parent-relations content="vm.apiData"></dp-parent-relations>
