@@ -1,5 +1,5 @@
 <div class="detail-page__content--main">
-  <div class="default-box">
+  <div class="default-box" ng-if="apiData._display">
     <atlas-api-data ng-if="apiData.verblijfsobject" url="{{apiData.verblijfsobject}}" local-scope="verblijfsobject">
       <dp-nummeraanduiding-header
         heading="{{apiData._display}}"
@@ -13,7 +13,6 @@
       heading="{{apiData._display}}"
       definition="NUMMERAANDUIDING"
       meta-data="apiData">
-
     </dp-stelselpedia-header>
 
 

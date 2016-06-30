@@ -77,7 +77,7 @@ xdescribe('The dp-stelselpedia-header directive', function () {
   it('always shows the Stelselpedia label w/ an button to toggle more information', function () {
     var directive = getDirective(null, 'BOUWBLOK', false, null, null);
 
-    expect(directive.find('.stelselpedia-header__title').text().trim()).toBe('Bouwblok');
+    expect(directive.find('.stelselpedia-header__title span').text().trim()).toBe('Bouwblok');
     expect(directive.find('.stelselpedia-header__button:nth-of-type(1)').text().trim()).toBe('toon uitleg');
   });
 
