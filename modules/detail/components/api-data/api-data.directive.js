@@ -37,7 +37,7 @@
 
       scope.apiDataReady[scope.$id] = false;
 
-      api.getByUrl(attrs.uri).then(function (data) {
+      api.getByUrl(attrs.url).then(function (data) {
         scope[attrs.localScope] = data;
 
         scope.apiDataReady[scope.$id] = true;
