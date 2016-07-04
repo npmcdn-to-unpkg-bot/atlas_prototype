@@ -1,18 +1,31 @@
-xdescribe('The dp-wkpb-link directive', function () {
+describe('The dp-wkpb-link directive', function () {
   var $compile,
     $rootScope,
-    $state,
-    $timeout,
+    environment,
     mockedBrkObject;
 
   beforeEach(function () {
-    angular.mock.module('atlasDetail');
+    //welke versie heb ik nodig?
+    //a
+    angular.mock.module('atlasDetail', function($provide){
+      $provide.factory('dpLinkDirective', function(){
+        return {};
+      });
+    });
 
-    angular.mock.inject(function (_$compile_, _$rootScope_, _$state_, _$timeout_) {
+    //b
+    // angular.mock.module('atlasDetail', {
+    //   dpLinkDirective: getLinkDirective
+    // });
+
+    // function getLinkDirective() {
+
+    // }
+
+    angular.mock.inject(function (_$compile_, _$rootScope_, _environment_) {
       $compile = _$compile_;
       $rootScope = _$rootScope_;
-      $state = _$state_;
-      $timeout = _$timeout_;
+      environment = _environment_;
     });
 
     mockedBrkObject = {
@@ -28,7 +41,7 @@ xdescribe('The dp-wkpb-link directive', function () {
       element,
       scope;
 
-    element = document.createElement('dp-wkpb-link');
+    element = document.createElement('atlas-wkpb-link');
     element.setAttribute('brk-object', 'brkObject');
 
     scope = $rootScope.$new();
@@ -40,16 +53,13 @@ xdescribe('The dp-wkpb-link directive', function () {
     return directive;
   }
 
-  it('Creates a link to the brk-object detail page', function () {
+  it('Creates a url to the object-wkpb detail page', function () {
     var directive;
 
-    spyOn($state, 'go');
-
     directive = getDirective(mockedBrkObject);
+    console.log(directive);
 
-    directive.find('a').click();
-    $timeout.flush();
-
-    expect($state.go).toHaveBeenCalledWith('app.detail', {uri: 'brk/object-wkpb/abcdef123'}, jasmine.any(Object));
+    //()
+    //mock dp-link
   });
 });

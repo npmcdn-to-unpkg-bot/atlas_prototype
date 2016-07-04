@@ -66,7 +66,6 @@ describe('The dp-api-data directive', function () {
 
     template = '<h1>{{vbo.naam}}</h1>';
     directive = getDirective('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/', 'vbo', template);
-    console.log(directive);
 
     var header = (directive.find('h1'));
     expect(header.length).toBe(1);
@@ -84,7 +83,6 @@ describe('The dp-api-data directive', function () {
       '</dp-api-data>';
 
     directive = getDirective('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/', 'vbo', template);
-        console.log(directive);
 
     expect(directive.find('h1').text()).toBe('Ik ben verblijfsobject #123');
     expect(directive.find('p').text()).toBe('Ik ben buurt #789');
@@ -98,7 +96,6 @@ describe('The dp-api-data directive', function () {
 
     template = '<h1>{{vbo.naam}}</h1>';
     directive = getDirective('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/', 'vbo', template);
-        console.log(directive);
 
     expect(directive.find('i.fa.fa-spinner.fa-spin').length).toBe(1);
     expect(directive.text()).toContain('Bezig met laden...');

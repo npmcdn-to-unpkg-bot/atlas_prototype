@@ -3,24 +3,28 @@
 
   angular
     .module('atlasDetail')
-    .directive('dpWkpbLink', dpWkpbLinkDirective);
+    .directive('atlasWkpbLink', atlasWkpbLinkDirective);
 
-  function dpWkpbLinkDirective() {
+
+
+  function atlasWkpbLinkDirective() {
     return {
       restrict: 'E',
       scope: {
         brkObject: '='
       },
       templateUrl: 'modules/detail/components/wkpb-link/wkpb-link.html',
-      controller: DpWkpbLinkController,
+      controller: AtlasWkpbLinkController,
       controllerAs: 'vm',
       bindToController: true
     };
   }
 
-  function DpWkpbLinkController () {
+  AtlasWkpbLinkController.$inject = ['environment'];
+
+  function AtlasWkpbLinkController (environment) {
     var vm = this;
 
-    vm.wkpbUri = 'brk/object-wkpb/' + vm.brkObject.id;
+    vm.wkpbUri = environment.API_ROOT + 'brk/object-wkpb/' + vm.brkObject.id;
   }
 })();
