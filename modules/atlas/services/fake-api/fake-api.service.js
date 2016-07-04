@@ -36,7 +36,6 @@
 //                             location = [52.378086874951386, 4.922568081008677];
 //                             highlight = 'GeoJSON Polygon for Jan Schaeferbrug (openbare ruimte)';
 //                         }
-
 //                         store.dispatch({
 //                             type: ACTIONS.SHOW_DETAIL,
 //                             payload: {

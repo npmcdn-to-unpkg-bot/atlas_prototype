@@ -1,0 +1,39 @@
+.search-form__autocomplete {
+  position: absolute;
+  top: $search-form-height + $whitespace-base;
+  right: $whitespace-base;
+  left: $whitespace-base;
+  background-color: $white;
+
+  .search-form__autocomplete__category {
+    &:not(:first-child) {
+      margin-top: $whitespace-base;
+    }
+  }
+
+  h4 {
+    margin-top: $whitespace-base / 2;
+    margin-bottom: $whitespace-base / 4;
+    padding-right: $whitespace-base / 2;
+    padding-left: $whitespace-base / 2;
+    color: $gray-medium;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: $whitespace-base / 2;
+    background-color: transparent;
+    color: $black;
+    font-size: $base-font-size;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover,
+    &.active {
+      background-color: $brand-primary;
+      color: $white;
+      font-weight: inherit;
+    }
+  }
+}

@@ -1,0 +1,38 @@
+@import "autocomplete/autocomplete";
+
+$submit-button-width: 60px;
+
+.search-form {
+  padding-top: $whitespace-base;
+  padding-bottom: $whitespace-base;
+}
+
+.search-form__input {
+  width: calc(100% - #{$submit-button-width});
+  float: left;
+
+  input {
+    display: block;
+    width: 100%;
+    height: $search-form-height;
+    padding-right: $whitespace-base / 2;
+    padding-left: $whitespace-base / 2;
+    outline: none;
+    background-color: $gray-light;
+    font-size: $base-font-size;
+
+    &:focus {
+      background-color: $white;
+    }
+  }
+}
+
+.search-form__submit {
+  width: $submit-button-width;
+  height: $search-form-height;
+  float: left;
+  background-color: $brand-primary;
+  color: $white;
+  font-size: $base-font-size;
+  cursor: pointer;
+}
