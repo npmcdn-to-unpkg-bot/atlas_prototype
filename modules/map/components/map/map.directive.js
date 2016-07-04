@@ -3,9 +3,9 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'variableWidth', 'panning', 'zoom'];
+    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'panning', 'zoom', 'variableWidth', 'searchByClick'];
 
-    function dpMapDirective (L, mapConfig, layers, variableWidth, panning, zoom) {
+    function dpMapDirective (L, mapConfig, layers, panning, zoom, variableWidth, searchByClick) {
         return {
             restrict: 'E',
             scope: {
@@ -32,6 +32,7 @@
             panning.initialize(leafletMap);
             zoom.initialize(leafletMap);
             variableWidth.initialize(container, leafletMap);
+            searchByClick.initialize(leafletMap);
 
             scope.$watch('mapState.viewCenter', function (viewCenter) {
                 panning.panTo(leafletMap, viewCenter);
