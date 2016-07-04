@@ -1,0 +1,18 @@
+.site-header {
+  height: $site-header-height;
+  background-color: $gray-dark;
+}
+
+.site-header__navigation {
+  text-align: center;
+}
+
+.site-header__navigation__item {
+  height: $site-header-height;
+  background-color: inherit;
+  color: $white;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  text-decoration: underline;
+  cursor: pointer;
+}

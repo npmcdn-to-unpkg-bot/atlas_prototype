@@ -1,36 +1,38 @@
-<div class="grid">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-            <atlas-search query="{{vm.query}}"></atlas-search>
-        </div>
-        <div class="col-sm-4">
-            <ul>
-                <li><dp-link type="SHOW_PAGE" payload="'welkom'">Welcome</dp-link></li>
-                <li><dp-link type="SHOW_PAGE" payload="'over-ons'">About</dp-link></li>
-            </ul>
+<header class="site-header">
+    <div class="grid">
+        <div class="row">
+            <div class="col-sm-4 u-pl-0">
+                <div class="site-header__logo">
+                    <img class="u-block" src="assets/atlas_logo.png" alt="Atlas logo">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <atlas-search query="{{vm.query}}"></atlas-search>
+            </div>
+            <div class="col-sm-4">
+                <nav class="site-header__navigation">
+                    <div class="grid">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <button class="site-header__navigation__item">
+                                    Inloggen
+                                </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="site-header__navigation__item" ng-click="vm.showPage('faq')">
+                                    Veelgestelde vragen
+                                </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button class="site-header__navigation__item" ng-click="vm.showPage('over-ons')">
+                                    Over Atlas
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
         </div>
     </div>
-</div>
-
-<!--h3 style="margin-top:0;">Related status</h3>
-<table class="table table-bordered table-condensed">
-    <tr>
-        <th scope="row">search.query</th>
-        <td>{{vm.query}}</td>
-    </tr>
-</table>
-
-<h3 style="margin-top:0;">Actions</h3>
-<div class="form-group">
-    <button class="btn btn-white" ng-click="vm.triggerSearch()">
-        Zoek door te typen: 'Linnaeus'
-    </button>
-
-    <button class="btn btn-white"
-            ng-click="vm.followSuggestion()">
-
-        Kies autocomplete suggestie: 'Linnaeusstraat 2'
-    </button>
-</div-->
-
+</header>
