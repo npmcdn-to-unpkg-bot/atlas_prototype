@@ -1,0 +1,27 @@
+<div ng-if="vm.tableData.length" class="tevredenheid">
+  <h2 class="bbga__heading">Tevredenheid</h2>
+  <p class="tevredenheid__subtitle">Gemiddeld rapportcijfer dat bewoners geven aan hun woonomgeving</p>
+  <img class="tevredenheid__img" src="../../../images/tevredenheid.svg" alt="Tevredenheid raportcijfers">
+
+  <h3 class="tevredenheid__header">Rapportcijfers {{vm.year}}</h3>
+
+  <table class="bbga-table">
+    <tr ng-repeat="row in vm.tableData">
+      <th scope="row" class="roman">{{row.label}}</th>
+      <td><span class="badge badge--gray">{{row.data[0].waarde | number : 1}}</span></td>
+      <td><span class="badge badge--red">{{row.data[1].waarde | number : 1}}</span></td>
+    </tr>
+  </table>
+
+  <div class="tevredenheid__legend">
+    <div class="legend__gebied">
+      <span class="legend__label">{{vm.gebiedHeading}}</span>
+      <span class="badge badge--gray"></span>
+    </div>
+    <div class="legend__amsterdam">
+      <span class="badge badge--red"></span>
+      <span class="legend__label">Amsterdam</span>
+    </div>
+  </div>
+
+</div>
