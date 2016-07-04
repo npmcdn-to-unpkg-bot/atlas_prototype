@@ -32,7 +32,7 @@
                         } else if (state.detail.uri === 'gebieden/buurt/03630000000583') {
                             location = [52.3788266489935, 4.924849634533546];
                             highlight = 'GeoJSON Polygon for Java-eiland (buurt)';
-                        } else if (state.detail.uri === 'bag/openbareruimte/03630011950386') {
+                        } else {
                             location = [52.378086874951386, 4.922568081008677];
                             highlight = 'GeoJSON Polygon for Jan Schaeferbrug (openbare ruimte)';
                         }
