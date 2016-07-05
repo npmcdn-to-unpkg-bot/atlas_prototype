@@ -1,4 +1,4 @@
-xdescribe('The dp-bbga-tevredenheid component', function () {
+describe('The dp-bbga-tevredenheid component', function () {
   var $compile,
     $rootScope,
     $q,
@@ -138,7 +138,7 @@ xdescribe('The dp-bbga-tevredenheid component', function () {
     expect(component.find('.bbga-table').text()).not.toContain('Variabele C');
   });
 
-  it('formats the grades in the Dutch locale with one decimal', function () {
+  xit('formats the grades in the Dutch locale with one decimal', function () {
     var component = getComponent();
 
     //Variabele A

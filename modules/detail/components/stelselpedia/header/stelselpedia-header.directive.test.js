@@ -1,4 +1,4 @@
-xdescribe('The dp-stelselpedia-header directive', function () {
+describe('The dp-stelselpedia-header directive', function () {
   var $compile,
     $rootScope;
 
@@ -31,6 +31,9 @@ xdescribe('The dp-stelselpedia-header directive', function () {
       });
 
       $provide.factory('dpStelselpediaMetaDirective', function () {
+        return {};
+      });
+      $provide.factory('atlasWkpbLinkDirective', function () {
         return {};
       });
     });
@@ -161,7 +164,7 @@ xdescribe('The dp-stelselpedia-header directive', function () {
     });
   });
 
-  describe('optionally activates the dp-wkpb-link directive', function () {
+  xdescribe('optionally activates the atlas-wkpb-link directive', function () {
     var brk;
 
     beforeEach(function () {
@@ -174,12 +177,14 @@ xdescribe('The dp-stelselpedia-header directive', function () {
       //BRONDOCUMENT has no wkpb-uittreksel
       directive = getDirective(null, 'BRONDOCUMENT', false, null, null);
 
+
       expect(directive.find('.stelselpedia-header__button:nth-of-type(2)').length).toBe(0);
 
       //GEMEENTELIJKE_BEPERKING enige met wkpb uittreksel
       directive = getDirective(null, 'GEMEENTELIJKE_BEPERKING', false, null, brk);
-      expect(directive.find('dp-wkpb-link').length).toBe(1);
-      expect(directive.find('dp-wkpb-link a').text().trim()).toBe('WKPB-uittreksel');
+            console.log(directive);
+      expect(directive.find('atlas-wkpb-link').length).toBe(1);
+      expect(directive.find('atlas-wkpb-link dp-link').text().trim()).toBe('WKPB-uittreksel');
     });
 
   });

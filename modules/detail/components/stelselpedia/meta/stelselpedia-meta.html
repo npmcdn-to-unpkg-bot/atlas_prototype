@@ -1,5 +1,5 @@
 <dl class="stacked-key-value-list muted">
   <dt ng-repeat-start="metaField in vm.metaFields">{{metaField.label}}</dt>
   <dd ng-if="metaField.type !== 'date'">{{metaField.value}}</dd>
-  <dd ng-repeat-end ng-if="metaField.type === 'date'">{{metaField.value | dpDatum}}</dd>
+  <dd ng-repeat-end ng-if="metaField.type === 'date'">{{metaField.value | date}</dd>
 </dl>

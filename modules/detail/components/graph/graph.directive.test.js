@@ -1,7 +1,7 @@
-xdescribe('The dp-plugin-detail-graph directive', function () {
+describe('The dp-plugin-detail-graph directive', function () {
   'use strict';
 
-  var dataService,
+  var api,
     d3,
     $rootScope,
     $compile,
@@ -28,8 +28,8 @@ xdescribe('The dp-plugin-detail-graph directive', function () {
     angular.mock.module(
       'atlasDetail',
       {
-        dataService: {
-          getApiData: function () {
+        api: {
+          getByUrl: function () {
             var deferred = $q.defer();
 
             deferred.resolve(mockedResponse);
@@ -40,8 +40,8 @@ xdescribe('The dp-plugin-detail-graph directive', function () {
       }
     );
 
-    angular.mock.inject(function (_dataService_, _d3_, _$rootScope_, _$compile_, _$q_) {
-      dataService = _dataService_;
+    angular.mock.inject(function (_api_, _d3_, _$rootScope_, _$compile_, _$q_) {
+      api = _api_;
       d3 = _d3_;
       $rootScope = _$rootScope_;
       $compile = _$compile_;
@@ -53,7 +53,7 @@ xdescribe('The dp-plugin-detail-graph directive', function () {
     var directive,
       scope;
 
-    var html = document.createElement('dp-plugin-detail-graph');
+    var html = document.createElement('detail-graph');
     html.setAttribute('href', href);
     html.setAttribute('page-size', 'pageSize');
 
@@ -89,14 +89,14 @@ xdescribe('The dp-plugin-detail-graph directive', function () {
 
   describe('Load Data', function(){
 
-    it('should load data through the dataService', function(){
-      spyOn(dataService, 'getApiData').and.callThrough();
+    it('should load data through the api', function(){
+      spyOn(api, 'getByUrl').and.callThrough();
 
       getGraphDirective('apiHrefA', 2);
-      expect(dataService.getApiData).toHaveBeenCalled();
+      expect(api.getByUrl).toHaveBeenCalled();
 
       getGraphDirective('apiHrefB', 5);
-      expect(dataService.getApiData).toHaveBeenCalled();
+      expect(api.getByUrl).toHaveBeenCalled();
     });
   });
 
