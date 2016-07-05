@@ -1,3 +1,5 @@
+var assetsFiles = require('./config/assets-files');
+
 module.exports = {
     js: {
         files: [
@@ -9,11 +11,6 @@ module.exports = {
             'test-js'
         ]
     },
-    /*
-    es : {
-
-    },
-    */
     css: {
         files: [
             'modules/**/*.scss'
@@ -30,6 +27,10 @@ module.exports = {
         tasks: [
             'build'
         ]
+    },
+    assets: {
+        files: assetsFiles,
+        tasks: ['copy:assets']
     },
     livereload: {
         options: {

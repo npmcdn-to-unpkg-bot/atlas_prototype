@@ -2,6 +2,7 @@
   "name": "atlas",
   "dependencies": {
     "angular": "^1.5.5",
+    "angular-sanitize": "^1.5.7",
     "leaflet": "https://github.com/DatapuntAmsterdam/atlas_leaflet.git#master",
     "leaflet.wms": "~0.1.0",
     "proj4": "*",

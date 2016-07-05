@@ -1,0 +1,18 @@
+/*
+@Name List inline (horizontal)
+@markup
+  <ul class="list-inline">
+    <li>Item #1</li>
+    <li>Item #2</li>
+    <li>Item #3</li>
+  </ul>
+*/
+
+.list-inline {
+  font-size: 0;
+
+  li {
+    display: inline-block;
+    font-size: $base-font-size;
+  }
+}
