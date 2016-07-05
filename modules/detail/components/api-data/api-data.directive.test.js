@@ -47,7 +47,7 @@ describe('The dp-api-data directive', function () {
       element,
       scope;
 
-    element = document.createElement('dp-api-data');
+    element = document.createElement('atlas-api-data');
     element.setAttribute('url', url);
     element.setAttribute('local-scope', localScope);
     element.innerHTML = template;
@@ -67,20 +67,17 @@ describe('The dp-api-data directive', function () {
     template = '<h1>{{vbo.naam}}</h1>';
     directive = getDirective('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/', 'vbo', template);
 
-    var header = (directive.find('h1'));
-    expect(header.length).toBe(1);
-
-    //expect(directive.find('h1').text()).toBe('Ik ben verblijfsobject #123');
+    expect(directive.find('h1').text()).toBe('Ik ben verblijfsobject #123');
   });
 
-  xit('can be nested into another dp-api-data directive', function () {
+  it('can be nested into another atlas-api-data directive', function () {
     var directive,
       template;
 
     template = '<h1>{{vbo.naam}}</h1>' +
-      '<dp-api-data url="{{vbo.buurt._links.self.href}}" local-scope="buurt">' +
+      '<atlas-api-data url="{{vbo.buurt._links.self.href}}" local-scope="buurt">' +
       '  <p>{{buurt.naam}}</p>' +
-      '</dp-api-data>';
+      '</atlas-api-data>';
 
     directive = getDirective('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/', 'vbo', template);
 
@@ -88,7 +85,7 @@ describe('The dp-api-data directive', function () {
     expect(directive.find('p').text()).toBe('Ik ben buurt #789');
   });
 
-  xit('shows a loading indicator while waiting for the dataService', function () {
+  it('shows a loading indicator while waiting for the dataService', function () {
     var directive,
       template;
 

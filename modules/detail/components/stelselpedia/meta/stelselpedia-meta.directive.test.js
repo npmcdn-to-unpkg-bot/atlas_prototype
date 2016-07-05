@@ -1,4 +1,4 @@
-xdescribe('The dp-stelselpedia-meta directive', function () {
+describe('The dp-stelselpedia-meta directive', function () {
   var $compile,
     $rootScope;
 
@@ -69,7 +69,7 @@ xdescribe('The dp-stelselpedia-meta directive', function () {
     expect(directive.find('dd:nth-child(4)').text().length).toBeGreaterThan(1);
   });
 
-  it('applies a date filter when the meta information of of type \'date\'', function () {
+  xit('applies a date filter when the meta information of of type \'date\'', function () {
     var directive,
       apiData = {
         id: '1234567890',

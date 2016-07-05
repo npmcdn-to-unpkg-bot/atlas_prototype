@@ -57,12 +57,11 @@ describe('The dp-nummeraanduiding-header directive', function () {
   }
 
   describe('it adds status badges', function () {
-    xit('adds a red badge if the status of the verblijfsobject is \'Verblijfsobject gevormd\'', function () {
+    it('adds a red badge if the status of the verblijfsobject is \'Verblijfsobject gevormd\'', function () {
       var directive;
 
       //Status 'Verblijfsobject in gebruik', don't show a badge
       directive = getDirective(21, true);
-console.log(directive);
 
       expect(directive.find('.badge.badge--red').length).toBe(0);
       expect(directive.text()).not.toContain('Verblijfsobject in gebruik');
@@ -73,7 +72,7 @@ console.log(directive);
       expect(directive.find('.badge.badge--red').text()).toBe('Verblijfsobject gevormd');
     });
 
-    xit('adds a blue badge if it\'s a nevenadres', function () {
+    it('adds a blue badge if it\'s a nevenadres', function () {
       var directive;
 
       //Hoofdadres

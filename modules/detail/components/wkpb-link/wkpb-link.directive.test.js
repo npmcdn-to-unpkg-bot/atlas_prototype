@@ -1,4 +1,4 @@
-describe('The dp-wkpb-link directive', function () {
+xdescribe('The dp-wkpb-link directive', function () {
   var $compile,
     $rootScope,
     environment,
@@ -57,7 +57,6 @@ describe('The dp-wkpb-link directive', function () {
     var directive;
 
     directive = getDirective(mockedBrkObject);
-    console.log(directive);
 
     //()
     //mock dp-link
