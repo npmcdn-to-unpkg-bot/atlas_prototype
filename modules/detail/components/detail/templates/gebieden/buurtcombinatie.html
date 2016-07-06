@@ -2,31 +2,31 @@
   <div class="detail-page__content--main">
     <div class="default-box">
       <dp-stelselpedia-header
-        heading="{{vm.apiData.naam}}"
+        heading="{{vm.apiData.results.naam}}"
         definition="BUURTCOMBINATIE"
         meta-data="vm.apiData">
       </dp-stelselpedia-header>
 
       <dl class="key-value-list">
         <dt>Volledige code</dt>
-        <dd>{{ vm.apiData.code }}</dd>
+        <dd>{{ vm.apiData.results.code }}</dd>
       </dl>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.buurten.count">
+    <div class="list-box" ng-if="vm.apiData.results.buurten.count">
       <dp-stelselpedia-header definition="BUURT" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.buurten.href" partial="lijst"></atlas-api-call>
+      <atlas-api-call endpoint="vm.apiData.results.buurten.href" partial="lijst"></atlas-api-call>
     </div>
 
     <dp-bbga-graphs
-      gebied-heading="{{vm.apiData.naam}}"
-      gebied-code="{{vm.apiData.volledige_code}}">
+      gebied-heading="{{vm.apiData.results.naam}}"
+      gebied-code="{{vm.apiData.results.volledige_code}}">
 
     </dp-bbga-graphs>
   </div>
 
 <!--   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="vm.apiData"></dp-parent-relations>
+    <dp-parent-relations content="vm.apiData.results"></dp-parent-relations>
   </div> -->
 </div>

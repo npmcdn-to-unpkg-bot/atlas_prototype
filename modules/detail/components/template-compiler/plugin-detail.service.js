@@ -14,8 +14,8 @@
 
     function compileTemplate (scope, element, templateName) {
       // templateRequest caches the result
-      $templateRequest(templateName).then(function (html) {
-        var template = angular.element(html);
+      $templateRequest(templateName).then(function (templateHtml) {
+        var template = angular.element(templateHtml);
 
         element.append(template);
         $compile(template)(scope);

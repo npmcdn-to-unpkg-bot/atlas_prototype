@@ -2,29 +2,29 @@
   <div class="detail-page__content--main">
     <div class="default-box">
       <dp-stelselpedia-header
-        heading="{{vm.apiData.naam}}"
+        heading="{{vm.apiData.results.naam}}"
         definition="OPENBARE_RUIMTE"
         meta-data="vm.apiData">
       </dp-stelselpedia-header>
 
       <dl class="key-value-list">
         <dt>Naam 24-posities (NEN)</dt>
-        <dd>{{ vm.apiData.naam_24_posities }}</dd>
+        <dd>{{ vm.apiData.results.naam_24_posities }}</dd>
         <dt>Naam 17-posities (post)</dt>
-        <dd>{{ vm.apiData.naam_17_posities }}</dd>
+        <dd>{{ vm.apiData.results.naam_17_posities }}</dd>
         <dt>Woonplaats</dt>
-        <dd><dp-link type="FETCH_DETAIL" payload="vm.apiData.woonplaats._links.self.href">{{ vm.apiData.woonplaats._display }}</dp-link></dd>
+        <dd><dp-link type="FETCH_DETAIL" payload="vm.apiData.results.woonplaats._links.self.href">{{ vm.apiData.results.woonplaats._display }}</dp-link></dd>
         <dt>Type:</dt>
-        <dd>{{ vm.apiData.type }}</dd>
+        <dd>{{ vm.apiData.results.type }}</dd>
         <dt>Status:</dt>
-        <dd>{{ vm.apiData.status.omschrijving }}</dd>
+        <dd>{{ vm.apiData.results.status.omschrijving }}</dd>
       </dl>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.adressen.count">
+    <div class="list-box" ng-if="vm.apiData.results.adressen.count">
       <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.adressen.href" partial="adressen_lijst"></atlas-api-call>
+      <atlas-api-call endpoint="vm.apiData.results.adressen.href" partial="adressen_lijst"></atlas-api-call>
     </div>
   </div>
 </div>

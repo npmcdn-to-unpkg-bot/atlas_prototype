@@ -2,26 +2,26 @@
   <div class="detail-page__content--main">
     <div class="default-box">
       <dp-stelselpedia-header
-        heading="{{vm.apiData._display}}"
+        heading="{{vm.apiData.results._display}}"
         definition="PAND"
-        meta-data="vm.apiData">
+        meta-data="vm.apiData.results">
       </dp-stelselpedia-header>
 
       <dl class="key-value-list">
         <dt>Oorspronkelijk bouwjaar</dt>
-        <dd ng-if="vm.apiData.bouwjaar !== 1005">{{ vm.apiData.oorspronkelijk_bouwjaar }}</dd>
-        <dd ng-if="vm.apiData.bouwjaar === 1005">onbekend</dd>
+        <dd ng-if="vm.apiData.results.bouwjaar !== 1005">{{ vm.apiData.results.oorspronkelijk_bouwjaar }}</dd>
+        <dd ng-if="vm.apiData.results.bouwjaar === 1005">onbekend</dd>
         <dt>Naam</dt>
-        <dd>{{ vm.apiData.pandnummer }}</dd>
+        <dd>{{ vm.apiData.results.pandnummer }}</dd>
         <dt>Status</dt>
-        <dd>{{ vm.apiData.status.omschrijving }}</dd>
+        <dd>{{ vm.apiData.results.status.omschrijving }}</dd>
       </dl>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.verblijfsobjecten.count">
+    <div class="list-box" ng-if="vm.apiData.results.verblijfsobjecten.count">
       <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.verblijfsobjecten.href" partial="adressen_lijst"></atlas-api-call>
+      <atlas-api-call endpoint="vm.apiData.results.verblijfsobjecten.href" partial="adressen_lijst"></atlas-api-call>
     </div>
   </div>
 

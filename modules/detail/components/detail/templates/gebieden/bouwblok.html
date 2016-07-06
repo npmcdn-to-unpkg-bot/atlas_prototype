@@ -2,26 +2,26 @@
   <div class="detail-page__content--main">
     <div class="default-box">
       <dp-stelselpedia-header
-        heading="{{vm.apiData.code}}"
+        heading="{{vm.apiData.results.code}}"
         definition="BOUWBLOK"
         meta-data="vm.apiData">
       </dp-stelselpedia-header>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.panden.count">
+    <div class="list-box" ng-if="vm.apiData.results.panden.count">
       <dp-stelselpedia-header definition="PAND" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.panden.href" partial="lijst"></atlas-api-call>
+      <atlas-api-call endpoint="vm.apiData.results.panden.href" partial="lijst"></atlas-api-call>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.meetbouten">
+    <div class="list-box" ng-if="vm.apiData.results.meetbouten">
       <dp-stelselpedia-header definition="MEETBOUT" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.meetbouten" partial="lijst"></atlas-api-call>
+      <atlas-api-call endpoint="vm.apiData.results.meetbouten" partial="lijst"></atlas-api-call>
     </div>
   </div>
 
 <!--   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="vm.apiData"></dp-parent-relations>
+    <dp-parent-relations content="vm.apiData.results"></dp-parent-relations>
   </div> -->
 </div>

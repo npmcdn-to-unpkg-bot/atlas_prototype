@@ -1,29 +1,26 @@
 <div class="detail-page__content">
   <div class="detail-page__content--main">
     <!-- nummeraanduiding -->
-    <div
-      ng-include="'modules/detail/components/partial-select/partials/bag/nummeraanduiding.html'"
-      onload="apiData=vm.apiData">
-    </div>
+    <atlas-partial-select partial="bag/nummeraanduiding" api-data="vm.apiData"></atlas-partial-select>
 
     <!-- verblijfsobject -->
     <atlas-api-call
-      ng-if="vm.apiData.type === 'Verblijfsobject'"
-      endpoint="vm.apiData.verblijfsobject"
+      ng-if="vm.apiData.results.type === 'Verblijfsobject'"
+      endpoint="vm.apiData.results.verblijfsobject"
       partial="bag/verblijfsobject">
     </atlas-api-call>
 
     <!-- standplaats -->
     <atlas-api-call
-      ng-if="vm.apiData.type === 'Standplaats'"
-      endpoint="vm.apiData.standplaats"
+      ng-if="vm.apiData.results.type === 'Standplaats'"
+      endpoint="vm.apiData.results.standplaats"
       partial="bag/standplaats">
     </atlas-api-call>
 
     <!-- ligplaats -->
     <atlas-api-call
-      ng-if="vm.apiData.type === 'Ligplaats'"
-      endpoint="vm.apiData.ligplaats"
+      ng-if="vm.apiData.results.type === 'Ligplaats'"
+      endpoint="vm.apiData.results.ligplaats"
       partial="bag/ligplaats">
     </atlas-api-call>
 

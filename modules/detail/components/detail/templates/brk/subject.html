@@ -2,88 +2,88 @@
   <div class="detail-page__content--main">
     <div class="default-box">
       <dp-stelselpedia-header
-        heading="{{vm.apiData._display}}"
+        heading="{{vm.apiData.results._display}}"
         definition="KADASTRAAL_SUBJECT"
         meta-data="vm.apiData">
       </dp-stelselpedia-header>
 
       <!-- niet natuurlijke persoon -->
-      <dl class="key-value-list" ng-if="vm.apiData.is_natuurlijk_persoon === false">
+      <dl class="key-value-list" ng-if="vm.apiData.results.is_natuurlijk_persoon === false">
         <dt>Statutaire zetel</dt>
-        <dd>{{ vm.apiData.statutaire_zetel }}</dd>
+        <dd>{{ vm.apiData.results.statutaire_zetel }}</dd>
         <dt>Rechtsvorm</dt>
-        <dd>{{ vm.apiData.rechtsvorm.omschrijving }}</dd>
+        <dd>{{ vm.apiData.results.rechtsvorm.omschrijving }}</dd>
         <dt>RSIN</dt>
-        <dd>{{ vm.apiData.rsin }}</dd>
+        <dd>{{ vm.apiData.results.rsin }}</dd>
         <dt>KvK nummer</dt>
-        <dd>{{ vm.apiData.kvknummer }}</dd>
+        <dd>{{ vm.apiData.results.kvknummer }}</dd>
         <dt>Woonadres</dt>
         <dd>
-          {{ vm.apiData.woonadres.openbareruimte_naam }} {{ vm.apiData.woonadres.huisnummer }}{{ vm.apiData.woonadres.huisletter }}{{ vm.apiData.woonadres.toevoeging }} {{ vm.apiData.woonadres.postcode }} {{ vm.apiData.woonadres.woonplaats }}
+          {{ vm.apiData.results.woonadres.openbareruimte_naam }} {{ vm.apiData.results.woonadres.huisnummer }}{{ vm.apiData.results.woonadres.huisletter }}{{ vm.apiData.results.woonadres.toevoeging }} {{ vm.apiData.results.woonadres.postcode }} {{ vm.apiData.results.woonadres.woonplaats }}
         </dd>
         <dt>Woonadres buitenland</dt>
         <dd>
-          {{ vm.apiData.woonadres.buitenland_adres }} {{ vm.apiData.woonadres.buitenland_woonplaats }} {{ vm.apiData.woonadres.buitenland_naam }} {{ vm.apiData.woonadres.buitenland_land.omschrijving }}
+          {{ vm.apiData.results.woonadres.buitenland_adres }} {{ vm.apiData.results.woonadres.buitenland_woonplaats }} {{ vm.apiData.results.woonadres.buitenland_naam }} {{ vm.apiData.results.woonadres.buitenland_land.omschrijving }}
         </dd>
         <dt>Postadres</dt>
         <dd>
-          {{ vm.apiData.postadres.openbareruimte_naam }} {{ vm.apiData.postadres.huisnummer }}{{ vm.apiData.postadres.huisletter }}{{ vm.apiData.postadres.toevoeging }} {{ vm.apiData.postadres.postcode }} {{ vm.apiData.postadres.woonplaats }}
+          {{ vm.apiData.results.postadres.openbareruimte_naam }} {{ vm.apiData.results.postadres.huisnummer }}{{ vm.apiData.results.postadres.huisletter }}{{ vm.apiData.results.postadres.toevoeging }} {{ vm.apiData.results.postadres.postcode }} {{ vm.apiData.results.postadres.woonplaats }}
         </dd>
         <dt>Postadres buitenland</dt>
         <dd>
-          {{ vm.apiData.postadres.buitenland_adres }} {{ vm.apiData.postadres.buitenland_woonplaats }} {{ vm.apiData.postadres.buitenland_naam }} {{ vm.apiData.postadres.buitenland_land.omschrijving }}
+          {{ vm.apiData.results.postadres.buitenland_adres }} {{ vm.apiData.results.postadres.buitenland_woonplaats }} {{ vm.apiData.results.postadres.buitenland_naam }} {{ vm.apiData.results.postadres.buitenland_land.omschrijving }}
         </dd>
         <dt>Postadres postbus</dt>
         <dd>
-          {{ vm.apiData.postadres.postbus_nummer }} {{ vm.apiData.postadres.postbus_postcode }} {{ vm.apiData.postadres.postbus_woonplaats }}
+          {{ vm.apiData.results.postadres.postbus_nummer }} {{ vm.apiData.results.postadres.postbus_postcode }} {{ vm.apiData.results.postadres.postbus_woonplaats }}
         </dd>
       </dl>
 
       <!-- natuurlijke persoon -->
-      <dl class="key-value-list" ng-if="vm.apiData.is_natuurlijk_persoon === true">
+      <dl class="key-value-list" ng-if="vm.apiData.results.is_natuurlijk_persoon === true">
         <dt>Voornamen</dt>
-        <dd>{{ vm.apiData.voornamen }}</dd>
+        <dd>{{ vm.apiData.results.voornamen }}</dd>
         <dt>Voorvoegsels</dt>
-        <dd>{{ vm.apiData.voorvoegsels }}</dd>
+        <dd>{{ vm.apiData.results.voorvoegsels }}</dd>
         <dt>Geslachtsnaam</dt>
-        <dd>{{ vm.apiData.naam }}</dd>
+        <dd>{{ vm.apiData.results.naam }}</dd>
         <dt>Geslacht</dt>
-        <dd>{{ vm.apiData.geslacht.omschrijving }}</dd>
+        <dd>{{ vm.apiData.results.geslacht.omschrijving }}</dd>
         <dt>Geboortedatum</dt>
-        <dd>{{ vm.apiData.geboortedatum }}</dd>
+        <dd>{{ vm.apiData.results.geboortedatum }}</dd>
         <dt>Geboorteplaats</dt>
-        <dd>{{ vm.apiData.geboorteplaats }}</dd>
+        <dd>{{ vm.apiData.results.geboorteplaats }}</dd>
         <dt>Geboorteland</dt>
-        <dd>{{ vm.apiData.geboorteland.omschrijving }}</dd>
+        <dd>{{ vm.apiData.results.geboorteland.omschrijving }}</dd>
         <dt>Datum van overlijden</dt>
-        <dd>{{ vm.apiData.overlijdensdatum }}</dd>
+        <dd>{{ vm.apiData.results.overlijdensdatum }}</dd>
         <dt>Woonadres</dt>
         <dd>
-          {{ vm.apiData.woonadres.openbareruimte_naam }} {{ vm.apiData.woonadres.huisnummer }}{{ vm.apiData.woonadres.huisletter }}{{ vm.apiData.woonadres.toevoeging }} {{ vm.apiData.woonadres.postcode }} {{ vm.apiData.woonadres.woonplaats }}
+          {{ vm.apiData.results.woonadres.openbareruimte_naam }} {{ vm.apiData.results.woonadres.huisnummer }}{{ vm.apiData.results.woonadres.huisletter }}{{ vm.apiData.results.woonadres.toevoeging }} {{ vm.apiData.results.woonadres.postcode }} {{ vm.apiData.results.woonadres.woonplaats }}
         </dd>
         <dt>Woonadres buitenland</dt>
         <dd>
-          {{ vm.apiData.woonadres.buitenland_adres }} {{ vm.apiData.woonadres.buitenland_woonplaats }} {{ vm.apiData.woonadres.buitenland_naam }} {{ vm.apiData.woonadres.buitenland_land.omschrijving }}
+          {{ vm.apiData.results.woonadres.buitenland_adres }} {{ vm.apiData.results.woonadres.buitenland_woonplaats }} {{ vm.apiData.results.woonadres.buitenland_naam }} {{ vm.apiData.results.woonadres.buitenland_land.omschrijving }}
         </dd>
         <dt>Postadres</dt>
         <dd>
-          {{ vm.apiData.postadres.openbareruimte_naam }} {{ vm.apiData.postadres.huisnummer }}{{ vm.apiData.postadres.huisletter }}{{ vm.apiData.postadres.toevoeging }} {{ vm.apiData.postadres.postcode }} {{ vm.apiData.postadres.woonplaats }}
+          {{ vm.apiData.results.postadres.openbareruimte_naam }} {{ vm.apiData.results.postadres.huisnummer }}{{ vm.apiData.results.postadres.huisletter }}{{ vm.apiData.results.postadres.toevoeging }} {{ vm.apiData.results.postadres.postcode }} {{ vm.apiData.results.postadres.woonplaats }}
         </dd>
         <dt>Postadres buitenland</dt>
         <dd>
-          {{ vm.apiData.postadres.buitenland_adres }} {{ vm.apiData.postadres.buitenland_woonplaats }} {{ vm.apiData.postadres.buitenland_naam }} {{ vm.apiData.postadres.buitenland_land.omschrijving }}
+          {{ vm.apiData.results.postadres.buitenland_adres }} {{ vm.apiData.results.postadres.buitenland_woonplaats }} {{ vm.apiData.results.postadres.buitenland_naam }} {{ vm.apiData.results.postadres.buitenland_land.omschrijving }}
         </dd>
         <dt>Postadres postbus</dt>
         <dd>
-          {{ vm.apiData.postadres.postbus_nummer }} {{ vm.apiData.postadres.postbus_postcode }} {{ vm.apiData.postadres.postbus_woonplaats }}
+          {{ vm.apiData.results.postadres.postbus_nummer }} {{ vm.apiData.results.postadres.postbus_postcode }} {{ vm.apiData.results.postadres.postbus_woonplaats }}
         </dd>
       </dl>
     </div>
 
-    <div class="default-box" ng-if="vm.apiData.rechten.count">
+    <div class="default-box" ng-if="vm.apiData.results.rechten.count">
       <dp-stelselpedia-header definition="ZAKELIJK_RECHT" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.rechten.href" partial="brk/subject-rechten"></atlas-api-call>
+      <atlas-api-call endpoint="vm.apiData.results.rechten.href" partial="brk/subject-rechten"></atlas-api-call>
     </div>
   </div>
 </div>

@@ -30,7 +30,7 @@
     STELSELPEDIA.DEFINITIONS[vm.definition].meta.forEach(function (field) {
       vm.metaFields.push({
         label: STELSELPEDIA.META[field].label,
-        value: vm.apiData[field],
+        value: vm.apiData.results[field],
         type: STELSELPEDIA.META[field].type
       });
     });

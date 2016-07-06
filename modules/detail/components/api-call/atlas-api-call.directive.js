@@ -32,19 +32,16 @@
       }
 
       api.getByUrl(scope.endpoint).then(function (response) {
-        //console.log(response);
-        // scope.count = response.count || {};
-        // if(response._links.next) {
-        //   scope.next = response._links.next.href || {};
-        // }
-        // if(response.results) { //VBO & nummeraanduiding
-        //   scope.apiData = response.results;
-        // } else {
-        //   scope.apiData = response;
-        // }
 
-        scope.apiData = response;
-        console.log(scope);
+        scope.apiData.count = response.count;
+        if(response._links.next) {
+          scope.apiData.next = response._links.next.href;
+        }
+        if(response.results) { //VBO & nummeraanduiding
+          scope.apiData.results = response.results;
+        } else {
+          scope.apiData.results = response;
+        }
 
       });
 

@@ -1,6 +1,6 @@
 <div class="detail-page__table">
 
-  <table ng-if="apiData">
+  <table ng-if="apiData.results">
     <thead>
       <tr>
         <th>Datum</th>
@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="detail-page__table--body" ng-repeat="object in apiData">
+      <tr class="detail-page__table--body" ng-repeat="object in apiData.results">
         <td>{{ object.datum }}</td>
         <td class="util__align-right">{{object.hoogte_nap >= 0 ? '+' : ''}}{{ object.hoogte_nap | number:3}}</td>
         <td class="util__align-right">{{object.zakking >= 0 ? '+' : ''}}{{ object.zakking | number:3}}</td>
@@ -21,7 +21,7 @@
     </tbody>
   </table>
 
-  <a class="loadmore" ng-click="loadMore()" ng-if="next">
+  <a class="loadmore" ng-click="loadMore()" ng-if="apiData.next">
     <i class="fa fa-plus fa-2x link"></i>Meer
   </a>
 </div>

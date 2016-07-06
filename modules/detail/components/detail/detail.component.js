@@ -16,11 +16,12 @@
     function AtlasDetailController ($scope, ACTIONS, api, endpointParser, store) {
 
         var vm = this;
+        vm.apiData = {};
 
         $scope.$watch('vm.endpoint', function(newValue) {
-            api.getByUrl(newValue).then(function (apiData) {
+            api.getByUrl(newValue).then(function (data) {
                 //koppel data aan de scope
-                vm.apiData = apiData;
+                vm.apiData.results = data;
 
                 //koppel de goede template op basis van het endpoint
                 vm.templateUrl = endpointParser.parseEndpoint(newValue).templateUrl;
