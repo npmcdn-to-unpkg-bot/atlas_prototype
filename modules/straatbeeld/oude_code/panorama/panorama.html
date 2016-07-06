@@ -1,0 +1,10 @@
+<div class="js-marzipano-viewer marzipano-viewer" ng-mousemove="updateOrientation()"></div>
+
+<dp-panorama-minimap panorama-state="panoramaState"></dp-panorama-minimap>
+
+<div class="panorama-metadata">
+  <ul>
+    <li><i class="fa fa-fw fa-clock-o"></i> Opnamedatum: <strong>{{panoramaState.date | date : 'dd-MM-yyyy'}}</strong></li>
+    <li><i class="fa fa-fw fa-map-marker"></i> Opnamelocatie (RD): <strong>{{panoramaState.location | wgs84ToRd}}</strong></li>
+  </ul>
+</div>
