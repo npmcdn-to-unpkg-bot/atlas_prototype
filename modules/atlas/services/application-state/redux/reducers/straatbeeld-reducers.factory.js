@@ -23,7 +23,7 @@
          * it'll use the car's orientation for the heading and pitch and a default FOV.
          *
          * @param {Object} oldState
-         * @param {Number} payload - A panorama ID
+         * @param {Number|Array} payload - A panorama ID (Number) or a location (Array)
          *
          * @returns {Object} newState
          */
@@ -31,12 +31,19 @@
             var newState = angular.copy(oldState);
 
             newState.straatbeeld = {
-                id: payload,
                 camera: {
                     location: null
                 },
                 isLoading: true
             };
+
+            if (angular.isNumber(payload)) {
+                newState.straatbeeld.id = payload;
+                newState.straatbeeld.location = null;
+            } else {
+                newState.straatbeeld.id = null;
+                newState.straatbeeld.location = payload;
+            }
 
             //Save the orientation from the previous state when navigating to another panorama
             if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.heading) {
@@ -70,6 +77,12 @@
             var newState = angular.copy(oldState);
 
             newState.map.isLoading = false;
+
+            newState.straatbeeld = {};
+
+            //After loading, the 'nearest panorama location' is no longer relevant, only the ID of the found panorama is
+            newState.straatbeeld.id = payload.id;
+            newState.straatbeeld.location = null;
 
             newState.straatbeeld.camera.location = payload.location;
 

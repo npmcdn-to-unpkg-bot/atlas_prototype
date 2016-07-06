@@ -1,4 +1,37 @@
-<div class="js-marzipano-viewer marzipano-viewer" ng-mousemove="updateOrientation()"></div>
+<div class="js-marzipano-viewer marzipano-viewer" ng-mousemove="updateOrientation()">
+    straatbeeld.html
+
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th scope="row">straatbeeld.id</th>
+            <td>{{vm.id}}</td>
+        </tr>
+        <tr>
+            <th scope="row">straatbeeld.location</th>
+            <td>{{vm.location.join(', ')}}</td>
+        </tr>
+        <tr>
+            <th scope="row">straatbeeld.camera.location</th>
+            <td>{{vm.camera.location.join(', ')}}</td>
+        </tr>
+        <tr>
+            <th scope="row">straatbeeld.camera.heading</th>
+            <td>{{vm.camera.heading}}</td>
+        </tr>
+        <tr>
+            <th scope="row">straatbeeld.camera.pitch</th>
+            <td>{{vm.camera.pitch}}</td>
+        </tr>
+        <tr>
+            <th scope="row">straatbeeld.camera.fov</th>
+            <td>{{vm.camera.fov}}</td>
+        </tr>
+        <tr>
+            <th scope="row">staabeeld.isLoading</th>
+            <td>{{vm.isLoading}}</td>
+        </tr>
+    </table>
+</div>
 
 <!--div class="panorama-metadata">
     <ul>

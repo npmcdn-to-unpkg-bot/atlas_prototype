@@ -5,9 +5,9 @@
         .module('atlas')
         .factory('urlReducers', urlReducersFactory);
 
-    urlReducersFactory.$inject = ['ACTIONS', 'DEFAULT_STATE'];
+    urlReducersFactory.$inject = ['$location', 'ACTIONS', 'DEFAULT_STATE'];
 
-    function urlReducersFactory (ACTIONS, DEFAULT_STATE) {
+    function urlReducersFactory ($location, ACTIONS, DEFAULT_STATE) {
         var reducers = {};
 
         reducers[ACTIONS.URL_CHANGE] = urlChangeReducer;
@@ -89,6 +89,7 @@
             }
 
             function getStraatbeeldState (oldState, payload) {
+                console.log(payload);
                 if (payload.id) {
                     var location;
 

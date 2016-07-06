@@ -35,6 +35,7 @@
             /*
             straatbeeld: {
                 id: 1,
+                location: [52.321, 4.987],
                 camera: {
                     location: [52.789, 4.123],
                     heading: 20,

@@ -23,7 +23,7 @@
                 cameraYaw,
                 cameraPitch,
                 cameraFov;
-
+            /*
             cameraYaw = panoramaViewer.view().yaw();
             cameraPitch = panoramaViewer.view().pitch();
             cameraFov = panoramaViewer.view().fov();
@@ -42,6 +42,7 @@
                 location: 'replace',
                 notify: false
             });
+            */
         }
     }
 })();

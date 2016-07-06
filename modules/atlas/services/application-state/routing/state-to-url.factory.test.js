@@ -60,8 +60,8 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                lat: 52.789,
-                lon: 4.123
+                lat: '52.789',
+                lon: '4.123'
             }));
         });
 
@@ -110,7 +110,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                zoom: 8
+                zoom: '8'
             }));
         });
 
@@ -174,19 +174,19 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                id: jasmine.Any(Number)
+                id: jasmine.Any(String)
             }));
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                heading: jasmine.Any(Number)
+                heading: jasmine.Any(String)
             }));
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                pitch: jasmine.Any(Number)
+                pitch: jasmine.Any(String)
             }));
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                fov: jasmine.Any(Number)
+                fov: jasmine.Any(String)
             }));
         });
 
@@ -203,10 +203,10 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                id: 67890,
-                heading: 7,
-                pitch: 8,
-                fov: 9
+                id: '67890',
+                heading: '7',
+                pitch: '8',
+                fov: '9'
             }));
         });
     });

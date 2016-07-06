@@ -5,13 +5,14 @@
         .module('dpStraatbeeld')
         .directive('dpPanorama', dpPanoramaDirective);
 
-    dpPanoramaDirective.$inject = ['marzipanoService', 'panoramaOrientation'];
+    dpPanoramaDirective.$inject = ['marzipanoService', 'earthmineService', 'panoramaOrientation'];
 
-    function dpPanoramaDirective (marzipanoService, panoramaOrientation) {
+    function dpPanoramaDirective (marzipanoService, earthmineService, panoramaOrientation) {
         return {
             restrict: 'E',
             scope: {
                 id: '=',
+                location: '=',
                 camera: '=',
                 isLoading: '='
             },
@@ -25,12 +26,28 @@
 
             container = element[0].querySelector('.js-marzipano-viewer');
 
-            panoramaViewer = marzipanoService.initialize(container);
-            marzipanoService.loadScene(scope.panoramaState);
+            console.log(scope.id, scope.location, scope.camera, scope.isLoading);
 
-            scope.updateOrientation = function () {
-                panoramaOrientation.update(panoramaViewer, scope.panoramaState);
-            };
+            getPanoramaState(scope.id, scope.location).then(function (panoramaState) {
+                panoramaViewer = marzipanoService.initialize(container);
+
+                marzipanoService.loadScene(panoramaState);
+
+                scope.updateOrientation = function () {
+                    panoramaOrientation.update(panoramaViewer);
+                };
+            });
+        }
+
+        function getPanoramaState (id, location) {
+            if (angular.isNumber(id)) {
+                return earthmineService.getImageDataById(id);
+            } else {
+                return earthmineService.getImageDataByCoordinates(
+                    location[0],
+                    location[1]
+                );
+            }
         }
     }
 })();

@@ -10,6 +10,6 @@
     configuration.$inject = ['$provide'];
 
     function configuration ($provide) {
-        $provide.constant('Marzipano', Marzipano)
+        $provide.constant('Marzipano', Marzipano);
     }
 })();
