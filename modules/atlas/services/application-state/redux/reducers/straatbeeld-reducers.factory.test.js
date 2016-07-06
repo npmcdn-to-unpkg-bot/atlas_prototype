@@ -26,12 +26,26 @@ describe('The straatbeeldReducers factory', function () {
     });
 
     describe('FETCH_STRAATBEELD', function () {
-        it('sets the ID', function () {
-            var inputState = angular.copy(defaultState),
-                output;
+        describe('can have a reference to a panorama scene', function () {
+            it('by ID', function () {
+                var inputState = angular.copy(defaultState),
+                    output;
 
-            output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, 123);
-            expect(output.straatbeeld.id).toBe(123);
+                output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, 123);
+
+                expect(output.straatbeeld.id).toBe(123);
+                expect(output.straatbeeld.location).toBeNull();
+            });
+
+            it('or by location', function () {
+                var inputState = angular.copy(defaultState),
+                    output;
+
+                output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, [52.987, 4.321]);
+
+                expect(output.straatbeeld.id).toBeNull();
+                expect(output.straatbeeld.location).toEqual([52.987, 4.321]);
+            });
         });
 
         it('resets the (previous) camera location', function () {
@@ -117,11 +131,27 @@ describe('The straatbeeldReducers factory', function () {
 
         beforeEach(function () {
             showStraatbeeldPayload = {
-                location: [51.5, 4.5],
-                heading: 7,
-                pitch: 8,
-                fov: 9
+                id: 98765,
+                camera: {
+                    location: [51.5, 4.5],
+                    heading: 7,
+                    pitch: 8,
+                    fov: 9
+                }
             };
+        });
+
+        it('sets the ID when searching by location and it removes the search location', function () {
+            var inputState = angular.copy(inputStateWithStraatbeeld),
+                output;
+
+            inputState.straatbeeld.id = null;
+            inputState.straatbeeld.location = [52.4, 4.52];
+
+            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
+
+            expect(output.straatbeeld.id).toBe(98765);
+            expect(output.straatbeeld.location).toBeNull();
         });
 
         it('removes the loading indicators from the map and straatbeeld', function () {

@@ -89,20 +89,20 @@
             }
 
             function getStraatbeeldState (oldState, payload) {
-                console.log(payload);
-                if (payload.id) {
-                    var location;
+                if (hasStraatbeeld(payload)) {
+                    var cameraLocation;
 
                     if (oldState.straatbeeld && oldState.straatbeeld.id === Number(payload.id)) {
-                        location = oldState.straatbeeld.camera && oldState.straatbeeld.camera.location || null;
+                        cameraLocation = oldState.straatbeeld.camera && oldState.straatbeeld.camera.location || null;
                     } else {
-                        location = null;
+                        cameraLocation = null;
                     }
 
                     return {
-                        id: Number(payload.id),
+                        id: Number(payload.id) || null,
+                        location: hasLocation(payload) ? [payload.plat, payload.plon] : null,
                         camera: {
-                            location: location,
+                            location: cameraLocation,
                             heading: Number(payload.heading),
                             pitch: Number(payload.pitch),
                             fov: Number(payload.fov)
@@ -111,6 +111,18 @@
                     };
                 } else {
                     return null;
+                }
+
+                function hasStraatbeeld (payload) {
+                    return payload.id || hasLocation(payload);
+                }
+
+                /**
+                 * @description This is a 'search nearest straatbeeld' location, not the location of the camera of a
+                 * found panorama scene.
+                 */
+                function hasLocation (payload) {
+                    return angular.isNumber(payload.plat) && angular.isNumber(payload.plon);
                 }
             }
         }

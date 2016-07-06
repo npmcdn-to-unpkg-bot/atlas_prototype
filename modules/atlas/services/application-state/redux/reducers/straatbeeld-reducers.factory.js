@@ -78,25 +78,23 @@
 
             newState.map.isLoading = false;
 
-            newState.straatbeeld = {};
-
             //After loading, the 'nearest panorama location' is no longer relevant, only the ID of the found panorama is
             newState.straatbeeld.id = payload.id;
             newState.straatbeeld.location = null;
 
-            newState.straatbeeld.camera.location = payload.location;
+            newState.straatbeeld.camera.location = payload.camera.location;
 
             //Only set the heading, pitch and fov if there is no known previous state
             if (angular.isUndefined(oldState.straatbeeld.camera.heading)) {
-                newState.straatbeeld.camera.heading = payload.heading;
+                newState.straatbeeld.camera.heading = payload.camera.heading;
             }
 
             if (angular.isUndefined(oldState.straatbeeld.camera.pitch)) {
-                newState.straatbeeld.camera.pitch = payload.pitch;
+                newState.straatbeeld.camera.pitch = payload.camera.pitch;
             }
 
             if (angular.isUndefined(oldState.straatbeeld.camera.fov)) {
-                newState.straatbeeld.camera.fov = payload.fov;
+                newState.straatbeeld.camera.fov = payload.camera.fov;
             }
 
             newState.straatbeeld.isLoading = false;
