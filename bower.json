@@ -5,6 +5,7 @@
     "angular-sanitize": "^1.5.7",
     "leaflet": "https://github.com/DatapuntAmsterdam/atlas_leaflet.git#master",
     "leaflet.wms": "~0.1.0",
+    "marzipano": "https://github.com/DatapuntAmsterdam/marzipano.git#master",
     "proj4": "*",
     "proj4leaflet": "https://github.com/DatapuntAmsterdam/proj4leaflet.git#master",
     "redux": "https://npmcdn.com/redux/dist/redux.js"

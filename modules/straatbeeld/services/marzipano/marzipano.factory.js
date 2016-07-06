@@ -14,7 +14,14 @@
         'angleConversion'
     ];
 
-    function marzipanoService ($state, Marzipano, STRAATBEELD_CONFIG, earthmineService, hotspotService, angleConversion) {
+    function marzipanoService (
+        $state,
+        Marzipano,
+        STRAATBEELD_CONFIG,
+        earthmineService,
+        hotspotService,
+        angleConversion) {
+
         var viewer;
 
         return {

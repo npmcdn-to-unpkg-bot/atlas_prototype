@@ -37,7 +37,8 @@ xdescribe('The earthmine factory', function () {
         });
 
         $httpBackend.whenGET('http://www.example.com/pano-pano-proxy/?id=1').respond(mockedEarthmineResponse);
-        $httpBackend.whenGET('http://www.example.com/pano-pano-proxy/?lat=52.12&lon=4.89').respond(mockedEarthmineResponse);
+        $httpBackend.whenGET('http://www.example.com/pano-pano-proxy/?lat=52.12&lon=4.89')
+            .respond(mockedEarthmineResponse);
     });
 
     describe('can get data from the API', function () {
