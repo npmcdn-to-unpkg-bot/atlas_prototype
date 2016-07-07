@@ -33,9 +33,10 @@
         }
 
         api.getByUrl(scope.apiData.next).then(function (response) {
+          //add next page if there is any or ""
           scope.apiData.next = response._links.next.href;
-          scope.apiData.results.push.apply(scope.apiData.results, response.results);
           // push results to end of scope.apiData.results
+          scope.apiData.results.push.apply(scope.apiData.results, response.results);
         });
       };
     }
