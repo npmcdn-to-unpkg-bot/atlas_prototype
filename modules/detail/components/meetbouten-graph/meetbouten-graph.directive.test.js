@@ -1,4 +1,4 @@
-describe('The dp-plugin-detail-graph directive', function () {
+describe('The atlas-meetbout-graph directive', function () {
     'use strict';
 
     var api,
@@ -53,7 +53,7 @@ describe('The dp-plugin-detail-graph directive', function () {
         var directive,
             scope;
 
-        var html = document.createElement('detail-meetbout-graph');
+        var html = document.createElement('atlas-meetbout-graph');
         html.setAttribute('href', href);
         html.setAttribute('page-size', 'pageSize');
 

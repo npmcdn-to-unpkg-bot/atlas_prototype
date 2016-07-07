@@ -3,11 +3,11 @@
 
     angular
         .module('atlasDetail')
-        .service('pluginDetailService', pluginDetailService);
+        .service('atlasTemplateCompilerService', atlasTemplateCompilerService);
 
-    pluginDetailService.$inject = ['$templateRequest', '$compile'];
+    atlasTemplateCompilerService.$inject = ['$templateRequest', '$compile'];
 
-    function pluginDetailService ($templateRequest, $compile) {
+    function atlasTemplateCompilerService ($templateRequest, $compile) {
         return {
             compileTemplate: compileTemplate
         };

@@ -1,11 +1,11 @@
 <div class="detail-page__content">
   <div class="detail-page__content--main">
     <div class="default-box">
-      <dp-stelselpedia-header
+      <atlas-stelselpedia-header
         heading="{{vm.apiData.results.naam}}"
         definition="BUURTCOMBINATIE"
         meta-data="vm.apiData">
-      </dp-stelselpedia-header>
+      </atlas-stelselpedia-header>
 
       <dl class="key-value-list">
         <dt>Volledige code</dt>
@@ -14,15 +14,15 @@
     </div>
 
     <div class="list-box" ng-if="vm.apiData.results.buurten.count">
-      <dp-stelselpedia-header definition="BUURT" use-plural="true"></dp-stelselpedia-header>
+      <atlas-stelselpedia-header definition="BUURT" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.buurten.href}}" partial="lijst"></atlas-api-call>
     </div>
 
-    <dp-bbga-graphs
+    <atlas-bbga-graphs
       gebied-heading="{{vm.apiData.results.naam}}"
       gebied-code="{{vm.apiData.results.volledige_code}}">
-    </dp-bbga-graphs>
+    </atlas-bbga-graphs>
   </div>
 
 <!--   <div class="detail-page__content--sidebar">

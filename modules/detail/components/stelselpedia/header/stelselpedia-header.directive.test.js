@@ -1,4 +1,4 @@
-describe('The dp-stelselpedia-header directive', function () {
+describe('The atlas-stelselpedia-header directive', function () {
     var $compile,
         $rootScope;
 
@@ -30,7 +30,7 @@ describe('The dp-stelselpedia-header directive', function () {
                 }
             });
 
-            $provide.factory('dpStelselpediaMetaDirective', function () {
+            $provide.factory('atlasStelselpediaMetaDirective', function () {
                 return {};
             });
             $provide.factory('atlasWkpbLinkDirective', function () {
@@ -49,7 +49,7 @@ describe('The dp-stelselpedia-header directive', function () {
             element,
             scope;
 
-        element = document.createElement('dp-stelselpedia-header');
+        element = document.createElement('atlas-stelselpedia-header');
         scope = $rootScope.$new();
 
         if (heading !== null) {
@@ -126,7 +126,7 @@ describe('The dp-stelselpedia-header directive', function () {
             .toBe('Lees verder op stelselpedia');
     });
 
-    describe('optionally loads the dp-stelselpedia-meta directive', function () {
+    describe('optionally loads the atlas-stelselpedia-meta directive', function () {
         var metaData;
 
         beforeEach(function () {
@@ -150,7 +150,7 @@ describe('The dp-stelselpedia-header directive', function () {
             expect(directive.find('.stelselpedia-header__button:nth-of-type(2)').text().trim()).toBe('toon metadata');
         });
 
-        it('can open a panel that loads the dp-stelselpedia-meta directive', function () {
+        it('can open a panel that loads the atlas-stelselpedia-meta directive', function () {
             var directive = getDirective(null, 'BOUWBLOK', false, metaData, null);
 
             //The panel is hidden by default
@@ -161,7 +161,7 @@ describe('The dp-stelselpedia-header directive', function () {
 
             expect(directive.find('.stelselpedia-header__content').length).toBe(1);
             expect(directive.find('.stelselpedia-header__content h3').text().trim()).toBe('Metadata van bouwblok');
-            expect(directive.find('.stelselpedia-header__content dp-stelselpedia-meta').length).toBe(1);
+            expect(directive.find('.stelselpedia-header__content atlas-stelselpedia-meta').length).toBe(1);
         });
     });
 

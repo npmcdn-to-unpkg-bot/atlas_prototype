@@ -3,11 +3,11 @@
 
     angular
         .module('atlasDetail')
-        .directive('detailMeetboutGraph', detailMeetboutGraphDirective);
+        .directive('atlasMeetboutGraph', atlasMeetboutGraphDirective);
 
-    detailMeetboutGraphDirective.$inject = ['api', 'd3', 'dateConverter'];
+    atlasMeetboutGraphDirective.$inject = ['api', 'd3', 'dateConverter'];
 
-    function detailMeetboutGraphDirective (api, d3, dateConverter) {
+    function atlasMeetboutGraphDirective (api, d3, dateConverter) {
         return {
             restrict: 'E',
             scope: {

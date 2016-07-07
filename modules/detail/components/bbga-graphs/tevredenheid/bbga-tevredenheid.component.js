@@ -3,19 +3,19 @@
 
     angular
         .module('atlasDetail')
-        .component('dpBbgaTevredenheid', {
+        .component('atlasBbgaTevredenheid', {
             templateUrl: 'modules/detail/components/bbga-graphs/tevredenheid/bbga-tevredenheid.html',
             bindings: {
                 gebiedHeading: '@',
                 gebiedCode: '@'
             },
-            controller: DpBbgaTevredenheid,
+            controller: AtlasBbgaTevredenheid,
             controllerAs: 'vm'
         });
 
-    DpBbgaTevredenheid.$inject = ['BBGA_TEVREDENHEID_CONFIG', 'bbgaDataService'];
+    AtlasBbgaTevredenheid.$inject = ['BBGA_TEVREDENHEID_CONFIG', 'bbgaDataService'];
 
-    function DpBbgaTevredenheid (BBGA_TEVREDENHEID_CONFIG, bbgaDataService) {
+    function AtlasBbgaTevredenheid (BBGA_TEVREDENHEID_CONFIG, bbgaDataService) {
         var vm = this;
 
         bbgaDataService.getGraphData('TEVREDENHEID', vm.gebiedHeading, vm.gebiedCode).then(function (bbgaData) {

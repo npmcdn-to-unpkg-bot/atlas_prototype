@@ -3,9 +3,9 @@
 
     angular
         .module('atlasDetail')
-        .directive('dpStelselpediaHeader', dpStelselpediaHeaderDirective);
+        .directive('atlasStelselpediaHeader', atlasStelselpediaHeaderDirective);
 
-    function dpStelselpediaHeaderDirective () {
+    function atlasStelselpediaHeaderDirective () {
         return {
             restrict: 'E',
             scope: {
@@ -17,15 +17,15 @@
             },
             templateUrl: 'modules/detail/components/stelselpedia/header/stelselpedia-header.html',
             transclude: true,
-            controller: DpStelselpediaHeaderController,
+            controller: AtlasStelselpediaHeaderController,
             controllerAs: 'vm',
             bindToController: true
         };
     }
 
-    DpStelselpediaHeaderController.$inject = ['$sce', 'STELSELPEDIA'];
+    AtlasStelselpediaHeaderController.$inject = ['$sce', 'STELSELPEDIA'];
 
-    function DpStelselpediaHeaderController ($sce, STELSELPEDIA) {
+    function AtlasStelselpediaHeaderController ($sce, STELSELPEDIA) {
         var vm = this,
             isVisible = {};
 

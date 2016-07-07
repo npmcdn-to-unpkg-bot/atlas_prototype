@@ -5,9 +5,9 @@
         .module('atlasDetail')
         .directive('atlasPartialSelect', atlasPartialSelectDirective);
 
-    atlasPartialSelectDirective.$inject = ['api', 'pluginDetailService'];
+    atlasPartialSelectDirective.$inject = ['api', 'atlasTemplateCompilerService'];
 
-    function atlasPartialSelectDirective (api, pluginDetailService) {
+    function atlasPartialSelectDirective (api, atlasTemplateCompilerService) {
         return {
             restrict: 'E',
             scope: {
@@ -25,7 +25,7 @@
 
             partialPath = partialRoot + scope.partial + '.html';
 
-            pluginDetailService.compileTemplate(scope, element, partialPath);
+            atlasTemplateCompilerService.compileTemplate(scope, element, partialPath);
 
             scope.loadMore = function () {
                 if (!scope.apiData.next) {

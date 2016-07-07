@@ -1,11 +1,11 @@
 <div class="detail-page__content">
   <div class="detail-page__content--main">
     <div class="default-box">
-      <dp-stelselpedia-header
+      <atlas-stelselpedia-header
         heading="{{vm.apiData.results._display}}"
         definition="PAND"
         meta-data="vm.apiData.results">
-      </dp-stelselpedia-header>
+      </atlas-stelselpedia-header>
 
       <dl class="key-value-list">
         <dt>Oorspronkelijk bouwjaar</dt>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="list-box" ng-if="vm.apiData.results.verblijfsobjecten.count">
-      <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
+      <atlas-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.verblijfsobjecten.href}}" partial="adressen_lijst"></atlas-api-call>
     </div>

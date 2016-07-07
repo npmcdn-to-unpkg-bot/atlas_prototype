@@ -3,14 +3,14 @@
 
     angular
         .module('atlasDetail')
-        .directive('dpNummeraanduidingHeader', dpNummeraanduidingHeaderDirective);
+        .directive('atlasNummeraanduidingHeader', atlasNummeraanduidingHeaderDirective);
 
     /*
      * @description
      * When a verblijfsobject has the status 'Verblijfsobject gevormd'; show the heading in italic and show a red status
      * badge. Show a blue badge when this address is a nevenadres.
      */
-    function dpNummeraanduidingHeaderDirective () {
+    function atlasNummeraanduidingHeaderDirective () {
         return {
             restrict: 'E',
             scope: {
@@ -20,13 +20,13 @@
                 verblijfsobject: '='
             },
             templateUrl: 'modules/detail/components/nummeraanduiding-header/nummeraanduiding-header.html',
-            controller: DpNummeraanduidingHeaderController,
+            controller: AtlasNummeraanduidingHeaderController,
             controllerAs: 'vm',
             bindToController: true
         };
     }
 
-    function DpNummeraanduidingHeaderController () {
+    function AtlasNummeraanduidingHeaderController () {
         var vm = this;
 
         vm.isGevormd = Number(vm.verblijfsobject.status.code) === 18;

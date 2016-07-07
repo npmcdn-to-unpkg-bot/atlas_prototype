@@ -42,7 +42,7 @@
   <div ng-if="vm.hasMetaData && vm.isVisible('meta')" class="stelselpedia-header__content">
     <h3>Metadata van {{vm.stelselpedia.label | lowercase}}</h3>
 
-    <dp-stelselpedia-meta definition="{{vm.definition}}" api-data="vm.metaData"></dp-stelselpedia-meta>
+    <atlas-stelselpedia-meta definition="{{vm.definition}}" api-data="vm.metaData"></atlas-stelselpedia-meta>
 
     <button class="stelselpedia-header__button" ng-click="vm.toggle('meta')">
       <i class="fa fa-times"></i>

@@ -1,12 +1,12 @@
 <div class="detail-page__content">
   <div class="detail-page__content--main">
     <div class="default-box">
-      <dp-stelselpedia-header
+      <atlas-stelselpedia-header
         heading="{{vm.apiData.results.naam}}"
         definition="STADSDEEL"
         meta-data="vm.apiData">
 
-      </dp-stelselpedia-header>
+      </atlas-stelselpedia-header>
 
       <dl class="key-value-list">
         <dt>Code</dt>
@@ -18,20 +18,20 @@
     </div>
 
     <div class="list-box" ng-if="vm.apiData.results.buurtcombinaties.count">
-      <dp-stelselpedia-header definition="BUURTCOMBINATIE" use-plural="true"></dp-stelselpedia-header>
+      <atlas-stelselpedia-header definition="BUURTCOMBINATIE" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.buurtcombinaties.href}}" partial="lijst"></atlas-api-call>
     </div>
 
     <div class="list-box" ng-if="vm.apiData.results.gebiedsgerichtwerken.count">
-      <dp-stelselpedia-header definition="GEBIEDSGERICHTWERKEN" use-plural="true"></dp-stelselpedia-header>
+      <atlas-stelselpedia-header definition="GEBIEDSGERICHTWERKEN" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.gebiedsgerichtwerken.href}}" partial="lijst"></atlas-api-call>
     </div>
 
-    <dp-bbga-graphs
+    <atlas-bbga-graphs
       gebied-heading="{{vm.apiData.results.naam}}"
       gebied-code="{{vm.apiData.results.code}}">
-    </dp-bbga-graphs>
+    </atlas-bbga-graphs>
   </div>
 </div>
