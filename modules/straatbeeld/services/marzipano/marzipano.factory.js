@@ -6,7 +6,6 @@
         .factory('marzipanoService', marzipanoService);
 
     marzipanoService.$inject = [
-        '$state',
         'Marzipano',
         'STRAATBEELD_CONFIG',
         'earthmineService',
@@ -15,7 +14,6 @@
     ];
 
     function marzipanoService (
-        $state,
         Marzipano,
         STRAATBEELD_CONFIG,
         earthmineService,
@@ -40,15 +38,13 @@
             return viewer;
         }
 
-        function loadScene (panoramaState) {
+        function loadScene (sceneId, camera) {
             var view,
                 viewLimiter,
                 scene,
-                sceneId,
                 imageSourceUrl,
                 cameraYaw;
 
-            sceneId = panoramaState.id;
             imageSourceUrl = earthmineService.getImageSourceUrl(sceneId);
 
             viewLimiter = Marzipano.RectilinearView.limit.traditional(
@@ -56,7 +52,11 @@
                 angleConversion.degreesToRadians(STRAATBEELD_CONFIG.MAX_FOV)
             );
 
-            view = new Marzipano.RectilinearView(panoramaState.carOrientation, viewLimiter);
+            view = new Marzipano.RectilinearView({
+                yaw: 0,
+                pitch: 0,
+                fov: 70
+            }, viewLimiter);
 
             scene = viewer.createScene({
                 source: Marzipano.ImageUrlSource.fromString(imageSourceUrl),
@@ -65,34 +65,25 @@
                 pinFirstLevel: true
             });
 
-            if (panoramaState.cameraOrientation.heading) {
-                cameraYaw = panoramaState.cameraOrientation.heading - panoramaState.carOrientation.heading;
+            if (camera.heading) {
+                cameraYaw = camera.heading - camera.heading;
 
                 view.setYaw(cameraYaw);
             }
 
-            if (panoramaState.cameraOrientation.pitch) {
-                view.setPitch(panoramaState.cameraOrientation.pitch);
+            if (camera.pitch) {
+                view.setPitch(camera.pitch);
             }
 
-            if (panoramaState.cameraOrientation.fov) {
-                view.setFov(panoramaState.cameraOrientation.fov);
+            if (camera.fov) {
+                view.setFov(camera.fov);
             }
-
+            /*
             panoramaState.hotspots.forEach(function (hotspot) {
                 addHotSpot(scene, panoramaState, hotspot);
             });
-
+            */
             scene.switchTo();
-
-            $state.go('app.straatbeeld', {
-                id: sceneId,
-                plat: null,
-                plon: null
-            }, {
-                location: 'replace',
-                notify: false
-            });
         }
 
         function addHotSpot (scene, panoramaState, hotspot) {

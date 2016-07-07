@@ -32,7 +32,10 @@
 
             newState.straatbeeld = {
                 camera: {
-                    location: null
+                    location: null,
+                    heading: null,
+                    pitch: null,
+                    fov: null
                 },
                 isLoading: true
             };
@@ -85,15 +88,15 @@
             newState.straatbeeld.camera.location = payload.camera.location;
 
             //Only set the heading, pitch and fov if there is no known previous state
-            if (angular.isUndefined(oldState.straatbeeld.camera.heading)) {
+            if (oldState.straatbeeld.camera.heading === null) {
                 newState.straatbeeld.camera.heading = payload.camera.heading;
             }
 
-            if (angular.isUndefined(oldState.straatbeeld.camera.pitch)) {
+            if (oldState.straatbeeld.camera.pitch === null) {
                 newState.straatbeeld.camera.pitch = payload.camera.pitch;
             }
 
-            if (angular.isUndefined(oldState.straatbeeld.camera.fov)) {
+            if (oldState.straatbeeld.camera.fov === null) {
                 newState.straatbeeld.camera.fov = payload.camera.fov;
             }
 

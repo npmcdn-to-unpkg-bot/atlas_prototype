@@ -1,3 +1,4 @@
+/*
 (function () {
     angular
         .module('dpStraatbeeld')
@@ -46,3 +47,4 @@
         };
     }
 })();
+*/

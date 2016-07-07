@@ -20,11 +20,8 @@
             return {
                 id: Number(earthmineData['pano-id']),
                 date: parseDate(earthmineData.timestamp),
-                location: {
-                    latitude: earthmineData.location.lat,
-                    longitude: earthmineData.location.lon
-                },
-                carOrientation: {
+                camera: {
+                    location: [earthmineData.location.lat, earthmineData.location.lon],
                     heading: angleConversion.degreesToRadians(earthmineData['pano-orientation'].yaw),
                     pitch: angleConversion.degreesToRadians(earthmineData['pano-orientation'].pitch)
                 },

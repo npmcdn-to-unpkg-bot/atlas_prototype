@@ -5,9 +5,9 @@
         .module('dpStraatbeeld')
         .factory('earthmineService', earthmineService);
 
-    earthmineService.$inject = ['$http', 'urls', 'earthmineDataFormatter'];
+    earthmineService.$inject = ['$http', 'earthmineDataFormatter'];
 
-    function earthmineService ($http, urls, earthmineDataFormatter) {
+    function earthmineService ($http, earthmineDataFormatter) {
         return {
             getImageDataById: getImageDataById,
             getImageDataByCoordinates: getImageDataByCoordinates,
@@ -30,7 +30,8 @@
         function getImageData (searchParams) {
             return $http({
                 method: 'GET',
-                url: urls.PANO_PANO_PROXY,
+                //url: urls.PANO_PANO_PROXY,
+                url: 'https://map-acc.datapunt.amsterdam.nl/earthmine/get_panos.php',
                 params: searchParams
             }).then(function (response) {
                 return earthmineDataFormatter.formatPanoramaState(response.data);
@@ -38,7 +39,10 @@
         }
 
         function getImageSourceUrl (sceneId) {
-            return urls.PANO_TILE_PROXY + '?id=' + sceneId + '&f={f}&z={z}&x={x}&y={y}';
+            return 'https://map-acc.datapunt.amsterdam.nl/earthmine/tile_proxy.php?id=' + sceneId + '&f={f}&z={z}&x={' +
+                'x}&y={y}';
+
+            //return urls.PANO_TILE_PROXY + '?id=' + sceneId + '&f={f}&z={z}&x={x}&y={y}';
         }
     }
 })();
