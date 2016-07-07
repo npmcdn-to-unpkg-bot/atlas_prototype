@@ -1,7 +1,7 @@
 {
   "name": "atlas",
   "dependencies": {
-    "angular": "^1.5.5",
+    "angular": "^1.5.7",
     "angular-sanitize": "^1.5.7",
     "leaflet": "https://github.com/DatapuntAmsterdam/atlas_leaflet.git#master",
     "leaflet.wms": "~0.1.0",
@@ -12,6 +12,9 @@
     "bbga_visualisatie_d3": "https://github.com/DatapuntAmsterdam/bbga_visualisatie_d3.git"
   },
   "devDependencies": {
-    "angular-mocks": "1.5.5"
+    "angular-mocks": "1.5.7"
+  },
+  "resolutions": {
+    "angular": "^1.5.7"
   }
 }
