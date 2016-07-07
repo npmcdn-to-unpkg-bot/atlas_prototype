@@ -12,7 +12,7 @@
             restrict: 'E',
             scope: {
                 id: '=',
-                location: '=',
+                searchLocation: '=',
                 camera: '=',
                 isLoading: '='
             },
@@ -27,18 +27,17 @@
 
             marzipanoService.initialize(container);
 
-            getPanoramaState(scope.id, scope.location).then(function (earthmineData) {
+            getPanoramaState(scope.id, scope.searchLocation).then(function (earthmineData) {
                 store.dispatch({
                     type: ACTIONS.SHOW_STRAATBEELD,
                     payload: {
-                        id: earthmineData.id,
-                        camera: earthmineData.camera
+                        id: earthmineData.id
                     }
                 });
             });
 
             scope.$watch('id', function () {
-                marzipanoService.loadScene(scope.id, scope.camera.heading, scope.camera.pitch, scope.camera.fov);
+                marzipanoService.loadScene(scope.id);
             });
         }
 

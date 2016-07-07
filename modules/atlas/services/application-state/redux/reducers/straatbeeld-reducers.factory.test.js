@@ -46,22 +46,6 @@ describe('The straatbeeldReducers factory', function () {
             });
         });
 
-        it('resets the (previous) camera location', function () {
-            var inputState = angular.copy(defaultState),
-                output;
-
-            inputState.straatbeeld = {
-                id: 122,
-                camera: {
-                    location: [52.123, 4.789]
-                },
-                isLoading: false
-            };
-
-            output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, 123);
-            expect(output.straatbeeld.camera.location).toBeNull();
-        });
-
         it('sets a loading indicator for straatbeeld and the map', function () {
             var inputState = angular.copy(defaultState),
                 output;
@@ -122,15 +106,6 @@ describe('The straatbeeldReducers factory', function () {
 
             expect(output.straatbeeld.id).toBe(98765);
             expect(output.straatbeeld.searchLocation).toBeNull();
-        });
-
-        it('updates the camera location', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
-
-            expect(output.straatbeeld.camera.location).toEqual([51.5, 4.5]);
         });
 
         it('removes the loading indicators from the map and straatbeeld', function () {

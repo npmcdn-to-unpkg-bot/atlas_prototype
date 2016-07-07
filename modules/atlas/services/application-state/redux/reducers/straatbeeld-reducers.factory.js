@@ -28,9 +28,6 @@
             var newState = angular.copy(oldState);
 
             newState.straatbeeld = {
-                camera: {
-                    location: null
-                },
                 isLoading: true
             };
 
@@ -65,8 +62,6 @@
             //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama
             newState.straatbeeld.id = payload.id;
             newState.straatbeeld.searchLocation = null;
-
-            newState.straatbeeld.camera.location = payload.camera.location;
 
             newState.straatbeeld.isLoading = false;
 

@@ -38,12 +38,7 @@ describe('The straatbeeld controller', function () {
         var mockedState = {
                 straatbeeld: {
                     id: 7,
-                    location: null,
-                    camera: {
-                        heading: 1,
-                        pitch: 2,
-                        fov: 3
-                    },
+                    searchLocation: null,
                     isLoading: false
                 }
             },
@@ -54,13 +49,7 @@ describe('The straatbeeld controller', function () {
         controller = getController();
 
         expect(controller.id).toBe(7);
-
-        expect(controller.camera).toEqual({
-            heading: 1,
-            pitch: 2,
-            fov: 3
-        });
-
+        expect(controller.searchLocation).toBeNull();
         expect(controller.isLoading).toBe(false);
     });
 
@@ -68,12 +57,7 @@ describe('The straatbeeld controller', function () {
         var mockedState = {
                 straatbeeld: {
                     id: null,
-                    location: [52.456, 4.321],
-                    camera: {
-                        heading: 1,
-                        pitch: 2,
-                        fov: 3
-                    },
+                    searchLocation: [52.456, 4.321],
                     isLoading: false
                 }
             },
@@ -84,7 +68,7 @@ describe('The straatbeeld controller', function () {
         controller = getController();
 
         expect(controller.id).toBeNull();
-        expect(controller.location).toEqual([52.456, 4.321]);
+        expect(controller.searchLocation).toEqual([52.456, 4.321]);
     });
 
     it('doesn\'t break when straatbeeld is null', function () {
@@ -98,7 +82,6 @@ describe('The straatbeeld controller', function () {
         controller = getController();
 
         expect(controller.id).toBeNull();
-        expect(controller.camera).toBeNull();
         expect(controller.isLoading).toBeNull();
     });
 });
