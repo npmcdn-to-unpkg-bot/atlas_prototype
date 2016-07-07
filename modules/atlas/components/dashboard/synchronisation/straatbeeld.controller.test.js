@@ -38,6 +38,7 @@ describe('The straatbeeld controller', function () {
         var mockedState = {
                 straatbeeld: {
                     id: 7,
+                    location: null,
                     camera: {
                         heading: 1,
                         pitch: 2,
@@ -61,6 +62,29 @@ describe('The straatbeeld controller', function () {
         });
 
         expect(controller.isLoading).toBe(false);
+    });
+
+    it('can have a location instead of an ID', function () {
+        var mockedState = {
+                straatbeeld: {
+                    id: null,
+                    location: [52.456, 4.321],
+                    camera: {
+                        heading: 1,
+                        pitch: 2,
+                        fov: 3
+                    },
+                    isLoading: false
+                }
+            },
+            controller;
+
+        spyOn(store, 'getState').and.returnValue(mockedState);
+
+        controller = getController();
+
+        expect(controller.id).toBeNull();
+        expect(controller.location).toEqual([52.456, 4.321]);
     });
 
     it('doesn\'t break when straatbeeld is null', function () {
