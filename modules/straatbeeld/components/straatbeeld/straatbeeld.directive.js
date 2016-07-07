@@ -13,7 +13,6 @@
             scope: {
                 id: '=',
                 searchLocation: '=',
-                camera: '=',
                 isLoading: '='
             },
             templateUrl: 'modules/straatbeeld/components/straatbeeld/straatbeeld.html',
@@ -21,27 +20,31 @@
         };
 
         function linkFunction (scope, element) {
-            var container;
-
-            container = element[0].querySelector('.js-marzipano-viewer');
+            var container = element[0].querySelector('.js-marzipano-viewer');
 
             marzipanoService.initialize(container);
 
-            getPanoramaState(scope.id, scope.searchLocation).then(function (earthmineData) {
-                store.dispatch({
-                    type: ACTIONS.SHOW_STRAATBEELD,
-                    payload: {
-                        id: earthmineData.id
-                    }
+            scope.$watchCollection(function () {
+                return [scope.id, scope.searchLocation];
+            }, function () {
+                getEarthmineData(scope.id, scope.searchLocation).then(function (earthmineData) {
+                    store.dispatch({
+                        type: ACTIONS.SHOW_STRAATBEELD,
+                        payload: {
+                            id: earthmineData.id
+                        }
+                    });
                 });
             });
 
-            scope.$watch('id', function () {
-                marzipanoService.loadScene(scope.id);
+            scope.$watch('isLoading', function (isLoading) {
+                if (!isLoading) {
+                    marzipanoService.loadScene(scope.id);
+                }
             });
         }
 
-        function getPanoramaState (id, location) {
+        function getEarthmineData (id, location) {
             if (angular.isNumber(id)) {
                 return earthmineService.getImageDataById(id);
             } else {

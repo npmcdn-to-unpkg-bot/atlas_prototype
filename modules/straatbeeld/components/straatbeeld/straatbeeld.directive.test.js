@@ -2,7 +2,6 @@ xdescribe('The dp-panorama directive', function () {
     var $compile,
         $rootScope,
         marzipanoService,
-        panoramaOrientation,
         mockedPanoramaViewer = {
             stuff: 'something'
         },
@@ -15,48 +14,40 @@ xdescribe('The dp-panorama directive', function () {
         };
 
     beforeEach(function () {
-        angular.mock.module(
-            'atlasApp',
-            'atlasApp.straatbeeld',
-            function ($provide) {
-                $provide.factory('dpPanoramaMinimapDirective', function () {
-                    return {};
-                });
-            }
-        );
+        angular.mock.module('dpStraatbeeld');
 
-        angular.mock.inject(function (_$compile_, _$rootScope_, _marzipanoService_, _panoramaOrientation_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _marzipanoService_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
             marzipanoService = _marzipanoService_;
-            panoramaOrientation = _panoramaOrientation_;
         });
 
         spyOn(marzipanoService, 'initialize').and.returnValue(mockedPanoramaViewer);
         spyOn(marzipanoService, 'loadScene');
     });
 
-    function getDirective (panoramaState) {
+    function getDirective (id, searchLocation, isLoading) {
         var directive,
             element,
             scope;
 
         element = document.createElement('dp-panorama');
-        element.setAttribute('panorama-state', 'panoramaState');
+        element.setAttribute('id', 'id');
+        element.setAttribute('location', 'location');
+        element.setAttribute('is-loading', 'isLoading');
 
         scope = $rootScope.$new();
-        scope.panoramaState = panoramaState;
+        scope.id = id;
+        scope.searchLocation = searchLocation;
+        scope.isLoading = isLoading;
 
         directive = $compile(element)(scope);
         scope.$apply();
 
-        return {
-            html: directive,
-            scope: directive.isolateScope()
-        };
+        return directive;
     }
 
-    it('initializes the marzipanoService with the panoramaState, then loads the scene', function () {
+    it('initializes the marzipanoService with the panoramaState', function () {
         var directive,
             container;
 
@@ -65,26 +56,15 @@ xdescribe('The dp-panorama directive', function () {
 
         expect(marzipanoService.initialize).toHaveBeenCalledWith(container);
         expect(marzipanoService.loadScene).toHaveBeenCalledWith(mockedPanoramaState);
+
+        //It's doesn't load a scene on initialisation
     });
 
-    it('adds the panoramaViewer to the scope', function () {
-        var directive;
+    it('loads new Earthmine data when the ID or searchLocation changes', function () {
 
-        directive = getDirective(mockedPanoramaState);
-
-        expect(directive.scope.panoramaViewer).toEqual(mockedPanoramaViewer);
     });
 
-    it('calls the panorama orientation service on mousemove', function () {
-        var directive;
+    it('loads a scene when the camera location changes', function () {
 
-        directive = getDirective(mockedPanoramaState);
-
-        expect(directive.html.find('.js-marzipano-viewer[ng-mousemove="updateOrientation()"]').length).toBe(1);
-
-        spyOn(panoramaOrientation, 'update');
-        directive.scope.updateOrientation();
-
-        expect(panoramaOrientation.update).toHaveBeenCalledWith(mockedPanoramaViewer, mockedPanoramaState);
     });
 });

@@ -24,7 +24,7 @@
             viewer = new Marzipano.Viewer(domElement);
         }
 
-        function loadScene (sceneId, heading, pitch, fov) {
+        function loadScene (sceneId) {
             var view,
                 viewLimiter,
                 scene,
@@ -45,18 +45,6 @@
                 view: view,
                 pinFirstLevel: true
             });
-
-            if (heading) {
-                view.setYaw(heading - heading);
-            }
-
-            if (pitch) {
-                view.setPitch(pitch);
-            }
-
-            if (fov) {
-                view.setFov(fov);
-            }
 
             scene.switchTo();
         }
