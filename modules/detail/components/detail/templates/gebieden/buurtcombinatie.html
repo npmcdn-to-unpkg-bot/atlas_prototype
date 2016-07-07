@@ -16,13 +16,12 @@
     <div class="list-box" ng-if="vm.apiData.results.buurten.count">
       <dp-stelselpedia-header definition="BUURT" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.results.buurten.href" partial="lijst"></atlas-api-call>
+      <atlas-api-call endpoint="{{vm.apiData.results.buurten.href}}" partial="lijst"></atlas-api-call>
     </div>
 
     <dp-bbga-graphs
       gebied-heading="{{vm.apiData.results.naam}}"
       gebied-code="{{vm.apiData.results.volledige_code}}">
-
     </dp-bbga-graphs>
   </div>
 

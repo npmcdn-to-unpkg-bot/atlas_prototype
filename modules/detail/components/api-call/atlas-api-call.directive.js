@@ -11,8 +11,8 @@
         return {
             restrict: 'E',
             scope: {
-                endpoint: '=',
-                expand: '=',
+                endpoint: '@',
+                expand: '@',
                 partial: '@'
          },
             templateUrl: 'modules/detail/components/api-call/atlas-api-call.html',

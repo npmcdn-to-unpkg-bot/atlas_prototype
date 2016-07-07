@@ -44,21 +44,21 @@
   <div class="list-box" ng-if="apiData.results.adressen.count > 1">
     <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
 
-    <atlas-api-call endpoint="apiData.results.adressen.href" partial="adressen_lijst"></atlas-api-call>
+    <atlas-api-call endpoint="{{apiData.results.adressen.href}}" partial="adressen_lijst"></atlas-api-call>
   </div>
 
   <!-- Pand -->
   <div class="list-box" ng-if="apiData.results.panden.count">
     <dp-stelselpedia-header definition="PAND" use-plural="true"></dp-stelselpedia-header>
 
-    <atlas-api-call endpoint="apiData.results.panden.href" partial="lijst"></atlas-api-call>
+    <atlas-api-call endpoint="{{apiData.results.panden.href}}" partial="lijst"></atlas-api-call>
   </div>
 
   <!-- Kadastraal apiData -->
   <div class="list-box" ng-if="apiData.results.kadastrale_objecten.count">
     <dp-stelselpedia-header definition="KADASTRAAL_OBJECT" use-plural="true"></dp-stelselpedia-header>
 
-    <atlas-api-call endpoint="apiData.results.kadastrale_objecten.href" partial="bag/brk-vbo" expand="true"></atlas-api-call>
+    <atlas-api-call endpoint="{{apiData.results.kadastrale_objecten.href}}" partial="bag/brk-vbo" expand="true"></atlas-api-call>
   </div>
 
 </div>

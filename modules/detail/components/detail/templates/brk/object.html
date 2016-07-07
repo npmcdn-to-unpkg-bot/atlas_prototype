@@ -35,12 +35,12 @@
       </dl>
     </div>
 
-    <atlas-api-call endpoint="vm.apiData.results._links.self.href" partial="brk" expand="true"></atlas-api-call>
+    <atlas-api-call endpoint="{{vm.apiData.results._links.self.href}}" partial="brk" expand="true"></atlas-api-call>
 
     <div class="list-box" ng-if="vm.apiData.results.verblijfsobjecten.count">
       <dp-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.results.verblijfsobjecten.href" partial="adressen_lijst"></atlas-api-call>
+      <atlas-api-call endpoint="{{vm.apiData.results.verblijfsobjecten.href}}" partial="adressen_lijst"></atlas-api-call>
     </div>
   </div>
 </div>

@@ -30,7 +30,7 @@
 
       <p ng-if="!vm.apiData.results.metingen.href">Geen metingen beschikbaar</p>
 
-      <atlas-api-call ng-if="vm.apiData.results.metingen.href" endpoint="vm.apiData.results.metingen.href" partial="meetbouten/metingen-tabel"></atlas-api-call>
+      <atlas-api-call ng-if="vm.apiData.results.metingen.href" endpoint="{{vm.apiData.results.metingen.href}}" partial="meetbouten/metingen-tabel"></atlas-api-call>
 
       <detail-graph
         page-size="vm.apiData.results.metingen.count"
@@ -43,7 +43,7 @@
 
       <p ng-if="!vm.apiData.results.rollaag">Geen rollaag tekening beschikbaar</p>
 
-      <atlas-api-call ng-if="vm.apiData.results.rollaag" endpoint="vm.apiData.results.rollaag" partial="meetbouten/rollaag"></atlas-api-call>
+      <atlas-api-call ng-if="vm.apiData.results.rollaag" endpoint="{{vm.apiData.results.rollaag}}" partial="meetbouten/rollaag"></atlas-api-call>
     </div>
   </div>
 </div>

@@ -6,21 +6,21 @@
     <!-- verblijfsobject -->
     <atlas-api-call
       ng-if="vm.apiData.results.type === 'Verblijfsobject'"
-      endpoint="vm.apiData.results.verblijfsobject"
+      endpoint="{{vm.apiData.results.verblijfsobject}}"
       partial="bag/verblijfsobject">
     </atlas-api-call>
 
     <!-- standplaats -->
     <atlas-api-call
       ng-if="vm.apiData.results.type === 'Standplaats'"
-      endpoint="vm.apiData.results.standplaats"
+      endpoint="{{vm.apiData.results.standplaats}}"
       partial="bag/standplaats">
     </atlas-api-call>
 
     <!-- ligplaats -->
     <atlas-api-call
       ng-if="vm.apiData.results.type === 'Ligplaats'"
-      endpoint="vm.apiData.results.ligplaats"
+      endpoint="{{vm.apiData.results.ligplaats}}"
       partial="bag/ligplaats">
     </atlas-api-call>
 

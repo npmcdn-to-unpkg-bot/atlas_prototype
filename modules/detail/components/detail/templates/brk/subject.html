@@ -83,7 +83,7 @@
     <div class="default-box" ng-if="vm.apiData.results.rechten.count">
       <dp-stelselpedia-header definition="ZAKELIJK_RECHT" use-plural="true"></dp-stelselpedia-header>
 
-      <atlas-api-call endpoint="vm.apiData.results.rechten.href" partial="brk/subject-rechten"></atlas-api-call>
+      <atlas-api-call endpoint="{{vm.apiData.results.rechten.href}}" partial="brk/subject-rechten"></atlas-api-call>
     </div>
   </div>
 </div>
