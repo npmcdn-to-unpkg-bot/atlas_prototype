@@ -5,9 +5,9 @@
     .module('atlasDetail')
     .directive('atlasPartialSelect', atlasPartialSelectDirective);
 
-  atlasPartialSelectDirective.$inject = ['pluginDetailService'];
+  atlasPartialSelectDirective.$inject = ['api', 'pluginDetailService'];
 
-  function atlasPartialSelectDirective (pluginDetailService) {
+  function atlasPartialSelectDirective (api, pluginDetailService) {
     return {
       restrict: 'E',
       scope: {
@@ -26,6 +26,18 @@
       partialPath = partialRoot + scope.partial + '.html';
 
       pluginDetailService.compileTemplate(scope, element, partialPath);
+
+      scope.loadMore = function () {
+        if (!scope.apiData.next) {
+          return;
+        }
+
+        api.getByUrl(scope.apiData.next).then(function (response) {
+          scope.apiData.next = response._links.next.href;
+          scope.apiData.results.push.apply(scope.apiData.results, response.results);
+          // push results to end of scope.apiData.results
+        });
+      };
     }
   }
 })();
