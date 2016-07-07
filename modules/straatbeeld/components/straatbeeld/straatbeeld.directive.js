@@ -26,8 +26,6 @@
 
             container = element[0].querySelector('.js-marzipano-viewer');
 
-            console.log(scope.id, scope.location, scope.camera, scope.isLoading);
-
             getPanoramaState(scope.id, scope.location).then(function (panoramaState) {
                 panoramaViewer = marzipanoService.initialize(container);
 

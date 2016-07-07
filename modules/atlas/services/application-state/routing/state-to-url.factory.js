@@ -39,16 +39,28 @@
             searchParams.detail = state.detail && state.detail.uri;
 
             //Straatbeeld
-            searchParams.id = String(state.straatbeeld && state.straatbeeld.id);
-            searchParams.heading = String(
-                state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.heading
-            );
+            if (state.straatbeeld) {
+                if (state.straatbeeld.id) {
+                    searchParams.id = String(state.straatbeeld.id);
+                } else {
+                    searchParams.plat = String(state.straatbeeld.location[0]);
+                    searchParams.plon = String(state.straatbeeld.location[1]);
+                }
 
-            searchParams.pitch = String(
-                state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.pitch
-            );
+                if (searchParams.heading && searchParams.pitch && searchParams.fov) {
+                    searchParams.heading = String(
+                        state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.heading
+                    );
 
-            searchParams.fov = String(state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.fov);
+                    searchParams.pitch = String(
+                        state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.pitch
+                    );
+
+                    searchParams.fov = String(
+                        state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.fov
+                    );
+                }
+            }
 
             $location.search(searchParams);
         }
