@@ -52,11 +52,7 @@
                 angleConversion.degreesToRadians(STRAATBEELD_CONFIG.MAX_FOV)
             );
 
-            view = new Marzipano.RectilinearView({
-                yaw: 0,
-                pitch: 0,
-                fov: 70
-            }, viewLimiter);
+            view = new Marzipano.RectilinearView({}, viewLimiter);
 
             scene = viewer.createScene({
                 source: Marzipano.ImageUrlSource.fromString(imageSourceUrl),
@@ -66,9 +62,7 @@
             });
 
             if (camera.heading) {
-                cameraYaw = camera.heading - camera.heading;
-
-                view.setYaw(cameraYaw);
+                view.setYaw(camera.heading - camera.heading);
             }
 
             if (camera.pitch) {
@@ -78,24 +72,25 @@
             if (camera.fov) {
                 view.setFov(camera.fov);
             }
+
             /*
-            panoramaState.hotspots.forEach(function (hotspot) {
-                addHotSpot(scene, panoramaState, hotspot);
+            camera.hotspots.forEach(function (hotspot) {
+                addHotSpot(scene, camera, hotspot);
             });
             */
             scene.switchTo();
         }
 
-        function addHotSpot (scene, panoramaState, hotspot) {
+        function addHotSpot (scene, camera, hotspot) {
             var targetSceneId,
                 distance,
                 position;
 
             targetSceneId = hotspot.id;
             distance = hotspot.relativeLocation.distance;
-            position = hotspotService.calculateHotspotPosition(panoramaState, hotspot);
+            position = hotspotService.calculateHotspotPosition(camera, hotspot);
 
-            hotspotService.createHotspot(targetSceneId, distance, panoramaState).then(function (template) {
+            hotspotService.createHotspot(targetSceneId, distance, camera).then(function (template) {
                 scene.hotspotContainer().createHotspot(template, position, STRAATBEELD_CONFIG.HOTSPOT_PERSPECTIVE);
             });
         }
