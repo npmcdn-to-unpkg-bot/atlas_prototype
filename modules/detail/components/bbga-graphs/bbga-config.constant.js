@@ -6,7 +6,7 @@
     .constant('BBGA_CONFIG', {
       PERSONEN: [
         {
-          variable: 'BEVPAARMKINDHH_P',
+          variable: 'BEVHHMKIND_P',
           compareWithAmsterdam: true
         },
         {
@@ -14,7 +14,7 @@
           compareWithAmsterdam: true
         },
         {
-          variable: 'BEVOVNW_P',
+          variable: 'BEVNW_P',
           compareWithAmsterdam: true
         }
       ],

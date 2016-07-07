@@ -32,10 +32,10 @@
 
       <atlas-api-call ng-if="vm.apiData.results.metingen.href" endpoint="{{vm.apiData.results.metingen.href}}" partial="meetbouten/metingen-tabel"></atlas-api-call>
 
-      <detail-graph
+      <detail-meetbout-graph
         page-size="vm.apiData.results.metingen.count"
         href="{{vm.apiData.results.metingen.href}}">
-      </detail-graph>
+      </detail-meetbout-graph>
     </div>
 
     <div>

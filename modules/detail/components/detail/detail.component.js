@@ -32,7 +32,7 @@
                     payload: {
                         //TODO placeholders vervangen voor echte data
                         location: [52.378086874951386, 4.922568081008677],
-                        highlight: vm.apiData.geometrie || {}
+                        highlight: vm.apiData.geometrie || null
                     }
                 });
             });

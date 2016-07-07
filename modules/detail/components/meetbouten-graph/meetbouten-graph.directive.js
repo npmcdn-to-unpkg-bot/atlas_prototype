@@ -1,14 +1,13 @@
-
 (function () {
     'use strict';
 
     angular
         .module('atlasDetail')
-        .directive('detailGraph', detailGraphDirective);
+        .directive('detailMeetboutGraph', detailMeetboutGraphDirective);
 
-    detailGraphDirective.$inject = ['api', 'd3', 'dateConverter'];
+    detailMeetboutGraphDirective.$inject = ['api', 'd3', 'dateConverter'];
 
-    function detailGraphDirective (api, d3, dateConverter) {
+    function detailMeetboutGraphDirective (api, d3, dateConverter) {
         return {
             restrict: 'E',
             scope: {

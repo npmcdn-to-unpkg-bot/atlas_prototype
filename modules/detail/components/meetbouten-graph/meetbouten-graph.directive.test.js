@@ -53,7 +53,7 @@ describe('The dp-plugin-detail-graph directive', function () {
         var directive,
             scope;
 
-        var html = document.createElement('detail-graph');
+        var html = document.createElement('detail-meetbout-graph');
         html.setAttribute('href', href);
         html.setAttribute('page-size', 'pageSize');
 
