@@ -29,10 +29,7 @@
 
             newState.straatbeeld = {
                 camera: {
-                    location: null,
-                    heading: null,
-                    pitch: null,
-                    fov: null
+                    location: null
                 },
                 isLoading: true
             };
@@ -43,19 +40,6 @@
             } else {
                 newState.straatbeeld.id = null;
                 newState.straatbeeld.searchLocation = payload;
-            }
-
-            //Save the orientation from the previous state when navigating to another panorama
-            if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.heading) {
-                newState.straatbeeld.camera.heading = oldState.straatbeeld.camera.heading;
-            }
-
-            if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.pitch) {
-                newState.straatbeeld.camera.pitch = oldState.straatbeeld.camera.pitch;
-            }
-
-            if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.fov) {
-                newState.straatbeeld.camera.fov = oldState.straatbeeld.camera.fov;
             }
 
             newState.map.highlight = null;
@@ -78,20 +62,11 @@
 
             newState.map.isLoading = false;
 
-            newState.straatbeeld.id = payload.id;
-
             //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama
+            newState.straatbeeld.id = payload.id;
             newState.straatbeeld.searchLocation = null;
+
             newState.straatbeeld.camera.location = payload.camera.location;
-
-            //Only set the heading and pitch if there is no known previous state
-            if (oldState.straatbeeld.camera.heading === null) {
-                newState.straatbeeld.camera.heading = payload.camera.heading;
-            }
-
-            if (oldState.straatbeeld.camera.pitch === null) {
-                newState.straatbeeld.camera.pitch = payload.camera.pitch;
-            }
 
             newState.straatbeeld.isLoading = false;
 
