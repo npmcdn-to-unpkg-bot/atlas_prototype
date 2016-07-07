@@ -1,25 +1,25 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('atlasDetail')
-    .service('pluginDetailService', pluginDetailService);
+    angular
+        .module('atlasDetail')
+        .service('pluginDetailService', pluginDetailService);
 
-  pluginDetailService.$inject = ['$templateRequest', '$compile'];
+    pluginDetailService.$inject = ['$templateRequest', '$compile'];
 
-  function pluginDetailService ($templateRequest, $compile) {
-    return {
-      compileTemplate: compileTemplate
-    };
+    function pluginDetailService ($templateRequest, $compile) {
+        return {
+            compileTemplate: compileTemplate
+        };
 
-    function compileTemplate (scope, element, templateName) {
-      // templateRequest caches the result
-      $templateRequest(templateName).then(function (templateHtml) {
-        var template = angular.element(templateHtml);
+        function compileTemplate (scope, element, templateName) {
+            // templateRequest caches the result
+            $templateRequest(templateName).then(function (templateHtml) {
+                var template = angular.element(templateHtml);
 
-        element.append(template);
-        $compile(template)(scope);
-      });
+                element.append(template);
+                $compile(template)(scope);
+            });
+        }
     }
-  }
 })();

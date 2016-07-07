@@ -1,35 +1,35 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('atlasDetail')
-    .directive('dpBbgaGraphs', dpBbgaGraphsDirective);
+    angular
+        .module('atlasDetail')
+        .directive('dpBbgaGraphs', dpBbgaGraphsDirective);
 
-  dpBbgaGraphsDirective.$inject = ['BBGA', 'bbgaDataService'];
+    dpBbgaGraphsDirective.$inject = ['BBGA', 'bbgaDataService'];
 
-  function dpBbgaGraphsDirective (BBGA, bbgaDataService) {
-    return {
-      restrict: 'E',
-      scope: {
-        gebiedHeading: '@',
-        gebiedCode: '@'
-      },
-      templateUrl: 'modules/detail/components/bbga-graphs/bbga-graphs.html',
-      link: linkFunction
-    };
+    function dpBbgaGraphsDirective (BBGA, bbgaDataService) {
+        return {
+            restrict: 'E',
+            scope: {
+                gebiedHeading: '@',
+                gebiedCode: '@'
+            },
+            templateUrl: 'modules/detail/components/bbga-graphs/bbga-graphs.html',
+            link: linkFunction
+        };
 
-    function linkFunction (scope, element) {
-      bbgaDataService.getGraphData('PERSONEN', scope.gebiedHeading, scope.gebiedCode).then(function (data) {
-        var personenGraph = new BBGA.Personen();
+        function linkFunction (scope, element) {
+            bbgaDataService.getGraphData('PERSONEN', scope.gebiedHeading, scope.gebiedCode).then(function (data) {
+                var personenGraph = new BBGA.Personen();
 
-        personenGraph.create(element[0].querySelector('.js-personen-graph'), data);
-      });
+                personenGraph.create(element[0].querySelector('.js-personen-graph'), data);
+            });
 
-      bbgaDataService.getGraphData('HUIZEN', scope.gebiedHeading, scope.gebiedCode).then(function (data) {
-        var huizenGraph = new BBGA.Huizen();
+            bbgaDataService.getGraphData('HUIZEN', scope.gebiedHeading, scope.gebiedCode).then(function (data) {
+                var huizenGraph = new BBGA.Huizen();
 
-        huizenGraph.create(element[0].querySelector('.js-huizen-graph'), data);
-      });
+                huizenGraph.create(element[0].querySelector('.js-huizen-graph'), data);
+            });
+        }
     }
-  }
 })();

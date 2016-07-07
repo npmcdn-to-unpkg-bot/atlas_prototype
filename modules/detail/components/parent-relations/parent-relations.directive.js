@@ -1,47 +1,47 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('atlasDetail')
-    .directive('dpParentRelations', dpParentRelationsDirective);
+    angular
+        .module('atlasDetail')
+        .directive('dpParentRelations', dpParentRelationsDirective);
 
-  function dpParentRelationsDirective () {
-    return {
-      restrict: 'E',
-      scope: {
-        content: '='
-      },
-      templateUrl: 'modules/detail/components/parent-relations/parent-relations.html',
-      controller: DpParentRelationsController,
-      controllerAs: 'vm',
-      bindToController: true
-    };
-  }
-
-  DpParentRelationsController.$inject = ['PARENT_RELATIONS_CONFIG'];
-
-  function DpParentRelationsController (PARENT_RELATIONS_CONFIG) {
-    var vm = this;
-
-    vm.parentRelations = PARENT_RELATIONS_CONFIG
-      .map(convertToObject)
-      .map(getRelatedContent)
-      .filter(removeEmptyContent);
-
-    function convertToObject (parent) {
-      return {
-        variable: parent
-      };
+    function dpParentRelationsDirective () {
+        return {
+            restrict: 'E',
+            scope: {
+                content: '='
+            },
+            templateUrl: 'modules/detail/components/parent-relations/parent-relations.html',
+            controller: DpParentRelationsController,
+            controllerAs: 'vm',
+            bindToController: true
+        };
     }
 
-    function getRelatedContent (parent) {
-      parent.data = vm.content[parent.variable] || vm.content['_' + parent.variable] || null;
+    DpParentRelationsController.$inject = ['PARENT_RELATIONS_CONFIG'];
 
-      return parent;
-    }
+    function DpParentRelationsController (PARENT_RELATIONS_CONFIG) {
+        var vm = this;
 
-    function removeEmptyContent (parent) {
-      return parent.data !== null;
+        vm.parentRelations = PARENT_RELATIONS_CONFIG
+            .map(convertToObject)
+            .map(getRelatedContent)
+            .filter(removeEmptyContent);
+
+        function convertToObject (parent) {
+            return {
+                variable: parent
+            };
+        }
+
+        function getRelatedContent (parent) {
+            parent.data = vm.content[parent.variable] || vm.content['_' + parent.variable] || null;
+
+            return parent;
+        }
+
+        function removeEmptyContent (parent) {
+            return parent.data !== null;
+        }
     }
-  }
 })();

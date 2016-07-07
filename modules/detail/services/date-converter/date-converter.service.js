@@ -8,20 +8,20 @@
     /* @ngInject */
 
     function dateConverterService(d3) {
-      return {
-        ymdToDate: ymdToDate
-      };
+        return {
+            ymdToDate: ymdToDate
+        };
 
-      /**
-       * @param {string} [input] [datum in formaat yyyy-mm-dd]
-       *@return {[date object]}    [js date object] 
-       */
-      function ymdToDate(input) {
+        /**
+         * @param {string} [input] [datum in formaat yyyy-mm-dd]
+         *@return {[date object]}    [js date object] 
+         */
+        function ymdToDate(input) {
 
-        var parseDate = d3.time.format('%Y-%m-%d').parse;
+            var parseDate = d3.time.format('%Y-%m-%d').parse;
 
-          return parseDate(input);
+            return parseDate(input);
 
-      }
+        }
     }
 })();

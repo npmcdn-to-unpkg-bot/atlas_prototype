@@ -1,23 +1,23 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('atlasDetail')
-    .directive('atlasCurrentDate', atlasCurrentDateDirective);
+    angular
+        .module('atlasDetail')
+        .directive('atlasCurrentDate', atlasCurrentDateDirective);
 
-  function atlasCurrentDateDirective () {
-    return {
-      restrict: 'E',
-      scope: true,
-      templateUrl: 'modules/detail/components/current-date/current-date.html',
-      controller: AtlasCurrentDateController,
-      controllerAs: 'vm'
-    };
-  }
+    function atlasCurrentDateDirective () {
+        return {
+            restrict: 'E',
+            scope: true,
+            templateUrl: 'modules/detail/components/current-date/current-date.html',
+            controller: AtlasCurrentDateController,
+            controllerAs: 'vm'
+        };
+    }
 
-  function AtlasCurrentDateController () {
-    var vm = this;
+    function AtlasCurrentDateController () {
+        var vm = this;
 
-    vm.currentDate = new Date();
-  }
+        vm.currentDate = new Date();
+    }
 })();

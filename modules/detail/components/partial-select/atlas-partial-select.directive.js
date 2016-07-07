@@ -1,44 +1,44 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('atlasDetail')
-    .directive('atlasPartialSelect', atlasPartialSelectDirective);
+    angular
+        .module('atlasDetail')
+        .directive('atlasPartialSelect', atlasPartialSelectDirective);
 
-  atlasPartialSelectDirective.$inject = ['api', 'pluginDetailService'];
+    atlasPartialSelectDirective.$inject = ['api', 'pluginDetailService'];
 
-  function atlasPartialSelectDirective (api, pluginDetailService) {
-    return {
-      restrict: 'E',
-      scope: {
-        apiData: '=',
-        partial: '@'
-      },
-      link: linkFunction
-    };
+    function atlasPartialSelectDirective (api, pluginDetailService) {
+        return {
+            restrict: 'E',
+            scope: {
+                apiData: '=',
+                partial: '@'
+            },
+            link: linkFunction
+        };
 
-    function linkFunction(scope, element) {
-      var partialPath,
-      partialRoot;
+        function linkFunction(scope, element) {
+            var partialPath,
+            partialRoot;
 
-      partialRoot = 'modules/detail/components/partial-select/partials/';
+            partialRoot = 'modules/detail/components/partial-select/partials/';
 
-      partialPath = partialRoot + scope.partial + '.html';
+            partialPath = partialRoot + scope.partial + '.html';
 
-      pluginDetailService.compileTemplate(scope, element, partialPath);
+            pluginDetailService.compileTemplate(scope, element, partialPath);
 
-      scope.loadMore = function () {
-        if (!scope.apiData.next) {
-          return;
+            scope.loadMore = function () {
+                if (!scope.apiData.next) {
+                    return;
+                }
+
+                api.getByUrl(scope.apiData.next).then(function (response) {
+                    //add next page if there is any or ""
+                    scope.apiData.next = response._links.next.href;
+                    // push results to end of scope.apiData.results
+                    scope.apiData.results.push.apply(scope.apiData.results, response.results);
+                });
+            };
         }
-
-        api.getByUrl(scope.apiData.next).then(function (response) {
-          //add next page if there is any or ""
-          scope.apiData.next = response._links.next.href;
-          // push results to end of scope.apiData.results
-          scope.apiData.results.push.apply(scope.apiData.results, response.results);
-        });
-      };
     }
-  }
 })();
