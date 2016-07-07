@@ -15,6 +15,7 @@ describe('The straatbeeldReducers factory', function () {
 
         inputStateWithStraatbeeld.straatbeeld = {
             id: 1,
+            location: null,
             camera: {
                 location: [51.0, 4.0],
                 heading: 1,
@@ -191,45 +192,6 @@ describe('The straatbeeldReducers factory', function () {
             expect(output.straatbeeld.camera.heading).toBe(1);
             expect(output.straatbeeld.camera.pitch).toBe(2);
             expect(output.straatbeeld.camera.fov).toBe(3);
-        });
-    });
-
-    describe('STRAATBEELD_SET_HEADING', function () {
-        it('sets the heading', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            output = straatbeeldReducers.STRAATBEELD_SET_HEADING(inputState, 2);
-            expect(output.straatbeeld.camera.heading).toBe(2);
-
-            output = straatbeeldReducers.STRAATBEELD_SET_HEADING(inputState, 3);
-            expect(output.straatbeeld.camera.heading).toBe(3);
-        });
-    });
-
-    describe('STRAATBEELD_SET_PITCH', function () {
-        it('sets the pitch', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            output = straatbeeldReducers.STRAATBEELD_SET_PITCH(inputState, 0.5);
-            expect(output.straatbeeld.camera.pitch).toBe(0.5);
-
-            output = straatbeeldReducers.STRAATBEELD_SET_PITCH(inputState, 0.25);
-            expect(output.straatbeeld.camera.pitch).toBe(0.25);
-        });
-    });
-
-    describe('STRAATBEELD_SET_FOV', function () {
-        it('sets the fov', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            output = straatbeeldReducers.STRAATBEELD_SET_FOV(inputState, 90);
-            expect(output.straatbeeld.camera.fov).toBe(90);
-
-            output = straatbeeldReducers.STRAATBEELD_SET_FOV(inputState, 75);
-            expect(output.straatbeeld.camera.fov).toBe(75);
         });
     });
 });

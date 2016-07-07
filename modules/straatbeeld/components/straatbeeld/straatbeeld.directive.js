@@ -27,10 +27,13 @@
 
             marzipanoService.initialize(container);
 
-            getPanoramaState(scope.id, scope.location).then(function (panoramaState) {
+            getPanoramaState(scope.id, scope.location).then(function (earthmineData) {
                 store.dispatch({
                     type: ACTIONS.SHOW_STRAATBEELD,
-                    payload: panoramaState
+                    payload: {
+                        id: earthmineData.id,
+                        camera: earthmineData.camera
+                    }
                 });
             });
 

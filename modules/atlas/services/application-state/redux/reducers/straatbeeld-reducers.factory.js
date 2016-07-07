@@ -12,9 +12,6 @@
 
         reducers[ACTIONS.FETCH_STRAATBEELD] = fetchStraatbeeldReducer;
         reducers[ACTIONS.SHOW_STRAATBEELD] = showStraatbeeldReducer;
-        reducers[ACTIONS.STRAATBEELD_SET_HEADING] = straatbeeldSetHeadingReducer;
-        reducers[ACTIONS.STRAATBEELD_SET_PITCH] = straatbeeldSetPitchReducer;
-        reducers[ACTIONS.STRAATBEELD_SET_FOV] = straatbeeldSetFovReducer;
 
         return reducers;
 
@@ -42,10 +39,10 @@
 
             if (angular.isNumber(payload)) {
                 newState.straatbeeld.id = payload;
-                newState.straatbeeld.location = null;
+                newState.straatbeeld.searchLocation = null;
             } else {
                 newState.straatbeeld.id = null;
-                newState.straatbeeld.location = payload;
+                newState.straatbeeld.searchLocation = payload;
             }
 
             //Save the orientation from the previous state when navigating to another panorama
@@ -81,13 +78,13 @@
 
             newState.map.isLoading = false;
 
-            //After loading, the 'nearest panorama location' is no longer relevant, only the ID of the found panorama is
             newState.straatbeeld.id = payload.id;
-            newState.straatbeeld.location = null;
 
+            //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama
+            newState.straatbeeld.searchLocation = null;
             newState.straatbeeld.camera.location = payload.camera.location;
 
-            //Only set the heading, pitch and fov if there is no known previous state
+            //Only set the heading and pitch if there is no known previous state
             if (oldState.straatbeeld.camera.heading === null) {
                 newState.straatbeeld.camera.heading = payload.camera.heading;
             }
@@ -96,53 +93,7 @@
                 newState.straatbeeld.camera.pitch = payload.camera.pitch;
             }
 
-            if (oldState.straatbeeld.camera.fov === null) {
-                newState.straatbeeld.camera.fov = payload.camera.fov;
-            }
-
             newState.straatbeeld.isLoading = false;
-
-            return newState;
-        }
-
-        /**
-         * @param {Object} oldState
-         * @param {Number} payload - A number in degrees
-         *
-         * @returns {Object} newState
-         */
-        function straatbeeldSetHeadingReducer (oldState, payload) {
-            var newState = angular.copy(oldState);
-
-            newState.straatbeeld.camera.heading = payload;
-
-            return newState;
-        }
-
-        /**
-         * @param {Object} oldState
-         * @param {Number} payload - A number in degrees
-         *
-         * @returns {Object} newState
-         */
-        function straatbeeldSetPitchReducer (oldState, payload) {
-            var newState = angular.copy(oldState);
-
-            newState.straatbeeld.camera.pitch = payload;
-
-            return newState;
-        }
-
-        /**
-         * @param {Object} oldState
-         * @param {Number} payload - A number in degrees
-         *
-         * @returns {Object} newState
-         */
-        function straatbeeldSetFovReducer (oldState, payload) {
-            var newState = angular.copy(oldState);
-
-            newState.straatbeeld.camera.fov = payload;
 
             return newState;
         }
