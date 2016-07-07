@@ -12,9 +12,6 @@
     "bbga_visualisatie_d3": "https://github.com/DatapuntAmsterdam/bbga_visualisatie_d3.git"
   },
   "devDependencies": {
-    "angular-mocks": "1.5.7"
-  },
-  "resolutions": {
-    "angular": "^1.5.7"
+    "angular-mocks": "^1.5.7"
   }
 }
