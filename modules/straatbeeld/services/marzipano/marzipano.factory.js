@@ -5,21 +5,9 @@
         .module('dpStraatbeeld')
         .factory('marzipanoService', marzipanoService);
 
-    marzipanoService.$inject = [
-        'Marzipano',
-        'STRAATBEELD_CONFIG',
-        'earthmineService',
-        'hotspotService',
-        'angleConversion'
-    ];
+    marzipanoService.$inject = ['Marzipano', 'STRAATBEELD_CONFIG', 'earthmineService', 'angleConversion'];
 
-    function marzipanoService (
-        Marzipano,
-        STRAATBEELD_CONFIG,
-        earthmineService,
-        hotspotService,
-        angleConversion) {
-
+    function marzipanoService (Marzipano, STRAATBEELD_CONFIG, earthmineService, angleConversion) {
         var viewer;
 
         return {
@@ -34,16 +22,13 @@
          */
         function initialize (domElement) {
             viewer = new Marzipano.Viewer(domElement);
-
-            return viewer;
         }
 
-        function loadScene (sceneId, camera) {
+        function loadScene (sceneId, heading, pitch, fov) {
             var view,
                 viewLimiter,
                 scene,
-                imageSourceUrl,
-                cameraYaw;
+                imageSourceUrl;
 
             imageSourceUrl = earthmineService.getImageSourceUrl(sceneId);
 
@@ -61,38 +46,19 @@
                 pinFirstLevel: true
             });
 
-            if (camera.heading) {
-                view.setYaw(camera.heading - camera.heading);
+            if (heading) {
+                view.setYaw(heading - heading);
             }
 
-            if (camera.pitch) {
-                view.setPitch(camera.pitch);
+            if (pitch) {
+                view.setPitch(pitch);
             }
 
-            if (camera.fov) {
-                view.setFov(camera.fov);
+            if (fov) {
+                view.setFov(fov);
             }
 
-            /*
-            camera.hotspots.forEach(function (hotspot) {
-                addHotSpot(scene, camera, hotspot);
-            });
-            */
             scene.switchTo();
-        }
-
-        function addHotSpot (scene, camera, hotspot) {
-            var targetSceneId,
-                distance,
-                position;
-
-            targetSceneId = hotspot.id;
-            distance = hotspot.relativeLocation.distance;
-            position = hotspotService.calculateHotspotPosition(camera, hotspot);
-
-            hotspotService.createHotspot(targetSceneId, distance, camera).then(function (template) {
-                scene.hotspotContainer().createHotspot(template, position, STRAATBEELD_CONFIG.HOTSPOT_PERSPECTIVE);
-            });
         }
     }
 })();

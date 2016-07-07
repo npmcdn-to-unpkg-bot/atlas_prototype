@@ -26,7 +26,7 @@
             container = element[0].querySelector('.js-marzipano-viewer');
 
             marzipanoService.initialize(container);
-console.log(scope.location);
+
             getPanoramaState(scope.id, scope.location).then(function (panoramaState) {
                 store.dispatch({
                     type: ACTIONS.SHOW_STRAATBEELD,
@@ -35,7 +35,7 @@ console.log(scope.location);
             });
 
             scope.$watch('id', function () {
-                marzipanoService.loadScene(scope.id, scope.camera);
+                marzipanoService.loadScene(scope.id, scope.camera.heading, scope.camera.pitch, scope.camera.fov);
             });
         }
 

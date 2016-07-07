@@ -5,7 +5,14 @@ describe('The dashboard component', function () {
         defaultState;
 
     beforeEach(function () {
-        angular.mock.module('atlas');
+        angular.mock.module(
+            'atlas',
+            function ($provide) {
+                $provide.factory('dpStraatbeeldDirective', function () {
+                    return {};
+                });
+            }
+        );
 
         angular.mock.inject(function (_$compile_, _$rootScope_, _store_, _DEFAULT_STATE_) {
             $compile = _$compile_;
