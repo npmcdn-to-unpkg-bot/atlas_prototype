@@ -5,9 +5,9 @@
         .module('atlas')
         .factory('urlReducers', urlReducersFactory);
 
-    urlReducersFactory.$inject = ['$location', 'ACTIONS', 'DEFAULT_STATE'];
+    urlReducersFactory.$inject = ['ACTIONS', 'DEFAULT_STATE'];
 
-    function urlReducersFactory ($location, ACTIONS, DEFAULT_STATE) {
+    function urlReducersFactory (ACTIONS, DEFAULT_STATE) {
         var reducers = {};
 
         reducers[ACTIONS.URL_CHANGE] = urlChangeReducer;
@@ -100,12 +100,10 @@
 
                     return {
                         id: Number(payload.id) || null,
-                        location: hasLocation(payload) ? [payload.plat, payload.plon] : null,
+                        searchLocation:
+                            hasSearchLocation(payload) ? [Number(payload.plat), Number(payload.plon)] : null,
                         camera: {
-                            location: cameraLocation,
-                            heading: Number(payload.heading),
-                            pitch: Number(payload.pitch),
-                            fov: Number(payload.fov)
+                            location: cameraLocation
                         },
                         isLoading: false
                     };
@@ -114,15 +112,16 @@
                 }
 
                 function hasStraatbeeld (payload) {
-                    return payload.id || hasLocation(payload);
+                    return payload.id || hasSearchLocation(payload);
                 }
 
                 /**
                  * @description This is a 'search nearest straatbeeld' location, not the location of the camera of a
-                 * found panorama scene.
+                 * found panorama scene. The actual location is not stored in the URL, this is implicitly accessible
+                 * through the ID.
                  */
-                function hasLocation (payload) {
-                    return angular.isNumber(payload.plat) && angular.isNumber(payload.plon);
+                function hasSearchLocation (payload) {
+                    return payload.plat && payload.plon;
                 }
             }
         }
