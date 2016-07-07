@@ -26,7 +26,7 @@
             container = element[0].querySelector('.js-marzipano-viewer');
 
             marzipanoService.initialize(container);
-
+console.log(scope.location);
             getPanoramaState(scope.id, scope.location).then(function (panoramaState) {
                 store.dispatch({
                     type: ACTIONS.SHOW_STRAATBEELD,
