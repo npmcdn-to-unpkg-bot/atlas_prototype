@@ -7,20 +7,8 @@
 
     atlasApiDataDirective.$inject = ['api'];
 
-    /*
-     * @param {String} uri - An API endpoint
-     * @param {String} localScope - A variable name that refers to the API data which can be used in transcluded code
-     *
-     * @example
-     * <dp-api-data uri="bag/verblijfsobject/12345/" local-scope="verblijfsobject">
-     *   {{verblijfsobject._display}}
-     *
-     *   <dp-api-data uri="{{verblijfsobject.buurt._links.self.href}}" local-scope="buurt">
-     *     buurt naam: {{buurt._display}}
-     *     buurt code: {{buurt.code}}
-     *   </dp-api-data>
-     * </dp-api-data>
-     */
+    //gebruikt bij de nummeraanduiding header, mogelijk nog te refactoren
+    //om ook gebruik te maken van api-call / partial-select
     function atlasApiDataDirective (api) {
         return {
             restrict: 'E',
