@@ -1,7 +1,7 @@
 {
   "name": "atlas",
   "dependencies": {
-    "angular": "^1.5.5",
+    "angular": "^1.5.7",
     "angular-sanitize": "^1.5.7",
     "leaflet": "https://github.com/DatapuntAmsterdam/atlas_leaflet.git#master",
     "leaflet.wms": "~0.1.0",
@@ -10,6 +10,6 @@
     "redux": "https://npmcdn.com/redux/dist/redux.js"
   },
   "devDependencies": {
-    "angular-mocks": "1.5.5"
+    "angular-mocks": "^1.5.7"
   }
 }
