@@ -43,22 +43,8 @@
                 if (state.straatbeeld.id) {
                     searchParams.id = String(state.straatbeeld.id);
                 } else {
-                    searchParams.plat = String(state.straatbeeld.location[0]);
-                    searchParams.plon = String(state.straatbeeld.location[1]);
-                }
-
-                if (searchParams.heading && searchParams.pitch && searchParams.fov) {
-                    searchParams.heading = String(
-                        state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.heading
-                    );
-
-                    searchParams.pitch = String(
-                        state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.pitch
-                    );
-
-                    searchParams.fov = String(
-                        state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.fov
-                    );
+                    searchParams.plat = String(state.straatbeeld.searchLocation[0]);
+                    searchParams.plon = String(state.straatbeeld.searchLocation[1]);
                 }
             }
 

@@ -178,35 +178,50 @@ describe('The stateToUrl factory', function () {
             }));
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                heading: jasmine.Any(String)
-            }));
-
-            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                pitch: jasmine.Any(String)
-            }));
-
-            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                fov: jasmine.Any(String)
+                plat: jasmine.Any(String),
+                plon: jasmine.Any(String)
             }));
         });
 
-        it('sets the id, heading, pitch and fov if there is an active straatbeeld', function () {
+        it('can set the straatbeeld id if it\'s known', function () {
             mockedState.straatbeeld = {
                 id: 67890,
+                searchLocation: null,
                 camera: {
-                    heading: 7,
-                    pitch: 8,
-                    fov: 9
+                    location: null
                 }
             };
 
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                id: '67890',
-                heading: '7',
-                pitch: '8',
-                fov: '9'
+                id: '67890'
+            }));
+
+            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
+                plat: jasmine.any(String),
+                plon: jasmine.any(String)
+            }));
+        });
+
+        it('can set the straatbeelds searchLocation (plat & plon)', function () {
+            mockedState.straatbeeld = {
+                id: null,
+                searchLocation: [52.852, 4.258],
+                camera: {
+                    location: null
+                }
+            };
+
+            stateToUrl.update(mockedState);
+
+            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
+                id: jasmine.any(String)
+            }));
+
+            expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
+                plat: '52.852',
+                plon: '4.258'
             }));
         });
     });
