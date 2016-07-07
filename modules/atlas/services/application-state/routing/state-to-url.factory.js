@@ -40,11 +40,13 @@
 
             //Straatbeeld
             searchParams.id = String(state.straatbeeld && state.straatbeeld.id);
-            searchParams.heading = String(state.straatbeeld && state.straatbeeld.camera &&
-                state.straatbeeld.camera.heading);
+            searchParams.heading = String(
+                state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.heading
+            );
 
-            searchParams.pitch = String(state.straatbeeld && state.straatbeeld.camera
-                && state.straatbeeld.camera.pitch);
+            searchParams.pitch = String(
+                state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.pitch
+            );
 
             searchParams.fov = String(state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.fov);
 
