@@ -1,4 +1,4 @@
-fdescribe('The dp-panorama directive', function () {
+describe('The dp-straatbeeld directive', function () {
     var $compile,
         $rootScope,
         $q,
@@ -138,9 +138,18 @@ fdescribe('The dp-panorama directive', function () {
                 }
             });
         });
+
+        it('doesn\'t directly load a scene when earthmineData is resolved', function () {
+            //Loading the scene should only be triggered by a Redux state change, not some internal API call
+            getDirective(123, null);
+
+            expect(marzipanoService.loadScene).not.toHaveBeenCalled();
+        });
     });
 
-    it('loads a scene when the camera location changes', function () {
+    it('loads a scene when there is a known camera location', function () {
+        getDirective(123, null, {location: [52.123, 4.789]});
 
+        expect(marzipanoService.loadScene).toHaveBeenCalledWith(123);
     });
 });

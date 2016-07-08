@@ -44,8 +44,10 @@
             });
 
             //Show new scene
-            scope.$watch('camera.location', function () {
-                marzipanoService.loadScene(scope.id);
+            scope.$watch('camera.location', function (location) {
+                if (angular.isArray(location)) {
+                    marzipanoService.loadScene(scope.id);
+                }
             });
         }
 
