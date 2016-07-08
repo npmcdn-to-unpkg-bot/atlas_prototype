@@ -1,6 +1,6 @@
 xdescribe('The earthmine factory', function () {
     var $httpBackend,
-        earthmineService,
+        earthmine,
         earthmineDataFormatter,
         mockedEarthmineResponse = {
             someVar: 'someValue',
@@ -30,9 +30,9 @@ xdescribe('The earthmine factory', function () {
             }
         );
 
-        angular.mock.inject(function (_$httpBackend_, _earthmineService_, _earthmineDataFormatter_) {
+        angular.mock.inject(function (_$httpBackend_, _earthmine_, _earthmineDataFormatter_) {
             $httpBackend = _$httpBackend_;
-            earthmineService = _earthmineService_;
+            earthmine = _earthmine_;
             earthmineDataFormatter = _earthmineDataFormatter_;
         });
 
@@ -43,7 +43,7 @@ xdescribe('The earthmine factory', function () {
 
     describe('can get data from the API', function () {
         it('by panorama scene ID', function () {
-            earthmineService.getImageDataById(1).then(function (data) {
+            earthmine.getImageDataById(1).then(function (data) {
                 expect(data).toEqual(expectedResponse);
             });
 
@@ -51,7 +51,7 @@ xdescribe('The earthmine factory', function () {
         });
 
         it('by coordinates', function () {
-            earthmineService.getImageDataByCoordinates(52.12, 4.89).then(function (data) {
+            earthmine.getImageDataByCoordinates(52.12, 4.89).then(function (data) {
                 expect(data).toEqual(expectedResponse);
             });
 
@@ -61,12 +61,12 @@ xdescribe('The earthmine factory', function () {
         it('formats the response', function () {
             spyOn(earthmineDataFormatter, 'formatPanoramaState');
 
-            earthmineService.getImageDataById(1);
+            earthmine.getImageDataById(1);
             $httpBackend.flush();
             expect(earthmineDataFormatter.formatPanoramaState).toHaveBeenCalledTimes(1);
             expect(earthmineDataFormatter.formatPanoramaState).toHaveBeenCalledWith(mockedEarthmineResponse);
 
-            earthmineService.getImageDataByCoordinates(52.12, 4.89);
+            earthmine.getImageDataByCoordinates(52.12, 4.89);
             $httpBackend.flush();
             expect(earthmineDataFormatter.formatPanoramaState).toHaveBeenCalledTimes(2);
             expect(earthmineDataFormatter.formatPanoramaState).toHaveBeenCalledWith(mockedEarthmineResponse);
@@ -74,7 +74,7 @@ xdescribe('The earthmine factory', function () {
     });
 
     it('can generate an image source url based on a scene ID', function () {
-        var url = earthmineService.getImageSourceUrl(12345);
+        var url = earthmine.getImageSourceUrl(12345);
 
         expect(url).toBe('http://www.example.com/pano-tile-proxy/?id=12345&f={f}&z={z}&x={x}&y={y}');
     });

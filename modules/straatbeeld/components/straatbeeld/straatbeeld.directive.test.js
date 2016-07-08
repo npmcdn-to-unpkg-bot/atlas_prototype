@@ -5,7 +5,7 @@ describe('The dp-straatbeeld directive', function () {
         store,
         ACTIONS,
         marzipanoService,
-        earthmineService,
+        earthmine,
         mockedMarzipanoViewer = 'I_AM_A_MOCKED_MARZIPANO_VIEWER',
         mockedEarthmineData = {
             id: 123,
@@ -21,7 +21,7 @@ describe('The dp-straatbeeld directive', function () {
                 store: {
                     dispatch: function () {}
                 },
-                earthmineService: {
+                earthmine: {
                     getImageDataById: function () {
                         var q = $q.defer();
 
@@ -41,22 +41,22 @@ describe('The dp-straatbeeld directive', function () {
         );
 
         angular.mock.inject(
-            function (_$compile_, _$rootScope_, _$q_, _store_, _ACTIONS_, _marzipanoService_, _earthmineService_) {
+            function (_$compile_, _$rootScope_, _$q_, _store_, _ACTIONS_, _marzipanoService_, _earthmine_) {
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
                 $q = _$q_;
                 store = _store_;
                 ACTIONS = _ACTIONS_;
                 marzipanoService = _marzipanoService_;
-                earthmineService = _earthmineService_;
+                earthmine = _earthmine_;
             }
         );
 
         spyOn(marzipanoService, 'initialize').and.returnValue(mockedMarzipanoViewer);
         spyOn(marzipanoService, 'loadScene');
 
-        spyOn(earthmineService, 'getImageDataById').and.callThrough();
-        spyOn(earthmineService, 'getImageDataByCoordinates').and.callThrough();
+        spyOn(earthmine, 'getImageDataById').and.callThrough();
+        spyOn(earthmine, 'getImageDataByCoordinates').and.callThrough();
 
         spyOn(store, 'dispatch');
     });
@@ -98,15 +98,15 @@ describe('The dp-straatbeeld directive', function () {
         it('based on an ID', function () {
             getDirective(123, null);
 
-            expect(earthmineService.getImageDataById).toHaveBeenCalledWith(123);
-            expect(earthmineService.getImageDataByCoordinates).not.toHaveBeenCalled();
+            expect(earthmine.getImageDataById).toHaveBeenCalledWith(123);
+            expect(earthmine.getImageDataByCoordinates).not.toHaveBeenCalled();
         });
 
         it('based on coordinates', function () {
             getDirective(null, [52.123, 4.789]);
 
-            expect(earthmineService.getImageDataById).not.toHaveBeenCalled();
-            expect(earthmineService.getImageDataByCoordinates).toHaveBeenCalledWith(52.123, 4.789);
+            expect(earthmine.getImageDataById).not.toHaveBeenCalled();
+            expect(earthmine.getImageDataByCoordinates).toHaveBeenCalledWith(52.123, 4.789);
         });
 
         it('triggers SHOW_STRAATBEELD when the earthmineData is resvoled', function () {

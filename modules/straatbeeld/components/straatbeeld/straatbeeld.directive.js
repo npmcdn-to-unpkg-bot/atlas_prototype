@@ -5,9 +5,9 @@
         .module('dpStraatbeeld')
         .directive('dpStraatbeeld', dpStraatbeeldDirective);
 
-    dpStraatbeeldDirective.$inject = ['store', 'ACTIONS', 'marzipanoService', 'earthmineService'];
+    dpStraatbeeldDirective.$inject = ['store', 'ACTIONS', 'marzipanoService', 'earthmine'];
 
-    function dpStraatbeeldDirective (store, ACTIONS, marzipanoService, earthmineService) {
+    function dpStraatbeeldDirective (store, ACTIONS, marzipanoService, earthmine) {
         return {
             restrict: 'E',
             scope: {
@@ -53,9 +53,9 @@
 
         function getEarthmineData (id, location) {
             if (angular.isNumber(id)) {
-                return earthmineService.getImageDataById(id);
+                return earthmine.getImageDataById(id);
             } else {
-                return earthmineService.getImageDataByCoordinates(
+                return earthmine.getImageDataByCoordinates(
                     location[0],
                     location[1]
                 );

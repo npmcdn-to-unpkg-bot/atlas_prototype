@@ -2,7 +2,7 @@ xdescribe('The dp-hotspot directive', function () {
     var $compile,
         $rootScope,
         $q,
-        earthmineService,
+        earthmine,
         marzipanoService,
         mockedPanoramaState = {
             id: 1,
@@ -25,11 +25,11 @@ xdescribe('The dp-hotspot directive', function () {
             'atlasApp.straatbeeld'
         );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_, _$q_, _earthmineService_, _marzipanoService_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _$q_, _earthmine_, _marzipanoService_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
             $q = _$q_;
-            earthmineService = _earthmineService_;
+            earthmine = _earthmine_;
             marzipanoService = _marzipanoService_;
         });
     });
@@ -72,7 +72,7 @@ xdescribe('The dp-hotspot directive', function () {
         var directive,
             sceneId;
 
-        spyOn(earthmineService, 'getImageDataById').and.callFake(function () {
+        spyOn(earthmine, 'getImageDataById').and.callFake(function () {
             var q = $q.defer();
 
             q.resolve(mockedEarthmineData);
@@ -86,7 +86,7 @@ xdescribe('The dp-hotspot directive', function () {
         directive = getDirective(sceneId, 10, mockedPanoramaState);
         directive.find('button').click();
 
-        expect(earthmineService.getImageDataById).toHaveBeenCalledWith(sceneId);
+        expect(earthmine.getImageDataById).toHaveBeenCalledWith(sceneId);
         expect(marzipanoService.loadScene).toHaveBeenCalledWith(
             {
                 id: 2,

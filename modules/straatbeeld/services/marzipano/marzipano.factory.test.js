@@ -22,24 +22,22 @@ xdescribe('The marzipanoService', function () {
         angular.mock.module(
             'atlasApp.straatbeeld',
             {
+                straatbeeldConfig: {
+                    MAX_RESOLUTION: 1000,
+                    MAX_FOV: 100,
+                    RESOLUTION_LEVELS: 'thisIsADummyValueForResolutionLevels',
+                    HOTSPOT_PERSPECTIVE: 'thisIsADummyValueForHotspotPerspective'
+                },
                 angleConversion: {
                     degreesToRadians: function (input) {
                         return input / 2;
                     }
                 },
-                earthmineService: {
+                earthmine: {
                     getImageSourceUrl: function (sceneId) {
                         return 'http://www.image-source-url.com/' + sceneId;
                     }
                 }
-            },
-            function ($provide) {
-                $provide.constant('STRAATBEELD_CONFIG', {
-                    MAX_RESOLUTION: 1000,
-                    MAX_FOV: 100,
-                    RESOLUTION_LEVELS: 'thisIsADummyValueForResolutionLevels',
-                    HOTSPOT_PERSPECTIVE: 'thisIsADummyValueForHotspotPerspective'
-                });
             }
         );
 

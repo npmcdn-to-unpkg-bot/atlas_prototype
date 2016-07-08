@@ -20,16 +20,16 @@
         };
     }
 
-    DpHotspotController.$inject = ['earthmineService', 'marzipanoService'];
+    DpHotspotController.$inject = ['earthmine', 'marzipanoService'];
 
-    function DpHotspotController (earthmineService, marzipanoService) {
+    function DpHotspotController (earthmine, marzipanoService) {
         var vm = this,
             minimumSize = 30;
 
         vm.size = Math.max(Math.round(60 - Number(vm.distance)), minimumSize);
 
         vm.loadScene = function () {
-            earthmineService.getImageDataById(Number(vm.sceneId)).then(function (data) {
+            earthmine.getImageDataById(Number(vm.sceneId)).then(function (data) {
                 vm.panoramaState.id = data.id;
                 vm.panoramaState.date = data.date;
                 vm.panoramaState.location = data.location;
