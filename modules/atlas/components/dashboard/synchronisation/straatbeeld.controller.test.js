@@ -34,7 +34,7 @@ describe('The straatbeeld controller', function () {
         expect(store.subscribe).toHaveBeenCalledWith(jasmine.any(Function));
     });
 
-    it('sets the id, camera and isLoading indicator based on the state', function () {
+    it('sets the id, date, camera, hotspots and isLoading indicator based on the state', function () {
         var mockedState = {
                 straatbeeld: {
                     id: 7,
@@ -43,6 +43,7 @@ describe('The straatbeeld controller', function () {
                     camera: {
                         location: [52.741, 4.852]
                     },
+                    hotspots: ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y', 'FAKE_HOTSPOT_Z'],
                     isLoading: false
                 }
             },
@@ -58,6 +59,7 @@ describe('The straatbeeld controller', function () {
         expect(controller.camera).toEqual({
             location: [52.741, 4.852]
         });
+        expect(controller.hotspots).toEqual(['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y', 'FAKE_HOTSPOT_Z']);
         expect(controller.isLoading).toBe(false);
     });
 

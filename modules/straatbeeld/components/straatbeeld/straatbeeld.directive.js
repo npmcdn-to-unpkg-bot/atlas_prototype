@@ -15,6 +15,7 @@
                 searchLocation: '=',
                 date: '=',
                 camera: '=',
+                hotspots: '=',
                 isLoading: '='
             },
             templateUrl: 'modules/straatbeeld/components/straatbeeld/straatbeeld.html',
@@ -48,7 +49,7 @@
             //Show new scene
             scope.$watch('camera.location', function (location) {
                 if (angular.isArray(location)) {
-                    marzipanoService.loadScene(scope.id);
+                    marzipanoService.loadScene(scope.id, scope.hotspots);
                 }
             });
         }

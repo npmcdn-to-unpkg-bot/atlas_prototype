@@ -63,7 +63,7 @@ describe('The dp-straatbeeld directive', function () {
         spyOn(store, 'dispatch');
     });
 
-    function getDirective (id, searchLocation, camera, isLoading) {
+    function getDirective (id, searchLocation, date, camera, hotspots, isLoading) {
         var directive,
             element,
             scope;
@@ -71,13 +71,17 @@ describe('The dp-straatbeeld directive', function () {
         element = document.createElement('dp-straatbeeld');
         element.setAttribute('id', 'id');
         element.setAttribute('search-location', 'searchLocation');
+        element.setAttribute('date', 'date');
         element.setAttribute('camera', 'camera');
+        element.setAttribute('hotspots', 'hotspots');
         element.setAttribute('is-loading', 'isLoading');
 
         scope = $rootScope.$new();
         scope.id = id;
         scope.searchLocation = searchLocation;
+        scope.date = date;
         scope.camera = camera;
+        scope.hotspots = hotspots;
         scope.isLoading = isLoading;
 
         directive = $compile(element)(scope);
@@ -154,8 +158,8 @@ describe('The dp-straatbeeld directive', function () {
     });
 
     it('loads a scene when there is a known camera location', function () {
-        getDirective(123, null, {location: [52.123, 4.789]});
+        getDirective(123, null, null, {location: [52.123, 4.789]}, ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']);
 
-        expect(marzipanoService.loadScene).toHaveBeenCalledWith(123);
+        expect(marzipanoService.loadScene).toHaveBeenCalledWith(123, ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']);
     });
 });
