@@ -21,8 +21,7 @@
         };
 
         function linkFunction (scope, element) {
-            var container,
-                hotspots;
+            var container;
 
             container = element[0].querySelector('.js-marzipano-viewer');
 
@@ -32,9 +31,8 @@
             scope.$watchCollection(function () {
                 return [scope.id, scope.searchLocation];
             }, function () {
-                getEarthmineData(scope.id, scope.searchLocation).then(function (earthmineData) {
-                    hotspots = earthmineData.hotspots;
 
+                getEarthmineData(scope.id, scope.searchLocation).then(function (earthmineData) {
                     store.dispatch({
                         type: ACTIONS.SHOW_STRAATBEELD,
                         payload: {
@@ -48,8 +46,6 @@
             //Show new scene
             scope.$watch('camera.location', function () {
                 marzipanoService.loadScene(scope.id);
-
-                //console.log(hotspots);
             });
         }
 
