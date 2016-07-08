@@ -12,7 +12,8 @@ describe('The dp-straatbeeld directive', function () {
             date: new Date(2016, 6, 8),
             camera: {
                 location: [52.129, 4.790]
-            }
+            },
+            hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
         };
 
     beforeEach(function () {
@@ -122,7 +123,8 @@ describe('The dp-straatbeeld directive', function () {
                     date: new Date(2016, 6, 8),
                     camera: {
                         location: [52.129, 4.790]
-                    }
+                    },
+                    hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
                 }
             });
 
@@ -137,7 +139,8 @@ describe('The dp-straatbeeld directive', function () {
                     date: new Date(2016, 6, 8),
                     camera: {
                         location: [52.129, 4.790]
-                    }
+                    },
+                    hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
                 }
             });
         });

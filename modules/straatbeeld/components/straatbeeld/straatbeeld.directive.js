@@ -38,7 +38,8 @@
                         payload: {
                             id: earthmineData.id,
                             date: earthmineData.date,
-                            camera: earthmineData.camera
+                            camera: earthmineData.camera,
+                            hotspots: earthmineData.hotspots
                         }
                     });
                 });

@@ -65,6 +65,7 @@
 
             newState.straatbeeld.date = payload.date;
             newState.straatbeeld.camera = payload.camera;
+            newState.straatbeeld.hotspots = payload.hotspots;
             newState.straatbeeld.isLoading = false;
 
             return newState;

@@ -19,4 +19,5 @@
 | heading       | straatbeeld.camera.heading      | no                     |
 | pitch         | straatbeeld.camera.pitch        | no                     |
 | fov           | straatbeeld.camera.fov          | no                     |
+|               | straatbeeld.hotspots            | no, []                 |
 |               | straatbeeld.isLoading           | no                     |

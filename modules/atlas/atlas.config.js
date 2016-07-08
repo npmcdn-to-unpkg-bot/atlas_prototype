@@ -43,6 +43,7 @@
                     pitch: 0.1,
                     fov: 80
                 },
+                hotspots: [],
                 isLoading: false
             }
             */

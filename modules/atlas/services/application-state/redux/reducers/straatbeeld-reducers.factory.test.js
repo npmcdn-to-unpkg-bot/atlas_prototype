@@ -92,7 +92,8 @@ describe('The straatbeeldReducers factory', function () {
                 date: new Date(2016, 6, 8),
                 camera: {
                     location: [51.5, 4.5]
-                }
+                },
+                hotspots: ['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_B']
             };
         });
 
@@ -109,7 +110,7 @@ describe('The straatbeeldReducers factory', function () {
             expect(output.straatbeeld.searchLocation).toBeNull();
         });
 
-        it('sets the date and camera variables', function () {
+        it('sets the date, camera and hotspots variables', function () {
             var inputState = angular.copy(inputStateWithStraatbeeld),
                 output;
 
@@ -119,6 +120,7 @@ describe('The straatbeeldReducers factory', function () {
             expect(output.straatbeeld.camera).toEqual({
                 location: [51.5, 4.5]
             });
+            expect(output.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_B']);
         });
 
         it('removes the loading indicators from the map and straatbeeld', function () {
