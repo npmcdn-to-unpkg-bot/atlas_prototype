@@ -14,6 +14,7 @@
 | id            | straatbeeld.id                  | no                     |
 | plat          | straatbeeld.searchLocation[0]   | no                     |
 | plon          | straatbeeld.searchLocation[1]   | no                     |
+|               | straatbeeld.date                | no                     |
 |               | straatbeeld.camera.location     | no                     |
 | heading       | straatbeeld.camera.heading      | no                     |
 | pitch         | straatbeeld.camera.pitch        | no                     |

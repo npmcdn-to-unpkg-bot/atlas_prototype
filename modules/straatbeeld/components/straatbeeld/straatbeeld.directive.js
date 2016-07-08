@@ -31,12 +31,12 @@
             scope.$watchCollection(function () {
                 return [scope.id, scope.searchLocation];
             }, function () {
-
                 getEarthmineData(scope.id, scope.searchLocation).then(function (earthmineData) {
                     store.dispatch({
                         type: ACTIONS.SHOW_STRAATBEELD,
                         payload: {
                             id: earthmineData.id,
+                            date: earthmineData.date,
                             camera: earthmineData.camera
                         }
                     });

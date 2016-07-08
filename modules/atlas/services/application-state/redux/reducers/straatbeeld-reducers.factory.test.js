@@ -89,6 +89,7 @@ describe('The straatbeeldReducers factory', function () {
         beforeEach(function () {
             showStraatbeeldPayload = {
                 id: 98765,
+                date: new Date(2016, 6, 8),
                 camera: {
                     location: [51.5, 4.5]
                 }
@@ -108,12 +109,13 @@ describe('The straatbeeldReducers factory', function () {
             expect(output.straatbeeld.searchLocation).toBeNull();
         });
 
-        it('sets the camera variables', function () {
+        it('sets the date and camera variables', function () {
             var inputState = angular.copy(inputStateWithStraatbeeld),
                 output;
 
             output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
 
+            expect(output.straatbeeld.date).toEqual(new Date(2016, 6, 8));
             expect(output.straatbeeld.camera).toEqual({
                 location: [51.5, 4.5]
             });

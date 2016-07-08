@@ -9,6 +9,7 @@ describe('The dp-straatbeeld directive', function () {
         mockedMarzipanoViewer = 'I_AM_A_MOCKED_MARZIPANO_VIEWER',
         mockedEarthmineData = {
             id: 123,
+            date: new Date(2016, 6, 8),
             camera: {
                 location: [52.129, 4.790]
             }
@@ -118,6 +119,7 @@ describe('The dp-straatbeeld directive', function () {
                 type: ACTIONS.SHOW_STRAATBEELD,
                 payload: {
                     id: 123,
+                    date: new Date(2016, 6, 8),
                     camera: {
                         location: [52.129, 4.790]
                     }
@@ -132,6 +134,7 @@ describe('The dp-straatbeeld directive', function () {
                 type: ACTIONS.SHOW_STRAATBEELD,
                 payload: {
                     id: 123,
+                    date: new Date(2016, 6, 8),
                     camera: {
                         location: [52.129, 4.790]
                     }
