@@ -34,11 +34,14 @@ describe('The straatbeeld controller', function () {
         expect(store.subscribe).toHaveBeenCalledWith(jasmine.any(Function));
     });
 
-    it('sets the query string based on the state', function () {
+    it('sets the id, camera and isLoading indicator based on the state', function () {
         var mockedState = {
                 straatbeeld: {
                     id: 7,
                     searchLocation: null,
+                    camera: {
+                        location: [52.741, 4.852]
+                    },
                     isLoading: false
                 }
             },
@@ -50,6 +53,9 @@ describe('The straatbeeld controller', function () {
 
         expect(controller.id).toBe(7);
         expect(controller.searchLocation).toBeNull();
+        expect(controller.camera).toEqual({
+            location: [52.741, 4.852]
+        });
         expect(controller.isLoading).toBe(false);
     });
 
@@ -58,6 +64,9 @@ describe('The straatbeeld controller', function () {
                 straatbeeld: {
                     id: null,
                     searchLocation: [52.456, 4.321],
+                    camera: {
+                        location: [52.741, 4.852]
+                    },
                     isLoading: false
                 }
             },

@@ -46,7 +46,7 @@
             });
 
             //Show new scene
-            scope.$watch('camera.location', function (location) {
+            scope.$watch('camera.location', function () {
                 marzipanoService.loadScene(scope.id);
 
                 //console.log(hotspots);

@@ -17,7 +17,7 @@ describe('The straatbeeldReducers factory', function () {
             id: 1,
             location: null,
             camera: {
-                location: [51.0, 4.0],
+                location: [51.0, 4.0]
             },
             isLoading: false
         };
@@ -106,6 +106,18 @@ describe('The straatbeeldReducers factory', function () {
 
             expect(output.straatbeeld.id).toBe(98765);
             expect(output.straatbeeld.searchLocation).toBeNull();
+        });
+
+        it('sets the camera variables', function () {
+            var inputState = angular.copy(inputStateWithStraatbeeld),
+                output;
+
+            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
+
+            expect(output.straatbeeld.id).toBe(98765);
+            expect(output.straatbeeld.camera).toEqual({
+                location: [51.5, 4.5]
+            });
         });
 
         it('removes the loading indicators from the map and straatbeeld', function () {
