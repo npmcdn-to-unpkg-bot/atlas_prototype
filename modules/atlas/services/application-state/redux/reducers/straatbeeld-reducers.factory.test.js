@@ -114,7 +114,6 @@ describe('The straatbeeldReducers factory', function () {
 
             output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
 
-            expect(output.straatbeeld.id).toBe(98765);
             expect(output.straatbeeld.camera).toEqual({
                 location: [51.5, 4.5]
             });

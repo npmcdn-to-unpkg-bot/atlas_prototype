@@ -146,6 +146,27 @@ describe('The urlReducers factory', function () {
             });
         });
 
+        describe('page', function () {
+            it('can set a pagina variable', function () {
+                var output;
+
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.page).toBe('welkom');
+
+                mockedSearchParams.pagina = 'over-ons';
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.page).toBe('over-ons');
+            });
+
+            it('will be set to null if there is no page', function () {
+                var output;
+
+                mockedSearchParams.pagina = null;
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.page).toBeNull();
+            });
+        });
+
         describe('detail', function () {
             it('can set a detail uri', function () {
                 var output;
