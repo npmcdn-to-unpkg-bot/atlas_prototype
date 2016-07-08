@@ -1,4 +1,4 @@
-xdescribe('The earthmine factory', function () {
+describe('The earthmine factory', function () {
     var $httpBackend,
         earthmine,
         earthmineDataFormatter,
@@ -14,11 +14,11 @@ xdescribe('The earthmine factory', function () {
 
     beforeEach(function () {
         angular.mock.module(
-            'atlasApp.straatbeeld',
+            'dpStraatbeeld',
             {
-                urls: {
-                    PANO_PANO_PROXY: 'http://www.example.com/pano-pano-proxy/',
-                    PANO_TILE_PROXY: 'http://www.example.com/pano-tile-proxy/'
+                straatbeeldConfig: {
+                    DATA_ENDPOINT: 'http://www.example.com/pano-pano-proxy/',
+                    TILE_ENDPOINT: 'http://www.example.com/pano-tile-proxy/'
                 },
                 earthmineDataFormatter: {
                     formatPanoramaState: function (input) {
