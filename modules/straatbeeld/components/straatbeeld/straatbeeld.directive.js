@@ -11,12 +11,7 @@
         return {
             restrict: 'E',
             scope: {
-                id: '=',
-                searchLocation: '=',
-                date: '=',
-                camera: '=',
-                hotspots: '=',
-                isLoading: '='
+                state: '='
             },
             templateUrl: 'modules/straatbeeld/components/straatbeeld/straatbeeld.html',
             link: linkFunction
@@ -31,9 +26,9 @@
 
             //Fetch new scene
             scope.$watchCollection(function () {
-                return [scope.id, scope.searchLocation];
+                return [scope.state.id, scope.state.searchLocation];
             }, function () {
-                getEarthmineData(scope.id, scope.searchLocation).then(function (earthmineData) {
+                getEarthmineData(scope.state.id, scope.state.searchLocation).then(function (earthmineData) {
                     store.dispatch({
                         type: ACTIONS.SHOW_STRAATBEELD,
                         payload: earthmineData
@@ -42,9 +37,9 @@
             });
 
             //Show new scene
-            scope.$watch('camera.location', function (location) {
+            scope.$watch('state.camera.location', function (location) {
                 if (angular.isArray(location)) {
-                    marzipanoService.loadScene(scope.id, scope.hotspots);
+                    marzipanoService.loadScene(scope.state.id, scope.state.hotspots);
                 }
             });
         }

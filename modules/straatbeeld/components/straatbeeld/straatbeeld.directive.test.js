@@ -63,26 +63,16 @@ describe('The dp-straatbeeld directive', function () {
         spyOn(store, 'dispatch');
     });
 
-    function getDirective (id, searchLocation, date, camera, hotspots, isLoading) {
+    function getDirective (state) {
         var directive,
             element,
             scope;
 
         element = document.createElement('dp-straatbeeld');
-        element.setAttribute('id', 'id');
-        element.setAttribute('search-location', 'searchLocation');
-        element.setAttribute('date', 'date');
-        element.setAttribute('camera', 'camera');
-        element.setAttribute('hotspots', 'hotspots');
-        element.setAttribute('is-loading', 'isLoading');
+        element.setAttribute('state', 'state');
 
         scope = $rootScope.$new();
-        scope.id = id;
-        scope.searchLocation = searchLocation;
-        scope.date = date;
-        scope.camera = camera;
-        scope.hotspots = hotspots;
-        scope.isLoading = isLoading;
+        scope.state = state;
 
         directive = $compile(element)(scope);
         scope.$apply();
@@ -94,7 +84,7 @@ describe('The dp-straatbeeld directive', function () {
         var directive,
             container;
 
-        directive = getDirective(123);
+        directive = getDirective({id: 123});
         container = directive.find('.js-marzipano-viewer')[0];
 
         expect(marzipanoService.initialize).toHaveBeenCalledWith(container);
@@ -102,14 +92,14 @@ describe('The dp-straatbeeld directive', function () {
 
     describe('loading data', function () {
         it('based on an ID', function () {
-            getDirective(123, null);
+            getDirective({id: 123});
 
             expect(earthmine.getImageDataById).toHaveBeenCalledWith(123);
             expect(earthmine.getImageDataByCoordinates).not.toHaveBeenCalled();
         });
 
         it('based on coordinates', function () {
-            getDirective(null, [52.123, 4.789]);
+            getDirective({id: null, searchLocation: [52.123, 4.789]});
 
             expect(earthmine.getImageDataById).not.toHaveBeenCalled();
             expect(earthmine.getImageDataByCoordinates).toHaveBeenCalledWith(52.123, 4.789);
@@ -117,7 +107,7 @@ describe('The dp-straatbeeld directive', function () {
 
         it('triggers SHOW_STRAATBEELD when the earthmineData is resvoled', function () {
             //For both searching by ID
-            getDirective(123, null);
+            getDirective({id: 123});
 
             expect(store.dispatch).toHaveBeenCalledTimes(1);
             expect(store.dispatch).toHaveBeenCalledWith({
@@ -133,7 +123,7 @@ describe('The dp-straatbeeld directive', function () {
             });
 
             //And searching by coordinates
-            getDirective(null, [52.123, 4.789]);
+            getDirective({id: null, searchLocation: [52.123, 4.789]});
 
             expect(store.dispatch).toHaveBeenCalledTimes(2);
             expect(store.dispatch).toHaveBeenCalledWith({
@@ -151,14 +141,20 @@ describe('The dp-straatbeeld directive', function () {
 
         it('doesn\'t directly load a scene when earthmineData is resolved', function () {
             //Loading the scene should only be triggered by a Redux state change, not some internal API call
-            getDirective(123, null);
+            getDirective({id: 123});
 
             expect(marzipanoService.loadScene).not.toHaveBeenCalled();
         });
     });
 
     it('loads a scene when there is a known camera location', function () {
-        getDirective(123, null, null, {location: [52.123, 4.789]}, ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']);
+        getDirective({
+            id: 123,
+            camera: {
+                location: [52.123, 4.789]
+            },
+            hotspots: ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']
+        });
 
         expect(marzipanoService.loadScene).toHaveBeenCalledWith(123, ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']);
     });

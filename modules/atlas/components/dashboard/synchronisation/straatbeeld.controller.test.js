@@ -53,14 +53,14 @@ describe('The straatbeeld controller', function () {
 
         controller = getController();
 
-        expect(controller.id).toBe(7);
-        expect(controller.searchLocation).toBeNull();
-        expect(controller.date).toEqual(new Date(2016, 6, 8));
-        expect(controller.camera).toEqual({
+        expect(controller.straatbeeld.id).toBe(7);
+        expect(controller.straatbeeld.searchLocation).toBeNull();
+        expect(controller.straatbeeld.date).toEqual(new Date(2016, 6, 8));
+        expect(controller.straatbeeld.camera).toEqual({
             location: [52.741, 4.852]
         });
-        expect(controller.hotspots).toEqual(['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y', 'FAKE_HOTSPOT_Z']);
-        expect(controller.isLoading).toBe(false);
+        expect(controller.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y', 'FAKE_HOTSPOT_Z']);
+        expect(controller.straatbeeld.isLoading).toBe(false);
     });
 
     it('can have a location instead of an ID', function () {
@@ -81,21 +81,7 @@ describe('The straatbeeld controller', function () {
 
         controller = getController();
 
-        expect(controller.id).toBeNull();
-        expect(controller.searchLocation).toEqual([52.456, 4.321]);
-    });
-
-    it('doesn\'t break when straatbeeld is null', function () {
-        var mockedState = {
-                straatbeeld: null
-            },
-            controller;
-
-        spyOn(store, 'getState').and.returnValue(mockedState);
-
-        controller = getController();
-
-        expect(controller.id).toBeNull();
-        expect(controller.isLoading).toBeNull();
+        expect(controller.straatbeeld.id).toBeNull();
+        expect(controller.straatbeeld.searchLocation).toEqual([52.456, 4.321]);
     });
 });

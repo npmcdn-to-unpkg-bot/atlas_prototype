@@ -54,15 +54,7 @@
                     </div>
 
                     <div ng-if="vm.showStraatbeeld" ng-controller="StraatbeeldController as vm">
-                        <dp-straatbeeld
-                            id="vm.id"
-                            search-location="vm.searchLocation"
-                            date="vm.date"
-                            camera="vm.camera"
-                            hotspots="vm.hotspots"
-                            is-loading="vm.isLoading">
-
-                        </dp-straatbeeld>
+                        <dp-straatbeeld state="vm.straatbeeld"></dp-straatbeeld>
                     </div>
                 </div>
             </div>
