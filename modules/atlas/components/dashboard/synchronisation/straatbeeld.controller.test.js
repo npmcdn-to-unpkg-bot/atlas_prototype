@@ -39,6 +39,7 @@ describe('The straatbeeld controller', function () {
                 straatbeeld: {
                     id: 7,
                     searchLocation: null,
+                    date: new Date(2016, 6, 8),
                     camera: {
                         location: [52.741, 4.852]
                     },
@@ -53,6 +54,7 @@ describe('The straatbeeld controller', function () {
 
         expect(controller.id).toBe(7);
         expect(controller.searchLocation).toBeNull();
+        expect(controller.date).toEqual(new Date(2016, 6, 8));
         expect(controller.camera).toEqual({
             location: [52.741, 4.852]
         });
@@ -64,6 +66,7 @@ describe('The straatbeeld controller', function () {
                 straatbeeld: {
                     id: null,
                     searchLocation: [52.456, 4.321],
+                    date: new Date(2016, 6, 8),
                     camera: {
                         location: [52.741, 4.852]
                     },

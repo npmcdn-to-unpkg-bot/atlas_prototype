@@ -13,6 +13,7 @@
             scope: {
                 id: '=',
                 searchLocation: '=',
+                date: '=',
                 camera: '=',
                 isLoading: '='
             },

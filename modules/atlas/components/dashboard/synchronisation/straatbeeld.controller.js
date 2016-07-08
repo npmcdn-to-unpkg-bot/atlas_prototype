@@ -18,6 +18,7 @@
 
             vm.id = state.straatbeeld && state.straatbeeld.id;
             vm.searchLocation = state.straatbeeld && state.straatbeeld.searchLocation;
+            vm.date = state.straatbeeld && state.straatbeeld.date;
             vm.camera = state.straatbeeld && state.straatbeeld.camera;
             vm.isLoading = state.straatbeeld && state.straatbeeld.isLoading;
         }
