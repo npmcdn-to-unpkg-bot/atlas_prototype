@@ -46,39 +46,6 @@
                         });
                     }, 2000);
                 }
-
-                if (state.straatbeeld && state.straatbeeld.isLoading) {
-                    $timeout(function () {
-                        if (state.straatbeeld.id === 1000017472454) {
-                            store.dispatch({
-                                type: ACTIONS.SHOW_STRAATBEELD,
-                                payload: {
-                                    id: 1000017472454,
-                                    location: null,
-                                    camera: {
-                                        location: [52.3532714793, 5.001685474],
-                                        heading: 90,
-                                        pitch: 0.1,
-                                        fov: 90
-                                    }
-                                }
-                            });
-                        } else if (state.straatbeeld.id === 1000017472475) {
-                            store.dispatch({
-                                type: ACTIONS.SHOW_STRAATBEELD,
-                                payload: {
-                                    id: 1000017472475,
-                                    camera: {
-                                        location: [52.353326343, 5.0019325333],
-                                        heading: 90,
-                                        pitch: 0.1,
-                                        fov: 90
-                                    }
-                                }
-                            });
-                        }
-                    }, 2000);
-                }
             }
         }
     }
