@@ -13,7 +13,7 @@
             calculateHotspotPosition: calculateHotspotPosition
         };
 
-        function createHotspot (sceneId, distance, panoramaState) {
+        function createHotspot (sceneId, distance) {
             var q,
                 html,
                 element,
@@ -22,12 +22,11 @@
             q = $q.defer();
 
             element = $document[0].createElement('dp-hotspot');
-            element.setAttribute('scene-id', sceneId);
+            element.setAttribute('scene-id', 'sceneId');
             element.setAttribute('distance', distance);
-            element.setAttribute('panorama-state', 'panoramaState');
 
             scope = $rootScope.$new();
-            scope.panoramaState = panoramaState;
+            scope.sceneId = sceneId;
 
             html = $compile(element)(scope)[0];
 

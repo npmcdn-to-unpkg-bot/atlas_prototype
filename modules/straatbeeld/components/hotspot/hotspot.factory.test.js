@@ -4,13 +4,10 @@ xdescribe('The hotspotService', function () {
 
     beforeEach(function () {
         angular.mock.module(
-            'atlas_templates',
-            'atlasApp.straatbeeld',
+            'dpStraatbeeld',
             function ($provide) {
                 $provide.factory('dpHotspotDirective', function () {
-                    return {
-                        template: '<p>Ik ben een dp-hotspot-directive</p>'
-                    };
+                    return {};
                 });
             }
         );
