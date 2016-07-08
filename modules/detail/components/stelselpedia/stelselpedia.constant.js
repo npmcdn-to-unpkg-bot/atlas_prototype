@@ -139,19 +139,19 @@
                 MEETBOUT: {
                     label_singular: 'Meetbout',
                     label_plural: 'Meetbouten',
-                    description: 'In Amsterdam is een systeem gerealiseerd voor het monitoren van deformatie ' +
-                    '(zakkingen). De oudere, vooroorlogse panden in Amsterdam zijn gebouwd op houten palen. ' +
-                    'De kwaliteit van deze fundering op houten palen verschilt sterk. Een slechte fundering kan ' +
-                    'zakkingen tot gevolg hebben, waardoor de kwaliteit van deze panden afneemt en mogelijkerwijs ' +
-                    'zelfs uiteindelijk tot sloop kan leiden.',
+                    description: 'Om zakkingen van panden te kunnen volgen zijn op grote schaal meetbouten geplaatst ' +
+                        'in Amsterdam. De meetbouten zijn op ongeveer een halve meter van het maaiveld geplaatst in d' +
+                        'e gevel.',
                     url: 'https://www.amsterdam.nl/stelselpedia/meetbouten-index/catalogus-amsterdams/meetbout/',
                     meta: []
                 },
                 METING: {
                     label_singular: 'Meting',
                     label_plural: 'Metingen',
-                    description: 'De meetbouten worden ten opzichte van een vast punt \'ingemeten\', zodat de hoogte ' +
-                    'vastgesteld kan worden.',
+                    description: 'De eerste meting, de zogenaamde nulmeting, is het uitgangspunt voor het beoordelen ' +
+                        'van eventuele deformatie (zakking). In principe zijn sindsdien drie herhalingsmetingen uitge' +
+                        'voerd. Het verschil tussen de nulmeting en de herhalingsmeting is een maat voor het zettings' +
+                        'gedrag.',
                     url: 'https://www.amsterdam.nl/stelselpedia/meetbouten-index/catalogus-amsterdams/meting/',
                     meta: []
                 },
