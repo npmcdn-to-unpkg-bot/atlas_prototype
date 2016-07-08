@@ -26,7 +26,7 @@
          */
         function fetchStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
-
+            console.log('fetchStraatbeeldReducer');
             newState.straatbeeld = {
                 isLoading: true
             };
@@ -56,7 +56,7 @@
          */
         function showStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
-
+console.log('showStraatbeeldReducer');
             newState.map.isLoading = false;
 
             //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama

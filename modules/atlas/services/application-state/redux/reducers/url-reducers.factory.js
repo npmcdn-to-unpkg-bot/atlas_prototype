@@ -102,6 +102,7 @@
                         id: Number(payload.id) || null,
                         searchLocation:
                             hasSearchLocation(payload) ? [Number(payload.plat), Number(payload.plon)] : null,
+                        date: oldState.straatbeeld && oldState.straatbeeld.date || null,
                         camera: {
                             location: cameraLocation
                         },

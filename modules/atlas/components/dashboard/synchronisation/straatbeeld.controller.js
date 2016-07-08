@@ -15,7 +15,7 @@
 
         function update () {
             var state = store.getState();
-
+console.log(state);
             vm.id = state.straatbeeld && state.straatbeeld.id;
             vm.searchLocation = state.straatbeeld && state.straatbeeld.searchLocation;
             vm.date = state.straatbeeld && state.straatbeeld.date;
