@@ -57,15 +57,11 @@
         function showStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
+            newState.straatbeeld = payload;
             newState.map.isLoading = false;
 
             //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama
-            newState.straatbeeld.id = payload.id;
             newState.straatbeeld.searchLocation = null;
-
-            newState.straatbeeld.date = payload.date;
-            newState.straatbeeld.camera = payload.camera;
-            newState.straatbeeld.hotspots = payload.hotspots;
             newState.straatbeeld.isLoading = false;
 
             return newState;
