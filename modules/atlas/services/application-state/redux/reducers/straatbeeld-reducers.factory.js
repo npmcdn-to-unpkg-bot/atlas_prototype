@@ -63,6 +63,7 @@
             newState.straatbeeld.id = payload.id;
             newState.straatbeeld.searchLocation = null;
 
+            newState.straatbeeld.camera = payload.camera;
             newState.straatbeeld.isLoading = false;
 
             return newState;
