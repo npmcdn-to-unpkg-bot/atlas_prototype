@@ -147,7 +147,7 @@ describe('The urlReducers factory', function () {
         });
 
         describe('detail', function () {
-            it('can set a detail uri', function () {
+            it('can set a detail api endpoint', function () {
                 var output;
 
                 //Without an active detail page
@@ -155,9 +155,9 @@ describe('The urlReducers factory', function () {
                 expect(output.detail).toBeNull();
 
                 //With an active detail page
-                mockedSearchParams.detail = 'FAKE/URI/123';
+                mockedSearchParams.detail = 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.detail.uri).toBe('FAKE/URI/123');
+                expect(output.detail.endpoint).toBe('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/');
             });
         });
 
@@ -186,7 +186,7 @@ describe('The urlReducers factory', function () {
 
             it('remembers the camera location if the payload ID stays the same', function () {
                 var output;
-                
+
                 //When the oldState has an ID and a known location
                 mockedState.straatbeeld = {
                     id: 12345,

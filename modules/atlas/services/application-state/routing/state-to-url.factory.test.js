@@ -147,7 +147,7 @@ describe('The stateToUrl factory', function () {
     });
 
     describe('Detail', function () {
-        it('can store the URI of the detail page', function () {
+        it('can store the api endpoint of the detail page', function () {
             //No detail, no parameter
             stateToUrl.update(mockedState);
 
@@ -158,13 +158,13 @@ describe('The stateToUrl factory', function () {
 
             //With a detail page
             mockedState.detail = {
-                uri: 'bag/verblijfsobject/123/'
+                endpoint: 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/'
             };
 
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                detail: 'bag/verblijfsobject/123/'
+                detail: 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/'
             }));
         });
     });

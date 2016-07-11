@@ -1,0 +1,11 @@
+<atlas-stelselpedia-header
+  heading="{{vm.isGevormd ? vm.headingHtml : vm.heading}}"
+  definition="NUMMERAANDUIDING"
+  meta-data="vm.metaData">
+</atlas-stelselpedia-header>
+
+<div ng-if="!vm.hoofdadres || vm.isGevormd" class="nummeraanduiding-header">
+  <div ng-if="!vm.hoofdadres" class="badge badge--blue">Dit is een nevenadres</div>
+
+  <div ng-if="vm.isGevormd" class="badge badge--red">{{vm.verblijfsobject.status.omschrijving}}</div>
+</div>
