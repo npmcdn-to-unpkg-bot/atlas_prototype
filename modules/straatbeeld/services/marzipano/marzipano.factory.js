@@ -7,7 +7,7 @@
 
     marzipanoService.$inject = ['Marzipano', 'straatbeeldConfig', 'earthmine', 'angleConversion', 'hotspotService'];
 
-    function marzipanoService (Marzipano, straatbeeldConfig, earthmine, angleConversion, hotspotService) {
+    function marzipanoService (Marzipano, straatbeeldConfig, earthmine, angleConversion) {
         var viewer;
 
         return {
@@ -24,7 +24,7 @@
             viewer = new Marzipano.Viewer(domElement);
         }
 
-        function loadScene (sceneId, hotspots, camera) {
+        function loadScene (sceneId, car, hotspots) {
             var view,
                 viewLimiter,
                 scene,
@@ -46,6 +46,8 @@
                 pinFirstLevel: true
             });
 
+            console.log(car, hotspots);
+            /*
             hotspots.forEach(function (hotspot) {
                 var position = hotspotService.calculateHotspotPosition(camera, hotspot);
                 console.log(position);
@@ -57,7 +59,7 @@
                     );
                 });
             });
-
+            */
             scene.switchTo();
         }
     }

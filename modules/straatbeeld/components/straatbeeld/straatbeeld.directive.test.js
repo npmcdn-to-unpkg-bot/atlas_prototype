@@ -147,10 +147,10 @@ describe('The dp-straatbeeld directive', function () {
         });
     });
 
-    xit('loads a scene when there is a known camera location', function () {
+    xit('loads a scene when there is a known car location', function () {
         getDirective({
             id: 123,
-            camera: {
+            car: {
                 location: [52.123, 4.789]
             },
             hotspots: ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']
