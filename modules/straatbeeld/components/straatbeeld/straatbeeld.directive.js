@@ -39,7 +39,13 @@
             //Show new scene
             scope.$watch('state.car.location', function (location) {
                 if (angular.isArray(location)) {
-                    marzipanoService.loadScene(scope.state.id, scope.state.car, scope.state.hotspots);
+                    console.log(scope.state);
+                    marzipanoService.loadScene(
+                        scope.state.id,
+                        scope.state.car,
+                        scope.state.camera,
+                        scope.state.hotspots
+                    );
                 }
             });
         }

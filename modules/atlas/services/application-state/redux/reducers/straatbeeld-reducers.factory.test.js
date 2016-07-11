@@ -117,7 +117,7 @@ describe('The straatbeeldReducers factory', function () {
             output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
 
             expect(output.straatbeeld.date).toEqual(new Date(2016, 6, 8));
-            expect(output.straatbeeld.camera).toEqual({
+            expect(output.straatbeeld.car).toEqual({
                 location: [51.5, 4.5]
             });
             expect(output.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_B']);

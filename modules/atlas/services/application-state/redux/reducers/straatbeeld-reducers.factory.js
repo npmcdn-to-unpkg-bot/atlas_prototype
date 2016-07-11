@@ -58,6 +58,11 @@
             var newState = angular.copy(oldState);
 
             newState.straatbeeld = payload;
+            newState.straatbeeld.camera = {
+                heading: newState.straatbeeld.car.heading,
+                pitch: newState.straatbeeld.car.pitch
+            };
+
             newState.map.isLoading = false;
 
             //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama
