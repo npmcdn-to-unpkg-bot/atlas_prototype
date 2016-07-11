@@ -1,4 +1,4 @@
-fdescribe('The hotspotService', function () {
+describe('The hotspotService', function () {
     var $rootScope,
         hotspotService;
 
@@ -33,14 +33,12 @@ fdescribe('The hotspotService', function () {
 
     it('calculates the location of the hotspot', function () {
         var absolutePosition,
-            panoramaState,
+            camera,
             hotspot;
 
-        panoramaState = {
-            carOrientation: {
-                heading: 2,
-                pitch: 0.5
-            }
+        camera = {
+            heading: 2,
+            pitch: 0.5
         };
 
         hotspot = {
@@ -50,7 +48,7 @@ fdescribe('The hotspotService', function () {
             }
         };
 
-        absolutePosition = hotspotService.calculateHotspotPosition(panoramaState, hotspot);
+        absolutePosition = hotspotService.calculateHotspotPosition(camera, hotspot);
 
         expect(absolutePosition.yaw).toBe(-1.5);
         expect(absolutePosition.pitch).toBe(0.6);
