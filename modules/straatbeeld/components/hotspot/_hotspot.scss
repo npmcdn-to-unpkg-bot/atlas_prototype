@@ -8,6 +8,7 @@
   background-color: $brand-primary;
   background-image: url("/assets/hotspot.png");
   background-size: cover;
+  cursor: pointer;
 
   animation: hotspot-animation 1s linear infinite;
   animation-direction: alternate;

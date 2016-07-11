@@ -24,7 +24,7 @@
             viewer = new Marzipano.Viewer(domElement);
         }
 
-        function loadScene (sceneId, car, camera, hotspots) {
+        function loadScene (sceneId, camera, hotspots) {
             var view,
                 viewLimiter,
                 scene,
@@ -45,8 +45,6 @@
                 view: view,
                 pinFirstLevel: true
             });
-
-
 
             hotspots.forEach(function (hotspot) {
                 hotspotService.createHotspotTemplate(hotspot.targetSceneId, hotspot.distance).then(function (template) {
