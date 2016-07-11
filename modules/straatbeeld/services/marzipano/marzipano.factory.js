@@ -47,7 +47,7 @@
             });
 
             hotspots.forEach(function (hotspot) {
-                hotspotService.createHotspotTemplate(hotspot.targetSceneId, hotspot.distance).then(function (template) {
+                hotspotService.createHotspotTemplate(hotspot.id, hotspot.distance).then(function (template) {
                     var position = hotspotService.calculateHotspotPosition(camera, hotspot);
 
                     scene.hotspotContainer().createHotspot(

@@ -23,10 +23,11 @@
 
             element = $document[0].createElement('dp-hotspot');
             element.setAttribute('scene-id', 'sceneId');
-            element.setAttribute('distance', distance);
+            element.setAttribute('distance', 'distance');
 
             scope = $rootScope.$new();
             scope.sceneId = sceneId;
+            scope.distance = distance;
 
             html = $compile(element)(scope)[0];
 
@@ -39,7 +40,6 @@
 
         //HELP: ik snap dit niet!
         function calculateHotspotPosition (camera, hotspot) {
-            console.log(camera, hotspot);
             return {
                 yaw: hotspot.relativeLocation.yaw - camera.heading,
                 pitch: hotspot.relativeLocation.pitch + camera.pitch

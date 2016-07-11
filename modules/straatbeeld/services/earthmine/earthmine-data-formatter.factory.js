@@ -23,7 +23,7 @@
                 },
                 hotspots: earthmineData.connections.map(function (connection) {
                     return {
-                        id: connection['pano-id'],
+                        id: Number(connection['pano-id']),
                         relativeLocation: {
                             yaw: angleConversion.degreesToRadians(connection['relative-location'].yaw),
                             pitch: angleConversion.degreesToRadians(connection['relative-location'].pitch),
