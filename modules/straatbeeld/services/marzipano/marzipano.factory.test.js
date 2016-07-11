@@ -1,11 +1,14 @@
 describe('The marzipanoService factory', function () {
     var $rootScope,
+        $q,
         Marzipano,
         marzipanoService,
         earthmine,
+        hotspotService,
         fakeView,
         fakeCubeGeometery,
         fakeViewer,
+        fakeHotspotContainer,
         fakeScene,
         mockedCamera;
 
@@ -16,7 +19,8 @@ describe('The marzipanoService factory', function () {
                 straatbeeldConfig: {
                     MAX_RESOLUTION: 1000,
                     MAX_FOV: 100,
-                    RESOLUTION_LEVELS: 'FAKE_RESOLUTION_LEVELS'
+                    RESOLUTION_LEVELS: 'FAKE_RESOLUTION_LEVELS',
+                    HOTSPOT_PERSPECTIVE: 'FAKE_HOTSPOT_PERSPECTIVE'
                 },
                 angleConversion: {
                     degreesToRadians: function (input) {
@@ -27,16 +31,30 @@ describe('The marzipanoService factory', function () {
                     getImageSourceUrl: function (sceneId) {
                         return 'http://www.image-source-url.com/' + sceneId;
                     }
+                },
+                hotspotService: {
+                    createHotspotTemplate: function () {
+                        var q = $q.defer();
+
+                        q.resolve('FAKE_HOTSPOT_TEMPLATE');
+
+                        return q.promise;
+                    },
+                    calculateHotspotPosition: function () {
+                        return 'FAKE_HOTSPOT_POSITION';
+                    }
                 }
             }
         );
 
         angular.mock.inject(
-            function (_$rootScope_, _Marzipano_, _marzipanoService_, _earthmine_) {
+            function (_$rootScope_, _$q_, _Marzipano_, _marzipanoService_, _earthmine_, _hotspotService_) {
                 $rootScope = _$rootScope_;
+                $q = _$q_;
                 Marzipano = _Marzipano_;
                 marzipanoService = _marzipanoService_;
                 earthmine = _earthmine_;
+                hotspotService = _hotspotService_;
             }
         );
 
@@ -52,8 +70,15 @@ describe('The marzipanoService factory', function () {
             createScene: function () {}
         };
 
+        fakeHotspotContainer = {
+            createHotspot: function () {}
+        };
+
         fakeScene = {
-            switchTo: function () {}
+            switchTo: function () {},
+            hotspotContainer: function () {
+                return fakeHotspotContainer;
+            }
         };
 
         mockedCamera = {
@@ -69,6 +94,9 @@ describe('The marzipanoService factory', function () {
         spyOn(Marzipano, 'CubeGeometry').and.returnValue(fakeCubeGeometery);
         spyOn(fakeViewer, 'createScene').and.returnValue(fakeScene);
         spyOn(fakeScene, 'switchTo');
+        spyOn(hotspotService, 'createHotspotTemplate').and.callThrough();
+        spyOn(hotspotService, 'calculateHotspotPosition').and.callThrough();
+        spyOn(fakeHotspotContainer, 'createHotspot');
     });
 
     it('creates a Marzipano viewer instance when initializing', function () {
@@ -105,6 +133,41 @@ describe('The marzipanoService factory', function () {
             });
 
             expect(fakeScene.switchTo).toHaveBeenCalled();
+        });
+
+        it('which adds hotspots to the scene', function () {
+            var mockedHotspots = [
+                {
+                    id: 1,
+                    distance: 100,
+                    heading: 270,
+                    pitch: 0.2
+                }, {
+                    id: 2,
+                    distance: 80,
+                    heading:79,
+                    pitch: 0.15
+                }
+            ];
+
+            marzipanoService.loadScene(54321, mockedCamera, mockedHotspots);
+
+            expect(hotspotService.createHotspotTemplate).toHaveBeenCalledTimes(2);
+            expect(hotspotService.createHotspotTemplate).toHaveBeenCalledWith(1, 100);
+            expect(hotspotService.createHotspotTemplate).toHaveBeenCalledWith(2, 80);
+
+            $rootScope.$apply();
+
+            expect(hotspotService.calculateHotspotPosition).toHaveBeenCalledTimes(2);
+            expect(hotspotService.calculateHotspotPosition).toHaveBeenCalledWith(mockedCamera, mockedHotspots[0]);
+            expect(hotspotService.calculateHotspotPosition).toHaveBeenCalledWith(mockedCamera, mockedHotspots[1]);
+
+            expect(fakeHotspotContainer.createHotspot).toHaveBeenCalledTimes(2);
+            expect(fakeHotspotContainer.createHotspot).toHaveBeenCalledWith(
+                'FAKE_HOTSPOT_TEMPLATE',
+                'FAKE_HOTSPOT_POSITION',
+                'FAKE_HOTSPOT_PERSPECTIVE'
+            );
         });
     });
 });
