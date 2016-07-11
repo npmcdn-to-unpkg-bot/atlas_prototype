@@ -13,6 +13,10 @@
       </dl>
     </div>
 
+    <div class="detail-page__content--sidebar" ng-if="vm.apiData.results">
+      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+    </div>
+
     <div class="list-box" ng-if="vm.apiData.results.buurten.count">
       <atlas-stelselpedia-header definition="BUURT" use-plural="true"></atlas-stelselpedia-header>
 
@@ -25,7 +29,4 @@
     </atlas-bbga-graphs>
   </div>
 
-<!--   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="vm.apiData.results"></dp-parent-relations>
-  </div> -->
 </div>

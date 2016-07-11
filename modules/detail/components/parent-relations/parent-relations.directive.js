@@ -3,24 +3,24 @@
 
     angular
         .module('atlasDetail')
-        .directive('dpParentRelations', dpParentRelationsDirective);
+        .directive('atlasParentRelations', atlasParentRelationsDirective);
 
-    function dpParentRelationsDirective () {
+    function atlasParentRelationsDirective () {
         return {
             restrict: 'E',
             scope: {
                 content: '='
             },
             templateUrl: 'modules/detail/components/parent-relations/parent-relations.html',
-            controller: DpParentRelationsController,
+            controller: AtlasParentRelationsController,
             controllerAs: 'vm',
             bindToController: true
         };
     }
 
-    DpParentRelationsController.$inject = ['PARENT_RELATIONS_CONFIG'];
+    AtlasParentRelationsController.$inject = ['PARENT_RELATIONS_CONFIG'];
 
-    function DpParentRelationsController (PARENT_RELATIONS_CONFIG) {
+    function AtlasParentRelationsController (PARENT_RELATIONS_CONFIG) {
         var vm = this;
 
         vm.parentRelations = PARENT_RELATIONS_CONFIG
