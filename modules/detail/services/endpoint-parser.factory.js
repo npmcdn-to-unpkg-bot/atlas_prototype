@@ -39,7 +39,6 @@
 
             return new ParsePathResult(
                 dataset,
-                templateUri,
                 templateUrl
             );
         }
