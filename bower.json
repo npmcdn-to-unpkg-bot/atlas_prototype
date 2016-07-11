@@ -11,7 +11,7 @@
     "marzipano": "https://github.com/DatapuntAmsterdam/marzipano.git#master",
     "proj4": "*",
     "proj4leaflet": "https://github.com/DatapuntAmsterdam/proj4leaflet.git#master",
-    "redux": "https://npmcdn.com/redux/dist/redux.js",
+    "redux": "https://npmcdn.com/redux/dist/redux.js"
   },
   "devDependencies": {
     "angular-mocks": "^1.5.7"
