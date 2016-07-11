@@ -90,8 +90,10 @@ describe('The straatbeeldReducers factory', function () {
             showStraatbeeldPayload = {
                 id: 98765,
                 date: new Date(2016, 6, 8),
-                camera: {
-                    location: [51.5, 4.5]
+                car: {
+                    location: [51.5, 4.5],
+                    heading: 180,
+                    pitch: 0.01
                 },
                 hotspots: ['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_B']
             };
@@ -118,7 +120,9 @@ describe('The straatbeeldReducers factory', function () {
 
             expect(output.straatbeeld.date).toEqual(new Date(2016, 6, 8));
             expect(output.straatbeeld.car).toEqual({
-                location: [51.5, 4.5]
+                location: [51.5, 4.5],
+                heading: 180,
+                pitch: 0.01
             });
             expect(output.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_B']);
         });

@@ -6,7 +6,8 @@ describe('The marzipanoService factory', function () {
         fakeView,
         fakeCubeGeometery,
         fakeViewer,
-        fakeScene;
+        fakeScene,
+        mockedCamera;
 
     beforeEach(function () {
         angular.mock.module(
@@ -55,6 +56,11 @@ describe('The marzipanoService factory', function () {
             switchTo: function () {}
         };
 
+        mockedCamera = {
+            heading: 0,
+            pitch: 0
+        };
+
         spyOn(Marzipano, 'Viewer').and.returnValue(fakeViewer);
         spyOn(earthmine, 'getImageSourceUrl').and.callThrough();
         spyOn(Marzipano.RectilinearView.limit, 'traditional').and.returnValue('FAKE_VIEW_LIMITER');
@@ -82,7 +88,7 @@ describe('The marzipanoService factory', function () {
         });
 
         it('that, ehm, loads a scene', function () {
-            marzipanoService.loadScene(54321, []);
+            marzipanoService.loadScene(54321, mockedCamera, []);
 
             expect(earthmine.getImageSourceUrl).toHaveBeenCalledWith(54321);
 
