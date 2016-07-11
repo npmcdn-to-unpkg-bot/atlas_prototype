@@ -16,7 +16,7 @@ COPY *.json /app/
 RUN npm cache clean \
  && bower cache clean --allow-root \
  && npm install \
- && bower install --allow-root --force
+ && bower install --allow-root
 
 COPY . /app/
 

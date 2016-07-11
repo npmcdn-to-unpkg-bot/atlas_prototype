@@ -5,17 +5,17 @@
         .module('dpShared')
         .factory('api', apiFactory);
 
-    apiFactory.$inject = ['$http', 'environment'];
+    apiFactory.$inject = ['$http'];
 
-    function apiFactory ($http, environment) {
+    function apiFactory ($http) {
         return {
-            get: getByUri
+            getByUrl: getByUrl
         };
 
-        function getByUri (uri) {
+        function getByUrl (url) {
             return $http({
                 method: 'GET',
-                url: environment.API_ROOT + uri,
+                url: url,
                 /*
                 Caching is set to false to enforce distinction between logged in users and guests. The API doesn't
                 support tokens yet.

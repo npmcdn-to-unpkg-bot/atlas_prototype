@@ -27,7 +27,7 @@
             detail: null,
             /*
             detail: {
-                uri: 'bag/verblijfsobject/123/',
+                endpoint: 'bag/verblijfsobject/123/',
                 isLoading: false
             }
             */

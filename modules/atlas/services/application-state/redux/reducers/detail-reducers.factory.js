@@ -17,7 +17,7 @@
 
         /**
          * @param {Object} oldState
-         * @param {String} payload - An URI that matches an API endpoint
+         * @param {String} payload - An API endpoint
          *
          * @returns {Object} newState
          */
@@ -25,7 +25,7 @@
             var newState = angular.copy(oldState);
 
             newState.detail = {
-                uri: payload,
+                endpoint: payload,
                 isLoading: true
             };
 
