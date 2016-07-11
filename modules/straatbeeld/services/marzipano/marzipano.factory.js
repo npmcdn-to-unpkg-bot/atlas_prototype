@@ -22,13 +22,16 @@
          */
         function initialize (domElement) {
             viewer = new Marzipano.Viewer(domElement);
+
+            return viewer;
         }
 
         function loadScene (sceneId, camera, hotspots) {
             var view,
                 viewLimiter,
                 scene,
-                imageSourceUrl;
+                imageSourceUrl,
+                cameraYaw;
 
             imageSourceUrl = earthmine.getImageSourceUrl(sceneId);
 
@@ -57,6 +60,12 @@
                     );
                 });
             });
+
+            cameraYaw = camera.heading - camera.heading;
+
+            view.setYaw(cameraYaw);
+            view.setPitch(camera.pitch);
+            view.setFov(camera.fov);
 
             scene.switchTo();
         }

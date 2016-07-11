@@ -12,6 +12,7 @@
 
         reducers[ACTIONS.FETCH_STRAATBEELD] = fetchStraatbeeldReducer;
         reducers[ACTIONS.SHOW_STRAATBEELD] = showStraatbeeldReducer;
+        reducers[ACTIONS.STRAATBEELD_SET_ORIENTATION] = setOrientationReducer;
 
         return reducers;
 
@@ -27,9 +28,21 @@
         function fetchStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
-            newState.straatbeeld = {
-                isLoading: true
-            };
+
+            /*
+             straatbeeld: {
+                id: 1,
+                searchLocation: null,
+                date: null,
+                car: {
+                    location: [52.789, 4.123],
+                    heading: 20,
+                    pitch: 0.1
+                },
+                hotspots: [],
+                isLoading: false
+             }
+             */
 
             if (angular.isNumber(payload)) {
                 newState.straatbeeld.id = payload;
@@ -38,6 +51,11 @@
                 newState.straatbeeld.id = null;
                 newState.straatbeeld.searchLocation = payload;
             }
+
+            newState.straatbeeld.date = null;
+            newState.straatbeeld.car = null;
+            newState.straatbeeld.hotspots = [];
+            newState.straatbeeld.isLoading = true;
 
             newState.map.highlight = null;
             newState.map.isLoading = true;
@@ -58,16 +76,31 @@
             var newState = angular.copy(oldState);
 
             newState.straatbeeld = payload;
-            newState.straatbeeld.camera = {
-                heading: newState.straatbeeld.car.heading,
-                pitch: newState.straatbeeld.car.pitch
-            };
+
+            if (oldState.straatbeeld && angular.isObject(oldState.straatbeeld.camera)) {
+                //use the previous camera orientation
+                newState.straatbeeld.camera = oldState.straatbeeld.camera;
+            } else {
+                //Or copy the car's orientation if there is no previous orientation
+                newState.straatbeeld.camera = {
+                    heading: newState.straatbeeld.car.heading,
+                    pitch: newState.straatbeeld.car.pitch
+                };
+            }
 
             newState.map.isLoading = false;
 
             //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama
             newState.straatbeeld.searchLocation = null;
             newState.straatbeeld.isLoading = false;
+
+            return newState;
+        }
+
+        function setOrientationReducer (oldState, payload) {
+            var newState = angular.copy(oldState);
+
+            newState.straatbeeld.camera = payload;
 
             return newState;
         }

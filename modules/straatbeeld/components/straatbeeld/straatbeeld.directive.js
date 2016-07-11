@@ -5,9 +5,9 @@
         .module('dpStraatbeeld')
         .directive('dpStraatbeeld', dpStraatbeeldDirective);
 
-    dpStraatbeeldDirective.$inject = ['store', 'ACTIONS', 'marzipanoService', 'earthmine'];
+    dpStraatbeeldDirective.$inject = ['store', 'ACTIONS', 'marzipanoService', 'earthmine', 'orientation'];
 
-    function dpStraatbeeldDirective (store, ACTIONS, marzipanoService, earthmine) {
+    function dpStraatbeeldDirective (store, ACTIONS, marzipanoService, earthmine, orientation) {
         return {
             restrict: 'E',
             scope: {
@@ -18,11 +18,15 @@
         };
 
         function linkFunction (scope, element) {
-            var container;
+            var container,
+                viewer;
 
             container = element[0].querySelector('.js-marzipano-viewer');
+            viewer = marzipanoService.initialize(container);
 
-            marzipanoService.initialize(container);
+            scope.updateOrientation = function () {
+                orientation.listen(viewer, scope.state.car, scope.state.camera);
+            };
 
             //Fetch new scene
             scope.$watchCollection(function () {
@@ -37,7 +41,7 @@
             });
 
             //Show new scene
-            scope.$watch('state.car.location', function (location) {
+            scope.$watchCollection('state.car.location', function (location) {
                 if (angular.isArray(location)) {
                     marzipanoService.loadScene(
                         scope.state.id,
