@@ -29,7 +29,6 @@
                 return [scope.state.id, scope.state.searchLocation];
             }, function () {
                 getEarthmineData(scope.state.id, scope.state.searchLocation).then(function (earthmineData) {
-                    console.log(earthmineData);
                     store.dispatch({
                         type: ACTIONS.SHOW_STRAATBEELD,
                         payload: earthmineData
@@ -40,7 +39,7 @@
             //Show new scene
             scope.$watch('state.camera.location', function (location) {
                 if (angular.isArray(location)) {
-                    marzipanoService.loadScene(scope.state.id, scope.state.hotspots);
+                    marzipanoService.loadScene(scope.state.id, scope.state.hotspots, scope.state.camera);
                 }
             });
         }

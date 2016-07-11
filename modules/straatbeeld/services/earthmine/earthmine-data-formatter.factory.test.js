@@ -49,7 +49,7 @@ describe('The earthmine-data-formatter service', function () {
     it('restructes data from earthmine', function () {
         expect(output.id).toBeDefined();
         expect(output.date).toBeDefined();
-        expect(output.camera.location).toEqual([52.37672892191, 4.9219423482803]);
+        expect(output.car.location).toEqual([52.37672892191, 4.9219423482803]);
     });
 
     it('converts the id from a String to a Number', function () {

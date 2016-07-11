@@ -12,15 +12,11 @@
             formatPanoramaState: formatPanoramaState
         };
 
-        /*
-         * @description 'orientation' refers to the position of the car taking the picture, the 'camera' variable of the
-         * panoramaState refers to the Marzipano view. The 'camera' values can be set through user interaction.
-         */
         function formatPanoramaState (earthmineData) {
             return {
                 id: Number(earthmineData['pano-id']),
                 date: parseDate(earthmineData.timestamp),
-                camera: {
+                car: {
                     location: [earthmineData.location.lat, earthmineData.location.lon],
                     heading: angleConversion.degreesToRadians(earthmineData['pano-orientation'].yaw),
                     pitch: angleConversion.degreesToRadians(earthmineData['pano-orientation'].pitch)

@@ -5,9 +5,9 @@
         .module('dpStraatbeeld')
         .factory('marzipanoService', marzipanoService);
 
-    marzipanoService.$inject = ['Marzipano', 'straatbeeldConfig', 'earthmine', 'angleConversion'];
+    marzipanoService.$inject = ['Marzipano', 'straatbeeldConfig', 'earthmine', 'angleConversion', 'hotspotService'];
 
-    function marzipanoService (Marzipano, straatbeeldConfig, earthmine, angleConversion) {
+    function marzipanoService (Marzipano, straatbeeldConfig, earthmine, angleConversion, hotspotService) {
         var viewer;
 
         return {
@@ -24,7 +24,7 @@
             viewer = new Marzipano.Viewer(domElement);
         }
 
-        function loadScene (sceneId) {
+        function loadScene (sceneId, hotspots, camera) {
             var view,
                 viewLimiter,
                 scene,
@@ -46,7 +46,17 @@
                 pinFirstLevel: true
             });
 
-            //console.log(hotspots);
+            hotspots.forEach(function (hotspot) {
+                var position = hotspotService.calculateHotspotPosition(camera, hotspot);
+                console.log(position);
+                hotspotService.createHotspotTemplate(hotspot, camera).then(function (template) {
+                    scene.hotspotContainer().createHotspot(
+                        template,
+                        position,
+                        straatbeeldConfig.HOTSPOT_PERSPECTIVE
+                    );
+                });
+            });
 
             scene.switchTo();
         }

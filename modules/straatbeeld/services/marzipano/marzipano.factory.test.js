@@ -82,7 +82,7 @@ describe('The marzipanoService factory', function () {
         });
 
         it('that, ehm, loads a scene', function () {
-            marzipanoService.loadScene(54321);
+            marzipanoService.loadScene(54321, []);
 
             expect(earthmine.getImageSourceUrl).toHaveBeenCalledWith(54321);
 

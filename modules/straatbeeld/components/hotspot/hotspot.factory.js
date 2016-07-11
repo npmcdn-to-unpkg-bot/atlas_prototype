@@ -9,11 +9,11 @@
 
     function hotspotService ($q, $document, $compile, $rootScope) {
         return {
-            createHotspot: createHotspot,
+            createHotspotTemplate: createHotspotTemplate,
             calculateHotspotPosition: calculateHotspotPosition
         };
 
-        function createHotspot (sceneId, distance) {
+        function createHotspotTemplate (sceneId, distance) {
             var q,
                 html,
                 element,
@@ -38,10 +38,11 @@
         }
 
         //HELP: ik snap dit niet!
-        function calculateHotspotPosition (panoramaState, hotspot) {
+        function calculateHotspotPosition (camera, hotspot) {
+            console.log(camera, hotspot);
             return {
-                yaw: hotspot.relativeLocation.yaw - panoramaState.carOrientation.heading,
-                pitch: hotspot.relativeLocation.pitch + panoramaState.carOrientation.pitch
+                yaw: hotspot.relativeLocation.yaw - camera.heading,
+                pitch: hotspot.relativeLocation.pitch + camera.pitch
             };
         }
     }

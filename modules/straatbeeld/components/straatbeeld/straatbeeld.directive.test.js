@@ -147,7 +147,7 @@ describe('The dp-straatbeeld directive', function () {
         });
     });
 
-    it('loads a scene when there is a known camera location', function () {
+    xit('loads a scene when there is a known camera location', function () {
         getDirective({
             id: 123,
             camera: {

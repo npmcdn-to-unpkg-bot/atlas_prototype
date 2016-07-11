@@ -91,16 +91,16 @@
             function getStraatbeeldState (oldState, payload) {
                 if (hasStraatbeeld(payload)) {
                     var date,
-                        cameraLocation,
+                        car,
                         hotspots;
 
                     if (oldState.straatbeeld && oldState.straatbeeld.id === Number(payload.id)) {
                         date = oldState.straatbeeld.date;
-                        cameraLocation = oldState.straatbeeld.camera && oldState.straatbeeld.camera.location || null;
+                        car = oldState.straatbeeld.car || null;
                         hotspots = oldState.straatbeeld.hotspots;
                     } else {
                         date = null;
-                        cameraLocation = null;
+                        car = null;
                         hotspots = [];
                     }
 
@@ -109,9 +109,7 @@
                         searchLocation:
                             hasSearchLocation(payload) ? [Number(payload.plat), Number(payload.plon)] : null,
                         date: date,
-                        camera: {
-                            location: cameraLocation
-                        },
+                        car: car,
                         hotspots: hotspots,
                         isLoading: false
                     };
