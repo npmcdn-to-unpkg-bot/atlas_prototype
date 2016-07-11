@@ -44,9 +44,8 @@
             );
         }
 
-        function ParsePathResult(dataset, templateUri, templateUrl) {
+        function ParsePathResult(dataset, templateUrl) {
             this.dataset = dataset;
-            this.templateUri = templateUri;
             this.templateUrl = templateUrl;
         }
 
