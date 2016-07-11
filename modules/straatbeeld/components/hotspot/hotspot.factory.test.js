@@ -1,4 +1,4 @@
-xdescribe('The hotspotService', function () {
+fdescribe('The hotspotService', function () {
     var $rootScope,
         hotspotService;
 
@@ -19,10 +19,13 @@ xdescribe('The hotspotService', function () {
     });
 
     it('creates hotspot HTML', function () {
-        hotspotService.createHotspot(789, 15).then(function (template) {
-            var html = template.outerHTML;
+        hotspotService.createHotspotTemplate(789, 15).then(function (template) {
+            var html = template.outerHTML,
+                scope = angular.element(template).scope();
 
-            expect(html).toContain('<dp-hotspot scene-id="789" distance="15"');
+            expect(html).toContain('<dp-hotspot scene-id="sceneId" distance="distance"');
+            expect(scope.sceneId).toBe(789);
+            expect(scope.distance).toBe(15);
         });
 
         $rootScope.$apply();
