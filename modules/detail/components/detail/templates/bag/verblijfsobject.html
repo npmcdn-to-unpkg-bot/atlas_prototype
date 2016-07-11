@@ -6,11 +6,12 @@
       partial="bag/nummeraanduiding">
     </atlas-api-call>
 
+    <div class="detail-page__content--sidebar" ng-if="vm.apiData.results">
+      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+    </div>
+
     <!-- verbijfsobject -->
     <atlas-partial-select partial="bag/verblijfsobject" api-data="vm.apiData"></atlas-partial-select>
 
   </div>
-<!--   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="vm.apiData"></dp-parent-relations>
-  </div> -->
 </div>
