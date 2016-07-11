@@ -22,15 +22,20 @@
 
     function AtlasStraatbeeldController (environment, geojsonCenter) {
         var vm = this,
-                location = vm.apiData.results.geometrie.coordinates;
+            location = vm.apiData.results.geometrie.coordinates;
+
+        console.log(vm.apiData);
+        console.log(location[0][0]);
 
         if(location[0][0]){
             location = geojsonCenter.getCenter(location);
         }
 
         vm.imageUrl = environment.PANO_VIEW_PROXY +
-            '?lat=' + vm.location[0] +
-            '&lon=' + vm.location[1] +
+            '?lat=' + location[0] +
+            '&lon=' + location[1] +
             '&width=240&height=144';
+
+        console.log(vm.imageUrl);
     }
 })();
