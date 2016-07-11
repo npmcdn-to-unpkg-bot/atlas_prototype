@@ -165,7 +165,7 @@ describe('The atlas-stelselpedia-header directive', function () {
         });
     });
 
-    xdescribe('optionally activates the atlas-wkpb-link directive', function () {
+    describe('optionally activates the atlas-wkpb-link directive', function () {
         var brk;
 
         beforeEach(function () {
@@ -185,7 +185,6 @@ describe('The atlas-stelselpedia-header directive', function () {
             directive = getDirective(null, 'GEMEENTELIJKE_BEPERKING', false, null, brk);
                         console.log(directive);
             expect(directive.find('atlas-wkpb-link').length).toBe(1);
-            expect(directive.find('atlas-wkpb-link dp-link').text().trim()).toBe('WKPB-uittreksel');
         });
 
     });

@@ -49,11 +49,13 @@ describe('The atlas-stelselpedia-meta directive', function () {
         return directive;
     }
 
-    xit('sums up meta information', function () {
+    it('sums up meta information', function () {
         var directive,
             apiData = {
-                id: '1234567890',
-                last_updated: '2016-03-30T22:00:32.017685Z'
+                results: {
+                    id: '1234567890',
+                    last_update: '2016-03-30T22:00:32.017685Z'
+                }
             };
 
         directive = getDirective('BOUWBLOK', apiData);
@@ -69,11 +71,13 @@ describe('The atlas-stelselpedia-meta directive', function () {
         expect(directive.find('dd:nth-child(4)').text().length).toBeGreaterThan(1);
     });
 
-    xit('applies a date filter when the meta information of of type \'date\'', function () {
+    it('applies a date filter when the meta information of of type \'date\'', function () {
         var directive,
             apiData = {
-                id: '1234567890',
-                last_updated: '2016-03-30T22:00:32.017685Z'
+                results: {
+                    id: '1234567890',
+                    last_update: '2016-03-30'
+                }
             };
 
         directive = getDirective('BOUWBLOK', apiData);
