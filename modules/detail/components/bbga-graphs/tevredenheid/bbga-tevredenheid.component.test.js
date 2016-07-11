@@ -138,7 +138,7 @@ describe('The atlas-bbga-tevredenheid component', function () {
         expect(component.find('.bbga-table').text()).not.toContain('Variabele C');
     });
 
-    xit('formats the grades in the Dutch locale with one decimal', function () {
+    it('formats the grades in the Dutch locale with one decimal', function () {
         var component = getComponent();
 
         //Variabele A
