@@ -36,7 +36,7 @@
             searchParams.pagina = state.page;
 
             //Detail
-            searchParams.detail = state.detail && state.detail.uri;
+            searchParams.detail = state.detail && state.detail.endpoint;
 
             //Straatbeeld
             searchParams.id = state.straatbeeld && state.straatbeeld.id;

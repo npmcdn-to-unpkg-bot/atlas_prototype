@@ -1,1 +1,4 @@
-module.exports = ['modules/*/assets/*.png'];
+module.exports = [
+  'modules/*/assets/*.png',
+  'modules/*/assets/*.svg'
+];
