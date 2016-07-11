@@ -29,6 +29,7 @@
                 return [scope.state.id, scope.state.searchLocation];
             }, function () {
                 getEarthmineData(scope.state.id, scope.state.searchLocation).then(function (earthmineData) {
+                    console.log(earthmineData);
                     store.dispatch({
                         type: ACTIONS.SHOW_STRAATBEELD,
                         payload: earthmineData

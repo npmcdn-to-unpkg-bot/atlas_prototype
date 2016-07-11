@@ -90,22 +90,29 @@
 
             function getStraatbeeldState (oldState, payload) {
                 if (hasStraatbeeld(payload)) {
-                    var cameraLocation;
+                    var date,
+                        cameraLocation,
+                        hotspots;
 
                     if (oldState.straatbeeld && oldState.straatbeeld.id === Number(payload.id)) {
+                        date = oldState.straatbeeld.date;
                         cameraLocation = oldState.straatbeeld.camera && oldState.straatbeeld.camera.location || null;
+                        hotspots = oldState.straatbeeld.hotspots;
                     } else {
+                        date = null;
                         cameraLocation = null;
+                        hotspots = [];
                     }
 
                     return {
                         id: Number(payload.id) || null,
                         searchLocation:
                             hasSearchLocation(payload) ? [Number(payload.plat), Number(payload.plon)] : null,
-                        date: oldState.straatbeeld && oldState.straatbeeld.date || null,
+                        date: date,
                         camera: {
                             location: cameraLocation
                         },
+                        hotspots: hotspots,
                         isLoading: false
                     };
                 } else {

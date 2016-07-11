@@ -216,7 +216,7 @@ describe('The urlReducers factory', function () {
                 expect(output.straatbeeld.searchLocation).toEqual([52.963, 4.741]);
             });
 
-            it('will remember the date and camera.location if the ID stays the same', function () {
+            it('will remember the date, camera.location and hotspots if the ID stays the same', function () {
                 //Note: these two variables are not part of the URL
                 var output;
 
@@ -226,7 +226,8 @@ describe('The urlReducers factory', function () {
                     date: new Date(1982, 8, 7),
                     camera: {
                         location: [52.987, 4.321]
-                    }
+                    },
+                    hotspots: ['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_Z']
                 };
 
                 mockedSearchParams.id = 67890;
@@ -236,6 +237,7 @@ describe('The urlReducers factory', function () {
 
                 expect(output.straatbeeld.date).toEqual(new Date(1982, 8, 7));
                 expect(output.straatbeeld.camera.location).toEqual([52.987, 4.321]);
+                expect(output.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_Z']);
             });
         });
 

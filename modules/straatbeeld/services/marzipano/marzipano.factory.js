@@ -46,6 +46,8 @@
                 pinFirstLevel: true
             });
 
+            //console.log(hotspots);
+
             scene.switchTo();
         }
     }
