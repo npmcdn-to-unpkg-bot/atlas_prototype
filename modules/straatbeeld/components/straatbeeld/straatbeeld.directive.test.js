@@ -147,15 +147,28 @@ describe('The dp-straatbeeld directive', function () {
         });
     });
 
-    xit('loads a scene when there is a known car location', function () {
+    it('loads a scene when there is a known car location', function () {
         getDirective({
             id: 123,
             car: {
-                location: [52.123, 4.789]
+                location: [52.123, 4.789],
+                heading: 90,
+                pitch: 0.01
+            },
+            camera: {
+                heading: 90,
+                pitch: 0.01
             },
             hotspots: ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']
         });
 
-        expect(marzipanoService.loadScene).toHaveBeenCalledWith(123, ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']);
+        expect(marzipanoService.loadScene).toHaveBeenCalledWith(
+            123,
+            {
+                heading: 90,
+                pitch: 0.01
+            },
+            ['FAKE_HOTSPOT_X', 'FAKE_HOTSPOT_Y']
+        );
     });
 });

@@ -37,11 +37,10 @@
                 id: 1,
                 searchLocation: null,
                 date: null,
-                camera: {
+                car: {
                     location: [52.789, 4.123],
                     heading: 20,
-                    pitch: 0.1,
-                    fov: 80
+                    pitch: 0.1
                 },
                 hotspots: [],
                 isLoading: false
