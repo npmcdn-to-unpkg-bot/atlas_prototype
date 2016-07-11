@@ -5,7 +5,14 @@ describe('The earthmine-data-formatter service', function () {
 
     beforeEach(function () {
         angular.mock.module(
-            'dpStraatbeeld'
+            'dpStraatbeeld',
+            {
+                angleConversion: {
+                    degreesToRadians: function (input) {
+                        return input - 1;
+                    }
+                }
+            }
         );
 
         angular.mock.inject(function (_earthmineDataFormatter_) {
@@ -26,17 +33,17 @@ describe('The earthmine-data-formatter service', function () {
             connections: [
                 {
                     'relative-location': {
-                        yaw: -168.26495451758,
-                        pitch: -0.46371610026191,
-                        distance: 5.4100728048995
+                        yaw: 1,
+                        pitch: 2,
+                        distance: 3
                     },
                     'pano-id': '1000014016369'
                 },
                 {
                     'relative-location': {
-                        yaw: 14.56514641488,
-                        pitch: 0.3063689539213,
-                        distance: 5.4159216166952
+                        yaw: 7,
+                        pitch: 8,
+                        distance: 9
                     },
                     'pano-id': '1000014016371'
                 }
@@ -67,5 +74,25 @@ describe('The earthmine-data-formatter service', function () {
         expect(output.date.getFullYear()).toBe(2012);
         expect(output.date.getMonth()).toBe(6);
         expect(output.date.getDate()).toBe(15);
+    });
+
+    describe('hotspots', function () {
+        it('convert the IDs from String to Number', function () {
+            expect(output.hotspots[0].id).toBe(1000014016369);
+            expect(output.hotspots[1].id).toBe(1000014016371);
+        });
+
+        it('converts the yaw and pitch from degrees to radians', function () {
+            expect(output.hotspots[0].relativeLocation.yaw).toBe(0);
+            expect(output.hotspots[0].relativeLocation.pitch).toBe(1);
+
+            expect(output.hotspots[1].relativeLocation.yaw).toBe(6);
+            expect(output.hotspots[1].relativeLocation.pitch).toBe(7);
+        });
+
+        it('has a distance property for each hotspot', function () {
+            expect(output.hotspots[0].relativeLocation.distance).toBe(3);
+            expect(output.hotspots[1].relativeLocation.distance).toBe(9);
+        });
     });
 });
