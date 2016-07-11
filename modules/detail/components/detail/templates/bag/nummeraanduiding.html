@@ -3,6 +3,10 @@
     <!-- nummeraanduiding -->
     <atlas-partial-select partial="bag/nummeraanduiding" api-data="vm.apiData"></atlas-partial-select>
 
+    <div class="detail-page__content--sidebar" ng-if="vm.apiData.results">
+      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+    </div>
+
     <!-- verblijfsobject -->
     <atlas-api-call
       ng-if="vm.apiData.results.type === 'Verblijfsobject'"
@@ -23,9 +27,5 @@
       endpoint="{{vm.apiData.results.ligplaats}}"
       partial="bag/ligplaats">
     </atlas-api-call>
-
   </div>
-<!--   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="vm.apiData"></dp-parent-relations>
-  </div> -->
 </div>

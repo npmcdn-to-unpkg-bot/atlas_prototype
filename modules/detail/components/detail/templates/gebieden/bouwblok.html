@@ -8,6 +8,10 @@
       </atlas-stelselpedia-header>
     </div>
 
+    <div class="detail-page__content--sidebar" ng-if="vm.apiData.results">
+      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+    </div>
+
     <div class="list-box" ng-if="vm.apiData.results.panden.count">
       <atlas-stelselpedia-header definition="PAND" use-plural="true"></atlas-stelselpedia-header>
 
@@ -20,8 +24,4 @@
       <atlas-api-call endpoint="{{vm.apiData.results.meetbouten}}" partial="lijst"></atlas-api-call>
     </div>
   </div>
-
-<!--   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="vm.apiData.results"></dp-parent-relations>
-  </div> -->
 </div>
