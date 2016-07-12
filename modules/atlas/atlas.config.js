@@ -35,12 +35,14 @@
             /*
             straatbeeld: {
                 id: 1,
-                camera: {
+                searchLocation: null,
+                date: null,
+                car: {
                     location: [52.789, 4.123],
                     heading: 20,
-                    pitch: 0.1,
-                    fov: 80
+                    pitch: 0.1
                 },
+                hotspots: [],
                 isLoading: false
             }
             */

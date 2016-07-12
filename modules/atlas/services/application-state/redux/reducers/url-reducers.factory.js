@@ -89,27 +89,49 @@
             }
 
             function getStraatbeeldState (oldState, payload) {
-                if (payload.id) {
-                    var location;
+                if (hasStraatbeeld(payload)) {
+                    var date,
+                        car,
+                        camera,
+                        hotspots;
 
                     if (oldState.straatbeeld && oldState.straatbeeld.id === Number(payload.id)) {
-                        location = oldState.straatbeeld.camera && oldState.straatbeeld.camera.location || null;
+                        date = oldState.straatbeeld.date;
+                        car = oldState.straatbeeld.car || null;
+                        camera = oldState.straatbeeld.camera || null;
+                        hotspots = oldState.straatbeeld.hotspots;
                     } else {
-                        location = null;
+                        date = null;
+                        car = null;
+                        camera = null;
+                        hotspots = [];
                     }
 
                     return {
-                        id: Number(payload.id),
-                        camera: {
-                            location: location,
-                            heading: Number(payload.heading),
-                            pitch: Number(payload.pitch),
-                            fov: Number(payload.fov)
-                        },
+                        id: Number(payload.id) || null,
+                        searchLocation:
+                            hasSearchLocation(payload) ? [Number(payload.plat), Number(payload.plon)] : null,
+                        date: date,
+                        car: car,
+                        camera: camera,
+                        hotspots: hotspots,
                         isLoading: false
                     };
                 } else {
                     return null;
+                }
+
+                function hasStraatbeeld (payload) {
+                    return payload.id || hasSearchLocation(payload);
+                }
+
+                /**
+                 * @description This is a 'search nearest straatbeeld' location, not the location of the camera of a
+                 * found panorama scene. The actual location is not stored in the URL, this is implicitly accessible
+                 * through the ID.
+                 */
+                function hasSearchLocation (payload) {
+                    return payload.plat && payload.plon;
                 }
             }
         }

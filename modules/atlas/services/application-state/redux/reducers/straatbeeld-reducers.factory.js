@@ -12,9 +12,6 @@
 
         reducers[ACTIONS.FETCH_STRAATBEELD] = fetchStraatbeeldReducer;
         reducers[ACTIONS.SHOW_STRAATBEELD] = showStraatbeeldReducer;
-        reducers[ACTIONS.STRAATBEELD_SET_HEADING] = straatbeeldSetHeadingReducer;
-        reducers[ACTIONS.STRAATBEELD_SET_PITCH] = straatbeeldSetPitchReducer;
-        reducers[ACTIONS.STRAATBEELD_SET_FOV] = straatbeeldSetFovReducer;
 
         return reducers;
 
@@ -23,7 +20,7 @@
          * it'll use the car's orientation for the heading and pitch and a default FOV.
          *
          * @param {Object} oldState
-         * @param {Number} payload - A panorama ID
+         * @param {Number|Array} payload - A panorama ID (Number) or a location (Array)
          *
          * @returns {Object} newState
          */
@@ -31,24 +28,15 @@
             var newState = angular.copy(oldState);
 
             newState.straatbeeld = {
-                id: payload,
-                camera: {
-                    location: null
-                },
                 isLoading: true
             };
 
-            //Save the orientation from the previous state when navigating to another panorama
-            if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.heading) {
-                newState.straatbeeld.camera.heading = oldState.straatbeeld.camera.heading;
-            }
-
-            if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.pitch) {
-                newState.straatbeeld.camera.pitch = oldState.straatbeeld.camera.pitch;
-            }
-
-            if (oldState.straatbeeld && oldState.straatbeeld.camera && oldState.straatbeeld.camera.fov) {
-                newState.straatbeeld.camera.fov = oldState.straatbeeld.camera.fov;
+            if (angular.isNumber(payload)) {
+                newState.straatbeeld.id = payload;
+                newState.straatbeeld.searchLocation = null;
+            } else {
+                newState.straatbeeld.id = null;
+                newState.straatbeeld.searchLocation = payload;
             }
 
             newState.map.highlight = null;
@@ -69,66 +57,17 @@
         function showStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
+            newState.straatbeeld = payload;
+            newState.straatbeeld.camera = {
+                heading: newState.straatbeeld.car.heading,
+                pitch: newState.straatbeeld.car.pitch
+            };
+
             newState.map.isLoading = false;
 
-            newState.straatbeeld.camera.location = payload.location;
-
-            //Only set the heading, pitch and fov if there is no known previous state
-            if (angular.isUndefined(oldState.straatbeeld.camera.heading)) {
-                newState.straatbeeld.camera.heading = payload.heading;
-            }
-
-            if (angular.isUndefined(oldState.straatbeeld.camera.pitch)) {
-                newState.straatbeeld.camera.pitch = payload.pitch;
-            }
-
-            if (angular.isUndefined(oldState.straatbeeld.camera.fov)) {
-                newState.straatbeeld.camera.fov = payload.fov;
-            }
-
+            //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama
+            newState.straatbeeld.searchLocation = null;
             newState.straatbeeld.isLoading = false;
-
-            return newState;
-        }
-
-        /**
-         * @param {Object} oldState
-         * @param {Number} payload - A number in degrees
-         *
-         * @returns {Object} newState
-         */
-        function straatbeeldSetHeadingReducer (oldState, payload) {
-            var newState = angular.copy(oldState);
-
-            newState.straatbeeld.camera.heading = payload;
-
-            return newState;
-        }
-
-        /**
-         * @param {Object} oldState
-         * @param {Number} payload - A number in degrees
-         *
-         * @returns {Object} newState
-         */
-        function straatbeeldSetPitchReducer (oldState, payload) {
-            var newState = angular.copy(oldState);
-
-            newState.straatbeeld.camera.pitch = payload;
-
-            return newState;
-        }
-
-        /**
-         * @param {Object} oldState
-         * @param {Number} payload - A number in degrees
-         *
-         * @returns {Object} newState
-         */
-        function straatbeeldSetFovReducer (oldState, payload) {
-            var newState = angular.copy(oldState);
-
-            newState.straatbeeld.camera.fov = payload;
 
             return newState;
         }
