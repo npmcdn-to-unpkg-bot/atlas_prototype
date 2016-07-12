@@ -1,4 +1,4 @@
-describe('The dp-straatbeeld directive', function () {
+fdescribe('The dp-straatbeeld directive', function () {
     var $compile,
         $rootScope,
         $q,
@@ -10,8 +10,10 @@ describe('The dp-straatbeeld directive', function () {
         mockedEarthmineData = {
             id: 123,
             date: new Date(2016, 6, 8),
-            camera: {
-                location: [52.129, 4.790]
+            car: {
+                location: [52.129, 4.79],
+                heading: 270,
+                pitch: 0.75
             },
             hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
         };
@@ -115,8 +117,10 @@ describe('The dp-straatbeeld directive', function () {
                 payload: {
                     id: 123,
                     date: new Date(2016, 6, 8),
-                    camera: {
-                        location: [52.129, 4.790]
+                    car: {
+                        location: [52.129, 4.79],
+                        heading: 270,
+                        pitch: 0.75
                     },
                     hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
                 }
@@ -131,8 +135,10 @@ describe('The dp-straatbeeld directive', function () {
                 payload: {
                     id: 123,
                     date: new Date(2016, 6, 8),
-                    camera: {
-                        location: [52.129, 4.790]
+                    car: {
+                        location: [52.129, 4.79],
+                        heading: 270,
+                        pitch: 0.75
                     },
                     hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
                 }
