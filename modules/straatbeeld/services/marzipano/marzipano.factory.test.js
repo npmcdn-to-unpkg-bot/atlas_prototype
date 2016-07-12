@@ -59,7 +59,7 @@ describe('The marzipanoService factory', function () {
         );
 
         fakeView = {
-            someThing: 4
+            setFov: function () {}
         };
 
         fakeCubeGeometery = {

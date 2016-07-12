@@ -30,8 +30,9 @@
             var view,
                 viewLimiter,
                 scene,
-                imageSourceUrl,
-                cameraYaw;
+                imageSourceUrl;
+
+            console.log('loadScene camera: ', camera);
 
             imageSourceUrl = earthmine.getImageSourceUrl(sceneId);
 
@@ -61,12 +62,16 @@
                 });
             });
 
+            //Set orientation
+            view.setFov(camera.fov || straatbeeldConfig.DEFAULT_FOV);
+
+            /*
             cameraYaw = camera.heading - camera.heading;
 
             view.setYaw(cameraYaw);
             view.setPitch(camera.pitch);
             view.setFov(camera.fov);
-
+            */
             scene.switchTo();
         }
     }
