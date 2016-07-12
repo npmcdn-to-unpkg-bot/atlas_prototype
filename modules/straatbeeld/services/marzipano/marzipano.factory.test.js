@@ -100,12 +100,14 @@ describe('The marzipanoService factory', function () {
     });
 
     it('creates a Marzipano viewer instance when initializing', function () {
-        var fakeDomElement;
+        var fakeDomElement,
+            viewer;
 
         fakeDomElement = document.createElement('div');
-        marzipanoService.initialize(fakeDomElement);
+        viewer = marzipanoService.initialize(fakeDomElement);
 
         expect(Marzipano.Viewer).toHaveBeenCalledWith(fakeDomElement);
+        expect(viewer).toEqual(fakeViewer);
     });
 
     describe('it has a loadScene function', function () {

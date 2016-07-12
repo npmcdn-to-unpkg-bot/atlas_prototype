@@ -28,21 +28,9 @@
         function fetchStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
-
-            /*
-             straatbeeld: {
-                id: 1,
-                searchLocation: null,
-                date: null,
-                car: {
-                    location: [52.789, 4.123],
-                    heading: 20,
-                    pitch: 0.1
-                },
-                hotspots: [],
-                isLoading: false
-             }
-             */
+            if (newState.straatbeeld === null) {
+                newState.straatbeeld = {};
+            }
 
             if (angular.isNumber(payload)) {
                 newState.straatbeeld.id = payload;
@@ -54,6 +42,7 @@
 
             newState.straatbeeld.date = null;
             newState.straatbeeld.car = null;
+            newState.straatbeeld.camera = oldState.straatbeeld && oldState.straatbeeld.camera || null;
             newState.straatbeeld.hotspots = [];
             newState.straatbeeld.isLoading = true;
 
