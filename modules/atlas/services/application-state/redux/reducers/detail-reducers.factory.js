@@ -50,7 +50,8 @@
             var newState = angular.copy(oldState);
 
             newState.map.viewCenter = payload.location;
-            newState.map.highlight = payload.highlight;
+            newState.detail.geometry = payload.geometry;
+
             newState.map.isLoading = false;
             newState.detail.isLoading = false;
 
