@@ -32,6 +32,9 @@ describe('The crsService', function () {
         crsService.getRd();
         expect(CRS_CONFIG).toEqual(originalConfig);
 
+        crsService.getWGS84();
+        expect(CRS_CONFIG).toEqual(originalConfig);
+
         crsService.getRdObject();
         expect(CRS_CONFIG).toEqual(originalConfig);
     });
