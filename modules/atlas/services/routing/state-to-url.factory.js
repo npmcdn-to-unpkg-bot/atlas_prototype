@@ -42,6 +42,15 @@
             if (state.straatbeeld) {
                 if (state.straatbeeld.id) {
                     searchParams.id = String(state.straatbeeld.id);
+
+                    if (state.straatbeeld.camera) {
+                        searchParams.heading = String(state.straatbeeld.camera.heading);
+                        searchParams.pitch = String(state.straatbeeld.camera.pitch);
+
+                        if (state.straatbeeld.camera.fov) {
+                            searchParams.fov = String(state.straatbeeld.camera.fov);
+                        }
+                    }
                 } else {
                     searchParams.plat = String(state.straatbeeld.searchLocation[0]);
                     searchParams.plon = String(state.straatbeeld.searchLocation[1]);
