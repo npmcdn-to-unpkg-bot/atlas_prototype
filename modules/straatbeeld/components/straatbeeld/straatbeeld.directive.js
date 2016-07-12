@@ -25,7 +25,7 @@
             viewer = marzipanoService.initialize(container);
 
             scope.updateOrientation = function () {
-                orientation.update(viewer, scope.state.car);
+                orientation.update(viewer, scope.state.camera);
             };
 
             //Fetch new scene

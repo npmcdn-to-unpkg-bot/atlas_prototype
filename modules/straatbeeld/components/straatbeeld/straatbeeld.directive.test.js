@@ -6,6 +6,7 @@ fdescribe('The dp-straatbeeld directive', function () {
         ACTIONS,
         marzipanoService,
         earthmine,
+        orientation,
         mockedMarzipanoViewer = 'I_AM_A_MOCKED_MARZIPANO_VIEWER',
         mockedEarthmineData = {
             id: 123,
@@ -45,7 +46,9 @@ fdescribe('The dp-straatbeeld directive', function () {
         );
 
         angular.mock.inject(
-            function (_$compile_, _$rootScope_, _$q_, _store_, _ACTIONS_, _marzipanoService_, _earthmine_) {
+            function (_$compile_, _$rootScope_, _$q_, _store_, _ACTIONS_, _marzipanoService_, _earthmine_,
+                _orientation_) {
+
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
                 $q = _$q_;
@@ -53,6 +56,7 @@ fdescribe('The dp-straatbeeld directive', function () {
                 ACTIONS = _ACTIONS_;
                 marzipanoService = _marzipanoService_;
                 earthmine = _earthmine_;
+                orientation = _orientation_;
             }
         );
 
@@ -61,6 +65,8 @@ fdescribe('The dp-straatbeeld directive', function () {
 
         spyOn(earthmine, 'getImageDataById').and.callThrough();
         spyOn(earthmine, 'getImageDataByCoordinates').and.callThrough();
+
+        spyOn(orientation, 'update');
 
         spyOn(store, 'dispatch');
     });
@@ -82,6 +88,14 @@ fdescribe('The dp-straatbeeld directive', function () {
         return directive;
     }
 
+    function triggerMousemove (element) {
+        var event;
+
+        event = angular.element.Event('mousemove');
+
+        element.trigger(event);
+    }
+
     it('initializes the marzipanoService with the panoramaState', function () {
         var directive,
             container;
@@ -90,6 +104,32 @@ fdescribe('The dp-straatbeeld directive', function () {
         container = directive.find('.js-marzipano-viewer')[0];
 
         expect(marzipanoService.initialize).toHaveBeenCalledWith(container);
+    });
+
+    it('calls the orientation factory on mousemove to keep the state in sync', function () {
+        var directive;
+
+        directive = getDirective(
+            {
+                id: 123,
+                camera: {
+                    heading: 275,
+                    pitch: 0.8,
+                    fov: 65
+                }
+            }
+        );
+        expect(orientation.update).not.toHaveBeenCalled();
+
+        triggerMousemove(directive.find('.js-marzipano-viewer'));
+        expect(orientation.update).toHaveBeenCalledWith(
+            mockedMarzipanoViewer,
+            {
+                heading: 275,
+                pitch: 0.8,
+                fov: 65
+            }
+        );
     });
 
     describe('loading data', function () {
