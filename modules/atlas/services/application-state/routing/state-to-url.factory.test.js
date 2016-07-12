@@ -60,8 +60,8 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                lat: 52.789,
-                lon: 4.123
+                lat: '52.789',
+                lon: '4.123'
             }));
         });
 
@@ -110,7 +110,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                zoom: 8
+                zoom: '8'
             }));
         });
 
@@ -174,39 +174,54 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                id: jasmine.Any(Number)
+                id: jasmine.Any(String)
             }));
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                heading: jasmine.Any(Number)
-            }));
-
-            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                pitch: jasmine.Any(Number)
-            }));
-
-            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                fov: jasmine.Any(Number)
+                plat: jasmine.Any(String),
+                plon: jasmine.Any(String)
             }));
         });
 
-        it('sets the id, heading, pitch and fov if there is an active straatbeeld', function () {
+        it('can set the straatbeeld id if it\'s known', function () {
             mockedState.straatbeeld = {
                 id: 67890,
+                searchLocation: null,
                 camera: {
-                    heading: 7,
-                    pitch: 8,
-                    fov: 9
+                    location: null
                 }
             };
 
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                id: 67890,
-                heading: 7,
-                pitch: 8,
-                fov: 9
+                id: '67890'
+            }));
+
+            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
+                plat: jasmine.any(String),
+                plon: jasmine.any(String)
+            }));
+        });
+
+        it('can set the straatbeelds searchLocation (plat & plon)', function () {
+            mockedState.straatbeeld = {
+                id: null,
+                searchLocation: [52.852, 4.258],
+                camera: {
+                    location: null
+                }
+            };
+
+            stateToUrl.update(mockedState);
+
+            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
+                id: jasmine.any(String)
+            }));
+
+            expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
+                plat: '52.852',
+                plon: '4.258'
             }));
         });
     });

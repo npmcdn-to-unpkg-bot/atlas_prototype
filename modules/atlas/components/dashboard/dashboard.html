@@ -53,12 +53,7 @@
                     </div>
 
                     <div ng-if="vm.showStraatbeeld" ng-controller="StraatbeeldController as vm">
-                        <dp-straatbeeld
-                            id="vm.id"
-                            camera="vm.camera"
-                            is-loading="vm.isLoading">
-
-                        </dp-straatbeeld>
+                        <dp-straatbeeld state="vm.straatbeeld"></dp-straatbeeld>
                     </div>
                 </div>
             </div>
