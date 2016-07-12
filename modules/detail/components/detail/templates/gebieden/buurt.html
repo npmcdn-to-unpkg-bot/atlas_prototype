@@ -10,6 +10,10 @@
       </dl>
     </div>
 
+    <div class="detail-page__content--sidebar" ng-if="vm.apiData.results">
+      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+    </div>
+
     <div class="list-box" ng-if="vm.apiData.results.bouwblokken.count">
       <atlas-stelselpedia-header definition="BOUWBLOK" use-plural="true"></atlas-stelselpedia-header>
 
@@ -40,7 +44,4 @@
     </atlas-bbga-graphs>
   </div>
 
-<!--   <div class="detail-page__content--sidebar">
-    <dp-parent-relations content="vm.apiData"></dp-parent-relations>
-  </div> -->
 </div>

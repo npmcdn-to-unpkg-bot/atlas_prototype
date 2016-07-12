@@ -1,4 +1,4 @@
-xdescribe('The dp-parent-relations directive', function () {
+describe('The dp-parent-relations directive', function () {
     var $compile,
         $rootScope,
         mockedContent;
@@ -12,6 +12,9 @@ xdescribe('The dp-parent-relations directive', function () {
                     'planet',
                     'verblijfsobject'
                 ]);
+                $provide.factory('dpLinkDirective', function(){
+                    return {};
+                });
             }
         );
 
@@ -53,7 +56,7 @@ xdescribe('The dp-parent-relations directive', function () {
             element,
             scope;
 
-        element = document.createElement('dp-parent-relations');
+        element = document.createElement('atlas-parent-relations');
         element.setAttribute('content', 'content');
 
         scope = $rootScope.$new();
