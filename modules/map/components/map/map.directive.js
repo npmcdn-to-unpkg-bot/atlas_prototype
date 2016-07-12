@@ -3,9 +3,18 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'panning', 'zoom', 'variableWidth', 'searchByClick'];
+    dpMapDirective.$inject = [
+        'L',
+        'mapConfig',
+        'layers',
+        'markers',
+        'panning',
+        'zoom',
+        'variableWidth',
+        'searchByClick'
+    ];
 
-    function dpMapDirective (L, mapConfig, layers, panning, zoom, variableWidth, searchByClick) {
+    function dpMapDirective (L, mapConfig, layers, markers, panning, zoom, variableWidth, searchByClick) {
         return {
             restrict: 'E',
             scope: {
@@ -29,6 +38,7 @@
 
             leafletMap = L.map(container, options);
 
+            markers.initialize(leafletMap, scope.markers);
             panning.initialize(leafletMap);
             zoom.initialize(leafletMap);
             variableWidth.initialize(container, leafletMap);
