@@ -1,4 +1,4 @@
-fdescribe('The dp-straatbeeld directive', function () {
+describe('The dp-straatbeeld directive', function () {
     var $compile,
         $rootScope,
         $q,
@@ -112,10 +112,10 @@ fdescribe('The dp-straatbeeld directive', function () {
         directive = getDirective(
             {
                 id: 123,
-                camera: {
+                car: {
+                    location: [52, 4],
                     heading: 275,
-                    pitch: 0.8,
-                    fov: 65
+                    pitch: 0.8
                 }
             }
         );
@@ -125,9 +125,9 @@ fdescribe('The dp-straatbeeld directive', function () {
         expect(orientation.update).toHaveBeenCalledWith(
             mockedMarzipanoViewer,
             {
+                location: [52, 4],
                 heading: 275,
-                pitch: 0.8,
-                fov: 65
+                pitch: 0.8
             }
         );
     });
