@@ -79,7 +79,7 @@
             }
 
             newState.map.isLoading = false;
-            console.log('show_straatbeeld', newState.straatbeeld.camera.heading);
+
             return newState;
         }
 

@@ -45,7 +45,7 @@ describe('The orientation factory', function () {
     });
 
     it('dispatches an ACTION based on orientation from the Marzipano viewer', function () {
-        orientation.update(mockedViewer, mockedCamera);
+        orientation.update(mockedViewer, mockedCamera, false);
 
         expect(store.dispatch).toHaveBeenCalledWith({
             type: ACTIONS.STRAATBEELD_SET_ORIENTATION,
@@ -55,5 +55,11 @@ describe('The orientation factory', function () {
                 fov: 50
             }
         });
+    });
+
+    it('does nothing when the straatbeeld is loading', function () {
+        orientation.update(mockedViewer, mockedCamera, true);
+        
+        expect(store.dispatch).not.toHaveBeenCalled();
     });
 });

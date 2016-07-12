@@ -116,7 +116,8 @@ describe('The dp-straatbeeld directive', function () {
                     location: [52, 4],
                     heading: 275,
                     pitch: 0.8
-                }
+                },
+                isLoading: false
             }
         );
         expect(orientation.update).not.toHaveBeenCalled();
@@ -128,7 +129,8 @@ describe('The dp-straatbeeld directive', function () {
                 location: [52, 4],
                 heading: 275,
                 pitch: 0.8
-            }
+            },
+            false
         );
     });
 

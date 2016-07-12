@@ -12,26 +12,28 @@
             update: update
         };
 
-        function update (viewer, car) {
+        function update (viewer, car, isLoading) {
             var cameraHeading,
                 cameraYaw,
                 cameraPitch,
                 cameraFov;
 
-            cameraYaw = viewer.view().yaw();
-            cameraPitch = viewer.view().pitch();
-            cameraFov = viewer.view().fov();
+            if (!isLoading) {
+                cameraYaw = viewer.view().yaw();
+                cameraPitch = viewer.view().pitch();
+                cameraFov = viewer.view().fov();
 
-            cameraHeading = car.heading + cameraYaw;
+                cameraHeading = car.heading + cameraYaw;
 
-            store.dispatch({
-                type: ACTIONS.STRAATBEELD_SET_ORIENTATION,
-                payload: {
-                    heading: cameraHeading,
-                    pitch: cameraPitch,
-                    fov: cameraFov
-                }
-            });
+                store.dispatch({
+                    type: ACTIONS.STRAATBEELD_SET_ORIENTATION,
+                    payload: {
+                        heading: cameraHeading,
+                        pitch: cameraPitch,
+                        fov: cameraFov
+                    }
+                });
+            }
         }
     }
 })();
