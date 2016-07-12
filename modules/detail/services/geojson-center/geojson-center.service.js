@@ -26,23 +26,17 @@
             locationLength = location[0].length;
 
             for(var i=0 ; i<locationLength; i++){
-                y.push(location[0][i][0]);
-                x.push(location[0][i][1]);
+                x.push(location[0][i][0]);
+                y.push(location[0][i][1]);
             }
-            console.log('x', x);
 
             xMin = getMin(x);
             xMax = getMax(x);
             yMin = getMin(y);
             yMax = getMax(y);
 
-            console.log('xmin', yMin);
-            console.log('xmax',yMax);
-
             xCenter = xMin + ((xMax - xMin) / 2);
             yCenter = yMin + ((yMax - yMin) / 2);
-
-            console.log(yCenter);
 
             return [xCenter, yCenter];
         }

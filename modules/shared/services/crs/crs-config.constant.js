@@ -22,7 +22,8 @@
                 }
             },
             WGS84: {
-                code: 'EPSG:4326'
+                code: 'EPSG:4326',
+                projection: '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
             },
             EARTH_RADIUS: 6378137 //The radius in meters
         });

@@ -8,23 +8,19 @@
     crsService.$inject = ['L', 'CRS_CONFIG'];
 
     function crsService (L, CRS_CONFIG) {
-        var rd,
-            wgs84;
+        var rd;
 
         activate();
 
         return {
             getRd: getRd,
-            getWGS84: getWGS84,
             getRdObject: getRdObject
         };
 
         function activate () {
-            var rdSettings,
-            wgs84Settings;
+            var rdSettings;
 
             rdSettings = angular.copy(CRS_CONFIG.RD);
-            wgs84Settings = angular.copy(CRS_CONFIG.WGS84);
 
             /*
              * Convert the Array syntax from the configuration to the L.bounds format
@@ -45,18 +41,10 @@
              */
             rd.distance = L.CRS.Earth.distance;
             rd.R = CRS_CONFIG.EARTH_RADIUS;
-
-            wgs84 = new L.Proj.CRS(
-                wgs84Settings.code
-            );
         }
 
         function getRd () {
             return rd;
-        }
-
-        function getWGS84 () {
-            return wgs84;
         }
 
         /*

@@ -18,24 +18,23 @@
         };
     }
 
-    AtlasStraatbeeldController.$inject = ['environment', 'geojsonCenter'];
+    AtlasStraatbeeldController.$inject = ['environment', 'geojsonCenter', 'wgs84RdConverter'];
 
-    function AtlasStraatbeeldController (environment, geojsonCenter) {
+    function AtlasStraatbeeldController (environment, geojsonCenter, wgs84RdConverter) {
         var vm = this,
-            location = vm.apiData.results.geometrie.coordinates;
+            geojson = vm.apiData.results.geometrie.coordinates,
+            center,
+            centerWgs84;
 
-        console.log(vm.apiData);
-        console.log(location[0][0]);
-
-        if(location[0][0]){
-            location = geojsonCenter.getCenter(location);
+        if(geojson[0][0]){
+            center = geojsonCenter.getCenter(geojson);
         }
 
-        vm.imageUrl = environment.PANO_VIEW_PROXY +
-            '?lat=' + location[0] +
-            '&lon=' + location[1] +
-            '&width=240&height=144';
+        centerWgs84 = wgs84RdConverter.rdToWgs84(center);
 
-        console.log(vm.imageUrl);
+        vm.imageUrl =   environment.PANO_VIEW_PROXY +
+                        '?lon=' + centerWgs84[0] +
+                        '&lat=' + centerWgs84[1] +
+                        '&width=240&height=144';
     }
 })();
