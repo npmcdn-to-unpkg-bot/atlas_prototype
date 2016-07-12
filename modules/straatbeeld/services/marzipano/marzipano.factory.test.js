@@ -59,6 +59,8 @@ describe('The marzipanoService factory', function () {
         );
 
         fakeView = {
+            setYaw: function () {},
+            setPitch: function () {},
             setFov: function () {}
         };
 

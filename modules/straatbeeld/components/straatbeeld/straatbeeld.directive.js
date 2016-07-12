@@ -45,6 +45,7 @@
                 if (angular.isArray(location)) {
                     marzipanoService.loadScene(
                         scope.state.id,
+                        scope.state.car,
                         scope.state.camera,
                         scope.state.hotspots
                     );

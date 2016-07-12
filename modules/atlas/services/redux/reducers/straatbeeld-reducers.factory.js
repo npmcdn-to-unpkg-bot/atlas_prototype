@@ -51,26 +51,27 @@
             newState.search = null;
             newState.page = null;
             newState.detail = null;
-
+            console.log('fetch_straatbeeld', newState.straatbeeld.camera && newState.straatbeeld.camera.heading);
             return newState;
         }
 
         /**
          * @param {Object} oldState
-         * @param {Array} payload - The location of the new panorama, e.g. [52.123, 4.789]
+         * @param {Array} payload - formatted data from Earthmine
          *
          * @returns {Object} newState
          */
         function showStraatbeeldReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
-            newState.straatbeeld = payload;
+            newState.straatbeeld.id = payload.id;
+            newState.straatbeeld.searchLocation = null;
+            newState.straatbeeld.date = payload.date;
+            newState.straatbeeld.car = payload.car;
+            newState.straatbeeld.hotspots = payload.hotspots;
+            newState.straatbeeld.isLoading = false;
 
-            if (oldState.straatbeeld && angular.isObject(oldState.straatbeeld.camera)) {
-                //use the previous camera orientation
-                newState.straatbeeld.camera = oldState.straatbeeld.camera;
-            } else {
-                //Or copy the car's orientation if there is no previous orientation
+            if (oldState.straatbeeld.camera === null) {
                 newState.straatbeeld.camera = {
                     heading: newState.straatbeeld.car.heading,
                     pitch: newState.straatbeeld.car.pitch
@@ -78,11 +79,7 @@
             }
 
             newState.map.isLoading = false;
-
-            //After loading, the 'searchLocation' is no longer relevant, we now know the actual location of the panorama
-            newState.straatbeeld.searchLocation = null;
-            newState.straatbeeld.isLoading = false;
-
+            console.log('show_straatbeeld', newState.straatbeeld.camera.heading);
             return newState;
         }
 
