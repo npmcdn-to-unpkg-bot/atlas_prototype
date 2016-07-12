@@ -146,6 +146,27 @@ describe('The urlReducers factory', function () {
             });
         });
 
+        describe('page', function () {
+            it('can set a pagina variable', function () {
+                var output;
+
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.page).toBe('welkom');
+
+                mockedSearchParams.pagina = 'over-ons';
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.page).toBe('over-ons');
+            });
+
+            it('will be set to null if there is no page', function () {
+                var output;
+
+                mockedSearchParams.pagina = null;
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.page).toBeNull();
+            });
+        });
+
         describe('detail', function () {
             it('can set a detail api endpoint', function () {
                 var output;
@@ -162,7 +183,23 @@ describe('The urlReducers factory', function () {
         });
 
         describe('straatbeeld', function () {
-            it('can set a straatbeeld ID, heading, pitch and fov', function () {
+            it('can set a straatbeeld by ID', function () {
+                var output;
+
+                //Without straatbeeld
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.straatbeeld).toBeNull();
+
+
+                //With straatbeeld
+                mockedSearchParams.id = '12345';
+
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.straatbeeld.id).toBe(12345);
+                expect(output.straatbeeld.searchLocation).toBeNull();
+            });
+
+            it('can set a straatbeeld by searchLocation', function () {
                 var output;
 
                 //Without straatbeeld
@@ -170,58 +207,37 @@ describe('The urlReducers factory', function () {
                 expect(output.straatbeeld).toBeNull();
 
                 //With straatbeeld
-                mockedSearchParams.id = '12345';
-                mockedSearchParams.heading = '101';
-                mockedSearchParams.pitch = '102';
-                mockedSearchParams.fov = '103';
+                mockedSearchParams.plat = '52.963';
+                mockedSearchParams.plon = '4.741';
 
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
 
-                //All values should be converted from strings to numbers
-                expect(output.straatbeeld.id).toBe(12345);
-                expect(output.straatbeeld.camera.heading).toBe(101);
-                expect(output.straatbeeld.camera.pitch).toBe(102);
-                expect(output.straatbeeld.camera.fov).toBe(103);
+                expect(output.straatbeeld.id).toBeNull();
+                expect(output.straatbeeld.searchLocation).toEqual([52.963, 4.741]);
             });
 
-            it('remembers the camera location if the payload ID stays the same', function () {
+            it('will remember the date, car and hotspots if the ID stays the same', function () {
+                //Note: these two variables are not part of the URL
                 var output;
 
-                //When the oldState has an ID and a known location
                 mockedState.straatbeeld = {
-                    id: 12345,
-                    camera: {
-                        location: [52.011, 4.012],
-                        heading: 11,
-                        pitch: 12,
-                        fov: 13
-                    }
+                    id: 67890,
+                    searchLocation: null,
+                    date: new Date(1982, 8, 7),
+                    car: {
+                        location: [52.987, 4.321]
+                    },
+                    hotspots: ['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_Z']
                 };
 
-                mockedSearchParams.id = '12345';
-                mockedSearchParams.heading = '11';
-                mockedSearchParams.pitch = '12';
-                mockedSearchParams.fov = '13';
+                mockedSearchParams.id = 67890;
+                mockedSearchParams.pagina = null;
 
-                //When the ID stays the same, keep the location
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.straatbeeld.camera.location).toEqual([52.011, 4.012]);
 
-                //When the oldState has the same ID but no location (e.g. it hasn't finished loading the location)
-                mockedState.straatbeeld.camera.location = null;
-                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.straatbeeld.camera.location).toBeNull();
-
-                //When the oldState has a different ID and a known location, reset the location
-                mockedSearchParams.id = '67890';
-                mockedState.straatbeeld.camera.location = [52.011, 4.012];
-                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.straatbeeld.camera.location).toBeNull();
-
-                //When the oldState has a different ID and no known location
-                mockedState.straatbeeld.camera.location = null;
-                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.straatbeeld.camera.location).toBeNull();
+                expect(output.straatbeeld.date).toEqual(new Date(1982, 8, 7));
+                expect(output.straatbeeld.car.location).toEqual([52.987, 4.321]);
+                expect(output.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_Z']);
             });
         });
 
