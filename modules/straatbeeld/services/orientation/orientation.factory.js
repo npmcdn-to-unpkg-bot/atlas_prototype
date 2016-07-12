@@ -9,10 +9,10 @@
 
     function orientationFactory (store, ACTIONS) {
         return {
-            listen: listen
+            update: update
         };
 
-        function listen (viewer, car) {
+        function update (viewer, car) {
             var cameraHeading,
                 cameraYaw,
                 cameraPitch,
