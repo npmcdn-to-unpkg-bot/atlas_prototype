@@ -32,8 +32,6 @@
                 scene,
                 imageSourceUrl;
 
-            console.log('loadScene camera: ', camera);
-
             imageSourceUrl = earthmine.getImageSourceUrl(sceneId);
 
             viewLimiter = Marzipano.RectilinearView.limit.traditional(
@@ -66,13 +64,7 @@
             view.setYaw(camera.heading - car.heading);
             view.setPitch(camera.pitch);
             view.setFov(camera.fov || straatbeeldConfig.DEFAULT_FOV);
-            /*
-            cameraYaw = camera.heading - car.heading;
 
-            view.setYaw(cameraYaw);
-            view.setPitch(camera.pitch);
-            view.setFov(camera.fov);
-            */
             scene.switchTo();
         }
     }

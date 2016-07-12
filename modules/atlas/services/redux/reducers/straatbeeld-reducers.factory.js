@@ -51,7 +51,7 @@
             newState.search = null;
             newState.page = null;
             newState.detail = null;
-            console.log('fetch_straatbeeld', newState.straatbeeld.camera && newState.straatbeeld.camera.heading);
+
             return newState;
         }
 

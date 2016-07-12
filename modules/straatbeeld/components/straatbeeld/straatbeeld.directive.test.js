@@ -211,6 +211,11 @@ describe('The dp-straatbeeld directive', function () {
         expect(marzipanoService.loadScene).toHaveBeenCalledWith(
             123,
             {
+                location: [52.123, 4.789],
+                heading: 90,
+                pitch: 0.01
+            },
+            {
                 heading: 90,
                 pitch: 0.01
             },
