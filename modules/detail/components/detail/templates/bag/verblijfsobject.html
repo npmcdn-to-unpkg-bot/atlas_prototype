@@ -10,6 +10,8 @@
       <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
     </div>
 
+    <atlas-straatbeeld ng-if="vm.apiData.results" api-data="vm.apiData"></atlas-straatbeeld>
+
     <!-- verbijfsobject -->
     <atlas-partial-select partial="bag/verblijfsobject" api-data="vm.apiData"></atlas-partial-select>
 

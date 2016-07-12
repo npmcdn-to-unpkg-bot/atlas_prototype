@@ -12,6 +12,8 @@
       <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
     </div>
 
+    <atlas-straatbeeld ng-if="vm.apiData.results" api-data="vm.apiData"></atlas-straatbeeld>
+
     <div class="list-box" ng-if="vm.apiData.results.panden.count">
       <atlas-stelselpedia-header definition="PAND" use-plural="true"></atlas-stelselpedia-header>
 

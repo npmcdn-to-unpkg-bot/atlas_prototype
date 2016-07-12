@@ -20,5 +20,10 @@
           <dd>{{ vm.apiData.results.rws_nummer }}</dd>
       </dl>
     </div>
+
+    <atlas-straatbeeld ng-if="vm.apiData.results" api-data="vm.apiData"></atlas-straatbeeld>
+
   </div>
 </div>
+
+

@@ -35,6 +35,8 @@
       </dl>
     </div>
 
+    <atlas-straatbeeld ng-if="vm.apiData.results" api-data="vm.apiData"></atlas-straatbeeld>
+
     <atlas-api-call endpoint="{{vm.apiData.results._links.self.href}}" partial="brk" expand="true"></atlas-api-call>
 
     <div class="list-box" ng-if="vm.apiData.results.verblijfsobjecten.count">
