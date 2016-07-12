@@ -1,4 +1,4 @@
-/* globals Redux */
+/* globals Redux, L */
 
 (function () {
     'use strict';
@@ -11,5 +11,6 @@
 
     function configuration ($provide) {
         $provide.constant('Redux', Redux);
+        $provide.constant('L', L);
     }
 })();

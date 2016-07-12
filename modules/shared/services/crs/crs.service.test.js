@@ -3,7 +3,7 @@ describe('The crsService', function () {
         CRS_CONFIG;
 
     beforeEach(function () {
-        angular.mock.module('dpMap', {
+        angular.mock.module('dpShared', {
             CRS_CONFIG: {
                 RD: {
                     code: 'a',

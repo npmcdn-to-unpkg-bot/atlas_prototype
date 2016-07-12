@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('dpMap')
+        .module('dpShared')
         .constant('CRS_CONFIG', {
             RD: {
                 code: 'EPSG:28992',
