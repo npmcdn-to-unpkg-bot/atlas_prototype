@@ -42,6 +42,10 @@
                     heading: 20,
                     pitch: 0.1
                 },
+                camera: {
+                    heading: 180,
+                    pitch: 0.5
+                },
                 hotspots: [],
                 isLoading: false
             }

@@ -239,6 +239,36 @@ describe('The urlReducers factory', function () {
                 expect(output.straatbeeld.car.location).toEqual([52.987, 4.321]);
                 expect(output.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_Z']);
             });
+
+            it('can read the heading, pitch and fov from the URL', function () {
+                var output;
+
+                mockedState.straatbeeld = {
+                    id: 67890,
+                    searchLocation: null,
+                    date: new Date(1982, 8, 7),
+                    car: {
+                        location: [52.987, 4.321]
+                    },
+                    camera: {
+                        heading: 1,
+                        pitch: 2,
+                        fov: 3
+                    },
+                    hotspots: ['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_Z']
+                };
+
+                mockedSearchParams.id = '67890';
+                mockedSearchParams.heading = '7';
+                mockedSearchParams.pitch = '8';
+                mockedSearchParams.fov = '9';
+
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+
+                expect(output.straatbeeld.camera.heading).toBe(7);
+                expect(output.straatbeeld.camera.pitch).toBe(8);
+                expect(output.straatbeeld.camera.fov).toBe(9);
+            });
         });
 
         describe('has no support for loading indicators', function () {
