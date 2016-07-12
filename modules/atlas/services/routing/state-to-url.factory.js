@@ -36,7 +36,7 @@
             searchParams.pagina = state.page;
 
             //Detail
-            searchParams.detail = state.detail && state.detail.endpoint || null;
+            searchParams.detail = state.detail && state.detail.endpoint;
 
             //Straatbeeld
             if (state.straatbeeld) {

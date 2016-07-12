@@ -53,7 +53,7 @@ describe('The map controller', function () {
         });
     });
 
-    describe('optionally adds marker data for search by location and straatbeeld', function () {
+    xdescribe('optionally adds marker data for search by location and straatbeeld', function () {
         var mockedState,
             controller;
 

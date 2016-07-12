@@ -5,31 +5,41 @@
         .module('atlas')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['store'];
+    MapController.$inject = ['$rootScope', 'store'];
 
-    function MapController (store) {
+    function MapController ($rootScope, store) {
         var vm = this;
 
         store.subscribe(update);
+
         update();
 
         function update () {
             var state = store.getState();
 
-            vm.markers = {};
+            vm.markers = [];
 
             if (state.search && state.search.location) {
-                vm.markers.search = convertLocationToGeoJSON(state.search.location);
+                vm.markers.push({
+                    id: 'search',
+                    geometry: convertLocationToGeoJSON(state.search.location)
+                });
             }
 
             if (state.detail && state.detail.geometry) {
-                vm.markers.detail = state.detail.geometry;
+                vm.markers.push({
+                    id: 'detail',
+                    geometry: state.detail.geometry
+                });
             }
 
             if (state.straatbeeld && state.straatbeeld.car && state.straatbeeld.car.location) {
-                vm.markers.straatbeeld = convertLocationToGeoJSON(state.straatbeeld.car.location);
+                vm.markers.push({
+                    id: 'straatbeeld',
+                    geometry: convertLocationToGeoJSON(state.straatbeeld.car.location)
+                });
             }
-            console.log(vm.markers);
+
             vm.mapState = state.map;
         }
 

@@ -5,22 +5,23 @@
         .module('dpMap')
         .factory('markers', markersFactory);
 
-    markersFactory.$inject = ['$rootScope'];
+    markersFactory.$inject = [];
 
-    function markersFactory ($rootScope) {
+    function markersFactory () {
+        //var markers = {};
+
         return {
-            initialize: initialize
+            addMarker: addMarker,
+            removeMarker: removeMarker
         };
 
-        function initialize (leafletMap, markers) {
-            console.log($rootScope, leafletMap, markers);
-            //console.log(markers);
+        function addMarker (leafletMap, marker) {
+            console.log('add', marker);
+        }
 
-            /*
-            $rootScope.$watch(markers, function (newMarkers, oldMarkers) {
-                //console.log(newMarkers);
-            });
-            */
+        function removeMarker (leafletMap, markerId) {
+            console.log('remove', markerId);
+
         }
     }
 })();

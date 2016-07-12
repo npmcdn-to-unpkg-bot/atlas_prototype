@@ -95,7 +95,7 @@ describe('The dp-map directive', function () {
         var directive,
             element;
 
-        directive = getDirective(mockedMapState, {});
+        directive = getDirective(mockedMapState, []);
         element = directive[0].querySelector('.js-leaflet-map');
 
         expect(L.map).toHaveBeenCalledWith(element, {
@@ -108,13 +108,13 @@ describe('The dp-map directive', function () {
 
     describe('has a base layer which', function () {
         it('is set on initialization', function () {
-            getDirective(mockedMapState, {});
+            getDirective(mockedMapState, []);
 
             expect(layers.setBaseLayer).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'topografie');
         });
 
         it('changes when the mapState changes', function () {
-            getDirective(mockedMapState, {});
+            getDirective(mockedMapState, []);
             expect(layers.setBaseLayer).toHaveBeenCalledTimes(1);
 
             mockedMapState.baseLayer = 'luchtfoto_2015';
@@ -128,12 +128,12 @@ describe('The dp-map directive', function () {
     describe('has overlays which', function () {
         it('can be added on initialization', function () {
             mockedMapState.overlays = ['some_overlay'];
-            getDirective(mockedMapState, {});
+            getDirective(mockedMapState, []);
             expect(layers.addOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_overlay');
         });
 
         it('can be added when the mapState changes', function () {
-            getDirective(mockedMapState, {});
+            getDirective(mockedMapState, []);
             expect(layers.addOverlay).not.toHaveBeenCalled();
 
             mockedMapState.overlays = ['some_overlay', 'some_other_overlay'];
@@ -145,7 +145,7 @@ describe('The dp-map directive', function () {
 
         it('can be removed when the mapState changes', function () {
             mockedMapState.overlays = ['some_overlay', 'some_other_overlay'];
-            getDirective(mockedMapState, {});
+            getDirective(mockedMapState, []);
 
             expect(layers.removeOverlay).not.toHaveBeenCalled();
 
@@ -162,7 +162,7 @@ describe('The dp-map directive', function () {
             container;
 
         beforeEach(function () {
-            directive = getDirective(mockedMapState, {});
+            directive = getDirective(mockedMapState, []);
             container = directive[0].querySelector('.js-leaflet-map');
         });
 
@@ -187,7 +187,7 @@ describe('The dp-map directive', function () {
             container;
 
         beforeEach(function () {
-            directive = getDirective(mockedMapState, {});
+            directive = getDirective(mockedMapState, []);
             container = directive[0].querySelector('.js-leaflet-map');
         });
 
@@ -211,14 +211,14 @@ describe('The dp-map directive', function () {
         var directive,
             container;
 
-        directive = getDirective(mockedMapState, {});
+        directive = getDirective(mockedMapState, []);
         container = directive[0].querySelector('.js-leaflet-map');
 
         expect(variableWidth.initialize).toHaveBeenCalledWith(container, 'I_AM_A_FAKE_LEAFLET_MAP');
     });
 
     it('initializes the searchByClick factory', function () {
-        getDirective(mockedMapState, {});
+        getDirective(mockedMapState, []);
 
         expect(searchByClick.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
     });

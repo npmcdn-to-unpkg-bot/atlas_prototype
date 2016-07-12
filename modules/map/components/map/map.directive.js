@@ -38,7 +38,6 @@
 
             leafletMap = L.map(container, options);
 
-            markers.initialize(leafletMap, scope.markers);
             panning.initialize(leafletMap);
             zoom.initialize(leafletMap);
             variableWidth.initialize(container, leafletMap);
@@ -66,6 +65,15 @@
                 });
             });
 
+            scope.$watch('markers', function (newMarkers, oldMarkers) {
+                getAddedMarkers(newMarkers, oldMarkers).forEach(function (marker) {
+                    console.log('add', marker);
+                });
+
+                getRemovedMarkers(newMarkers, oldMarkers).forEach(function (marker) {
+                    console.log('remove', marker);
+                });
+            });
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {
@@ -82,6 +90,31 @@
         function getRemovedOverlays (newOverlays, oldOverlays) {
             return oldOverlays.filter(function (overlay) {
                 return newOverlays.indexOf(overlay) === -1;
+            });
+        }
+
+        function getAddedMarkers (newMarkers, oldMarkers) {
+            console.log(newMarkers, oldMarkers);
+            var oldMarkerIds = [];
+
+            oldMarkers.forEach(function (marker) {
+                oldMarkerIds.push(marker.id);
+            });
+
+            return newMarkers.filter(function (marker) {
+                return oldMarkerIds.indexOf(marker.id) === -1;
+            });
+        }
+
+        function getRemovedMarkers (newMarkers, oldMarkers) {
+            var newMarkerIds = [];
+
+            newMarkers.forEach(function (marker) {
+                newMarkerIds.push(marker.id);
+            });
+
+            return oldMarkers.filter(function (marker) {
+                return newMarkerIds.indexOf(marker.id) === -1;
             });
         }
     }
