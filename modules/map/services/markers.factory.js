@@ -13,6 +13,7 @@
         };
 
         function initialize (leafletMap, markers) {
+            console.log($rootScope, leafletMap, markers);
             //console.log(markers);
 
             /*

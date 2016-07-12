@@ -78,17 +78,18 @@
             }
 
             function getDetailState (oldState, payload) {
+                //console.log('getDetailState', payload, angular.isString(payload.detail));
                 if (angular.isString(payload.detail)) {
                     var newDetailState = {
                             endpoint: payload.detail,
                             isLoading: false
                         };
 
-                    if (oldState.detail.endpoint === payload.detail) {
-                        newDetailState.geometry = oldState.detailgeometry;
+                    if (angular.isObject(oldState.detail) && oldState.detail.endpoint === payload.detail) {
+                        newDetailState.geometry = oldState.detail.geometry;
                     }
-
-                    return newState;
+                    //console.log(newDetailState);
+                    return newDetailState;
                 } else {
                     return null;
                 }
