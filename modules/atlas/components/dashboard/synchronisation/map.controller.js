@@ -26,10 +26,10 @@
                 vm.markers.detail = state.detail.geometry;
             }
 
-            if (state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.location) {
-                vm.markers.straatbeeld = convertLocationToGeoJSON(state.straatbeeld.camera.location);
+            if (state.straatbeeld && state.straatbeeld.car && state.straatbeeld.car.location) {
+                vm.markers.straatbeeld = convertLocationToGeoJSON(state.straatbeeld.car.location);
             }
-
+            console.log(vm.markers);
             vm.mapState = state.map;
         }
 
