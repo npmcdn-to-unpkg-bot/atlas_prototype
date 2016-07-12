@@ -15,42 +15,35 @@ describe('The straatbeeldReducers factory', function () {
 
         inputStateWithStraatbeeld.straatbeeld = {
             id: 1,
+            location: null,
             camera: {
-                location: [51.0, 4.0],
-                heading: 1,
-                pitch: 2,
-                fov: 3
+                location: [51.0, 4.0]
             },
             isLoading: false
         };
     });
 
     describe('FETCH_STRAATBEELD', function () {
-        it('sets the ID', function () {
-            var inputState = angular.copy(defaultState),
-                output;
+        describe('can have a reference to a panorama scene', function () {
+            it('by ID', function () {
+                var inputState = angular.copy(defaultState),
+                    output;
 
-            output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, 123);
-            expect(output.straatbeeld.id).toBe(123);
-        });
+                output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, 123);
 
-        it('resets the (previous) camera location', function () {
-            var inputState = angular.copy(defaultState),
-                output;
+                expect(output.straatbeeld.id).toBe(123);
+                expect(output.straatbeeld.searchLocation).toBeNull();
+            });
 
-            inputState.straatbeeld = {
-                id: 122,
-                camera: {
-                    location: [52.123, 4.789],
-                    heading: 0,
-                    pitch: 0,
-                    fov: 60
-                },
-                isLoading: false
-            };
+            it('or by location', function () {
+                var inputState = angular.copy(defaultState),
+                    output;
 
-            output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, 123);
-            expect(output.straatbeeld.camera.location).toBeNull();
+                output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, [52.987, 4.321]);
+
+                expect(output.straatbeeld.id).toBeNull();
+                expect(output.straatbeeld.searchLocation).toEqual([52.987, 4.321]);
+            });
         });
 
         it('sets a loading indicator for straatbeeld and the map', function () {
@@ -61,28 +54,6 @@ describe('The straatbeeldReducers factory', function () {
 
             expect(output.straatbeeld.isLoading).toBe(true);
             expect(output.map.isLoading).toBe(true);
-        });
-
-        it('remembers the heading, pitch and fov from the oldState', function () {
-            var inputState = angular.copy(defaultState),
-                output;
-
-            inputState.straatbeeld = {
-                id: 122,
-                camera: {
-                    location: [52.123, 4.789],
-                    heading: 100,
-                    pitch: 101,
-                    fov: 102
-                },
-                isLoading: false
-            };
-
-            output = straatbeeldReducers.FETCH_STRAATBEELD(inputState, 123);
-
-            expect(output.straatbeeld.camera.heading).toBe(100);
-            expect(output.straatbeeld.camera.pitch).toBe(101);
-            expect(output.straatbeeld.camera.fov).toBe(102);
         });
 
         it('removes the highlighted object from the map', function () {
@@ -117,11 +88,43 @@ describe('The straatbeeldReducers factory', function () {
 
         beforeEach(function () {
             showStraatbeeldPayload = {
-                location: [51.5, 4.5],
-                heading: 7,
-                pitch: 8,
-                fov: 9
+                id: 98765,
+                date: new Date(2016, 6, 8),
+                car: {
+                    location: [51.5, 4.5],
+                    heading: 180,
+                    pitch: 0.01
+                },
+                hotspots: ['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_B']
             };
+        });
+
+        it('sets the ID when searching by location and it removes the search location', function () {
+            var inputState = angular.copy(inputStateWithStraatbeeld),
+                output;
+
+            inputState.straatbeeld.id = null;
+            inputState.straatbeeld.searchLocation = [52.4, 4.52];
+
+            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
+
+            expect(output.straatbeeld.id).toBe(98765);
+            expect(output.straatbeeld.searchLocation).toBeNull();
+        });
+
+        it('sets the date, camera and hotspots variables', function () {
+            var inputState = angular.copy(inputStateWithStraatbeeld),
+                output;
+
+            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
+
+            expect(output.straatbeeld.date).toEqual(new Date(2016, 6, 8));
+            expect(output.straatbeeld.car).toEqual({
+                location: [51.5, 4.5],
+                heading: 180,
+                pitch: 0.01
+            });
+            expect(output.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_B']);
         });
 
         it('removes the loading indicators from the map and straatbeeld', function () {
@@ -135,71 +138,6 @@ describe('The straatbeeldReducers factory', function () {
 
             expect(output.map.isLoading).toBe(false);
             expect(output.straatbeeld.isLoading).toBe(false);
-        });
-
-        it('sets the heading, pitch and fov if there is no previous value known', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            delete inputState.straatbeeld.camera.heading;
-            delete inputState.straatbeeld.camera.pitch;
-            delete inputState.straatbeeld.camera.fov;
-
-            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
-
-            expect(output.straatbeeld.camera.heading).toBe(7);
-            expect(output.straatbeeld.camera.pitch).toBe(8);
-            expect(output.straatbeeld.camera.fov).toBe(9);
-        });
-
-        it('won\'t set the heading, pitch and fov if there is a previous value known', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
-
-            expect(output.straatbeeld.camera.heading).toBe(1);
-            expect(output.straatbeeld.camera.pitch).toBe(2);
-            expect(output.straatbeeld.camera.fov).toBe(3);
-        });
-    });
-
-    describe('STRAATBEELD_SET_HEADING', function () {
-        it('sets the heading', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            output = straatbeeldReducers.STRAATBEELD_SET_HEADING(inputState, 2);
-            expect(output.straatbeeld.camera.heading).toBe(2);
-
-            output = straatbeeldReducers.STRAATBEELD_SET_HEADING(inputState, 3);
-            expect(output.straatbeeld.camera.heading).toBe(3);
-        });
-    });
-
-    describe('STRAATBEELD_SET_PITCH', function () {
-        it('sets the pitch', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            output = straatbeeldReducers.STRAATBEELD_SET_PITCH(inputState, 0.5);
-            expect(output.straatbeeld.camera.pitch).toBe(0.5);
-
-            output = straatbeeldReducers.STRAATBEELD_SET_PITCH(inputState, 0.25);
-            expect(output.straatbeeld.camera.pitch).toBe(0.25);
-        });
-    });
-
-    describe('STRAATBEELD_SET_FOV', function () {
-        it('sets the fov', function () {
-            var inputState = angular.copy(inputStateWithStraatbeeld),
-                output;
-
-            output = straatbeeldReducers.STRAATBEELD_SET_FOV(inputState, 90);
-            expect(output.straatbeeld.camera.fov).toBe(90);
-
-            output = straatbeeldReducers.STRAATBEELD_SET_FOV(inputState, 75);
-            expect(output.straatbeeld.camera.fov).toBe(75);
         });
     });
 });
