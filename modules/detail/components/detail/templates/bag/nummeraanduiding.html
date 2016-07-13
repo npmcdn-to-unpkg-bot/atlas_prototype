@@ -7,6 +7,8 @@
       <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
     </div>
 
+    <atlas-straatbeeld ng-if="vm.apiData.results" api-data="vm.apiData"></atlas-straatbeeld>
+
     <!-- verblijfsobject -->
     <atlas-api-call
       ng-if="vm.apiData.results.type === 'Verblijfsobject'"
