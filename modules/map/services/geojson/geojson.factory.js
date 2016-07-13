@@ -8,8 +8,7 @@
     geojsonFactory.$inject = ['L', 'crsService'];
 
     function geojsonFactory (L, crsService) {
-        var markers = {},
-            layers = {};
+        var layers = {};
 
         return {
             initialize: initialize,
@@ -17,28 +16,11 @@
             remove: remove
         };
 
-        function initialize (leafletMap) {
+        function initialize () {
             L.Icon.Default.imagePath = 'assets';
         }
 
         function add (leafletMap, geoJSON) {
-            if (geoJSON.geometry.type === 'Point') {
-                addMarker(leafletMap, geoJSON);
-            } else if (geoJSON.geometry.type === 'MultiPolygon') {
-                addMultiPolygon(leafletMap, geoJSON);
-            }
-        }
-
-        function remove (leafletMap, id) {
-            console.log('remove', id);
-            leafletMap.removeLayer(layers[id]);
-        }
-
-        function addMarker (leafletMap, marker) {
-            console.log('addMarker', leafletMap, marker);
-        }
-
-        function addMultiPolygon (leafletMap, geoJSON) {
             var layer;
 
             geoJSON.geometry.crs = crsService.getRdObject();
@@ -59,10 +41,9 @@
 
             leafletMap.addLayer(layer);
         }
-        /*
-        function removeMarker (leafletMap, markerId) {
-            console.log('removeMarker', leafletMap, markerId);
+
+        function remove (leafletMap, geoJSON) {
+            leafletMap.removeLayer(layers[geoJSON.id]);
         }
-        */
     }
 })();

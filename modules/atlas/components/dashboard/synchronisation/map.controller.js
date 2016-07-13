@@ -44,8 +44,6 @@
         }
 
         function convertLocationToGeoJSON (location) {
-            console.log(location, wgs84RdConverter.wgs84ToRd(location));
-
             return {
                 type: 'Point',
                 coordinates: wgs84RdConverter.wgs84ToRd(location)

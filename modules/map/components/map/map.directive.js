@@ -38,7 +38,6 @@
 
             leafletMap = L.map(container, options);
 
-            geojson.initialize(leafletMap, scope.markers);
             panning.initialize(leafletMap);
             zoom.initialize(leafletMap);
             variableWidth.initialize(container, leafletMap);
@@ -57,23 +56,24 @@
             });
 
             scope.$watch('mapState.overlays', function (newOverlays, oldOverlays) {
-                getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
-                    layers.addOverlay(leafletMap, overlay);
-                });
-
                 getRemovedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                     layers.removeOverlay(leafletMap, overlay);
                 });
+
+                getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
+                    layers.addOverlay(leafletMap, overlay);
+                });
             });
 
-            scope.$watch('markers', function (newMarkers, oldMarkers) {
-                getAddedMarkers(newMarkers, oldMarkers).forEach(function (marker) {
-                    console.log('add', marker);
-                    geojson.add(leafletMap, marker);
+            scope.$watch('markers', function (newCollection, oldCollection) {
+                getRemovedGeojson(newCollection, oldCollection).forEach(function (item) {
+                    console.log('remove', item);
+                    geojson.remove(leafletMap, item);
                 });
 
-                getRemovedMarkers(newMarkers, oldMarkers).forEach(function (marker) {
-                    geojson.remove(leafletMap, marker.id);
+                getAddedGeojson(newCollection, oldCollection).forEach(function (item) {
+                    console.log('add', item);
+                    geojson.add(leafletMap, item);
                 });
             });
         }
@@ -95,27 +95,37 @@
             });
         }
 
-        function getAddedMarkers (newMarkers, oldMarkers) {
-            var oldMarkerIds = [];
+        function getAddedGeojson (newCollection, oldCollection) {
+            return newCollection.filter(function (newItem) {
+                var hasBeenAdded,
+                    hasChanged,
+                    linkedOldItems;
 
-            oldMarkers.forEach(function (marker) {
-                oldMarkerIds.push(marker.id);
-            });
+                linkedOldItems = oldCollection.filter(function (oldItem) {
+                    return oldItem.id === newItem.id;
+                });
 
-            return newMarkers.filter(function (marker) {
-                return oldMarkerIds.indexOf(marker.id) === -1;
+                hasBeenAdded = linkedOldItems.length === 0;
+                hasChanged = !angular.equals(linkedOldItems[0], newItem);
+
+                return hasBeenAdded || hasChanged;
             });
         }
 
-        function getRemovedMarkers (newMarkers, oldMarkers) {
-            var newMarkerIds = [];
+        function getRemovedGeojson (newCollection, oldCollection) {
+            return oldCollection.filter(function (oldItem) {
+                var hasBeenRemoved,
+                    hasChanged,
+                    linkedNewItems;
 
-            newMarkers.forEach(function (marker) {
-                newMarkerIds.push(marker.id);
-            });
+                linkedNewItems = newCollection.filter(function (newItem) {
+                    return newItem.id === oldItem.id;
+                });
 
-            return oldMarkers.filter(function (marker) {
-                return newMarkerIds.indexOf(marker.id) === -1;
+                hasBeenRemoved = linkedNewItems.length === 0;
+                hasChanged = !angular.equals(linkedNewItems[0], oldItem);
+
+                return hasBeenRemoved || hasChanged;
             });
         }
     }
