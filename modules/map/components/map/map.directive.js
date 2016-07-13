@@ -7,14 +7,14 @@
         'L',
         'mapConfig',
         'layers',
-        'markers',
+        'geojson',
         'panning',
         'zoom',
         'variableWidth',
         'searchByClick'
     ];
 
-    function dpMapDirective (L, mapConfig, layers, markers, panning, zoom, variableWidth, searchByClick) {
+    function dpMapDirective (L, mapConfig, layers, geojson, panning, zoom, variableWidth, searchByClick) {
         return {
             restrict: 'E',
             scope: {
@@ -38,6 +38,7 @@
 
             leafletMap = L.map(container, options);
 
+            geojson.initialize(leafletMap, scope.markers);
             panning.initialize(leafletMap);
             zoom.initialize(leafletMap);
             variableWidth.initialize(container, leafletMap);
@@ -68,10 +69,11 @@
             scope.$watch('markers', function (newMarkers, oldMarkers) {
                 getAddedMarkers(newMarkers, oldMarkers).forEach(function (marker) {
                     console.log('add', marker);
+                    geojson.add(leafletMap, marker);
                 });
 
                 getRemovedMarkers(newMarkers, oldMarkers).forEach(function (marker) {
-                    console.log('remove', marker);
+                    geojson.remove(leafletMap, marker.id);
                 });
             });
         }
@@ -94,7 +96,6 @@
         }
 
         function getAddedMarkers (newMarkers, oldMarkers) {
-            console.log(newMarkers, oldMarkers);
             var oldMarkerIds = [];
 
             oldMarkers.forEach(function (marker) {
