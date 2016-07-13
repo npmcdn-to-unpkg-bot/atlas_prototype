@@ -9,11 +9,19 @@ describe('The wgs84 Rd converter factory', function () {
     });
   });
 
-  xit('coverts an object with latitude and longitude to a string with RD coordinates', function () {
+  it('coverts an wgs84 array to an array with RD coordinates', function () {
     //Nationaal monument, Dam
-    expect(wgs84RdConverter.wgs84ToRd({latitude: 52.3728639, longitude: 4.8936044})).toBe('121386, 487335');
+    expect(wgs84RdConverter.wgs84ToRd([4.893168, 52.372925])).toEqual([121356.29652982563, 487342.3555735912]);
 
     //Weesperstraat 113
-    expect(wgs84RdConverter.wgs84ToRd({latitude: 52.3670215, longitude: 4.8913113})).toBe('121225, 486686');
+    expect(wgs84RdConverter.wgs84ToRd([4.907101, 52.362922])).toEqual([122297.74628058505, 486223.01434200455]);
+  });
+
+  it('coverts an rd array to an array with wgs84 coordinates', function () {
+    //Nationaal monument, Dam
+    expect(wgs84RdConverter.rdToWgs84([121386, 487335])).toEqual([4.893604897973255, 52.3728607164929]);
+
+    //Weesperstraat 113
+    expect(wgs84RdConverter.rdToWgs84([122295, 486219])).toEqual([4.907061074797828, 52.362885762452215]);
   });
 });

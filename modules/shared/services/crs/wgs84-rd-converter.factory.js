@@ -16,18 +16,20 @@
     };
 
     /*
-     * @params {Object or Array} wgs84 - An object with this structure: {x:x,y:y} or [x,y]
+     * @params {Array} wgs84 - An array with this structure: [x,y]
+     * let op x is lon (4.xxx) en y is lat (52.xxx)
      *
-     * @returns {Object or Array} - RD - An object with this structure: {x:x,y:y} or [x,y] same as input
+     * @returns {Array} - RD - An array with this structure: [x,y]
      */
     function wgs84ToRd(coordinates){
-      return proj4(CRS_CONFIG.WGS84.projection, CRS_CONFIG.RD.projection, coordinates);
+      return proj4(CRS_CONFIG.RD.projection, coordinates);
     }
 
     /*
-     * @params {Object or Array} RD - An object with this structure: {x:x,y:y} or [x,y]
+     * @params {Array} RD - An array with this structure: [x,y]
      *
-     * @returns {Object or Array} wgs84 - An object with this structure: {x:x,y:y} or [x,y] same as input
+     * @returns {Array} wgs84 - An An array with this structure: [x,y]
+     * let op x is lon (4.xxx) en y is lat (52.xxx)
      */
     function rdToWgs84(coordinates){
       return proj4(CRS_CONFIG.RD.projection, CRS_CONFIG.WGS84.projection, coordinates);

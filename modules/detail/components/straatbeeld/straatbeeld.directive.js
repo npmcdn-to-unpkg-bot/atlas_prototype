@@ -28,6 +28,8 @@
 
         if(geojson[0][0]){
             center = geojsonCenter.getCenter(geojson);
+        } else {
+            center = geojson;
         }
 
         centerWgs84 = wgs84RdConverter.rdToWgs84(center);
