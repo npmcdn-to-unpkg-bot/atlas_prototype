@@ -35,8 +35,8 @@
         centerWgs84 = wgs84RdConverter.rdToWgs84(center);
 
         vm.imageUrl =   environment.PANO_VIEW_PROXY +
-                        '?lon=' + centerWgs84[0] +
-                        '&lat=' + centerWgs84[1] +
+                        '?lon=' + centerWgs84[1] +
+                        '&lat=' + centerWgs84[0] +
                         '&width=240&height=144';
     }
 })();
