@@ -31,7 +31,7 @@
                     type: ACTIONS.SHOW_DETAIL,
                     payload: {
                         //TODO placeholders vervangen voor echte data
-                        location: [52.378086874951386, 4.922568081008677],
+                        location: [52.35350778099046, 5.001068568757111],
                         geometry: vm.apiData.results.geometrie || null
                     }
                 });

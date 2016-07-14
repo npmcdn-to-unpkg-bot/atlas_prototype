@@ -68,7 +68,7 @@
             scope.$watch('markers', function (newCollection, oldCollection) {
                 getRemovedGeojson(newCollection, oldCollection).forEach(function (item) {
                     console.log('remove', item);
-                    geojson.remove(leafletMap, item);
+                    //geojson.remove(leafletMap, item);
                 });
 
                 getAddedGeojson(newCollection, oldCollection).forEach(function (item) {
