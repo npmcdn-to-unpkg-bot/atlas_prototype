@@ -6,12 +6,15 @@ describe('The dp-straatbeeld directive', function () {
         ACTIONS,
         marzipanoService,
         earthmine,
+        orientation,
         mockedMarzipanoViewer = 'I_AM_A_MOCKED_MARZIPANO_VIEWER',
         mockedEarthmineData = {
             id: 123,
             date: new Date(2016, 6, 8),
-            camera: {
-                location: [52.129, 4.790]
+            car: {
+                location: [52.129, 4.79],
+                heading: 270,
+                pitch: 0.75
             },
             hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
         };
@@ -43,7 +46,9 @@ describe('The dp-straatbeeld directive', function () {
         );
 
         angular.mock.inject(
-            function (_$compile_, _$rootScope_, _$q_, _store_, _ACTIONS_, _marzipanoService_, _earthmine_) {
+            function (_$compile_, _$rootScope_, _$q_, _store_, _ACTIONS_, _marzipanoService_, _earthmine_,
+                _orientation_) {
+
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
                 $q = _$q_;
@@ -51,6 +56,7 @@ describe('The dp-straatbeeld directive', function () {
                 ACTIONS = _ACTIONS_;
                 marzipanoService = _marzipanoService_;
                 earthmine = _earthmine_;
+                orientation = _orientation_;
             }
         );
 
@@ -59,6 +65,8 @@ describe('The dp-straatbeeld directive', function () {
 
         spyOn(earthmine, 'getImageDataById').and.callThrough();
         spyOn(earthmine, 'getImageDataByCoordinates').and.callThrough();
+
+        spyOn(orientation, 'update');
 
         spyOn(store, 'dispatch');
     });
@@ -80,6 +88,14 @@ describe('The dp-straatbeeld directive', function () {
         return directive;
     }
 
+    function triggerMousemove (element) {
+        var event;
+
+        event = angular.element.Event('mousemove');
+
+        element.trigger(event);
+    }
+
     it('initializes the marzipanoService with the panoramaState', function () {
         var directive,
             container;
@@ -88,6 +104,34 @@ describe('The dp-straatbeeld directive', function () {
         container = directive.find('.js-marzipano-viewer')[0];
 
         expect(marzipanoService.initialize).toHaveBeenCalledWith(container);
+    });
+
+    it('calls the orientation factory on mousemove to keep the state in sync', function () {
+        var directive;
+
+        directive = getDirective(
+            {
+                id: 123,
+                car: {
+                    location: [52, 4],
+                    heading: 275,
+                    pitch: 0.8
+                },
+                isLoading: false
+            }
+        );
+        expect(orientation.update).not.toHaveBeenCalled();
+
+        triggerMousemove(directive.find('.js-marzipano-viewer'));
+        expect(orientation.update).toHaveBeenCalledWith(
+            mockedMarzipanoViewer,
+            {
+                location: [52, 4],
+                heading: 275,
+                pitch: 0.8
+            },
+            false
+        );
     });
 
     describe('loading data', function () {
@@ -115,8 +159,10 @@ describe('The dp-straatbeeld directive', function () {
                 payload: {
                     id: 123,
                     date: new Date(2016, 6, 8),
-                    camera: {
-                        location: [52.129, 4.790]
+                    car: {
+                        location: [52.129, 4.79],
+                        heading: 270,
+                        pitch: 0.75
                     },
                     hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
                 }
@@ -131,8 +177,10 @@ describe('The dp-straatbeeld directive', function () {
                 payload: {
                     id: 123,
                     date: new Date(2016, 6, 8),
-                    camera: {
-                        location: [52.129, 4.790]
+                    car: {
+                        location: [52.129, 4.79],
+                        heading: 270,
+                        pitch: 0.75
                     },
                     hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
                 }
@@ -164,6 +212,11 @@ describe('The dp-straatbeeld directive', function () {
 
         expect(marzipanoService.loadScene).toHaveBeenCalledWith(
             123,
+            {
+                location: [52.123, 4.789],
+                heading: 90,
+                pitch: 0.01
+            },
             {
                 heading: 90,
                 pitch: 0.01
