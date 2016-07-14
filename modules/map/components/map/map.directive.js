@@ -66,16 +66,22 @@
             });
 
             scope.$watch('markers', function (newCollection, oldCollection) {
-                getRemovedGeojson(newCollection, oldCollection).forEach(function (item) {
-                    console.log('remove', item);
-                    //geojson.remove(leafletMap, item);
-                });
+                if (angular.equals(newCollection, oldCollection)) {
+                    //Initialisation
+                    newCollection.forEach(function (item) {
+                        geojson.add(leafletMap, item);
+                    });
+                } else {
+                    //Change detected
+                    getRemovedGeojson(newCollection, oldCollection).forEach(function (item) {
+                        geojson.remove(leafletMap, item);
+                    });
 
-                getAddedGeojson(newCollection, oldCollection).forEach(function (item) {
-                    console.log('add', item);
-                    geojson.add(leafletMap, item);
-                });
-            });
+                    getAddedGeojson(newCollection, oldCollection).forEach(function (item) {
+                        geojson.add(leafletMap, item);
+                    });
+                }
+            }, true);
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {

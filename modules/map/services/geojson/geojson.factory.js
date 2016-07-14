@@ -31,7 +31,7 @@
                         color: 'red',
                         fillColor: 'red',
                         weight: 2,
-                        opacity: 1,
+                        opacity: 1.6,
                         fillOpacity: 0.2
                     };
                 },
