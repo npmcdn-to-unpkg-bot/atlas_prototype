@@ -1,16 +1,20 @@
 describe('The map controller', function () {
     var $controller,
         $rootScope,
-        store;
+        store,
+        wgs84RdConverter;
 
     beforeEach(function () {
         angular.mock.module('atlas');
 
-        angular.mock.inject(function (_$controller_, _$rootScope_, _store_) {
+        angular.mock.inject(function (_$controller_, _$rootScope_, _store_, _wgs84RdConverter_) {
             $controller = _$controller_;
             $rootScope = _$rootScope_;
             store = _store_;
+            wgs84RdConverter = _wgs84RdConverter_;
         });
+
+        spyOn(wgs84RdConverter, 'wgs84ToRd').and.returnValue('FAKE_RD_COORDINATES');
     });
 
     function getController () {
@@ -53,7 +57,7 @@ describe('The map controller', function () {
         });
     });
 
-    xdescribe('optionally adds marker data for search by location and straatbeeld', function () {
+    describe('optionally adds marker data for search by location, detail and straatbeeld', function () {
         var mockedState,
             controller;
 
@@ -63,7 +67,7 @@ describe('The map controller', function () {
             spyOn(store, 'getState').and.returnValue(mockedState);
             controller = getController();
 
-            expect(controller.markers).toEqual({});
+            expect(controller.markers).toEqual([]);
         });
 
         it('supports a search marker', function () {
@@ -76,18 +80,34 @@ describe('The map controller', function () {
             spyOn(store, 'getState').and.returnValue(mockedState);
             controller = getController();
 
-            expect(controller.markers).toEqual({
-                search: {
-                    location: [52.1, 4.1]
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'search'
+            }));
+        });
+
+        it('supports a detail marker', function () {
+            mockedState = {
+                detail: {
+                    geometry: 'FAKE_GEOMETRY'
                 }
-            });
+            };
+
+            spyOn(store, 'getState').and.returnValue(mockedState);
+            controller = getController();
+
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'detail'
+            }));
         });
 
         it('supports a straatbeeld marker', function () {
             mockedState = {
                 straatbeeld: {
-                    camera: {
+                    car: {
                         location: [52.2, 4.2]
+                    },
+                    camera: {
+                        heading: Math.PI
                     }
                 }
             };
@@ -95,22 +115,30 @@ describe('The map controller', function () {
             spyOn(store, 'getState').and.returnValue(mockedState);
             controller = getController();
 
-            expect(controller.markers).toEqual({
-                straatbeeld: {
-                    location: [52.2, 4.2]
-                }
-            });
+            //Straatbeeld is secretly made using two icons
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'straatbeeld_orientation'
+            }));
+
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'straatbeeld_person'
+            }));
         });
 
-        it('can have a search and straatbeeld marker at the same time', function () {
-            //If the application logic won't allow this scenario; resolve this in the reducer(s), not here.
+        it('converts each WGS84 Point to geoJSON with the RD notation', function () {
             mockedState = {
                 search: {
                     location: [52.1, 4.1]
                 },
+                detail: {
+                    geometry: 'FAKE_RD_GEOMETRY'
+                },
                 straatbeeld: {
-                    camera: {
+                    car: {
                         location: [52.2, 4.2]
+                    },
+                    camera: {
+                        heading: Math.PI
                     }
                 }
             };
@@ -118,14 +146,56 @@ describe('The map controller', function () {
             spyOn(store, 'getState').and.returnValue(mockedState);
             controller = getController();
 
-            expect(controller.markers).toEqual({
-                search: {
-                    location: [52.1, 4.1]
-                },
-                straatbeeld: {
-                    location: [52.2, 4.2]
+            //Straatbeeld is secretly made using two icons
+
+            //Search and straatbeeld are in WGS84 and will be converted to RD
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'search',
+                geometry: {
+                    type: 'Point',
+                    coordinates: 'FAKE_RD_COORDINATES'
                 }
-            });
+            }));
+
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'straatbeeld_orientation',
+                geometry: {
+                    type: 'Point',
+                    coordinates: 'FAKE_RD_COORDINATES'
+                }
+            }));
+
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'straatbeeld_person',
+                geometry: {
+                    type: 'Point',
+                    coordinates: 'FAKE_RD_COORDINATES'
+                }
+            }));
+
+            //Detail already is in RD and won't be converted
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'detail',
+                geometry: 'FAKE_RD_GEOMETRY'
+            }));
+        });
+
+        it('The straatbeeld_orientation icon will have a extra variable for leaflet-rotatedmarker', function () {
+            mockedState = {
+                straatbeeld: {
+                    car: {
+                        location: [52.2, 4.2]
+                    },
+                    camera: {
+                        heading: Math.PI
+                    }
+                }
+            };
+
+            expect(controller.markers).toContain(jasmine.objectContaining({
+                id: 'straatbeeld_orientation',
+                orientation: Math.PI
+            }));
         });
     });
 });

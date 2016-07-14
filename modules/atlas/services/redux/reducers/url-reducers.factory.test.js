@@ -180,6 +180,25 @@ describe('The urlReducers factory', function () {
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.detail.endpoint).toBe('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/');
             });
+
+            it('remembers the geomtery of the previous state if the endpoint stays the same', function () {
+                var output;
+
+                //With a previous state without an endpoint
+                mockedSearchParams.detail = 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/';
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+
+                expect(output.detail.geometry).toBeUndefined();
+
+                //With a previous geometry in the state
+                mockedState.detail = {
+                    endpoint: 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/',
+                    geometry: 'FAKE_GEOMETRY'
+                };
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+
+                expect(output.detail.geometry).toBe('FAKE_GEOMETRY');
+            });
         });
 
         describe('straatbeeld', function () {

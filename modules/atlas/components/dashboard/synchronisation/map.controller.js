@@ -5,9 +5,9 @@
         .module('atlas')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['$rootScope', 'store', 'wgs84RdConverter'];
+    MapController.$inject = ['store', 'wgs84RdConverter'];
 
-    function MapController ($rootScope, store, wgs84RdConverter) {
+    function MapController (store, wgs84RdConverter) {
         var vm = this;
 
         store.subscribe(update);
