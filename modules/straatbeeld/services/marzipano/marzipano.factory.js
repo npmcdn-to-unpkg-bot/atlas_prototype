@@ -22,9 +22,11 @@
          */
         function initialize (domElement) {
             viewer = new Marzipano.Viewer(domElement);
+
+            return viewer;
         }
 
-        function loadScene (sceneId, camera, hotspots) {
+        function loadScene (sceneId, car, camera, hotspots) {
             var view,
                 viewLimiter,
                 scene,
@@ -48,7 +50,7 @@
 
             hotspots.forEach(function (hotspot) {
                 hotspotService.createHotspotTemplate(hotspot.id, hotspot.distance).then(function (template) {
-                    var position = hotspotService.calculateHotspotPosition(camera, hotspot);
+                    var position = hotspotService.calculateHotspotPosition(car, hotspot);
 
                     scene.hotspotContainer().createHotspot(
                         template,
@@ -57,6 +59,11 @@
                     );
                 });
             });
+
+            //Set orientation
+            view.setYaw(camera.heading - car.heading);
+            view.setPitch(camera.pitch);
+            view.setFov(camera.fov || straatbeeldConfig.DEFAULT_FOV);
 
             scene.switchTo();
         }

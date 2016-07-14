@@ -96,15 +96,23 @@
                         hotspots;
 
                     if (oldState.straatbeeld && oldState.straatbeeld.id === Number(payload.id)) {
+                        //Stuff that isn't in the URL but implicitly linked through the ID
                         date = oldState.straatbeeld.date;
                         car = oldState.straatbeeld.car || null;
-                        camera = oldState.straatbeeld.camera || null;
                         hotspots = oldState.straatbeeld.hotspots;
                     } else {
                         date = null;
                         car = null;
-                        camera = null;
                         hotspots = [];
+                    }
+
+                    camera = {
+                        heading: Number(payload.heading),
+                        pitch: Number(payload.pitch)
+                    };
+
+                    if (payload.fov) {
+                        camera.fov = Number(payload.fov);
                     }
 
                     return {
