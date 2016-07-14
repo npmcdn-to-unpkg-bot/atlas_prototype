@@ -7,14 +7,14 @@
         'L',
         'mapConfig',
         'layers',
-        'geojson',
+        'highlight',
         'panning',
         'zoom',
         'variableWidth',
         'searchByClick'
     ];
 
-    function dpMapDirective (L, mapConfig, layers, geojson, panning, zoom, variableWidth, searchByClick) {
+    function dpMapDirective (L, mapConfig, layers, highlight, panning, zoom, variableWidth, searchByClick) {
         return {
             restrict: 'E',
             scope: {
@@ -69,16 +69,16 @@
                 if (angular.equals(newCollection, oldCollection)) {
                     //Initialisation
                     newCollection.forEach(function (item) {
-                        geojson.add(leafletMap, item);
+                        highlight.add(leafletMap, item);
                     });
                 } else {
                     //Change detected
                     getRemovedGeojson(newCollection, oldCollection).forEach(function (item) {
-                        geojson.remove(leafletMap, item);
+                        highlight.remove(leafletMap, item);
                     });
 
                     getAddedGeojson(newCollection, oldCollection).forEach(function (item) {
-                        geojson.add(leafletMap, item);
+                        highlight.add(leafletMap, item);
                     });
                 }
             }, true);
