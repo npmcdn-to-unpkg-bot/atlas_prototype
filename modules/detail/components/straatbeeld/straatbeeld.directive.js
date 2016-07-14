@@ -34,8 +34,8 @@
                 coordinatesWgs84 = wgs84RdConverter.rdToWgs84(coordinates);
 
                 vm.imageUrl = environment.PANO_VIEW_PROXY +
-                            '?lon=' + coordinatesWgs84[0] +
-                            '&lat=' + coordinatesWgs84[1] +
+                            '?lon=' + coordinatesWgs84[1] +
+                            '&lat=' + coordinatesWgs84[0] +
                             '&width=240&height=144';
             });
         }
