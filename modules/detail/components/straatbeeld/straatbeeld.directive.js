@@ -18,17 +18,16 @@
         };
     }
 
-    AtlasStraatbeeldController.$inject = ['$q', 'api', 'environment', 'polygonToPoint', 'wgs84RdConverter'];
+    AtlasStraatbeeldController.$inject = ['environment', 'location', 'wgs84RdConverter'];
 
-    function AtlasStraatbeeldController ($q, api, environment, polygonToPoint, wgs84RdConverter) {
+    function AtlasStraatbeeldController (environment, location, wgs84RdConverter) {
         var vm = this,
-            data = vm.apiData.results,
-            geometrie = data.geometrie;
+            data = vm.apiData.results;
 
         getImageUrl();
 
         function getImageUrl() {
-            getLocation().then(function(coordinates){
+            location.getLocation(data).then(function(coordinates){
                 var coordinatesWgs84;
 
                 coordinatesWgs84 = wgs84RdConverter.rdToWgs84(coordinates);
@@ -39,38 +38,5 @@
                             '&width=240&height=144';
             });
         }
-        function getLocation() {
-            var coordinates,
-
-            results = $q.defer();
-
-            if(geometrie){
-                if(geometrie.type === 'MultiPolygon'){
-                    coordinates = polygonToPoint.calculateCenter(geometrie.coordinates[0][0]);
-                    results.resolve(coordinates);
-                } else if(geometrie.type === 'Polygon'){
-                    coordinates = polygonToPoint.calculateCenter(geometrie.coordinates[0]);
-                    results.resolve(coordinates);
-                } else if(geometrie.type === 'Point'){
-                    coordinates = geometrie.coordinates;
-                    results.resolve(coordinates);
-                }
-            } else if(data.index_letter === 'A') {
-                return api.getByUrl(data.betrokken_bij.href).then(function (response) {
-                    data = response;
-                    geometrie = response.geometrie;
-                }).then(getLocation);
-            } else if(data.nummeraanduidingidentificatie) {
-                var object = data.type;
-                object = object.toLowerCase();
-                return api.getByUrl(data[object]).then(function (response) {
-                    data = response;
-                    geometrie = response.geometrie;
-                }).then(getLocation);
-            }
-
-            return results.promise;
-        }
-
     }
 })();
