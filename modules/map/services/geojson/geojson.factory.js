@@ -5,9 +5,9 @@
         .module('dpMap')
         .factory('geojson', geojsonFactory);
 
-    geojsonFactory.$inject = ['L', 'crsService', 'MARKER_CONFIG'];
+    geojsonFactory.$inject = ['L', 'crsService', 'ICON_CONFIG', 'angleConversion'];
 
-    function geojsonFactory (L, crsService, MARKER_CONFIG) {
+    function geojsonFactory (L, crsService, ICON_CONFIG, angleConversion) {
         var layers = {};
 
         return {
@@ -23,8 +23,6 @@
         function add (leafletMap, geoJSON) {
             var layer;
 
-            console.log('geoJSON', geoJSON);
-
             geoJSON.geometry.crs = crsService.getRdObject();
 
             layer = L.Proj.geoJson(geoJSON.geometry, {
@@ -34,15 +32,19 @@
                         fillColor: 'red',
                         weight: 2,
                         opacity: 1,
-                        fillOpacity: 0.2,
-                        rotate: '180deg'
+                        fillOpacity: 0.2
                     };
                 },
                 pointToLayer: function (feature, latlng) {
-                    var customIcon = L.icon(MARKER_CONFIG[geoJSON.id]);
+                    var icon,
+                        rotationAngle;
+
+                    icon = L.icon(ICON_CONFIG[geoJSON.id]);
+                    rotationAngle = geoJSON.orientation || 0;
 
                     return L.marker(latlng, {
-                        icon: customIcon
+                        icon: icon,
+                        rotationAngle: angleConversion.radiansToDegrees(rotationAngle)
                     });
                 }
             });

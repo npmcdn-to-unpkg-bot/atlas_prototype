@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('dpStraatbeeld')
+        .module('dpShared')
         .factory('angleConversion', angleConversionFactory);
 
     function angleConversionFactory () {

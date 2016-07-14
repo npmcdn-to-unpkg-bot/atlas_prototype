@@ -35,7 +35,13 @@
 
             if (state.straatbeeld && state.straatbeeld.car && state.straatbeeld.car.location) {
                 vm.markers.push({
-                    id: 'straatbeeld',
+                    id: 'straatbeeld_orientation',
+                    geometry: convertLocationToGeoJSON(state.straatbeeld.car.location),
+                    orientation: state.straatbeeld.camera.heading
+                });
+
+                vm.markers.push({
+                    id: 'straatbeeld_person',
                     geometry: convertLocationToGeoJSON(state.straatbeeld.car.location)
                 });
             }
