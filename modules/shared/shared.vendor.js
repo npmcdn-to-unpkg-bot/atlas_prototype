@@ -1,4 +1,4 @@
-/* globals Redux */
+/* globals L, proj4, Redux */
 
 (function () {
     'use strict';
@@ -10,6 +10,8 @@
     configuration.$inject = ['$provide'];
 
     function configuration ($provide) {
+        $provide.constant('L', L);
+        $provide.constant('proj4', proj4);
         $provide.constant('Redux', Redux);
     }
 })();

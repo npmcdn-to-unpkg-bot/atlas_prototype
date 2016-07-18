@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('dpMap')
+        .module('dpShared')
         .service('crsService', crsService);
 
     crsService.$inject = ['L', 'CRS_CONFIG'];
