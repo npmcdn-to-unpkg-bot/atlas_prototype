@@ -13,7 +13,6 @@
 
     AtlasDetailController.$inject = [
         '$scope',
-        '$q',
         'ACTIONS',
         'api',
         'endpointParser',
@@ -22,7 +21,7 @@
         'wgs84RdConverter'
     ];
 
-    function AtlasDetailController ($scope, $q, ACTIONS, api, endpointParser, location, store, wgs84RdConverter) {
+    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, location, store, wgs84RdConverter) {
 
         var vm = this;
         vm.apiData = {};
