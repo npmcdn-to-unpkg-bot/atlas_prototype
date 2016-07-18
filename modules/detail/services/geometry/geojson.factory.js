@@ -11,7 +11,7 @@
         };
 
         /*
-         * @param {Object} GeoJSON
+         * @param {Object} - GeoJSON
          *
          * @description - This thing has support for Point, Polygon en MultiPolygon. The thing is CRS agnostic.
          *

@@ -9,7 +9,7 @@
         return {
             restrict: 'E',
             scope: {
-                apiData: '=',
+                apiData: '='
             },
             templateUrl: 'modules/detail/components/straatbeeld/straatbeeld.html',
             controller: AtlasStraatbeeldController,
@@ -18,14 +18,15 @@
         };
     }
 
-    AtlasStraatbeeldController.$inject = ['environment', 'location', 'wgs84RdConverter'];
+    AtlasStraatbeeldController.$inject = ['environment', 'wgs84RdConverter'];
 
-    function AtlasStraatbeeldController (environment, location, wgs84RdConverter) {
-        var vm = this,
-            data = vm.apiData.results;
+    function AtlasStraatbeeldController () {
+        //var vm = this;//,
+            //data = vm.apiData.results;
 
-        getImageUrl();
+        //getImageUrl();
 
+        /*
         function getImageUrl() {
             location.getLocation(data).then(function(coordinates){
                 var coordinatesWgs84;
@@ -38,5 +39,6 @@
                             '&width=240&height=144';
             });
         }
+        */
     }
 })();
