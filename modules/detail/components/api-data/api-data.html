@@ -1,0 +1,7 @@
+<div ng-if="apiDataReady[$id]">
+  <ng-transclude></ng-transclude>
+</div>
+
+<div ng-if="!apiDataReady[$id]">
+  <i class="fa fa-spinner fa-spin"></i> Bezig met laden...
+</div>

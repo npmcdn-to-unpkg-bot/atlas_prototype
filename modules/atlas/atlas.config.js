@@ -27,7 +27,7 @@
             detail: null,
             /*
             detail: {
-                uri: 'bag/verblijfsobject/123/',
+                endpoint: 'bag/verblijfsobject/123/',
                 isLoading: false
             }
             */
@@ -35,12 +35,18 @@
             /*
             straatbeeld: {
                 id: 1,
-                camera: {
+                searchLocation: null,
+                date: null,
+                car: {
                     location: [52.789, 4.123],
                     heading: 20,
-                    pitch: 0.1,
-                    fov: 80
+                    pitch: 0.1
                 },
+                camera: {
+                    heading: 180,
+                    pitch: 0.5
+                },
+                hotspots: [],
                 isLoading: false
             }
             */

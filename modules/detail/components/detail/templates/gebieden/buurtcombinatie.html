@@ -1,0 +1,32 @@
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <atlas-stelselpedia-header
+        heading="{{vm.apiData.results.naam}}"
+        definition="BUURTCOMBINATIE"
+        meta-data="vm.apiData">
+      </atlas-stelselpedia-header>
+
+      <dl class="key-value-list">
+        <dt>Volledige code</dt>
+        <dd>{{ vm.apiData.results.code }}</dd>
+      </dl>
+    </div>
+
+    <div class="detail-page__content--sidebar" ng-if="vm.apiData.results">
+      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+    </div>
+
+    <div class="list-box" ng-if="vm.apiData.results.buurten.count">
+      <atlas-stelselpedia-header definition="BUURT" use-plural="true"></atlas-stelselpedia-header>
+
+      <atlas-api-call endpoint="{{vm.apiData.results.buurten.href}}" partial="lijst"></atlas-api-call>
+    </div>
+
+    <atlas-bbga-graphs
+      gebied-heading="{{vm.apiData.results.naam}}"
+      gebied-code="{{vm.apiData.results.volledige_code}}">
+    </atlas-bbga-graphs>
+  </div>
+
+</div>

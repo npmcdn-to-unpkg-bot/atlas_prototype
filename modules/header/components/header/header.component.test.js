@@ -60,7 +60,7 @@ describe('The atlas-header component', function () {
 
         expect(store.dispatch).toHaveBeenCalledWith({
             type: ACTIONS.SHOW_PAGE,
-            payload: 'faq'
+            payload: 'testlinks'
         });
 
         //About

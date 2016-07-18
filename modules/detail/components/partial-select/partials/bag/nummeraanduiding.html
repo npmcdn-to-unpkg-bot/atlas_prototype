@@ -1,0 +1,40 @@
+<div class="detail-page__content--main">
+  <div class="default-box" ng-if="apiData.results._display">
+    <atlas-api-data ng-if="apiData.results.verblijfsobject" url="{{apiData.results.verblijfsobject}}" local-scope="verblijfsobject">
+      <atlas-nummeraanduiding-header
+        heading="{{apiData.results._display}}"
+        hoofdadres="apiData.results.hoofdadres"
+        verblijfsobject="verblijfsobject"
+        meta-data="apiData">
+      </atlas-nummeraanduiding-header>
+    </atlas-api-data>
+
+    <atlas-stelselpedia-header ng-if="!apiData.results.verblijfsobject"
+      heading="{{apiData.results._display}}"
+      definition="NUMMERAANDUIDING"
+      meta-data="apiData">
+    </atlas-stelselpedia-header>
+
+
+    <dl class="key-value-list">
+      <dt>Naam openbare ruimte</dt>
+      <dd ng-if="apiData.results.openbare_ruimte">
+        <dp-link type="FETCH_DETAIL" payload="apiData.results.openbare_ruimte._links.self.href">{{ apiData.results.openbare_ruimte._display }}</dp-link>
+      </dd>
+      <dt>Huisnummer</dt>
+      <dd>{{ apiData.results.huisnummer }}</dd>
+      <dt>Huisletter</dt>
+      <dd>{{ apiData.results.huisletter }}</dd>
+      <dt>Huisnummertoevoeging</dt>
+      <dd>{{ apiData.results.huisnummer_toevoeging }}</dd>
+      <dt>Postcode</dt>
+      <dd>{{ apiData.results.postcode }}</dd>
+      <dt>Woonplaats</dt>
+      <dd ng-if="apiData.results.woonplaats">
+        <dp-link type="FETCH_DETAIL" payload="apiData.results.woonplaats._links.self.href">{{ apiData.results.woonplaats._display }}</dp-link>
+      </dd>
+      <dt>Status</dt>
+      <dd>{{ apiData.results.status.omschrijving }}</dd>
+    </dl>
+  </div>
+</div>

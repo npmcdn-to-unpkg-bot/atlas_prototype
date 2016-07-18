@@ -34,10 +34,10 @@ describe('The detail controller', function () {
         expect(store.subscribe).toHaveBeenCalledWith(jasmine.any(Function));
     });
 
-    it('sets the uri and isLoading variables on the scope based on the state', function () {
+    it('sets the api endpoint and isLoading variables on the scope based on the state', function () {
         var mockedState = {
                 detail: {
-                    uri: 'this/that/123/',
+                    endpoint: 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/',
                     isLoading: false
                 }
             },
@@ -47,7 +47,7 @@ describe('The detail controller', function () {
 
         controller = getController();
 
-        expect(controller.uri).toBe('this/that/123/');
+        expect(controller.endpoint).toBe('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/');
         expect(controller.isLoading).toBe(false);
     });
 
@@ -61,7 +61,7 @@ describe('The detail controller', function () {
 
         controller = getController();
 
-        expect(controller.uri).toBeNull();
+        expect(controller.endpoint).toBeNull();
         expect(controller.isLoading).toBeNull();
     });
 });

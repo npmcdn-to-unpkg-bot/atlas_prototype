@@ -1,29 +1,9 @@
 <h3>
     <i ng-if="vm.isLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-    Status
 </h3>
 
-<table class="table table-bordered table-condensed">
-    <tr>
-        <th scope="row">detail.uri</th>
-        <td>{{vm.uri}}</td>
-    </tr>
-    <tr>
-        <th scope="row">detail.isLoading</th>
-        <td>{{vm.isLoading}}</td>
-    </tr>
-</table>
-
-<div ng-if="!vm.isLoading">
-    <h3>Actions</h3>
-    <ul>
-        <li>
-            <dp-link type="FETCH_STRAATBEELD" payload="1000017472454">Ga naar straatbeeld</dp-link>
-        </li>
-        <li>
-            <dp-link type="FETCH_DETAIL" payload="'bag/openbareruimte/03630000001020'">
-                Ga naar andere detailpagina: Maria Austriastraat
-            </dp-link>
-        </li>
-    </ul>
+<div
+  ng-if="vm.apiData"
+  ng-include="vm.templateUrl"
+  onload="apiData = vm.apiData">
 </div>

@@ -1,0 +1,31 @@
+<div class="detail-page__content">
+  <div class="detail-page__content--main">
+    <div class="default-box">
+      <atlas-stelselpedia-header
+        heading="{{vm.apiData.results._display}}"
+        definition="PAND"
+        meta-data="vm.apiData">
+      </atlas-stelselpedia-header>
+
+      <dl class="key-value-list">
+        <dt>Oorspronkelijk bouwjaar</dt>
+        <dd ng-if="vm.apiData.results.bouwjaar !== 1005">{{ vm.apiData.results.oorspronkelijk_bouwjaar }}</dd>
+        <dd ng-if="vm.apiData.results.bouwjaar === 1005">onbekend</dd>
+        <dt>Naam</dt>
+        <dd>{{ vm.apiData.results.pandnummer }}</dd>
+        <dt>Status</dt>
+        <dd>{{ vm.apiData.results.status.omschrijving }}</dd>
+      </dl>
+    </div>
+
+    <div class="detail-page__content--sidebar" ng-if="vm.apiData.results">
+      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+    </div>
+
+    <div class="list-box" ng-if="vm.apiData.results.verblijfsobjecten.count">
+      <atlas-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></atlas-stelselpedia-header>
+
+      <atlas-api-call endpoint="{{vm.apiData.results.verblijfsobjecten.href}}" partial="adressen_lijst"></atlas-api-call>
+    </div>
+  </div>
+</div>
