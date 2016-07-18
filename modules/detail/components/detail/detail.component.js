@@ -16,25 +16,30 @@
         'ACTIONS',
         'api',
         'endpointParser',
-        'location',
+        'geometry',
         'store',
         'wgs84RdConverter'
     ];
 
-    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, location, store, wgs84RdConverter) {
+    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, geometry, store, wgs84RdConverter) {
 
         var vm = this;
         vm.apiData = {};
 
-        $scope.$watch('vm.endpoint', function(newValue) {
-            api.getByUrl(newValue).then(function (data) {
+        $scope.$watch('vm.endpoint', function(endpoint) {
+            api.getByUrl(endpoint).then(function (data) {
                 //koppel data aan de scope
                 vm.apiData.results = data;
 
                 //koppel de goede template op basis van het endpoint
-                vm.templateUrl = endpointParser.parseEndpoint(newValue).templateUrl;
-console.log('a');
+                vm.templateUrl = endpointParser.parseEndpoint(endpoint).templateUrl;
+
                 //trap de actie show_detail af als alle api informatie binnen is
+                geometry.getGeoJSON(endpoint).then(function (geometry) {
+                    console.log(geometry);
+                });
+
+                /*
                 getCoordinates(data).then(function(coordinates){
 
                     console.log('location', coordinates);
@@ -48,6 +53,7 @@ console.log('a');
                         }
                     });
                 });
+                */
             });
         });
 
