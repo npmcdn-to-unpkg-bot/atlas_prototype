@@ -11,9 +11,17 @@
             controllerAs: 'vm'
         });
 
-    AtlasDetailController.$inject = ['$scope', 'ACTIONS', 'api', 'endpointParser', 'store'];
+    AtlasDetailController.$inject = [
+        '$scope',
+        'ACTIONS',
+        'api',
+        'endpointParser',
+        'location',
+        'store',
+        'wgs84RdConverter'
+    ];
 
-    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, store) {
+    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, location, store, wgs84RdConverter) {
 
         var vm = this;
         vm.apiData = {};
@@ -27,13 +35,14 @@
                 vm.templateUrl = endpointParser.parseEndpoint(newValue).templateUrl;
 
                 //trap de actie show_detail af als alle api informatie binnen is
-                store.dispatch({
-                    type: ACTIONS.SHOW_DETAIL,
-                    payload: {
-                        //TODO placeholders vervangen voor echte data
-                        location: [52.378086874951386, 4.922568081008677],
-                        highlight: vm.apiData.geometrie || null
-                    }
+                getCoordinates(data).then(function(coordinates){
+                    store.dispatch({
+                        type: ACTIONS.SHOW_DETAIL,
+                        payload: {
+                            location: coordinates,
+                            highlight: vm.apiData.geometrie || null
+                        }
+                    });
                 });
             });
         });
@@ -44,5 +53,15 @@
                 payload: straatbeeldId
             });
         };
+
+        function getCoordinates(data) {
+            return location.getLocation(data).then(function(coordinates){
+                var coordinatesWgs84;
+
+                coordinatesWgs84 = wgs84RdConverter.rdToWgs84(coordinates);
+
+                return coordinatesWgs84;
+            });
+        }
     }
 })();

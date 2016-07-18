@@ -10,6 +10,7 @@ describe('The marzipanoService factory', function () {
         fakeViewer,
         fakeHotspotContainer,
         fakeScene,
+        mockedCar,
         mockedCamera;
 
     beforeEach(function () {
@@ -59,7 +60,9 @@ describe('The marzipanoService factory', function () {
         );
 
         fakeView = {
-            someThing: 4
+            setYaw: function () {},
+            setPitch: function () {},
+            setFov: function () {}
         };
 
         fakeCubeGeometery = {
@@ -81,6 +84,12 @@ describe('The marzipanoService factory', function () {
             }
         };
 
+        mockedCar = {
+            location: [52, 4],
+            heading: 180,
+            pitch: 0.1
+        };
+
         mockedCamera = {
             heading: 0,
             pitch: 0
@@ -100,12 +109,14 @@ describe('The marzipanoService factory', function () {
     });
 
     it('creates a Marzipano viewer instance when initializing', function () {
-        var fakeDomElement;
+        var fakeDomElement,
+            viewer;
 
         fakeDomElement = document.createElement('div');
-        marzipanoService.initialize(fakeDomElement);
+        viewer = marzipanoService.initialize(fakeDomElement);
 
         expect(Marzipano.Viewer).toHaveBeenCalledWith(fakeDomElement);
+        expect(viewer).toEqual(fakeViewer);
     });
 
     describe('it has a loadScene function', function () {
@@ -116,7 +127,7 @@ describe('The marzipanoService factory', function () {
         });
 
         it('that, ehm, loads a scene', function () {
-            marzipanoService.loadScene(54321, mockedCamera, []);
+            marzipanoService.loadScene(54321, mockedCar, mockedCamera, []);
 
             expect(earthmine.getImageSourceUrl).toHaveBeenCalledWith(54321);
 
@@ -150,7 +161,7 @@ describe('The marzipanoService factory', function () {
                 }
             ];
 
-            marzipanoService.loadScene(54321, mockedCamera, mockedHotspots);
+            marzipanoService.loadScene(54321, mockedCar, mockedCamera, mockedHotspots);
 
             expect(hotspotService.createHotspotTemplate).toHaveBeenCalledTimes(2);
             expect(hotspotService.createHotspotTemplate).toHaveBeenCalledWith(1, 100);
@@ -159,8 +170,8 @@ describe('The marzipanoService factory', function () {
             $rootScope.$apply();
 
             expect(hotspotService.calculateHotspotPosition).toHaveBeenCalledTimes(2);
-            expect(hotspotService.calculateHotspotPosition).toHaveBeenCalledWith(mockedCamera, mockedHotspots[0]);
-            expect(hotspotService.calculateHotspotPosition).toHaveBeenCalledWith(mockedCamera, mockedHotspots[1]);
+            expect(hotspotService.calculateHotspotPosition).toHaveBeenCalledWith(mockedCar, mockedHotspots[0]);
+            expect(hotspotService.calculateHotspotPosition).toHaveBeenCalledWith(mockedCar, mockedHotspots[1]);
 
             expect(fakeHotspotContainer.createHotspot).toHaveBeenCalledTimes(2);
             expect(fakeHotspotContainer.createHotspot).toHaveBeenCalledWith(

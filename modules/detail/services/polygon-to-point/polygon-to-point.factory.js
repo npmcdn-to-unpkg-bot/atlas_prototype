@@ -3,16 +3,16 @@
 
     angular
         .module('atlasDetail')
-        .factory('geojsonCenter', geojsonCenterFactory);
+        .factory('polygonToPoint', polygonToPointFactory);
 
-    geojsonCenterFactory.$inject = [];
+    polygonToPointFactory.$inject = [];
 
-    function geojsonCenterFactory () {
+    function polygonToPointFactory () {
         return {
-            getCenter: getCenter
+            calculateCenter: calculateCenter
         };
 
-        function getCenter(location) {
+        function calculateCenter(location) {
             var x = [],
                 xMin,
                 xMax,
@@ -23,11 +23,11 @@
                 yCenter,
                 locationLength;
 
-            locationLength = location[0].length;
+            locationLength = location.length;
 
             for(var i=0 ; i<locationLength; i++){
-                x.push(location[0][i][0]);
-                y.push(location[0][i][1]);
+                x.push(location[i][0]);
+                y.push(location[i][1]);
             }
 
             xMin = getMin(x);
