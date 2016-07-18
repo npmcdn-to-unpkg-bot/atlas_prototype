@@ -1,12 +1,7 @@
 (function () {
     angular
         .module('atlas')
-        .config(configuration);
-
-    configuration.$inject = ['$provide'];
-
-    function configuration ($provide) {
-        $provide.constant('DEFAULT_STATE', {
+        .constant('DEFAULT_STATE', {
             map: {
                 baseLayer: 'topografie',
                 overlays: [],
@@ -51,5 +46,4 @@
             }
             */
         });
-    }
 })();
