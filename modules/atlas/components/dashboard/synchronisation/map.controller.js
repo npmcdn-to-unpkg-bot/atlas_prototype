@@ -5,32 +5,55 @@
         .module('atlas')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['store'];
+    MapController.$inject = ['store', 'wgs84RdConverter'];
 
-    function MapController (store) {
+    function MapController (store, wgs84RdConverter) {
         var vm = this;
 
         store.subscribe(update);
+
         update();
 
         function update () {
             var state = store.getState();
 
-            vm.markers = {};
+            vm.markers = [];
 
             if (state.search && state.search.location) {
-                vm.markers.search = {
-                    location: state.search.location
-                };
+                vm.markers.push({
+                    id: 'search',
+                    geometry: convertLocationToGeoJSON(state.search.location)
+                });
             }
 
-            if (state.straatbeeld && state.straatbeeld.camera && state.straatbeeld.camera.location) {
-                vm.markers.straatbeeld = {
-                    location: state.straatbeeld.camera.location
-                };
+            if (state.detail && state.detail.geometry) {
+                vm.markers.push({
+                    id: 'detail',
+                    geometry: state.detail.geometry
+                });
+            }
+
+            if (state.straatbeeld && state.straatbeeld.car && state.straatbeeld.car.location) {
+                vm.markers.push({
+                    id: 'straatbeeld_orientation',
+                    geometry: convertLocationToGeoJSON(state.straatbeeld.car.location),
+                    orientation: state.straatbeeld.camera.heading
+                });
+
+                vm.markers.push({
+                    id: 'straatbeeld_person',
+                    geometry: convertLocationToGeoJSON(state.straatbeeld.car.location)
+                });
             }
 
             vm.mapState = state.map;
+        }
+
+        function convertLocationToGeoJSON (location) {
+            return {
+                type: 'Point',
+                coordinates: wgs84RdConverter.wgs84ToRd(location)
+            };
         }
     }
 })();

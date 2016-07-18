@@ -68,7 +68,6 @@ describe('The detailReducers factory', function () {
                     overlays: [],
                     viewCenter: [52.3719, 4.9012],
                     zoom: 12,
-                    highlight: null,
                     showLayerSelection: false,
                     isLoading: true
                 },
@@ -76,13 +75,14 @@ describe('The detailReducers factory', function () {
                 page: null,
                 detail: {
                     uri: 'bag/thing/123/',
+                    geometry: null,
                     isLoading: true
                 },
                 straatbeeld: null
             },
             payload = {
                 location: [52.52, 4.4],
-                highlight: {some: 'object'}
+                geometry: {some: 'object'}
             };
 
         it('centers the map', function () {
@@ -91,10 +91,10 @@ describe('The detailReducers factory', function () {
             expect(output.map.viewCenter).toEqual([52.52, 4.4]);
         });
 
-        it('highlights an object on the map', function () {
+        it('stores the geometry in the detail state', function () {
             var output = detailReducers.SHOW_DETAIL(stateAfterFetchDetail, payload);
 
-            expect(output.map.highlight).toEqual({some: 'object'});
+            expect(output.detail.geometry).toEqual({some: 'object'});
         });
 
         it('removes loading indicators for map and detail', function () {

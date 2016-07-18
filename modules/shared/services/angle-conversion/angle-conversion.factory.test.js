@@ -2,7 +2,7 @@ describe('The angleConversion service', function () {
     var angleConversion;
 
     beforeEach(function () {
-        angular.mock.module('dpStraatbeeld');
+        angular.mock.module('dpShared');
 
         angular.mock.inject(function (_angleConversion_) {
             angleConversion = _angleConversion_;

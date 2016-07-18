@@ -3,9 +3,18 @@
         .module('dpMap')
         .directive('dpMap', dpMapDirective);
 
-    dpMapDirective.$inject = ['L', 'mapConfig', 'layers', 'panning', 'zoom', 'variableWidth', 'searchByClick'];
+    dpMapDirective.$inject = [
+        'L',
+        'mapConfig',
+        'layers',
+        'highlight',
+        'panning',
+        'zoom',
+        'variableWidth',
+        'searchByClick'
+    ];
 
-    function dpMapDirective (L, mapConfig, layers, panning, zoom, variableWidth, searchByClick) {
+    function dpMapDirective (L, mapConfig, layers, highlight, panning, zoom, variableWidth, searchByClick) {
         return {
             restrict: 'E',
             scope: {
@@ -47,15 +56,32 @@
             });
 
             scope.$watch('mapState.overlays', function (newOverlays, oldOverlays) {
-                getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
-                    layers.addOverlay(leafletMap, overlay);
-                });
-
                 getRemovedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                     layers.removeOverlay(leafletMap, overlay);
                 });
+
+                getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
+                    layers.addOverlay(leafletMap, overlay);
+                });
             });
 
+            scope.$watch('markers', function (newCollection, oldCollection) {
+                if (angular.equals(newCollection, oldCollection)) {
+                    //Initialisation
+                    newCollection.forEach(function (item) {
+                        highlight.add(leafletMap, item);
+                    });
+                } else {
+                    //Change detected
+                    getRemovedGeojson(newCollection, oldCollection).forEach(function (item) {
+                        highlight.remove(leafletMap, item);
+                    });
+
+                    getAddedGeojson(newCollection, oldCollection).forEach(function (item) {
+                        highlight.add(leafletMap, item);
+                    });
+                }
+            }, true);
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {
@@ -72,6 +98,40 @@
         function getRemovedOverlays (newOverlays, oldOverlays) {
             return oldOverlays.filter(function (overlay) {
                 return newOverlays.indexOf(overlay) === -1;
+            });
+        }
+
+        function getAddedGeojson (newCollection, oldCollection) {
+            return newCollection.filter(function (newItem) {
+                var hasBeenAdded,
+                    hasChanged,
+                    linkedOldItems;
+
+                linkedOldItems = oldCollection.filter(function (oldItem) {
+                    return oldItem.id === newItem.id;
+                });
+
+                hasBeenAdded = linkedOldItems.length === 0;
+                hasChanged = !angular.equals(linkedOldItems[0], newItem);
+
+                return hasBeenAdded || hasChanged;
+            });
+        }
+
+        function getRemovedGeojson (newCollection, oldCollection) {
+            return oldCollection.filter(function (oldItem) {
+                var hasBeenRemoved,
+                    hasChanged,
+                    linkedNewItems;
+
+                linkedNewItems = newCollection.filter(function (newItem) {
+                    return newItem.id === oldItem.id;
+                });
+
+                hasBeenRemoved = linkedNewItems.length === 0;
+                hasChanged = !angular.equals(linkedNewItems[0], oldItem);
+
+                return hasBeenRemoved || hasChanged;
             });
         }
     }

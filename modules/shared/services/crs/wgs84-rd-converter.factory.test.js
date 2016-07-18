@@ -10,18 +10,46 @@ describe('The wgs84 Rd converter factory', function () {
     });
 
     it('coverts an wgs84 array to an array with RD coordinates', function () {
+        var output;
+
         //Nationaal monument, Dam
-        expect(wgs84RdConverter.wgs84ToRd([52.372925, 4.893168])).toEqual([121356.29652982563, 487342.3555735912]);
+        output = wgs84RdConverter.wgs84ToRd([52.372925, 4.893168]);
+
+        expect(output.length).toBe(2);
+        expect(angular.isNumber(output[0])).toBe(true);
+        expect(angular.isNumber(output[1])).toBe(true);
+        expect(output[0].toFixed(4)).toBe('121356.2965');
+        expect(output[1].toFixed(4)).toBe('487342.3556');
 
         //Weesperstraat 113
-        expect(wgs84RdConverter.wgs84ToRd([52.362922, 4.907101])).toEqual([122297.74628058505, 486223.01434200455]);
+        output = wgs84RdConverter.wgs84ToRd([52.362922, 4.907101]);
+
+        expect(output.length).toBe(2);
+        expect(angular.isNumber(output[0])).toBe(true);
+        expect(angular.isNumber(output[1])).toBe(true);
+        expect(output[0].toFixed(4)).toBe('122297.7463');
+        expect(output[1].toFixed(4)).toBe('486223.0143');
     });
 
     it('coverts an rd array to an array with wgs84 coordinates', function () {
+        var output;
+
         //Nationaal monument, Dam
-        expect(wgs84RdConverter.rdToWgs84([121386, 487335])).toEqual([52.3728607164929, 4.893604897973255]);
+        output = wgs84RdConverter.rdToWgs84([121386, 487335]);
+
+        expect(output.length).toBe(2);
+        expect(angular.isNumber(output[0])).toBe(true);
+        expect(angular.isNumber(output[1])).toBe(true);
+        expect(output[0].toFixed(4)).toBe('52.3729');
+        expect(output[1].toFixed(4)).toBe('4.8936');
 
         //Weesperstraat 113
-        expect(wgs84RdConverter.rdToWgs84([122295, 486219])).toEqual([52.362885762452215, 4.907061074797828]);
+        output = wgs84RdConverter.rdToWgs84([122295, 486219]);
+
+        expect(output.length).toBe(2);
+        expect(angular.isNumber(output[0])).toBe(true);
+        expect(angular.isNumber(output[1])).toBe(true);
+        expect(output[0].toFixed(4)).toBe('52.3629');
+        expect(output[1].toFixed(4)).toBe('4.9071');
     });
 });

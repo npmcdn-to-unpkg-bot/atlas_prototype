@@ -7,7 +7,7 @@ describe('The pageReducers factory', function () {
 
         angular.mock.inject(function (_pageReducers_, _DEFAULT_STATE_) {
             pageReducers = _pageReducers_;
-            mockedState = _DEFAULT_STATE_;
+            mockedState = angular.copy(_DEFAULT_STATE_);
         });
     });
 

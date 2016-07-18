@@ -1,18 +1,12 @@
 (function () {
     angular
         .module('atlas')
-        .config(configuration);
-
-    configuration.$inject = ['$provide'];
-
-    function configuration ($provide) {
-        $provide.constant('DEFAULT_STATE', {
+        .constant('DEFAULT_STATE', {
             map: {
                 baseLayer: 'topografie',
                 overlays: [],
                 viewCenter: [52.3719, 4.9012],
                 zoom: 9,
-                highlight: null,
                 showLayerSelection: false,
                 isLoading: false
             },
@@ -28,6 +22,7 @@
             /*
             detail: {
                 endpoint: 'bag/verblijfsobject/123/',
+                geometry: null,
                 isLoading: false
             }
             */
@@ -51,5 +46,4 @@
             }
             */
         });
-    }
 })();

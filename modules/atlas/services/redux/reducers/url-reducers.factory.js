@@ -23,7 +23,7 @@
                 newState.search = getSearchState(payload);
                 newState.map = getMapState(payload);
                 newState.page = payload.pagina || null;
-                newState.detail = getDetailState(payload);
+                newState.detail = getDetailState(oldState, payload);
                 newState.straatbeeld = getStraatbeeldState(oldState, payload);
 
                 return newState;
@@ -77,12 +77,18 @@
                 };
             }
 
-            function getDetailState (payload) {
+            function getDetailState (oldState, payload) {
                 if (angular.isString(payload.detail)) {
-                    return {
-                        endpoint: payload.detail,
-                        isLoading: false
-                    };
+                    var newDetailState = {
+                            endpoint: payload.detail,
+                            isLoading: false
+                        };
+
+                    if (angular.isObject(oldState.detail) && oldState.detail.endpoint === payload.detail) {
+                        newDetailState.geometry = oldState.detail.geometry;
+                    }
+
+                    return newDetailState;
                 } else {
                     return null;
                 }
