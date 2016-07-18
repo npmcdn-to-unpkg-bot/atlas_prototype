@@ -1,4 +1,4 @@
-fdescribe('The geometry factory', function () {
+describe('The geometry factory', function () {
     var $q,
         $rootScope,
         geometry,
@@ -128,7 +128,7 @@ fdescribe('The geometry factory', function () {
     });
 
     describe('when searching for the geometry of an A perceel', function () {
-        fit('returns the GeoJSON of the parent G perceel', function () {
+        it('returns the GeoJSON of the parent G perceel', function () {
             var response;
 
             geometry
@@ -147,19 +147,21 @@ fdescribe('The geometry factory', function () {
 
     describe('when searching for the geometry of a nummeraanduiding', function () {
         describe('returns the GeoJSON of the parent adressseerbaar object', function(){
-            it('should return the verblijfsobject geometry when the type of nummeraanduiding is verblijfsobject', function(){
-                var response;
+            it('should return the verblijfsobject geometry when the type of nummeraanduiding is verblijfsobject',
+                function () {
+                    var response;
 
-                geometry.getGeoJSON('http://www.api-root.nl/bag/nummeraanduiding/10000001/').then(function (data) {
-                    response = data;
-                });
+                    geometry.getGeoJSON('http://www.api-root.nl/bag/nummeraanduiding/10000001/').then(function (data) {
+                        response = data;
+                    });
 
-                $rootScope.$apply();
+                    $rootScope.$apply();
 
-                expect(response).toEqual({
-                    FAKE_GEOJSON: 'VERBLIJFSOBJECT'
-                });
-            });
+                    expect(response).toEqual({
+                        FAKE_GEOJSON: 'VERBLIJFSOBJECT'
+                    });
+                }
+            );
 
             it('should return the ligplaats geometry when the type of nummeraanduiding is Ligplaats', function () {
                 var response;

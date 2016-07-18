@@ -21,7 +21,7 @@
         'wgs84RdConverter'
     ];
 
-    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, geometry, store, wgs84RdConverter) {
+    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, geometry, store) {
 
         var vm = this;
         vm.apiData = {};
@@ -37,6 +37,7 @@
                 //trap de actie show_detail af als alle api informatie binnen is
                 geometry.getGeoJSON(endpoint).then(function (geometry) {
                     console.log(geometry);
+
                 });
 
                 /*
@@ -63,7 +64,7 @@
                 payload: straatbeeldId
             });
         };
-
+        /*
         function getCoordinates(data) {
             return location.getLocation(data).then(function(coordinates){
                 var coordinatesWgs84;
@@ -73,5 +74,6 @@
                 return coordinatesWgs84;
             });
         }
+        */
     }
 })();
