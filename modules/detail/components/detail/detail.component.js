@@ -47,7 +47,7 @@
                         type: ACTIONS.SHOW_DETAIL,
                         payload: {
                             location: wgs84RdConverter.rdToWgs84(geojson.getCenter(geometry)),
-                            highlight: geometry
+                            geometry: geometry
                         }
                     });
                 });
