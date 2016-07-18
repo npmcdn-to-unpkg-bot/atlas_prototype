@@ -33,9 +33,13 @@
 
                 //koppel de goede template op basis van het endpoint
                 vm.templateUrl = endpointParser.parseEndpoint(newValue).templateUrl;
-
+console.log('a');
                 //trap de actie show_detail af als alle api informatie binnen is
                 getCoordinates(data).then(function(coordinates){
+
+                    console.log('location', coordinates);
+                    console.log('highlight', vm.apiData.geometrie);
+
                     store.dispatch({
                         type: ACTIONS.SHOW_DETAIL,
                         payload: {
