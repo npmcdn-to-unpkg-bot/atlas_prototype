@@ -40,7 +40,7 @@
                     results: data
                 };
 
-                vm.templateUrl = endpointParser.parseEndpoint(endpoint).templateUrl;
+                vm.includeSrc = endpointParser.parseEndpoint(endpoint).templateUrl;
 
                 geometry.getGeoJSON(endpoint).then(function (geometry) {
                     store.dispatch({
