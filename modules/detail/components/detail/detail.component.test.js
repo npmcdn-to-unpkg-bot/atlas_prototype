@@ -37,7 +37,7 @@ describe('the atlas-detail component', function() {
                     }
                 },
                 endpointParser: {
-                    parseEndpoint: function (endpoint) {
+                    getTemplateUrl: function (endpoint) {
                         var templateUrl = 'modules/detail/components/detail/templates/';
 
                         if (endpoint === 'http://www.fake-endpoint.com/bag/nummeraanduiding/123/') {
@@ -48,9 +48,7 @@ describe('the atlas-detail component', function() {
 
                         templateUrl += '.html';
 
-                        return {
-                            templateUrl: templateUrl
-                        };
+                        return templateUrl;
                     }
                 },
                 geometry: {
