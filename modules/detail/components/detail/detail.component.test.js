@@ -8,7 +8,9 @@ describe('the atlas-detail component', function() {
         endpointParser,
         geometry,
         geojson,
-        wgs84RdConverter;
+        wgs84RdConverter,
+        mockedGeometryPoint = {type: 'Point', coordinates: 'FAKE_NUMMERAANDUIDING_POINT'},
+        mockedGeometryMultiPolygon = {type: 'MultiPolygon', coordinates: 'FAKE_KADASTRAAL_OBJECT_MULTIPOLYGON'};
 
     beforeEach(function() {
         angular.mock.module(
@@ -31,6 +33,11 @@ describe('the atlas-detail component', function() {
                                 dummy: 'B',
                                 something: -90
                             });
+                        } else if (endpoint === 'http://www.fake-endpoint.com/brk/subject/123/') {
+                            q.resolve({
+                                dummy: 'C',
+                                something: 4
+                            });
                         }
 
                         return q.promise;
@@ -44,6 +51,8 @@ describe('the atlas-detail component', function() {
                             templateUrl += 'bag/nummeraanduiding';
                         } else if (endpoint === 'http://www.fake-endpoint.com/brk/object/789/') {
                             templateUrl += 'brk/object';
+                        } else if (endpoint === 'http://www.fake-endpoint.com/brk/subject/123/') {
+                            templateUrl += 'brk/subject';
                         }
 
                         templateUrl += '.html';
@@ -56,9 +65,11 @@ describe('the atlas-detail component', function() {
                         var q = $q.defer();
 
                         if (endpoint === 'http://www.fake-endpoint.com/bag/nummeraanduiding/123/') {
-                            q.resolve('FAKE_NUMMERAANDUIDING_POINT');
+                            q.resolve(mockedGeometryPoint);
                         } else if (endpoint === 'http://www.fake-endpoint.com/brk/object/789/') {
-                            q.resolve('FAKE_KADASTRAAL_OBJECT_MULTIPOLYGON');
+                            q.resolve(mockedGeometryMultiPolygon);
+                        } else if (endpoint === 'http://www.fake-endpoint.com/brk/subject/123/') {
+                            q.resolve(null);
                         }
 
                         return q.promise;
@@ -68,9 +79,9 @@ describe('the atlas-detail component', function() {
                     getCenter: function (geometry) {
                         var center;
 
-                        if (geometry === 'FAKE_NUMMERAANDUIDING_POINT') {
+                        if (geometry.type === 'Point') {
                             center = 'FAKE_NUMMERAANDUIDING_CENTER';
-                        } else if (geometry === 'FAKE_KADASTRAAL_OBJECT_MULTIPOLYGON') {
+                        } else if (geometry.type === 'MultiPolygon') {
                             center = 'FAKE_KADASTRAAL_OBJECT_CENTER';
                         }
 
@@ -161,7 +172,7 @@ describe('the atlas-detail component', function() {
             type: ACTIONS.SHOW_DETAIL,
             payload: {
                 location: [52.741, 4.852],
-                geometry: 'FAKE_NUMMERAANDUIDING_POINT'
+                geometry: mockedGeometryPoint
             }
         });
     });
@@ -189,7 +200,7 @@ describe('the atlas-detail component', function() {
             type: ACTIONS.SHOW_DETAIL,
             payload: {
                 location: [52.741, 4.852],
-                geometry: 'FAKE_NUMMERAANDUIDING_POINT'
+                geometry: mockedGeometryPoint
             }
         });
 
@@ -208,7 +219,19 @@ describe('the atlas-detail component', function() {
             type: ACTIONS.SHOW_DETAIL,
             payload: {
                 location: [52.852, 4.741],
-                geometry: 'FAKE_KADASTRAAL_OBJECT_MULTIPOLYGON'
+                geometry: mockedGeometryMultiPolygon
+            }
+        });
+    });
+
+    it('sets the SHOW_DETAIL location payload to null if there is no geometry', function () {
+        getComponent('http://www.fake-endpoint.com/brk/subject/123/');
+
+        expect(store.dispatch).toHaveBeenCalledWith({
+            type: ACTIONS.SHOW_DETAIL,
+            payload: {
+                location: null,
+                geometry: null
             }
         });
     });
