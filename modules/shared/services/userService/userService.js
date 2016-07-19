@@ -4,9 +4,9 @@
   angular.module('dpShared')
     .service('userService', UserService);
 
-  UserService.$inject = ['environment', 'CLIENT_ID', '$http', '$q', '$httpParamSerializer', '$rootScope'];
+  UserService.$inject = ['environment', 'CLIENT_ID', '$http', '$q', '$httpParamSerializer', '$rootScope', '$window'];
 
-  function UserService(environment, CLIENT_ID, $http, $q, $httpParamSerializer, $rootScope) {
+  function UserService(environment, CLIENT_ID, $http, $q, $httpParamSerializer, $rootScope, $window) {
     var self = this;
 
     self.user = {
@@ -39,6 +39,7 @@
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
         $rootScope.$broadcast('UserService.login.success', response);
         deferred.resolve(self.user);
+        $window.history.back();
       }, function(response) {
         $rootScope.$broadcast('UserService.login.error', response);
         deferred.reject(response.data);
