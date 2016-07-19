@@ -43,10 +43,12 @@
                 vm.includeSrc = endpointParser.parseEndpoint(endpoint).templateUrl;
 
                 geometry.getGeoJSON(endpoint).then(function (geometry) {
+                    vm.location = wgs84RdConverter.rdToWgs84(geojson.getCenter(geometry));
+
                     store.dispatch({
                         type: ACTIONS.SHOW_DETAIL,
                         payload: {
-                            location: wgs84RdConverter.rdToWgs84(geojson.getCenter(geometry)),
+                            location: vm.location,
                             geometry: geometry
                         }
                     });
