@@ -1,8 +1,10 @@
 (function() {
   'use strict';
 
-  angular.module('atlasPage')
-    .service('UserService', UserService);
+  angular.module('dpShared')
+    .service('userService', UserService);
+
+  UserService.$inject = ['environment', 'CLIENT_ID', '$http', '$q', '$httpParamSerializer', '$rootScope'];
 
   function UserService(environment, CLIENT_ID, $http, $q, $httpParamSerializer, $rootScope) {
     var self = this;
@@ -66,5 +68,4 @@
     };
   }
 
-  UserService.$inject = ['environment', 'CLIENT_ID', '$http', '$q', '$httpParamSerializer', '$rootScope'];
 })();

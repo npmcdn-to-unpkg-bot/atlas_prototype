@@ -3,14 +3,14 @@ describe('The user service', function() {
     // 1. We define our dependencies
     // ========================================================
 
-    var UserService;
+    var userService;
 
     var environment = {
         'OAUTH_ROOT': 'http://test/o/'
     };
 
     beforeEach(function () {
-        angular.mock.module('atlasPage', function($provide) {
+        angular.mock.module('dpShared', function($provide) {
             $provide.value('environment', environment);
             $provide.constant('CLIENT_ID', 'lalalala');
         });
@@ -21,8 +21,8 @@ describe('The user service', function() {
     // ========================================================
 
     beforeEach(function () {
-        angular.mock.inject(function(_UserService_) {
-            UserService = _UserService_;
+        angular.mock.inject(function(_userService_) {
+            userService = _userService_;
         });
     });
 
@@ -31,14 +31,14 @@ describe('The user service', function() {
     // ========================================================
 
     it('is defined', function() {
-        expect(UserService).toBeDefined();
+        expect(userService).toBeDefined();
     });
 
     it('always exposes a current user', function() {
-        expect(UserService.user).toBeDefined();
-        expect(UserService.user.loggedIn).toBe(false);
-        expect(UserService.user.username).toBe('');
-        expect(UserService.user.token).toBe('');
+        expect(userService.user).toBeDefined();
+        expect(userService.user.loggedIn).toBe(false);
+        expect(userService.user.username).toBe('');
+        expect(userService.user.token).toBe('');
     });
 
     describe('the login function', function() {
@@ -83,18 +83,18 @@ describe('The user service', function() {
         });
 
         it('retrieves a token', function() {
-            UserService.login('yigal', 'pwd');
+            userService.login('yigal', 'pwd');
             backend.flush();
 
-            expect(UserService.user.loggedIn).toBe(true);
-            expect(UserService.user.username).toBe('yigal');
-            expect(UserService.user.token).toBe('1234');
+            expect(userService.user.loggedIn).toBe(true);
+            expect(userService.user.username).toBe('yigal');
+            expect(userService.user.token).toBe('1234');
         });
 
         it('sets the token as an HTTP default', function() {
             expect($http.defaults.headers.common.Authorization).toBeUndefined();
 
-            UserService.login('yigal', 'pwd');
+            userService.login('yigal', 'pwd');
             backend.flush();
 
             expect($http.defaults.headers.common.Authorization).toBe('Bearer 1234');
@@ -103,7 +103,7 @@ describe('The user service', function() {
         it('returns a promise that is fulfilled after successful login', function() {
             var result;
 
-            var promise = UserService.login('yigal', 'pwd');
+            var promise = userService.login('yigal', 'pwd');
             expect(promise).toBeDefined();
 
             promise.then(function(user) { result = user; });
@@ -117,7 +117,7 @@ describe('The user service', function() {
         it('returns a promise that is fulfilled after a failed login', function() {
             var result;
 
-            var promise = UserService.login('tristan', 'pwd');
+            var promise = userService.login('tristan', 'pwd');
             expect(promise).toBeDefined();
 
             promise.then(function() {}, function(error) { result = error; });
@@ -126,9 +126,9 @@ describe('The user service', function() {
             expect(result).toBeDefined();
             expect(result.error).toBe('invalid_grant');
 
-            expect(UserService.user.loggedIn).toBe(false);
-            expect(UserService.user.username).toBe('');
-            expect(UserService.user.token).toBe('');
+            expect(userService.user.loggedIn).toBe(false);
+            expect(userService.user.username).toBe('');
+            expect(userService.user.token).toBe('');
         });
     });
 
@@ -140,9 +140,9 @@ describe('The user service', function() {
                 backend = $httpBackend;
                 $http = _$http_;
 
-                UserService.user.username = 'yigal';
-                UserService.user.loggedIn = true;
-                UserService.user.token = '0987';
+                userService.user.username = 'yigal';
+                userService.user.loggedIn = true;
+                userService.user.token = '0987';
                 $http.defaults.headers.common.Authorization = 'Bearer 0987';
 
                 backend.expectPOST('http://test/o/revoke_token/', 'client_id=lalalala&token=0987').respond();
@@ -150,21 +150,21 @@ describe('The user service', function() {
         });
 
         it('invalidates the token on the server', function() {
-            UserService.logout();
+            userService.logout();
             backend.flush();
         });
 
         it('invalidates the current user', function() {
-            UserService.logout();
+            userService.logout();
             backend.flush();
 
-            expect(UserService.user.username).toBe('');
-            expect(UserService.user.loggedIn).toBe(false);
-            expect(UserService.user.token).toBe('');
+            expect(userService.user.username).toBe('');
+            expect(userService.user.loggedIn).toBe(false);
+            expect(userService.user.token).toBe('');
         });
 
         it('invalidates the authorization header', function() {
-            UserService.logout();
+            userService.logout();
             backend.flush();
 
             expect($http.defaults.headers.Authorization).toBe(undefined);
