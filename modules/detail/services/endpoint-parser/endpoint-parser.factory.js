@@ -13,11 +13,14 @@
         };
 
         function getTemplateUrl (endpoint) {
-            var uriParts,
+            var endpointWithoutTrailingSlash,
+                uriParts,
                 template;
 
+            endpointWithoutTrailingSlash = endpoint.replace(/\/$/, '');
+
             //Transform http://www.api-root.com/this/that/123 to ['this', 'that', '123']
-            uriParts = endpoint.replace(new RegExp(environment.API_ROOT), '').split('/');
+            uriParts = endpointWithoutTrailingSlash.replace(new RegExp(environment.API_ROOT), '').split('/');
 
             if (isZakelijkRecht(uriParts)) {
                 template = 'brk/subject.html';
