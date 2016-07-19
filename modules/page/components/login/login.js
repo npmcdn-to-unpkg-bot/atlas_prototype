@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('atlasDetail')
+  angular.module('atlasPage')
     .directive('login', loginDirective)
     .controller('LoginController', LoginController);
 

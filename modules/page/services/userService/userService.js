@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('atlasDetail')
+  angular.module('atlasPage')
     .service('UserService', UserService);
 
   function UserService(environment, CLIENT_ID, $http, $q, $httpParamSerializer, $rootScope) {
