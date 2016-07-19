@@ -101,6 +101,11 @@ describe('the atlas-detail component', function() {
                         return wgs84Coordinates;
                     }
                 }
+            },
+            function ($provide) {
+                $provide.factory('ngIncludeDirective', function () {
+                    return {};
+                });
             }
         );
 
@@ -225,7 +230,9 @@ describe('the atlas-detail component', function() {
     });
 
     it('sets the SHOW_DETAIL location payload to null if there is no geometry', function () {
-        getComponent('http://www.fake-endpoint.com/brk/subject/123/');
+        var component;
+
+        component = getComponent('http://www.fake-endpoint.com/brk/subject/123/');
 
         expect(store.dispatch).toHaveBeenCalledWith({
             type: ACTIONS.SHOW_DETAIL,
