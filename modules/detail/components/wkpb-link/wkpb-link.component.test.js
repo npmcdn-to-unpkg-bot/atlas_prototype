@@ -40,9 +40,11 @@ describe('The dp-wkpb-link directive', function () {
     }
 
     it('creates a dp-link that triggers FETCH_DETAIL to a object-wkpb endpoint', function () {
-        var component = getComponent('abc789');
+        var component = getComponent('abc789'),
+            scope = component.isolateScope();
 
         expect(component.find('dp-link').attr('type')).toBe('FETCH_DETAIL');
-        expect(component.find('dp-link').attr('payload')).toBe('http://www.api-root.com/brk/object-wkpb/abc789/');
+        expect(component.find('dp-link').attr('payload')).toBe('vm.wkpbEndpoint');
+        expect(scope.vm.wkpbEndpoint).toBe('http://www.api-root.com/brk/object-wkpb/abc789/');
     });
 });
