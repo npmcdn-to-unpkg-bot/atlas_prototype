@@ -18,7 +18,7 @@
 
     function DpLinkController (store, ACTIONS) {
         var vm = this;
-        console.log(vm.payload);
+
         vm.followLink = function () {
             store.dispatch({
                 type: ACTIONS[vm.type],

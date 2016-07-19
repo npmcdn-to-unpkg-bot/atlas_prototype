@@ -43,7 +43,11 @@
                 vm.includeSrc = endpointParser.getTemplateUrl(endpoint);
 
                 geometry.getGeoJSON(endpoint).then(function (geometry) {
-                    vm.location = wgs84RdConverter.rdToWgs84(geojson.getCenter(geometry));
+                    if (angular.isObject(geometry)) {
+                        vm.location = wgs84RdConverter.rdToWgs84(geojson.getCenter(geometry));
+                    } else {
+                        vm.location = null;
+                    }
 
                     store.dispatch({
                         type: ACTIONS.SHOW_DETAIL,
