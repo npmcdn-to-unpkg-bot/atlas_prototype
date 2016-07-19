@@ -40,7 +40,7 @@
                     results: data
                 };
 
-                vm.includeSrc = endpointParser.parseEndpoint(endpoint).templateUrl;
+                vm.includeSrc = endpointParser.getTemplateUrl(endpoint);
 
                 geometry.getGeoJSON(endpoint).then(function (geometry) {
                     vm.location = wgs84RdConverter.rdToWgs84(geojson.getCenter(geometry));
