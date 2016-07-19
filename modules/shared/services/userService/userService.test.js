@@ -9,11 +9,15 @@ describe('The user service', function() {
         'OAUTH_ROOT': 'http://test/o/'
     };
 
+    var $window;
+
     beforeEach(function () {
         angular.mock.module('dpShared', function($provide) {
             $provide.value('environment', environment);
+            $provide.value('$window', $window);
             $provide.constant('CLIENT_ID', 'lalalala');
         });
+        $window = {history: { back: jasmine.createSpy()} };
     });
 
     // ========================================================
@@ -112,6 +116,7 @@ describe('The user service', function() {
 
             expect(result).toBeDefined();
             expect(result.username).toBe('yigal');
+            expect($window.history.back).toHaveBeenCalled();
         });
 
         it('returns a promise that is fulfilled after a failed login', function() {
