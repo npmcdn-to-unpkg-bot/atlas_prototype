@@ -21,7 +21,8 @@
     <span ng-if="!vm.isVisible('meta')">toon metadata</span>
     <span ng-if="vm.isVisible('meta')">verberg metadata</span>
   </button>
-  <atlas-wkpb-link ng-if="vm.brk" brk-object="vm.brk"></atlas-wkpb-link>
+
+  <atlas-wkpb-link ng-if="vm.brk" brk-object="vm.brk.id"></atlas-wkpb-link>
 
   <div ng-if="vm.isVisible('help')" class="stelselpedia-header__content">
     <h3>Uitleg over {{vm.stelselpedia.label | lowercase}}</h3>
