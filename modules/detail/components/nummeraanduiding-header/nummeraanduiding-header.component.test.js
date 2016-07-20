@@ -26,8 +26,6 @@ describe('The atlas-nummeraanduiding-header directive', function () {
                     getByUrl: function (endpoint) {
                         var q = $q.defer();
 
-                        console.log(endpoint, mockedVboData[endpoint]);
-
                         q.resolve(mockedVboData[endpoint]);
 
                         return q.promise;
