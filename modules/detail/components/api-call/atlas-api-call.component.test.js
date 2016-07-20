@@ -131,5 +131,4 @@ describe('The atlas-api-call component', function () {
         getComponent('http://www.some-domain.com/brk/object/123/', 'some-partial', true);
         expect(api.getByUrl).toHaveBeenCalledWith('http://www.some-domain.com/brk/object-expand/123/');
     });
-    //next checken
 });
