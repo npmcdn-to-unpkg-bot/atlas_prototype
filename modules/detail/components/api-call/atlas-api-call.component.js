@@ -20,7 +20,7 @@
         var vm = this,
             endpoint;
 
-        if (angular.isString(vm.endpoint)) {
+        if (vm.endpoint) {
             endpoint = vm.endpoint;
 
             if (vm.useBrkObjectExpanded) {
