@@ -15,6 +15,7 @@
         function getHtml (templateUrl, data) {
             return $templateRequest(templateUrl).then(function (template) {
                 var q,
+                    html,
                     scope;
 
                 q = $q.defer();
@@ -22,12 +23,15 @@
                 scope = $rootScope.$new();
                 scope.apiData = data;
 
-                scope.$applyAsync(function () {
+                html = $compile(template)(scope);
+
+                $rootScope.$applyAsync(function () {
+                    console.log('c');
                     /*
                      Wait for the next digest cycle (making this function asynchronous), the variables should be
                      rendered inside the template before returning the HTML.
                      */
-                    q.resolve($compile(template)(scope));
+                    q.resolve(html);
                 });
 
                 return q.promise;
