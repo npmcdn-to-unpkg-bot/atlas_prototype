@@ -31,7 +31,6 @@
             });
 
             function getPaginationData (apiData) {
-                console.log(apiData.next);
                 if (angular.isString(apiData.next)) {
                     return api.getByUrl(apiData.next).then(function (response) {
                         return {

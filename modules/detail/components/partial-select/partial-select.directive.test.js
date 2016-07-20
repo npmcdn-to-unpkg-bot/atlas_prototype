@@ -1,4 +1,4 @@
-fdescribe('The atlas-partial-select directive', function () {
+describe('The atlas-partial-select directive', function () {
     var $compile,
         $rootScope,
         $q,

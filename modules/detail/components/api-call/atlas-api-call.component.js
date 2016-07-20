@@ -6,8 +6,8 @@
         .component('atlasApiCall', {
             bindings: {
                 endpoint: '@',
-                expand: '@',
-                partial: '@'
+                partial: '@',
+                useBrkObjectExpanded: '='
             },
             templateUrl: 'modules/detail/components/api-call/atlas-api-call.html',
             controller: AtlasApiCallController,
@@ -17,32 +17,26 @@
     AtlasApiCallController.$inject = ['api'];
 
     function AtlasApiCallController (api) {
-        var vm = this;
+        var vm = this,
+            endpoint;
 
-        if (!vm.endpoint) {
-            return;
-        }
+        if (angular.isString(vm.endpoint)) {
+            endpoint = vm.endpoint;
 
-        vm.apiData = null;
-
-        //vraag als true de api-expand resultaten op van BRK
-        if (vm.expand) {
-            vm.endpoint = vm.endpoint.replace('brk/object', 'brk/object-expand');
-        }
-
-        api.getByUrl(vm.endpoint).then(function (response) {
-            vm.apiData = {};
-            vm.apiData.count = response.count;
-
-            if (response._links.next) {
-                vm.apiData.next = response._links.next.href;
+            if (vm.useBrkObjectExpanded) {
+                endpoint = vm.endpoint.replace('brk/object', 'brk/object-expand');
             }
 
-            if(response.results) { //VBO & nummeraanduiding
-                vm.apiData.results = response.results;
-            } else {
-                vm.apiData.results = response;
-            }
-        });
+            api.getByUrl(endpoint).then(function (response) {
+                vm.apiData = {
+                    count: response.count,
+                    results: response.results || response
+                };
+
+                if (response._links.next) {
+                    vm.apiData.next = response._links.next.href;
+                }
+            });
+        }
     }
 })();
