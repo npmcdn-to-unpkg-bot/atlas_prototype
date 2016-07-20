@@ -23,7 +23,7 @@
             return;
         }
 
-        vm.apiData = {};
+        vm.apiData = null;
 
         //vraag als true de api-expand resultaten op van BRK
         if (vm.expand) {
@@ -31,6 +31,7 @@
         }
 
         api.getByUrl(vm.endpoint).then(function (response) {
+            vm.apiData = {};
             vm.apiData.count = response.count;
 
             if (response._links.next) {
@@ -42,6 +43,8 @@
             } else {
                 vm.apiData.results = response;
             }
+
+            console.log(vm.apiData);
         });
     }
 })();
