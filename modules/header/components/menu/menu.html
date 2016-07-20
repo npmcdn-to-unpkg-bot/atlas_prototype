@@ -1,0 +1,26 @@
+<a class="shareandextras__menu js-menu" href ng-click="vm.toggleVisibility($event)">
+  <div class="shareandextras__circle">
+    <span class="shareandextras__menu__icon">
+      <i class="fa fa-ellipsis-h"></i>
+    </span>
+  </div>
+  <ul ng-class="{invisible: vm.visible === false}" class="shareandextras__menu-items">
+    <li ng-if="vm.checkVisibility('save')" class="shareandextras__menu-item">
+      <dp-print-button>
+        <span class="shareandextras__menu-item__icon">
+          <i class="fa fa-floppy-o"></i>
+        </span>
+        Printen
+      </dp-print-button>
+    </li>
+    <li class="shareandextras__menu-item"
+        ng-if="vm.checkVisibility('callback')">
+      <feedback-link class="shareandextras__menu-item__link">
+        <span class="shareandextras__menu-item__icon">
+          <i class="fa fa-bell-o"></i>
+        </span>
+        Terugmelden
+      </feedback-link>
+    </li>
+  </ul>
+</a>
