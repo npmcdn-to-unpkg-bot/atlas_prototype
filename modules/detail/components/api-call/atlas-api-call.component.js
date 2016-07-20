@@ -43,8 +43,6 @@
             } else {
                 vm.apiData.results = response;
             }
-
-            console.log(vm.apiData);
         });
     }
 })();
