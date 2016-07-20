@@ -5,9 +5,9 @@
         .module('atlasDetail')
         .directive('atlasPartialSelect', atlasPartialSelectDirective);
 
-    atlasPartialSelectDirective.$inject = ['$templateRequest', '$compile', '$rootScope', '$q', 'api'];
+    atlasPartialSelectDirective.$inject = ['$q', 'api', 'partialCompiler'];
 
-    function atlasPartialSelectDirective ($templateRequest, $compile, $rootScope, $q, api) {
+    function atlasPartialSelectDirective ($q, api, partialCompiler) {
         return {
             restrict: 'E',
             scope: {
@@ -25,7 +25,7 @@
                 var data = angular.merge(angular.copy(scope.apiData), paginationData);
 
                 //Step 2; Get the $compiled HTML and append it
-                getCompiledHtml(templateUrl, data).then(function (html) {
+                partialCompiler.getHtml(templateUrl, data).then(function (html) {
                     element.append(html);
                 });
             });
@@ -45,28 +45,6 @@
 
                     return q.promise;
                 }
-            }
-
-            function getCompiledHtml (templateUrl, data) {
-                return $templateRequest(templateUrl).then(function (template) {
-                    var q,
-                        scope;
-
-                    q = $q.defer();
-
-                    scope = $rootScope.$new();
-                    scope.apiData = data;
-
-                    scope.$applyAsync(function () {
-                        /*
-                        Wait for the next digest cycle (making this function asynchronous), the variables should be
-                        rendered inside the template before returning the HTML.
-                        */
-                        q.resolve($compile(template)(scope));
-                    });
-
-                    return q.promise;
-                });
             }
         }
     }
