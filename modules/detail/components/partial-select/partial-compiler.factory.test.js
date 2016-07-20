@@ -1,4 +1,4 @@
-xdescribe('The partialCompiler factory', function () {
+describe('The partialCompiler factory', function () {
     var $rootScope,
         $templateCache,
         $httpBackend,
@@ -17,14 +17,15 @@ xdescribe('The partialCompiler factory', function () {
         $templateCache.put('basic-template.html', '<p>First paragraph</p><p>Second paragraph</p>');
         $templateCache.put(
             'path/template-with-variables.html',
-            '<h1>{{apiData.header}}</h1><p>{{apiData.paragraph}}</p>'
+            '<h1>{{header}}</h1><p>{{paragraph}}</p>'
         );
     });
 
     it('gets a template based on an url and returns the HTML', function () {
-        var output;
+        var output,
+            emptyScope = $rootScope.$new();
 
-        partialCompiler.getHtml('basic-template.html', {}).then(function (_output_) {
+        partialCompiler.getHtml('basic-template.html', emptyScope).then(function (_output_) {
             output = _output_;
         });
 
@@ -38,12 +39,13 @@ xdescribe('The partialCompiler factory', function () {
 
     it('creates a scope and puts data on it', function () {
         var output,
-            data = {
-                header: 'This is a heading',
-                paragraph: 'This is a paragraph.'
-            };
+            scope;
 
-        partialCompiler.getHtml('path/template-with-variables.html', data).then(function (_output_) {
+        scope = $rootScope.$new();
+        scope.header = 'This is a heading';
+        scope.paragraph = 'This is a paragraph.';
+
+        partialCompiler.getHtml('path/template-with-variables.html', scope).then(function (_output_) {
             output = _output_;
         });
 
