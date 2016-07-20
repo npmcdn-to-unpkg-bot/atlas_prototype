@@ -8,9 +8,8 @@
       <span class="muted" ng-if="object.hoofdadres !== undefined">{{ object.hoofdadres ? "" : "(nevenadres)" }}</span>
     </li>
   </ul>aaa
-{{loadMore}}
-    {{vm.loadMore}}
-  <button class="loadmore" ng-click="loadMore(apiData.results, apiData.next)" ng-if="apiData.next">
+
+  <button class="loadmore" ng-click="loadMore()" ng-if="apiData.next">
     <i class="fa fa-plus fa-2x link"></i>Meer
   </button>
 </div>
