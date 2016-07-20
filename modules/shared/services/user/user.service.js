@@ -37,11 +37,11 @@
         self.user.loggedIn = true;
         self.user.token = response.data.access_token;
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.access_token;
-        $rootScope.$broadcast('UserService.login.success', response);
+        $rootScope.$broadcast('userService.login.success', response);
         deferred.resolve(self.user);
         $window.history.back();
       }, function(response) {
-        $rootScope.$broadcast('UserService.login.error', response);
+        $rootScope.$broadcast('userService.login.error', response);
         deferred.reject(response.data);
       });
 

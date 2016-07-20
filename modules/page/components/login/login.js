@@ -2,19 +2,19 @@
   'use strict';
 
   angular.module('atlasPage')
-    .directive('login', loginDirective)
-    .controller('LoginController', LoginController);
+    .directive('login', atlasLoginDirective)
+    .controller('AtlasLoginController', AtlasLoginController);
 
-  function loginDirective () {
+  function atlasLoginDirective () {
     return {
       restrict: 'E',
       templateUrl: 'modules/page/components/login/login.html',
-      controller: 'LoginController as vm'
+      controller: 'AtlasLoginController as vm'
     };
   }
 
-  LoginController.$inject = ['userService', '$rootScope'];
-  function LoginController(userService, $rootScope) {
+  AtlasLoginController.$inject = ['userService', '$rootScope'];
+  function AtlasLoginController(userService, $rootScope) {
     var vm = this;
     vm.user = userService.user;
     vm.userNew = {};
