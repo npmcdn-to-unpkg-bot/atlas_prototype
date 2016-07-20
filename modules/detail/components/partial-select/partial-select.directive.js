@@ -20,7 +20,7 @@
 
         function linkFunction (scope, element) {
             var templateUrl = 'modules/detail/components/partial-select/partials/' + scope.partial + '.html';
-            console.log(scope.loadMoreFn);
+
             partialCompiler.getHtml(templateUrl, scope).then(function (partial) {
                 scope.loadMore = scope.loadMoreFn;
 

@@ -1,4 +1,4 @@
-fdescribe('The atlas-api-call component', function () {
+describe('The atlas-api-call component', function () {
     var $compile,
         $rootScope,
         $q,
@@ -13,24 +13,48 @@ fdescribe('The atlas-api-call component', function () {
                         var q = $q.defer(),
                             mockedResponse;
 
-                        if (endpoint === 'http://www.some-domain.com/without-pagination/123/') {
-                            mockedResponse = {
-                                count: 99,
-                                results: ['ITEM_1', 'ITEM_2', 'ITEM_99'],
-                                _links: {
-                                    next: null
-                                }
-                            };
-                        } else {
-                            mockedResponse = {
-                                count: 99,
-                                results: ['ITEM_1', 'ITEM_2', 'ITEM_99'],
-                                _links: {
-                                    next: {
-                                        href: 'http://www.some-domain.com/with-pagination/456/?page=2'
+                        switch (endpoint) {
+                            case 'http://www.some-domain.com/without-pagination/123/':
+                                mockedResponse = {
+                                    var_a: 'foo',
+                                    var_b: 'bar'
+                                };
+
+                                break;
+
+                            case 'http://www.some-domain.com/with-pagination/456/':
+                                mockedResponse = {
+                                    count: 5,
+                                    results: ['ITEM_1', 'ITEM_2', 'ITEM_3'],
+                                    _links: {
+                                        next: {
+                                            href: 'http://www.some-domain.com/with-pagination/456/?page=2'
+                                        }
                                     }
-                                }
-                            };
+                                };
+
+                                break;
+
+
+                            case 'http://www.some-domain.com/with-pagination/456/?page=2':
+                                mockedResponse = {
+                                    count: 5,
+                                    results: ['ITEM_4', 'ITEM_5'],
+                                    _links: {
+                                        next: null
+                                    }
+                                };
+
+                                break;
+
+                            case 'http://www.some-domain.com/something/123/':
+                            case 'http://www.some-domain.com/brk/object/123/':
+                            case 'http://www.some-domain.com/brk/object-expand/123/':
+                                mockedResponse = {
+                                    var_c: 'baz'
+                                };
+
+                                break;
                         }
 
                         q.resolve(mockedResponse);
@@ -82,32 +106,62 @@ fdescribe('The atlas-api-call component', function () {
         expect(component.find('atlas-partial-select').length).toBe(0);
     });
 
-    it('retrieves data from the api factory and restructures it for atlas-partial-select', function () {
-        var component,
-            scope;
+    describe('content without pagination', function () {
+        it('retrieves data from the api factory and restructures it for atlas-partial-select', function () {
+            var component,
+                scope;
 
-        component = getComponent('http://www.some-domain.com/without-pagination/123/', 'some-partial', false);
-        scope = component.isolateScope();
+            component = getComponent('http://www.some-domain.com/without-pagination/123/', 'some-partial', false);
+            scope = component.isolateScope();
 
-        expect(component.find('atlas-partial-select').length).toBe(1);
-        expect(component.find('atlas-partial-select').attr('api-data')).toBe('vm.apiData');
-        expect(scope.vm.apiData).toEqual({
-            count: 99,
-            results: ['ITEM_1', 'ITEM_2', 'ITEM_99'],
-            next: null
+            expect(api.getByUrl).toHaveBeenCalledWith('http://www.some-domain.com/without-pagination/123/');
+
+            expect(component.find('atlas-partial-select').length).toBe(1);
+            expect(component.find('atlas-partial-select').attr('api-data')).toBe('vm.apiData');
+            expect(scope.vm.apiData).toEqual({
+                results: {
+                    var_a: 'foo',
+                    var_b: 'bar'
+                }
+            });
         });
+
     });
 
-    it('optionally sets next variable on the scope', function () {
-        var component,
-            scope;
+    describe('content with pagination', function () {
+        it('optionally sets next variable on the scope', function () {
+            var component,
+                scope;
 
-        component = getComponent('http://www.some-domain.com/with-pagination/123/', 'some-partial', false);
-        scope = component.isolateScope();
+            component = getComponent('http://www.some-domain.com/with-pagination/456/', 'some-partial', false);
+            scope = component.isolateScope();
 
-        expect(scope.vm.apiData).toEqual(jasmine.objectContaining({
-            next: 'http://www.some-domain.com/with-pagination/456/?page=2'
-        }));
+            expect(scope.vm.apiData).toEqual(jasmine.objectContaining({
+                next: 'http://www.some-domain.com/with-pagination/456/?page=2'
+            }));
+        });
+
+        it('puts a loadMore function on the scope that can retrieve the next page of data', function () {
+            var component,
+                scope;
+
+            component = getComponent('http://www.some-domain.com/with-pagination/456/', 'some-partial', false);
+            scope = component.isolateScope();
+
+            expect(api.getByUrl).toHaveBeenCalledTimes(1);
+            expect(api.getByUrl).toHaveBeenCalledWith('http://www.some-domain.com/with-pagination/456/');
+            expect(scope.vm.apiData.results).toEqual(['ITEM_1', 'ITEM_2', 'ITEM_3']);
+            expect(scope.vm.apiData.next).toBe('http://www.some-domain.com/with-pagination/456/?page=2');
+
+            scope.vm.loadMore();
+            $rootScope.$apply();
+
+            expect(api.getByUrl).toHaveBeenCalledTimes(2);
+            expect(api.getByUrl).toHaveBeenCalledWith('http://www.some-domain.com/with-pagination/456/?page=2');
+            expect(scope.vm.apiData.results).toEqual(['ITEM_1', 'ITEM_2', 'ITEM_3', 'ITEM_4', 'ITEM_5']);
+            expect(scope.vm.apiData.next).toBe(null);
+
+        });
     });
 
     it('communicates the partial variabe to atlas-partial-select', function () {
