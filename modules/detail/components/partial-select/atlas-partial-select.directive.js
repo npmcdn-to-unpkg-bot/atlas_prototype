@@ -22,7 +22,6 @@
             partialRoot;
 
             partialRoot = 'modules/detail/components/partial-select/partials/';
-
             partialPath = partialRoot + scope.partial + '.html';
 
             atlasTemplateCompilerService.compileTemplate(scope, element, partialPath);

@@ -33,7 +33,7 @@
         api.getByUrl(vm.endpoint).then(function (response) {
             vm.apiData.count = response.count;
 
-            if(response._links.next) {
+            if (response._links.next) {
                 vm.apiData.next = response._links.next.href;
             }
 
