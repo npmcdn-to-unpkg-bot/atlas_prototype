@@ -12,18 +12,14 @@
             getHtml: getHtml
         };
 
-        function getHtml (templateUrl, data) {
+        function getHtml (templateUrl, sharedScope) {
             return $templateRequest(templateUrl).then(function (template) {
                 var q,
-                    html,
-                    scope;
+                    html;
 
                 q = $q.defer();
 
-                scope = $rootScope.$new();
-                scope.apiData = data;
-
-                html = $compile(template)(scope);
+                html = $compile(template)(sharedScope);
 
                 $rootScope.$applyAsync(function () {
                     /*

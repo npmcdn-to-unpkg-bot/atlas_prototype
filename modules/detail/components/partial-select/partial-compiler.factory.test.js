@@ -1,4 +1,4 @@
-describe('The partialCompiler factory', function () {
+xdescribe('The partialCompiler factory', function () {
     var $rootScope,
         $templateCache,
         $httpBackend,
