@@ -5,24 +5,25 @@
         .module('atlasDetail')
         .directive('atlasPartialSelect', atlasPartialSelectDirective);
 
-    atlasPartialSelectDirective.$inject = ['$rootScope', 'api', 'partialCompiler'];
+    atlasPartialSelectDirective.$inject = [ 'partialCompiler'];
 
-    function atlasPartialSelectDirective ($rootScope, api, partialCompiler) {
+    function atlasPartialSelectDirective (partialCompiler) {
         return {
             restrict: 'E',
             scope: {
+                partial: '@',
                 apiData: '=',
-                loadMoreFn: '=',
-                partial: '@'
+                loadMoreFn: '='
             },
             link: linkFunction
         };
 
         function linkFunction (scope, element) {
             var templateUrl = 'modules/detail/components/partial-select/partials/' + scope.partial + '.html';
-
+            console.log(scope.loadMoreFn);
             partialCompiler.getHtml(templateUrl, scope).then(function (partial) {
                 scope.loadMore = scope.loadMoreFn;
+
                 element.append(partial);
             });
         }

@@ -1,4 +1,4 @@
-xdescribe('The atlas-partial-select directive', function () {
+describe('The atlas-partial-select directive', function () {
     var $compile,
         $rootScope,
         $q,
@@ -53,7 +53,7 @@ xdescribe('The atlas-partial-select directive', function () {
         spyOn(api, 'getByUrl').and.callThrough();
     });
 
-    function getDirective (apiData, partial) {
+    function getDirective (apiData, partial, loadMoreFn) {
         var directive,
             element,
             scope;
@@ -61,9 +61,11 @@ xdescribe('The atlas-partial-select directive', function () {
         element = document.createElement('atlas-partial-select');
         element.setAttribute('api-data', 'apiData');
         element.setAttribute('partial', partial);
+        element.setAttribute('load-more-fn', 'loadMoreFn');
 
         scope = $rootScope.$new();
         scope.apiData = apiData;
+        scope.loadMoreFn = loadMoreFn;
 
         directive = $compile(element)(scope);
         scope.$apply();
@@ -71,36 +73,31 @@ xdescribe('The atlas-partial-select directive', function () {
         return directive;
     }
 
-    it('it retrieves the rendered template from partial-compiler based on the partial and apiData', function () {
+    it('it retrieves the rendered template from partial-compiler based on the partial', function () {
         var directive = getDirective({foo: 'FAKE_API_DATA_A'}, 'my-template');
 
         expect(partialCompiler.getHtml).toHaveBeenCalledWith(
             'modules/detail/components/partial-select/partials/my-template.html',
-            {foo: 'FAKE_API_DATA_A'}
+            jasmine.any(Object) //This is a Angular scope
         );
 
         expect(directive.find('div')[0].outerHTML).toBe('<div>This is a compiled template!</div>');
     });
 
-    it('optionally adds pagination data to the partial-compiler', function () {
-        getDirective(
-            {
-                foo: 'FAKE_API_DATA_B',
-                results: ['ITEM_A', 'ITEM_B', 'ITEM_C'],
-                next: 'https://some-domain.com/something/?page=2'
-            },
-            'my-other-template'
-        );
+    it('puts a load more function on the scope', function () {
+        var directive,
+            scope,
+            hasMockedLoadMoreFunctionBeenCalled = false;
 
-        expect(api.getByUrl).toHaveBeenCalledWith('https://some-domain.com/something/?page=2');
+        function mockedLoadMoreFunction () {
+            hasMockedLoadMoreFunctionBeenCalled = true;
+        }
 
-        expect(partialCompiler.getHtml).toHaveBeenCalledWith(
-            'modules/detail/components/partial-select/partials/my-other-template.html',
-            {
-                foo: 'FAKE_API_DATA_B',
-                results: ['ITEM_A', 'ITEM_B', 'ITEM_C', 'ITEM_D', 'ITEM_E', 'ITEM_F'],
-                next: 'http://www.fake-domain.com/something?page=2'
-            }
-        );
+        directive = getDirective({foo: 'FAKE_API_DATA_A'}, 'my-template', mockedLoadMoreFunction);
+        scope = directive.isolateScope();
+
+        expect(hasMockedLoadMoreFunctionBeenCalled).toBe(false);
+        scope.loadMore();
+        expect(hasMockedLoadMoreFunctionBeenCalled).toBe(true);
     });
 });
