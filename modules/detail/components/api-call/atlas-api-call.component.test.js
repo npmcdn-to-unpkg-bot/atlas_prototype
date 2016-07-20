@@ -1,4 +1,4 @@
-xdescribe('The atlas-api-call component', function () {
+fdescribe('The atlas-api-call component', function () {
     var $compile,
         $rootScope,
         $q,
@@ -93,7 +93,8 @@ xdescribe('The atlas-api-call component', function () {
         expect(component.find('atlas-partial-select').attr('api-data')).toBe('vm.apiData');
         expect(scope.vm.apiData).toEqual({
             count: 99,
-            results: ['ITEM_1', 'ITEM_2', 'ITEM_99']
+            results: ['ITEM_1', 'ITEM_2', 'ITEM_99'],
+            next: null
         });
     });
 

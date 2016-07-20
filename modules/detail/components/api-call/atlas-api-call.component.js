@@ -27,10 +27,11 @@
                 endpoint = vm.endpoint.replace('brk/object', 'brk/object-expand');
             }
 
+            //Load the first page
             setData(endpoint, true);
 
+            //Load pages 2-n
             vm.loadMore = function () {
-                console.log('loard more!!!');
                 setData(vm.apiData.next, false);
             };
         }
@@ -40,16 +41,12 @@
                 if (isFirstPage) {
                     vm.apiData = {
                         count: response.count,
-                        results: response.results || response,
-                        next: response._links.next.href
+                        results: []
                     };
-                } else {
-                    console.log(endpoint, response);
-                    vm.apiData.results = vm.apiData.results.concat(response.results || response);
-                    vm.apiData.next = response._links.next.href;
                 }
 
-                console.log(vm.apiData.results);
+                vm.apiData.results = vm.apiData.results.concat(response.results || response);
+                vm.apiData.next = response._links.next && response._links.next.href;
             });
         }
     }
