@@ -34,22 +34,17 @@
 
             //Load pages 2-n
             vm.loadMore = function () {
-                console.log('loadMore');
                 loadData(vm.apiData.next);
             };
         }
 
         function loadData (endpoint) {
             api.getByUrl(endpoint).then(function (response) {
-                console.log(vm.apiData.results);
-
                 var hasPagination = angular.isArray(response.results);
 
                 if (hasPagination) {
                     if (angular.isUndefined(vm.apiData.results)) {
                         vm.apiData.results = [];
-                    } else {
-                        console.log('els');
                     }
 
                     vm.apiData.count = response.count;
