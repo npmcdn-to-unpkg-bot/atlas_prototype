@@ -1,11 +1,13 @@
-<div class="row">
+<div ng-if="!vm.isLoading" class="row">
     <div class="u-pt-2" ng-class="{
         'col-sm-12': !vm.location,
         'col-sm-8': vm.location
         }">
 
         <p>
-            {{vm.numberOfResults | number}} resultaten voor
+            {{vm.numberOfResults | number}}
+            {{vm.numberOfResults === 1 ? 'resultaat' : 'resultaten'}}
+            voor
             <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
             <span ng-if="vm.location">”<strong>{{vm.location | coordinates}}</strong>”</span>
         </p>
@@ -91,10 +93,15 @@
 
         <div ng-if="!vm.numberOfResults">
             <h2>Geen resultaten gevonden</h2>
-            <h3>Tips:</h3>
             <ul>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dolor accumsan, condimentum lorem si.</li>
-                <li>Vivamus auctor lobortis mi, quis ornare neque interdum eget. Aenean orci sem, imperdiet sed maximus.</li>
+                <li>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dolor accumsan, condimentum lorem
+                    si.
+                </li>
+                <li>
+                    Vivamus auctor lobortis mi, quis ornare neque interdum eget. Aenean orci sem, imperdiet sed
+                    maximus.
+                </li>
             </ul>
         </div>
 
