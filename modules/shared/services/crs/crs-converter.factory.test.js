@@ -18,8 +18,8 @@ describe('The crsConverter factory', function () {
         expect(output.length).toBe(2);
         expect(angular.isNumber(output[0])).toBe(true);
         expect(angular.isNumber(output[1])).toBe(true);
-        expect(output[0].toFixed(4)).toBe('121356.2965');
-        expect(output[1].toFixed(4)).toBe('487342.3556');
+        expect(output[0]).toBe(121356);
+        expect(output[1]).toBe(487342);
 
         //Weesperstraat 113
         output = crsConverter.wgs84ToRd([52.362922, 4.907101]);
@@ -27,8 +27,8 @@ describe('The crsConverter factory', function () {
         expect(output.length).toBe(2);
         expect(angular.isNumber(output[0])).toBe(true);
         expect(angular.isNumber(output[1])).toBe(true);
-        expect(output[0].toFixed(4)).toBe('122297.7463');
-        expect(output[1].toFixed(4)).toBe('486223.0143');
+        expect(output[0]).toBe(122298);
+        expect(output[1]).toBe(486223);
     });
 
     it('coverts an rd array to an array with wgs84 coordinates', function () {

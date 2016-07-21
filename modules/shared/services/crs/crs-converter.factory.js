@@ -20,7 +20,9 @@
          * @returns {Array} - RD - An array with this structure: [x, y]
          */
         function wgs84ToRd (wgs84Coordinates){
-            return proj4(CRS_CONFIG.RD.projection, angular.copy(wgs84Coordinates).reverse());
+            var rd = proj4(CRS_CONFIG.RD.projection, angular.copy(wgs84Coordinates).reverse());
+
+            return [Math.round(rd[0]), Math.round(rd[1])];
         }
 
         /*
