@@ -3,11 +3,11 @@
 
     angular
         .module('dpShared')
-        .factory('wgs84RdConverter', wgs84RdConverterFactory);
+        .factory('crsConverter', crsConverterFactory);
 
-    wgs84RdConverterFactory.$inject = ['CRS_CONFIG', 'proj4'];
+    crsConverterFactory.$inject = ['CRS_CONFIG', 'proj4'];
 
-    function wgs84RdConverterFactory (CRS_CONFIG, proj4) {
+    function crsConverterFactory (CRS_CONFIG, proj4) {
         return{
             wgs84ToRd: wgs84ToRd,
             rdToWgs84: rdToWgs84
