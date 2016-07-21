@@ -162,7 +162,6 @@ describe('The atlas-api-call component', function () {
             expect(scope.vm.apiData.count).toBe(5);
             expect(scope.vm.apiData.results).toEqual(['ITEM_1', 'ITEM_2', 'ITEM_3', 'ITEM_4', 'ITEM_5']);
             expect(scope.vm.apiData.next).toBe(null);
-
         });
     });
 
