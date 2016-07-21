@@ -22,6 +22,8 @@
                 } else {
                     searchParams.zoek = state.search.location.join(',');
                 }
+
+                searchParams.categorie = state.search.category;
             }
 
             //Map

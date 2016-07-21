@@ -11,9 +11,9 @@
             controllerAs: 'vm'
         });
 
-    dpSearchResultsController.$inject = ['$scope', 'searchByQuery'];
+    dpSearchResultsController.$inject = ['$scope', 'searchByQuery', 'store', 'ACTIONS'];
 
-    function dpSearchResultsController ($scope, searchByQuery) {
+    function dpSearchResultsController ($scope, searchByQuery, store, ACTIONS) {
         var vm = this;
 
         $scope.$watch('vm.query', function (query) {
@@ -33,6 +33,13 @@
                 //searchByLocation.search(location).then(setSearchResults);
             }
         });
+
+        vm.openCategory = function (slug) {
+            store.dispatch({
+                type: ACTIONS.SHOW_SEARCH_RESULTS_CATEGORY,
+                payload: slug
+            });
+        };
 
         function setSearchResults (searchResults) {
             vm.isLoading = false;

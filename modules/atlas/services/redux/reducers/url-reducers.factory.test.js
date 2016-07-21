@@ -50,6 +50,17 @@ describe('The urlReducers factory', function () {
                 expect(output.search.location).toEqual([52.001, 4.002]);
             });
 
+            it('can set an active category', function () {
+                var output;
+
+                mockedSearchParams.zoek = 'I_AM_A_SEARCH_STRING';
+                mockedSearchParams.categorie = 'adres';
+
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+
+                expect(output.search.category).toBe('adres');
+            });
+
             it('can be null', function () {
                 var output;
 
