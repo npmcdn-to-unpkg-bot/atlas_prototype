@@ -73,6 +73,7 @@
     }
   }
   .shareandextras__menu-items {
+    display: none;
     position:absolute;
     background-color: @background-color;
     border: 0px solid @background-border-color;
@@ -115,5 +116,8 @@
   }
   .invisible {
     display: none;
+  }
+  .active {
+    display: block;
   }
 }

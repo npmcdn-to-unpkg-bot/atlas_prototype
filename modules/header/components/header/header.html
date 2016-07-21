@@ -18,16 +18,10 @@
                                     Inloggen
                                 </button>
                             </div>
-                            <div class="col-sm-4">
-                                <button class="site-header__navigation__item" ng-click="vm.showPage('testlinks')">
-                                    testlinks
-                                </button>
-                            </div>
-                            <div class="col-sm-4">
-                                <button class="site-header__navigation__item" ng-click="vm.showPage('over-ons')">
-                                    Over Atlas
-                                </button>
-                            </div>
+                            {{vm}}
+                            <atlas-dropdown-menu template="hoofdmenu" ng-click="vm.toggleVisibility($event)" class="site-header__navigation__item">
+                                menu
+                            </atlas-dropdown-menu>
                         </div>
                     </div>
                 </nav>

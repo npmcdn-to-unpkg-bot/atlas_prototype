@@ -1,0 +1,34 @@
+<div class="col-sm-4 shareandextras__menu js-menu" ng-click="vm.toggleVisibility($event)">
+    {{vm}}
+    <button class="site-header__navigation__item">
+        Menu
+    </button>
+    <ul ng-class="{'active': isActive}" class="shareandextras__menu-items">
+        <li class="shareandextras__menu-item">
+            <dp-print-button>
+                <span class="shareandextras__menu-item__icon">
+                    <i class="fa fa-floppy-o"></i>
+                </span>
+                Printen
+            </dp-print-button>
+        </li>
+        <li class="shareandextras__menu-item">
+            <feedback-link class="shareandextras__menu-item__link">
+                <span class="shareandextras__menu-item__icon">
+                    <i class="fa fa-bell-o"></i>
+                </span>
+                Terugmelden
+            </feedback-link>
+        </li>
+        <li class="shareandextras__menu-item">
+            <dp-link type="SHOW_PAGE" payload="testlinks" class="site-header__navigation__item">
+                testlinks
+            </dp-link>
+        </li>
+        <li class="shareandextras__menu-item">
+            <dp-link type="SHOW_PAGE" payload="over-ons" class="site-header__navigation__item">
+                Over Atlas
+            </dp-link>
+        </li>
+    </ul>
+</div>
