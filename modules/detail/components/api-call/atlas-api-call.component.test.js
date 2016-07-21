@@ -150,6 +150,7 @@ describe('The atlas-api-call component', function () {
 
             expect(api.getByUrl).toHaveBeenCalledTimes(1);
             expect(api.getByUrl).toHaveBeenCalledWith('http://www.some-domain.com/with-pagination/456/');
+            expect(scope.vm.apiData.count).toBe(5);
             expect(scope.vm.apiData.results).toEqual(['ITEM_1', 'ITEM_2', 'ITEM_3']);
             expect(scope.vm.apiData.next).toBe('http://www.some-domain.com/with-pagination/456/?page=2');
 
@@ -158,6 +159,7 @@ describe('The atlas-api-call component', function () {
 
             expect(api.getByUrl).toHaveBeenCalledTimes(2);
             expect(api.getByUrl).toHaveBeenCalledWith('http://www.some-domain.com/with-pagination/456/?page=2');
+            expect(scope.vm.apiData.count).toBe(5);
             expect(scope.vm.apiData.results).toEqual(['ITEM_1', 'ITEM_2', 'ITEM_3', 'ITEM_4', 'ITEM_5']);
             expect(scope.vm.apiData.next).toBe(null);
 
