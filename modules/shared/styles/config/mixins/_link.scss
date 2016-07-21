@@ -1,0 +1,24 @@
+//This is a mixin so it can be used by both the anchor tag as well as buttons with .btn-link
+
+@mixin link {
+  color: $gray-40;
+  font-weight: 700;
+  text-decoration: none;
+
+  &::before {
+    display: inline-block;
+    content: "›";
+  }
+
+  &:hover {
+    color: $brand-primary;
+  }
+
+  &:active {
+    color: $gray-20 !important;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

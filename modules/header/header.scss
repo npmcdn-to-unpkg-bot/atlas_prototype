@@ -3,7 +3,7 @@
 
 //Module specific variables
 $site-header-height: 50px;
-$search-form-height: $site-header-height - $whitespace-base * 2;
+$search-form-height: $site-header-height - $base-whitespace * 2;
 
 @import "components/header/header";
 @import "components/search/search";
