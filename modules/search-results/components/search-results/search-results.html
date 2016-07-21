@@ -1,13 +1,14 @@
-<!--  | thousandSeparator -->
-{{vm.numberOfResults}} resultaten voor
-<span ng-if="vm.query">{{query}}</span>
-<span ng-if="vm.location">{{query.location}} x, y (lat, lon)</span>
-
 <div class="row">
-    <div ng-class="{
+    <div class="u-pt-2" ng-class="{
         'col-sm-12': !vm.location,
         'col-sm-8': vm.location
         }">
+
+        <p>
+            {{vm.numberOfResults | number}} resultaten voor
+            ”<strong ng-if="vm.query">{{vm.query}}</strong>”
+            <span ng-if="vm.location">{{vm.location}} x, y (lat, lon)</span>
+        </p>
 
         <div ng-if="vm.numberOfResults">
             <div class="u-mb-3">

@@ -16,6 +16,6 @@
     function dpSearchResultsController () {
         var vm = this;
 
-        vm.numberOfResults = 1;
+        vm.numberOfResults = 1237841;
     }
 })();
