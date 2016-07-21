@@ -34,7 +34,7 @@
                 vm.sizeMiddleColumn = 8;
             } else {
                 vm.sizeLeftColumn = 0;
-                vm.sizeMiddleColumn = vm.showPage || vm.showDetail || vm.showStraatbeeld ? 4 : 8;
+                vm.sizeMiddleColumn = 4;
                 vm.sizeRightColumn = 12 - vm.sizeLeftColumn - vm.sizeMiddleColumn;
             }
         }

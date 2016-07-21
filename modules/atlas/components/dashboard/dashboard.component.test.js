@@ -126,16 +126,16 @@ describe('The dashboard component', function () {
                 expect(columns[0].querySelector('atlas-layer-selection')).toBeNull();
             });
 
-            it('shows a large map (2/3) in the middle column', function () {
-                expect(columns[0].getAttribute('class')).toContain('col-sm-8');
-                expect(columns[0].getAttribute('class')).not.toContain('col-sm-4');
+            it('shows a small map (1/3) in the middle column', function () {
+                expect(columns[0].getAttribute('class')).toContain('col-sm-4');
+                expect(columns[0].getAttribute('class')).not.toContain('col-sm-8');
 
                 expect(columns[0].querySelector('dp-map')).not.toBeNull();
             });
 
-            it('shows search results in a small (1/3) in the right column', function () {
-                expect(columns[1].getAttribute('class')).toContain('col-sm-4');
-                expect(columns[1].getAttribute('class')).not.toContain('col-sm-8');
+            it('shows search results in a large (2/3) right column', function () {
+                expect(columns[1].getAttribute('class')).toContain('col-sm-8');
+                expect(columns[1].getAttribute('class')).not.toContain('col-sm-4');
 
                 expect(columns[1].querySelector('atlas-search-results')).not.toBeNull();
                 expect(columns[1].querySelector('atlas-page')).toBeNull();
