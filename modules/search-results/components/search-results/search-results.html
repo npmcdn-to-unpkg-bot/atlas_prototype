@@ -6,8 +6,8 @@
 
         <p>
             {{vm.numberOfResults | number}} resultaten voor
-            ”<strong ng-if="vm.query">{{vm.query}}</strong>”
-            <span ng-if="vm.location">{{vm.location}} x, y (lat, lon)</span>
+            <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
+            <span ng-if="vm.location">”<strong>{{vm.location | coordinates}}</strong>”</span>
         </p>
 
         <div ng-if="vm.numberOfResults">
