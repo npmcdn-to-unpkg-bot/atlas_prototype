@@ -3,13 +3,13 @@
 
     angular
         .module('atlasDetail')
-        .filter('dpYesno', dpYesNoFilter);
+        .filter('yesNo', yesNoFilter);
 
-    function dpYesNoFilter () {
-        return function (bool) {
-            if (bool === true) {
+    function yesNoFilter () {
+        return function (input) {
+            if (input === true) {
                 return 'Ja';
-            } else if (bool === false) {
+            } else if (input === false) {
                 return 'Nee';
             } else {
                 return '';

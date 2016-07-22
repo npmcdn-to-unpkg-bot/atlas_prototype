@@ -48,8 +48,11 @@
          */
         function showDetailReducer (oldState, payload) {
             var newState = angular.copy(oldState);
-            
-            newState.map.viewCenter = payload.location;
+
+            if (payload.location) {
+                newState.map.viewCenter = payload.location;
+            }
+
             newState.detail.geometry = payload.geometry;
 
             newState.map.isLoading = false;

@@ -1,14 +1,15 @@
 describe('The atlas-nummeraanduiding-header directive', function () {
     var $compile,
         $rootScope,
-        verblijfsObjecten = {
-            18: {
+        $q,
+        mockedVboData = {
+            'http://www.example-endpoint.com/18/': {
                 status: {
                     code: '18',
                     omschrijving: 'Verblijfsobject gevormd'
                 }
             },
-            21: {
+            'http://www.example-endpoint.com/21/': {
                 status: {
                     code: '21',
                     omschrijving: 'Verblijfsobject in gebruik'
@@ -20,21 +21,32 @@ describe('The atlas-nummeraanduiding-header directive', function () {
         angular.mock.module(
             'atlasDetail',
             'ngSanitize',
+            {
+                api: {
+                    getByUrl: function (endpoint) {
+                        var q = $q.defer();
+
+                        q.resolve(mockedVboData[endpoint]);
+
+                        return q.promise;
+                    }
+                }
+            },
             function ($provide) {
                 $provide.factory('dpStelselpediaHeaderDirective', function () {
-                    return {
-                    };
+                    return {};
                 });
             }
         );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _$q_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
+            $q = _$q_;
         });
     });
 
-    function getDirective (verblijfsObjectStatus, isHoofdadres) {
+    function getDirective (verblijfsobjectEndpoint, isHoofdadres) {
         var directive,
             element,
             scope;
@@ -42,16 +54,15 @@ describe('The atlas-nummeraanduiding-header directive', function () {
         element = document.createElement('atlas-nummeraanduiding-header');
         element.setAttribute('heading', 'Maria Austriastraat 730');
         element.setAttribute('meta-data', 'metaData');
-        element.setAttribute('verblijfsobject', 'verblijfsobject');
+        element.setAttribute('verblijfsobject-endpoint', verblijfsobjectEndpoint);
         element.setAttribute('hoofdadres', 'hoofdadres');
 
         scope = $rootScope.$new();
         scope.metaData = {};
-        scope.verblijfsobject = verblijfsObjecten[verblijfsObjectStatus];
         scope.hoofdadres = isHoofdadres;
 
         directive = $compile(element)(scope);
-        scope.$digest();
+        $rootScope.$apply();
 
         return directive;
     }
@@ -61,13 +72,13 @@ describe('The atlas-nummeraanduiding-header directive', function () {
             var directive;
 
             //Status 'Verblijfsobject in gebruik', don't show a badge
-            directive = getDirective(21, true);
+            directive = getDirective('http://www.example-endpoint.com/21/', true);
 
             expect(directive.find('.badge.badge--red').length).toBe(0);
             expect(directive.text()).not.toContain('Verblijfsobject in gebruik');
 
             //Status 'Verblijfsobject gevormd', show a badge
-            directive = getDirective(18, true);
+            directive = getDirective('http://www.example-endpoint.com/18/', true);
             expect(directive.find('.badge.badge--red').length).toBe(1);
             expect(directive.find('.badge.badge--red').text()).toBe('Verblijfsobject gevormd');
         });
@@ -76,18 +87,18 @@ describe('The atlas-nummeraanduiding-header directive', function () {
             var directive;
 
             //Hoofdadres
-            directive = getDirective(21, true);
+            directive = getDirective('http://www.example-endpoint.com/21/', true);
             expect(directive.find('.badge.badge--blue').length).toBe(0);
 
             //Nevenadres
-            directive = getDirective(21, false);
+            directive = getDirective('http://www.example-endpoint.com/21/', false);
             expect(directive.find('.badge.badge--blue').length).toBe(1);
             expect(directive.find('.badge.badge--blue').text()).toBe('Dit is een nevenadres');
         });
     });
 
     it('loads the atlas-stelselpedia-header directive', function () {
-        var directive = getDirective(21, true);
+        var directive = getDirective('http://www.example-endpoint.com/21/', true);
 
         expect(directive.find('atlas-stelselpedia-header').length).toBe(1);
         expect(directive.find('atlas-stelselpedia-header').attr('heading')).toBe('Maria Austriastraat 730');
@@ -99,11 +110,11 @@ describe('The atlas-nummeraanduiding-header directive', function () {
         var directive;
 
         //Status 'Verblijfsobject in gebruik', use a roman font
-        directive = getDirective(21, true);
+        directive = getDirective('http://www.example-endpoint.com/21/', true);
         expect(directive.find('atlas-stelselpedia-header').attr('heading')).toBe('Maria Austriastraat 730');
 
         //Status 'Verblijfsobject gevormd', use an italic font
-        directive = getDirective(18, true);
+        directive = getDirective('http://www.example-endpoint.com/18/', true);
         expect(directive.find('atlas-stelselpedia-header').attr('heading')).toBe('<em>Maria Austriastraat 730</em>');
     });
 });

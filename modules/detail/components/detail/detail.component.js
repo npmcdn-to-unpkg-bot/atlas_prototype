@@ -11,38 +11,53 @@
             controllerAs: 'vm'
         });
 
-    AtlasDetailController.$inject = ['$scope', 'ACTIONS', 'api', 'endpointParser', 'store'];
+    AtlasDetailController.$inject = [
+        '$scope',
+        'store',
+        'ACTIONS',
+        'api',
+        'endpointParser',
+        'geometry',
+        'geojson',
+        'wgs84RdConverter'
+    ];
 
-    function AtlasDetailController ($scope, ACTIONS, api, endpointParser, store) {
+    function AtlasDetailController (
+        $scope,
+        store,
+        ACTIONS,
+        api,
+        endpointParser,
+        geometry,
+        geojson,
+        wgs84RdConverter) {
 
         var vm = this;
-        vm.apiData = {};
 
-        $scope.$watch('vm.endpoint', function(newValue) {
-            api.getByUrl(newValue).then(function (data) {
-                //koppel data aan de scope
-                vm.apiData.results = data;
+        $scope.$watch('vm.endpoint', function (endpoint) {
+            api.getByUrl(endpoint).then(function (data) {
+                vm.apiData = {
+                    results: data
+                };
 
-                //koppel de goede template op basis van het endpoint
-                vm.templateUrl = endpointParser.parseEndpoint(newValue).templateUrl;
+                vm.includeSrc = endpointParser.getTemplateUrl(endpoint);
 
-                //trap de actie show_detail af als alle api informatie binnen is
-                store.dispatch({
-                    type: ACTIONS.SHOW_DETAIL,
-                    payload: {
-                        //TODO placeholders vervangen voor echte data
-                        location: [52.35350778099046, 5.001068568757111],
-                        geometry: vm.apiData.results.geometrie || null
+                geometry.getGeoJSON(endpoint).then(function (geometry) {
+                    if (angular.isObject(geometry)) {
+                        vm.location = wgs84RdConverter.rdToWgs84(geojson.getCenter(geometry));
+                    } else {
+                        vm.location = null;
                     }
+
+                    store.dispatch({
+                        type: ACTIONS.SHOW_DETAIL,
+                        payload: {
+                            location: vm.location,
+                            geometry: geometry
+                        }
+                    });
                 });
             });
         });
-
-        vm.openStraatbeeld = function (straatbeeldId) {
-            store.dispatch({
-                type: ACTIONS.FETCH_STRAATBEELD,
-                payload: straatbeeldId
-            });
-        };
     }
 })();
