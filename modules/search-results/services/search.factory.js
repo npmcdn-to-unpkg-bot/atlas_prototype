@@ -3,17 +3,17 @@
 
     angular
         .module('atlasSearchResults')
-        .factory('searchByQuery', searchByQueryFactory);
+        .factory('search', search);
 
-    searchByQueryFactory.$inject = ['$q', 'SEARCH_CONFIG', 'api'];
+    search.$inject = ['$q', 'SEARCH_CONFIG', 'api'];
 
-    function searchByQueryFactory ($q, SEARCH_CONFIG, api) {
+    function search ($q, SEARCH_CONFIG, api) {
         return {
-            searchAll: searchAll,
-            searchCategory: searchCategory
+            search: search,
+            searchEndpoint: searchEndpoint
         };
 
-        function searchAll (query) {
+        function search (query) {
             var queries = [];
 
             SEARCH_CONFIG.QUERY_ENDPOINTS.forEach(function (endpoint) {
@@ -31,7 +31,7 @@
             return $q.all(queries).then(formatResults);
         }
 
-        function searchCategory (endpoint, params) {
+        function searchEndpoint (endpoint, params) {
             return api.getByUri(endpoint, params).then(formatResults);
         }
 

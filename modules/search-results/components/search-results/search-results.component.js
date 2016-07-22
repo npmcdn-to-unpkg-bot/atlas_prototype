@@ -14,16 +14,16 @@
             controllerAs: 'vm'
         });
 
-    AtlasSearchResultsController.$inject = ['$scope', 'SEARCH_CONFIG', 'searchByQuery', 'searchByCoordinates'];
+    AtlasSearchResultsController.$inject = ['$scope', 'SEARCH_CONFIG', 'search', 'geosearch'];
 
-    function AtlasSearchResultsController ($scope, SEARCH_CONFIG, searchByQuery, searchByCoordinates) {
+    function AtlasSearchResultsController ($scope, SEARCH_CONFIG, search, geosearch) {
         var vm = this;
 
         $scope.$watch('vm.query', function (query) {
             if (angular.isString(query) && query.length) {
                 vm.isLoading = true;
 
-                searchByQuery.searchAll(query).then(setSearchResults);
+                search.search(query).then(setSearchResults);
             }
         });
 
@@ -31,7 +31,7 @@
             if (angular.isArray(location)) {
                 vm.isLoading = true;
 
-                searchByCoordinates.search(location).then(setSearchResults);
+                geosearch.search(location).then(setSearchResults);
             }
         });
 
