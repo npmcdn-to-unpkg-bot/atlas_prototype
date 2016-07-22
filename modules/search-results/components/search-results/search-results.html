@@ -4,9 +4,6 @@
         'col-sm-8': vm.location
         }">
 
-
-
-
         <div ng-if="vm.numberOfResults">
             <p>
                 {{vm.numberOfResults | number}}
@@ -35,7 +32,6 @@
 
     </div>
     <div ng-if="vm.location" class="col-sm-4">
-        straatbeeld thumbnail hier tonen, is nu een niet gemergde component in de 'thumb' branch binnen detail, moeten
-        we dus naar shared verhuizen
+        <dp-straatbeeld-thumbnail location="vm.location"></dp-straatbeeld-thumbnail>
     </div>
 </div>

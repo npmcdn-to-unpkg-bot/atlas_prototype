@@ -44,7 +44,6 @@
         });
 
         function setSearchResults (searchResults) {
-            console.log('searchByQuery', searchResults);
             vm.isLoading = false;
             vm.searchResults = searchResults;
 

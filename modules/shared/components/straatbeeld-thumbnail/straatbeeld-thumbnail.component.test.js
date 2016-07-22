@@ -1,6 +1,8 @@
 describe('The dp-straatbeeld-thumbnail component', function () {
     var $compile,
-        $rootScope;
+        $rootScope,
+        store,
+        ACTIONS;
 
     beforeEach(function () {
         angular.mock.module(
@@ -8,19 +10,21 @@ describe('The dp-straatbeeld-thumbnail component', function () {
             {
                 detailConfig: {
                     STRAATBEELD_THUMB_URL: 'http://fake.straatbeeld.url/path/'
+                },
+                store: {
+                    dispatch: function () {}
                 }
-            },
-            function ($provide) {
-                $provide.factory('dpLinkDirective', function () {
-                    return {};
-                });
             }
         );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _store_, _ACTIONS_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
+            store = _store_;
+            ACTIONS = _ACTIONS_;
         });
+
+        spyOn(store, 'dispatch');
     });
 
     function getComponent (location) {
@@ -47,16 +51,18 @@ describe('The dp-straatbeeld-thumbnail component', function () {
             .toBe('http://fake.straatbeeld.url/path/?lat=52.369&lon=4.963&width=240&height=135');
     });
 
-    it('wraps the thumbnail inside a dp-link that triggers FETCH_STRAATBEELD', function () {
-        var component = getComponent([52.369, 4.963]),
-            scope = component.isolateScope();
+    it('wraps the thumbnail inside a button that triggers FETCH_STRAATBEELD', function () {
+        var component = getComponent([52.369, 4.963]);
 
-        expect(component.find('dp-link img')).toBeDefined();
-        expect(component.find('dp-link').length).toBe(1);
+        expect(component.find('button img')).toBeDefined();
+        expect(component.find('button').length).toBe(1);
         expect(component.find('img').length).toBe(1);
 
-        expect(component.find('dp-link').attr('type')).toBe('FETCH_STRAATBEELD');
-        expect(component.find('dp-link').attr('payload')).toEqual('vm.location');
-        expect(scope.vm.location).toEqual([52.369, 4.963]);
+        expect(component.find('button').click());
+
+        expect(store.dispatch).toHaveBeenCalledWith({
+            type: ACTIONS.FETCH_STRAATBEELD,
+            payload: [52.369, 4.963]
+        });
     });
 });
