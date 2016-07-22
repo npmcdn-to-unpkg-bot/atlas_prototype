@@ -1,10 +1,10 @@
-describe('The atlas-straatbeeld-thumbnail component', function () {
+describe('The dp-straatbeeld-thumbnail component', function () {
     var $compile,
         $rootScope;
 
     beforeEach(function () {
         angular.mock.module(
-            'atlasDetail',
+            'dpShared',
             {
                 detailConfig: {
                     STRAATBEELD_THUMB_URL: 'http://fake.straatbeeld.url/path/'
@@ -28,7 +28,7 @@ describe('The atlas-straatbeeld-thumbnail component', function () {
             element,
             scope;
 
-        element = document.createElement('atlas-straatbeeld-thumbnail');
+        element = document.createElement('dp-straatbeeld-thumbnail');
         element.setAttribute('location', 'location');
 
         scope = $rootScope.$new();
