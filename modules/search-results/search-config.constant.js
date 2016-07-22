@@ -4,7 +4,7 @@
     angular
         .module('atlasSearchResults')
         .constant('SEARCH_CONFIG', {
-            ENDPOINTS: [
+            QUERY_ENDPOINTS: [
                 {
                     slug: 'adres',
                     label_singular: 'Adres',
@@ -35,6 +35,53 @@
                     label_singular: 'Bouwblok',
                     label_plural: 'Bouwblokken',
                     uri: 'atlas/search/bouwblok/'
+                }
+            ],
+            COORDINATES_ENDPOINTS: [
+                {
+                    uri: 'geosearch/nap/',
+                    radius: 25
+                }, {
+                    uri: 'geosearch/atlas/',
+                    radius: null
+                }
+            ],
+            COORDINATES_HIERARCHY: [
+                {
+                    label: 'Pand',
+                    features: ['bag/pand']
+                }, {
+                    label: 'Standplaats',
+                    features: ['bag/standplaats']
+                }, {
+                    label: 'Ligplaats',
+                    features: ['bag/ligplaats']
+                }, {
+                    label: 'Openbare ruimte',
+                    features: ['bag/openbareruimte']
+                }, {
+                    label: 'Kadastraal object',
+                    features: ['kadaster/kadastraal_object']
+                }, {
+                    label: 'Gebieden',
+                    features: [
+                        'gebieden/stadsdeel',
+                        'gebieden/gebiedsgerichtwerken',
+                        'gebieden/grootstedelijkgebied',
+                        'gebieden/buurtcombinatie',
+                        'gebieden/buurt',
+                        'gebieden/bouwblok',
+                        'gebieden/unesco'
+                    ]
+                }, {
+                    label: 'Gemeentelijke beperking',
+                    features: ['wkpb/beperking']
+                }, {
+                    label: 'Meetbouten',
+                    features: ['meetbouten/meetbout']
+                }, {
+                    label: 'NAP Peilmerken',
+                    features: ['nap/peilmerk']
                 }
             ]
         });
