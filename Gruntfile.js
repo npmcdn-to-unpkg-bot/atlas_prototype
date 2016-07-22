@@ -4,6 +4,7 @@ module.exports = function (grunt) {
         clean: require('./grunt/clean'),
         concat: require('./grunt/concat'),
         connect: require('./grunt/connect'),
+        'console-log-test': require('./grunt/console-log-test'),
         copy: require('./grunt/copy'),
         jshint: require('./grunt/jshint'),
         karma: require('./grunt/karma'),
@@ -31,7 +32,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test-js', [
         'jshint',
-        'karma:coverage'
+        'karma:coverage',
+        'console-log-test'
     ]);
 
     grunt.registerTask('test-css', [
@@ -78,6 +80,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-bower-concat');
+    grunt.loadNpmTasks('grunt-console-log-test');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-connect');

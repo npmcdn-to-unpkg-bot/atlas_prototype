@@ -1,1 +1,1 @@
-<atlas-partial-select api-data="apiData" partial="{{partial}}"></atlas-partial-select>
+<atlas-partial-select ng-if="vm.apiData" api-data="vm.apiData" load-more-fn="vm.loadMore" partial="{{vm.partial}}"></atlas-partial-select>

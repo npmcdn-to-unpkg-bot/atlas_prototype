@@ -10,7 +10,7 @@
     configuration.$inject = ['$provide'];
 
     function configuration ($provide) {
-        $provide.constant('d3', d3);
         $provide.constant('BBGA', BBGA);
+        $provide.constant('d3', d3);
     }
 })();
