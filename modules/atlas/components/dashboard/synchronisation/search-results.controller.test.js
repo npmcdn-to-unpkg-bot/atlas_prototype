@@ -68,6 +68,23 @@ describe('The searchResults controller', function () {
         expect(controller.location).toEqual([52.123, 4.789]);
     });
 
+    it('sets the category based on the state', function () {
+        var mockedState = {
+                search: {
+                    query: 'i am a search query',
+                    location: null,
+                    category: 'adres'
+                }
+            },
+            controller;
+
+        spyOn(store, 'getState').and.returnValue(mockedState);
+
+        controller = getController();
+
+        expect(controller.category).toBe('adres');
+    });
+
     it('doesn\'t break if search is null', function () {
         var mockedState = {
                 search: null

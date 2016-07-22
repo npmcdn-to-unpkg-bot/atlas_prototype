@@ -4,105 +4,33 @@
         'col-sm-8': vm.location
         }">
 
-        <p>
-            {{vm.numberOfResults | number}}
-            {{vm.numberOfResults === 1 ? 'resultaat' : 'resultaten'}}
-            voor
-            <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
-            <span ng-if="vm.location">”<strong>{{vm.location | coordinates}}</strong>”</span>
-        </p>
+
+
 
         <div ng-if="vm.numberOfResults">
-            <div class="u-mb-3">
-                <h2>Category A (7)</h2>
-                <ul class="list">
-                    <li ng-repeat="itemNumber in [1, 2, 3, 4, 5, 6, 7]">
-                        <dp-link
-                            type="FETCH_DETAIL"
-                            payload="'https://api-acc.datapunt.amsterdam.nl/bag/openbareruimte/03630000003189/'">
+            <p>
+                {{vm.numberOfResults | number}}
+                {{vm.numberOfResults === 1 ? 'resultaat' : 'resultaten'}}
+                voor
+                <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
+                <span ng-if="vm.location">”<strong>{{vm.location | coordinates}}</strong>”</span>
+                <span ng-if="vm.category">met het filter ”<strong>{{vm.categoryName}}</strong>”</span>
+            </p>
 
-                            Item #{{itemNumber}}
-                        </dp-link>
-                    </li>
-                </ul>
+            <div ng-if="!vm.category">
+                <atlas-search-results-overview search-results="vm.searchResults"></atlas-search-results-overview>
             </div>
-
-            <div class="u-mb-3">
-                <h2>Category B (13)</h2>
-                <ul class="list u-mb-05">
-                    <li ng-repeat="itemNumber in [1, 2, 3, 4, 5, 6, 7]">
-                        <dp-link
-                            type="FETCH_DETAIL"
-                            payload="'https://api-acc.datapunt.amsterdam.nl/bag/openbareruimte/03630000003189/'">
-
-                            Item #{{itemNumber}}
-                        </dp-link>
-                    </li>
-                </ul>
-                <button class="btn btn-link u-color-brand-primary" ng-click="vm.openCategory('adres')">
-                    Toon alle 13
-                </button>
-            </div>
-
-            <div class="u-mb-3">
-                <div class="u-mb-1">
-                    <h2>Pand (1)</h2>
-                    <ul class="list">
-                        <li>
-                            <dp-link
-                                type="FETCH_DETAIL"
-                                payload="'https://api-acc.datapunt.amsterdam.nl/bag/openbareruimte/03630000003189/'">
-
-                                06465465165465
-                            </dp-link>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="u-ml-2">
-                    <h2>Adressen (3)</h2>
-                    <ul class="list">
-                        <li>
-                            <dp-link
-                                type="FETCH_DETAIL"
-                                payload="'https://api-acc.datapunt.amsterdam.nl/bag/openbareruimte/03630000003189/'">
-
-                                Adresstraat 11a
-                            </dp-link>
-                        </li>
-                        <li>
-                            <dp-link
-                                type="FETCH_DETAIL"
-                                payload="'https://api-acc.datapunt.amsterdam.nl/bag/openbareruimte/03630000003189/'">
-
-                                Adresstraat 11b
-                            </dp-link>
-                        </li>
-                        <li>
-                            <dp-link
-                                type="FETCH_DETAIL"
-                                payload="'https://api-acc.datapunt.amsterdam.nl/bag/openbareruimte/03630000003189/'">
-
-                                Adresstraat 11c
-                            </dp-link>
-                        </li>
-                    </ul>
-                </div>
+            <div ng-if="vm.category">
+                <atlas-search-results-category search-results="vm.searchResults"></atlas-search-results-category>
             </div>
         </div>
 
         <div ng-if="!vm.numberOfResults">
             <h2>Geen resultaten gevonden</h2>
-            <ul>
-                <li>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dolor accumsan, condimentum lorem
-                    si.
-                </li>
-                <li>
-                    Vivamus auctor lobortis mi, quis ornare neque interdum eget. Aenean orci sem, imperdiet sed
-                    maximus.
-                </li>
-            </ul>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dolor accumsan, condimentum lorem si.
+                Vivamus auctor lobortis mi, quis ornare neque interdum eget. Aenean orci sem, imperdiet sed maximus.
+            </p>
         </div>
 
     </div>

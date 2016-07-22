@@ -1,27 +1,29 @@
 (function () {
+    'use strict';
+
     angular
         .module('atlasSearchResults')
         .component('atlasSearchResults', {
             bindings: {
                 query: '@',
-                location: '='
+                location: '=',
+                category: '@'
             },
             templateUrl: 'modules/search-results/components/search-results/search-results.html',
-            controller: dpSearchResultsController,
+            controller: AtlasSearchResultsController,
             controllerAs: 'vm'
         });
 
-    dpSearchResultsController.$inject = ['$scope', 'searchByQuery', 'store', 'ACTIONS'];
+    AtlasSearchResultsController.$inject = ['$scope', 'SEARCH_CONFIG', 'searchByQuery'];
 
-    function dpSearchResultsController ($scope, searchByQuery, store, ACTIONS) {
+    function AtlasSearchResultsController ($scope, SEARCH_CONFIG, searchByQuery) {
         var vm = this;
 
         $scope.$watch('vm.query', function (query) {
             if (angular.isString(query) && query.length) {
                 vm.isLoading = true;
-                console.log('a');
 
-                searchByQuery.search(query).then(setSearchResults);
+                searchByQuery.searchAll(query).then(setSearchResults);
             }
         });
 
@@ -29,17 +31,17 @@
             if (angular.isArray(location)) {
                 vm.isLoading = true;
 
-                console.log(location);
                 //searchByLocation.search(location).then(setSearchResults);
             }
         });
 
-        vm.openCategory = function (slug) {
-            store.dispatch({
-                type: ACTIONS.SHOW_SEARCH_RESULTS_CATEGORY,
-                payload: slug
-            });
-        };
+        $scope.$watch('vm.category', function (category) {
+            var activeCategory = SEARCH_CONFIG.ENDPOINTS.filter(function (endpoint) {
+                return endpoint.slug === category;
+            })[0];
+
+            vm.categoryName = activeCategory && activeCategory.label_singular;
+        });
 
         function setSearchResults (searchResults) {
             vm.isLoading = false;

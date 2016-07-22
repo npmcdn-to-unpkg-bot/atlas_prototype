@@ -47,7 +47,8 @@
                     <div ng-if="vm.showSearchResults" ng-controller="SearchResultsController as vm">
                         <atlas-search-results
                             query="{{vm.query}}"
-                            location="vm.location">
+                            location="vm.location"
+                            category="{{vm.category}}">
 
                         </atlas-search-results>
                     </div>

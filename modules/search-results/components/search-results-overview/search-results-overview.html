@@ -1,0 +1,21 @@
+<div class="u-mb-3" ng-repeat="category in vm.searchResults">
+    <h2>{{category.label}} ({{category.count}})</h2>
+    <ul class="list">
+        <li ng-repeat="link in category.results | limitTo : 10">
+            <dp-link
+                type="FETCH_DETAIL"
+                payload="link.endpoint">
+
+                {{link.label}}
+            </dp-link>
+        </li>
+    </ul>
+
+    <button
+        ng-if="category.count > 10"
+        class="btn btn-link u-color-brand-primary u-mt-05"
+        ng-click="vm.openCategory('adres')">
+
+        Toon alle {{category.count}}
+    </button>
+</div>

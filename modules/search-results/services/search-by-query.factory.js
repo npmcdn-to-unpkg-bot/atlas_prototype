@@ -9,10 +9,11 @@
 
     function searchByQueryFactory ($q, SEARCH_CONFIG, api) {
         return {
-            search: search
+            searchAll: searchAll,
+            searchCategory: searchCategory
         };
 
-        function search (query) {
+        function searchAll (query) {
             var queries = [];
 
             SEARCH_CONFIG.ENDPOINTS.forEach(function (endpoint) {
@@ -30,6 +31,10 @@
             return $q.all(queries).then(formatResults);
         }
 
+        function searchCategory (endpoint, params) {
+            return api.getByUri(endpoint, params).then(formatResults);
+        }
+
         function formatResults (allSearchResults) {
             return allSearchResults
                 .map(function (endpointSearchResults, index) {
@@ -40,14 +45,14 @@
 
                     formattedLinks = links.map(function (item) {
                         return {
-                            display: item._display,
+                            label: item._display,
                             endpoint: item._links.self.href,
                             subtype: item.subtype
                         };
                     });
 
                     return {
-                        label: SEARCH_CONFIG.ENDPOINTS[index].label,
+                        label: SEARCH_CONFIG.ENDPOINTS[index].label_plural,
                         slug: SEARCH_CONFIG.ENDPOINTS[index].slug,
                         count: angular.isObject(endpointSearchResults) && endpointSearchResults.count || 0,
                         results: formattedLinks
