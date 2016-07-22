@@ -33,36 +33,40 @@
         }
 
         function formatResults (allSearchResults) {
-            var allFeatures = allSearchResults
-                .map(function (searchResult) {
-                    return searchResult.features.map(function (feature) {
-                        return {
-                            label: feature.properties.display,
-                            endpoint: feature.properties.uri,
-                            type: feature.properties.type
-                        };
-                    });
-                })
-                .reduce(function (previous, current) {
-                    return previous.concat(current);
-                }, []);
+            var allFeaturesFlattened = allSearchResults
+                    .map(function (searchResult) {
+                        return searchResult.features.map(function (feature) {
+                            return feature.properties;
+                        });
+                    })
+                    .reduce(function (previous, current) {
+                        return previous.concat(current);
+                    }, []);
 
-            console.log(allSearchResults, allFeatures);
-            return allSearchResults;
-            /*
-                .map(function (endpointSearchResults) {
-                    return {
-                        count: endpointSearchResults.features.length
+            return SEARCH_CONFIG.COORDINATES_HIERARCHY
+                .map(function (rawCategory) {
+                    var formattedCategory = {
+                        label: rawCategory.label,
+                        results: allFeaturesFlattened
+                            .filter(function (feature) {
+                                return rawCategory.features.indexOf(feature.type) !== -1;
+                            })
+                            .map(function (feature) {
+                                return {
+                                    label: feature.display,
+                                    endpoint: feature.uri
+                                };
+                            })
                     };
-                    /*
-                    return {
-                        label: SEARCH_CONFIG.ENDPOINTS[index].label_plural,
-                        slug: SEARCH_CONFIG.ENDPOINTS[index].slug,
-                        count: angular.isObject(endpointSearchResults) && endpointSearchResults.count || 0,
-                        results: formattedLinks
-                    };
+
+                    formattedCategory.count = formattedCategory.results.length;
+
+                    return formattedCategory;
+                })
+                .filter(function (category) {
+                    //Remove empty categories
+                    return category.count > 0;
                 });
-             */
         }
     }
 })();
