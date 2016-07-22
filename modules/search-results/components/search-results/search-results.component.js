@@ -31,9 +31,7 @@
             if (angular.isArray(location)) {
                 vm.isLoading = true;
 
-                searchByCoordinates.search(location).then(function (data) {
-                    console.log('searchByCoordinates', data);
-                });
+                searchByCoordinates.search(location).then(setSearchResults);
             }
         });
 

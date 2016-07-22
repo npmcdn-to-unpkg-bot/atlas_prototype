@@ -16,7 +16,7 @@
         function searchAll (query) {
             var queries = [];
 
-            SEARCH_CONFIG.ENDPOINTS.forEach(function (endpoint) {
+            SEARCH_CONFIG.QUERY_ENDPOINTS.forEach(function (endpoint) {
                 var params = {
                     q: query,
                     page: 1
@@ -52,8 +52,8 @@
                     });
 
                     return {
-                        label: SEARCH_CONFIG.ENDPOINTS[index].label_plural,
-                        slug: SEARCH_CONFIG.ENDPOINTS[index].slug,
+                        label: SEARCH_CONFIG.QUERY_ENDPOINTS[index].label_plural,
+                        slug: SEARCH_CONFIG.QUERY_ENDPOINTS[index].slug,
                         count: angular.isObject(endpointSearchResults) && endpointSearchResults.count || 0,
                         results: formattedLinks
                     };
