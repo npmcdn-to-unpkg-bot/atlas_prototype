@@ -5,25 +5,26 @@
         .module('dpMap')
         .factory('searchByClick', searchByClickFactory);
 
-    searchByClickFactory.$inject = ['store', 'ACTIONS'];
+    searchByClickFactory.$inject = ['$rootScope', 'store', 'ACTIONS'];
 
-    function searchByClickFactory (store, ACTIONS) {
+    function searchByClickFactory ($rootScope, store, ACTIONS) {
         return {
             initialize: initialize
         };
 
         function initialize (leafletMap) {
-            //leafletMap.on('click', searchByClick);
-            leafletMap.addEventListener('click', searchByClick);
+            leafletMap.on('click', searchByClick);
         }
 
         function searchByClick (event) {
-            store.dispatch({
-                type: ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,
-                payload: [
-                    event.latlng.lat,
-                    event.latlng.lng
-                ]
+            $rootScope.$applyAsync(function () {
+                store.dispatch({
+                    type: ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,
+                    payload: [
+                        event.latlng.lat,
+                        event.latlng.lng
+                    ]
+                });
             });
         }
     }
