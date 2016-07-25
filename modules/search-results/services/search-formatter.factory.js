@@ -9,36 +9,41 @@
 
     function searchFormatterFactory (SEARCH_CONFIG) {
         return {
-            format: format
+            formatCategories: formatCategories,
+            formatLinks: formatLinks
         };
 
-        function format (allSearchResults) {
+        function formatCategories (allSearchResults) {
             return allSearchResults
                 .map(function (endpointSearchResults, index) {
-                    var links,
-                        formattedLinks;
+                    var links;
 
                     links = angular.isObject(endpointSearchResults) && endpointSearchResults.results || [];
-
-                    formattedLinks = links.map(function (item) {
-                        return {
-                            label: item._display,
-                            endpoint: item._links.self.href,
-                            subtype: item.subtype
-                        };
-                    });
 
                     return {
                         label: SEARCH_CONFIG.QUERY_ENDPOINTS[index].label_plural,
                         slug: SEARCH_CONFIG.QUERY_ENDPOINTS[index].slug,
                         count: angular.isObject(endpointSearchResults) && endpointSearchResults.count || 0,
-                        results: formattedLinks
+                        results: formatLinks(links),
+                        next: angular.isObject(endpointSearchResults) &&
+                            endpointSearchResults._links &&
+                            endpointSearchResults._links.next.href
                     };
                 })
                 //Remove 'empty' categories with no search results
                 .filter(function (endpointSearchResults) {
                     return endpointSearchResults.count;
                 });
+        }
+
+        function formatLinks (links) {
+            return links.map(function (item) {
+                return {
+                    label: item._display,
+                    endpoint: item._links.self.href,
+                    subtype: item.subtype
+                };
+            });
         }
     }
 })();

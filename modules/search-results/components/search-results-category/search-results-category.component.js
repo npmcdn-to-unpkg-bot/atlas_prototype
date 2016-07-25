@@ -5,29 +5,23 @@
         .module('atlasSearchResults')
         .component('atlasSearchResultsCategory', {
             bindings: {
-                endpoint: '@',
-                searchParams: '@',
-                results: '='
+                searchResults: '='
             },
             templateUrl: 'modules/search-results/components/search-results-category/search-results-category.html',
             controller: AtlasSearchResultsCategoryController,
             controllerAs: 'vm'
         });
 
-    AtlasSearchResultsCategoryController.$inject = ['searchByQuery'];
+    AtlasSearchResultsCategoryController.$inject = ['loadMore'];
 
-    function AtlasSearchResultsCategoryController (searchByQuery) {
+    function AtlasSearchResultsCategoryController (loadMore) {
         var vm = this;
 
-        vm.page = 1;
+        vm.category = angular.copy(vm.searchResults);
 
         vm.loadMore = function () {
-            vm.searchParams.page++;
-
-            searchByQuery.searchCategory(vm.endpoint, vm.searchParams.page++).then(function (response) {
-                vm.searchResults = vm.searchResults.concat(response);
-
-                vm.page++;
+            loadMore.next(vm.category).then(function (data) {
+                vm.category = data;
             });
         };
     }

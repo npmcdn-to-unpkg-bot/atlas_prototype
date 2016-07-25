@@ -3,9 +3,9 @@
         .module('atlasSearchResults')
         .factory('geosearch', geosearchFactory);
 
-    geosearchFactory.$inject = ['$q', 'api', 'geosearchFormatter', 'searchFormatter', 'SEARCH_CONFIG'];
+    geosearchFactory.$inject = ['$q', 'SEARCH_CONFIG', 'api', 'geosearchFormatter', 'searchFormatter'];
 
-    function geosearchFactory ($q, api, geosearchFormatter, searchFormatter, SEARCH_CONFIG) {
+    function geosearchFactory ($q, SEARCH_CONFIG, api, geosearchFormatter, searchFormatter) {
         return {
             search: searchFeatures
         };
@@ -31,12 +31,7 @@
 
             return $q.all(allRequests)
                 .then(geosearchFormatter.format)
-                .then(getVerblijfsobjecten)
-                .then(function (data) {
-                    console.log(data);
-
-                    return data;
-                });
+                .then(getVerblijfsobjecten);
         }
 
         function getVerblijfsobjecten (geosearchResults) {
@@ -56,14 +51,24 @@
             if (angular.isDefined(pandEndpoint)) {
                 api.getByUrl(pandEndpoint).then(function (pand) {
                     api.getByUrl(pand.verblijfsobjecten.href).then(function (verblijfsobjecten) {
-                        var geosearchResultsCopy = angular.copy(geosearchResults);
+                        var geosearchResultsCopy = angular.copy(geosearchResults),
+                            formattedVerblijfsobjecten;
 
-                        //Splice modifies the existing Array, we don't want our input to change
-                        geosearchResultsCopy.splice(
-                            pandCategoryIndex + 1,
-                            0,
-                            searchFormatter.format([verblijfsobjecten])[0]
-                        );
+                        if (verblijfsobjecten.count) {
+                            formattedVerblijfsobjecten = searchFormatter.formatCategories([verblijfsobjecten])[0];
+                            formattedVerblijfsobjecten.more = {
+                                label: 'Bekijk alle ' + formattedVerblijfsobjecten.count + ' adressen binnen dit pand',
+                                endpoint: pand._links.self.href
+                            };
+
+                            //Splice modifies the existing Array, we don't want our input to change
+                            geosearchResultsCopy.splice(
+                                pandCategoryIndex + 1,
+                                0,
+                                formattedVerblijfsobjecten
+                            );
+
+                        }
 
                         q.resolve(geosearchResultsCopy);
                     });

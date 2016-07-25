@@ -12,16 +12,8 @@
             controllerAs: 'vm'
         });
 
-    AtlasSearchResultsOverviewController.$inject = ['store', 'ACTIONS'];
+    AtlasSearchResultsOverviewController.$inject = [];
 
-    function AtlasSearchResultsOverviewController (store, ACTIONS) {
-        var vm = this;
-
-        vm.openCategory = function (slug) {
-            store.dispatch({
-                type: ACTIONS.SHOW_SEARCH_RESULTS_CATEGORY,
-                payload: slug
-            });
-        };
+    function AtlasSearchResultsOverviewController () {
     }
 })();

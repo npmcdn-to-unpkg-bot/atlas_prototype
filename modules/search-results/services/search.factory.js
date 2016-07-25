@@ -12,22 +12,22 @@
             search: search
         };
 
-        function search (query) {
-            var queries = [];
-
-            SEARCH_CONFIG.QUERY_ENDPOINTS.forEach(function (endpoint) {
-                var params = {
-                    q: query,
-                    page: 1
+        function search (query, categorySlug) {
+            var queries = [],
+                params = {
+                    q: query
                 };
 
-                queries.push(
-                    api.getByUri(endpoint.uri, params)
-                );
+            SEARCH_CONFIG.QUERY_ENDPOINTS.forEach(function (endpoint) {
+                if (!angular.isString(categorySlug) || categorySlug === endpoint.slug) {
+                    queries.push(
+                        api.getByUri(endpoint.uri, params)
+                    );
+                }
             });
 
             //When all queries are resolved
-            return $q.all(queries).then(searchFormatter.format);
+            return $q.all(queries).then(searchFormatter.formatCategories);
         }
     }
 })();
