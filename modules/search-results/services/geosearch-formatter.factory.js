@@ -32,8 +32,8 @@
                             })
                             .map(function (feature) {
                                 return {
-                                    slug: feature.type,
                                     label: feature.display,
+                                    subtype: feature.opr_type ? feature.opr_type.toLowerCase() : null,
                                     endpoint: feature.uri
                                 };
                             })

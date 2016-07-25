@@ -9,26 +9,18 @@
                 <p>
                     {{vm.numberOfResults | number}}
                     {{vm.numberOfResults === 1 ? 'resultaat' : 'resultaten'}}
-                    voor
-                    <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
-                    <span ng-if="vm.location">”<strong>{{vm.location | coordinates}}</strong>”</span>
+                    met
+                    <span ng-if="vm.query">"<strong>{{vm.query}}</strong>"</span>
+                    <span ng-if="vm.location">"<strong>{{vm.location | coordinates}}</strong>"</span>
                 </p>
 
                 <div class="u-mb-3" ng-repeat="category in vm.searchResults">
                     <h2>
                         {{category.label}}
-                        <span ng-if="category.count > 1">({{category.count}})</span>
+                        <span ng-if="category.count > 1">({{category.count | number}})</span>
                     </h2>
-                    <ul class="list">
-                        <li ng-repeat="link in category.results | limitTo : 10">
-                            <dp-link
-                                type="FETCH_DETAIL"
-                                payload="link.endpoint">
 
-                                {{link.label | longNameShortener}}
-                            </dp-link>
-                        </li>
-                    </ul>
+                    <atlas-search-results-list category="category"></atlas-search-results-list>
 
                     <div ng-if="category.count > 10">
                         <dp-link ng-if="category.more"
@@ -44,7 +36,7 @@
                                  type="SHOW_SEARCH_RESULTS_CATEGORY"
                                  payload="category.slug">
 
-                            Toon alle {{category.count}}
+                            Toon alle {{category.count | number}}
                         </dp-link>
                     </div>
                 </div>
@@ -52,21 +44,12 @@
             <div ng-if="vm.category">
                 <p>
                     {{vm.numberOfResults | number}}
-                    ”<strong>{{vm.categoryName | lowercase}}</strong>”
+                    "<strong>{{vm.categoryName | lowercase}}</strong>"
                     met
-                    <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
+                    <span ng-if="vm.query">"<strong>{{vm.query}}</strong>"</span>
                 </p>
 
-                <ul class="list">
-                    <li ng-repeat="link in vm.searchResults[0].results">
-                        <dp-link
-                            type="FETCH_DETAIL"
-                            payload="link.endpoint">
-
-                            {{link.label | longNameShortener}}
-                        </dp-link>
-                    </li>
-                </ul>
+                <atlas-search-results-list category="vm.category"></atlas-search-results-list>
 
                 <button
                     ng-if="vm.searchResults[0].count > vm.searchResults[0].results.length && !vm.isLoadMoreLoading"
