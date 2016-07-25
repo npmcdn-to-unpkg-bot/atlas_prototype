@@ -1,9 +1,5 @@
-<h3>
-    <i ng-if="vm.isLoading" class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-</h3>
+<div ng-if="vm.apiData"
+    ng-include="vm.includeSrc"
+    onload="apiData = vm.apiData">
 
-<div
-  ng-if="vm.apiData"
-  ng-include="vm.templateUrl"
-  onload="apiData = vm.apiData">
 </div>
