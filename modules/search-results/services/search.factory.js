@@ -9,7 +9,8 @@
 
     function searchFactory ($q, SEARCH_CONFIG, api, searchFormatter) {
         return {
-            search: search
+            search: search,
+            loadMore: loadMore
         };
 
         function search (query, categorySlug) {
@@ -28,6 +29,28 @@
 
             //When all queries are resolved
             return $q.all(queries).then(searchFormatter.formatCategories);
+        }
+
+        function loadMore (category) {
+            return api.getByUrl(category.next)
+                //.then(searchFormatter.formatLinks)
+                .then(function (nextPageData) {
+                    //Don't change the input, create a new variable
+                    var output = {};
+
+                    output.count = nextPageData.count;
+                    output.results = category.results.concat(
+                        searchFormatter.formatLinks(nextPageData.results)
+                    );
+
+                    if (output.count > output.results.length) {
+                        output.next = nextPageData._links.next.href;
+                    } else {
+                        output.next = null;
+                    }
+
+                    return output;
+                });
         }
     }
 })();

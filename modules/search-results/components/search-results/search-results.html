@@ -5,29 +5,84 @@
         }">
 
         <div ng-if="vm.numberOfResults">
-            <p>
-                {{vm.numberOfResults | number}}
-                {{vm.numberOfResults === 1 ? 'resultaat' : 'resultaten'}}
-                voor
-                <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
-                <span ng-if="vm.location">”<strong>{{vm.location | coordinates}}</strong>”</span>
-                <span ng-if="vm.category">met het filter ”<strong>{{vm.categoryName}}</strong>”</span>
-            </p>
-
             <div ng-if="!vm.category">
-                <atlas-search-results-overview search-results="vm.searchResults"></atlas-search-results-overview>
+                <p>
+                    {{vm.numberOfResults | number}}
+                    {{vm.numberOfResults === 1 ? 'resultaat' : 'resultaten'}}
+                    voor
+                    <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
+                    <span ng-if="vm.location">”<strong>{{vm.location | coordinates}}</strong>”</span>
+                </p>
+
+                <div class="u-mb-3" ng-repeat="category in vm.searchResults">
+                    <h2>
+                        {{category.label}}
+                        <span ng-if="category.count > 1">({{category.count}})</span>
+                    </h2>
+                    <ul class="list">
+                        <li ng-repeat="link in category.results | limitTo : 10">
+                            <dp-link
+                                type="FETCH_DETAIL"
+                                payload="link.endpoint">
+
+                                {{link.label | longNameShortener}}
+                            </dp-link>
+                        </li>
+                    </ul>
+
+                    <div ng-if="category.count > 10">
+                        <dp-link ng-if="category.more"
+                                 class-name="btn btn-link u-color-brand-primary u-mt-05"
+                                 type="FETCH_DETAIL"
+                                 payload="category.more.endpoint">
+
+                            {{category.more.label}}
+                        </dp-link>
+
+                        <dp-link ng-if="!category.more"
+                                 class-name="btn btn-link u-color-brand-primary u-mt-05"
+                                 type="SHOW_SEARCH_RESULTS_CATEGORY"
+                                 payload="category.slug">
+
+                            Toon alle {{category.count}}
+                        </dp-link>
+                    </div>
+                </div>
             </div>
             <div ng-if="vm.category">
-                <atlas-search-results-category search-results="vm.searchResults[0]"></atlas-search-results-category>
+                <p>
+                    {{vm.numberOfResults | number}}
+                    ”<strong>{{vm.categoryName | lowercase}}</strong>”
+                    met
+                    <span ng-if="vm.query">”<strong>{{vm.query}}</strong>”</span>
+                </p>
+
+                <ul class="list">
+                    <li ng-repeat="link in vm.searchResults[0].results">
+                        <dp-link
+                            type="FETCH_DETAIL"
+                            payload="link.endpoint">
+
+                            {{link.label | longNameShortener}}
+                        </dp-link>
+                    </li>
+                </ul>
+
+                <button
+                    ng-if="vm.searchResults[0].count > vm.searchResults[0].results.length && !vm.isLoadMoreLoading"
+                    class="btn btn-link u-color-brand-primary u-mt-05"
+                    ng-click="vm.loadMore()">
+
+                    Toon meer
+                </button>
+
+                <span ng-if="vm.isLoadMoreLoading">HIER KOMT OOK EEN LOADING INDICATOR</span>
             </div>
         </div>
 
         <div ng-if="!vm.numberOfResults">
             <h2>Geen resultaten gevonden</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget dolor accumsan, condimentum lorem si.
-                Vivamus auctor lobortis mi, quis ornare neque interdum eget. Aenean orci sem, imperdiet sed maximus.
-            </p>
+            <p>Tip: maak de criteria minder specifiek (bijv. een straat i.p.v. specifiek adres)</p>
         </div>
 
     </div>

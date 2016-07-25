@@ -14,25 +14,39 @@
             controllerAs: 'vm'
         });
 
-    AtlasSearchResultsController.$inject = ['$scope', 'search', 'geosearch'];
+    AtlasSearchResultsController.$inject = ['$scope', 'SEARCH_CONFIG', 'search', 'geosearch'];
 
-    function AtlasSearchResultsController ($scope, search, geosearch) {
+    function AtlasSearchResultsController ($scope, SEARCH_CONFIG, search, geosearch) {
         var vm = this;
 
         /**
          * SEARCH BY QUERY
          */
-        $scope.$watch('vm.query', function (query) {
-            if (angular.isString(query) && query.length) {
+        $scope.$watchCollection('[vm.query, vm.category]', function () {
+            if (angular.isString(vm.query) && vm.query.length) {
                 vm.isLoading = true;
 
-                search.search(query).then(setSearchResults);
+                if (angular.isString(vm.category) && vm.category.length) {
+                    vm.categoryName = SEARCH_CONFIG.QUERY_ENDPOINTS.filter(function (endpoint) {
+                        return endpoint.slug === vm.category;
+                    })[0].label_plural;
+
+                    search.search(vm.query, vm.category).then(setSearchResults);
+                } else {
+                    search.search(vm.query).then(setSearchResults);
+                }
             }
         });
 
-        $scope.$watch('vm.category', function (category) {
-            search.search(vm.query, category).then(setSearchResults);
-        });
+        vm.loadMore = function () {
+            vm.isLoadMoreLoading = true;
+
+            search.loadMore(vm.searchResults[0]).then(function (searchResults) {
+                vm.isLoadMoreLoading = false;
+
+                vm.searchResults[0] = searchResults;
+            });
+        };
 
         /**
          * GEOSEARCH
@@ -45,6 +59,9 @@
             }
         });
 
+        /**
+         * For both SEARCH BY QUERY and GEOSEARCH
+         */
         function setSearchResults (searchResults) {
             vm.isLoading = false;
             vm.searchResults = searchResults;
