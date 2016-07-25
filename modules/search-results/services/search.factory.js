@@ -3,14 +3,13 @@
 
     angular
         .module('atlasSearchResults')
-        .factory('search', search);
+        .factory('search', searchFactory);
 
-    search.$inject = ['$q', 'SEARCH_CONFIG', 'api'];
+    searchFactory.$inject = ['$q', 'SEARCH_CONFIG', 'api', 'searchFormatter'];
 
-    function search ($q, SEARCH_CONFIG, api) {
+    function searchFactory ($q, SEARCH_CONFIG, api, searchFormatter) {
         return {
-            search: search,
-            searchEndpoint: searchEndpoint
+            search: search
         };
 
         function search (query) {
@@ -28,40 +27,7 @@
             });
 
             //When all queries are resolved
-            return $q.all(queries).then(formatResults);
-        }
-
-        function searchEndpoint (endpoint, params) {
-            return api.getByUri(endpoint, params).then(formatResults);
-        }
-
-        function formatResults (allSearchResults) {
-            return allSearchResults
-                .map(function (endpointSearchResults, index) {
-                    var links,
-                        formattedLinks;
-
-                    links = angular.isObject(endpointSearchResults) && endpointSearchResults.results || [];
-
-                    formattedLinks = links.map(function (item) {
-                        return {
-                            label: item._display,
-                            endpoint: item._links.self.href,
-                            subtype: item.subtype
-                        };
-                    });
-
-                    return {
-                        label: SEARCH_CONFIG.QUERY_ENDPOINTS[index].label_plural,
-                        slug: SEARCH_CONFIG.QUERY_ENDPOINTS[index].slug,
-                        count: angular.isObject(endpointSearchResults) && endpointSearchResults.count || 0,
-                        results: formattedLinks
-                    };
-                })
-                //Remove 'empty' categories with no search results
-                .filter(function (endpointSearchResults) {
-                    return endpointSearchResults.count;
-                });
+            return $q.all(queries).then(searchFormatter.format);
         }
     }
 })();

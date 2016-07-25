@@ -48,6 +48,7 @@
             ],
             COORDINATES_HIERARCHY: [
                 {
+                    slug: 'pand',
                     label: 'Pand',
                     features: ['bag/pand']
                 }, {
