@@ -183,6 +183,7 @@ describe('The atlas-stelselpedia-header directive', function () {
 
             //GEMEENTELIJKE_BEPERKING enige met wkpb uittreksel
             directive = getDirective(null, 'GEMEENTELIJKE_BEPERKING', false, null, brk);
+
             expect(directive.find('atlas-wkpb-link').length).toBe(1);
         });
 

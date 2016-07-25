@@ -28,7 +28,7 @@
         <dt>Toegang</dt>
         <dd>{{ apiData.results.toegang.omschrijving }}</dd>
         <dt>Indicatie woningvoorraad</dt>
-        <dd>{{ apiData.results.woningvoorraad | dpYesno }}</dd>
+        <dd>{{ apiData.results.woningvoorraad | yesNo }}</dd>
         <dt>Reden opvoer</dt>
         <dd>{{ apiData.results.reden_opvoer.omschrijving }}</dd>
         <dt>Status</dt>
@@ -58,7 +58,12 @@
   <div class="list-box" ng-if="apiData.results.kadastrale_objecten.count">
     <atlas-stelselpedia-header definition="KADASTRAAL_OBJECT" use-plural="true"></atlas-stelselpedia-header>
 
-    <atlas-api-call endpoint="{{apiData.results.kadastrale_objecten.href}}" partial="bag/brk-vbo" expand="true"></atlas-api-call>
+    <atlas-api-call
+        endpoint="{{apiData.results.kadastrale_objecten.href}}"
+        partial="bag/brk-vbo"
+        use-brk-object-expanded="true">
+
+    </atlas-api-call>
   </div>
 
 </div>
