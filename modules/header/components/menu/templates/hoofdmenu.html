@@ -1,9 +1,9 @@
-<div class="col-sm-4 shareandextras__menu js-menu" ng-click="vm.toggleVisibility($event)">
-    {{vm}}
+<div ng-click="vm.toggle">
     <button class="site-header__navigation__item">
         Menu
     </button>
-    <ul ng-class="{'active': isActive}" class="shareandextras__menu-items">
+    {{vm}}
+    <ul ng-class="{'dropdowm-menu--is-visible': vm.isVisible}" class="dropdown-menu">
         <li class="shareandextras__menu-item">
             <dp-print-button>
                 <span class="shareandextras__menu-item__icon">
@@ -21,9 +21,9 @@
             </feedback-link>
         </li>
         <li class="shareandextras__menu-item">
-            <dp-link type="SHOW_PAGE" payload="testlinks" class="site-header__navigation__item">
+            <a ng-click="vm.showPage('testlinks')" class="site-header__navigation__item">
                 testlinks
-            </dp-link>
+            </a>
         </li>
         <li class="shareandextras__menu-item">
             <dp-link type="SHOW_PAGE" payload="over-ons" class="site-header__navigation__item">

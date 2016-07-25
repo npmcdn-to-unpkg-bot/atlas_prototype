@@ -16,12 +16,18 @@
 
     function AtlasHeaderController (store, ACTIONS) {
         var vm = this;
+        vm.isVisible = true;
 
         vm.showPage = function (name) {
             store.dispatch({
                 type: ACTIONS.SHOW_PAGE,
                 payload: name
             });
+        };
+
+        vm.toggle = function() {
+            vm.isVisible = !vm.isVisible;
+            console.log('hier?');
         };
     }
 })();
