@@ -23,9 +23,11 @@
 
             return SEARCH_CONFIG.COORDINATES_HIERARCHY
                 .map(function (rawCategory) {
+                    console.log(rawCategory);
                     var formattedCategory = {
                         slug: rawCategory.slug,
-                        label: rawCategory.label,
+                        label_singular: rawCategory.label_singular,
+                        label_plural: rawCategory.label_plural,
                         results: allFeaturesFlattened
                             .filter(function (feature) {
                                 return rawCategory.features.indexOf(feature.type) !== -1;

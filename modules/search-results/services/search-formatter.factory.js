@@ -21,7 +21,8 @@
                     links = angular.isObject(endpointSearchResults) && endpointSearchResults.results || [];
 
                     return {
-                        label: SEARCH_CONFIG.QUERY_ENDPOINTS[index].label_plural,
+                        label_singular: SEARCH_CONFIG.QUERY_ENDPOINTS[index].label_singular,
+                        label_plural: SEARCH_CONFIG.QUERY_ENDPOINTS[index].label_plural,
                         slug: SEARCH_CONFIG.QUERY_ENDPOINTS[index].slug,
                         count: angular.isObject(endpointSearchResults) && endpointSearchResults.count || 0,
                         results: formatLinks(links),

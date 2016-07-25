@@ -15,10 +15,8 @@
                 </p>
 
                 <div class="u-mb-3" ng-repeat="category in vm.searchResults">
-                    <h2>
-                        {{category.label}}
-                        <span ng-if="category.count > 1">({{category.count | number}})</span>
-                    </h2>
+                    <h2 ng-if="category.count > 1">{{category.label_plural}} ({{category.count | number}})</h2>
+                    <h2 ng-if="category.count === 1">{{category.label_singular}}</h2>
 
                     <atlas-search-results-list category="category"></atlas-search-results-list>
 

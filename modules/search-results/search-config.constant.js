@@ -48,23 +48,28 @@
             ],
             COORDINATES_HIERARCHY: [
                 {
-                    slug: 'pand',
-                    label: 'Pand',
+                    label_singular: 'Pand',
+                    label_plural: 'Panden',
                     features: ['bag/pand']
                 }, {
-                    label: 'Standplaats',
+                    label_singular: 'Standplaats',
+                    label_plural: 'Standplaatsen',
                     features: ['bag/standplaats']
                 }, {
-                    label: 'Ligplaats',
+                    label_singular: 'Ligplaats',
+                    label_plural: 'Ligplaatsen',
                     features: ['bag/ligplaats']
                 }, {
-                    label: 'Openbare ruimte',
+                    label_singular: 'Openbare ruimte',
+                    label_plural: 'Openbare ruimtes',
                     features: ['bag/openbareruimte']
                 }, {
-                    label: 'Kadastraal object',
+                    label_singular: 'Kadastraal object',
+                    label_plural: 'Kadastrale objecten',
                     features: ['kadaster/kadastraal_object']
                 }, {
-                    label: 'Gebieden',
+                    label_singular: 'Gebied',
+                    label_plural: 'Gebieden',
                     features: [
                         'gebieden/stadsdeel',
                         'gebieden/gebiedsgerichtwerken',
@@ -75,13 +80,16 @@
                         'gebieden/unesco'
                     ]
                 }, {
-                    label: 'Gemeentelijke beperking',
+                    label_singular: 'Gemeentelijke beperking',
+                    label_plural: 'Gemeentelijke beperkingen',
                     features: ['wkpb/beperking']
                 }, {
-                    label: 'Meetbouten',
+                    label_singular: 'Meetbout',
+                    label_plural: 'Meetbouten',
                     features: ['meetbouten/meetbout']
                 }, {
-                    label: 'NAP Peilmerken',
+                    label_singular: 'NAP Peilmerk',
+                    label_plural: 'NAP Peilmerken',
                     features: ['nap/peilmerk']
                 }
             ]
