@@ -23,7 +23,6 @@
 
             return SEARCH_CONFIG.COORDINATES_HIERARCHY
                 .map(function (rawCategory) {
-                    console.log(rawCategory);
                     var formattedCategory = {
                         slug: rawCategory.slug,
                         label_singular: rawCategory.label_singular,

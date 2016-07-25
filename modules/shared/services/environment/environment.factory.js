@@ -19,8 +19,6 @@
                 environment = 'DEVELOPMENT';
         }
 
-        environment = 'PRODUCTION';
-
         ENVIRONMENT_CONFIG[environment].NAME = environment;
 
         return ENVIRONMENT_CONFIG[environment];

@@ -1,4 +1,4 @@
-xdescribe('The environment factory', function () {
+describe('The environment factory', function () {
     var $location,
         mockedHostname;
 

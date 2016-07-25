@@ -1,9 +1,4 @@
-<button
-    class="{{vm.className}}"
-    ng-class="{
-        'btn btn-link': !vm.className
-    }"
-    ng-click="vm.followLink()">
-
+{{vm.className}}
+<button class="{{vm.className}}" ng-click="vm.followLink()">
     <ng-transclude></ng-transclude>
 </button>

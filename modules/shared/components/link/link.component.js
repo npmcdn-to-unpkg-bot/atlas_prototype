@@ -20,6 +20,8 @@
     function DpLinkController (store, ACTIONS) {
         var vm = this;
 
+        vm.className = vm.className || 'btn btn-link';
+
         vm.followLink = function () {
             store.dispatch({
                 type: ACTIONS[vm.type],
