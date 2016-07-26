@@ -67,7 +67,7 @@ describe('the dropdown menu directive', function () {
         expect(directive.find('.js-testClass').length).toBe(0);
     });
 
-    xit('should hide the menu items if you click elsewhere on the page', function () {
+    it('should hide the menu items if you click elsewhere on the page', function () {
         var directive = getDirective('dropdown-menu');
         expect(directive.find('.js-testClass').length).toBe(0);
 
@@ -75,7 +75,6 @@ describe('the dropdown menu directive', function () {
         expect(directive.find('.js-testClass').length).toBe(1);
 
         directive.find('.js-testClass').eq(0).click();
-        $rootScope.$apply();
         expect(directive.find('.js-testClass').length).toBe(0);
     });
 
