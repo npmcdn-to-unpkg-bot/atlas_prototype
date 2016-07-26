@@ -5,26 +5,44 @@ fdescribe('The atlas-search-results component', function () {
         store,
         ACTIONS,
         mockedSearchResults,
-        mockedGeosearchResults;
+        mockedSearchResultsNextPage,
+        mockedGeosearchResults,
+        mockedNoResults,
+        i;
     
     beforeEach(function () {
         angular.mock.module(
             'atlasSearchResults',
             {
                 search: {
-                    search: function () {
+                    search: function (query) {
                         var q = $q.defer();
 
-                        q.resolve(mockedSearchResults);
+                        if (query === 'QUERY_WITHOUT_RESULTS') {
+                            q.resolve(mockedNoResults);
+                        } else {
+                            q.resolve(mockedSearchResults);
+                        }
+
+                        return q.promise;
+                    },
+                    loadMore: function () {
+                        var q = $q.defer();
+
+                        q.resolve(mockedSearchResultsNextPage);
 
                         return q.promise;
                     }
                 },
                 geosearch: {
-                    search: function () {
+                    search: function (location) {
                         var q = $q.defer();
 
-                        q.resolve(mockedGeosearchResults);
+                        if (location[0] === 52.999 && location[1] === 4.999) {
+                            q.resolve(mockedNoResults);
+                        } else {
+                            q.resolve(mockedGeosearchResults);
+                        }
 
                         return q.promise;
 
@@ -50,6 +68,14 @@ fdescribe('The atlas-search-results component', function () {
                             uri: 'path/to/adres/'
                         }
                     ]
+                });
+
+                $provide.factory('dpStraatbeeldThumbnailDirective', function () {
+                    return {};
+                });
+
+                $provide.value('coordinatesFilter', function (input) {
+                    return input.join(', ') + ' (X, Y)';
                 });
             }
         );
@@ -125,7 +151,7 @@ fdescribe('The atlas-search-results component', function () {
                         subtype: 'verblijfsobject'
                     }
                 ],
-                next: 'https://some-domain/atlas/search/adres/?q=weesperstraat&page=2'
+                next: null
             },
             {
                 label_singular: 'Openbare ruimte',
@@ -160,7 +186,7 @@ fdescribe('The atlas-search-results component', function () {
                 label_singular: 'Adres',
                 label_plural: 'Adressen',
                 slug: 'adres',
-                count: 11,
+                count: 12,
                 results: [
                     {
                         label: 'Lumièrestraat 6',
@@ -213,7 +239,7 @@ fdescribe('The atlas-search-results component', function () {
                 ],
                 next: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/?page=2&panden__id=03630013054429',
                 more: {
-                    label: 'Bekijk alle 11 adressen binnen dit pand',
+                    label: 'Bekijk alle 12 adressen binnen dit pand',
                     endpoint: 'https://api.datapunt.amsterdam.nl/bag/pand/03630013054429/'
                 }
             },
@@ -222,17 +248,17 @@ fdescribe('The atlas-search-results component', function () {
                 label_plural: 'Openbare ruimtes',
                 results: [
                     {
-                        label: 'Test OR',
+                        label: 'Test OR #1',
                         subtype: 'landschappelijk gebied',
                         endpoint: 'https://api.datapunt.amsterdam.nl/bag/openbareruimte/123/'
                     },
                     {
-                        label: 'Test OR',
+                        label: 'Test OR #2',
                         subtype: 'weg',
                         endpoint: 'https://api.datapunt.amsterdam.nl/bag/openbareruimte/456/'
                     },
                     {
-                        label: 'Test OR',
+                        label: 'Test OR #3',
                         subtype: 'water',
                         endpoint: 'https://api.datapunt.amsterdam.nl/bag/openbareruimte/789/'
                     }
@@ -284,6 +310,7 @@ fdescribe('The atlas-search-results component', function () {
                 count: 5
             }
         ];
+        mockedNoResults = [];
 
         spyOn(store, 'dispatch');
     });
@@ -300,13 +327,13 @@ fdescribe('The atlas-search-results component', function () {
             element.setAttribute('query', query);
         }
 
-        if (angular.isString(location)) {
-            element.setAttribute('location', location);
+        if (angular.isArray(location)) {
+            element.setAttribute('location', 'location');
+            scope.location = location;
         }
 
         if (angular.isString(category)) {
-            element.setAttribute('category', 'category');
-            scope.category = category;
+            element.setAttribute('category', category);
         }
 
         component = $compile(element)(scope);
@@ -365,6 +392,12 @@ fdescribe('The atlas-search-results component', function () {
             expect(removeWhitespace(component.find('p').text())).toBe('1 resultaat met "Weesperstraat"');
         });
 
+        it('doesn\'t show the dp-straatbeeld-thumbnail component', function () {
+            var component = getComponent('Weesperstraat');
+
+            expect(component.find('dp-straatbeeld-thumbnail').length).toBe(0);
+        });
+
         describe('has category support', function () {
             it('has both singular and plural variations for the headings of categories', function () {
                 var component;
@@ -398,37 +431,216 @@ fdescribe('The atlas-search-results component', function () {
                 expect(removeWhitespace(component.find('dp-link').eq(10).text())).toBe('Toon alle 1.234');
             });
 
-            it('can show a single category', function () {
-                var component = getComponent('Weesperstraat', null, 'adres');
+            describe('the category page', function () {
+                var component;
 
+                beforeEach(function () {
+                    mockedSearchResults.length = 1;
 
-            });
+                    component = getComponent('Weesperstraat', null, 'adres');
+                });
 
-            it('can have a show more link inside a category', function () {
-                //'Infinite scroll'
+                it('shows all links from the search API (instead of just the first 10)', function () {
+                    expect(component.find('dp-link').length).toBe(11);
+
+                    //The first link
+                    expect(removeWhitespace(component.find('dp-link').eq(0).text())).toBe('Weesperstraat 101');
+                    component.find('dp-link button').click();
+                    expect(store.dispatch).toHaveBeenCalledWith({
+                        type: ACTIONS.FETCH_DETAIL,
+                        payload: 'https://some-domain/bag/verblijfsobject/03630000864309/'
+                    });
+
+                    //The last link
+                    expect(removeWhitespace(component.find('dp-link').eq(10).text())).toBe('Weesperstraat 117');
+                    component.find('dp-link button').click();
+                    expect(store.dispatch).toHaveBeenCalledWith({
+                        type: ACTIONS.FETCH_DETAIL,
+                        payload: 'https://some-domain/bag/verblijfsobject/03630000864316/'
+                    });
+                });
+
+                it('shows the active category as part of the metadata above the category', function () {
+                    //The category name is shown in lowercase
+                    expect(removeWhitespace(component.find('p').text())).toBe('11 "adressen" met "Weesperstraat"');
+
+                    //The number of results have a thousand separator
+                    mockedSearchResults[0].count = 1000;
+                    component = getComponent('Weesperstraat', null, 'adres');
+                    expect(removeWhitespace(component.find('p').text())).toBe('1.000 "adressen" met "Weesperstraat"');
+                });
+
+                it('can have a show more link inside the category', function () {
+                    mockedSearchResults[0].count = 30;
+
+                    //Making sure the mockedSearchResults have 25 results for the first page
+                    while (mockedSearchResults[0].results.length < 25) {
+                        mockedSearchResults[0].results.push(angular.copy(mockedSearchResults[0].results[0]));
+                    }
+
+                    mockedSearchResultsNextPage = angular.copy(mockedSearchResults[0]);
+
+                    //Add 5 extra search results
+                    for (i = 0; i < 5; i ++) {
+                        mockedSearchResultsNextPage.results.push(angular.copy(mockedSearchResults[0].results[0]));
+                    }
+
+                    component = getComponent('Weesperstraat', null, 'adres');
+
+                    //It only shows the first 25 results
+                    expect(component.find('dp-link').length).toBe(25);
+                    expect(component.find('button').eq(25).text().trim()).toBe('Toon meer');
+
+                    //Click the 'Toon meer' button
+                    component.find('button').eq(25).click();
+                    $rootScope.$apply();
+
+                    //Now it shows all 30 search results
+                    expect(component.find('dp-link').length).toBe(30);
+
+                    //And it no longer shows a 'Toon meer' button
+                    expect(component.find('button').length).toBe(30); //Instead of 31 (30 dp-link + 1 'Toon meer')
+                });
             });
         });
     });
 
     describe('search by location', function () {
+        var component;
+
+        beforeEach(function () {
+            component = getComponent(null, [51.123, 4.789]);
+        });
+
         it('shows search results from the geosearch API on the scope', function () {
-            //vm.searchResults
-            //vm.numberOfSearchResult
+            expect(component.find('h2').length).toBe(5);
+
+            //21 Links include an additional 'show more' link to the Pand and it includes only 10 adressen instead of 12
+            expect(component.find('dp-link').length).toBe(21);
+
+            //First category
+            expect(component.find('h2').eq(0).text()).toBe('Pand'); //Singular, no number of results shown
+
+            expect(removeWhitespace(component.find('dp-link').eq(0).text())).toBe('03630013054429');
+            component.find('dp-link').eq(0).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/bag/pand/03630013054429/'
+            });
+
+            //Second category
+            expect(component.find('h2').eq(1).text()).toBe('Adressen (12)'); //Plural, with number of results
+
+            expect(removeWhitespace(component.find('dp-link').eq(1).text())).toBe('Lumièrestraat 6');
+            component.find('dp-link').eq(1).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630001023953/'
+            });
+
+            expect(removeWhitespace(component.find('dp-link').eq(10).text())).toBe('Lumièrestraat 24');
+            component.find('dp-link').eq(10).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630001023962/'
+            });
+
+            //Third category
+            expect(component.find('h2').eq(2).text()).toBe('Openbare ruimtes (3)'); //Plural
+
+            expect(removeWhitespace(component.find('dp-link').eq(12).text())).toBe('Test OR #1');
+            component.find('dp-link').eq(12).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/bag/openbareruimte/123/'
+            });
+
+            expect(removeWhitespace(component.find('dp-link').eq(14).text())).toBe('Test OR #3');
+            component.find('dp-link').eq(14).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/bag/openbareruimte/789/'
+            });
+
+            //Fourth category
+            expect(component.find('h2').eq(3).text()).toBe('Kadastraal object'); //Singular
+
+            expect(removeWhitespace(component.find('dp-link').eq(15).text())).toBe('ASD41AU00154G0000');
+            component.find('dp-link').eq(15).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/brk/object/NL.KAD.OnroerendeZaak.11820015470000/'
+            });
+
+            //Fifth category
+            expect(component.find('h2').eq(4).text()).toBe('Gebieden (5)'); //Plural
+
+            expect(removeWhitespace(component.find('dp-link').eq(16).text())).toBe('Haveneiland Noordoost');
+            component.find('dp-link').eq(16).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/gebieden/buurt/03630023754004/'
+            });
+
+            expect(removeWhitespace(component.find('dp-link').eq(20).text())).toBe('Oost');
+            component.find('dp-link').eq(20).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/gebieden/stadsdeel/03630011872039/'
+            });
         });
 
         it('shows meta information above the search results', function () {
-            //formatted location + number of results thousands separator
+            expect(removeWhitespace(component.find('p').text())).toBe('22 resultaten met "51.123, 4.789 (X, Y)"');
+
+            //Check the thousands separator
+            mockedGeosearchResults[1].count = 1012;
+            component = getComponent(null, [51.123, 4.789]);
+            expect(removeWhitespace(component.find('p').text())).toBe('1.022 resultaten met "51.123, 4.789 (X, Y)"');
         });
 
         it('has more link support', function () {
-            //This is an exception made for verblijfsobjecten in the geosearch results
+            var numberOfDpLinks;
+
+            //When there are more than 10 adressen
+            expect(component.find('dp-link').eq(11).find('button').text().trim())
+                .toBe('Bekijk alle 12 adressen binnen dit pand');
+
+            component.find('dp-link').eq(11).find('button').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.FETCH_DETAIL,
+                payload: 'https://api.datapunt.amsterdam.nl/bag/pand/03630013054429/'
+            });
+
+            numberOfDpLinks = component.find('dp-link').length;
+
+            //When there are 10 or less adressen
+            mockedGeosearchResults[1].count = 10;
+            mockedGeosearchResults[1].results.length = 10;
+
+            component = getComponent(null, [51.123, 4.789]);
+            expect(component.find('dp-link').eq(11).find('button').text().trim())
+                .not.toBe('Bekijk alle 12 adressen binnen dit pand');
+            expect(component.find('dp-link').length).toBe(numberOfDpLinks - 1);
+        });
+
+        it('shows the dp-straatbeeld-thumbnail component', function () {
+            expect(component.find('dp-straatbeeld-thumbnail').length).toBe(1);
         });
     });
 
     it('shows a message when there are no search results', function () {
-        //search
+        var component;
 
-        //geosearch
+        //Search
+        component = getComponent('QUERY_WITHOUT_RESULTS');
+        expect(component.find('h2').text().trim()).toBe('Geen resultaten gevonden');
+        expect(component.find('dp-link').length).toBe(0);
+
+        //Geosearch
+        component = getComponent(null, [52.999, 4.999]);
+        expect(component.find('h2').text().trim()).toBe('Geen resultaten gevonden');
+        expect(component.find('dp-link').length).toBe(0);
     });
 
     function removeWhitespace (input) {

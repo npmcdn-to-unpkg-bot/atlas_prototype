@@ -22,17 +22,17 @@
 
                     <div ng-if="category.count > 10">
                         <dp-link ng-if="category.more"
-                                 class-name="btn btn-link u-color-brand-primary u-mt-05"
-                                 type="FETCH_DETAIL"
-                                 payload="category.more.endpoint">
+                            class-name="btn btn-link u-color-brand-primary u-mt-05"
+                            type="FETCH_DETAIL"
+                            payload="category.more.endpoint">
 
                             {{category.more.label}}
                         </dp-link>
 
                         <dp-link ng-if="!category.more"
-                                 class-name="btn btn-link u-color-brand-primary u-mt-05"
-                                 type="SHOW_SEARCH_RESULTS_CATEGORY"
-                                 payload="category.slug">
+                            class-name="btn btn-link u-color-brand-primary u-mt-05"
+                            type="SHOW_SEARCH_RESULTS_CATEGORY"
+                            payload="category.slug">
 
                             Toon alle {{category.count | number}}
                         </dp-link>

@@ -63,7 +63,6 @@
          * For both SEARCH BY QUERY and GEOSEARCH
          */
         function setSearchResults (searchResults) {
-            console.log(searchResults);
             vm.isLoading = false;
             vm.searchResults = searchResults;
 
