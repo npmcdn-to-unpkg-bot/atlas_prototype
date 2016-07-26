@@ -151,7 +151,8 @@ fdescribe('The atlas-search-results component', function () {
                         subtype: 'verblijfsobject'
                     }
                 ],
-                next: null
+                next: null,
+                useIndenting: false
             },
             {
                 label_singular: 'Openbare ruimte',
@@ -165,7 +166,8 @@ fdescribe('The atlas-search-results component', function () {
                         subtype: 'weg'
                     }
                 ],
-                next: null
+                next: null,
+                useIndenting: false
             }
         ];
         mockedGeosearchResults = [
@@ -180,7 +182,8 @@ fdescribe('The atlas-search-results component', function () {
                         endpoint: 'https://api.datapunt.amsterdam.nl/bag/pand/03630013054429/'
                     }
                 ],
-                count: 1
+                count: 1,
+                useIndenting: false
             },
             {
                 label_singular: 'Adres',
@@ -241,7 +244,8 @@ fdescribe('The atlas-search-results component', function () {
                 more: {
                     label: 'Bekijk alle 12 adressen binnen dit pand',
                     endpoint: 'https://api.datapunt.amsterdam.nl/bag/pand/03630013054429/'
-                }
+                },
+                useIndenting: true
             },
             {
                 label_singular: 'Openbare ruimte',
@@ -263,7 +267,8 @@ fdescribe('The atlas-search-results component', function () {
                         endpoint: 'https://api.datapunt.amsterdam.nl/bag/openbareruimte/789/'
                     }
                 ],
-                count: 3
+                count: 3,
+                useIndenting: false
             },
             {
                 label_singular: 'Kadastraal object',
@@ -275,7 +280,8 @@ fdescribe('The atlas-search-results component', function () {
                         endpoint: 'https://api.datapunt.amsterdam.nl/brk/object/NL.KAD.OnroerendeZaak.11820015470000/'
                     }
                 ],
-                count: 1
+                count: 1,
+                useIndenting: false
             },
             {
                 label_singular: 'Gebied',
@@ -307,7 +313,8 @@ fdescribe('The atlas-search-results component', function () {
                         endpoint: 'https://api.datapunt.amsterdam.nl/gebieden/stadsdeel/03630011872039/'
                     }
                 ],
-                count: 5
+                count: 5,
+                useIndenting: false
             }
         ];
         mockedNoResults = [];
@@ -597,6 +604,32 @@ fdescribe('The atlas-search-results component', function () {
             mockedGeosearchResults[1].count = 1012;
             component = getComponent(null, [51.123, 4.789]);
             expect(removeWhitespace(component.find('p').text())).toBe('1.022 resultaten met "51.123, 4.789 (X, Y)"');
+        });
+
+        fit('has indenting for certain \'related\' categories', function () {
+            console.log(component.find('ul').length);
+
+            //Without indenting
+            [0, 2, 3, 4].forEach(function (categoryIndex) {
+                expect(component.find('[ng-repeat="category in vm.searchResults"]').eq(categoryIndex).attr('class'))
+                    .toContain('u-mt-3');
+
+                expect(component.find('[ng-repeat="category in vm.searchResults"]').eq(categoryIndex).attr('class'))
+                    .not.toContain('u-mt-1');
+
+                expect(component.find('[ng-repeat="category in vm.searchResults"]').eq(categoryIndex).attr('class'))
+                    .not.toContain('u-ml-3');
+            });
+
+            //With indenting
+            expect(component.find('[ng-repeat="category in vm.searchResults"]').eq(1).attr('class'))
+                .toContain('u-ml-3');
+
+            expect(component.find('[ng-repeat="category in vm.searchResults"]').eq(1).attr('class'))
+                .toContain('u-mt-1');
+
+            expect(component.find('[ng-repeat="category in vm.searchResults"]').eq(1).attr('class'))
+                .not.toContain('u-mt-3');
         });
 
         it('has more link support', function () {

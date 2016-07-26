@@ -26,6 +26,7 @@
                         slug: SEARCH_CONFIG.QUERY_ENDPOINTS[index].slug,
                         count: angular.isObject(endpointSearchResults) && endpointSearchResults.count || 0,
                         results: formatLinks(links),
+                        useIndenting: false,
                         next: angular.isObject(endpointSearchResults) &&
                             endpointSearchResults._links &&
                             endpointSearchResults._links.next.href

@@ -56,6 +56,8 @@
 
                         if (verblijfsobjecten.count) {
                             formattedVerblijfsobjecten = searchFormatter.formatCategories([verblijfsobjecten])[0];
+
+                            formattedVerblijfsobjecten.useIndenting = true;
                             formattedVerblijfsobjecten.more = {
                                 label: 'Bekijk alle ' + formattedVerblijfsobjecten.count + ' adressen binnen dit pand',
                                 endpoint: pand._links.self.href

@@ -1,5 +1,5 @@
 <div ng-if="!vm.isLoading" class="row">
-    <div class="u-pt-2" ng-class="{
+    <div class="u-pt-2 u-pb-2" ng-class="{
         'col-sm-12': !vm.location,
         'col-sm-8': vm.location
         }">
@@ -14,7 +14,12 @@
                     <span ng-if="vm.location">"<strong>{{vm.location | coordinates}}</strong>"</span>
                 </p>
 
-                <div class="u-mb-3" ng-repeat="category in vm.searchResults">
+                <div ng-repeat="category in vm.searchResults"
+                    ng-class="{
+                        'u-mt-1 u-ml-3': category.useIndenting,
+                        'u-mt-3': !category.useIndenting
+                    }">
+
                     <h2 ng-if="category.count > 1">{{category.label_plural}} ({{category.count | number}})</h2>
                     <h2 ng-if="category.count === 1">{{category.label_singular}}</h2>
 

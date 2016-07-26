@@ -37,7 +37,8 @@
                                     subtype: feature.opr_type ? feature.opr_type.toLowerCase() : null,
                                     endpoint: feature.uri
                                 };
-                            })
+                            }),
+                        useIndenting: rawCategory.slug === 'category'
                     };
 
                     formattedCategory.count = formattedCategory.results.length;
