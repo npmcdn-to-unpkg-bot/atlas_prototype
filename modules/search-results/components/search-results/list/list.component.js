@@ -5,7 +5,8 @@
         .module('atlasSearchResults')
         .component('atlasSearchResultsList', {
             bindings: {
-                category: '='
+                category: '=',
+                limitResults: '='
             },
             templateUrl: 'modules/search-results/components/search-results/list/list.html',
             controller: AtlasSearchResultsListController,

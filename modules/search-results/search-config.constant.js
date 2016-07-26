@@ -48,7 +48,7 @@
             ],
             COORDINATES_HIERARCHY: [
                 {
-                    //The slug variable is used to indentify the category in geosearch.factory.js
+                    //The slug variable is used to indentify this category in geosearch.factory.js
                     slug: 'pand',
                     label_singular: 'Pand',
                     label_plural: 'Panden',

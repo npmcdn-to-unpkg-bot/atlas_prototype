@@ -18,7 +18,7 @@
                     <h2 ng-if="category.count > 1">{{category.label_plural}} ({{category.count | number}})</h2>
                     <h2 ng-if="category.count === 1">{{category.label_singular}}</h2>
 
-                    <atlas-search-results-list category="category"></atlas-search-results-list>
+                    <atlas-search-results-list category="category" limit-results="true"></atlas-search-results-list>
 
                     <div ng-if="category.count > 10">
                         <dp-link ng-if="category.more"
@@ -47,7 +47,7 @@
                     <span ng-if="vm.query">"<strong>{{vm.query}}</strong>"</span>
                 </p>
 
-                <atlas-search-results-list category="vm.category"></atlas-search-results-list>
+                <atlas-search-results-list category="vm.searchResults[0]"></atlas-search-results-list>
 
                 <button
                     ng-if="vm.searchResults[0].count > vm.searchResults[0].results.length && !vm.isLoadMoreLoading"
