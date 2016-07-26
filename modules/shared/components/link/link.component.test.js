@@ -74,7 +74,7 @@ describe('The dp-link component', function () {
 
         it('has a default styling of a regular link', function () {
             var component = getComponent('SHOW_PAGE', 'welkom');
-            console.log(component);
+
             expect(component.find('button').length).toBe(1);
             expect(component.find('button').attr('class')).toContain('btn');
             expect(component.find('button').attr('class')).toContain('btn-link');

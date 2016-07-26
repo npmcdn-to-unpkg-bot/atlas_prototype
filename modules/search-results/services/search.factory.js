@@ -33,7 +33,6 @@
 
         function loadMore (category) {
             return api.getByUrl(category.next)
-                //.then(searchFormatter.formatLinks)
                 .then(function (nextPageData) {
                     //Don't change the input, create a new variable
                     var output = {};

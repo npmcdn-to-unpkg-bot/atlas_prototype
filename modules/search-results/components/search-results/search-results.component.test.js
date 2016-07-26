@@ -607,8 +607,6 @@ describe('The atlas-search-results component', function () {
         });
 
         it('has indenting for certain \'related\' categories', function () {
-            console.log(component.find('ul').length);
-
             //Without indenting
             [0, 2, 3, 4].forEach(function (categoryIndex) {
                 expect(component.find('[ng-repeat="category in vm.searchResults"]').eq(categoryIndex).attr('class'))
