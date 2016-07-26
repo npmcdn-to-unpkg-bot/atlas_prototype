@@ -29,7 +29,7 @@
                         useIndenting: false,
                         next: angular.isObject(endpointSearchResults) &&
                             endpointSearchResults._links &&
-                            endpointSearchResults._links.next.href
+                            endpointSearchResults._links.next.href || null
                     };
                 })
                 //Remove 'empty' categories with no search results
@@ -43,7 +43,7 @@
                 return {
                     label: item._display,
                     endpoint: item._links.self.href,
-                    subtype: item.subtype
+                    subtype: item.subtype || null
                 };
             });
         }
