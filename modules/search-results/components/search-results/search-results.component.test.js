@@ -1,4 +1,4 @@
-fdescribe('The atlas-search-results component', function () {
+describe('The atlas-search-results component', function () {
     var $compile,
         $rootScope,
         $q,
@@ -606,7 +606,7 @@ fdescribe('The atlas-search-results component', function () {
             expect(removeWhitespace(component.find('p').text())).toBe('1.022 resultaten met "51.123, 4.789 (X, Y)"');
         });
 
-        fit('has indenting for certain \'related\' categories', function () {
+        it('has indenting for certain \'related\' categories', function () {
             console.log(component.find('ul').length);
 
             //Without indenting
