@@ -1,6 +1,8 @@
-<div>
-    <button class="site-header__navigation__item" ng-click="vm.toggle()">
-        {{vm.label}}
+<div >
+    <button class="site-header__navigation__item" ng-click="toggle()">
+        {{label}}
     </button>
-    <ng-transclude></ng-transclude>
+    <div ng-if="isVisible" class="js-testClass">
+        <ng-transclude></ng-transclude>
+    </div>
 </div>
