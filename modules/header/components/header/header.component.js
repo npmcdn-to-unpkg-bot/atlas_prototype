@@ -12,11 +12,10 @@
             controllerAs: 'vm'
         });
 
-    AtlasHeaderController.$inject = ['store', 'ACTIONS', 'userService'];
+    AtlasHeaderController.$inject = ['store', 'ACTIONS'];
 
-    function AtlasHeaderController (store, ACTIONS, userService) {
+    function AtlasHeaderController (store, ACTIONS) {
         var vm = this;
-        vm.userService = userService;
 
         vm.showPage = function (name) {
             store.dispatch({
