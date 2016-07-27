@@ -18,7 +18,7 @@
 
             userState = user.getStatus();
 
-            if (userState.loggedIn) {
+            if (userState.isLoggedIn) {
                 headers.Authorization = 'Bearer ' + userState.accessToken;
             }
 

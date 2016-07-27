@@ -11,7 +11,7 @@
         var userState = {
                 username: null,
                 accessToken: null,
-                loggedIn: false
+                isLoggedIn: false
             };
 
         return {
@@ -39,10 +39,11 @@
                 .then(loginSuccess, loginError);
 
             function loginSuccess (response) {
+                console.log(response);
                 //This is the username as entered by the user in the login form, the backend doesn't return the username
                 userState.username = username;
-                userState.accessToken = response.access_token;
-                userState.loggedIn = true;
+                userState.accessToken = response.data.access_token;
+                userState.isLoggedIn = true;
             }
 
             function loginError (response) {
@@ -65,6 +66,11 @@
         }
 
         function logout () {
+            console.log({
+                token: userState.accessToken,
+                client_id: CLIENT_ID
+            });
+
             return $http({
                 method: 'POST',
                 url: environment.OAUTH_ROOT + 'revoke_token/',
@@ -80,7 +86,7 @@
             }).then(function () {
                 userState.username = null;
                 userState.accessToken = null;
-                userState.loggedIn = false;
+                userState.isLoggedIn = false;
             });
         }
 
@@ -88,5 +94,4 @@
             return userState;
         }
     }
-
 })();

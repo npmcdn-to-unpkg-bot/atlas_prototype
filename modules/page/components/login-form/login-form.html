@@ -1,15 +1,23 @@
-<p ng-if="vm.errorMessage">{{vm.errorMessage}}</p>
+<div ng-if="vm.isLoggedIn()">
+    <p>Je bent nu ingelogd, heel knap.</p>
+</div>
 
-<form ng-submit="vm.login()">
-    <fieldset>
-        <label>
-            Gebruikersnaam:
-            <input ng-model="vm.username" required>
-        </label>
-        <label>
-            Wachtwoord:
-            <input ng-model="vm.password" type="password" required>
-        </label>
-        <button type="submit">Inloggen</button>
-    </fieldset>
-</form>
+<div ng-if="!vm.isLoggedIn()">
+    <p ng-if="vm.errorMessage">{{vm.errorMessage}}</p>
+
+    <form ng-submit="vm.login()">
+        <fieldset>
+            <label>
+                Gebruikersnaam:
+                <input ng-model="vm.username" required>
+            </label>
+            <label>
+                Wachtwoord:
+                <input ng-model="vm.password" type="password" required>
+            </label>
+            <button type="submit">Inloggen</button>
+        </fieldset>
+    </form>
+
+    <p>Leuk verhaaltje over inloggen. Waarom zou je eigenlijk inloggen? Hoe kom je aan een account?</p>
+</div>

@@ -22,11 +22,17 @@
             user
                 .login(vm.username, vm.password)
                 .then(function () {
-                    console.log('ik ben lekker ingelogd');
+
                 })
                 .catch(function (errorMessage) {
                     vm.errorMessage = errorMessage;
                 });
+        };
+
+        vm.isLoggedIn = function () {
+            var userState = user.getStatus();
+
+            return userState.isLoggedIn;
         };
     }
 })();

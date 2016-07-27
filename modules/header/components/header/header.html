@@ -10,28 +10,14 @@
                 <atlas-search query="{{vm.query}}"></atlas-search>
             </div>
             <div class="col-sm-4">
-                <nav class="site-header__navigation">
-                    <div class="grid">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <button ng-if="!vm.userService.user.username"  class="site-header__navigation__item" ng-click="vm.showPage('login')">
-                                    Inloggen
-                                </button>
-                                <button ng-if="vm.userService.user.username" class="site-header__navigation__item" ng-click="vm.showPage('login')">
-                                    {{vm.userService.user.username}}
-                                </button>
-                            </div>
-                            <div class="col-sm-4">
-                                <button class="site-header__navigation__item" ng-click="vm.showPage('testlinks')">
-                                    testlinks
-                                </button>
-                            </div>
-                            <div class="col-sm-4">
-                                <button class="site-header__navigation__item" ng-click="vm.showPage('over-ons')">
-                                    Over Atlas
-                                </button>
-                            </div>
-                        </div>
+                <nav>
+                    <dp-link ng-if="!vm.isLoggedIn()" type="SHOW_PAGE" payload="'login'">
+                        inloggen
+                    </dp-link>
+
+                    <div ng-if="vm.isLoggedIn()">
+                        <span class="u-color-white">{{vm.getUsername()}}</span>
+                        <button ng-click="vm.logout()">uitloggen</button>
                     </div>
                 </nav>
             </div>
