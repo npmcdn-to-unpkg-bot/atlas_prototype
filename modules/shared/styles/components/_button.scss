@@ -6,19 +6,19 @@
   */
   &.btn-white {
     padding: $whitespace-base / 2;
-    border: 1px solid $black;
+    border: 1px solid $primary-dark;
     border-radius: 6px;
 
-    background-color: $white;
-    color: $black;
+    background-color: $primary-light;
+    color: $primary-dark;
     font-size: inherit;
 
     &:hover {
-      background-color: $gray-light;
+      background-color: $secondary-gray10;
     }
 
     &[disabled] {
-      color: $brand-primary;
+      color: $primary-contrast;
     }
   }
 
@@ -29,7 +29,7 @@
   */
   &.btn-link {
     background-color: transparent;
-    color: $brand-primary;
+    color: $primary-contrast;
     font-size: inherit;
     text-decoration: underline;
     cursor: pointer;

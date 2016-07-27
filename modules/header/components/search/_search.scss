@@ -18,11 +18,11 @@ $submit-button-width: 60px;
     padding-right: $whitespace-base / 2;
     padding-left: $whitespace-base / 2;
     outline: none;
-    background-color: $gray-light;
+    background-color: $secondary-gray10;
     font-size: $base-font-size;
 
     &:focus {
-      background-color: $white;
+      background-color: $primary-light;
     }
   }
 }
@@ -31,8 +31,8 @@ $submit-button-width: 60px;
   width: $submit-button-width;
   height: $search-form-height;
   float: left;
-  background-color: $brand-primary;
-  color: $white;
+  background-color: $primary-contrast;
+  color: $primary-light;
   font-size: $base-font-size;
   cursor: pointer;
 }
