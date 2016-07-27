@@ -47,7 +47,8 @@ describe('The searchFormatter factory', function () {
                             self: {
                                 href: 'http://www.example.com/path/to/103'
                             }
-                        }
+                        },
+                        subtype: 'water'
                     }, {
                         _display: 'FAKE_LINK_4',
                         _links: {
@@ -182,7 +183,7 @@ describe('The searchFormatter factory', function () {
                     }, {
                         label: 'FAKE_LINK_3',
                         endpoint: 'http://www.example.com/path/to/103',
-                        subtype: null
+                        subtype: 'water'
                     }, {
                         label: 'FAKE_LINK_4',
                         endpoint: 'http://www.example.com/path/to/104',
