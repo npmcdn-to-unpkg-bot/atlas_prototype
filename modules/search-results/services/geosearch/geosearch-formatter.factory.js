@@ -38,7 +38,7 @@
                                     endpoint: feature.uri
                                 };
                             }),
-                        useIndenting: rawCategory.slug === 'category'
+                        useIndenting: false
                     };
 
                     formattedCategory.count = formattedCategory.results.length;
