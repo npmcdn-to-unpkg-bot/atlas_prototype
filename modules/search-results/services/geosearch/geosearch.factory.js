@@ -63,7 +63,7 @@
                                 endpoint: pand._links.self.href
                             };
 
-                            //Splice modifies the existing Array, we don't want our input to change
+                            //Splice modifies the existing Array, we don't want our input to change hence the copy
                             geosearchResultsCopy.splice(
                                 pandCategoryIndex + 1,
                                 0,

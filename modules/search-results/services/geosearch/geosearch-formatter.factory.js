@@ -24,7 +24,7 @@
             return SEARCH_CONFIG.COORDINATES_HIERARCHY
                 .map(function (rawCategory) {
                     var formattedCategory = {
-                        slug: rawCategory.slug,
+                        slug: rawCategory.slug || null,
                         label_singular: rawCategory.label_singular,
                         label_plural: rawCategory.label_plural,
                         results: allFeaturesFlattened
