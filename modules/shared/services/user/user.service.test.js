@@ -1,4 +1,4 @@
-describe('The user service', function() {
+xdescribe('The user service', function() {
     // ========================================================
     // 1. We define our dependencies
     // ========================================================
