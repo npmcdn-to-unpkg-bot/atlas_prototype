@@ -12,17 +12,10 @@
             controllerAs: 'vm'
         });
 
-    AtlasHeaderController.$inject = ['store', 'ACTIONS', 'user'];
+    AtlasHeaderController.$inject = ['user'];
 
-    function AtlasHeaderController (store, ACTIONS, user) {
+    function AtlasHeaderController (user) {
         var vm = this;
-
-        vm.showPage = function (name) {
-            store.dispatch({
-                type: ACTIONS.SHOW_PAGE,
-                payload: name
-            });
-        };
 
         vm.isLoggedIn = function () {
             return user.getStatus().isLoggedIn;
@@ -32,11 +25,7 @@
             return user.getStatus().username;
         };
 
-        vm.logout = function () {
-            user.logout().then(function () {
-                console.log('jajajajajaja');
-            });
-        };
+        vm.logout = user.logout;
     }
 })();
 

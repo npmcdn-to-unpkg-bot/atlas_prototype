@@ -39,7 +39,6 @@
                 .then(loginSuccess, loginError);
 
             function loginSuccess (response) {
-                console.log(response);
                 //This is the username as entered by the user in the login form, the backend doesn't return the username
                 userState.username = username;
                 userState.accessToken = response.data.access_token;
@@ -66,11 +65,6 @@
         }
 
         function logout () {
-            console.log({
-                token: userState.accessToken,
-                client_id: CLIENT_ID
-            });
-
             return $http({
                 method: 'POST',
                 url: environment.OAUTH_ROOT + 'revoke_token/',
