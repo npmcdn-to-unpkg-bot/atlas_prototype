@@ -31,6 +31,15 @@
                             .filter(function (feature) {
                                 return rawCategory.features.indexOf(feature.type) !== -1;
                             })
+                            .sort(function (featureA, featureB) {
+                                var indexA,
+                                    indexB;
+
+                                indexA = rawCategory.features.indexOf(featureA.type);
+                                indexB = rawCategory.features.indexOf(featureB.type);
+
+                                return indexA - indexB;
+                            })
                             .map(function (feature) {
                                 var subtype;
 
