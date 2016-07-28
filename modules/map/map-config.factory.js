@@ -32,8 +32,14 @@
                 transparent: true
             },
             SCALE_OPTIONS: {
+                position: 'bottomleft',
                 metric: true,
                 imperial: false
+            },
+            ZOOM_OPTIONS: {
+                position: 'bottomleft',
+                zoomInTitle: 'Inzoomen',
+                zoomOutTitle: 'Uitzoomen'
             }
         };
 
