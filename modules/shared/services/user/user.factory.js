@@ -5,9 +5,9 @@
         .module('dpShared')
         .service('user', userFactory);
 
-    userFactory.$inject = ['$http', '$httpParamSerializer', 'environment', 'CLIENT_ID'];
+    userFactory.$inject = ['$http', '$httpParamSerializer', '$q', 'environment', 'CLIENT_ID'];
 
-    function userFactory ($http, $httpParamSerializer, environment, CLIENT_ID) {
+    function userFactory ($http, $httpParamSerializer, $q, environment, CLIENT_ID) {
         var userState = {
                 username: null,
                 accessToken: null,
@@ -46,21 +46,21 @@
             }
 
             function loginError (response) {
-                var errorMessage;
-
+                var q = $q.defer();
+                console.log(response);
                 switch (response.status) {
                     case 401:
-                        errorMessage = 'De combinatie gebruikersnaam en wachtwoord wordt niet herkend.';
+                        q.reject('De combinatie gebruikersnaam en wachtwoord wordt niet herkend.');
                         break;
                     case 404:
-                        errorMessage = 'Er is iets mis met de inlog server, probeer het later nog eens.';
+                        q.reject('Er is iets mis met de inlog server, probeer het later nog eens.');
                         break;
                     default:
-                        errorMessage = 'Er is een fout opgetreden. Neem contact op met de beheerder en vermeld code: ' +
-                            response.status + ' status: ' + response.statusText + '.';
+                        q.reject('Er is een fout opgetreden. Neem contact op met de beheerder en vermeld code: ' +
+                            response.status + ' status: ' + response.statusText + '.');
                 }
 
-                throw errorMessage;
+                return q.promise;
             }
         }
 
