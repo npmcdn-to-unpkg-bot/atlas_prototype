@@ -6,35 +6,35 @@
         .constant('SEARCH_CONFIG', {
             QUERY_ENDPOINTS: [
                 {
+                    slug: 'openbareruimte',
+                    label_singular: 'Openbare ruimte',
+                    label_plural: 'Openbare ruimtes',
+                    uri: 'atlas/search/openbareruimte/'
+                }, {
                     slug: 'adres',
                     label_singular: 'Adres',
                     label_plural: 'Adressen',
                     uri: 'atlas/search/adres/'
-                }, {
-                    slug: 'subject',
-                    label_singular: 'Kadastraal subject',
-                    label_plural: 'Kadastrale subjecten',
-                    uri: 'atlas/search/kadastraalsubject/'
                 }, {
                     slug: 'object',
                     label_singular: 'Kadastraal object',
                     label_plural: 'Kadastrale objecten',
                     uri: 'atlas/search/kadastraalobject/'
                 }, {
-                    slug: 'openbareruimte',
-                    label_singular: 'Openbare ruimte',
-                    label_plural: 'Openbare ruimtes',
-                    uri: 'atlas/search/openbareruimte/'
-                }, {
-                    slug: 'meetbouten',
-                    label_singular: 'Meetbout',
-                    label_plural: 'Meetbouten',
-                    uri: 'meetbouten/search/'
+                    slug: 'subject',
+                    label_singular: 'Kadastraal subject',
+                    label_plural: 'Kadastrale subjecten',
+                    uri: 'atlas/search/kadastraalsubject/'
                 }, {
                     slug: 'bouwblokken',
                     label_singular: 'Bouwblok',
                     label_plural: 'Bouwblokken',
                     uri: 'atlas/search/bouwblok/'
+                }, {
+                    slug: 'meetbouten',
+                    label_singular: 'Meetbout',
+                    label_plural: 'Meetbouten',
+                    uri: 'meetbouten/search/'
                 }
             ],
             COORDINATES_ENDPOINTS: [
@@ -48,6 +48,10 @@
             ],
             COORDINATES_HIERARCHY: [
                 {
+                    label_singular: 'Openbare ruimte',
+                    label_plural: 'Openbare ruimtes',
+                    features: ['bag/openbareruimte']
+                }, {
                     //The slug variable is used to indentify this category in geosearch.factory.js
                     slug: 'pand',
                     label_singular: 'Pand',
@@ -62,13 +66,13 @@
                     label_plural: 'Ligplaatsen',
                     features: ['bag/ligplaats']
                 }, {
-                    label_singular: 'Openbare ruimte',
-                    label_plural: 'Openbare ruimtes',
-                    features: ['bag/openbareruimte']
-                }, {
                     label_singular: 'Kadastraal object',
                     label_plural: 'Kadastrale objecten',
                     features: ['kadaster/kadastraal_object']
+                }, {
+                    label_singular: 'Gemeentelijke beperking',
+                    label_plural: 'Gemeentelijke beperkingen',
+                    features: ['wkpb/beperking']
                 }, {
                     label_singular: 'Gebied',
                     label_plural: 'Gebieden',
@@ -76,15 +80,11 @@
                         'gebieden/stadsdeel',
                         'gebieden/gebiedsgerichtwerken',
                         'gebieden/grootstedelijkgebied',
+                        'gebieden/unesco',
                         'gebieden/buurtcombinatie',
                         'gebieden/buurt',
-                        'gebieden/bouwblok',
-                        'gebieden/unesco'
+                        'gebieden/bouwblok'
                     ]
-                }, {
-                    label_singular: 'Gemeentelijke beperking',
-                    label_plural: 'Gemeentelijke beperkingen',
-                    features: ['wkpb/beperking']
                 }, {
                     label_singular: 'Meetbout',
                     label_plural: 'Meetbouten',
