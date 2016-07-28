@@ -55,7 +55,7 @@
                             formattedVerblijfsobjecten;
 
                         if (verblijfsobjecten.count) {
-                            formattedVerblijfsobjecten = searchFormatter.formatCategories([verblijfsobjecten])[0];
+                            formattedVerblijfsobjecten = searchFormatter.formatCategory('adres', verblijfsobjecten);
 
                             formattedVerblijfsobjecten.useIndenting = true;
                             formattedVerblijfsobjecten.more = {
@@ -69,7 +69,6 @@
                                 0,
                                 formattedVerblijfsobjecten
                             );
-
                         }
 
                         q.resolve(geosearchResultsCopy);
