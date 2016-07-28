@@ -48,10 +48,10 @@ module.exports = function (config) {
             dir: 'reports/coverage/',
             check: {
                 global: {
-                    statements: 95,
-                    branches: 95,
-                    functions: 95,
-                    lines: 95
+                    statements: 97.5,
+                    branches: 97.5,
+                    functions: 97.5,
+                    lines: 97.5
                 }
             }
         },
