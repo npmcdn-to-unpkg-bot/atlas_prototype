@@ -13,8 +13,6 @@
             controllerAs: 'vm'
         });
 
-    AtlasSearchResultsListController.$inject = [];
-
     function AtlasSearchResultsListController () {
         var vm = this;
 
