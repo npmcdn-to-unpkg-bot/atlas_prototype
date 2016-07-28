@@ -206,43 +206,41 @@ describe('The geosearch factory', function () {
             results: ['FAKE_VBO_RESULT_1', 'FAKE_VBO_RESULT_2']
         };
 
-        mockedFormattedVerblijfsobjectenApiResults = [
-            {
-                label_singular: 'Adres',
-                label_plural: 'Adressen',
-                slug: 'adres',
-                count: 4,
-                results: [
-                    {
-                        label: 'Amsteldijk 32-1',
-                        endpoint: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630000567203/',
-                        subtype: null
-                    },
-                    {
-                        label: 'Amsteldijk 32-2',
-                        endpoint: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630000567204/',
-                        subtype: null
-                    },
-                    {
-                        label: 'Amsteldijk 32-3',
-                        endpoint: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630000567205/',
-                        subtype: null
-                    },
-                    {
-                        label: 'Ceintuurbaan 263',
-                        endpoint: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630000602864/',
-                        subtype: null
-                    }
-                ],
-                useIndenting: false,
-                next: null
-            }
-        ];
+        mockedFormattedVerblijfsobjectenApiResults = {
+            label_singular: 'Adres',
+            label_plural: 'Adressen',
+            slug: 'adres',
+            count: 4,
+            results: [
+                {
+                    label: 'Amsteldijk 32-1',
+                    endpoint: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630000567203/',
+                    subtype: null
+                },
+                {
+                    label: 'Amsteldijk 32-2',
+                    endpoint: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630000567204/',
+                    subtype: null
+                },
+                {
+                    label: 'Amsteldijk 32-3',
+                    endpoint: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630000567205/',
+                    subtype: null
+                },
+                {
+                    label: 'Ceintuurbaan 263',
+                    endpoint: 'https://api.datapunt.amsterdam.nl/bag/verblijfsobject/03630000602864/',
+                    subtype: null
+                }
+            ],
+            useIndenting: false,
+            next: null
+        };
         
         spyOn(api, 'getByUri').and.callThrough();
         spyOn(api, 'getByUrl').and.callThrough();
         spyOn(geosearchFormatter, 'format').and.returnValue(mockedFormattedSearchResults);
-        spyOn(searchFormatter, 'formatCategories').and.returnValue(mockedFormattedVerblijfsobjectenApiResults);
+        spyOn(searchFormatter, 'formatCategory').and.returnValue(mockedFormattedVerblijfsobjectenApiResults);
     });
 
     it('retrieves formatted data based on a location', function () {
@@ -278,7 +276,7 @@ describe('The geosearch factory', function () {
         mockedFormattedSearchResults.splice(1, 0, mockedFormattedPandSearchResult);
 
         expectedSearchResults = angular.copy(mockedFormattedSearchResults);
-        expectedSearchResults.splice(2, 0, mockedFormattedVerblijfsobjectenApiResults[0]);
+        expectedSearchResults.splice(2, 0, mockedFormattedVerblijfsobjectenApiResults);
 
         geosearch.search([52.789, 4.987]).then(function (_searchResults_) {
             searchResults = _searchResults_;
@@ -298,8 +296,7 @@ describe('The geosearch factory', function () {
         expect(api.getByUrl)
             .toHaveBeenCalledWith('https://api.datapunt.amsterdam.nl/bag/verblijfsobject/?panden__id=0456789');
 
-        expect(searchFormatter.formatCategories).toHaveBeenCalledWith([mockedVerblijfsobjectenApiResults]);
-
+        expect(searchFormatter.formatCategory).toHaveBeenCalledWith('adres', mockedVerblijfsobjectenApiResults);
         expect(searchResults).toEqual(expectedSearchResults);
     });
 

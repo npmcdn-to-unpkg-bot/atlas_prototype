@@ -200,6 +200,32 @@ describe('The searchFormatter factory', function () {
         ]);
     });
 
+    it('has a formatCategory function (one single category)', function () {
+        var output;
+
+        output = searchFormatter.formatCategory('adres', mockedInputCategories[0]);
+
+        expect(output).toEqual({
+            label_singular: 'Adres',
+            label_plural: 'Adressen',
+            slug: 'adres',
+            count: 2,
+            results: [
+                {
+                    label: 'FAKE_LINK_A',
+                    endpoint: 'http://www.example.com/path/to/1',
+                    subtype: null
+                }, {
+                    label: 'FAKE_LINK_B',
+                    endpoint: 'http://www.example.com/path/to/2',
+                    subtype: null
+                }
+            ],
+            useIndenting: false,
+            next: null
+        });
+    });
+
     it('has a formatLinks function', function () {
         var output = searchFormatter.formatLinks(mockedInputLinks);
 
