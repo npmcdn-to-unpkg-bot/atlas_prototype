@@ -57,17 +57,17 @@ describe('The geosearchFormatter factory', function () {
                 features: [
                     {
                         properties: {
-                            display: 'Zuid',
-                            id: '03630011872038',
-                            type: 'gebieden/stadsdeel',
-                            uri: 'https://api.datapunt.amsterdam.nl/gebieden/stadsdeel/03630011872038/'
-                        }
-                    }, {
-                        properties: {
                             display: 'AK47',
                             id: '03630012096593',
                             type: 'gebieden/bouwblok',
                             uri: 'https://api.datapunt.amsterdam.nl/gebieden/bouwblok/03630012096593/'
+                        }
+                    }, {
+                        properties: {
+                            display: 'Zuid',
+                            id: '03630011872038',
+                            type: 'gebieden/stadsdeel',
+                            uri: 'https://api.datapunt.amsterdam.nl/gebieden/stadsdeel/03630011872038/'
                         }
                     }, {
                         properties: {
@@ -123,6 +123,7 @@ describe('The geosearchFormatter factory', function () {
                 label_singular: 'Gebied',
                 label_plural: 'Gebieden',
                 count: 2,
+                //These two results are sorted by the geosearchFormatter, the API results are in a different order
                 results: [
                     {
                         label: 'Zuid',
