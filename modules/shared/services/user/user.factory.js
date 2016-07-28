@@ -47,7 +47,7 @@
 
             function loginError (response) {
                 var q = $q.defer();
-                console.log(response);
+
                 switch (response.status) {
                     case 401:
                         q.reject('De combinatie gebruikersnaam en wachtwoord wordt niet herkend.');
