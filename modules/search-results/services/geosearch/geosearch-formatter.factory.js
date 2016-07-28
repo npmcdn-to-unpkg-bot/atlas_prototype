@@ -32,9 +32,19 @@
                                 return rawCategory.features.indexOf(feature.type) !== -1;
                             })
                             .map(function (feature) {
+                                var subtype;
+
+                                if (feature.opr_type) {
+                                    subtype = feature.opr_type.toLowerCase();
+                                } else if (feature.type.match(/^gebieden\//)) {
+                                    subtype = feature.type.replace(/^gebieden\//, '');
+                                } else {
+                                    subtype = null;
+                                }
+
                                 return {
                                     label: feature.display,
-                                    subtype: feature.opr_type ? feature.opr_type.toLowerCase() : null,
+                                    subtype: subtype,
                                     endpoint: feature.uri
                                 };
                             }),

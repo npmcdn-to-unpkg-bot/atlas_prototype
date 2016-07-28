@@ -126,11 +126,11 @@ describe('The geosearchFormatter factory', function () {
                 results: [
                     {
                         label: 'Zuid',
-                        subtype: null,
+                        subtype: 'stadsdeel',
                         endpoint: 'https://api.datapunt.amsterdam.nl/gebieden/stadsdeel/03630011872038/'
                     }, {
                         label: 'AK47',
-                        subtype: null,
+                        subtype: 'bouwblok',
                         endpoint: 'https://api.datapunt.amsterdam.nl/gebieden/bouwblok/03630012096593/'
                     }
                 ],

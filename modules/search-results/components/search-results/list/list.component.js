@@ -17,7 +17,7 @@
         var vm = this;
 
         vm.showSubtype = function (link) {
-            return vm.category.slug === 'openbareruimte' && link.subtype !== 'weg';
+            return angular.isString(link.subtype) && link.subtype !== 'weg';
         };
     }
 })();
