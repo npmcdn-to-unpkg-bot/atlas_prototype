@@ -7,7 +7,7 @@
             {{link.label | longNameShortener}}
         </dp-link>
 
-        <span ng-if="vm.showSubtype(link)">
+        <span ng-if="vm.showSubtype(vm.category.slug, link)">
             ({{link.subtype}})
         </span>
     </li>

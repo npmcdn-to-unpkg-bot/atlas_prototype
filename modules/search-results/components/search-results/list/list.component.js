@@ -16,8 +16,9 @@
     function AtlasSearchResultsListController () {
         var vm = this;
 
-        vm.showSubtype = function (link) {
-            return angular.isString(link.subtype) && link.subtype !== 'weg';
+        vm.showSubtype = function (categorySlug, link) {
+            return (categorySlug === 'openbareruimte' && link.subtype !== 'weg') ||
+                categorySlug === 'gebied';
         };
     }
 })();

@@ -154,4 +154,28 @@ describe('The atlas-search-results-list component', function () {
         //Kunstwerk
         expect(component.find('li').eq(4).text()).toContain('(kunstwerk)');
     });
+
+    it('shows the type of gebied', function () {
+        var component,
+            mockedGebiedenCategory = {
+                slug: 'gebied',
+                count: 2,
+                results: [
+                    {
+                        label: 'Link #1',
+                        endpoint: 'http://www.example.com/gebied/1/',
+                        subtype: 'buurt'
+                    }, {
+                        label: 'Link #2',
+                        endpoint: 'http://www.example.com/gebied/2/',
+                        subtype: 'bouwblok'
+                    }
+                ]
+            };
+
+        component = getComponent(mockedGebiedenCategory);
+
+        expect(component.find('li').eq(0).text()).toContain('(buurt)');
+        expect(component.find('li').eq(1).text()).toContain('(bouwblok)');
+    });
 });

@@ -48,6 +48,7 @@
             ],
             COORDINATES_HIERARCHY: [
                 {
+                    slug: 'openbareruimte',
                     label_singular: 'Openbare ruimte',
                     label_plural: 'Openbare ruimtes',
                     features: ['bag/openbareruimte']
@@ -74,6 +75,7 @@
                     label_plural: 'Gemeentelijke beperkingen',
                     features: ['wkpb/beperking']
                 }, {
+                    slug: 'gebied',
                     label_singular: 'Gebied',
                     label_plural: 'Gebieden',
                     features: [
