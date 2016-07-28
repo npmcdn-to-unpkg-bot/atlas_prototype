@@ -5,11 +5,11 @@
 <div ng-if="!vm.isLoggedIn()">
     <p ng-if="vm.errorMessage">{{vm.errorMessage}}</p>
 
-    <form ng-submit="vm.login()">
+    <form ng-submit="vm.login($event)">
         <fieldset>
             <label>
                 Gebruikersnaam:
-                <input ng-model="vm.username" required>
+                <input ng-model="vm.username" type="text" required>
             </label>
             <label>
                 Wachtwoord:

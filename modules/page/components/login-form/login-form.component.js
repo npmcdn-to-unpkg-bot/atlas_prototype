@@ -16,14 +16,13 @@
 
         vm.errorMessage = null;
 
-        vm.login = function () {
+        vm.login = function (event) {
+            event.preventDefault();
+
             vm.errorMessage = null;
 
             user
                 .login(vm.username, vm.password)
-                .then(function () {
-
-                })
                 .catch(function (errorMessage) {
                     vm.errorMessage = errorMessage;
                 });

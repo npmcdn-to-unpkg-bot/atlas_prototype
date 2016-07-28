@@ -51,24 +51,4 @@ describe('The atlas-header component', function () {
         component = getComponent('I_AM_A_FAKE_QUERY');
         expect(component.find('atlas-search')[0].getAttribute('query')).toBe('I_AM_A_FAKE_QUERY');
     });
-
-    it('has two links that trigger the show page action', function () {
-        var component = getComponent('');
-
-        //FAQ
-        component.find('.site-header__navigation__item').eq(1).click();
-
-        expect(store.dispatch).toHaveBeenCalledWith({
-            type: ACTIONS.SHOW_PAGE,
-            payload: 'testlinks'
-        });
-
-        //About
-        component.find('.site-header__navigation__item').eq(2).click();
-
-        expect(store.dispatch).toHaveBeenCalledWith({
-            type: ACTIONS.SHOW_PAGE,
-            payload: 'over-ons'
-        });
-    });
 });
