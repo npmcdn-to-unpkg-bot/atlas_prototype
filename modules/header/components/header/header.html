@@ -19,14 +19,30 @@
                                 </button>
                             </div>
                             <div class="col-sm-4">
-                                <button class="site-header__navigation__item" ng-click="vm.showPage('testlinks')">
-                                    testlinks
-                                </button>
-                            </div>
-                            <div class="col-sm-4">
-                                <button class="site-header__navigation__item" ng-click="vm.showPage('over-ons')">
-                                    Over Atlas
-                                </button>
+                                <atlas-dropdown-menu label="menu">
+                                    <ul class="dropdown-menu">
+                                        <li class="shareandextras__menu-item">
+                                            <dp-print-button>
+                                                Printen
+                                            </dp-print-button>
+                                        </li>
+                                        <li class="shareandextras__menu-item">
+                                            <feedback-link class="shareandextras__menu-item__link">
+                                                Terugmelden
+                                            </feedback-link>
+                                        </li>
+                                        <li class="shareandextras__menu-item">
+                                            <dp-link type="SHOW_PAGE" payload="'testlinks'" class="site-header__navigation__item">
+                                                testlinks
+                                            </dp-link>
+                                        </li>
+                                        <li class="shareandextras__menu-item">
+                                            <dp-link type="SHOW_PAGE" payload="'over-ons'" class="site-header__navigation__item">
+                                                Over Atlas
+                                            </dp-link>
+                                        </li>
+                                    </ul>
+                                </atlas-dropdown-menu>
                             </div>
                         </div>
                     </div>

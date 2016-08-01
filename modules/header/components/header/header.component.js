@@ -12,17 +12,8 @@
             controllerAs: 'vm'
         });
 
-    AtlasHeaderController.$inject = ['store', 'ACTIONS'];
+    function AtlasHeaderController () {
 
-    function AtlasHeaderController (store, ACTIONS) {
-        var vm = this;
-
-        vm.showPage = function (name) {
-            store.dispatch({
-                type: ACTIONS.SHOW_PAGE,
-                payload: name
-            });
-        };
     }
 })();
 
