@@ -9,10 +9,10 @@
         return {
             restrict: 'E',
             scope: {
-                label: '@',
+                label: '@'
             },
             transclude: true,
-            templateUrl:'modules/header/components/menu/dropdown-menu.html',
+            templateUrl: 'modules/header/components/dropdown-menu/dropdown-menu.html',
             link: linkFunction
         };
     }

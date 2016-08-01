@@ -9,7 +9,7 @@
     return {
       restrict: 'E',
       transclude: true,
-      templateUrl: 'modules/header/components/menu/print-button/print-button.html',
+      templateUrl: 'modules/header/components/print-button/print-button.html',
       controller: DpPrintButtonController,
       controllerAs: 'vm',
       bindToController: true
