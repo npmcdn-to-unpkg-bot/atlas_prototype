@@ -18,7 +18,7 @@ describe('the dropdown menu directive', function () {
         });
     });
 
-    function getDirective(label) {
+    function getDirective (label) {
         var directive,
             element,
             scope;
@@ -44,7 +44,7 @@ describe('the dropdown menu directive', function () {
     it('should initialize with isVisible set to false/menu items are not visible', function () {
         var directive = getDirective('dropdown-menu');
 
-        expect(directive.find('.js-testClass').length).toBe(0);
+        expect(directive.find('div').length).toBe(0);
         expect(directive.find('ng-transclude').length).toBe(0);
     });
 
@@ -53,7 +53,7 @@ describe('the dropdown menu directive', function () {
 
         directive.find('.site-header__navigation__item').eq(0).click();
 
-        expect(directive.find('.js-testClass').length).toBe(1);
+        expect(directive.find('div').length).toBe(1);
         expect(directive.find('ng-transclude').length).toBe(1);
     });
 
@@ -61,37 +61,37 @@ describe('the dropdown menu directive', function () {
         var directive = getDirective('dropdown-menu');
 
         directive.find('.site-header__navigation__item').eq(0).click();
-        expect(directive.find('.js-testClass').length).toBe(1);
+        expect(directive.find('div').length).toBe(1);
 
         directive.find('.site-header__navigation__item').eq(0).click();
-        expect(directive.find('.js-testClass').length).toBe(0);
+        expect(directive.find('div').length).toBe(0);
     });
 
     it('should hide the menu items if you click elsewhere on the page', function () {
         var directive = getDirective('dropdown-menu');
-        expect(directive.find('.js-testClass').length).toBe(0);
+        expect(directive.find('div').length).toBe(0);
 
         directive.find('.site-header__navigation__item').eq(0).click();
-        expect(directive.find('.js-testClass').length).toBe(1);
+        expect(directive.find('div').length).toBe(1);
 
-        directive.find('.js-testClass').eq(0).click();
-        expect(directive.find('.js-testClass').length).toBe(0);
+        directive.find('div').eq(0).click();
+        expect(directive.find('div').length).toBe(0);
     });
 
     it('should also show and hide individually with more then one dropdown menu on the page', function () {
         var directive1 = getDirective('dropdown-menu'),
             directive2 = getDirective('menu');
 
-        expect(directive1.find('.js-testClass').length).toBe(0);
-        expect(directive2.find('.js-testClass').length).toBe(0);
+        expect(directive1.find('div').length).toBe(0);
+        expect(directive2.find('div').length).toBe(0);
 
         directive1.find('.site-header__navigation__item').eq(0).click();
-        expect(directive1.find('.js-testClass').length).toBe(1);
-        expect(directive2.find('.js-testClass').length).toBe(0);
+        expect(directive1.find('div').length).toBe(1);
+        expect(directive2.find('div').length).toBe(0);
 
         directive2.find('.site-header__navigation__item').eq(0).click();
-        expect(directive1.find('.js-testClass').length).toBe(0);
-        expect(directive2.find('.js-testClass').length).toBe(1);
+        expect(directive1.find('div').length).toBe(0);
+        expect(directive2.find('div').length).toBe(1);
 
     });
 });

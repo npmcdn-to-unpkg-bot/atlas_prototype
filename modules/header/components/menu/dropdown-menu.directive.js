@@ -18,8 +18,9 @@
     }
 
     function linkFunction(scope, element){
-        scope.isVisible = false;
         var everywhere = angular.element(window.document);
+
+        scope.isVisible = false;
 
         scope.toggle = function() {
             scope.isVisible = !scope.isVisible;
