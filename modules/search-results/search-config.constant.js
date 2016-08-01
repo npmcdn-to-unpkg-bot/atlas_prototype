@@ -79,10 +79,10 @@
                     label_singular: 'Gebied',
                     label_plural: 'Gebieden',
                     features: [
-                        'gebieden/stadsdeel',
-                        'gebieden/gebiedsgerichtwerken',
                         'gebieden/grootstedelijkgebied',
                         'gebieden/unesco',
+                        'gebieden/stadsdeel',
+                        'gebieden/gebiedsgerichtwerken',
                         'gebieden/buurtcombinatie',
                         'gebieden/buurt',
                         'gebieden/bouwblok'
