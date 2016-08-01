@@ -2,19 +2,19 @@ describe('The map controller', function () {
     var $controller,
         $rootScope,
         store,
-        wgs84RdConverter;
+        crsConverter;
 
     beforeEach(function () {
         angular.mock.module('atlas');
 
-        angular.mock.inject(function (_$controller_, _$rootScope_, _store_, _wgs84RdConverter_) {
+        angular.mock.inject(function (_$controller_, _$rootScope_, _store_, _crsConverter_) {
             $controller = _$controller_;
             $rootScope = _$rootScope_;
             store = _store_;
-            wgs84RdConverter = _wgs84RdConverter_;
+            crsConverter = _crsConverter_;
         });
 
-        spyOn(wgs84RdConverter, 'wgs84ToRd').and.returnValue('FAKE_RD_COORDINATES');
+        spyOn(crsConverter, 'wgs84ToRd').and.returnValue('FAKE_RD_COORDINATES');
     });
 
     function getController () {

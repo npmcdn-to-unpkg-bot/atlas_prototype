@@ -19,7 +19,7 @@
         'endpointParser',
         'geometry',
         'geojson',
-        'wgs84RdConverter'
+        'crsConverter'
     ];
 
     function AtlasDetailController (
@@ -30,7 +30,7 @@
         endpointParser,
         geometry,
         geojson,
-        wgs84RdConverter) {
+        crsConverter) {
 
         var vm = this;
 
@@ -44,7 +44,7 @@
 
                 geometry.getGeoJSON(endpoint).then(function (geometry) {
                     if (angular.isObject(geometry)) {
-                        vm.location = wgs84RdConverter.rdToWgs84(geojson.getCenter(geometry));
+                        vm.location = crsConverter.rdToWgs84(geojson.getCenter(geometry));
                     } else {
                         vm.location = null;
                     }

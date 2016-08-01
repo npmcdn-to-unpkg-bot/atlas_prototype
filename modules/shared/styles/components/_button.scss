@@ -5,7 +5,7 @@
     <button class="btn btn-white">A white button</button>
   */
   &.btn-white {
-    padding: $whitespace-base / 2;
+    padding: $base-whitespace / 2;
     border: 1px solid $black;
     border-radius: 6px;
 
@@ -14,7 +14,7 @@
     font-size: inherit;
 
     &:hover {
-      background-color: $gray-light;
+      background-color: $gray-90;
     }
 
     &[disabled] {
@@ -28,10 +28,12 @@
     <button class="btn btn-link">Lorem ipsum</button>
   */
   &.btn-link {
+    @include link;
+
     background-color: transparent;
-    color: $brand-primary;
+    font-family: inherit;
     font-size: inherit;
-    text-decoration: underline;
+    text-align: left;
     cursor: pointer;
   }
 }

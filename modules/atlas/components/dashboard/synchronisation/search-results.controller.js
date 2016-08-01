@@ -17,10 +17,8 @@
             var state = store.getState();
 
             vm.query = state.search && state.search.query;
-
-            $rootScope.$applyAsync(function () {
-                vm.location = state.search && state.search.location;
-            });
+            vm.location = state.search && state.search.location;
+            vm.category = state.search && state.search.category;
         }
     }
 })();
