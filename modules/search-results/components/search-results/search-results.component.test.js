@@ -469,12 +469,12 @@ describe('The atlas-search-results component', function () {
 
                 it('shows the active category as part of the metadata above the category', function () {
                     //The category name is shown in lowercase
-                    expect(removeWhitespace(component.find('p').text())).toBe('11 "adressen" met "Weesperstraat"');
+                    expect(removeWhitespace(component.find('p').text())).toBe('11 adressen met "Weesperstraat"');
 
                     //The number of results have a thousand separator
                     mockedSearchResults[0].count = 1000;
                     component = getComponent('Weesperstraat', null, 'adres');
-                    expect(removeWhitespace(component.find('p').text())).toBe('1.000 "adressen" met "Weesperstraat"');
+                    expect(removeWhitespace(component.find('p').text())).toBe('1.000 adressen met "Weesperstraat"');
                 });
 
                 it('can have a show more link inside the category', function () {
@@ -598,12 +598,14 @@ describe('The atlas-search-results component', function () {
         });
 
         it('shows meta information above the search results', function () {
-            expect(removeWhitespace(component.find('p').text())).toBe('22 resultaten met "51.123, 4.789 (X, Y)"');
+            expect(removeWhitespace(component.find('p').text()))
+                .toBe('22 resultaten met locatie "51.123, 4.789 (X, Y)"');
 
             //Check the thousands separator
             mockedGeosearchResults[1].count = 1012;
             component = getComponent(null, [51.123, 4.789]);
-            expect(removeWhitespace(component.find('p').text())).toBe('1.022 resultaten met "51.123, 4.789 (X, Y)"');
+            expect(removeWhitespace(component.find('p').text()))
+                .toBe('1.022 resultaten met locatie "51.123, 4.789 (X, Y)"');
         });
 
         it('has indenting for certain \'related\' categories', function () {

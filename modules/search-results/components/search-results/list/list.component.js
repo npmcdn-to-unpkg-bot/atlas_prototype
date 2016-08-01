@@ -18,6 +18,7 @@
 
         vm.showSubtype = function (categorySlug, link) {
             return (categorySlug === 'openbareruimte' && link.subtype !== 'weg') ||
+                (categorySlug === 'adres' && link.subtype !== 'verblijfsobject') ||
                 categorySlug === 'gebied';
         };
     }

@@ -60,7 +60,7 @@
         });
 
         /**
-         * For both SEARCH BY QUERY and GEOSEARCH
+         * For both SEARCH BY QUERY (with and without category) and GEOSEARCH
          */
         function setSearchResults (searchResults) {
             vm.isLoading = false;

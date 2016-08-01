@@ -27,8 +27,15 @@
                 }
             });
 
-            //When all queries are resolved
-            return $q.all(queries).then(searchFormatter.formatCategories);
+            if (angular.isString(categorySlug)) {
+                //A single category
+                return $q.all(queries).then(function (searchResults) {
+                    return [searchFormatter.formatCategory(categorySlug, searchResults[0])];
+                });
+            } else {
+                //All search results
+                return $q.all(queries).then(searchFormatter.formatCategories);
+            }
         }
 
         function loadMore (category) {
