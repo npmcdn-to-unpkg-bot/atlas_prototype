@@ -1,4 +1,8 @@
 <div class="straatbeeld-metadata">
-    {{vm.date | date}}
-    {{vm.location | coordinates}}
+    <div ng-if="vm.showMetaInfo()">
+        <div class="pull-right u-ml-3">Opnamedatum: {{vm.date | date : 'd-M-yyyy'}}</div>
+        <div class="pull-right">Opnamelocatie: {{vm.location | coordinates}}</div>
+
+        <div class="u-clearfix"></div>
+    </div>
 </div>
