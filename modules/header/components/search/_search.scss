@@ -3,8 +3,8 @@
 $submit-button-width: 60px;
 
 .search-form {
-  padding-top: $whitespace-base;
-  padding-bottom: $whitespace-base;
+  padding-top: $base-whitespace;
+  padding-bottom: $base-whitespace;
 }
 
 .search-form__input {
@@ -15,10 +15,10 @@ $submit-button-width: 60px;
     display: block;
     width: 100%;
     height: $search-form-height;
-    padding-right: $whitespace-base / 2;
-    padding-left: $whitespace-base / 2;
+    padding-right: $base-whitespace / 2;
+    padding-left: $base-whitespace / 2;
     outline: none;
-    background-color: $gray-light;
+    background-color: $gray-90;
     font-size: $base-font-size;
 
     &:focus {

@@ -13,7 +13,7 @@ describe('The dp-link component', function () {
         });
     });
 
-    function getComponent (type, payload) {
+    function getComponent (type, payload, className) {
         var component,
             element,
             scope;
@@ -21,6 +21,10 @@ describe('The dp-link component', function () {
         element = document.createElement('dp-link');
         element.setAttribute('type', type);
         element.setAttribute('payload', 'payload');
+
+        if (angular.isString(className)) {
+            element.setAttribute('class-name', className);
+        }
 
         scope = $rootScope.$new();
         scope.payload = payload;
@@ -30,14 +34,6 @@ describe('The dp-link component', function () {
 
         return component;
     }
-
-    it('is a button styled liked a regular link', function () {
-        var component = getComponent('SHOW_PAGE', 'welkom');
-
-        expect(component.find('button').length).toBe(1);
-        expect(component.find('button').attr('class')).toContain('btn');
-        expect(component.find('button').attr('class')).toContain('btn-link');
-    });
 
     it('does a call to store.dispatch when clicked', function () {
         var component;
@@ -60,6 +56,28 @@ describe('The dp-link component', function () {
         expect(store.dispatch).toHaveBeenCalledWith({
             type: 'MAP_PAN',
             payload: [101, 102]
+        });
+    });
+
+    describe('styling', function () {
+        it('can be done with the class-name attribute', function () {
+            var component = getComponent('SHOW_PAGE', 'welkom', 'my-class my-other-class');
+
+            expect(component.find('button').length).toBe(1);
+
+            expect(component.find('button').attr('class')).toContain('my-class');
+            expect(component.find('button').attr('class')).toContain('my-other-class');
+
+            expect(component.find('button').attr('class')).not.toContain('btn');
+            expect(component.find('button').attr('class')).not.toContain('btn-link');
+        });
+
+        it('has a default styling of a regular link', function () {
+            var component = getComponent('SHOW_PAGE', 'welkom');
+
+            expect(component.find('button').length).toBe(1);
+            expect(component.find('button').attr('class')).toContain('btn');
+            expect(component.find('button').attr('class')).toContain('btn-link');
         });
     });
 });

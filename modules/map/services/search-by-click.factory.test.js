@@ -1,5 +1,6 @@
 describe('The searchByClick factory', function () {
-    var L,
+    var $rootScope,
+        L,
         searchByClick,
         store,
         ACTIONS,
@@ -15,7 +16,8 @@ describe('The searchByClick factory', function () {
             }
         );
 
-        angular.mock.inject(function (_L_, _searchByClick_, _store_, _ACTIONS_) {
+        angular.mock.inject(function (_$rootScope_, _L_, _searchByClick_, _store_, _ACTIONS_) {
+            $rootScope = _$rootScope_;
             L = _L_;
             searchByClick = _searchByClick_;
             store = _store_;
@@ -37,6 +39,8 @@ describe('The searchByClick factory', function () {
                 lng: 4.788
             }
         });
+
+        $rootScope.$apply();
 
         expect(store.dispatch).toHaveBeenCalledWith({
             type: ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,

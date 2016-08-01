@@ -5,7 +5,12 @@ describe('The api factory', function () {
 
     beforeEach(function () {
         angular.mock.module(
-            'dpShared'
+            'dpShared',
+            {
+                environment: {
+                    API_ROOT: 'http://www.i-am-the-api-root.com/path/'
+                }
+            }
         );
 
         angular.mock.inject(function (_$httpBackend_, _api_) {
@@ -18,19 +23,30 @@ describe('The api factory', function () {
             title: 'This is a fake title'
         };
 
-        $httpBackend.whenGET('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/').respond(mockedApiData);
+        $httpBackend.whenGET('http://www.i-am-the-api-root.com/path/bag/verblijfsobject/123/').respond(mockedApiData);
     });
 
-    it('returns the data as a promise', function () {
+    it('getByUrl returns the data as a promise', function () {
         var returnValue;
 
-        api.getByUrl('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/').then(function (data) {
+        api.getByUrl('http://www.i-am-the-api-root.com/path/bag/verblijfsobject/123/').then(function (data) {
             returnValue = data;
         });
 
         $httpBackend.flush();
 
-        //This checks that it doesn't return the $http response which contains meta information as well.
+        expect(returnValue).toEqual(mockedApiData);
+    });
+
+    it('getByUri can be used when the environment.API_ROOT is unknown', function () {
+        var returnValue;
+
+        api.getByUri('bag/verblijfsobject/123/').then(function (data) {
+            returnValue = data;
+        });
+
+        $httpBackend.flush();
+
         expect(returnValue).toEqual(mockedApiData);
     });
 });
