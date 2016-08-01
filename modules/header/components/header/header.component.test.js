@@ -51,5 +51,4 @@ describe('The atlas-header component', function () {
         component = getComponent('I_AM_A_FAKE_QUERY');
         expect(component.find('atlas-search')[0].getAttribute('query')).toBe('I_AM_A_FAKE_QUERY');
     });
-
 });
