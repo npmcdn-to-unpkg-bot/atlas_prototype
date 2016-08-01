@@ -20,7 +20,7 @@
         var vm = this;
 
         vm.followLink = function () {
-             store.dispatch({
+            store.dispatch({
                 type: ACTIONS[vm.type],
                 payload: vm.payload
             });

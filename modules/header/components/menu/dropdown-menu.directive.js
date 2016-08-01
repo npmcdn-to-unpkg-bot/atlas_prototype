@@ -19,12 +19,11 @@
 
     function linkFunction(scope, element){
         scope.isVisible = false;
+        var everywhere = angular.element(window.document);
 
         scope.toggle = function() {
             scope.isVisible = !scope.isVisible;
         };
-
-        var everywhere = angular.element(window.document);
 
         everywhere.bind('click', function(event){
             var isButtonClick = event.target === element.find('button')[0];
