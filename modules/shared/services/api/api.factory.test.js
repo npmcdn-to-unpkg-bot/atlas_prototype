@@ -23,6 +23,9 @@ describe('The api factory', function () {
                             };
                         }
                     }
+                },
+                environment: {
+                    API_ROOT: 'http://www.i-am-the-api-root.com/path/'
                 }
             }
         );
@@ -38,7 +41,7 @@ describe('The api factory', function () {
             title: 'This is a fake title'
         };
 
-        $httpBackend.whenGET('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/').respond(mockedApiData);
+        $httpBackend.whenGET('http://www.i-am-the-api-root.com/path/bag/verblijfsobject/123/').respond(mockedApiData);
 
         isLoggedIn = false;
     });
@@ -48,16 +51,27 @@ describe('The api factory', function () {
         $httpBackend.verifyNoOutstandingRequest();
     });
 
-    it('returns the data as a promise', function () {
+    it('getByUrl returns the data as a promise', function () {
         var returnValue;
 
-        api.getByUrl('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/').then(function (data) {
+        api.getByUrl('http://www.i-am-the-api-root.com/path/bag/verblijfsobject/123/').then(function (data) {
             returnValue = data;
         });
 
         $httpBackend.flush();
 
-        //This checks that it doesn't return the $http response which contains meta information as well.
+        expect(returnValue).toEqual(mockedApiData);
+    });
+
+    it('getByUri can be used when the environment.API_ROOT is unknown', function () {
+        var returnValue;
+
+        api.getByUri('bag/verblijfsobject/123/').then(function (data) {
+            returnValue = data;
+        });
+
+        $httpBackend.flush();
+
         expect(returnValue).toEqual(mockedApiData);
     });
 
@@ -66,20 +80,20 @@ describe('The api factory', function () {
         isLoggedIn = false;
 
         $httpBackend.expectGET(
-            'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/',
+            'http://www.i-am-the-api-root.com/path/bag/verblijfsobject/123/',
             $http.defaults.headers.common
         );
-        api.getByUrl('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/');
+        api.getByUrl('http://www.i-am-the-api-root.com/path/bag/verblijfsobject/123/');
         $httpBackend.flush();
 
         //Logged in
         isLoggedIn = true;
 
         $httpBackend.expectGET(
-            'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/',
+            'http://www.i-am-the-api-root.com/path/bag/verblijfsobject/123/',
             angular.merge({}, $http.defaults.headers.common, {Authorization: 'Bearer MY_FAKE_ACCESS_TOKEN'})
         );
-        api.getByUrl('https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/');
+        api.getByUrl('http://www.i-am-the-api-root.com/path/bag/verblijfsobject/123/');
         $httpBackend.flush();
     });
 });

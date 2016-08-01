@@ -44,8 +44,8 @@
     [class*="col-"] {
       position: relative;
       min-height: 1px;
-      padding-right: $whitespace-base;
-      padding-left: $whitespace-base;
+      padding-right: $base-whitespace;
+      padding-left: $base-whitespace;
       float: left;
     }
 

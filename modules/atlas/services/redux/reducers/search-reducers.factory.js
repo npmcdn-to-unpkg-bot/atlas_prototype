@@ -12,6 +12,7 @@
 
         reducers[ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY] = showSearchResultsByQueryReducer;
         reducers[ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK] = showSearchResultsByClickReducer;
+        reducers[ACTIONS.SHOW_SEARCH_RESULTS_CATEGORY] = showSearchResultsCategoryReducer;
 
         return reducers;
 
@@ -26,7 +27,8 @@
 
             newState.search = {
                 query: payload,
-                location: null
+                location: null,
+                category: null
             };
 
             newState.map.highlight = null;
@@ -49,7 +51,8 @@
 
             newState.search = {
                 query: null,
-                location: payload
+                location: payload,
+                category: null
             };
 
             newState.map.highlight = null;
@@ -57,6 +60,20 @@
             newState.page = null;
             newState.detail = null;
             newState.straatbeeld = null;
+
+            return newState;
+        }
+
+        /**
+         * @param {Object} oldState
+         * @param {String} payload - A reference to the slug of a SEARCH_CONFIG endpoint
+         *
+         * @returns {Object} newState
+         */
+        function showSearchResultsCategoryReducer (oldState, payload) {
+            var newState = angular.copy(oldState);
+
+            newState.search.category = payload;
 
             return newState;
         }

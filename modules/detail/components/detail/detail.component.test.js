@@ -8,7 +8,7 @@ describe('the atlas-detail component', function() {
         endpointParser,
         geometry,
         geojson,
-        wgs84RdConverter,
+        crsConverter,
         mockedGeometryPoint = {type: 'Point', coordinates: 'FAKE_NUMMERAANDUIDING_POINT'},
         mockedGeometryMultiPolygon = {type: 'MultiPolygon', coordinates: 'FAKE_KADASTRAAL_OBJECT_MULTIPOLYGON'};
 
@@ -88,7 +88,7 @@ describe('the atlas-detail component', function() {
                         return center;
                     }
                 },
-                wgs84RdConverter: {
+                crsConverter: {
                     rdToWgs84: function (rdCoordinates) {
                         var wgs84Coordinates;
 
@@ -119,7 +119,7 @@ describe('the atlas-detail component', function() {
             _endpointParser_,
             _geometry_,
             _geojson_,
-            _wgs84RdConverter_) {
+            _crsConverter_) {
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
                 $q = _$q_;
@@ -129,7 +129,7 @@ describe('the atlas-detail component', function() {
                 endpointParser = _endpointParser_;
                 geometry = _geometry_;
                 geojson = _geojson_;
-                wgs84RdConverter = _wgs84RdConverter_;
+                crsConverter = _crsConverter_;
             }
         );
 
