@@ -5,9 +5,9 @@
         .module('atlasHeader')
         .directive('atlasSearch', atlasSearchDirective);
 
-        atlasSearchDirective.$inject = ['$timeout', 'autocompleteData', 'store', 'ACTIONS'];
+        atlasSearchDirective.$inject = ['$timeout', 'autocompleteData', 'environment', 'store', 'ACTIONS'];
 
-    function atlasSearchDirective ($timeout, autocompleteData, store, ACTIONS) {
+    function atlasSearchDirective ($timeout, autocompleteData, environment, store, ACTIONS) {
         return {
             restrict: 'E',
             scope: {
@@ -110,7 +110,7 @@
 
                 store.dispatch({
                     type: ACTIONS.FETCH_DETAIL,
-                    payload: uri
+                    payload: environment.API_ROOT + uri
                 });
             };
 

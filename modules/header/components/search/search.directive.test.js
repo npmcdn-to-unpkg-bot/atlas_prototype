@@ -40,6 +40,9 @@ describe('The atlas-search directive', function () {
 
                         return fakeSuggestions[index];
                     }
+                },
+                environment: {
+                    API_ROOT: 'http://api.example.com/'
                 }
             }
         );
@@ -201,7 +204,7 @@ describe('The atlas-search directive', function () {
 
                 expect(store.dispatch).toHaveBeenCalledWith({
                     type: ACTIONS.FETCH_DETAIL,
-                    payload: 'blah-blah/1'
+                    payload: 'http://api.example.com/blah-blah/1'
                 });
 
                 //Second suggestion
@@ -209,7 +212,7 @@ describe('The atlas-search directive', function () {
 
                 expect(store.dispatch).toHaveBeenCalledWith({
                     type: ACTIONS.FETCH_DETAIL,
-                    payload: 'blah-blah/2'
+                    payload: 'http://api.example.com/blah-blah/2'
                 });
 
                 //Third suggestion
@@ -217,7 +220,7 @@ describe('The atlas-search directive', function () {
 
                 expect(store.dispatch).toHaveBeenCalledWith({
                     type: ACTIONS.FETCH_DETAIL,
-                    payload: 'something/789'
+                    payload: 'http://api.example.com/something/789'
                 });
             });
 
@@ -414,7 +417,7 @@ describe('The atlas-search directive', function () {
                 it('opens the selected suggestion', function () {
                     expect(store.dispatch).toHaveBeenCalledWith({
                         type: ACTIONS.FETCH_DETAIL,
-                        payload: 'blah-blah/2'
+                        payload: 'http://api.example.com/blah-blah/2'
                     });
                 });
 
