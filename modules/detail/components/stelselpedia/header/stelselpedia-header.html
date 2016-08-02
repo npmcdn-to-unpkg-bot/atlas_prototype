@@ -1,11 +1,11 @@
 <div class="stelselpedia-header">
     <h2 class="stelselpedia-header__title">
-        <span ng-if="vm.heading"><span ng-bind-html="vm.htmlHeading"></span> -</span>
         <span ng-class="{
             'stelselpedia-header__subtitle': vm.heading
             }">
             {{vm.stelselpedia.label}}
         </span>
+        <span ng-if="vm.heading"><span ng-bind-html="vm.htmlHeading"></span></span>
     </h2>
 
     <button class="stelselpedia-header__button" ng-click="vm.toggle('help')">

@@ -1,13 +1,13 @@
-<div class="detail-page__content">
-    <div class="detail-page__content--main">
-        <div class="default-box">
+<div>
+    <div>
+        <div>
             <atlas-stelselpedia-header
                 heading="{{vm.apiData.results.naam}}"
                 definition="OPENBARE_RUIMTE"
                 meta-data="vm.apiData">
             </atlas-stelselpedia-header>
 
-            <dl class="key-value-list">
+            <dl>
                 <dt>Naam 24-posities (NEN)</dt>
                 <dd>{{ vm.apiData.results.naam_24_posities }}</dd>
                 <dt>Naam 17-posities (post)</dt>
@@ -23,7 +23,7 @@
 
         <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location"></dp-straatbeeld-thumbnail>
 
-        <div class="list-box" ng-if="vm.apiData.results.adressen.count">
+        <div ng-if="vm.apiData.results.adressen.count">
             <atlas-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></atlas-stelselpedia-header>
 
             <atlas-api-call endpoint="{{vm.apiData.results.adressen.href}}" partial="adressen_lijst"></atlas-api-call>

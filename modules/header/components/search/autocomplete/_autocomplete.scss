@@ -3,7 +3,7 @@
   top: $search-form-height + $base-whitespace;
   right: $base-whitespace;
   left: $base-whitespace;
-  background-color: $white;
+  background-color: $primary-light;
 
   .search-form__autocomplete__category {
     &:not(:first-child) {
@@ -16,7 +16,7 @@
     margin-bottom: $base-whitespace / 4;
     padding-right: $base-whitespace / 2;
     padding-left: $base-whitespace / 2;
-    color: $gray-40;
+    color: $secondary-gray40;
   }
 
   button {
@@ -24,15 +24,15 @@
     width: 100%;
     padding: $base-whitespace / 2;
     background-color: transparent;
-    color: $black;
+    color: $primary-dark;
     font-size: $base-font-size;
     text-align: left;
     cursor: pointer;
 
     &:hover,
     &.active {
-      background-color: $brand-primary;
-      color: $white;
+      background-color: $primary-contrast;
+      color: $primary-light;
       font-weight: inherit;
     }
   }

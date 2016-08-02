@@ -1,26 +1,19 @@
-body {
-  @include font-size($body-font);
-  font-family: $base-font-family;
-}
-
-p {
+.u-font--base {
   @include font-size($body-font);
 }
 
-h1 {
+.u-font--xl {
   @include font-size($xl-header-font);
 }
 
-h2 {
+.u-font--l {
   @include font-size($l-header-font);
 }
 
-h3 {
+.u-font--m {
   @include font-size($m-header-font);
 }
 
-h4,
-h5,
-h6 {
+.u-font--s {
   @include font-size($s-header-font);
 }
