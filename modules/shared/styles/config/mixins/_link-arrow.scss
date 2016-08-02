@@ -2,7 +2,7 @@
 
 $link-offset: 8px;
 
-@mixin link {
+@mixin link-arrow {
   display: inline-block;
   position: relative;
   margin-left: $link-offset;
