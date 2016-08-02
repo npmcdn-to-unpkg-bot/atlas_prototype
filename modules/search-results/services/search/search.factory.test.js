@@ -53,7 +53,10 @@ describe('The search factory', function () {
                 },
                 searchFormatter: {
                     formatCategories: function () {
-                        return 'FAKE_FORMATTED_CATEGORY_RESULTS';
+                        return 'FAKE_FORMATTED_CATEGORIES_RESULTS';
+                    },
+                    formatCategory: function () {
+                        return 'FAKE_FORMATTED_CATEGORY_RESULT';
                     },
                     formatLinks: function (links) {
                         if (links[0] === 'FAKE_LINK_F') {
@@ -99,6 +102,7 @@ describe('The search factory', function () {
 
         spyOn(api, 'getByUri').and.callThrough();
         spyOn(searchFormatter, 'formatCategories').and.callThrough();
+        spyOn(searchFormatter, 'formatCategory').and.callThrough();
         spyOn(searchFormatter, 'formatLinks').and.callThrough();
     });
 
@@ -120,7 +124,7 @@ describe('The search factory', function () {
         expect(searchFormatter.formatCategories).toHaveBeenCalledTimes(1);
         expect(searchFormatter.formatCategories).toHaveBeenCalledWith(['FAKE_RAW_RESULTS', 'FAKE_RAW_RESULTS']);
 
-        expect(searchResults).toBe('FAKE_FORMATTED_CATEGORY_RESULTS');
+        expect(searchResults).toBe('FAKE_FORMATTED_CATEGORIES_RESULTS');
     });
 
     it('can retrieve a single category based on a query', function () {
@@ -137,10 +141,11 @@ describe('The search factory', function () {
         expect(api.getByUri).toHaveBeenCalledWith('path/to/openbare_ruimte/', {q: 'Waterlooplein'});
 
         //The searchFormatter has ben called once
-        expect(searchFormatter.formatCategories).toHaveBeenCalledTimes(1);
-        expect(searchFormatter.formatCategories).toHaveBeenCalledWith(['FAKE_RAW_RESULTS']);
+        expect(searchFormatter.formatCategory).toHaveBeenCalledTimes(1);
+        expect(searchFormatter.formatCategory).toHaveBeenCalledWith('openbare_ruimte', 'FAKE_RAW_RESULTS');
 
-        expect(searchResults).toBe('FAKE_FORMATTED_CATEGORY_RESULTS');
+        //It gets converted to an Array (with one element) to keep the search-results.component consistent
+        expect(searchResults).toEqual(['FAKE_FORMATTED_CATEGORY_RESULT']);
     });
 
     it('has a load more function that returns a new set of search results', function () {

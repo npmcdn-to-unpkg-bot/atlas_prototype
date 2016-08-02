@@ -44,8 +44,10 @@
                                 var subtype;
 
                                 if (feature.opr_type) {
+                                    //Openbare ruimtes
                                     subtype = feature.opr_type.toLowerCase();
                                 } else if (feature.type.match(/^gebieden\//)) {
+                                    //Gebieden
                                     subtype = feature.type.replace(/^gebieden\//, '');
                                 } else {
                                     subtype = null;

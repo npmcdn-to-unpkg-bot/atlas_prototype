@@ -178,4 +178,52 @@ describe('The atlas-search-results-list component', function () {
         expect(component.find('li').eq(0).text()).toContain('(buurt)');
         expect(component.find('li').eq(1).text()).toContain('(bouwblok)');
     });
+
+    it('shows the type of adressen, except for verblijfsobjecten', function () {
+        var component,
+            mockedGebiedenCategory = {
+                slug: 'adres',
+                count: 3,
+                results: [
+                    {
+                        label: 'Link #1',
+                        endpoint: 'http://www.example.com/gebied/1/',
+                        subtype: 'verblijfsobject'
+                    }, {
+                        label: 'Link #2',
+                        endpoint: 'http://www.example.com/gebied/2/',
+                        subtype: 'standplaats'
+                    }, {
+                        label: 'Link #3',
+                        endpoint: 'http://www.example.com/gebied/3/',
+                        subtype: 'ligplaats'
+                    }
+                ]
+            };
+
+        component = getComponent(mockedGebiedenCategory);
+
+        expect(component.find('li').eq(0).text()).not.toContain('(verblijfsobject)');
+        expect(component.find('li').eq(1).text()).toContain('(standplaats)');
+        expect(component.find('li').eq(2).text()).toContain('(ligplaats)');
+    });
+
+    it('doesn\'t show the type when the value is null', function () {
+        var component,
+            mockedGebiedenCategory = {
+                slug: 'adres',
+                count: 1,
+                results: [
+                    {
+                        label: 'Link #1',
+                        endpoint: 'http://www.example.com/gebied/1/',
+                        subtype: null
+                    }
+                ]
+            };
+
+        component = getComponent(mockedGebiedenCategory);
+
+        expect(component.find('li').eq(0).text()).not.toContain('()');
+    });
 });
