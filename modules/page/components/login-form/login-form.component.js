@@ -9,9 +9,9 @@
             controllerAs: 'vm'
         });
 
-    AtlasLoginFormController.$inject = ['user'];
+    AtlasLoginFormController.$inject = ['$window', 'user'];
 
-    function AtlasLoginFormController (user) {
+    function AtlasLoginFormController ($window, user) {
         var vm = this;
 
         vm.errorMessage = null;
@@ -23,15 +23,12 @@
 
             user
                 .login(vm.username, vm.password)
+                .then(function () {
+                    $window.history.back();
+                })
                 .catch(function (errorMessage) {
                     vm.errorMessage = errorMessage;
                 });
-        };
-
-        vm.isLoggedIn = function () {
-            var userState = user.getStatus();
-
-            return userState.isLoggedIn;
         };
     }
 })();
