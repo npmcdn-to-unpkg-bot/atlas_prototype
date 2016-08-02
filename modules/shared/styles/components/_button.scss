@@ -5,10 +5,9 @@
     <button class="btn btn-white">A white button</button>
   */
   &.btn-white {
-    padding: $whitespace-base / 2;
+    padding: $base-whitespace / 2;
     border: 1px solid $primary-dark;
     border-radius: 6px;
-
     background-color: $primary-light;
     color: $primary-dark;
     font-size: inherit;
@@ -28,10 +27,12 @@
     <button class="btn btn-link">Lorem ipsum</button>
   */
   &.btn-link {
+    @include link;
+
     background-color: transparent;
-    color: $primary-contrast;
+    font-family: inherit;
     font-size: inherit;
-    text-decoration: underline;
+    text-align: left;
     cursor: pointer;
   }
 }

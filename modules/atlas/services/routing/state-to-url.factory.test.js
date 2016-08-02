@@ -19,7 +19,8 @@ describe('The stateToUrl factory', function () {
         it('can contain a query', function () {
             mockedState.search = {
                 query: 'i_am_a_query',
-                location: null
+                location: null,
+                category: null
             };
 
             stateToUrl.update(mockedState);
@@ -32,13 +33,28 @@ describe('The stateToUrl factory', function () {
         it('can contain a location', function () {
             mockedState.search = {
                 query: null,
-                location: [52.123, 4.789]
+                location: [52.123, 4.789],
+                category: null
             };
 
             stateToUrl.update(mockedState);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 zoek: '52.123,4.789'
+            }));
+        });
+
+        it('can have an active category', function () {
+            mockedState.search = {
+                query: 'i_am_a_query',
+                location: null,
+                category: 'adres'
+            };
+
+            stateToUrl.update(mockedState);
+
+            expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
+                categorie: 'adres'
             }));
         });
 

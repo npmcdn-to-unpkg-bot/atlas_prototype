@@ -5,9 +5,9 @@
         .module('atlas')
         .controller('MapController', MapController);
 
-    MapController.$inject = ['store', 'wgs84RdConverter'];
+    MapController.$inject = ['store', 'crsConverter'];
 
-    function MapController (store, wgs84RdConverter) {
+    function MapController (store, crsConverter) {
         var vm = this;
 
         store.subscribe(update);
@@ -52,7 +52,7 @@
         function convertLocationToGeoJSON (location) {
             return {
                 type: 'Point',
-                coordinates: wgs84RdConverter.wgs84ToRd(location)
+                coordinates: crsConverter.wgs84ToRd(location)
             };
         }
     }

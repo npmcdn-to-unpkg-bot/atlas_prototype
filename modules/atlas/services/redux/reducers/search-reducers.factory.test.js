@@ -12,19 +12,21 @@ describe('The search-reducers factory', function () {
     });
 
     describe('SHOW_SEARCH_RESULTS_BY_QUERY', function () {
-        it('sets the search query and resets the search location', function () {
+        it('sets the search query and resets the search location and active category', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
             inputState.search = {
                 query: null,
-                location: [12.345, 6.789]
+                location: [12.345, 6.789],
+                category: 'adres'
             };
 
             output = searchReducers.SHOW_SEARCH_RESULTS_BY_QUERY(inputState, 'linnaeus');
 
             expect(output.search.query).toBe('linnaeus');
             expect(output.search.location).toBeNull();
+            expect(output.search.category).toBeNull();
         });
 
         it('removes the highlighted object from the map', function () {
@@ -57,19 +59,21 @@ describe('The search-reducers factory', function () {
     });
 
     describe('SHOW_SEARCH_RESULTS_BY_CLICK', function () {
-        it('resets the search query and sets the search location', function () {
+        it('resets the search query and active category and sets the search location', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
             inputState.search = {
                 query: 'some query',
-                location: null
+                location: null,
+                category: 'adres'
             };
 
             output = searchReducers.SHOW_SEARCH_RESULTS_BY_CLICK(inputState, [52.001, 4.002]);
 
             expect(output.search.query).toBeNull();
             expect(output.search.location).toEqual([52.001, 4.002]);
+            expect(output.search.category).toBeNull();
         });
 
         it('removes the highlighted object from the map', function () {
@@ -98,6 +102,23 @@ describe('The search-reducers factory', function () {
             expect(output.page).toBeNull();
             expect(output.detail).toBeNull();
             expect(output.straatbeeld).toBeNull();
+        });
+    });
+
+    describe('SHOW_SEARCH_RESULTS_CATEGORY', function () {
+        it('sets the active category', function () {
+            var inputState = angular.copy(defaultState),
+                output;
+
+            inputState.search = {
+                query: 'Jan Beijerpad',
+                location: null,
+                category: null
+            };
+
+            output = searchReducers.SHOW_SEARCH_RESULTS_CATEGORY(inputState, 'adres');
+
+            expect(output.search.category).toBe('adres');
         });
     });
 });

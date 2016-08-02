@@ -5,22 +5,32 @@
         .module('atlasDetail')
         .factory('endpointParser', endpointParserFactory);
 
-    endpointParserFactory.$inject = ['environment'];
-
-    function endpointParserFactory (environment) {
+    function endpointParserFactory () {
         return {
             getTemplateUrl: getTemplateUrl
         };
 
         function getTemplateUrl (endpoint) {
-            var endpointWithoutTrailingSlash,
+            var anchor,
+                pathname,
                 uriParts,
                 template;
 
-            endpointWithoutTrailingSlash = endpoint.replace(/\/$/, '');
+
 
             //Transform http://www.api-root.com/this/that/123 to ['this', 'that', '123']
-            uriParts = endpointWithoutTrailingSlash.replace(new RegExp(environment.API_ROOT), '').split('/');
+            anchor = document.createElement('a');
+            anchor.href = endpoint;
+
+            pathname = anchor.pathname;
+
+            //Strip leading slash
+            pathname = pathname.replace(/^\//, '');
+
+            //Strip trailing slash
+            pathname = pathname.replace(/\/$/, '');
+
+            uriParts = pathname.split('/');
 
             if (isZakelijkRecht(uriParts)) {
                 template = 'brk/subject.html';

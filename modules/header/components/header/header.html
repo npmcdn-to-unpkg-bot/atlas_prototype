@@ -10,25 +10,44 @@
                 <atlas-search query="{{vm.query}}"></atlas-search>
             </div>
             <div class="col-sm-4">
-                <nav class="site-header__navigation">
-                    <div class="grid">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <button class="site-header__navigation__item">
-                                    Inloggen
-                                </button>
-                            </div>
-                            <div class="col-sm-4">
-                                <button class="site-header__navigation__item" ng-click="vm.showPage('testlinks')">
-                                    testlinks
-                                </button>
-                            </div>
-                            <div class="col-sm-4">
-                                <button class="site-header__navigation__item" ng-click="vm.showPage('over-ons')">
-                                    Over Atlas
-                                </button>
-                            </div>
+
+                <nav>
+                    <div class="col-sm-4">
+                        <dp-link ng-if="!vm.isLoggedIn()" type="SHOW_PAGE" payload="'login'"  class-name="site-header__navigation__item">
+                            inloggen
+                        </dp-link>
+
+                        <div ng-if="vm.isLoggedIn()">
+                            <span class="u-color__primary--light">{{vm.getUsername()}}</span>
+                            <button ng-click="vm.logout()">uitloggen</button>
                         </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <atlas-dropdown-menu label="menu">
+                            <ul class="dropdown-menu">
+                                <li class="shareandextras__menu-item">
+                                    <dp-print-button>
+                                        Printen
+                                    </dp-print-button>
+                                </li>
+                                <li class="shareandextras__menu-item">
+                                    <feedback-link class="shareandextras__menu-item__link">
+                                        Terugmelden
+                                    </feedback-link>
+                                </li>
+                                <li class="shareandextras__menu-item">
+                                    <dp-link type="SHOW_PAGE" payload="'testlinks'" class="site-header__navigation__item">
+                                        testlinks
+                                    </dp-link>
+                                </li>
+                                <li class="shareandextras__menu-item">
+                                    <dp-link type="SHOW_PAGE" payload="'over-ons'" class="site-header__navigation__item">
+                                        Over Atlas
+                                    </dp-link>
+                                </li>
+                            </ul>
+                        </atlas-dropdown-menu>
                     </div>
                 </nav>
             </div>

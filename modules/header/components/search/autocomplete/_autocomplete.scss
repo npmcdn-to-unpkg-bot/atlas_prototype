@@ -1,28 +1,28 @@
 .search-form__autocomplete {
   position: absolute;
-  top: $search-form-height + $whitespace-base;
-  right: $whitespace-base;
-  left: $whitespace-base;
+  top: $search-form-height + $base-whitespace;
+  right: $base-whitespace;
+  left: $base-whitespace;
   background-color: $primary-light;
 
   .search-form__autocomplete__category {
     &:not(:first-child) {
-      margin-top: $whitespace-base;
+      margin-top: $base-whitespace;
     }
   }
 
   h4 {
-    margin-top: $whitespace-base / 2;
-    margin-bottom: $whitespace-base / 4;
-    padding-right: $whitespace-base / 2;
-    padding-left: $whitespace-base / 2;
+    margin-top: $base-whitespace / 2;
+    margin-bottom: $base-whitespace / 4;
+    padding-right: $base-whitespace / 2;
+    padding-left: $base-whitespace / 2;
     color: $secondary-gray40;
   }
 
   button {
     display: block;
     width: 100%;
-    padding: $whitespace-base / 2;
+    padding: $base-whitespace / 2;
     background-color: transparent;
     color: $primary-dark;
     font-size: $base-font-size;

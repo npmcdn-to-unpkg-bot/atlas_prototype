@@ -1,4 +1,23 @@
 /*
+@Name List
+@markup
+  <ul class="list-inline">
+    <li>Item #1</li>
+    <li>Item #2</li>
+    <li>Item #3</li>
+  </ul>
+*/
+.list {
+  border-top: 1px solid $gray-40;
+
+  li {
+    border-bottom: 1px solid $gray-40;
+    line-height: 22px;
+  }
+}
+
+
+/*
 @Name List inline (horizontal)
 @markup
   <ul class="list-inline">
@@ -7,7 +26,6 @@
     <li>Item #3</li>
   </ul>
 */
-
 .list-inline {
   font-size: 0;
 

@@ -1,4 +1,5 @@
-$base-font-family: avenir, arial, verdana, sans-serif;
+$base-font-family: Avenir, Arial, Verdana, sans-serif;
+
 $base-font-size: 14px;
 
 $breakpoints: (
@@ -6,14 +7,14 @@ $breakpoints: (
   s: 700px,
   m: 1024px,
   l: 1200px,
-  xl: 1600px
+  xl: 1680px
 );
 
 // per breakpoint (font-size, line-height)
 // te gebruiken met de font-size mixin
 // p {
 //  @include font-size($body-font);
-//}
+// }
 
 $body-font: (
   null: ($base-font-size, 1.25),
@@ -24,7 +25,7 @@ $body-font: (
   xl: ($base-font-size, 1.375)
 );
 
-$h1-font: (
+$xl-header-font: (
   null: ($base-font-size * 2, 1.25),
   xs: ($base-font-size * 2, 1.25),
   s: ($base-font-size * 2, 1.25),
@@ -33,7 +34,7 @@ $h1-font: (
   xl: ($base-font-size * 3, 1.05)
 );
 
-$h2-font: (
+$l-header-font: (
   null: ($base-font-size * 1.625, 1.15384615),
   xs: ($base-font-size * 1.625, 1.15384615),
   s: ($base-font-size * 1.625, 1.15384615),
@@ -42,7 +43,7 @@ $h2-font: (
   xl: ($base-font-size * 2.25, 1.25)
 );
 
-$h3-font: (
+$m-header-font: (
   null: ($base-font-size * 1.375, 1.13636364),
   xs: ($base-font-size * 1.375, 1.13636364),
   s: ($base-font-size * 1.375, 1.13636364),
@@ -51,7 +52,7 @@ $h3-font: (
   xl: ($base-font-size * 1.75, 1.25)
 );
 
-$h4-font: (
+$s-header-font: (
   null: ($base-font-size * 1.125, 1.11111111),
   xs: ($base-font-size * 1.125, 1.11111111),
   s: ($base-font-size * 1.125, 1.11111111),

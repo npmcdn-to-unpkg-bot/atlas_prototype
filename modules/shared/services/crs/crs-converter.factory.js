@@ -3,11 +3,11 @@
 
     angular
         .module('dpShared')
-        .factory('wgs84RdConverter', wgs84RdConverterFactory);
+        .factory('crsConverter', crsConverterFactory);
 
-    wgs84RdConverterFactory.$inject = ['CRS_CONFIG', 'proj4'];
+    crsConverterFactory.$inject = ['CRS_CONFIG', 'proj4'];
 
-    function wgs84RdConverterFactory (CRS_CONFIG, proj4) {
+    function crsConverterFactory (CRS_CONFIG, proj4) {
         return{
             wgs84ToRd: wgs84ToRd,
             rdToWgs84: rdToWgs84
@@ -20,7 +20,9 @@
          * @returns {Array} - RD - An array with this structure: [x, y]
          */
         function wgs84ToRd (wgs84Coordinates){
-            return proj4(CRS_CONFIG.RD.projection, angular.copy(wgs84Coordinates).reverse());
+            var rd = proj4(CRS_CONFIG.RD.projection, angular.copy(wgs84Coordinates).reverse());
+
+            return [Math.round(rd[0]), Math.round(rd[1])];
         }
 
         /*

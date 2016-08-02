@@ -8,19 +8,19 @@ p {
 }
 
 h1 {
-  @include font-size($h1-font);
+  @include font-size($xl-header-font);
 }
 
 h2 {
-  @include font-size($h2-font);
+  @include font-size($l-header-font);
 }
 
 h3 {
-  @include font-size($h3-font);
+  @include font-size($m-header-font);
 }
 
 h4,
 h5,
 h6 {
-  @include font-size($h4-font);
+  @include font-size($s-header-font);
 }

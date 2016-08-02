@@ -2,20 +2,18 @@
   @include font-size($body-font);
 }
 
-.u-font--h1 {
-  @include font-size($h1-font);
+.u-font--xl {
+  @include font-size($xl-header-font);
 }
 
-.u-font--h2 {
-  @include font-size($h2-font);
+.u-font--l {
+  @include font-size($l-header-font);
 }
 
-.u-font--h3 {
-  @include font-size($h3-font);
+.u-font--m {
+  @include font-size($m-header-font);
 }
 
-.u-font--h4,
-.u-font--h5,
-.u-font--h6 {
-  @include font-size($h4-font);
+.u-font--s {
+  @include font-size($s-header-font);
 }
