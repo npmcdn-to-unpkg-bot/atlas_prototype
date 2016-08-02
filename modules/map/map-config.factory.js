@@ -20,8 +20,8 @@
             MAP_OPTIONS: {
                 crs: crsService.getRd(),
                 maxBounds: [
-                    [52.269470, 4.743862], //south west
-                    [52.427077, 5.047359] //north east
+                    [52.269470, 4.72876], //south west
+                    [52.4322, 5.07916] //north east
                 ],
                 attributionControl: false,
                 zoomControl: false
