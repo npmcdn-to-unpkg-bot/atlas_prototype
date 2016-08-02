@@ -183,7 +183,7 @@ describe('The atlas-search-results-list component', function () {
         var component,
             mockedGebiedenCategory = {
                 slug: 'adres',
-                count: 2,
+                count: 3,
                 results: [
                     {
                         label: 'Link #1',
@@ -206,5 +206,24 @@ describe('The atlas-search-results-list component', function () {
         expect(component.find('li').eq(0).text()).not.toContain('(verblijfsobject)');
         expect(component.find('li').eq(1).text()).toContain('(standplaats)');
         expect(component.find('li').eq(2).text()).toContain('(ligplaats)');
+    });
+
+    it('doesn\'t show the type when the value is null', function () {
+        var component,
+            mockedGebiedenCategory = {
+                slug: 'adres',
+                count: 1,
+                results: [
+                    {
+                        label: 'Link #1',
+                        endpoint: 'http://www.example.com/gebied/1/',
+                        subtype: null
+                    }
+                ]
+            };
+
+        component = getComponent(mockedGebiedenCategory);
+
+        expect(component.find('li').eq(0).text()).not.toContain('()');
     });
 });
