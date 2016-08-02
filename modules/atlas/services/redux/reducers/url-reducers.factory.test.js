@@ -142,18 +142,20 @@ describe('The urlReducers factory', function () {
                 expect(output.map.highlight).toBe('I_AM_A_FAKE_GEOJSON_OBJECT');
             });
 
-            it('preserves the showLayerSelection status from the previous state', function () {
+            it('sets the showLayerSelection status', function () {
                 var output;
 
-                //Without layer selection
-                mockedState.map.showLayerSelection = false;
-                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.map.showLayerSelection).toBe(false);
-
                 //With layer selection
-                mockedState.map.showLayerSelection = true;
+                mockedState.map.showLayerSelection = false;
+                mockedSearchParams.kaartlagen = '1';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.showLayerSelection).toBe(true);
+
+                //Without layer selection
+                mockedState.map.showLayerSelection = true;
+                delete mockedSearchParams.kaartlagen;
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.map.showLayerSelection).toBe(false);
             });
         });
 

@@ -65,7 +65,6 @@
             }
 
             function getMapState (payload) {
-                console.log(angular.isString(payload.kaartlagen));
                 return {
                     baseLayer: payload.basiskaart,
                     overlays: payload.lagen ? payload.lagen.split(',') : [],
