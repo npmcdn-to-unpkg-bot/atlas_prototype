@@ -9,6 +9,13 @@
                 location: '='
             },
             templateUrl: 'modules/straatbeeld/components/metadata/metadata.html',
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            controller: function () {
+                var vm = this;
+
+                vm.showMetaInfo = function () {
+                    return angular.isDate(vm.date) && angular.isArray(vm.location);
+                };
+            }
         });
 })();
