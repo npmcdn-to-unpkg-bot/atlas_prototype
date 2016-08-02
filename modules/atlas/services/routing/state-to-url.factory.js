@@ -43,6 +43,7 @@
             searchParams.lagen = state.map.overlays.length ? state.map.overlays.join(',') : null;
             searchParams.zoom = String(state.map.zoom);
             searchParams.selectie = state.map.highlight;
+            searchParams.kaartlagen = state.map.showLayerSelection ? '1' : null;
 
             //Page
             searchParams.pagina = state.page;

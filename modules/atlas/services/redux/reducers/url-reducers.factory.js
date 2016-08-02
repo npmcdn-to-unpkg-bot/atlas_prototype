@@ -65,6 +65,7 @@
             }
 
             function getMapState (payload) {
+                console.log(angular.isString(payload.kaartlagen));
                 return {
                     baseLayer: payload.basiskaart,
                     overlays: payload.lagen ? payload.lagen.split(',') : [],
@@ -74,7 +75,7 @@
                     ],
                     zoom: Number(payload.zoom),
                     highlight: payload.selectie || null,
-                    showLayerSelection: angular.copy(oldState.map.showLayerSelection),
+                    showLayerSelection: angular.isString(payload.kaartlagen),
                     isLoading: false
                 };
             }
