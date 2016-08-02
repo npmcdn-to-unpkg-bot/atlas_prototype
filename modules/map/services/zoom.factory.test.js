@@ -5,7 +5,8 @@ describe('The zoom factory', function () {
         store,
         ACTIONS,
         mockedLeafletMap,
-        mockedScale,
+        mockedScaleControl,
+        mockedZoomControl,
         moveEndCallback;
 
     beforeEach(function () {
@@ -13,6 +14,9 @@ describe('The zoom factory', function () {
             'dpMap',
             {
                 mapConfig: {
+                    ZOOM_OPTIONS: {
+                        foo: 'bar'
+                    },
                     SCALE_OPTIONS: {
                         metric: 'bitte',
                         imperial: 'ga weg'
@@ -42,12 +46,19 @@ describe('The zoom factory', function () {
             setZoom: function () {}
         };
 
-        mockedScale = {
+        mockedScaleControl = {
             addTo: function () {}
         };
 
-        spyOn(L.control, 'scale').and.returnValue(mockedScale);
-        spyOn(mockedScale, 'addTo');
+        mockedZoomControl = {
+            addTo: function () {}
+        };
+
+        spyOn(L.control, 'scale').and.returnValue(mockedScaleControl);
+        spyOn(mockedScaleControl, 'addTo');
+
+        spyOn(L.control, 'zoom').and.returnValue(mockedZoomControl);
+        spyOn(mockedZoomControl, 'addTo');
 
         spyOn(mockedLeafletMap, 'on').and.callThrough();
         spyOn(mockedLeafletMap, 'setZoom');
@@ -62,7 +73,17 @@ describe('The zoom factory', function () {
             imperial: 'ga weg'
         });
 
-        expect(mockedScale.addTo).toHaveBeenCalledWith(mockedLeafletMap);
+        expect(mockedScaleControl.addTo).toHaveBeenCalledWith(mockedLeafletMap);
+    });
+
+    it('adds zoom controls to the map', function () {
+        zoom.initialize(mockedLeafletMap);
+
+        expect(L.control.zoom).toHaveBeenCalledWith({
+            foo: 'bar'
+        });
+
+        expect(mockedZoomControl.addTo).toHaveBeenCalledWith(mockedLeafletMap);
     });
 
     it('can zoom in and out', function () {

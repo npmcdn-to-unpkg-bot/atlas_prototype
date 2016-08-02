@@ -13,6 +13,7 @@
 
         function initialize (leafletMap) {
             L.control.scale(mapConfig.SCALE_OPTIONS).addTo(leafletMap);
+            L.control.zoom(mapConfig.ZOOM_OPTIONS).addTo(leafletMap);
 
             leafletMap.on('zoomend', function () {
                 $rootScope.$applyAsync(function () {
