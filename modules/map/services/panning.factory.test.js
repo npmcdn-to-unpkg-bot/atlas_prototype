@@ -59,7 +59,7 @@ describe('The panning factory', function () {
     it('listens for Leaflet\'s moveend event, then it fires the MAP_PAN action', function () {
         panning.initialize(mockedLeafletMap);
 
-        expect(mockedLeafletMap.on).toHaveBeenCalledWith('moveend', jasmine.any(Function));
+        expect(mockedLeafletMap.on).toHaveBeenCalledWith('dragend', jasmine.any(Function));
         expect(moveEndCallback).toBeDefined();
 
         //Trigger the moveend callback manually
