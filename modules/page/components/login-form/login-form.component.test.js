@@ -2,6 +2,7 @@ describe('The atlas-login-form component', function () {
     var $compile,
         $rootScope,
         $q,
+        $window,
         user,
         isLoggedIn;
 
@@ -32,10 +33,11 @@ describe('The atlas-login-form component', function () {
             }
         );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_, _$q_, _user_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _$q_, _$window_, _user_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
             $q = _$q_;
+            $window = _$window_;
             user = _user_;
         });
 
@@ -80,15 +82,13 @@ describe('The atlas-login-form component', function () {
             setInput(component.find('input[type="text"]')[0], 'Erik');
             setInput(component.find('input[type="password"]')[0], 'myinsecurepwd');
 
+            spyOn($window.history, 'back');
             component.find('form').submit();
 
             expect(user.login).toHaveBeenCalledWith('Erik', 'myinsecurepwd');
 
-            //Hide the form
-            expect(component.find('form').length).toBe(0);
-
-            //Show a success message
-            expect(component.find('p').text()).toBe('Je bent nu ingelogd, heel knap.');
+            //Redirect to the previous page
+            expect($window.history.back).toHaveBeenCalled();
         });
 
         it('can fail', function () {
