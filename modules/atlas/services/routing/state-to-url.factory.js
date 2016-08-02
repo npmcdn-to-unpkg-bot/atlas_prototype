@@ -12,7 +12,17 @@
             update: update
         };
 
-        function update (state) {
+        function update (state, useReplace) {
+            var searchParams = getNewSearchParams(state);
+
+            if (useReplace) {
+                $location.replace();
+            }
+
+            $location.search(searchParams);
+        }
+
+        function getNewSearchParams (state) {
             var searchParams = {};
 
             //Search
@@ -59,7 +69,7 @@
                 }
             }
 
-            $location.search(searchParams);
+            return searchParams;
         }
     }
 })();
