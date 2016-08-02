@@ -1,12 +1,19 @@
 //This is a mixin so it can be used by both the anchor tag as well as buttons with .btn-link
 
+$link-offset: 8px;
+
 @mixin link {
+  display: inline-block;
+  position: relative;
+  margin-left: $link-offset;
   color: $secondary-gray60;
   font-weight: 700;
   text-decoration: none;
 
   &::before {
     display: inline-block;
+    position: absolute;
+    left: -$link-offset;
     content: "›";
   }
 
