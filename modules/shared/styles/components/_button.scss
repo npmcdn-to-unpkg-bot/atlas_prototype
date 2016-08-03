@@ -24,7 +24,7 @@
   /*
   @name Button w/ link styling
   @markup
-    <button class="btn btn-link">Lorem ipsum</button>
+    <button class="btn btn--link">Lorem ipsum</button>
   */
   &.btn--link {
     @include link-arrow;

@@ -27,7 +27,7 @@
 
                     <div ng-if="category.count > 10">
                         <dp-link ng-if="category.more"
-                            class-name="btn btn-link u-color__primary--contrast u-mt-05"
+                            class-name="btn btn--link u-color__primary--contrast u-mt-05"
                             type="FETCH_DETAIL"
                             payload="category.more.endpoint">
 
@@ -35,7 +35,7 @@
                         </dp-link>
 
                         <dp-link ng-if="!category.more"
-                            class-name="btn btn-link u-color__primary--contrast u-mt-05"
+                            class-name="btn btn--link u-color__primary--contrast u-mt-05"
                             type="SHOW_SEARCH_RESULTS_CATEGORY"
                             payload="category.slug">
 
@@ -56,7 +56,7 @@
 
                 <button
                     ng-if="vm.searchResults[0].count > vm.searchResults[0].results.length && !vm.isLoadMoreLoading"
-                    class="btn btn-link u-color__primary--contrast u-mt-05"
+                    class="btn btn--link u-color__primary--contrast u-mt-05"
                     ng-click="vm.loadMore()">
 
                     Toon meer

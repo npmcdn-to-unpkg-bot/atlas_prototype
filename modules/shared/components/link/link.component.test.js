@@ -69,7 +69,7 @@ describe('The dp-link component', function () {
             expect(component.find('button').attr('class')).toContain('my-other-class');
 
             expect(component.find('button').attr('class')).not.toContain('btn');
-            expect(component.find('button').attr('class')).not.toContain('btn-link');
+            expect(component.find('button').attr('class')).not.toContain('btn--link');
         });
 
         it('has a default styling of a regular link', function () {
@@ -77,7 +77,7 @@ describe('The dp-link component', function () {
 
             expect(component.find('button').length).toBe(1);
             expect(component.find('button').attr('class')).toContain('btn');
-            expect(component.find('button').attr('class')).toContain('btn-link');
+            expect(component.find('button').attr('class')).toContain('btn--link');
         });
     });
 });
