@@ -44,9 +44,9 @@
             });
 
             //Fetch scene #2-n
-            scope.$watchCollection('state.id', function (newId, oldId) {
-                if (angular.isNumber(newId) && oldId !== null) {
-                    earthmine.getImageDataById(newId).then(function (earthmineData) {
+            scope.$watchCollection('state.id', function (id) {
+                if (angular.isNumber(id)) {
+                    earthmine.getImageDataById(id).then(function (earthmineData) {
                         store.dispatch({
                             type: ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
                             payload: earthmineData
