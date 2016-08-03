@@ -386,6 +386,7 @@ describe('The atlas-search-results component', function () {
 
             //When there are multiple search results it uses the plural form: resultaten
             component = getComponent('Weesperstraat');
+            //The query is between quotes
             expect(removeWhitespace(component.find('p').text())).toBe('12 resultaten met "Weesperstraat"');
 
             //When there are over 1000 search results it uses a thousands separator
@@ -598,14 +599,15 @@ describe('The atlas-search-results component', function () {
         });
 
         it('shows meta information above the search results', function () {
+            //The coordinates are not between quotes
             expect(removeWhitespace(component.find('p').text()))
-                .toBe('22 resultaten met locatie "51.123, 4.789 (X, Y)"');
+                .toBe('22 resultaten met locatie 51.123, 4.789 (X, Y)');
 
             //Check the thousands separator
             mockedGeosearchResults[1].count = 1012;
             component = getComponent(null, [51.123, 4.789]);
             expect(removeWhitespace(component.find('p').text()))
-                .toBe('1.022 resultaten met locatie "51.123, 4.789 (X, Y)"');
+                .toBe('1.022 resultaten met locatie 51.123, 4.789 (X, Y)');
         });
 
         it('has indenting for certain \'related\' categories', function () {

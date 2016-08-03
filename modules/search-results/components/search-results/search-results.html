@@ -11,7 +11,7 @@
                     {{vm.numberOfResults === 1 ? 'resultaat' : 'resultaten'}}
                     met
                     <span ng-if="vm.query">"<strong>{{vm.query}}</strong>"</span>
-                    <span ng-if="vm.location">locatie "<strong>{{vm.location | coordinates}}</strong>"</span>
+                    <span ng-if="vm.location">locatie <strong>{{vm.location | coordinates}}</strong></span>
                 </p>
 
                 <div ng-repeat="category in vm.searchResults"
