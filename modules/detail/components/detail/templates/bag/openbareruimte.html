@@ -21,11 +21,11 @@
             </dl>
         </div>
 
-        <div class="row">
+        <div class="u-row">
             <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location" class="u-col-sm--6"></dp-straatbeeld-thumbnail>
         </div>
 
-        <div ng-if="vm.apiData.results.adressen.count" class="row">
+        <div ng-if="vm.apiData.results.adressen.count" class="u-row">
             <atlas-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></atlas-stelselpedia-header>
 
             <atlas-api-call endpoint="{{vm.apiData.results.adressen.href}}" partial="adressen_lijst" class="u-col-sm--10 u-col-sm-push--2"></atlas-api-call>
