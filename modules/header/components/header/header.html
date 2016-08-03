@@ -1,18 +1,18 @@
 <header class="site-header">
-    <div class="grid">
-        <div class="row">
-            <div class="col-sm-4 u-pl-0">
+    <div class="u-grid">
+        <div class="u-row">
+            <div class="u-col-sm--4 u-pl-0">
                 <div class="site-header__logo">
                     <img class="u-block" src="assets/atlas_logo.png" alt="Atlas logo">
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="u-col-sm--4">
                 <atlas-search query="{{vm.query}}"></atlas-search>
             </div>
-            <div class="col-sm-4">
+            <div class="u-col-sm--4">
 
                 <nav>
-                    <div class="col-sm-4">
+                    <div class="u-col-sm--4">
                         <dp-link ng-if="!vm.isLoggedIn()" type="SHOW_PAGE" payload="'login'"  class-name="site-header__navigation__item">
                             inloggen
                         </dp-link>
@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="u-col-sm-4">
                         <atlas-dropdown-menu label="menu">
                             <ul class="dropdown-menu">
                                 <li class="shareandextras__menu-item">
