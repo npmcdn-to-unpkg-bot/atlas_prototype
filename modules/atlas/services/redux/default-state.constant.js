@@ -7,6 +7,7 @@
                 overlays: [],
                 viewCenter: [52.3719, 4.9012],
                 zoom: 9,
+                highlight: null,
                 showLayerSelection: false,
                 isLoading: false
             },

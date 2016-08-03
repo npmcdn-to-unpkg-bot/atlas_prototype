@@ -140,6 +140,24 @@ describe('The stateToUrl factory', function () {
                 selectie: 'MOCKED_GEOJSON'
             }));
         });
+
+        it('keeps track of the state of the layer selection (opened or closed)', function () {
+            //Closed
+            mockedState.map.showLayerSelection = false;
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
+                kaartlagen: jasmine.anything()
+            }));
+
+            //Opened
+            mockedState.map.showLayerSelection = true;
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
+                kaartlagen: '1'
+            }));
+        });
     });
 
     describe('Page', function () {

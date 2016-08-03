@@ -74,7 +74,7 @@
                     ],
                     zoom: Number(payload.zoom),
                     highlight: payload.selectie || null,
-                    showLayerSelection: angular.copy(oldState.map.showLayerSelection),
+                    showLayerSelection: angular.isString(payload.kaartlagen),
                     isLoading: false
                 };
             }
