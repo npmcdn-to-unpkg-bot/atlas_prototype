@@ -122,7 +122,7 @@ describe('The straatbeeldReducers factory', function () {
         });
     });
 
-    describe('SHOW_STRAATBEELD', function () {
+    describe('SHOW_STRAATBEELD_INITIAL', function () {
         var showStraatbeeldPayload;
 
         beforeEach(function () {
@@ -145,7 +145,7 @@ describe('The straatbeeldReducers factory', function () {
             inputState.straatbeeld.id = null;
             inputState.straatbeeld.searchLocation = [52.4, 4.52];
 
-            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
+            output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(inputState, showStraatbeeldPayload);
 
             expect(output.straatbeeld.id).toBe(98765);
             expect(output.straatbeeld.searchLocation).toBeNull();
@@ -155,7 +155,7 @@ describe('The straatbeeldReducers factory', function () {
             var inputState = angular.copy(inputStateWithStraatbeeld),
                 output;
 
-            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
+            output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(inputState, showStraatbeeldPayload);
 
             expect(output.straatbeeld.date).toEqual(new Date(2016, 6, 8));
             expect(output.straatbeeld.car).toEqual({
@@ -171,7 +171,7 @@ describe('The straatbeeldReducers factory', function () {
                 output;
 
             //It keeps the previous camera orientation
-            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
+            output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(inputState, showStraatbeeldPayload);
             expect(output.straatbeeld.camera).toEqual({
                 heading: 90,
                 pitch: 0.5,
@@ -180,7 +180,7 @@ describe('The straatbeeldReducers factory', function () {
 
             //Or it copies the values from the car orientation if there is no previous camera orientation
             inputState.straatbeeld.camera = null;
-            output = straatbeeldReducers.SHOW_STRAATBEELD(inputState, showStraatbeeldPayload);
+            output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(inputState, showStraatbeeldPayload);
             expect(output.straatbeeld.camera).toEqual({
                 heading: 240,
                 pitch: 0.01
@@ -194,7 +194,7 @@ describe('The straatbeeldReducers factory', function () {
             inputState.map.isLoading = true;
             inputState.straatbeeld.isLoading = true;
 
-            output = straatbeeldReducers.SHOW_STRAATBEELD(inputStateWithStraatbeeld, showStraatbeeldPayload);
+            output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(inputStateWithStraatbeeld, showStraatbeeldPayload);
 
             expect(output.map.isLoading).toBe(false);
             expect(output.straatbeeld.isLoading).toBe(false);

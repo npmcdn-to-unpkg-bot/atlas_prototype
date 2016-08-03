@@ -19,6 +19,7 @@
                 ACTIONS.MAP_REMOVE_OVERLAY,
                 ACTIONS.MAP_PAN,
                 ACTIONS.MAP_ZOOM,
+                ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
                 ACTIONS.STRAATBEELD_SET_ORIENTATION
             ];
 

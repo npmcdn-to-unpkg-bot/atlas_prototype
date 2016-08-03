@@ -28,16 +28,31 @@
                 orientation.update(viewer, scope.state.car, scope.state.isLoading);
             };
 
-            //Fetch new scene
-            scope.$watchCollection(function () {
-                return [scope.state.id, scope.state.searchLocation];
-            }, function () {
-                getEarthmineData(scope.state.id, scope.state.searchLocation).then(function (earthmineData) {
-                    store.dispatch({
-                        type: ACTIONS.SHOW_STRAATBEELD,
-                        payload: earthmineData
+            //Fetch the first scene (always based on location)
+            scope.$watchCollection('state.searchLocation', function (location) {
+                if (angular.isArray(location)) {
+                    earthmine.getImageDataByCoordinates(
+                        location[0],
+                        location[1]
+                    ).then(function (earthmineData) {
+                        store.dispatch({
+                            type: ACTIONS.SHOW_STRAATBEELD_INITIAL,
+                            payload: earthmineData
+                        });
                     });
-                });
+                }
+            });
+
+            //Fetch scene #2-n
+            scope.$watchCollection('state.id', function (newId, oldId) {
+                if (angular.isNumber(newId) && oldId !== null) {
+                    earthmine.getImageDataById(newId).then(function (earthmineData) {
+                        store.dispatch({
+                            type: ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
+                            payload: earthmineData
+                        });
+                    });
+                }
             });
 
             //Show new scene
@@ -51,17 +66,6 @@
                     );
                 }
             });
-        }
-
-        function getEarthmineData (id, location) {
-            if (angular.isNumber(id)) {
-                return earthmine.getImageDataById(id);
-            } else {
-                return earthmine.getImageDataByCoordinates(
-                    location[0],
-                    location[1]
-                );
-            }
         }
     }
 })();
