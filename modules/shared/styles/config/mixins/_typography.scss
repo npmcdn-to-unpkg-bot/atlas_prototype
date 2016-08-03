@@ -20,11 +20,14 @@
   // If $fs-font-size is a list, include
   // both font-size and line-height
   @if type-of($fs-font-size) == "list" {
-    font-size: nth($fs-font-size, 1);
+    font-family: nth($fs-font-size, 1);
     @if (length($fs-font-size) > 1) {
-      line-height: nth($fs-font-size, 2);
+      font-size: nth($fs-font-size, 2);
       @if (length($fs-font-size) > 2) {
-        padding-top: nth($fs-font-size, 3);
+        line-height: nth($fs-font-size, 3);
+        @if (length($fs-font-size) > 3) {
+          padding-top: nth($fs-font-size, 4);
+        }
       }
     }
   } @else {

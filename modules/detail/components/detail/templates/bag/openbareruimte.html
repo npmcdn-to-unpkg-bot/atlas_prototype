@@ -1,13 +1,13 @@
 <div>
     <div>
-        <div class="row">
+        <div class="u-row">
             <atlas-stelselpedia-header
                 heading="{{vm.apiData.results.naam}}"
                 definition="OPENBARE_RUIMTE"
                 meta-data="vm.apiData">
             </atlas-stelselpedia-header>
 
-            <dl class="col-sm-10 col-sm-push-2">
+            <dl class="u-col-sm--10 u-col-sm--push-2">
                 <dt>Naam 24-posities (NEN)</dt>
                 <dd>{{ vm.apiData.results.naam_24_posities }}</dd>
                 <dt>Naam 17-posities (post)</dt>
@@ -22,13 +22,13 @@
         </div>
 
         <div class="row">
-            <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location" class="col-sm-6"></dp-straatbeeld-thumbnail>
+            <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location" class="u-col-sm--6"></dp-straatbeeld-thumbnail>
         </div>
 
         <div ng-if="vm.apiData.results.adressen.count" class="row">
             <atlas-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></atlas-stelselpedia-header>
 
-            <atlas-api-call endpoint="{{vm.apiData.results.adressen.href}}" partial="adressen_lijst" class="col-sm-10 col-sm-push-2"></atlas-api-call>
+            <atlas-api-call endpoint="{{vm.apiData.results.adressen.href}}" partial="adressen_lijst" class="u-col-sm--10 u-col-sm-push--2"></atlas-api-call>
         </div>
     </div>
 </div>
