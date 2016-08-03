@@ -20,8 +20,10 @@
                         'u-mt-3': !category.useIndenting
                     }">
 
-                    <h2 ng-if="category.count > 1">{{category.label_plural}} ({{category.count | number}})</h2>
-                    <h2 ng-if="category.count === 1">{{category.label_singular}}</h2>
+                    <h2 class="u-color__primary--contrast u-font--m">
+                        <span ng-if="category.count > 1">{{category.label_plural}} ({{category.count | number}})</span>
+                        <span ng-if="category.count === 1">{{category.label_singular}}</span>
+                    </h2>
 
                     <atlas-search-results-list category="category" limit-results="true"></atlas-search-results-list>
 
@@ -67,7 +69,7 @@
         </div>
 
         <div ng-if="!vm.numberOfResults">
-            <h2>Geen resultaten gevonden</h2>
+            <h2 class="u-color__primary--contrast u-font--m">Geen resultaten gevonden</h2>
             <p>Tip: maak de criteria minder specifiek (bijv. een straat i.p.v. specifiek adres)</p>
         </div>
 
