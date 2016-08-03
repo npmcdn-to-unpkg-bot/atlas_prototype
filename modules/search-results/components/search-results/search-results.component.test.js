@@ -411,13 +411,13 @@ describe('The atlas-search-results component', function () {
 
                 //A category with 11 search results uses the plural form and it shows the number of results in brackets
                 component = getComponent('Weesperstraat');
-                expect(component.find('h2').eq(0).text()).toBe('Adressen (11)');
+                expect(component.find('h2').eq(0).text().trim()).toBe('Adressen (11)');
 
                 //A category with 1 search result uses the singular form and doesn't show the number or results
                 mockedSearchResults[0].count = 1;
                 mockedSearchResults[0].results.length = 1;
                 component = getComponent('Weesperstraat');
-                expect(component.find('h2').eq(0).text()).toBe('Adres');
+                expect(component.find('h2').eq(0).text().trim()).toBe('Adres');
             });
 
             it('categories with more than 10 results show a link to the category', function () {
@@ -526,7 +526,7 @@ describe('The atlas-search-results component', function () {
             expect(component.find('dp-link').length).toBe(21);
 
             //First category
-            expect(component.find('h2').eq(0).text()).toBe('Pand'); //Singular, no number of results shown
+            expect(component.find('h2').eq(0).text().trim()).toBe('Pand'); //Singular, no number of results shown
 
             expect(removeWhitespace(component.find('dp-link').eq(0).text())).toBe('03630013054429');
             component.find('dp-link').eq(0).find('button').click();
@@ -536,7 +536,7 @@ describe('The atlas-search-results component', function () {
             });
 
             //Second category
-            expect(component.find('h2').eq(1).text()).toBe('Adressen (12)'); //Plural, with number of results
+            expect(component.find('h2').eq(1).text().trim()).toBe('Adressen (12)'); //Plural, with number of results
 
             expect(removeWhitespace(component.find('dp-link').eq(1).text())).toBe('Lumièrestraat 6');
             component.find('dp-link').eq(1).find('button').click();
@@ -553,7 +553,7 @@ describe('The atlas-search-results component', function () {
             });
 
             //Third category
-            expect(component.find('h2').eq(2).text()).toBe('Openbare ruimtes (3)'); //Plural
+            expect(component.find('h2').eq(2).text().trim()).toBe('Openbare ruimtes (3)'); //Plural
 
             expect(removeWhitespace(component.find('dp-link').eq(12).text())).toBe('Test OR #1');
             component.find('dp-link').eq(12).find('button').click();
@@ -570,7 +570,7 @@ describe('The atlas-search-results component', function () {
             });
 
             //Fourth category
-            expect(component.find('h2').eq(3).text()).toBe('Kadastraal object'); //Singular
+            expect(component.find('h2').eq(3).text().trim()).toBe('Kadastraal object'); //Singular
 
             expect(removeWhitespace(component.find('dp-link').eq(15).text())).toBe('ASD41AU00154G0000');
             component.find('dp-link').eq(15).find('button').click();
@@ -580,7 +580,7 @@ describe('The atlas-search-results component', function () {
             });
 
             //Fifth category
-            expect(component.find('h2').eq(4).text()).toBe('Gebieden (5)'); //Plural
+            expect(component.find('h2').eq(4).text().trim()).toBe('Gebieden (5)'); //Plural
 
             expect(removeWhitespace(component.find('dp-link').eq(16).text())).toBe('Haveneiland Noordoost');
             component.find('dp-link').eq(16).find('button').click();
