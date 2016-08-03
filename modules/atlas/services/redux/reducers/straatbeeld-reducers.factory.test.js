@@ -201,6 +201,11 @@ describe('The straatbeeldReducers factory', function () {
         });
     });
 
+    it('STRAATBEELD_SHOW_SUBSEQUENT calls the same reducer as STRAATBEELD_SHOW_INITIAL', function () {
+        //The distinction between these actions lies in the routing middleware, the actual reducer is the same
+        expect(straatbeeldReducers.SHOW_STRAATBEELD_INITIAL).toEqual(straatbeeldReducers.SHOW_STRAATBEELD_SUBSEQUENT);
+    });
+
     describe('STRAATBEELD_SET_ORIENTATION', function () {
         it('updates the camera orientation', function () {
             var inputState = angular.copy(inputStateWithStraatbeeld),
