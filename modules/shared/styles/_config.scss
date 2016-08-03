@@ -3,6 +3,7 @@
 @import "config/variables/typography";
 @import "config/variables/whitespace";
 
-@import "config/mixins/clearfix";
-@import "config/mixins/link-arrow";
+@import "config/extend/clearfix";
+@import "config/extend/link";
+
 @import "config/mixins/typography";

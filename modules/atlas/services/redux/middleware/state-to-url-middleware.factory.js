@@ -11,9 +11,7 @@
         var ignoreActions = [
                 ACTIONS.URL_CHANGE, //Prevent infinite loops
                 ACTIONS.FETCH_DETAIL, //Don't update the state before asynchronous call are finished
-                ACTIONS.FETCH_STRAATBEELD,
-                ACTIONS.SHOW_LAYER_SELECTION, //Ignore state changes that don't update the URL
-                ACTIONS.HIDE_LAYER_SELECTION
+                ACTIONS.FETCH_STRAATBEELD
             ],
             useReplace = [
                 ACTIONS.MAP_SET_BASELAYER, //Replace the URL instead of adding a new entry to the browser history

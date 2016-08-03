@@ -50,9 +50,7 @@ describe('The stateToUrlMiddleware factory', function () {
         var actionWithoutUrlUpdate = [
             ACTIONS.URL_CHANGE,
             ACTIONS.FETCH_DETAIL,
-            ACTIONS.FETCH_STRAATBEELD,
-            ACTIONS.SHOW_LAYER_SELECTION,
-            ACTIONS.HIDE_LAYER_SELECTION
+            ACTIONS.FETCH_STRAATBEELD
         ];
 
         actionWithoutUrlUpdate.forEach(function (action) {
@@ -72,6 +70,8 @@ describe('The stateToUrlMiddleware factory', function () {
             ACTIONS.SHOW_SEARCH_RESULTS_CATEGORY,
             ACTIONS.SHOW_DETAIL,
             ACTIONS.SHOW_STRAATBEELD,
+            ACTIONS.SHOW_LAYER_SELECTION,
+            ACTIONS.HIDE_LAYER_SELECTION,
             ACTIONS.SHOW_PAGE
         ];
 
@@ -100,6 +100,8 @@ describe('The stateToUrlMiddleware factory', function () {
                 ACTIONS.SHOW_SEARCH_RESULTS_CATEGORY,
                 ACTIONS.SHOW_DETAIL,
                 ACTIONS.SHOW_STRAATBEELD,
+                ACTIONS.SHOW_LAYER_SELECTION,
+                ACTIONS.HIDE_LAYER_SELECTION,
                 ACTIONS.SHOW_PAGE
             ];
 
