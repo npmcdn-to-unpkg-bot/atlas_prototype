@@ -21,10 +21,6 @@
             return user.getStatus().isLoggedIn;
         };
 
-        vm.getUsername = function () {
-            return user.getStatus().username;
-        };
-
         vm.logout = user.logout;
     }
 })();

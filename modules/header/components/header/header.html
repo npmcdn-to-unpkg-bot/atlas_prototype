@@ -13,36 +13,37 @@
 
                 <nav>
                     <div class="u-col-sm--4">
-                        <dp-link ng-if="!vm.isLoggedIn()" type="SHOW_PAGE" payload="'login'"  class-name="site-header__navigation__item">
-                            inloggen
+                        <dp-link ng-if="!vm.isLoggedIn()"
+                            type="SHOW_PAGE" payload="'login'" class-name="site-header__navigation__item">
+
+                            Inloggen
                         </dp-link>
 
                         <div ng-if="vm.isLoggedIn()">
-                            <span class="u-color__primary--light">{{vm.getUsername()}}</span>
-                            <button ng-click="vm.logout()">uitloggen</button>
+                            <button ng-click="vm.logout()">Uitloggen</button>
                         </div>
                     </div>
 
                     <div class="u-col-sm-4">
-                        <atlas-dropdown-menu label="menu">
+                        <atlas-dropdown-menu label="Menu">
                             <ul class="dropdown-menu">
                                 <li class="shareandextras__menu-item">
-                                    <dp-print-button>
+                                    <atlas-print-button>
                                         Printen
-                                    </dp-print-button>
+                                    </atlas-print-button>
                                 </li>
                                 <li class="shareandextras__menu-item">
-                                    <feedback-link class="shareandextras__menu-item__link">
+                                    <atlas-terugmelden-button>
                                         Terugmelden
-                                    </feedback-link>
+                                    </atlas-terugmelden-button>
                                 </li>
                                 <li class="shareandextras__menu-item">
-                                    <dp-link type="SHOW_PAGE" payload="'testlinks'" class="site-header__navigation__item">
-                                        testlinks
+                                    <dp-link type="SHOW_PAGE" payload="'help'">
+                                        Help
                                     </dp-link>
                                 </li>
                                 <li class="shareandextras__menu-item">
-                                    <dp-link type="SHOW_PAGE" payload="'over-ons'" class="site-header__navigation__item">
+                                    <dp-link type="SHOW_PAGE" payload="'over-atlas'">
                                         Over Atlas
                                     </dp-link>
                                 </li>
