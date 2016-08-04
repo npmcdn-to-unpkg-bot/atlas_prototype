@@ -4,7 +4,7 @@
   bottom: 0;
   left: 0;
   height: $statusbar-height;
-  background-color: $secondary-gray40;
+  background-color: $secondary-gray60;
 }
 
 .layers-labels {
@@ -32,6 +32,7 @@
   .header {
     height: $statusbar-height;
     background-color: $secondary-gray60;
+    font-size: .8rem;
     text-align: right;
     cursor: pointer;
   }
@@ -61,16 +62,19 @@
 
   .edit-overlayes {
     position: relative;
-    top: .25rem;
-    padding-left: 2rem;
-    float: left;
+    top: .2rem;
+    margin-right: 1rem;
+    float: right;
+    background-color: $secondary-gray60;
     color: $primary-light;
-    font-size: 1rem;
+    font-size: .8rem;
+    font-weight: bold;
+    cursor: pointer;
   }
 }
 
 .layers-label-title {
-  font-size: .8em;
+  margin-right: 1rem;
 }
 
 .layers-label-icon {
