@@ -27,6 +27,7 @@
     }
 
     &:last-of-type {
+      min-height: 21.25px; //anders klapt de hoogte in en komt de border bottom fout uit
       border-bottom: 1px solid $secondary-gray10;
     }
   }
