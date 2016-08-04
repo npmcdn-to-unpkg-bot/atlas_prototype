@@ -4,32 +4,68 @@
   bottom: 0;
   left: 0;
   height: $statusbar-height;
-  background-color: $gray-medium;
+  background-color: $secondary-gray40;
 }
 
 .layers-labels {
   position: relative;
-  right: -1em;
+  width: $layers-label-width;
   height: $layers-label-height;
+
   float: right;
-  color: $white;
+  color: $primary-light;
+
+  font-family: $header-font-family;
   font-weight: bold;
+
   text-align: center;
   z-index: 1000;
 
   &.show {
-    bottom: $layers-label-height;
+    bottom: $layers-label-height + $statusbar-height;
   }
 
   &.hide {
     bottom: 0;
   }
 
+  .header {
+    height: $statusbar-height;
+    background-color: $secondary-gray60;
+    text-align: right;
+    cursor: pointer;
+  }
+
   .overlays {
     height: 100%;
-    background-color: $white;
-    color: $black;
+    padding-left: 1rem;
+    background-color: $primary-light;
+    color: $primary-dark;
+    font-weight: normal;
     text-align: left;
+    overflow: scroll;
+
+    .legenda-item {
+      padding-top: .25rem;
+      padding-bottom: .25rem;
+    }
+
+    .legenda-item-toggle {
+      margin-right: .5rem;
+    }
+
+    .legenda-item-title {
+      padding-bottom: .1rem;
+    }
+  }
+
+  .edit-overlayes {
+    position: relative;
+    top: .25rem;
+    padding-left: 2rem;
+    float: left;
+    color: $primary-light;
+    font-size: 1rem;
   }
 }
 

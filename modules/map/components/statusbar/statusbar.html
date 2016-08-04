@@ -1,13 +1,16 @@
 <div class="map-statusbar">
     <div class="layers-labels" ng-class="{true:'show', flase:'hide'}[statusbar.visible]">
-        <div class="header">
+        <div class="header" ng-click="statusbar.switchLegendPane()">
             <span class="layers-label-title">Kaartlagen ({{ statusbar.visibleLayers }}/{{ statusbar.activeLayers }})</span>
-        	<button class="layers-label-icon" ng-click="statusbar.switchLegendPane()">{{ statusbar.buttonStatus }}</button>
+        	<button class="layers-label-icon" >{{ statusbar.buttonStatus }}</button>
         </div>
         <ul class="overlays">
         	<li>
         		<dp-overlay-legenda ng-repeat="overlay in statusbar.overlays" overlay="overlay"></dp-overlay-legenda>
         	</li>
         </ul>
+        <div class="edit-overlayes" ng-class="{true:'show', flase:'hide'}[statusbar.visible]" ng-click="statusbar.switchLegendPane()">
+            <dp-link type="SHOW_LAYER_SELECTION" class-name="edit-overlays">Toevoegen / verwijderen</dp-link>
+        </div>
     </div>
 </div>

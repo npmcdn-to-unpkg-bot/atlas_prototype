@@ -1,16 +1,22 @@
 (function() {
 
-    // StatusbarController.$inject = [
-    //     'layers',
-    // ];
+    angular
+        .module('dpMap')
+        .component('dpMapStatusbar', {
+            restrict: 'E',
+            bindings: {
+                overlays: '=',
+                zoom: '='
+            },
+            templateUrl: 'modules/map/components/statusbar/statusbar.html',
+            controller: StatusbarController,
+            controllerAs: 'statusbar'
+        });
 
-    function StatusbarController($scope, $element, $attrs) {
+    function StatusbarController($scope) {
         var statusbar = this;
         statusbar.buttonStatus = '+';
         statusbar.visible = false;
-
-        console.log($element);
-        console.log($attrs);
         
         // Layers counts
         statusbar.activeLayers = statusbar.overlays.length;
@@ -35,18 +41,5 @@
             }
         };
     }
-
-    angular
-        .module('dpMap')
-        .component('dpMapStatusbar', {
-            restrict: 'E',
-            bindings: {
-                overlays: '=',
-                zoom: '='
-            },
-            templateUrl: 'modules/map/components/statusbar/statusbar.html',
-            controller: StatusbarController,
-            controllerAs: 'statusbar'
-        });
     
 })();

@@ -1,6 +1,13 @@
-<div>
-	<button ng-click="$ctrl.toggleVisibility()">
-		<img src="/assets/icon-eye-show.svg" />
-	</button>
-	<span>{{ $ctrl.overlay }}</span>
+<div class="u-clearfix">
+	<div class="legenda-item-toggle u-pull--left">
+		<button ng-click="vm.toggleVisibility()">
+			<img src="/assets/icon-eye-show.svg" />
+		</button>
+	</div>
+	<div class="legenda-item u-pull--left">
+		<span class="legenda-item-title">{{ vm.label }}</span>
+		<div class="legenda-item-legenda" ng-if="vm.legend">
+			<img ng-src="{{ vm.legend }}" />
+		</div>
+	</div>
 </div>

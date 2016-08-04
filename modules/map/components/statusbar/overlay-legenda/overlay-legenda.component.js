@@ -1,13 +1,5 @@
 (function(){
 
-	function OverlayLegenda() {
-		var ctrl = this;
-
-		ctrl.toggleVisibility = function() {
-			console.log(ctrl.overlay);
-		};
-	}
-
 	angular
 		.module('dpMap')
 		.component('dpOverlayLegenda', {
@@ -16,6 +8,28 @@
 			},
 			resrict: 'E',
 			templateUrl: 'modules/map/components/statusbar/overlay-legenda/overlay-legenda.html',
-			controller: OverlayLegenda
+			controller: OverlayLegenda,
+			controllerAs: 'vm'
 		});
+
+	OverlayLegenda.$inject = ['$scope', 'OVERLAYS', 'mapConfig', 'ACTIONS'];
+
+	function OverlayLegenda($scope, OVERLAYS, mapConfig, ACTIONS) {
+		var vm = this;
+
+		vm.overlay_data = OVERLAYS.SOURCES[vm.overlay];
+
+		vm.label = OVERLAYS.SOURCES[vm.overlay].label;
+		vm.legend = OVERLAYS.SOURCES[vm.overlay].legend;
+		// Checking for external link
+		if (vm.legend && !OVERLAYS.SOURCES[vm.overlay].external) {
+			vm.legend = mapConfig.OVERLAY_ROOT + vm.legend;
+		}
+		console.log(vm.overlay);
+
+		vm.toggleVisibility = function() {
+			console.log(vm.overlay);
+		};
+	}
+
 })();
