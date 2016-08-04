@@ -9,7 +9,7 @@
         		<dp-overlay-legenda ng-repeat="overlay in statusbar.overlays" overlay="overlay"></dp-overlay-legenda>
         	</li>
         </ul>
-        <div class="edit-overlayes" ng-class="{true:'show', flase:'hide'}[statusbar.visible]" ng-click="statusbar.switchLegendPane()">
+        <div class="edit-overlayes" ng-class="{true:'show', flase:'hide'}[statusbar.visible]">
             <dp-link type="SHOW_LAYER_SELECTION" class-name="edit-overlayes">&gt; Toevoegen / verwijderen</dp-link>
         </div>
     </div>

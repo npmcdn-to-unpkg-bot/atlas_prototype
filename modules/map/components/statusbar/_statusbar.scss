@@ -53,6 +53,11 @@
 
     .legenda-item-toggle {
       margin-right: .5rem;
+      padding-top: .25rem;
+
+      button {
+        background-color: inherit;
+      }
     }
 
     .legenda-item-title {
@@ -80,8 +85,12 @@
 .layers-label-icon {
   display: inline-block;
   position: relative;
-  width: 1.1em;
-  height: 1.1em;
+  top: -.3rem;
+  width: 2rem;
+  height: 2rem;
   background-color: $primary-contrast;
-  font-size: 1.6em;
+  color: $primary-light;
+  font-size: 1.4rem;
+  font-weight: bold;
+  line-height: 2rem;
 }
