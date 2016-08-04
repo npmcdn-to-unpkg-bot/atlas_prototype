@@ -30,7 +30,6 @@
             isVisible = {};
 
         $scope.$watch('vm.heading', function (heading) {
-            console.log(heading);
             vm.htmlHeading = $sce.trustAsHtml(heading);
         });
 
