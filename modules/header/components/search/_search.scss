@@ -24,6 +24,10 @@ $submit-button-width: 60px;
     &:focus {
       background-color: $primary-light;
     }
+
+    &::placeholder {
+      color: $primary-light;
+    }
   }
 }
 
