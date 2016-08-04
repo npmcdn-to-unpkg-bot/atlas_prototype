@@ -8,27 +8,33 @@
   border-color: $secondary-gray60;
   background-color: $primary-light;
 
+  .search-form__autocomplete__tip {
+    @include font-size($body-font);
+    color: $secondary-gray40;
+    font-style: italic;
+    font-weight: 400;
+    text-align: center;
+  }
+
   .search-form__autocomplete__category {
-    &:not(:first-child) {
+    &:not(:first-of-type) {
       margin-top: $base-whitespace;
     }
   }
 
   h4 {
-    margin-top: $base-whitespace / 2;
-    margin-bottom: $base-whitespace / 4;
     padding-right: $base-whitespace;
     padding-left: $base-whitespace;
     color: $secondary-gray40;
   }
 
   button {
+    @include font-size($body-font);
     display: block;
     width: 100%;
     padding: ($base-whitespace / 2) $base-whitespace;
     background-color: transparent;
     color: $primary-dark;
-    font-size: $base-font-size;
     text-align: left;
     cursor: pointer;
 

@@ -18,6 +18,8 @@
         </button>
 
         <div ng-if="numberOfSuggestions" class="search-form__autocomplete">
+            <h3 class="search-form__autocomplete__tip">Enkele suggesties</h3>
+
             <div class="search-form__autocomplete__category" ng-repeat="category in suggestions">
                 <h4>{{category.label}}</h4>
                 <ul>
