@@ -13,6 +13,8 @@
   height: $layers-label-height;
 
   float: right;
+  transition: .25s ease-in-out;
+
   color: $primary-light;
 
   font-family: $header-font-family;
