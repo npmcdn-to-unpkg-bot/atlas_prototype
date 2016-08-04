@@ -12,9 +12,9 @@
             controllerAs: 'vm'
         });
 
-    AtlasHeaderController.$inject = ['user'];
+    AtlasHeaderController.$inject = ['$document', 'user'];
 
-    function AtlasHeaderController (user) {
+    function AtlasHeaderController ($document, user) {
         var vm = this;
 
         vm.isLoggedIn = function () {
@@ -24,5 +24,3 @@
         vm.logout = user.logout;
     }
 })();
-
-
