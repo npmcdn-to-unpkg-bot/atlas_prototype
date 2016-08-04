@@ -1,0 +1,18 @@
+.c-key-value-list {
+  margin: 5px 0;
+
+  dt {
+    width: calc(100% / 6 * 2);
+    float: left;
+    border-top: 1px solid $secondary-gray10;
+    font-weight: bold;
+  }
+
+  dd {
+    display: inline-block;
+    width: calc(100% / 6 * 3);
+    min-height: 17px; //collapsed anders
+    margin: 0;
+    border-top: 1px solid $secondary-gray10;
+  }
+}
