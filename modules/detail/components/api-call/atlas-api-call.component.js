@@ -20,19 +20,21 @@
         var vm = this;
 
         $scope.$watch('vm.endpoint', function (endpoint) {
-            if (vm.useBrkObjectExpanded) {
-                endpoint = endpoint.replace('brk/object', 'brk/object-expand');
+            if (endpoint) {
+                if (vm.useBrkObjectExpanded) {
+                    endpoint = endpoint.replace('brk/object', 'brk/object-expand');
+                }
+
+                vm.apiData = {};
+
+                //Load the first page
+                loadData(endpoint);
+
+                //Load pages 2-n
+                vm.loadMore = function () {
+                    loadData(vm.apiData.next);
+                };
             }
-
-            vm.apiData = {};
-
-            //Load the first page
-            loadData(endpoint);
-
-            //Load pages 2-n
-            vm.loadMore = function () {
-                loadData(vm.apiData.next);
-            };
         });
 
         function loadData (endpoint) {
