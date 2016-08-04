@@ -1,8 +1,11 @@
 .search-form__autocomplete {
   position: absolute;
   top: $search-form-height + $base-whitespace;
-  right: $base-whitespace;
-  left: $base-whitespace;
+  right: $base-whitespace - 1;
+  left: $base-whitespace - 1;
+  border-width: 0 1px 1px;
+  border-style: solid;
+  border-color: $secondary-gray60;
   background-color: $primary-light;
 
   .search-form__autocomplete__category {
@@ -14,15 +17,15 @@
   h4 {
     margin-top: $base-whitespace / 2;
     margin-bottom: $base-whitespace / 4;
-    padding-right: $base-whitespace / 2;
-    padding-left: $base-whitespace / 2;
+    padding-right: $base-whitespace;
+    padding-left: $base-whitespace;
     color: $secondary-gray40;
   }
 
   button {
     display: block;
     width: 100%;
-    padding: $base-whitespace / 2;
+    padding: ($base-whitespace / 2) $base-whitespace;
     background-color: transparent;
     color: $primary-dark;
     font-size: $base-font-size;
@@ -31,8 +34,7 @@
 
     &:hover,
     &.active {
-      background-color: $primary-contrast;
-      color: $primary-light;
+      background-color: $secondary-gray20;
       font-weight: inherit;
     }
   }

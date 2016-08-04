@@ -20,7 +20,7 @@
     function linkFunction (scope, element){
         var everywhere = angular.element(window.document);
 
-        scope.isVisible = true;//false;
+        scope.isVisible = false;
 
         scope.toggleDropdown = function() {
             scope.isVisible = !scope.isVisible;

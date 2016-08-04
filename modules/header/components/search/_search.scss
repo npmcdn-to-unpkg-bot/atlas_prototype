@@ -23,8 +23,10 @@ $submit-button-width: 60px;
     color: $primary-light;
   }
 
-  &:focus + .search-form__submit {
-    background-color: $primary-contrast;
+  &:focus {
+    & + .search-form__submit {
+      background-color: $primary-contrast;
+    }
   }
 }
 
