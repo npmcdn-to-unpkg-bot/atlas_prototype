@@ -11,7 +11,8 @@
         var reducers = {};
 
         reducers[ACTIONS.FETCH_STRAATBEELD] = fetchStraatbeeldReducer;
-        reducers[ACTIONS.SHOW_STRAATBEELD] = showStraatbeeldReducer;
+        reducers[ACTIONS.SHOW_STRAATBEELD_INITIAL] = showStraatbeeldReducer;
+        reducers[ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT] = showStraatbeeldReducer;
         reducers[ACTIONS.STRAATBEELD_SET_ORIENTATION] = setOrientationReducer;
 
         return reducers;
