@@ -2,17 +2,33 @@
   margin: 5px 0;
 
   dt {
-    width: calc(100% / 6 * 2);
+    width: calc(100% / 5 * 2 - 20px); //2 van 5 kolommen, hardcoded margin, var werkt niet
     float: left;
+    clear: both;
     border-top: 1px solid $secondary-gray10;
-    font-weight: bold;
+
+    &:first-of-type {
+      border-top: 1px solid transparent;
+    }
+
+    &:last-of-type {
+      border-bottom: 1px solid $secondary-gray10;
+    }
   }
 
   dd {
-    display: inline-block;
-    width: calc(100% / 6 * 3);
-    min-height: 17px; //collapsed anders
+    width: 100% / 5 * 3; //3 van 5 kolommen
     margin: 0;
+    float: right;
     border-top: 1px solid $secondary-gray10;
+
+    &:first-of-type {
+      border-top: 1px solid transparent;
+    }
+
+    &:last-of-type {
+      border-bottom: 1px solid $secondary-gray10;
+    }
   }
+
 }
