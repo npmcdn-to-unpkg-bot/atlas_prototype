@@ -23,13 +23,15 @@
         };
     }
 
-    AtlasStelselpediaHeaderController.$inject = ['$sce', 'STELSELPEDIA'];
+    AtlasStelselpediaHeaderController.$inject = ['$scope', '$sce', 'STELSELPEDIA'];
 
-    function AtlasStelselpediaHeaderController ($sce, STELSELPEDIA) {
+    function AtlasStelselpediaHeaderController ($scope, $sce, STELSELPEDIA) {
         var vm = this,
             isVisible = {};
 
-        vm.htmlHeading = $sce.trustAsHtml(vm.heading);
+        $scope.$watch('vm.heading', function (heading) {
+            vm.htmlHeading = $sce.trustAsHtml(heading);
+        });
 
         vm.stelselpedia = STELSELPEDIA.DEFINITIONS[vm.definition];
         vm.stelselpedia.label = vm.usePlural ? vm.stelselpedia.label_plural : vm.stelselpedia.label_singular;
