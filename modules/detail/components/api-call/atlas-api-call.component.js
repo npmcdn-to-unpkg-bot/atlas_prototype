@@ -14,17 +14,14 @@
             controllerAs: 'vm'
         });
 
-    AtlasApiCallController.$inject = ['api'];
+    AtlasApiCallController.$inject = ['$scope', 'api'];
 
-    function AtlasApiCallController (api) {
-        var vm = this,
-            endpoint;
+    function AtlasApiCallController ($scope, api) {
+        var vm = this;
 
-        if (vm.endpoint) {
-            endpoint = vm.endpoint;
-
+        $scope.$watch('vm.endpoint', function (endpoint) {
             if (vm.useBrkObjectExpanded) {
-                endpoint = vm.endpoint.replace('brk/object', 'brk/object-expand');
+                endpoint = endpoint.replace('brk/object', 'brk/object-expand');
             }
 
             vm.apiData = {};
@@ -36,7 +33,7 @@
             vm.loadMore = function () {
                 loadData(vm.apiData.next);
             };
-        }
+        });
 
         function loadData (endpoint) {
             api.getByUrl(endpoint).then(function (response) {
