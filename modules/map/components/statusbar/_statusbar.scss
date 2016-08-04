@@ -4,5 +4,44 @@
   bottom: 0;
   left: 0;
   height: $statusbar-height;
-  background-color: $gray-dark;
+  background-color: $gray-medium;
+}
+
+.layers-labels {
+  position: relative;
+  right: -1em;
+  height: $layers-label-height;
+  float: right;
+  color: $white;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1000;
+
+  &.show {
+    bottom: $layers-label-height;
+  }
+
+  &.hide {
+    bottom: 0;
+  }
+
+  .overlays {
+    height: 100%;
+    background-color: $white;
+    color: $black;
+    text-align: left;
+  }
+}
+
+.layers-label-title {
+  font-size: .8em;
+}
+
+.layers-label-icon {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  height: 1.1em;
+  background-color: $brand-primary;
+  font-size: 1.6em;
 }
