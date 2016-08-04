@@ -4,4 +4,7 @@
 @import "config/variables/whitespace";
 @import "config/variables/layout";
 
-@import "config/mixins/clearfix";
+@import "config/extend/clearfix";
+@import "config/extend/link";
+
+@import "config/mixins/typography";

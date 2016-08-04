@@ -12,52 +12,84 @@
             update: update
         };
 
-        function update (state) {
-            var searchParams = {};
+        function update (state, useReplace) {
+            var searchParams = angular.merge(
+                getSearchParams(state),
+                getMapParams(state),
+                getPageParams(state),
+                getDetailParams(state),
+                getStraatbeeldParams(state)
+            );
 
-            //Search
-            if (state.search) {
-                if (angular.isString(state.search.query)) {
-                    searchParams.zoek = state.search.query;
-                } else {
-                    searchParams.zoek = state.search.location.join(',');
-                }
-            }
-
-            //Map
-            searchParams.lat = String(state.map.viewCenter[0]);
-            searchParams.lon = String(state.map.viewCenter[1]);
-            searchParams.basiskaart = state.map.baseLayer;
-            searchParams.lagen = state.map.overlays.length ? state.map.overlays.join(',') : null;
-            searchParams.zoom = String(state.map.zoom);
-            searchParams.selectie = state.map.highlight;
-
-            //Page
-            searchParams.pagina = state.page;
-
-            //Detail
-            searchParams.detail = state.detail && state.detail.endpoint;
-
-            //Straatbeeld
-            if (state.straatbeeld) {
-                if (state.straatbeeld.id) {
-                    searchParams.id = String(state.straatbeeld.id);
-
-                    if (state.straatbeeld.camera) {
-                        searchParams.heading = String(state.straatbeeld.camera.heading);
-                        searchParams.pitch = String(state.straatbeeld.camera.pitch);
-
-                        if (state.straatbeeld.camera.fov) {
-                            searchParams.fov = String(state.straatbeeld.camera.fov);
-                        }
-                    }
-                } else {
-                    searchParams.plat = String(state.straatbeeld.searchLocation[0]);
-                    searchParams.plon = String(state.straatbeeld.searchLocation[1]);
-                }
+            if (useReplace) {
+                $location.replace();
             }
 
             $location.search(searchParams);
+        }
+
+        function getSearchParams (state) {
+            var params = {};
+
+            if (state.search) {
+                if (angular.isString(state.search.query)) {
+                    params.zoek = state.search.query;
+                } else {
+                    params.zoek = state.search.location.join(',');
+                }
+
+                params.categorie = state.search.category;
+            }
+
+            return params;
+        }
+
+        function getMapParams (state) {
+            return {
+                lat: String(state.map.viewCenter[0]),
+                lon: String(state.map.viewCenter[1]),
+                basiskaart: state.map.baseLayer,
+                lagen: state.map.overlays.join(',') || null,
+                zoom: String(state.map.zoom),
+                selectie: state.map.highlight,
+                kaartlagen: state.map.showLayerSelection ? '1' : null
+            };
+        }
+
+        function getPageParams (state) {
+            return {
+                pagina: state.page
+            };
+        }
+
+        function getDetailParams (state) {
+            return {
+                detail: state.detail && state.detail.endpoint || null
+            };
+        }
+
+        function getStraatbeeldParams (state) {
+            var params = {};
+
+            if (state.straatbeeld) {
+                if (state.straatbeeld.id) {
+                    params.id = String(state.straatbeeld.id);
+
+                    if (state.straatbeeld.camera) {
+                        params.heading = String(state.straatbeeld.camera.heading);
+                        params.pitch = String(state.straatbeeld.camera.pitch);
+
+                        if (state.straatbeeld.camera.fov) {
+                            params.fov = String(state.straatbeeld.camera.fov);
+                        }
+                    }
+                } else {
+                    params.plat = String(state.straatbeeld.searchLocation[0]);
+                    params.plon = String(state.straatbeeld.searchLocation[1]);
+                }
+            }
+
+            return params;
         }
     }
 })();

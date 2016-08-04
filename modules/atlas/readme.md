@@ -7,6 +7,7 @@
 | lagen         | map.overlays                    | no, []                 |
 | zoom          | map.zoom                        | yes, see DEFAULT_STATE |
 | selectie      | map.highlight                   | no, null               |
+| kaartlagen    | map.showLayerSelection          | false                  |
 |               | map.isLoading                   | no                     |
 | pagina        | page                            | yes, see DEFAULT_STATE |
 | detail        | detail.uri                      | no, detail is null     |

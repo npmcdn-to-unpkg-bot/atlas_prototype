@@ -1,0 +1,8 @@
+/*
+@Name Link arrow
+@markup
+  <a class="link--arrow" href="http://www.example.com/">Go to example.com</a>
+*/
+.link--arrow {
+  @extend %link--arrow;
+}

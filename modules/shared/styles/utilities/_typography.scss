@@ -1,0 +1,19 @@
+.u-font--base {
+  @include font-size($body-font);
+}
+
+.u-font--xl {
+  @include font-size($xl-header-font);
+}
+
+.u-font--l {
+  @include font-size($l-header-font);
+}
+
+.u-font--m {
+  @include font-size($m-header-font);
+}
+
+.u-font--s {
+  @include font-size($s-header-font);
+}

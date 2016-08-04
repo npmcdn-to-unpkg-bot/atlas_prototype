@@ -4,34 +4,35 @@
   @markup
     <button class="btn btn-white">A white button</button>
   */
-  &.btn-white {
-    padding: $whitespace-base / 2;
-    border: 1px solid $black;
+  &.btn--white {
+    padding: $base-whitespace / 2;
+    border: 1px solid $primary-dark;
     border-radius: 6px;
-
-    background-color: $white;
-    color: $black;
+    background-color: $primary-light;
+    color: $primary-dark;
     font-size: inherit;
 
     &:hover {
-      background-color: $gray-light;
+      background-color: $secondary-gray10;
     }
 
     &[disabled] {
-      color: $brand-primary;
+      color: $primary-contrast;
     }
   }
 
   /*
   @name Button w/ link styling
   @markup
-    <button class="btn btn-link">Lorem ipsum</button>
+    <button class="btn btn--link">Lorem ipsum</button>
   */
-  &.btn-link {
+  &.btn--link {
+    @extend %link--arrow;
+
     background-color: transparent;
-    color: $brand-primary;
+    font-family: inherit;
     font-size: inherit;
-    text-decoration: underline;
+    text-align: left;
     cursor: pointer;
   }
 }

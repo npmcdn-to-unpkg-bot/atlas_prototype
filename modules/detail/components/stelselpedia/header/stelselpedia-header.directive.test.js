@@ -97,13 +97,13 @@ describe('The atlas-stelselpedia-header directive', function () {
     it('has an optional heading that can be placed in front of the Stelselpedia label', function () {
         var directive = getDirective('Ik ben een hele specifieke titel', 'BOUWBLOK', false, null);
 
-        expect(directive.find('.stelselpedia-header__title span').eq(0).text())
-            .toBe('Ik ben een hele specifieke titel -');
+        expect(directive.find('.stelselpedia-header__title span').eq(1).text())
+            .toBe('Ik ben een hele specifieke titel');
 
-        expect(directive.find('.stelselpedia-header__title span').eq(2).attr('class'))
+        expect(directive.find('.stelselpedia-header__title span').eq(0).attr('class'))
             .toContain('stelselpedia-header__subtitle');
 
-        expect(directive.find('.stelselpedia-header__title span').eq(2).text().trim()).toBe('Bouwblok');
+        expect(directive.find('.stelselpedia-header__title span').eq(0).text().trim()).toBe('Bouwblok');
     });
 
     it('always has a Stelselpedia panel', function () {
@@ -183,6 +183,7 @@ describe('The atlas-stelselpedia-header directive', function () {
 
             //GEMEENTELIJKE_BEPERKING enige met wkpb uittreksel
             directive = getDirective(null, 'GEMEENTELIJKE_BEPERKING', false, null, brk);
+
             expect(directive.find('atlas-wkpb-link').length).toBe(1);
         });
 

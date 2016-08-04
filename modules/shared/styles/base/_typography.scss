@@ -1,4 +1,26 @@
 body {
+  @include font-size($body-font);
   font-family: $base-font-family;
-  font-size: $base-font-size;
+}
+
+p {
+  @include font-size($body-font);
+}
+
+h1 {
+  @include font-size($xl-header-font);
+}
+
+h2 {
+  @include font-size($l-header-font);
+}
+
+h3 {
+  @include font-size($m-header-font);
+}
+
+h4,
+h5,
+h6 {
+  @include font-size($s-header-font);
 }

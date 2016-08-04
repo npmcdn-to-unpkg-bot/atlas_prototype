@@ -14,7 +14,7 @@
         };
 
         function initialize (leafletMap) {
-            leafletMap.on('moveend', function () {
+            leafletMap.on('dragend', function () {
                 $rootScope.$applyAsync(function () {
                     store.dispatch({
                         type: ACTIONS.MAP_PAN,

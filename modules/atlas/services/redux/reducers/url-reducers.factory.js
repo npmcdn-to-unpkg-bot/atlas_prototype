@@ -31,19 +31,21 @@
 
             function getSearchState (payload) {
                 if (angular.isString(payload.zoek)) {
+                    var searchState = {};
+
                     if (isLocation(payload.zoek)) {
-                        return {
-                            query: null,
-                            location: payload.zoek.split(',').map(function (coordinate) {
-                                return Number(coordinate);
-                            })
-                        };
+                        searchState.query = null;
+                        searchState.location = payload.zoek.split(',').map(function (coordinate) {
+                            return Number(coordinate);
+                        });
                     } else {
-                        return {
-                            query: payload.zoek,
-                            location: null
-                        };
+                        searchState.query = payload.zoek;
+                        searchState.location = null;
                     }
+
+                    searchState.category = payload.categorie || null;
+
+                    return searchState;
                 } else {
                     return null;
                 }
@@ -72,7 +74,7 @@
                     ],
                     zoom: Number(payload.zoom),
                     highlight: payload.selectie || null,
-                    showLayerSelection: angular.copy(oldState.map.showLayerSelection),
+                    showLayerSelection: angular.isString(payload.kaartlagen),
                     isLoading: false
                 };
             }

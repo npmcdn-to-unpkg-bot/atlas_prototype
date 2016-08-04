@@ -5,10 +5,10 @@
         </div>
     </div>
     <div class="dashboard__content">
-        <div class="grid u-height-100">
-            <div class="row u-height-100">
+        <div class="u-grid u-height-100">
+            <div class="u-row u-height-100">
                 <div ng-if="vm.sizeLeftColumn"
-                    class="col-sm-{{vm.sizeLeftColumn}} dashboard__content__scrollable u-height-100">
+                    class="u-col-sm--{{vm.sizeLeftColumn}} dashboard__content__scrollable u-height-100">
 
                     <div ng-controller="LayerSelectionController as vm">
                         <atlas-layer-selection
@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-{{vm.sizeMiddleColumn}} u-height-100 u-pr-0 u-pl-0">
+                <div class="u-col-sm--{{vm.sizeMiddleColumn}} u-height-100 u-pr-0 u-pl-0">
                     <div ng-controller="MapController as vm">
                         <dp-map
                             map-state="vm.mapState"
@@ -31,7 +31,7 @@
                 </div>
 
                 <div ng-if="vm.sizeRightColumn"
-                    class="col-sm-{{vm.sizeRightColumn}} dashboard__content__scrollable u-height-100">
+                    class="u-col-sm--{{vm.sizeRightColumn}} dashboard__content__scrollable u-height-100">
 
                     <div ng-if="vm.showDetail" ng-controller="DetailController as vm">
                         <atlas-detail
@@ -47,7 +47,8 @@
                     <div ng-if="vm.showSearchResults" ng-controller="SearchResultsController as vm">
                         <atlas-search-results
                             query="{{vm.query}}"
-                            location="vm.location">
+                            location="vm.location"
+                            category="{{vm.category}}">
 
                         </atlas-search-results>
                     </div>

@@ -106,6 +106,71 @@ describe('The dp-straatbeeld directive', function () {
         expect(marzipanoService.initialize).toHaveBeenCalledWith(container);
     });
 
+    describe('it loads data from earthmine', function () {
+        describe('the initial panorama scene', function () {
+            it('loads the data based on coordinates', function () {
+                getDirective({id: null, searchLocation: [52.123, 4.789]});
+
+                expect(earthmine.getImageDataById).not.toHaveBeenCalled();
+                expect(earthmine.getImageDataByCoordinates).toHaveBeenCalledWith(52.123, 4.789);
+            });
+
+            it('triggers SHOW_STRAATBEELD_INITIAL when the earthmineData is resvoled', function () {
+                getDirective({id: null, searchLocation: [52.123, 4.789]});
+
+                expect(store.dispatch).toHaveBeenCalledWith({
+                    type: ACTIONS.SHOW_STRAATBEELD_INITIAL,
+                    payload: {
+                        id: 123,
+                        date: new Date(2016, 6, 8),
+                        car: {
+                            location: [52.129, 4.79],
+                            heading: 270,
+                            pitch: 0.75
+                        },
+                        hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
+                    }
+                });
+            });
+        });
+
+        describe('subsequent panorama scenes', function () {
+            it('loads the data based on ID', function () {
+                getDirective({id: 123});
+
+                expect(earthmine.getImageDataById).toHaveBeenCalledWith(123);
+                expect(earthmine.getImageDataByCoordinates).not.toHaveBeenCalled();
+            });
+
+            it('triggers SHOW_STRAATBEELD_SUBSEQUENT when the earthmineData is resvoled', function () {
+                getDirective({id: 123});
+
+                expect(store.dispatch).toHaveBeenCalledWith({
+                    type: ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
+                    payload: {
+                        id: 123,
+                        date: new Date(2016, 6, 8),
+                        car: {
+                            location: [52.129, 4.79],
+                            heading: 270,
+                            pitch: 0.75
+                        },
+                        hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
+                    }
+                });
+            });
+        });
+
+        it('doesn\'t directly load a scene when earthmineData is resolved', function () {
+            //Loading the scene should only be triggered by a Redux state change, not some internal API call
+            getDirective({id: 123});
+            expect(marzipanoService.loadScene).not.toHaveBeenCalled();
+
+            getDirective({id: null, searchLocation: [52.123, 4.789]});
+            expect(marzipanoService.loadScene).not.toHaveBeenCalled();
+        });
+    });
+
     it('calls the orientation factory on mousemove to keep the state in sync', function () {
         var directive;
 
@@ -132,67 +197,6 @@ describe('The dp-straatbeeld directive', function () {
             },
             false
         );
-    });
-
-    describe('loading data', function () {
-        it('based on an ID', function () {
-            getDirective({id: 123});
-
-            expect(earthmine.getImageDataById).toHaveBeenCalledWith(123);
-            expect(earthmine.getImageDataByCoordinates).not.toHaveBeenCalled();
-        });
-
-        it('based on coordinates', function () {
-            getDirective({id: null, searchLocation: [52.123, 4.789]});
-
-            expect(earthmine.getImageDataById).not.toHaveBeenCalled();
-            expect(earthmine.getImageDataByCoordinates).toHaveBeenCalledWith(52.123, 4.789);
-        });
-
-        it('triggers SHOW_STRAATBEELD when the earthmineData is resvoled', function () {
-            //For both searching by ID
-            getDirective({id: 123});
-
-            expect(store.dispatch).toHaveBeenCalledTimes(1);
-            expect(store.dispatch).toHaveBeenCalledWith({
-                type: ACTIONS.SHOW_STRAATBEELD,
-                payload: {
-                    id: 123,
-                    date: new Date(2016, 6, 8),
-                    car: {
-                        location: [52.129, 4.79],
-                        heading: 270,
-                        pitch: 0.75
-                    },
-                    hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
-                }
-            });
-
-            //And searching by coordinates
-            getDirective({id: null, searchLocation: [52.123, 4.789]});
-
-            expect(store.dispatch).toHaveBeenCalledTimes(2);
-            expect(store.dispatch).toHaveBeenCalledWith({
-                type: ACTIONS.SHOW_STRAATBEELD,
-                payload: {
-                    id: 123,
-                    date: new Date(2016, 6, 8),
-                    car: {
-                        location: [52.129, 4.79],
-                        heading: 270,
-                        pitch: 0.75
-                    },
-                    hotspots: ['FAKE_HOTSPOT_1', 'FAKE_HOTSPOT_2']
-                }
-            });
-        });
-
-        it('doesn\'t directly load a scene when earthmineData is resolved', function () {
-            //Loading the scene should only be triggered by a Redux state change, not some internal API call
-            getDirective({id: 123});
-
-            expect(marzipanoService.loadScene).not.toHaveBeenCalled();
-        });
     });
 
     it('loads a scene when there is a known car location', function () {

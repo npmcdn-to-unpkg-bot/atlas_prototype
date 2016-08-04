@@ -20,7 +20,7 @@
 */
 .table {
   width: 100%;
-  margin-bottom: 2 * $whitespace-base;
+  margin-bottom: 2 * $base-whitespace;
   border-spacing: 0;
 
   th {
@@ -29,8 +29,8 @@
 
   th,
   td {
-    padding-top: $whitespace-base / 2;
-    padding-bottom: $whitespace-base / 2;
-    border-top: 1px solid $gray-light;
+    padding-top: $base-whitespace / 2;
+    padding-bottom: $base-whitespace / 2;
+    border-top: 1px solid $secondary-gray10;
   }
 }

@@ -12,6 +12,7 @@ describe('The stateToUrl factory', function () {
             mockedState = angular.copy(_DEFAULT_STATE_);
         });
 
+        spyOn($location, 'replace');
         spyOn($location, 'search');
     });
 
@@ -19,10 +20,11 @@ describe('The stateToUrl factory', function () {
         it('can contain a query', function () {
             mockedState.search = {
                 query: 'i_am_a_query',
-                location: null
+                location: null,
+                category: null
             };
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 zoek: 'i_am_a_query'
@@ -32,20 +34,35 @@ describe('The stateToUrl factory', function () {
         it('can contain a location', function () {
             mockedState.search = {
                 query: null,
-                location: [52.123, 4.789]
+                location: [52.123, 4.789],
+                category: null
             };
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 zoek: '52.123,4.789'
             }));
         });
 
+        it('can have an active category', function () {
+            mockedState.search = {
+                query: 'i_am_a_query',
+                location: null,
+                category: 'adres'
+            };
+
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
+                categorie: 'adres'
+            }));
+        });
+
         it('can be omitted', function () {
             mockedState.search = null;
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
                 zoek: jasmine.any(String)
@@ -57,7 +74,7 @@ describe('The stateToUrl factory', function () {
         it('updates the location', function () {
             mockedState.map.viewCenter = [52.789, 4.123];
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 lat: '52.789',
@@ -68,7 +85,7 @@ describe('The stateToUrl factory', function () {
         it('updates the baseLayer', function () {
             mockedState.map.baseLayer = 'historische_luchtfoto_1825';
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 basiskaart: 'historische_luchtfoto_1825'
@@ -79,7 +96,7 @@ describe('The stateToUrl factory', function () {
             //No overlays, no parameter
             mockedState.map.overlays = [];
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
                 lagen: jasmine.any(String)
@@ -88,7 +105,7 @@ describe('The stateToUrl factory', function () {
             //One overlay
             mockedState.map.overlays = ['overlay_x'];
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 lagen: 'overlay_x'
@@ -97,7 +114,7 @@ describe('The stateToUrl factory', function () {
             //Two overlays
             mockedState.map.overlays = ['overlay_x', 'overlay_y'];
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 lagen: 'overlay_x,overlay_y'
@@ -107,7 +124,7 @@ describe('The stateToUrl factory', function () {
         it('keeps track of the zoom level', function () {
             mockedState.map.zoom = 8;
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 zoom: '8'
@@ -117,10 +134,28 @@ describe('The stateToUrl factory', function () {
         it('can contain encoded GeoJSON for highlighting objects', function () {
             mockedState.map.highlight = 'MOCKED_GEOJSON';
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 selectie: 'MOCKED_GEOJSON'
+            }));
+        });
+
+        it('keeps track of the state of the layer selection (opened or closed)', function () {
+            //Closed
+            mockedState.map.showLayerSelection = false;
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
+                kaartlagen: jasmine.anything()
+            }));
+
+            //Opened
+            mockedState.map.showLayerSelection = true;
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
+                kaartlagen: '1'
             }));
         });
     });
@@ -128,7 +163,7 @@ describe('The stateToUrl factory', function () {
     describe('Page', function () {
         it('can store the name of the page', function () {
             //No page, no parameter
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
                 pagina: jasmine.Any(String)
@@ -138,7 +173,7 @@ describe('The stateToUrl factory', function () {
             //With a page
             mockedState.page = 'welkom';
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 pagina: 'welkom'
@@ -149,7 +184,7 @@ describe('The stateToUrl factory', function () {
     describe('Detail', function () {
         it('can store the api endpoint of the detail page', function () {
             //No detail, no parameter
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
                 detail: jasmine.Any(String)
@@ -161,7 +196,7 @@ describe('The stateToUrl factory', function () {
                 endpoint: 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/'
             };
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 detail: 'https://api-acc.datapunt.amsterdam.nl/bag/verblijfsobject/123/'
@@ -171,7 +206,7 @@ describe('The stateToUrl factory', function () {
 
     describe('Straatbeeld', function () {
         it('does nothing is there is no active straatbeeld', function () {
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
                 id: jasmine.Any(String)
@@ -192,7 +227,7 @@ describe('The stateToUrl factory', function () {
                 }
             };
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                 id: '67890'
@@ -213,7 +248,7 @@ describe('The stateToUrl factory', function () {
                 }
             };
 
-            stateToUrl.update(mockedState);
+            stateToUrl.update(mockedState, false);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
                 id: jasmine.any(String)
@@ -236,7 +271,7 @@ describe('The stateToUrl factory', function () {
                     }
                 };
 
-                stateToUrl.update(mockedState);
+                stateToUrl.update(mockedState, false);
 
                 expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
                     heading: jasmine.any(String),
@@ -258,7 +293,7 @@ describe('The stateToUrl factory', function () {
                     }
                 };
 
-                stateToUrl.update(mockedState);
+                stateToUrl.update(mockedState, false);
 
                 expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                     heading: '2',
@@ -284,7 +319,7 @@ describe('The stateToUrl factory', function () {
                     }
                 };
 
-                stateToUrl.update(mockedState);
+                stateToUrl.update(mockedState, false);
 
                 expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
                     heading: '2',
@@ -293,5 +328,15 @@ describe('The stateToUrl factory', function () {
                 }));
             });
         });
+    });
+
+    it('has the option to replace the URL', function () {
+        //Without replace
+        stateToUrl.update(mockedState, false);
+        expect($location.replace).not.toHaveBeenCalled();
+
+        //With replace
+        stateToUrl.update(mockedState, true);
+        expect($location.replace).toHaveBeenCalled();
     });
 });
