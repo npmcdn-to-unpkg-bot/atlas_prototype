@@ -43,6 +43,9 @@ describe('The highlight factory', function () {
                     radiansToDegrees: function () {
                         return 180;
                     }
+                },
+                store: {
+                    dispatch: function () {}
                 }
             },
             function ($provide) {
@@ -96,7 +99,10 @@ describe('The highlight factory', function () {
         projGeoJsonArguments = undefined;
     });
 
-    it('has an activare function to set the Leaflet image path for icons to \'assets\'', function () {
+    it('has an initialize function to set the Leaflet image path for icons to \'assets\'', function () {
+        expect(L.Icon.Default.imagePath).not.toBe('assets');
+
+        highlight.initialize();
         expect(L.Icon.Default.imagePath).toBe('assets');
     });
 

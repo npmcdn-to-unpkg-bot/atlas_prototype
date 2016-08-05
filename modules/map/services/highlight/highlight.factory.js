@@ -5,19 +5,18 @@
         .module('dpMap')
         .factory('highlight', highlightFactory);
 
-    highlightFactory.$inject = ['L', 'crsService', 'ICON_CONFIG', 'angleConversion', 'mapConfig'];
+    highlightFactory.$inject = ['L', 'crsService', 'ICON_CONFIG', 'angleConversion', 'mapConfig', 'store', 'ACTIONS'];
 
-    function highlightFactory (L, crsService, ICON_CONFIG, angleConversion, mapConfig) {
+    function highlightFactory (L, crsService, ICON_CONFIG, angleConversion, mapConfig, store, ACTIONS) {
         var layers = {};
 
-        activate();
-
         return {
+            initialize: initialize,
             add: add,
             remove: remove
         };
 
-        function activate () {
+        function initialize () {
             L.Icon.Default.imagePath = 'assets';
         }
 
