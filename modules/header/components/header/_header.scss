@@ -15,6 +15,11 @@
   background-color: $secondary-gray80;
 }
 
+.site-header__logo {
+  display: block;
+  cursor: pointer;
+}
+
 .site-header__menu {
   height: $site-header-height;
   float: right;
