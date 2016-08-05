@@ -27,6 +27,7 @@
          *  - geometry: GeoJSON using RD coordinates
          */
         function add (leafletMap, item) {
+            console.log('add', item);
             var layer,
                 useAutoZoom;
 
@@ -65,11 +66,17 @@
             if (useAutoZoom) {
                 var zoomLevel = leafletMap.getBoundsZoom(layer.getBounds());
 
-                if (!isNaN(zoomLevel)) {
-                    console.log('ga automatisch zoomen dan', zoomLevel);
-                } else {
-                    console.log('gebruik default' ,mapConfig.DEFAULT_ZOOM_HIGHLIGHT);
+                if (isNaN(zoomLevel)) {
+                    zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
                 }
+                console.log('zoom to', zoomLevel);
+
+                store.dispatch({
+                    type: ACTIONS.MAP_ZOOM,
+                    payload: {
+                        zoom: zoomLevel
+                    }
+                });
             }
         }
 
