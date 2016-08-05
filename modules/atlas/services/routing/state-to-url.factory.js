@@ -49,7 +49,7 @@
                 lat: String(state.map.viewCenter[0]),
                 lon: String(state.map.viewCenter[1]),
                 basiskaart: state.map.baseLayer,
-                lagen: state.map.overlays.join(',') || null,
+                lagen: Object.keys(state.map.overlays).join(',') || null,
                 zoom: String(state.map.zoom),
                 selectie: state.map.highlight,
                 kaartlagen: state.map.showLayerSelection ? '1' : null

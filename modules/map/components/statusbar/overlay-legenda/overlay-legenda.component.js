@@ -16,7 +16,7 @@
 
 	function OverlayLegenda($scope, OVERLAYS, mapConfig, ACTIONS) {
 		var vm = this;
-
+		console.log(ACTIONS);
 		vm.overlay_data = OVERLAYS.SOURCES[vm.overlay];
 
 		vm.label = OVERLAYS.SOURCES[vm.overlay].label;

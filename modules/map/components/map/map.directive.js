@@ -59,7 +59,7 @@
                 getRemovedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                     layers.removeOverlay(leafletMap, overlay);
                 });
-
+                console.log(getAddedOverlays(newOverlays, oldOverlays));
                 getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                     layers.addOverlay(leafletMap, overlay);
                 });
@@ -87,18 +87,26 @@
         function getAddedOverlays (newOverlays, oldOverlays) {
             if (newOverlays === oldOverlays) {
                 //scope.$watch is triggered on initialization with the new value equal to the old value
-                return newOverlays;
+                return Object.keys(newOverlays);
             } else {
-                return newOverlays.filter(function (overlay) {
-                    return oldOverlays.indexOf(overlay) === -1;
-                });
+                var keys = [];
+                for (var key in newOverlays) {
+                    if (newOverlays.hasOwnProperty(key) && !(key in oldOverlays)) {
+                        keys.push(key);
+                    }
+                }
+                return keys;
             }
         }
 
         function getRemovedOverlays (newOverlays, oldOverlays) {
-            return oldOverlays.filter(function (overlay) {
-                return newOverlays.indexOf(overlay) === -1;
-            });
+            var keys = [];
+            for (var key in oldOverlays) {
+                if (oldOverlays.hasOwnProperty(key) && !(key in newOverlays)) {
+                    keys.push(key);
+                }
+            }
+            return keys;
         }
 
         function getAddedGeojson (newCollection, oldCollection) {

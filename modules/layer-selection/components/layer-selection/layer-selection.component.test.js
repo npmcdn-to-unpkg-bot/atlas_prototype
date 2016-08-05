@@ -96,7 +96,7 @@ describe('The atlas-layer-selection component', function () {
 
     describe('base layer', function () {
         it('lists all base layers as radio buttons w/ labels', function () {
-            var component = getComponent('base_layer_a', [], 8);
+            var component = getComponent('base_layer_a', {}, 8);
 
             expect(component.find('ul').eq(0).find('li').length).toBe(2);
             expect(component.find('ul').eq(0).find('li').eq(0).find('label').text().trim()).toBe('Base layer A');
@@ -207,13 +207,13 @@ describe('The atlas-layer-selection component', function () {
                 zoom,
                 expectedZoomIndicatorText;
 
-            allOverlays = [
-                'overlay_1_a',
-                'overlay_1_b',
-                'overlay_2_a',
-                'overlay_2_b',
-                'overlay_2_c'
-            ];
+            allOverlays = {
+                'overlay_1_a': true,
+                'overlay_1_b': true,
+                'overlay_2_a': true,
+                'overlay_2_b': true,
+                'overlay_2_c': true
+            };
 
             expectedZoomIndicatorText = '(deze kaartlaag is niet zichtbaar op dit zoomniveau)';
 

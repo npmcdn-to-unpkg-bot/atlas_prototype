@@ -94,7 +94,7 @@ describe('The stateToUrl factory', function () {
 
         it('can contain one of more overlays', function () {
             //No overlays, no parameter
-            mockedState.map.overlays = [];
+            mockedState.map.overlays = {};
 
             stateToUrl.update(mockedState, false);
 
@@ -103,7 +103,7 @@ describe('The stateToUrl factory', function () {
             }));
 
             //One overlay
-            mockedState.map.overlays = ['overlay_x'];
+            mockedState.map.overlays.overlay_x = true;
 
             stateToUrl.update(mockedState, false);
 
@@ -112,7 +112,7 @@ describe('The stateToUrl factory', function () {
             }));
 
             //Two overlays
-            mockedState.map.overlays = ['overlay_x', 'overlay_y'];
+            mockedState.map.overlays = {'overlay_x': true, 'overlay_y': true};
 
             stateToUrl.update(mockedState, false);
 

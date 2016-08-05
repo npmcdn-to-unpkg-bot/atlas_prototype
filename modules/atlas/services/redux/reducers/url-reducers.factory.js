@@ -65,9 +65,16 @@
             }
 
             function getMapState (payload) {
+                var overlays = {}, lagen;
+                if (payload && payload.lagen) {
+                    lagen = payload.lagen.split(',');
+                    for (var i = 0;i < lagen.length;i++) {
+                        overlays[lagen[i]] = true;
+                    }
+                }
                 return {
                     baseLayer: payload.basiskaart,
-                    overlays: payload.lagen ? payload.lagen.split(',') : [],
+                    overlays: overlays,
                     viewCenter: [
                         Number(payload.lat),
                         Number(payload.lon)

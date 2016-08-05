@@ -57,12 +57,13 @@
         };
 
         vm.isOverlayActive = function (overlay) {
-            return vm.activeOverlays.indexOf(overlay) !== -1;
+            return overlay in Object.keys(vm.activeOverlays);
         };
 
         vm.isOverlayVisible = function (overlay) {
             return vm.zoom >= OVERLAYS.SOURCES[overlay].minZoom &&
-                vm.zoom <= OVERLAYS.SOURCES[overlay].maxZoom;
+                vm.zoom <= OVERLAYS.SOURCES[overlay].maxZoom &&
+                vm.activeOverlays[overlay];
         };
 
         vm.hideLayerSelection = function () {

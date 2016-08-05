@@ -41,7 +41,7 @@
         function mapAddOverlayReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
-            newState.map.overlays.push(payload);
+            newState.map.overlays[payload] = true;
 
             return newState;
         }
@@ -53,11 +53,9 @@
          * @returns {Object} newState
          */
         function mapRemoveOverlayReducer (oldState, payload) {
-            var newState = angular.copy(oldState),
-                index;
+            var newState = angular.copy(oldState);
 
-            index = newState.map.overlays.indexOf(payload);
-            newState.map.overlays.splice(index, 1);
+            delete newState.map.overlays[payload];
 
             return newState;
         }

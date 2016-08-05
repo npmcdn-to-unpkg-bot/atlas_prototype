@@ -1,6 +1,15 @@
 describe('The map reducers', function () {
     var mapReducers,
-        defaultState;
+        defaultState,
+        countOwnPropCount = function(obj) {
+            var ownProp = 0;
+            for (var key in obj) {
+                if (hasOwnProperty.call(obj, key)) {
+                    ownProp++;
+                }
+            }
+            return ownProp;
+        };
 
     beforeEach(function () {
         angular.mock.module('atlas');
@@ -27,17 +36,20 @@ describe('The map reducers', function () {
     describe('MAP_ADD_OVERLAY', function () {
         it('adds an overlay', function () {
             var inputState = angular.copy(defaultState),
-                output;
+                output, ownProp = 0;
 
-            expect(inputState.map.overlays.length).toBe(0);
+            ownProp = countOwnPropCount(output.map.overlays);
+            expect(ownProp).toBe(0);
 
             output = mapReducers.MAP_ADD_OVERLAY(inputState, 'meetbouten');
-            expect(output.map.overlays.length).toBe(1);
-            expect(output.map.overlays[0]).toBe('meetbouten');
+            ownProp = countOwnPropCount(output.map.overlays);
+            expect(ownProp).toBe(1);
+            expect(output.map.overlays.meetbouten).toBe(true);
 
             output = mapReducers.MAP_ADD_OVERLAY(output, 'parkeren');
-            expect(output.map.overlays.length).toBe(2);
-            expect(output.map.overlays[1]).toBe('parkeren');
+            ownProp = countOwnPropCount(output.map.overlays);
+            expect(ownProp).toBe(2);
+            expect(output.map.overlays.parkeren).toBe(true);
         });
     });
 
@@ -46,20 +58,20 @@ describe('The map reducers', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
-            inputState.map.overlays = ['overlay_1', 'overlay_2', 'overlay_3'];
+            inputState.map.overlays = {'overlay_1':true, 'overlay_2':true, 'overlay_3':true};
 
             output = mapReducers.MAP_REMOVE_OVERLAY(inputState, 'overlay_2');
-            expect(output.map.overlays).toEqual(['overlay_1', 'overlay_3']);
+            expect(output.map.overlays).toEqual({'overlay_1':true, 'overlay_3':true});
         });
 
         it('will always keep the overlays state property an array (instead of null)', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
-            inputState.map.overlays = ['parkeren'];
+            inputState.map.overlays = {'parkeren': true};
 
             output = mapReducers.MAP_REMOVE_OVERLAY(inputState, 'parkeren');
-            expect(output.map.overlays).toEqual([]);
+            expect(output.map.overlays).toEqual({});
         });
     });
 
