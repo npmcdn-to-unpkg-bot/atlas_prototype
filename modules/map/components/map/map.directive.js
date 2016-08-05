@@ -70,7 +70,7 @@
                     });
                 });
 
-                scope.$watch('markers', function (newCollection, oldCollection) {
+                scope.$watchCollection('markers', function (newCollection, oldCollection) {
                     if (angular.equals(newCollection, oldCollection)) {
                         //Initialisation
                         newCollection.forEach(function (item) {

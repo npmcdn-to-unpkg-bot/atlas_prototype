@@ -222,7 +222,11 @@ describe('The dp-map directive', function () {
             expect(highlight.remove).not.toHaveBeenCalled();
 
             //Change the marker
-            highlightItems[0].geometry = 'FAKE_GEOMETRY_B';
+            highlightItems.length = 0;
+            highlightItems.push({
+                id: 'FAKE_HIGHLIGHT_ITEM_A',
+                geometry: 'FAKE_GEOMETRY_B'
+            });
             $rootScope.$apply();
 
             expect(highlight.remove).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', {

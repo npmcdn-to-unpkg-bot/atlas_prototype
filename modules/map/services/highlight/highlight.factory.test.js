@@ -30,6 +30,9 @@ describe('The highlight factory', function () {
                 }
             }
         },
+        mockedLayer = {
+            getBounds: function () {}
+        },
         projGeoJsonArguments;
 
     beforeEach(function () {
@@ -69,7 +72,8 @@ describe('The highlight factory', function () {
 
         mockedLeafletMap = {
             addLayer: function () {},
-            removeLayer: function () {}
+            removeLayer: function () {},
+            getBoundsZoom: function () {}
         };
 
         spyOn(mockedLeafletMap, 'addLayer');
@@ -78,7 +82,7 @@ describe('The highlight factory', function () {
         L.Proj.geoJson = function () {
             projGeoJsonArguments = arguments;
 
-            return 'FAKE_LAYER';
+            return mockedLayer;
         };
 
         spyOn(L.Proj, 'geoJson').and.callThrough();
@@ -114,7 +118,7 @@ describe('The highlight factory', function () {
         highlight.add(mockedLeafletMap, item);
 
         expect(L.Proj.geoJson).toHaveBeenCalledWith(jasmine.objectContaining(item.geometry), jasmine.any(Object));
-        expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith('FAKE_LAYER');
+        expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith(mockedLayer);
     });
 
     it('has custom styling for MultiPolygons', function () {
@@ -152,7 +156,7 @@ describe('The highlight factory', function () {
             icon: 'FAKE_ICON'
         }));
 
-        expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith('FAKE_LAYER');
+        expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith(mockedLayer);
     });
 
     it('can add rotated markers to the map', function () {
@@ -186,7 +190,7 @@ describe('The highlight factory', function () {
             highlight.add(mockedLeafletMap, mockedItems[item]);
             highlight.remove(mockedLeafletMap, mockedItems[item]);
 
-            expect(mockedLeafletMap.removeLayer).toHaveBeenCalledWith('FAKE_LAYER');
+            expect(mockedLeafletMap.removeLayer).toHaveBeenCalledWith(mockedLayer);
         });
     });
 });
