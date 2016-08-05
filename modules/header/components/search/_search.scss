@@ -1,6 +1,6 @@
 @import "autocomplete/autocomplete";
 
-$submit-button-width: 60px;
+$submit-button-width: 30px;
 
 .search-form {
   padding-top: $base-whitespace;
@@ -35,7 +35,13 @@ $submit-button-width: 60px;
   height: $search-form-height;
   float: left;
   background-color: $secondary-gray40;
+  background-image: url("assets/icon-search-submit.png");
+  background-repeat: no-repeat;
+  background-position: 5px 5px;
   color: $primary-light;
   font-size: $base-font-size;
-  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-contrast;
+  }
 }
