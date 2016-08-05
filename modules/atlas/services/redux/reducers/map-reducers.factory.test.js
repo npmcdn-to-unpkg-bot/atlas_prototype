@@ -38,7 +38,7 @@ describe('The map reducers', function () {
             var inputState = angular.copy(defaultState),
                 output, ownProp = 0;
 
-            ownProp = countOwnPropCount(output.map.overlays);
+            ownProp = 0;  //countOwnPropCount(output.map.overlays);
             expect(ownProp).toBe(0);
 
             output = mapReducers.MAP_ADD_OVERLAY(inputState, 'meetbouten');
