@@ -162,7 +162,7 @@ describe('The atlas-layer-selection component', function () {
             var component;
 
             //Nothing is checked if there are no overlays
-            component = getComponent('base_layer_a', [], 8);
+            component = getComponent('base_layer_a', {}, 8);
 
             expect(component.find('div').eq(2).find('li').eq(0).find('input').attr('checked')).toBeUndefined();
             expect(component.find('div').eq(2).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
@@ -171,7 +171,7 @@ describe('The atlas-layer-selection component', function () {
             expect(component.find('div').eq(3).find('li').eq(2).find('input').attr('checked')).toBeUndefined();
 
             //With active overlays
-            component = getComponent('base_layer_a', ['overlay_1_a', 'overlay_2_b'], 8);
+            component = getComponent('base_layer_a', {'overlay_1_a': true, 'overlay_2_b':true }, 8);
 
             expect(component.find('div').eq(2).find('li').eq(0).find('input').attr('checked')).toBe('checked');
             expect(component.find('div').eq(2).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
@@ -181,7 +181,7 @@ describe('The atlas-layer-selection component', function () {
         });
 
         it('can toggle overlays', function () {
-            var component = getComponent('base_layer_a', ['overlay_1_a'], 8),
+            var component = getComponent('base_layer_a', {'overlay_1_a': true}, 8),
                 scope = component.isolateScope();
 
             //Add one
@@ -264,7 +264,7 @@ describe('The atlas-layer-selection component', function () {
             var component;
 
             //When the overlays are active
-            component = getComponent('base_layer_a', ['overlay_2_b', 'overlay_2_c'], 8);
+            component = getComponent('base_layer_a', {'overlay_2_b': true, 'overlay_2_c': true}, 8);
             expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(1);
             expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(1);
 
@@ -276,7 +276,7 @@ describe('The atlas-layer-selection component', function () {
     });
 
     it('has a button to close the layer selection sidebar', function () {
-        var component = getComponent('base_layer_a', [], 8);
+        var component = getComponent('base_layer_a', {}, 8);
 
         component.find('button')[0].click();
 
