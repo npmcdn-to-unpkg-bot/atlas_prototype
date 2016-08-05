@@ -18,41 +18,11 @@
                     </dp-link>
 
                     <button ng-if="vm.isLoggedIn()" ng-click="vm.logout()" class="site-header__menu__item">
-
                         Uitloggen
                     </button>
 
-                    <atlas-dropdown-menu></atlas-dropdown-menu>
+                    <atlas-menu-dropdown></atlas-menu-dropdown>
                 </nav>
-
-
-
-                <!--nav class="site-header__navigation__dropdown">
-                    <atlas-dropdown-menu label="Menu">
-                        <ul class="dropdown-menu">
-                            <li>
-                                <atlas-print-button>
-                                    Printen
-                                </atlas-print-button>
-                            </li>
-                            <li>
-                                <atlas-terugmelden-button>
-                                    Terugmelden
-                                </atlas-terugmelden-button>
-                            </li>
-                            <li>
-                                <dp-link type="SHOW_PAGE" payload="'help'">
-                                    Help
-                                </dp-link>
-                            </li>
-                            <li>
-                                <dp-link type="SHOW_PAGE" payload="'over-atlas'">
-                                    Over Atlas
-                                </dp-link>
-                            </li>
-                        </ul>
-                    </atlas-dropdown-menu>
-                </nav-->
             </div>
         </div>
     </div>

@@ -3,33 +3,30 @@
 
     angular
         .module('atlasHeader')
-        .directive('atlasDropdownMenu', atlasMenuDirective);
+        .directive('atlasMenuDropdown', atlasMenuDropdownDirective);
 
-    function atlasMenuDirective() {
+    function atlasMenuDropdownDirective() {
         return {
             restrict: 'E',
-            scope: {
-                label: '@'
-            },
             transclude: true,
-            templateUrl: 'modules/header/components/menu/menu.html',
+            templateUrl: 'modules/header/components/menu-dropdown/menu-dropdown.html',
             link: linkFunction
         };
     }
 
-    function linkFunction (scope, element){
+    function linkFunction (scope, element) {
         var everywhere = angular.element(window.document);
 
         scope.isVisible = false;
 
-        scope.toggleDropdown = function() {
+        scope.toggleDropdown = function () {
             scope.isVisible = !scope.isVisible;
         };
 
-        everywhere.bind('click', function(event){
+        everywhere.bind('click', function (event) {
             var isButtonClick = event.target === element.find('button')[0];
 
-            if (!isButtonClick){
+            if (!isButtonClick) {
                 scope.isVisible = false;
             }
 
