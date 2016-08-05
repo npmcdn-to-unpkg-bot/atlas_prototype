@@ -96,9 +96,7 @@ describe('The highlight factory', function () {
         projGeoJsonArguments = undefined;
     });
 
-    it('has an initialize function to set the Leaflet image path for icons to \'assets\'', function () {
-        highlight.initialize();
-
+    it('has an activare function to set the Leaflet image path for icons to \'assets\'', function () {
         expect(L.Icon.Default.imagePath).toBe('assets');
     });
 

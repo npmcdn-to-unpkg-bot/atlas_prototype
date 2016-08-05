@@ -10,13 +10,14 @@
     function highlightFactory (L, crsService, ICON_CONFIG, angleConversion, mapConfig) {
         var layers = {};
 
+        activate();
+
         return {
-            initialize: initialize,
             add: add,
             remove: remove
         };
 
-        function initialize () {
+        function activate () {
             L.Icon.Default.imagePath = 'assets';
         }
 
