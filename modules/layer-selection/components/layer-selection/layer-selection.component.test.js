@@ -109,7 +109,7 @@ describe('The atlas-layer-selection component', function () {
         });
 
         it('can set the base layer', function () {
-            var component = getComponent('base_layer_a', [], 8),
+            var component = getComponent('base_layer_a', {}, 8),
                 scope = component.isolateScope();
 
             //Choose another base layer
@@ -132,7 +132,7 @@ describe('The atlas-layer-selection component', function () {
 
     describe('overlays', function () {
         it('lists all overlays as checkboxes w/ labels', function () {
-            var component = getComponent('base_layer_a', [], 8);
+            var component = getComponent('base_layer_a', {}, 8);
 
             expect(component.find('div').eq(2).find('h2').text()).toBe('Category 1');
             expect(component.find('div').eq(2).find('li').eq(0).find('label').text().trim()).toBe('Overlay 1a');
@@ -171,7 +171,7 @@ describe('The atlas-layer-selection component', function () {
             expect(component.find('div').eq(3).find('li').eq(2).find('input').attr('checked')).toBeUndefined();
 
             //With active overlays
-            component = getComponent('base_layer_a', {'overlay_1_a': true, 'overlay_2_b':true }, 8);
+            component = getComponent('base_layer_a', {'overlay_1_a': true, 'overlay_2_b':true}, 8);
 
             expect(component.find('div').eq(2).find('li').eq(0).find('input').attr('checked')).toBe('checked');
             expect(component.find('div').eq(2).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
@@ -269,7 +269,7 @@ describe('The atlas-layer-selection component', function () {
             expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(1);
 
             //When the overlays are not active
-            component = getComponent('base_layer_a', [], 8);
+            component = getComponent('base_layer_a', {}, 8);
             expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(0);
             expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(0);
         });
