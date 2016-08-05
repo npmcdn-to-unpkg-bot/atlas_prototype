@@ -12,19 +12,23 @@
 			controllerAs: 'vm'
 		});
 
-	OverlayLegenda.$inject = ['$scope', 'OVERLAYS', 'mapConfig', 'ACTIONS'];
+	OverlayLegenda.$inject = ['$scope', 'OVERLAYS', 'mapConfig'];
 
-	function OverlayLegenda($scope, OVERLAYS, mapConfig, ACTIONS) {
+	function OverlayLegenda($scope, OVERLAYS, mapConfig) {
 		var vm = this;
-		console.log(ACTIONS);
-		vm.overlay_data = OVERLAYS.SOURCES[vm.overlay];
 
-		vm.label = OVERLAYS.SOURCES[vm.overlay].label;
-		vm.legend = OVERLAYS.SOURCES[vm.overlay].legend;
-		// Checking for external link
-		if (vm.legend && !OVERLAYS.SOURCES[vm.overlay].external) {
-			vm.legend = mapConfig.OVERLAY_ROOT + vm.legend;
+		if (OVERLAYS.SOURCES[vm.overlay]) {
+			vm.label = OVERLAYS.SOURCES[vm.overlay].label;
+			vm.legend = OVERLAYS.SOURCES[vm.overlay].legend;
+			// Checking for external link
+			if (vm.legend && !OVERLAYS.SOURCES[vm.overlay].external) {
+				vm.legend = mapConfig.OVERLAY_ROOT + vm.legend;
+			}	
+		} else {
+			// Unknown overlay
+			vm.label = vm.overlay;
 		}
+		
 		console.log(vm.overlay);
 
 		vm.toggleVisibility = function() {
