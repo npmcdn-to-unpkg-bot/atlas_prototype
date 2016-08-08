@@ -6,6 +6,7 @@
         .factory('highlight', highlightFactory);
 
     highlightFactory.$inject = [
+        '$timeout',
         'L',
         'crsService',
         'ICON_CONFIG',
@@ -18,6 +19,7 @@
     ];
 
     function highlightFactory (
+        $timeout,
         L,
         crsService,
         ICON_CONFIG,
@@ -77,43 +79,26 @@ window.leafletMap = leafletMap;
 
             layers[item.id] = layer;
 
-            leafletMap.addLayer(layer);
-
             if (item.useAutoZoom) {
-                var bounds,
-                    boundsZoom,
-                    useAutoCenter,
-                    viewCenter,
-                    zoomLevel;
+                console.log('useAutoZoom');
+                $timeout(function () {
+                    var bounds,
+                        boundsZoom;
 
-                bounds = layer.getBounds();
-                boundsZoom = leafletMap.getBoundsZoom(bounds);
-
-                useAutoCenter = !isNaN(boundsZoom) && item.type !== 'Point';
-                console.log(useAutoCenter);
-                if (useAutoCenter) {
+                    bounds = layer.getBounds();
+                    boundsZoom = leafletMap.getBoundsZoom(bounds);
+                    console.log('boundsZoom', boundsZoom);
                     leafletMap.fitBounds(bounds, {
                         animate: false
                     });
 
-                    viewCenter = [
-                        leafletMap.getCenter().lat,
-                        leafletMap.getCenter().lng
-                    ];
-                    zoomLevel = leafletMap.getZoom();
-                } else {
-                    viewCenter = crsConverter.rdToWgs84(geojson.getCenter(item.geometry));
-                    zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
-                }
-
-                store.dispatch({
-                    type: ACTIONS.MAP_ZOOM,
-                    payload: {
-                        viewCenter: viewCenter,
-                        zoom: zoomLevel
+                    if (isNaN(boundsZoom)) {
+                        leafletMap.setZoom(mapConfig.DEFAULT_ZOOM_HIGHLIGHT);
                     }
                 });
             }
+
+            layer.addTo(leafletMap);
         }
 
         function remove (leafletMap, item) {
