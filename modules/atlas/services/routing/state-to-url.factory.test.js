@@ -158,6 +158,24 @@ describe('The stateToUrl factory', function () {
                 kaartlagen: '1'
             }));
         });
+
+        it('keeps track of the isFullscreen state', function () {
+            //Closed
+            mockedState.map.isFullscreen = false;
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
+                'volledig-scherm': jasmine.anything()
+            }));
+
+            //Opened
+            mockedState.map.isFullscreen = true;
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
+                'volledig-scherm': '1'
+            }));
+        });
     });
 
     describe('Page', function () {

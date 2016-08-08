@@ -157,6 +157,23 @@ describe('The urlReducers factory', function () {
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.showLayerSelection).toBe(false);
             });
+
+            it('sets the isFullscreen status', function () {
+                var output;
+
+                //With full screen enabled
+                mockedState.map.isFullscreen = false;
+                mockedSearchParams['volledig-scherm'] = '1';
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.map.isFullscreen).toBe(true);
+
+                //With full screen disabled
+                mockedState.map.isFullscreen = true;
+                delete mockedSearchParams['volledig-scherm'];
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.map.isFullscreen).toBe(false);
+
+            });
         });
 
         describe('page', function () {
