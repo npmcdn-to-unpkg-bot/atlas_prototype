@@ -260,4 +260,26 @@ describe('The dashboard component', function () {
             expect(columns.length).toBe(2);
         });
     });
+
+    describe('when using a fullscreen map', function () {
+        var component,
+            columns;
+
+        beforeEach(function () {
+            var mockedState = angular.copy(defaultState);
+
+            mockedState.map.isFullscreen = true;
+
+            spyOn(store, 'getState').and.returnValue(mockedState);
+
+            component = getComponent();
+            columns = component[0].querySelectorAll('.dashboard__content [class^="u-col-sm--"]');
+        });
+
+        it('only shows one full-width column (3/3) with the map', function () {
+            expect(columns.length).toBe(1);
+            expect(columns[0].getAttribute('class')).toContain('u-col-sm--12');
+            expect(columns[0].querySelector('dp-map')).not.toBeNull();
+        });
+    });
 });
