@@ -1,10 +1,12 @@
 (function(){
+	'use strict';
 
 	angular
 		.module('dpMap')
 		.component('dpOverlayLegenda', {
 			bindings: {
-				overlay: '='
+				overlay: '=',
+				visible: '='
 			},
 			resrict: 'E',
 			templateUrl: 'modules/map/components/statusbar/overlay-legenda/overlay-legenda.html',
@@ -12,11 +14,10 @@
 			controllerAs: 'vm'
 		});
 
-	OverlayLegenda.$inject = ['$scope', 'OVERLAYS', 'mapConfig'];
+	OverlayLegenda.$inject = ['$scope', 'OVERLAYS', 'mapConfig', 'store', 'ACTIONS'];
 
-	function OverlayLegenda($scope, OVERLAYS, mapConfig) {
+	function OverlayLegenda($scope, OVERLAYS, mapConfig, store, ACTIONS) {
 		var vm = this;
-
 		if (OVERLAYS.SOURCES[vm.overlay]) {
 			vm.label = OVERLAYS.SOURCES[vm.overlay].label;
 			vm.legend = OVERLAYS.SOURCES[vm.overlay].legend;
@@ -28,11 +29,12 @@
 			// Unknown overlay
 			vm.label = vm.overlay;
 		}
-		
-		console.log(vm.overlay);
 
 		vm.toggleVisibility = function() {
-			console.log(vm.overlay);
+			store.dispatch({
+                type: ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY,
+                payload: vm.overlay
+            });
 		};
 	}
 

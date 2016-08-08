@@ -1,4 +1,5 @@
 (function() {
+    'use strict';
 
     angular
         .module('dpMap')
@@ -17,9 +18,8 @@
         var statusbar = this;
         statusbar.buttonStatus = '+';
         statusbar.visible = false;
-        
         // Layers counts
-        statusbar.activeLayers = statusbar.overlays.length;
+        statusbar.activeLayers = Object.keys(statusbar.overlays).length;
         // Watching from component scope where the controller is called statusbar
         // as per controllerAs
         $scope.$watch('statusbar.overlays', function(newVal) {
