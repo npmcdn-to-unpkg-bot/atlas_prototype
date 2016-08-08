@@ -12,7 +12,7 @@
   width: $layers-label-width;
   height: $layers-label-height;
 
-  float: right;
+  float: left;
   transition: .25s ease-in-out;
 
   color: $primary-light;
@@ -33,9 +33,10 @@
 
   .header {
     height: $statusbar-height;
+    padding-left: .5rem;
     background-color: $secondary-gray60;
     font-size: .8rem;
-    text-align: right;
+    text-align: left;
     cursor: pointer;
   }
 
@@ -70,8 +71,8 @@
   .edit-overlayes {
     position: relative;
     top: .2rem;
-    margin-right: 1rem;
-    float: right;
+    margin-left: .5rem;
+    float: left;
     background-color: $secondary-gray60;
     color: $primary-light;
     font-size: .8rem;
@@ -81,7 +82,7 @@
 }
 
 .layers-label-title {
-  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 .layers-label-icon {
