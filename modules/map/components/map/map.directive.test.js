@@ -36,6 +36,10 @@ describe('The dp-map directive', function () {
                 $provide.factory('dpLinkDirective', function () {
                     return {};
                 });
+
+                $provide.factory('dpToggleFullscreenDirective', function () {
+                    return {};
+                });
             }
         );
 
