@@ -29,14 +29,18 @@
             vm.showSearchResults = angular.isObject(state.search) &&
                 (angular.isString(state.search.query) || angular.isArray(state.search.location));
 
-            if (vm.showLayerSelection) {
+            if (state.map.isFullscreen) {
+                vm.sizeLeftColumn = 0;
+                vm.sizeMiddleColumn = 12;
+            } else if (vm.showLayerSelection) {
                 vm.sizeLeftColumn = 4;
                 vm.sizeMiddleColumn = 8;
             } else {
                 vm.sizeLeftColumn = 0;
                 vm.sizeMiddleColumn = 4;
-                vm.sizeRightColumn = 12 - vm.sizeLeftColumn - vm.sizeMiddleColumn;
             }
+
+            vm.sizeRightColumn = 12 - vm.sizeLeftColumn - vm.sizeMiddleColumn;
         }
     }
 })();
