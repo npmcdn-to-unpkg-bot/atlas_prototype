@@ -18,7 +18,7 @@
 
     function AtlasLayerSelectionController (BASE_LAYERS, OVERLAYS, store, ACTIONS) {
         var vm = this;
-        console.log(vm.activeOverlays);
+
         vm.allBaseLayers = BASE_LAYERS;
 
         vm.setBaseLayer = function (baseLayer) {
@@ -37,7 +37,6 @@
                     label: OVERLAYS.SOURCES[overlaySlug].label
                 };
             });
-            console.log(formattedOverlays);
             return formattedOverlays;
         });
 
