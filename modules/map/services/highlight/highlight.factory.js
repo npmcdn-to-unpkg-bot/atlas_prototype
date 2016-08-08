@@ -47,9 +47,8 @@
          *  - geometry: GeoJSON using RD coordinates
          */
         function add (leafletMap, item) {
-            var layer,
-                useAutoZoom;
-
+            var layer;
+window.leafletMap = leafletMap;
             item.geometry.crs = crsService.getRdObject();
 
             layer = L.Proj.geoJson(item.geometry, {
@@ -80,29 +79,31 @@
 
             leafletMap.addLayer(layer);
 
-            useAutoZoom = ['Point', 'Polygon', 'MultiPolygon'].indexOf(item.geometry.type) !== -1;
-
-            if (useAutoZoom) {
+            if (item.useAutoZoom) {
                 var bounds,
                     boundsZoom,
+                    useAutoCenter,
                     viewCenter,
                     zoomLevel;
 
                 bounds = layer.getBounds();
                 boundsZoom = leafletMap.getBoundsZoom(bounds);
 
-                if (isNaN(boundsZoom)) {
-                    viewCenter = crsConverter.rdToWgs84(geojson.getCenter(item.geometry));
-                    zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
-                } else {
-                    leafletMap.fitBounds(bounds);
+                useAutoCenter = !isNaN(boundsZoom) && item.type !== 'Point';
+                console.log(useAutoCenter);
+                if (useAutoCenter) {
+                    leafletMap.fitBounds(bounds, {
+                        animate: false
+                    });
 
                     viewCenter = [
                         leafletMap.getCenter().lat,
-                        leafletMap.getCenter().lng,
+                        leafletMap.getCenter().lng
                     ];
-
                     zoomLevel = leafletMap.getZoom();
+                } else {
+                    viewCenter = crsConverter.rdToWgs84(geojson.getCenter(item.geometry));
+                    zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
                 }
 
                 store.dispatch({
