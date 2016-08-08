@@ -5,7 +5,6 @@
         .module('dpMap')
         .component('dpToggleFullscreen', {
             bindings: {
-                leafletMap: '=',
                 isFullscreen: '='
             },
             templateUrl: 'modules/map/components/toggle-fullscreen/toggle-fullscreen.html',
