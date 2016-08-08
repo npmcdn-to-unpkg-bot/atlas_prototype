@@ -59,7 +59,6 @@
                 getRemovedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                     layers.removeOverlay(leafletMap, overlay);
                 });
-                console.log(getAddedOverlays(newOverlays, oldOverlays));
                 getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                     layers.addOverlay(leafletMap, overlay);
                 });
