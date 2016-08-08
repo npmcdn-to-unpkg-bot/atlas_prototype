@@ -63,10 +63,18 @@
             useAutoZoom = item.geometry.type === 'Polygon' || item.geometry.type === 'MultiPolygon';
 
             if (useAutoZoom) {
-                var zoomLevel = leafletMap.getBoundsZoom(layer.getBounds());
+                var bounds,
+                    boundsZoom,
+                    zoomLevel;
 
-                if (isNaN(zoomLevel)) {
+                bounds = layer.getBounds();
+                boundsZoom = leafletMap.getBoundsZoom(bounds);
+
+                if (isNaN(boundsZoom)) {
                     zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
+                } else {
+                    leafletMap.fitBounds(bounds);
+                    zoomLevel = leafletMap.getZoom();
                 }
 
                 store.dispatch({
