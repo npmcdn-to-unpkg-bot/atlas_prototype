@@ -9,7 +9,7 @@
 
     function panningFactory ($rootScope, store, ACTIONS) {
         var options = {
-            animate: false
+            animate: true
         };
 
         return {

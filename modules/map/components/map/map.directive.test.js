@@ -22,7 +22,8 @@ describe('The dp-map directive', function () {
                 },
                 panning: {
                     initialize: function () {},
-                    panTo: function () {}
+                    panTo: function () {},
+                    setOption: function () {}
                 },
                 zoom: {
                     initialize: function () {},
@@ -291,7 +292,7 @@ describe('The dp-map directive', function () {
         });
     });
 
-    xit('initializes the variableWidth factory', function () {
+    it('initializes the variableWidth factory', function () {
         var directive,
             container;
 

@@ -47,7 +47,7 @@ describe('The panning factory', function () {
     it('can pan to a location', function () {
         panning.panTo(mockedLeafletMap, mockedLocation);
 
-        expect(mockedLeafletMap.panTo).toHaveBeenCalledWith(mockedLocation);
+        expect(mockedLeafletMap.panTo).toHaveBeenCalledWith(mockedLocation, {animate: true});
     });
 
     it('prevents infinite loops; it won\'t fire if the new location is equal to the current location', function () {
