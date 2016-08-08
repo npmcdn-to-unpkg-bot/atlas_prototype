@@ -44,6 +44,7 @@
                 leafletMap = L.map(container, options);
 
                 panning.initialize(leafletMap);
+                highlight.initialize();
                 zoom.initialize(leafletMap);
                 variableWidth.initialize(container, leafletMap);
                 searchByClick.initialize(leafletMap);

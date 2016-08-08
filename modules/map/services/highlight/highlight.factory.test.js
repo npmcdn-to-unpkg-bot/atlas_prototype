@@ -2,6 +2,7 @@ describe('The highlight factory', function () {
     var L,
         crsService,
         highlight,
+        store,
         mockedLeafletMap,
         mockedItems = {
             item_multipolygon: {
@@ -11,8 +12,26 @@ describe('The highlight factory', function () {
                     coordinates: [
                         [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
                         [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
-                        [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
+                            [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
                     ]
+                }
+            },
+            item_polygon: {
+                id: 'item_polygon',
+                geometry: {
+                    type: 'Polygon',
+                    coordinates: [
+                        [
+                            [100.0, 0.0], [102.0, 0.0], [102.0, 10.0], [100.0, 10.0], [100.0, 0.0]
+                        ]
+                    ]
+                }
+            },
+            item_point: {
+                id: 'item_point',
+                geometry: {
+                    type: 'Points',
+                    coordinates: [100.0, 0.0]
                 }
             },
             item_marker: {
@@ -30,7 +49,13 @@ describe('The highlight factory', function () {
                 }
             }
         },
-        projGeoJsonArguments;
+        mockedLayer = {
+            getBounds: function () {
+                return 'FAKE_LAYER_BOUNDS';
+            }
+        },
+        projGeoJsonArguments,
+        isLeafletAbleToDetermineZoomLevel;
 
     beforeEach(function () {
         angular.mock.module(
@@ -40,6 +65,12 @@ describe('The highlight factory', function () {
                     radiansToDegrees: function () {
                         return 180;
                     }
+                },
+                mapConfig: {
+                    DEFAULT_ZOOM_HIGHLIGHT: 14
+                },
+                store: {
+                    dispatch: function () {}
                 }
             },
             function ($provide) {
@@ -48,6 +79,9 @@ describe('The highlight factory', function () {
                         foo: 'a'
                     },
                     item_polygon: {
+                        foo: 'b'
+                    },
+                    item_point: {
                         foo: 'b'
                     },
                     item_marker: {
@@ -61,15 +95,21 @@ describe('The highlight factory', function () {
             }
         );
 
-        angular.mock.inject(function (_L_, _crsService_, _highlight_) {
+        angular.mock.inject(function (_L_, _crsService_, _highlight_, _store_) {
             L = _L_;
             crsService = _crsService_;
             highlight = _highlight_;
+            store = _store_;
         });
+
+        isLeafletAbleToDetermineZoomLevel = true;
 
         mockedLeafletMap = {
             addLayer: function () {},
-            removeLayer: function () {}
+            removeLayer: function () {},
+            getBoundsZoom: function () {
+                return isLeafletAbleToDetermineZoomLevel ? 10 : NaN;
+            }
         };
 
         spyOn(mockedLeafletMap, 'addLayer');
@@ -78,7 +118,7 @@ describe('The highlight factory', function () {
         L.Proj.geoJson = function () {
             projGeoJsonArguments = arguments;
 
-            return 'FAKE_LAYER';
+            return mockedLayer;
         };
 
         spyOn(L.Proj, 'geoJson').and.callThrough();
@@ -86,6 +126,8 @@ describe('The highlight factory', function () {
         spyOn(L, 'marker');
 
         spyOn(crsService, 'getRdObject').and.returnValue('FAKE_RD_OBJECT');
+
+        spyOn(store, 'dispatch');
     });
 
     afterEach(function () {
@@ -93,8 +135,9 @@ describe('The highlight factory', function () {
     });
 
     it('has an initialize function to set the Leaflet image path for icons to \'assets\'', function () {
-        highlight.initialize();
+        expect(L.Icon.Default.imagePath).not.toBe('assets');
 
+        highlight.initialize();
         expect(L.Icon.Default.imagePath).toBe('assets');
     });
 
@@ -114,7 +157,7 @@ describe('The highlight factory', function () {
         highlight.add(mockedLeafletMap, item);
 
         expect(L.Proj.geoJson).toHaveBeenCalledWith(jasmine.objectContaining(item.geometry), jasmine.any(Object));
-        expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith('FAKE_LAYER');
+        expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith(mockedLayer);
     });
 
     it('has custom styling for MultiPolygons', function () {
@@ -152,7 +195,7 @@ describe('The highlight factory', function () {
             icon: 'FAKE_ICON'
         }));
 
-        expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith('FAKE_LAYER');
+        expect(mockedLeafletMap.addLayer).toHaveBeenCalledWith(mockedLayer);
     });
 
     it('can add rotated markers to the map', function () {
@@ -186,7 +229,48 @@ describe('The highlight factory', function () {
             highlight.add(mockedLeafletMap, mockedItems[item]);
             highlight.remove(mockedLeafletMap, mockedItems[item]);
 
-            expect(mockedLeafletMap.removeLayer).toHaveBeenCalledWith('FAKE_LAYER');
+            expect(mockedLeafletMap.removeLayer).toHaveBeenCalledWith(mockedLayer);
+        });
+    });
+
+    describe('has autozoom for (some) geometry', function () {
+        it('Points will not use autozoom', function () {
+            highlight.add(mockedLeafletMap, mockedItems.item_point);
+            expect(store.dispatch).not.toHaveBeenCalled();
+        });
+
+        it('Polygons and MultiPolygons do use autozoom', function () {
+            highlight.add(mockedLeafletMap, mockedItems.item_multipolygon);
+            expect(store.dispatch).toHaveBeenCalledTimes(1);
+
+            highlight.add(mockedLeafletMap, mockedItems.item_polygon);
+            expect(store.dispatch).toHaveBeenCalledTimes(2);
+        });
+
+        it('can\'t depend on Leaflet and needs a fallback default zoom level for highlighting', function () {
+            //When Leaflet knows what's the best zoom level
+            isLeafletAbleToDetermineZoomLevel = true;
+
+            highlight.add(mockedLeafletMap, mockedItems.item_multipolygon);
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: 'MAP_ZOOM',
+                payload: {
+                    viewCenter: null,
+                    zoom: 10
+                }
+            });
+
+            //When Leaflet doesn't know the best zoom level
+            isLeafletAbleToDetermineZoomLevel = false;
+
+            highlight.add(mockedLeafletMap, mockedItems.item_multipolygon);
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: 'MAP_ZOOM',
+                payload: {
+                    viewCenter: null,
+                    zoom: 14
+                }
+            });
         });
     });
 });

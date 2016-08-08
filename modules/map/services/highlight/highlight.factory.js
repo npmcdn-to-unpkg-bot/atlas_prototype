@@ -5,9 +5,9 @@
         .module('dpMap')
         .factory('highlight', highlightFactory);
 
-    highlightFactory.$inject = ['L', 'crsService', 'ICON_CONFIG', 'angleConversion'];
+    highlightFactory.$inject = ['L', 'crsService', 'ICON_CONFIG', 'angleConversion', 'mapConfig', 'store', 'ACTIONS'];
 
-    function highlightFactory (L, crsService, ICON_CONFIG, angleConversion) {
+    function highlightFactory (L, crsService, ICON_CONFIG, angleConversion, mapConfig, store, ACTIONS) {
         var layers = {};
 
         return {
@@ -27,7 +27,8 @@
          *  - geometry: GeoJSON using RD coordinates
          */
         function add (leafletMap, item) {
-            var layer;
+            var layer,
+                useAutoZoom;
 
             item.geometry.crs = crsService.getRdObject();
 
@@ -58,6 +59,24 @@
             layers[item.id] = layer;
 
             leafletMap.addLayer(layer);
+
+            useAutoZoom = item.geometry.type === 'Polygon' || item.geometry.type === 'MultiPolygon';
+
+            if (useAutoZoom) {
+                var zoomLevel = leafletMap.getBoundsZoom(layer.getBounds());
+
+                if (isNaN(zoomLevel)) {
+                    zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
+                }
+
+                store.dispatch({
+                    type: ACTIONS.MAP_ZOOM,
+                    payload: {
+                        viewCenter: null,
+                        zoom: zoomLevel
+                    }
+                });
+            }
         }
 
         function remove (leafletMap, item) {
