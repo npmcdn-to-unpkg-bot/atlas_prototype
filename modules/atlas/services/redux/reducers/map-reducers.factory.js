@@ -13,6 +13,7 @@
         reducers[ACTIONS.MAP_SET_BASELAYER] = mapSetBaselayerReducer;
         reducers[ACTIONS.MAP_ADD_OVERLAY] = mapAddOverlayReducer;
         reducers[ACTIONS.MAP_REMOVE_OVERLAY] = mapRemoveOverlayReducer;
+        reducers[ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY] = mapToggleVisibilityOverlay;
         reducers[ACTIONS.MAP_PAN] = mapPanReducer;
         reducers[ACTIONS.MAP_ZOOM] = mapZoomReducer;
 
@@ -60,6 +61,18 @@
             return newState;
         }
 
+        /**
+         * @param {Object} oldState
+         * @param {String} payload - The name of the overlay, it should match a key from overlays.constant.js
+         *
+         * @returns {Object} newState
+         */
+        function mapToggleVisibilityOverlay (oldState, payload) {
+            var newState = angular.copy(oldState);
+            newState.map.overlays[payload] = !newState.map.overlays[payload];
+
+            return newState;
+        }
         /**
          * @param {Object} oldState
          * @param {Array} payload - The new position in Array format, e.g. [52.123, 4.789]
