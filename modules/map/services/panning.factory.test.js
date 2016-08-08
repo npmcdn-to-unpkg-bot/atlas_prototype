@@ -91,4 +91,8 @@ describe('The panning factory', function () {
         panning.panTo(mockedLeafletMap, [52.3, 4.3]);
         expect(mockedLeafletMap.panTo).toHaveBeenCalledWith([52.3, 4.3], {animate: true});
     });
+
+    it('exposes the getCurrentLocation function', function () {
+        expect(panning.getCurrentLocation(mockedLeafletMap)).toEqual([52.123, 4.789]);
+    });
 });

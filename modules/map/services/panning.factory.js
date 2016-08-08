@@ -15,7 +15,8 @@
         return {
             initialize: initialize,
             panTo: panTo,
-            setOption: setOption
+            setOption: setOption,
+            getCurrentLocation: getCurrentLocation
         };
 
         function initialize (leafletMap) {
