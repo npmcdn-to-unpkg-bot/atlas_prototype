@@ -14,6 +14,9 @@ describe('The dp-map directive', function () {
         angular.mock.module(
             'dpMap',
             {
+                store: {
+                    dispatch: function () {}
+                },
                 mapConfig: {
                     MAP_OPTIONS: {
                         doThisThing: false,
@@ -32,8 +35,12 @@ describe('The dp-map directive', function () {
                     initialize: function () {}
                 }
             },
+
             function ($provide) {
                 $provide.factory('dpLinkDirective', function () {
+                    return {};
+                });
+                $provide.factory('dpMapStatusbarComponent', function () {
                     return {};
                 });
             }
@@ -58,7 +65,7 @@ describe('The dp-map directive', function () {
         spyOn(layers, 'setBaseLayer');
         spyOn(layers, 'addOverlay');
         spyOn(layers, 'removeOverlay');
-
+        //spyOn(layers, 'toggleVisibility');
         spyOn(highlight, 'add');
         spyOn(highlight, 'remove');
 
