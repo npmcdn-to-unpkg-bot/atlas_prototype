@@ -1,4 +1,5 @@
-<button ng-click="vm.toggle()" style="position:absolute; right:0; z-index:4000;">
-    <span ng-if="!vm.isFullscreen">maximize</span>
-    <span ng-if="vm.isFullscreen">minimize</span>
+<button class="toggle-fullscreen" ng-click="vm.toggle()">
+    <img ng-if="!vm.isFullscreen" class="toggle-fullscreen__icon" src="assets/icon-maximize.png" alt="Kaart vergroten">
+
+    <img ng-if="vm.isFullscreen" class="toggle-fullscreen__icon" src="assets/icon-minimize.png" alt="Kaart verkleinen">
 </button>
