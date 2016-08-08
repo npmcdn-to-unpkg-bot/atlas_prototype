@@ -75,4 +75,20 @@ describe('The panning factory', function () {
             payload: [52.123, 4.789]
         });
     });
+
+    it('can set animate options for Leaflet\'s panTo function', function () {
+        //By default animations are enabled
+        panning.panTo(mockedLeafletMap, [52.1, 4.1]);
+        expect(mockedLeafletMap.panTo).toHaveBeenCalledWith([52.1, 4.1], {animate: true});
+
+        //They can be turned off
+        panning.setOption('animate', false);
+        panning.panTo(mockedLeafletMap, [52.2, 4.2]);
+        expect(mockedLeafletMap.panTo).toHaveBeenCalledWith([52.2, 4.2], {animate: false});
+
+        //And they can be turned on again
+        panning.setOption('animate', true);
+        panning.panTo(mockedLeafletMap, [52.3, 4.3]);
+        expect(mockedLeafletMap.panTo).toHaveBeenCalledWith([52.3, 4.3], {animate: true});
+    });
 });

@@ -36,14 +36,14 @@
             }
         }
 
+        function setOption (variable, value) {
+            options[variable] = value;
+        }
+
         function getCurrentLocation (leafletMap) {
             var center = leafletMap.getCenter();
 
             return [center.lat, center.lng];
-        }
-
-        function setOption (variable, value) {
-            options[variable] = value;
         }
     }
 })();
