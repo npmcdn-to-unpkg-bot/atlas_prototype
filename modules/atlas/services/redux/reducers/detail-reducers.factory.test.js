@@ -80,28 +80,7 @@ describe('The detailReducers factory', function () {
                 },
                 straatbeeld: null
             },
-            payload = {
-                location: [52.52, 4.4],
-                geometry: {some: 'object'}
-            };
-
-        it('centers the map', function () {
-            var output = detailReducers.SHOW_DETAIL(stateAfterFetchDetail, payload);
-
-            expect(output.map.viewCenter).toEqual([52.52, 4.4]);
-        });
-
-        it('keeps the old center of the map if the location is null', function () {
-            var output,
-                payloadWithoutLocation;
-
-            payloadWithoutLocation = angular.copy(payload);
-            payloadWithoutLocation.location = null;
-
-            output = detailReducers.SHOW_DETAIL(stateAfterFetchDetail, payloadWithoutLocation);
-
-            expect(output.map.viewCenter).toEqual([52.3719, 4.9012]);
-        });
+            payload = {some: 'object'};
 
         it('stores the geometry in the detail state', function () {
             var output = detailReducers.SHOW_DETAIL(stateAfterFetchDetail, payload);

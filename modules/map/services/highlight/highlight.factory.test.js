@@ -1,4 +1,4 @@
-describe('The highlight factory', function () {
+xdescribe('The highlight factory', function () {
     var L,
         crsService,
         highlight,

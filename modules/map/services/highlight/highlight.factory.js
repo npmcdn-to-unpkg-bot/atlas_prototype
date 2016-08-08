@@ -5,9 +5,29 @@
         .module('dpMap')
         .factory('highlight', highlightFactory);
 
-    highlightFactory.$inject = ['L', 'crsService', 'ICON_CONFIG', 'angleConversion', 'mapConfig', 'store', 'ACTIONS'];
+    highlightFactory.$inject = [
+        'L',
+        'crsService',
+        'ICON_CONFIG',
+        'angleConversion',
+        'mapConfig',
+        'crsConverter',
+        'geojson',
+        'store',
+        'ACTIONS'
+    ];
 
-    function highlightFactory (L, crsService, ICON_CONFIG, angleConversion, mapConfig, store, ACTIONS) {
+    function highlightFactory (
+        L,
+        crsService,
+        ICON_CONFIG,
+        angleConversion,
+        mapConfig,
+        crsConverter,
+        geojson,
+        store,
+        ACTIONS) {
+
         var layers = {};
 
         return {
@@ -60,27 +80,35 @@
 
             leafletMap.addLayer(layer);
 
-            useAutoZoom = item.geometry.type === 'Polygon' || item.geometry.type === 'MultiPolygon';
+            useAutoZoom = ['Point', 'Polygon', 'MultiPolygon'].indexOf(item.geometry.type) !== -1;
 
             if (useAutoZoom) {
                 var bounds,
                     boundsZoom,
+                    viewCenter,
                     zoomLevel;
 
                 bounds = layer.getBounds();
                 boundsZoom = leafletMap.getBoundsZoom(bounds);
 
                 if (isNaN(boundsZoom)) {
+                    viewCenter = crsConverter.rdToWgs84(geojson.getCenter(item.geometry));
                     zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
                 } else {
                     leafletMap.fitBounds(bounds);
+
+                    viewCenter = [
+                        leafletMap.getCenter().lat,
+                        leafletMap.getCenter().lng,
+                    ];
+
                     zoomLevel = leafletMap.getZoom();
                 }
 
                 store.dispatch({
                     type: ACTIONS.MAP_ZOOM,
                     payload: {
-                        viewCenter: null,
+                        viewCenter: viewCenter,
                         zoom: zoomLevel
                     }
                 });
