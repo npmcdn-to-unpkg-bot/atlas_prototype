@@ -37,7 +37,7 @@
                 imperial: false
             },
             ZOOM_OPTIONS: {
-                position: 'bottomleft',
+                position: 'bottomright',
                 zoomInTitle: 'Inzoomen',
                 zoomOutTitle: 'Uitzoomen'
             }
