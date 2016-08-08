@@ -8,9 +8,14 @@
     panningFactory.$inject = ['$rootScope', 'store', 'ACTIONS'];
 
     function panningFactory ($rootScope, store, ACTIONS) {
+        var options = {
+            animate: false
+        };
+
         return {
             initialize: initialize,
-            panTo: panTo
+            panTo: panTo,
+            setOption: setOption
         };
 
         function initialize (leafletMap) {
@@ -24,13 +29,10 @@
             });
         }
 
-        function panTo (leafletMap, location, isFullscreen) {
-            console.log('panTo isFullscreen', isFullscreen);
+        function panTo (leafletMap, location) {
             //Prevent infinite loop; the 'moveend' event triggers panTo, and panning always triggers a 'moveend' event.
             if (!angular.equals(location, getCurrentLocation(leafletMap))) {
-                leafletMap.panTo(location, {
-                    animate: false
-                });
+                leafletMap.panTo(location, options);
             }
         }
 
@@ -38,6 +40,10 @@
             var center = leafletMap.getCenter();
 
             return [center.lat, center.lng];
+        }
+
+        function setOption (variable, value) {
+            options[variable] = value;
         }
     }
 })();

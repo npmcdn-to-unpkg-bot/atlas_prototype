@@ -51,7 +51,7 @@
                 scope.leafletMap = leafletMap;
 
                 scope.$watch('mapState.viewCenter', function (viewCenter) {
-                    panning.panTo(leafletMap, viewCenter, scope.mapState.isFullscreen);
+                    panning.panTo(leafletMap, viewCenter);
                 });
 
                 scope.$watch('mapState.zoom', function (zoomLevel) {
@@ -89,6 +89,10 @@
                         });
                     }
                 }, true);
+
+                scope.$watch('mapState.isFullscreen', function (isFullscreen) {
+                    panning.setOption('animate', !isFullscreen);
+                });
             });
         }
 

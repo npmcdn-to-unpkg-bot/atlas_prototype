@@ -5,15 +5,15 @@
         .module('dpMap')
         .factory('searchByClick', searchByClickFactory);
 
-    searchByClickFactory.$inject = ['$rootScope', 'store', 'ACTIONS'];
+    searchByClickFactory.$inject = ['$rootScope', '$timeout', 'store', 'ACTIONS'];
 
-    function searchByClickFactory ($rootScope, store, ACTIONS) {
+    function searchByClickFactory ($rootScope, $timeout, store, ACTIONS) {
         return {
             initialize: initialize
         };
 
         function initialize (leafletMap) {
-            leafletMap.addEventListener('click', searchByClick);
+            leafletMap.on('click', searchByClick);
         }
 
         function searchByClick (event) {

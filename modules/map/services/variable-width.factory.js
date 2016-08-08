@@ -13,13 +13,9 @@
         };
 
         function initialize (container, leafletMap) {
-            leafletMap.invalidateSize();
-            
             $rootScope.$watch(function () {
                 return container.clientWidth;
             }, function (newWidth, oldWidth) {
-                console.log('invalidateSize');
-
                 if (newWidth !== oldWidth) {
                     leafletMap.invalidateSize();
                 }
