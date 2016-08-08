@@ -291,7 +291,7 @@ describe('The dp-map directive', function () {
         });
     });
 
-    it('initializes the variableWidth factory', function () {
+    xit('initializes the variableWidth factory', function () {
         var directive,
             container;
 

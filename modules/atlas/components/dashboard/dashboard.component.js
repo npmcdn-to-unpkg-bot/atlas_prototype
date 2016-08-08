@@ -33,8 +33,8 @@
                 vm.sizeLeftColumn = 0;
                 vm.sizeMiddleColumn = 12;
             } else if (vm.showLayerSelection) {
-                vm.sizeLeftColumn = 4;
-                vm.sizeMiddleColumn = 8;
+                vm.sizeLeftColumn = 8;
+                vm.sizeMiddleColumn = 4;
             } else {
                 vm.sizeLeftColumn = 0;
                 vm.sizeMiddleColumn = 4;

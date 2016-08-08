@@ -48,8 +48,10 @@
                 variableWidth.initialize(container, leafletMap);
                 searchByClick.initialize(leafletMap);
 
+                scope.leafletMap = leafletMap;
+
                 scope.$watch('mapState.viewCenter', function (viewCenter) {
-                    panning.panTo(leafletMap, viewCenter);
+                    panning.panTo(leafletMap, viewCenter, scope.mapState.isFullscreen);
                 });
 
                 scope.$watch('mapState.zoom', function (zoomLevel) {

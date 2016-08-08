@@ -243,13 +243,15 @@ describe('The dashboard component', function () {
             columns = component[0].querySelectorAll('.dashboard__content [class^="u-col-sm--"]');
         });
 
-        it('shows layer selection in a small (1/3) left column', function () {
+        it('shows layer selection in a large (2/3) left column', function () {
             expect(columns[0].querySelector('atlas-layer-selection')).not.toBeNull();
+            expect(columns[0].getAttribute('class')).toContain('u-col-sm--8');
+            expect(columns[0].getAttribute('class')).not.toContain('u-col-sm--4');
         });
 
-        it('shows a large map (2/3) in the middle column', function () {
-            expect(columns[1].getAttribute('class')).toContain('u-col-sm--8');
-            expect(columns[1].getAttribute('class')).not.toContain('u-col-sm--4');
+        it('shows a small map (1/3) in the middle column', function () {
+            expect(columns[1].getAttribute('class')).toContain('u-col-sm--4');
+            expect(columns[1].getAttribute('class')).not.toContain('u-col-sm--8');
 
             expect(columns[1].querySelector('dp-map')).not.toBeNull();
         });

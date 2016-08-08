@@ -56,6 +56,7 @@
                 category: null
             };
 
+            newState.map.viewCenter = payload;
             newState.map.highlight = null;
             newState.map.showLayerSelection = false;
             newState.map.isFullscreen = false;

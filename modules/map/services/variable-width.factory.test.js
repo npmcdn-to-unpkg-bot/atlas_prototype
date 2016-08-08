@@ -1,4 +1,4 @@
-describe('The variableWidth factory', function () {
+xdescribe('The variableWidth factory', function () {
     var $rootScope,
         variableWidth,
         mockedContainer,

@@ -24,10 +24,13 @@
             });
         }
 
-        function panTo (leafletMap, location) {
+        function panTo (leafletMap, location, isFullscreen) {
+            console.log('panTo isFullscreen', isFullscreen);
             //Prevent infinite loop; the 'moveend' event triggers panTo, and panning always triggers a 'moveend' event.
             if (!angular.equals(location, getCurrentLocation(leafletMap))) {
-                leafletMap.panTo(location);
+                leafletMap.panTo(location, {
+                    animate: false
+                });
             }
         }
 
