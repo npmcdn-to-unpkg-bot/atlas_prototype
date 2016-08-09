@@ -17,7 +17,26 @@
 
 .site-header__logo {
   display: block;
+  height: $site-header-height;
+  background-color: $secondary-gray80;
+  color: $primary-light;
+  font-size: 35px;
+  line-height: 42px;
   cursor: pointer;
+
+  img {
+    width: 14.5px;
+    margin-right: $base-whitespace;
+    padding-right: 2.75px;
+    padding-left: 2.75px;
+    float: left;
+    background-color: $primary-light;
+    box-sizing: content-box;
+  }
+
+  span {
+    background-color: $secondary-gray80;
+  }
 }
 
 .site-header__menu {
