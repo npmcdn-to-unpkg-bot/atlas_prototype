@@ -56,7 +56,10 @@
                 category: null
             };
 
-            newState.map.viewCenter = payload;
+            if (oldState.map.isFullscreen) {
+                newState.map.viewCenter = payload;
+            }
+
             newState.map.highlight = null;
             newState.map.showLayerSelection = false;
             newState.map.isFullscreen = false;

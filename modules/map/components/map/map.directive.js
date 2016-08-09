@@ -90,10 +90,6 @@
                         });
                     }
                 }, true);
-
-                scope.$watch('mapState.isFullscreen', function (isFullscreen) {
-                    panning.setOption('animate', !isFullscreen);
-                });
             });
         }
 

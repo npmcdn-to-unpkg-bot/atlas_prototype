@@ -13,6 +13,7 @@
         'geojson',
         'crsConverter',
         'mapConfig',
+        'panning',
         'store',
         'ACTIONS'
     ];
@@ -25,6 +26,7 @@
         geojson,
         crsConverter,
         mapConfig,
+        panning,
         store,
         ACTIONS) {
 
@@ -83,6 +85,8 @@
             if (item.useAutoZoom) {
                 bounds = layer.getBounds();
                 zoomLevel = leafletMap.getBoundsZoom(bounds);
+
+                panning.setAnimate(false);
 
                 if (!isNaN(zoomLevel)) {
                     //A valid zoom level has been determined
