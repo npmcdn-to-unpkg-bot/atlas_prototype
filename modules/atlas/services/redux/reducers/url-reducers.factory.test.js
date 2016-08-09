@@ -147,7 +147,7 @@ describe('The urlReducers factory', function () {
 
                 //With layer selection
                 mockedState.map.showLayerSelection = false;
-                mockedSearchParams.kaartlagen = '1';
+                mockedSearchParams.kaartlagen = 'aan';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.showLayerSelection).toBe(true);
 
@@ -163,7 +163,7 @@ describe('The urlReducers factory', function () {
 
                 //With full screen enabled
                 mockedState.map.isFullscreen = false;
-                mockedSearchParams['volledig-scherm'] = '1';
+                mockedSearchParams['volledig-scherm'] = 'aan';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.isFullscreen).toBe(true);
 

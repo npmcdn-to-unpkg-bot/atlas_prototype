@@ -52,8 +52,8 @@
                 lagen: state.map.overlays.join(',') || null,
                 zoom: String(state.map.zoom),
                 selectie: state.map.highlight,
-                kaartlagen: state.map.showLayerSelection ? '1' : null,
-                'volledig-scherm': state.map.isFullscreen ? '1' : null
+                kaartlagen: state.map.showLayerSelection ? 'aan' : null,
+                'volledig-scherm': state.map.isFullscreen ? 'aan' : null
             };
         }
 

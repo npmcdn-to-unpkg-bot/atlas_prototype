@@ -155,7 +155,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                kaartlagen: '1'
+                kaartlagen: 'aan'
             }));
         });
 
@@ -173,7 +173,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                'volledig-scherm': '1'
+                'volledig-scherm': 'aan'
             }));
         });
     });
