@@ -23,7 +23,7 @@
                 vm.markers.push({
                     id: 'search',
                     geometry: convertLocationToGeoJSON(state.search.location),
-                    useAutoZoom: false
+                    useAutoFocus: false
                 });
             }
 
@@ -31,7 +31,7 @@
                 vm.markers.push({
                     id: 'detail',
                     geometry: state.detail.geometry,
-                    useAutoZoom: true
+                    useAutoFocus: true
                 });
             }
 
@@ -40,13 +40,13 @@
                     id: 'straatbeeld_orientation',
                     geometry: convertLocationToGeoJSON(state.straatbeeld.car.location),
                     orientation: state.straatbeeld.camera.heading,
-                    useAutoZoom: false
+                    useAutoFocus: false
                 });
 
                 vm.markers.push({
                     id: 'straatbeeld_person',
                     geometry: convertLocationToGeoJSON(state.straatbeeld.car.location),
-                    useAutoZoom: false
+                    useAutoFocus: false
                 });
             }
 

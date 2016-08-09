@@ -18,7 +18,7 @@ xdescribe('The highlight factory', function () {
                             [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
                     ]
                 },
-                useAutoZoom: true
+                useAutoFocus: true
             },
             item_polygon: {
                 id: 'item_polygon',
@@ -30,7 +30,7 @@ xdescribe('The highlight factory', function () {
                         ]
                     ]
                 },
-                useAutoZoom: true
+                useAutoFocus: true
             },
             item_point: {
                 id: 'item_point',
@@ -38,7 +38,7 @@ xdescribe('The highlight factory', function () {
                     type: 'Point',
                     coordinates: [100.0, 0.0]
                 },
-                useAutoZoom: true
+                useAutoFocus: true
             },
             item_marker: {
                 id: 'item_marker',
@@ -46,7 +46,7 @@ xdescribe('The highlight factory', function () {
                     type: 'Point',
                     coordinates: [100.0, 0.0]
                 },
-                useAutoZoom: false
+                useAutoFocus: false
             },
             item_rotated_marker: {
                 id: 'item_rotated_marker',
@@ -54,7 +54,7 @@ xdescribe('The highlight factory', function () {
                     type: 'Point',
                     coordinates: [100.0, 0.0]
                 },
-                useAutoZoom: false
+                useAutoFocus: false
             }
         },
         mockedLayer = {

@@ -82,7 +82,7 @@
 
             layers[item.id] = layer;
 
-            if (item.useAutoZoom) {
+            if (item.useAutoFocus) {
                 bounds = layer.getBounds();
                 zoomLevel = leafletMap.getBoundsZoom(bounds);
 
