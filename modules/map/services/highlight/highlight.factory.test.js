@@ -150,7 +150,8 @@ describe('The highlight factory', function () {
                     lat: 'FAKE_LATITUDE',
                     lng: 'FAKE_LONGITUDE'
                 };
-            }
+            },
+            getZoom: function () {}
         };
 
         spyOn(mockedLeafletMap, 'addLayer');
@@ -281,6 +282,7 @@ describe('The highlight factory', function () {
     describe('triggers MAP_ZOOM when geometry has been found (center and zoom)', function () {
         it('Points do center automatically but use a default zoom level', function () {
             spyOn(mockedLeafletMap, 'getBoundsZoom').and.returnValue(NaN);
+            spyOn(mockedLeafletMap, 'getZoom').and.returnValue(13);
 
             highlight.add(mockedLeafletMap, mockedItems.item_point);
             expect(mockedLeafletMap.fitBounds).not.toHaveBeenCalled();
@@ -291,6 +293,23 @@ describe('The highlight factory', function () {
                 payload: {
                     viewCenter: 'FAKE_POINT_CENTER_WGS84',
                     zoom: 14
+                }
+            });
+        });
+
+        it('Points will not zoom out when viewing with a zoom level larger than 14', function () {
+            spyOn(mockedLeafletMap, 'getBoundsZoom').and.returnValue(NaN);
+            spyOn(mockedLeafletMap, 'getZoom').and.returnValue(15);
+
+            highlight.add(mockedLeafletMap, mockedItems.item_point);
+            expect(mockedLeafletMap.fitBounds).not.toHaveBeenCalled();
+
+            //14 is the fallback zoom level defined in mapConfig.DEFAULT_ZOOM_HIGHLIGHT
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.MAP_ZOOM,
+                payload: {
+                    viewCenter: 'FAKE_POINT_CENTER_WGS84',
+                    zoom: 15
                 }
             });
         });

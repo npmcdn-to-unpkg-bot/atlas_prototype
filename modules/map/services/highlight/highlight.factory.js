@@ -92,11 +92,11 @@
                         animate: false
                     });
 
-                    location = panning.getCurrentLocation();
+                    location = panning.getCurrentLocation(leafletMap);
                 } else {
                     //Set the location and zoomLevel manually
                     location = crsConverter.rdToWgs84(geojson.getCenter(item.geometry));
-                    zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
+                    zoomLevel = Math.max(leafletMap.getZoom(), mapConfig.DEFAULT_ZOOM_HIGHLIGHT);
                 }
 
                 store.dispatch({
