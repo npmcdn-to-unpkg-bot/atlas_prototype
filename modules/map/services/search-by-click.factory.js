@@ -5,9 +5,9 @@
         .module('dpMap')
         .factory('searchByClick', searchByClickFactory);
 
-    searchByClickFactory.$inject = ['$rootScope', '$timeout', 'store', 'ACTIONS'];
+    searchByClickFactory.$inject = ['$rootScope', 'store', 'ACTIONS'];
 
-    function searchByClickFactory ($rootScope, $timeout, store, ACTIONS) {
+    function searchByClickFactory ($rootScope, store, ACTIONS) {
         return {
             initialize: initialize
         };
