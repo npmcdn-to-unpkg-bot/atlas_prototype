@@ -114,4 +114,19 @@ describe('The map reducers', function () {
             expect(output.map.zoom).toBe(8);
         });
     });
+
+    describe('MAP_FULLSCREEN', function () {
+        it('can toggle the fullscreen mode', function () {
+            var inputState = angular.copy(defaultState),
+                output;
+
+            //Enable fullscreen
+            output = mapReducers.MAP_FULLSCREEN(inputState, true);
+            expect(output.map.isFullscreen).toBe(true);
+
+            //Disable fullscreen
+            output = mapReducers.MAP_FULLSCREEN(inputState, false);
+            expect(output.map.isFullscreen).toBe(false);
+        });
+    });
 });

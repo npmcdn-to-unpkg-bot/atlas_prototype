@@ -27,7 +27,8 @@ describe('The dp-map directive', function () {
                 },
                 panning: {
                     initialize: function () {},
-                    panTo: function () {}
+                    panTo: function () {},
+                    setOption: function () {}
                 },
                 zoom: {
                     initialize: function () {},
@@ -39,6 +40,10 @@ describe('The dp-map directive', function () {
             },
             function ($provide) {
                 $provide.factory('dpLinkDirective', function () {
+                    return {};
+                });
+
+                $provide.factory('dpToggleFullscreenDirective', function () {
                     return {};
                 });
             }
@@ -70,6 +75,7 @@ describe('The dp-map directive', function () {
 
         spyOn(panning, 'initialize');
         spyOn(panning, 'panTo');
+        spyOn(panning, 'setOption');
         spyOn(zoom, 'initialize');
         spyOn(zoom, 'setZoom');
         spyOn(variableWidth, 'initialize');
@@ -79,6 +85,7 @@ describe('The dp-map directive', function () {
             baseLayer: 'topografie',
             overlays: [],
             viewCenter: [52.789, 4.123],
+            isFullscreen: false,
             zoom: 12
         };
     });
@@ -275,6 +282,19 @@ describe('The dp-map directive', function () {
 
             expect(panning.panTo).toHaveBeenCalledTimes(2);
             expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [53, 5]);
+        });
+
+        it('changes the animation settings each time map.isFullscreen changes', function () {
+            //By default the map isFullscreen, which causes animate to be true
+            expect(panning.setOption).toHaveBeenCalledTimes(1);
+            expect(panning.setOption).toHaveBeenCalledWith('animate', true);
+
+            //When isFullscreen is true, animate will be set to false
+            mockedMapState.isFullscreen = true;
+            $rootScope.$apply();
+
+            expect(panning.setOption).toHaveBeenCalledTimes(2);
+            expect(panning.setOption).toHaveBeenCalledWith('animate', false);
         });
     });
 
