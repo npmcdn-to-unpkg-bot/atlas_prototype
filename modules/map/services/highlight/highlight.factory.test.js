@@ -1,4 +1,4 @@
-xdescribe('The highlight factory', function () {
+describe('The highlight factory', function () {
     var highlight,
         L,
         crsService,
@@ -15,7 +15,7 @@ xdescribe('The highlight factory', function () {
                     coordinates: [
                         [[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],
                         [[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],
-                            [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
+                        [[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]
                     ]
                 },
                 useAutoFocus: true
@@ -99,6 +99,11 @@ xdescribe('The highlight factory', function () {
 
                     }
                 },
+                panning: {
+                    getCurrentLocation: function () {
+                        return 'FAKE_LOCATION_CENTER';
+                    }
+                },
                 store: {
                     dispatch: function () {}
                 }
@@ -145,9 +150,6 @@ xdescribe('The highlight factory', function () {
                     lat: 'FAKE_LATITUDE',
                     lng: 'FAKE_LONGITUDE'
                 };
-            },
-            getZoom: function () {
-                return 'FAKE_ZOOM';
             }
         };
 
@@ -281,6 +283,7 @@ xdescribe('The highlight factory', function () {
             spyOn(mockedLeafletMap, 'getBoundsZoom').and.returnValue(NaN);
 
             highlight.add(mockedLeafletMap, mockedItems.item_point);
+            expect(mockedLeafletMap.fitBounds).not.toHaveBeenCalled();
 
             //14 is the fallback zoom level defined in mapConfig.DEFAULT_ZOOM_HIGHLIGHT
             expect(store.dispatch).toHaveBeenCalledWith({
@@ -292,32 +295,32 @@ xdescribe('The highlight factory', function () {
             });
         });
 
-        it('Polygons support autozoom and auto center', function () {
+        it('Polygons support autozoom and auto center (without animation)', function () {
             spyOn(mockedLeafletMap, 'getBoundsZoom').and.returnValue(10);
 
             highlight.add(mockedLeafletMap, mockedItems.item_polygon);
 
-            expect(mockedLeafletMap.fitBounds).toHaveBeenCalledWith('FAKE_LAYER_BOUNDS');
+            expect(mockedLeafletMap.fitBounds).toHaveBeenCalledWith('FAKE_LAYER_BOUNDS', {animate: false});
             expect(store.dispatch).toHaveBeenCalledWith({
                 type: ACTIONS.MAP_ZOOM,
                 payload: {
-                    viewCenter: ['FAKE_LATITUDE', 'FAKE_LONGITUDE'],
-                    zoom: 'FAKE_ZOOM'
+                    viewCenter: 'FAKE_LOCATION_CENTER',
+                    zoom: 10
                 }
             });
         });
 
-        it('MultiPolygons support autozoom and auto center', function () {
+        it('MultiPolygons support autozoom and auto center (without animation)', function () {
             spyOn(mockedLeafletMap, 'getBoundsZoom').and.returnValue(10);
 
             highlight.add(mockedLeafletMap, mockedItems.item_multipolygon);
 
-            expect(mockedLeafletMap.fitBounds).toHaveBeenCalledWith('FAKE_LAYER_BOUNDS');
+            expect(mockedLeafletMap.fitBounds).toHaveBeenCalledWith('FAKE_LAYER_BOUNDS', {animate: false});
             expect(store.dispatch).toHaveBeenCalledWith({
                 type: ACTIONS.MAP_ZOOM,
                 payload: {
-                    viewCenter: ['FAKE_LATITUDE', 'FAKE_LONGITUDE'],
-                    zoom: 'FAKE_ZOOM'
+                    viewCenter: 'FAKE_LOCATION_CENTER',
+                    zoom: 10
                 }
             });
         });

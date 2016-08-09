@@ -86,29 +86,29 @@
                 bounds = layer.getBounds();
                 zoomLevel = leafletMap.getBoundsZoom(bounds);
 
-                panning.setAnimate(false);
-
                 if (!isNaN(zoomLevel)) {
                     //A valid zoom level has been determined
                     leafletMap.fitBounds(bounds, {
                         animate: false
                     });
+
+                    location = panning.getCurrentLocation();
                 } else {
                     //Set the location and zoomLevel manually
                     location = crsConverter.rdToWgs84(geojson.getCenter(item.geometry));
                     zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
-
-                    store.dispatch({
-                        type: ACTIONS.MAP_ZOOM,
-                        payload: {
-                            viewCenter: location,
-                            zoom: zoomLevel
-                        }
-                    });
                 }
+
+                store.dispatch({
+                    type: ACTIONS.MAP_ZOOM,
+                    payload: {
+                        viewCenter: location,
+                        zoom: zoomLevel
+                    }
+                });
             }
 
-            layer.addTo(leafletMap);
+            leafletMap.addLayer(layer);
         }
 
         function remove (leafletMap, item) {
