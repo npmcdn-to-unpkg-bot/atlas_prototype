@@ -1,6 +1,6 @@
 .leaflet-map {
   position: absolute;
-  top: 0;
+  top: $base-whitespace * 2;
   right: $base-whitespace;
   bottom: 0;
   left: $base-whitespace;
