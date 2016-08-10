@@ -59,7 +59,6 @@
                                 geometry: geometry
                             }
                         });
-
                     }, 2000);
                 });
             });

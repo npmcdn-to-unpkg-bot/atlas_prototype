@@ -1,8 +1,8 @@
 .straatbeeld-metadata {
   position: absolute;
-  right: 0;
+  right: $base-whitespace * 2;
   bottom: 0;
-  left: 0;
+  left: $base-whitespace;
   height: 40px;
   padding: $base-whitespace;
   background-color: $secondary-gray60;

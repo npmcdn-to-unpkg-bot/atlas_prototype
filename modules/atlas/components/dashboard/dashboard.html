@@ -4,7 +4,7 @@
             <atlas-header query="{{vm.query}}"></atlas-header>
         </div>
     </div>
-    <div class="dashboard__content">
+    <div class="dashboard__content u-pt-2 u-pr-1 u-pl-1">
         <div class="u-grid u-height-100">
             <div class="u-row u-height-100">
                 <div ng-if="vm.sizeLeftColumn"
@@ -29,9 +29,9 @@
                         </dp-map>
                     </div>
                 </div>
-
+<!--   -->
                 <div ng-if="vm.sizeRightColumn"
-                    class="u-col-sm--{{vm.sizeRightColumn}} dashboard__content__scrollable u-height-100">
+                    class="u-col-sm--{{vm.sizeRightColumn}} u-height-100 dashboard__content__scrollable">
 
                     <div ng-if="vm.showDetail" ng-controller="DetailController as vm">
                         <atlas-detail

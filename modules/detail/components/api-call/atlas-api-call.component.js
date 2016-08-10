@@ -14,9 +14,9 @@
             controllerAs: 'vm'
         });
 
-    AtlasApiCallController.$inject = ['$scope', 'api'];
+    AtlasApiCallController.$inject = ['$scope', 'api', '$timeout'];
 
-    function AtlasApiCallController ($scope, api) {
+    function AtlasApiCallController ($scope, api, $timeout) {
         var vm = this;
 
         vm.isLoading = true;
@@ -45,22 +45,25 @@
 
         function loadData (endpoint) {
             api.getByUrl(endpoint).then(function (response) {
-                var hasPagination = angular.isArray(response.results);
+                $timeout(function () {
 
-                if (hasPagination) {
-                    if (angular.isUndefined(vm.apiData.results)) {
-                        vm.apiData.results = [];
+                    var hasPagination = angular.isArray(response.results);
+
+                    if (hasPagination) {
+                        if (angular.isUndefined(vm.apiData.results)) {
+                            vm.apiData.results = [];
+                        }
+
+                        vm.apiData.count = response.count;
+                        vm.apiData.results = vm.apiData.results.concat(response.results);
+                        vm.apiData.next = response._links.next && response._links.next.href;
+                    } else {
+                        vm.apiData.results = response;
                     }
 
-                    vm.apiData.count = response.count;
-                    vm.apiData.results = vm.apiData.results.concat(response.results);
-                    vm.apiData.next = response._links.next && response._links.next.href;
-                } else {
-                    vm.apiData.results = response;
-                }
-
-                vm.isLoading = false;
-                vm.useDelay = true;
+                    vm.isLoading = false;
+                    vm.useDelay = true;
+                }, 2000);
             });
         }
     }
