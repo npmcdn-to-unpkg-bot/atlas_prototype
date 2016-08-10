@@ -5,9 +5,31 @@
         .module('dpMap')
         .factory('highlight', highlightFactory);
 
-    highlightFactory.$inject = ['L', 'crsService', 'ICON_CONFIG', 'angleConversion', 'mapConfig', 'store', 'ACTIONS'];
+    highlightFactory.$inject = [
+        'L',
+        'crsService',
+        'ICON_CONFIG',
+        'angleConversion',
+        'geojson',
+        'crsConverter',
+        'mapConfig',
+        'panning',
+        'store',
+        'ACTIONS'
+    ];
 
-    function highlightFactory (L, crsService, ICON_CONFIG, angleConversion, mapConfig, store, ACTIONS) {
+    function highlightFactory (
+        L,
+        crsService,
+        ICON_CONFIG,
+        angleConversion,
+        geojson,
+        crsConverter,
+        mapConfig,
+        panning,
+        store,
+        ACTIONS) {
+
         var layers = {};
 
         return {
@@ -28,7 +50,9 @@
          */
         function add (leafletMap, item) {
             var layer,
-                useAutoZoom;
+                bounds,
+                location,
+                zoomLevel;
 
             item.geometry.crs = crsService.getRdObject();
 
@@ -58,25 +82,33 @@
 
             layers[item.id] = layer;
 
-            leafletMap.addLayer(layer);
+            if (item.useAutoFocus) {
+                bounds = layer.getBounds();
+                zoomLevel = leafletMap.getBoundsZoom(bounds);
 
-            useAutoZoom = item.geometry.type === 'Polygon' || item.geometry.type === 'MultiPolygon';
+                if (!isNaN(zoomLevel)) {
+                    //A valid zoom level has been determined
+                    leafletMap.fitBounds(bounds, {
+                        animate: false
+                    });
 
-            if (useAutoZoom) {
-                var zoomLevel = leafletMap.getBoundsZoom(layer.getBounds());
-
-                if (isNaN(zoomLevel)) {
-                    zoomLevel = mapConfig.DEFAULT_ZOOM_HIGHLIGHT;
+                    location = panning.getCurrentLocation(leafletMap);
+                } else {
+                    //Set the location and zoomLevel manually
+                    location = crsConverter.rdToWgs84(geojson.getCenter(item.geometry));
+                    zoomLevel = Math.max(leafletMap.getZoom(), mapConfig.DEFAULT_ZOOM_HIGHLIGHT);
                 }
 
                 store.dispatch({
                     type: ACTIONS.MAP_ZOOM,
                     payload: {
-                        viewCenter: null,
+                        viewCenter: location,
                         zoom: zoomLevel
                     }
                 });
             }
+
+            leafletMap.addLayer(layer);
         }
 
         function remove (leafletMap, item) {

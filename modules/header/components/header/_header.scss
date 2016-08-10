@@ -4,13 +4,13 @@
 
   background-color: inherit;
   color: $primary-light;
-  font-size: $base-font-size;
   line-height: $site-header-height;
   text-decoration: none;
   cursor: pointer;
 }
 
 .site-header {
+  position: relative;
   height: $site-header-height;
   background-color: $secondary-gray80;
 }

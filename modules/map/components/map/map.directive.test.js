@@ -283,19 +283,6 @@ describe('The dp-map directive', function () {
             expect(panning.panTo).toHaveBeenCalledTimes(2);
             expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [53, 5]);
         });
-
-        it('changes the animation settings each time map.isFullscreen changes', function () {
-            //By default the map isFullscreen, which causes animate to be true
-            expect(panning.setOption).toHaveBeenCalledTimes(1);
-            expect(panning.setOption).toHaveBeenCalledWith('animate', true);
-
-            //When isFullscreen is true, animate will be set to false
-            mockedMapState.isFullscreen = true;
-            $rootScope.$apply();
-
-            expect(panning.setOption).toHaveBeenCalledTimes(2);
-            expect(panning.setOption).toHaveBeenCalledWith('animate', false);
-        });
     });
 
     describe('zoom factory', function () {
