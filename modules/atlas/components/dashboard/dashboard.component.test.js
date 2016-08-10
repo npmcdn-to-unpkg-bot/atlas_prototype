@@ -243,19 +243,43 @@ describe('The dashboard component', function () {
             columns = component[0].querySelectorAll('.dashboard__content [class^="u-col-sm--"]');
         });
 
-        it('shows layer selection in a small (1/3) left column', function () {
+        it('shows layer selection in a large (2/3) left column', function () {
             expect(columns[0].querySelector('atlas-layer-selection')).not.toBeNull();
+            expect(columns[0].getAttribute('class')).toContain('u-col-sm--8');
+            expect(columns[0].getAttribute('class')).not.toContain('u-col-sm--4');
         });
 
-        it('shows a large map (2/3) in the middle column', function () {
-            expect(columns[1].getAttribute('class')).toContain('u-col-sm--8');
-            expect(columns[1].getAttribute('class')).not.toContain('u-col-sm--4');
+        it('shows a small map (1/3) in the middle column', function () {
+            expect(columns[1].getAttribute('class')).toContain('u-col-sm--4');
+            expect(columns[1].getAttribute('class')).not.toContain('u-col-sm--8');
 
             expect(columns[1].querySelector('dp-map')).not.toBeNull();
         });
 
         it('shows no right column', function () {
             expect(columns.length).toBe(2);
+        });
+    });
+
+    describe('when using a fullscreen map', function () {
+        var component,
+            columns;
+
+        beforeEach(function () {
+            var mockedState = angular.copy(defaultState);
+
+            mockedState.map.isFullscreen = true;
+
+            spyOn(store, 'getState').and.returnValue(mockedState);
+
+            component = getComponent();
+            columns = component[0].querySelectorAll('.dashboard__content [class^="u-col-sm--"]');
+        });
+
+        it('only shows one full-width column (3/3) with the map', function () {
+            expect(columns.length).toBe(1);
+            expect(columns[0].getAttribute('class')).toContain('u-col-sm--12');
+            expect(columns[0].querySelector('dp-map')).not.toBeNull();
         });
     });
 });
