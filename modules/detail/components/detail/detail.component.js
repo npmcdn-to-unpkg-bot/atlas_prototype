@@ -19,7 +19,8 @@
         'endpointParser',
         'geometry',
         'geojson',
-        'crsConverter'
+        'crsConverter',
+        '$timeout'
     ];
 
     function AtlasDetailController (
@@ -30,7 +31,8 @@
         endpointParser,
         geometry,
         geojson,
-        crsConverter) {
+        crsConverter,
+        $timeout) {
 
         var vm = this;
 
@@ -49,13 +51,16 @@
                         vm.location = null;
                     }
 
-                    store.dispatch({
-                        type: ACTIONS.SHOW_DETAIL,
-                        payload: {
-                            location: vm.location,
-                            geometry: geometry
-                        }
-                    });
+                    $timeout(function () {
+                        store.dispatch({
+                            type: ACTIONS.SHOW_DETAIL,
+                            payload: {
+                                location: vm.location,
+                                geometry: geometry
+                            }
+                        });
+
+                    }, 2000);
                 });
             });
         });

@@ -1,7 +1,12 @@
-/*
-.c-loading-indicator {
+.c-loading-indicator--box {
+  position: absolute;
+  top: $base-whitespace * 2;
+  left: $base-whitespace * 2;
+  padding: $base-whitespace / 2;
+  border: border 1px $secondary-gray40;
+  background-color: $primary-light;
 }
-*/
+
 .c-loading-indicator__icon {
   width: 20px;
   height: 20px;

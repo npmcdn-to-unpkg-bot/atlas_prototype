@@ -6,7 +6,8 @@
         .component('dpLoadingIndicator', {
             bindings: {
                 isLoading: '=',
-                useDelay: '='
+                useDelay: '=',
+                showInline: '='
             },
             templateUrl: 'modules/shared/components/loading-indicator/loading-indicator.html',
             controller: DpLoadingIndicatorController,
