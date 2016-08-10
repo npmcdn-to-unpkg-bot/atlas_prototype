@@ -1,34 +1,37 @@
 .c-key-value-list {
   margin: 5px 0;
+  line-height: 2;
 
   dt {
-    width: calc(100% / 5 * 2 - 20px); //2 van 5 kolommen, hardcoded margin, var werkt niet
+    width: calc(100% / 6 * 2); //2 van 6 kolommen
+    padding-right: $base-whitespace;
     float: left;
     clear: both;
-    border-top: 1px solid $secondary-gray10;
+    border-top: 1px solid $secondary-gray20;
+    color: $secondary-gray60;
 
     &:first-of-type {
       border-top: 1px solid transparent;
     }
 
     &:last-of-type {
-      border-bottom: 1px solid $secondary-gray10;
+      border-bottom: 1px solid $secondary-gray20;
     }
   }
 
   dd {
-    width: 100% / 5 * 3; //3 van 5 kolommen
+    width: 100% / 6 * 4; //4 van 6 kolommen
     margin: 0;
     float: right;
-    border-top: 1px solid $secondary-gray10;
+    border-top: 1px solid $secondary-gray20;
 
     &:first-of-type {
       border-top: 1px solid transparent;
     }
 
     &:last-of-type {
-      min-height: 21.25px; //anders klapt de hoogte in en komt de border bottom fout uit
-      border-bottom: 1px solid $secondary-gray10;
+      min-height: 30px; //anders klapt de hoogte in (lineheight x font-size + border)
+      border-bottom: 1px solid $secondary-gray20;
     }
   }
 }
@@ -37,7 +40,7 @@
   margin: 5px 0;
 
   dt {
-    width: calc(100% / 3 * 1 - 20px); //2 van 5 kolommen, hardcoded margin, var werkt niet
+    width: calc(100% / 3 * 1 - 20px); //2 van 6 kolommen, hardcoded margin, var werkt niet
     float: left;
     clear: both;
   }
@@ -46,7 +49,7 @@
     width: 100% / 3 * 2; //3 van 5 kolommen
     margin: 0;
     float: right;
-    border-top: 1px solid $secondary-gray10;
+    border-top: 1px solid $secondary-gray20;
 
     &:first-of-type {
       border-top: 1px solid transparent;
@@ -54,7 +57,7 @@
 
     &:last-of-type {
       min-height: 21.25px; //anders klapt de hoogte in en komt de border bottom fout uit
-      border-bottom: 1px solid $secondary-gray10;
+      border-bottom: 1px solid $secondary-gray20;
     }
   }
 }

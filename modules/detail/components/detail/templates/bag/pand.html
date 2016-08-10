@@ -7,7 +7,7 @@
                 meta-data="vm.apiData">
             </atlas-stelselpedia-header>
 
-            <dl class="u-col-sm--10 u-col-sm--push-2 c-key-value-list">
+            <dl class="c-key-value-list">
                 <dt>Oorspronkelijk bouwjaar</dt>
                 <dd ng-if="vm.apiData.results.bouwjaar !== 1005">{{ vm.apiData.results.oorspronkelijk_bouwjaar }}</dd>
                 <dd ng-if="vm.apiData.results.bouwjaar === 1005">onbekend</dd>

@@ -21,6 +21,7 @@
                 </div>
 
                 <div class="u-col-sm--{{vm.sizeMiddleColumn}} u-height-100 u-padding__right-0 u-padding__left--0">
+
                     <div ng-controller="MapController as vm">
                         <dp-map
                             map-state="vm.mapState"
@@ -31,7 +32,7 @@
                 </div>
 
                 <div ng-if="vm.sizeRightColumn"
-                    class="u-col-sm--{{vm.sizeRightColumn}} dashboard__content__scrollable u-height-100">
+                    class="u-col-sm--{{vm.sizeRightColumn}} dashboard__content__scrollable u-height-100 u-padding__right-0 u-padding__left--0">
 
                     <div ng-if="vm.showDetail" ng-controller="DetailController as vm">
                         <atlas-detail

@@ -8,7 +8,7 @@
       </atlas-stelselpedia-header>
 
       <!-- niet natuurlijke persoon -->
-      <dl class="u-col-sm--10 u-col-sm--push-2 c-key-value-list" ng-if="vm.apiData.results.is_natuurlijk_persoon === false">
+      <dl class="c-key-value-list" ng-if="vm.apiData.results.is_natuurlijk_persoon === false">
         <dt>Statutaire zetel</dt>
         <dd>{{ vm.apiData.results.statutaire_zetel }}</dd>
         <dt>Rechtsvorm</dt>
@@ -40,7 +40,7 @@
       </dl>
 
       <!-- natuurlijke persoon -->
-      <dl class="u-col-sm--10 u-col-sm--push-2 c-key-value-list" ng-if="vm.apiData.results.is_natuurlijk_persoon === true">
+      <dl class="c-key-value-list" ng-if="vm.apiData.results.is_natuurlijk_persoon === true">
         <dt>Voornamen</dt>
         <dd>{{ vm.apiData.results.voornamen }}</dd>
         <dt>Voorvoegsels</dt>
