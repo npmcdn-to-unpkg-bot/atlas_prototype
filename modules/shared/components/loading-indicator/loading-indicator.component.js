@@ -21,7 +21,7 @@
             threshold = 400;
 
         vm.showLoadingIndicator = false;
-console.log(vm.useDelay);
+
         $scope.$watch('vm.isLoading', function (isLoading) {
             if (isLoading) {
                 timer = $timeout(function () {

@@ -1,6 +1,6 @@
-atlas-api-call
-<atlas-partial-select ng-if="vm.apiData" api-data="vm.apiData" load-more-fn="vm.loadMore" partial="{{vm.partial}}">
+<div>
+    <atlas-partial-select ng-if="vm.apiData" api-data="vm.apiData" load-more-fn="vm.loadMore" partial="{{vm.partial}}">
+    </atlas-partial-select>
 
-</atlas-partial-select>
-
-<dp-loading-indicator is-loading="true" use-delay="false"></dp-loading-indicator>
+    <dp-loading-indicator is-loading="vm.isLoading" use-delay="vm.useDelay"></dp-loading-indicator>
+</div>
