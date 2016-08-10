@@ -18,18 +18,19 @@
 .site-header__logo {
   display: block;
   height: $site-header-height;
+  padding-left: 25px;
   background-color: $secondary-gray80;
   color: $primary-light;
   font-size: 35px;
-  line-height: 42px;
   cursor: pointer;
 
   img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 14.5px;
-    margin-right: $base-whitespace;
     padding-right: 2.75px;
     padding-left: 2.75px;
-    float: left;
     background-color: $primary-light;
     box-sizing: content-box;
   }
