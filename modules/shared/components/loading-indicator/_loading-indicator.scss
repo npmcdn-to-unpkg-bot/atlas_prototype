@@ -1,0 +1,15 @@
+/*
+.c-loading-indicator {
+}
+*/
+.c-loading-indicator__icon {
+  width: 20px;
+  height: 20px;
+  margin-right: $base-whitespace / 2;
+  vertical-align: middle;
+}
+
+.c-loading-indicator__text {
+  //Overruling side-effects from the base font settings here
+  line-height: normal !important;
+}
