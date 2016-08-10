@@ -59,6 +59,18 @@ describe('The detailReducers factory', function () {
             expect(output.page).toBeNull();
             expect(output.straatbeeld).toBeNull();
         });
+
+        it('disables the fullscreen mode off the map', function () {
+            var payload = 'bag/thing/123/',
+                inputState = angular.copy(defaultState),
+                output;
+
+            inputState.map.isFullscreen = true;
+
+            output = detailReducers.FETCH_DETAIL(inputState, payload);
+
+            expect(output.map.isFullscreen).toBe(false);
+        });
     });
 
     describe('SHOW_DETAIL', function () {
