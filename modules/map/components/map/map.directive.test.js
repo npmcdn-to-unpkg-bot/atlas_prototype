@@ -20,6 +20,11 @@ describe('The dp-map directive', function () {
                         someVariable: 4
                     }
                 },
+                highlight: {
+                    initialize: function () {},
+                    add: function () {},
+                    remove: function () {}
+                },
                 panning: {
                     initialize: function () {},
                     panTo: function () {},
@@ -64,6 +69,7 @@ describe('The dp-map directive', function () {
         spyOn(layers, 'addOverlay');
         spyOn(layers, 'removeOverlay');
 
+        spyOn(highlight, 'initialize');
         spyOn(highlight, 'add');
         spyOn(highlight, 'remove');
 
@@ -185,7 +191,14 @@ describe('The dp-map directive', function () {
         });
     });
 
-    describe('has markers which', function () {
+    describe('has highlight options', function () {
+        it('that gets a call to .initialize() so it can configure Leaflet variables', function () {
+            expect(highlight.initialize).not.toHaveBeenCalled();
+
+            getDirective(mockedMapState, []);
+            expect(highlight.initialize).toHaveBeenCalled();
+        });
+
         it('can be added on initialisation', function () {
             getDirective(mockedMapState, [{id: 'FAKE_HIGHLIGHT_ITEM_A'}, {id: 'FAKE_HIGHLIGHT_ITEM_B'}]);
 
@@ -213,7 +226,6 @@ describe('The dp-map directive', function () {
             $rootScope.$apply();
 
             expect(highlight.remove).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', {id: 'FAKE_HIGHLIGHT_ITEM_B'});
-
         });
 
         it('deletes and re-adds changed icons', function () {
@@ -229,7 +241,11 @@ describe('The dp-map directive', function () {
             expect(highlight.remove).not.toHaveBeenCalled();
 
             //Change the marker
-            highlightItems[0].geometry = 'FAKE_GEOMETRY_B';
+            highlightItems.length = 0;
+            highlightItems.push({
+                id: 'FAKE_HIGHLIGHT_ITEM_A',
+                geometry: 'FAKE_GEOMETRY_B'
+            });
             $rootScope.$apply();
 
             expect(highlight.remove).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', {
@@ -266,19 +282,6 @@ describe('The dp-map directive', function () {
 
             expect(panning.panTo).toHaveBeenCalledTimes(2);
             expect(panning.panTo).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', [53, 5]);
-        });
-
-        it('changes the animation settings each time map.isFullscreen changes', function () {
-            //By default the map isFullscreen, which causes animate to be true
-            expect(panning.setOption).toHaveBeenCalledTimes(1);
-            expect(panning.setOption).toHaveBeenCalledWith('animate', true);
-
-            //When isFullscreen is true, animate will be set to false
-            mockedMapState.isFullscreen = true;
-            $rootScope.$apply();
-
-            expect(panning.setOption).toHaveBeenCalledTimes(2);
-            expect(panning.setOption).toHaveBeenCalledWith('animate', false);
         });
     });
 
