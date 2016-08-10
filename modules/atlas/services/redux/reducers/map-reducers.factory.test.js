@@ -77,7 +77,7 @@ describe('The map reducers', function () {
     });
 
     describe('MAP_ZOOM', function () {
-        it('updates the zoom and viewCenter property', function () {
+        it('can update the zoom and viewCenter property', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
@@ -101,6 +101,17 @@ describe('The map reducers', function () {
             });
             expect(output.map.viewCenter).toEqual([53, 5]);
             expect(output.map.zoom).toBe(16);
+        });
+
+        it('doesn\'t have to update the optional viewCenter property', function () {
+            var inputState = angular.copy(defaultState),
+                output;
+
+            output = mapReducers.MAP_ZOOM(inputState, {
+                zoom: 8
+            });
+            expect(output.map.viewCenter).toEqual([52.3719, 4.9012]);
+            expect(output.map.zoom).toBe(8);
         });
     });
 
