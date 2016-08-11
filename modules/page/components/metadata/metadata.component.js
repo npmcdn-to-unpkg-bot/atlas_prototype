@@ -20,7 +20,6 @@
             vm.isLoading = false;
 
             vm.sources = data;
-            console.log(vm.sources);
         });
     }
 })();

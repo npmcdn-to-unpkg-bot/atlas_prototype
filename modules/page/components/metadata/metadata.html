@@ -11,7 +11,7 @@
     <tbody>
         <tr ng-repeat="source in vm.sources" ng-if="source.title">
             <td>
-                <span ng-if="row.group">{{source.group}} -</span>
+                <span ng-if="source.group">{{source.group}} -</span>
                 {{source.title}}
             </td>
             <td>{{source.update_frequency}}</td>
