@@ -6,7 +6,7 @@
   <ul class="list">
     <li ng-repeat="object in apiData.results">
       <dp-link type="FETCH_DETAIL" payload="object._links.self.href">
-        <i class="fa fa-chevron-right link"></i>{{ object._display }}
+        {{ object._display }}
       </dp-link>
 <!-- komt nog in verdere wkpb uitwerking
      <dp-link ng-if="object._brondocument.count > 1"type="FETCH_DETAIL" payload="object._brondocument._links.self.href">
@@ -20,7 +20,7 @@
   </ul>
 
   <a class="loadmore" ng-click="loadMore()" ng-if="next">
-    <i class="fa fa-plus fa-2x link"></i>Meer
+    Meer
   </a>
 
 </div>

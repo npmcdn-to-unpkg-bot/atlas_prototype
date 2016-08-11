@@ -49,15 +49,17 @@
 
 .list__bullits {
   @extend %list;
-  padding-left: $base-font-size + 2; //ivm overeenkomen uitlijning dp-link
 
   li {
-    list-style-type: square;
-  }
+    display: inline-block;
+    position: relative;
+    margin-left: $base-font-size;
 
-  span {
-    &:first-of-type {
-      margin-left: -2px; //ivm overeenkomen uitlijning dp-link
+    &::before {
+      display: inline-block;
+      position: absolute;
+      left: -$base-font-size;
+      content: "▪";
     }
   }
 }
