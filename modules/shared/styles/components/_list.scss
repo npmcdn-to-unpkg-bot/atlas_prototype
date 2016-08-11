@@ -1,0 +1,27 @@
+%list {
+
+  li {
+    line-height: 28px;
+  }
+}
+
+.o-list {
+  @extend %list;
+}
+
+.o-list__bullits {
+  @extend %list;
+
+  li {
+    display: inline-block;
+    position: relative;
+    margin-left: $base-font-size;
+
+    &::before {
+      display: inline-block;
+      position: absolute;
+      left: -$base-font-size;
+      content: "▪";
+    }
+  }
+}

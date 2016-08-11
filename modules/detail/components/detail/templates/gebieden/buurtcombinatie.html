@@ -17,7 +17,7 @@
       <atlas-parent-relations content="vm.apiData.results" class="u-col-sm--6 u-padding__left--0"></atlas-parent-relations>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.results.buurten.count">
+    <div ng-if="vm.apiData.results.buurten.count">
       <atlas-stelselpedia-header definition="BUURT" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.buurten.href}}" partial="lijst"></atlas-api-call>

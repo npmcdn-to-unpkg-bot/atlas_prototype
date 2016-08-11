@@ -24,7 +24,7 @@
 
         <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location" class="u-col-sm--6"></dp-straatbeeld-thumbnail>
 
-        <div class="list-box" ng-if="vm.apiData.results.verblijfsobjecten.count">
+        <div ng-if="vm.apiData.results.verblijfsobjecten.count">
             <atlas-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></atlas-stelselpedia-header>
 
             <atlas-api-call endpoint="{{vm.apiData.results.verblijfsobjecten.href}}" partial="adressen_lijst"></atlas-api-call>

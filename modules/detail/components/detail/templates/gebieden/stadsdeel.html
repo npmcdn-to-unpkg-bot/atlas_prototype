@@ -17,13 +17,13 @@
 
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.results.buurtcombinaties.count">
+    <div ng-if="vm.apiData.results.buurtcombinaties.count">
       <atlas-stelselpedia-header definition="BUURTCOMBINATIE" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.buurtcombinaties.href}}" partial="lijst"></atlas-api-call>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.results.gebiedsgerichtwerken.count">
+    <div ng-if="vm.apiData.results.gebiedsgerichtwerken.count">
       <atlas-stelselpedia-header definition="GEBIEDSGERICHTWERKEN" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.gebiedsgerichtwerken.href}}" partial="lijst"></atlas-api-call>

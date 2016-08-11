@@ -14,25 +14,25 @@
       <atlas-parent-relations content="vm.apiData.results" class="u-col-sm--6 u-padding__left--0"></atlas-parent-relations>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.results.bouwblokken.count">
+    <div ng-if="vm.apiData.results.bouwblokken.count">
       <atlas-stelselpedia-header definition="BOUWBLOK" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.bouwblokken.href}}" partial="lijst"></atlas-api-call>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.results.ligplaatsen.count">
+    <div ng-if="vm.apiData.results.ligplaatsen.count">
       <atlas-stelselpedia-header definition="LIGPLAATS" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.ligplaatsen.href}}" partial="adressen_lijst"></atlas-api-call>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.results.standplaatsen.count">
+    <div ng-if="vm.apiData.results.standplaatsen.count">
       <atlas-stelselpedia-header definition="STANDPLAATS" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.standplaatsen.href}}" partial="adressen_lijst"></atlas-api-call>
     </div>
 
-    <div class="list-box" ng-if="vm.apiData.results.verblijfsobjecten.count">
+    <div ng-if="vm.apiData.results.verblijfsobjecten.count">
       <atlas-stelselpedia-header definition="VERBLIJFSOBJECT" use-plural="true"></atlas-stelselpedia-header>
 
       <atlas-api-call endpoint="{{vm.apiData.results.verblijfsobjecten.href}}" partial="adressen_lijst"></atlas-api-call>

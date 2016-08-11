@@ -3,7 +3,7 @@
 
   <p ng-if="!apiData.results.length">Geen rechten gevonden</p>
 
-  <ul class="list">
+  <ul class="o-list">
     <li ng-repeat="object in apiData.results">
       <dp-link type="FETCH_DETAIL" payload="object.subject_href">
         {{ object._display}}

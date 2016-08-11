@@ -43,7 +43,7 @@
             use-brk-object-expanded="true">
         </atlas-api-call>
 
-        <div class="list-box" ng-if="vm.apiData.results.verblijfsobjecten.count">
+        <div ng-if="vm.apiData.results.verblijfsobjecten.count">
             <atlas-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></atlas-stelselpedia-header>
 
             <atlas-api-call endpoint="{{vm.apiData.results.verblijfsobjecten.href}}" partial="adressen_lijst">

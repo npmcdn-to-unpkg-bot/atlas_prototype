@@ -20,7 +20,7 @@
             <atlas-api-call endpoint="{{vm.apiData.results.panden.href}}" partial="lijst"></atlas-api-call>
         </div>
 
-        <div class="list-box" ng-if="vm.apiData.results.meetbouten">
+        <div ng-if="vm.apiData.results.meetbouten">
             <atlas-stelselpedia-header definition="MEETBOUT" use-plural="true"></atlas-stelselpedia-header>
 
             <atlas-api-call endpoint="{{vm.apiData.results.meetbouten}}" partial="lijst"></atlas-api-call>
