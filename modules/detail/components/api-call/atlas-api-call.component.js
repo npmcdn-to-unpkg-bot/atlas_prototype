@@ -20,7 +20,7 @@
         var vm = this;
 
         vm.isLoading = true;
-        vm.useDelay = false;
+        vm.useLoadingIndicatorDelay = false;
 
         $scope.$watch('vm.endpoint', function (endpoint) {
             if (endpoint) {
@@ -60,7 +60,7 @@
                 }
 
                 vm.isLoading = false;
-                vm.useDelay = true;
+                vm.useLoadingIndicatorDelay = true;
             });
         }
     }
