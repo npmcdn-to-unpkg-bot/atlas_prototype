@@ -1,4 +1,4 @@
-fdescribe('The dp-loading-indicator', function () {
+describe('The dp-loading-indicator', function () {
     var $compile,
         $rootScope,
         $timeout;
@@ -62,6 +62,26 @@ fdescribe('The dp-loading-indicator', function () {
         //Enough time has passed
         $timeout.flush(1);
         expect(component.find('.c-loading-indicator').length).toBe(1);
+    });
+
+    it('the delayed showing of the spinner will be cancelled when the loading is finished', function () {
+        var component,
+            scope;
+
+        component = getComponent(true, true, true);
+        scope = component.isolateScope();
+
+        //Not enough time has passed
+        $timeout.flush(200);
+        expect(component.find('.c-loading-indicator').length).toBe(0);
+
+        //The loading finishes
+        scope.vm.isLoading = false;
+        $rootScope.$apply();
+
+        //More time passes, but the loading indicator will never be shown
+        $timeout.flush(5000);
+        expect(component.find('.c-loading-indicator').length).toBe(0);
     });
 
     describe('it has two display variants:', function () {
