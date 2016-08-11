@@ -86,6 +86,9 @@ describe('The dashboard component', function () {
             expect(columns[1].getAttribute('class')).toContain('u-col-sm--8');
             expect(columns[1].getAttribute('class')).not.toContain('u-col-sm--4');
 
+            //It is scrollable
+            expect(columns[1].getAttribute('class')).toContain('dashboard__content__scrollable');
+
             expect(columns[1].querySelector('atlas-page')).not.toBeNull();
             expect(columns[1].querySelector('atlas-detail')).toBeNull();
             expect(columns[1].querySelector('atlas-search-results')).toBeNull();
@@ -137,6 +140,9 @@ describe('The dashboard component', function () {
                 expect(columns[1].getAttribute('class')).toContain('u-col-sm--8');
                 expect(columns[1].getAttribute('class')).not.toContain('u-col-sm--4');
 
+                //It is scrollable
+                expect(columns[1].getAttribute('class')).toContain('dashboard__content__scrollable');
+
                 expect(columns[1].querySelector('atlas-search-results')).not.toBeNull();
                 expect(columns[1].querySelector('atlas-page')).toBeNull();
                 expect(columns[1].querySelector('atlas-detail')).toBeNull();
@@ -178,6 +184,9 @@ describe('The dashboard component', function () {
             expect(columns[1].getAttribute('class')).toContain('u-col-sm--8');
             expect(columns[1].getAttribute('class')).not.toContain('u-col-sm--4');
 
+            //It is scrollable
+            expect(columns[1].getAttribute('class')).toContain('dashboard__content__scrollable');
+
             expect(columns[1].querySelector('atlas-detail')).not.toBeNull();
             expect(columns[1].querySelector('atlas-search-results')).toBeNull();
             expect(columns[1].querySelector('atlas-page')).toBeNull();
@@ -217,6 +226,9 @@ describe('The dashboard component', function () {
             expect(columns[1].getAttribute('class')).toContain('u-col-sm--8');
             expect(columns[1].getAttribute('class')).not.toContain('u-col-sm--4');
 
+            //It is not scrollable
+            expect(columns[1].getAttribute('class')).not.toContain('dashboard__content__scrollable');
+
             expect(columns[1].querySelector('dp-straatbeeld')).not.toBeNull();
             expect(columns[1].querySelector('atlas-detail')).toBeNull();
             expect(columns[1].querySelector('atlas-search-results')).toBeNull();
@@ -247,6 +259,9 @@ describe('The dashboard component', function () {
             expect(columns[0].querySelector('atlas-layer-selection')).not.toBeNull();
             expect(columns[0].getAttribute('class')).toContain('u-col-sm--8');
             expect(columns[0].getAttribute('class')).not.toContain('u-col-sm--4');
+
+            //It is scrollable
+            expect(columns[0].getAttribute('class')).toContain('dashboard__content__scrollable');
         });
 
         it('shows a small map (1/3) in the middle column', function () {
@@ -280,6 +295,9 @@ describe('The dashboard component', function () {
             expect(columns.length).toBe(1);
             expect(columns[0].getAttribute('class')).toContain('u-col-sm--12');
             expect(columns[0].querySelector('dp-map')).not.toBeNull();
+
+            //It is not scrollable
+            expect(columns[0].getAttribute('class')).not.toContain('dashboard__content__scrollable');
         });
     });
 });
