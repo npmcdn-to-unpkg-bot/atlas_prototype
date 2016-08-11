@@ -1,3 +1,10 @@
+%list {
+
+  li {
+    line-height: 28px;
+  }
+}
+
 %description-list {
   margin: 5px 0;
   line-height: 2;
@@ -32,6 +39,25 @@
     &:last-of-type {
       min-height: 30px; //anders klapt de hoogte in (lineheight x font-size + border)
       border-bottom: 1px solid $secondary-gray20;
+    }
+  }
+}
+
+.list {
+  @extend %list;
+}
+
+.list__bullits {
+  @extend %list;
+  padding-left: $base-font-size + 2; //ivm overeenkomen uitlijning dp-link
+
+  li {
+    list-style-type: square;
+  }
+
+  span {
+    &:first-of-type {
+      margin-left: -2px; //ivm overeenkomen uitlijning dp-link
     }
   }
 }
