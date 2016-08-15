@@ -145,7 +145,7 @@ describe('The atlas-layer-selection component', function () {
     describe('overlays', function () {
         it('lists all overlays as checkboxes w/ labels', function () {
             var component = getComponent('base_layer_a', [], 8);
-            console.log(component.find('div'));
+
             expect(component.find('div').eq(1).find('h2').text()).toBe('Category 1');
             expect(component.find('div').eq(1).find('li').eq(0).find('label').text().trim()).toBe('Overlay 1a');
             expect(component.find('div').eq(1).find('li').eq(0).find('input').attr('type')).toBe('checkbox');
@@ -299,18 +299,49 @@ describe('The atlas-layer-selection component', function () {
             }
         });
 
+        it('makes the active overlays bold (regardless of zoom level)', function () {
+            var component;
+
+            //Active and visible
+            component = getComponent('base_layer_a', ['overlay_2_a'], 8);
+            expect(component.find('div').eq(2).find('li').eq(0).find('strong').text()).toContain('Overlay 2a');
+
+            //Active and invisible
+            component = getComponent('base_layer_a', ['overlay_2_a'], 16);
+            expect(component.find('div').eq(2).find('li').eq(0).find('strong').text()).toContain('Overlay 2a');
+
+            //Non-active (still using strong)
+            component = getComponent('base_layer_a', [], 16);
+            expect(component.find('div').eq(2).find('li').eq(0).find('strong').length).toBe(0);
+            expect(component.find('div').eq(2).find('li').eq(0).find('span').text()).toContain('Overlay 2a');
+        });
+
         it('only shows the i-am-not-visible indicator for active overlays', function () {
             var component;
 
             //When the overlays are active
             component = getComponent('base_layer_a', ['overlay_2_b', 'overlay_2_c'], 8);
-            expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(1);
-            expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(1);
+
+            //overlay_2_b
+            expect(component.find('div').eq(2).find('li').eq(1).text())
+                .toContain('(deze kaartlaag is niet zichtbaar op dit zoomniveau)');
+
+            //overlay_2_c
+            expect(component.find('div').eq(2).find('li').eq(2).text())
+                .toContain('(deze kaartlaag is niet zichtbaar op dit zoomniveau)');
+
+
 
             //When the overlays are not active
             component = getComponent('base_layer_a', [], 8);
-            expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(0);
-            expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(0);
+
+            //overlay_2_b
+            expect(component.find('div').eq(2).find('li').eq(1).text())
+                .not.toContain('(deze kaartlaag is niet zichtbaar op dit zoomniveau)');
+
+            //overlay_2_c
+            expect(component.find('div').eq(2).find('li').eq(2).text())
+                .not.toContain('(deze kaartlaag is niet zichtbaar op dit zoomniveau)');
         });
     });
 });

@@ -33,11 +33,17 @@
                             ng-click="vm.toggleOverlay(overlay.slug)"
                             value="{{overlay.slug}}">
 
-                        {{overlay.label}}
+                        <strong ng-if="vm.isOverlayActive(overlay.slug)">
+                            {{overlay.label}}
+                        </strong>
+
+                        <span ng-if="!vm.isOverlayActive(overlay.slug)">
+                            {{overlay.label}}
+                        </span>
 
                         <span ng-if="vm.isOverlayActive(overlay.slug) && !vm.isOverlayVisible(overlay.slug)">
-            (<strong>deze kaartlaag is niet zichtbaar op dit zoomniveau</strong>)
-        </span>
+                            (deze kaartlaag is niet zichtbaar op dit zoomniveau)
+                        </span>
                     </label>
                 </li>
             </ul>

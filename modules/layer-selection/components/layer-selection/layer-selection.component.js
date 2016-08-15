@@ -64,11 +64,5 @@
             return vm.zoom >= OVERLAYS.SOURCES[overlay].minZoom &&
                 vm.zoom <= OVERLAYS.SOURCES[overlay].maxZoom;
         };
-
-        vm.hideLayerSelection = function () {
-            store.dispatch({
-                type: ACTIONS.HIDE_LAYER_SELECTION
-            });
-        };
     }
 })();
