@@ -7,8 +7,8 @@ $panel-heading-height: 30px;
 .o-panel__heading {
   position: relative;
   height: $panel-heading-height;
-  padding-right: $base-whitespace / 2;
-  padding-left: $base-whitespace / 2;
+  padding-right: $base-whitespace;
+  padding-left: $base-whitespace;
   background-color: $secondary-gray40;
   color: $primary-light;
   line-height: $panel-heading-height;
@@ -24,4 +24,6 @@ $panel-heading-height: 30px;
   height: calc(100% - #{$panel-heading-height});
   background-color: $primary-light;
   overflow-y: auto;
+  padding-right: $base-whitespace;
+  padding-left: $base-whitespace;
 }
