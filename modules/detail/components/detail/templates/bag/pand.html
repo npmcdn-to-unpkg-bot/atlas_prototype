@@ -19,9 +19,10 @@
 
     <div ng-if="vm.apiData.results" class="u-row">
         <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+        <div class="u-col-sm--6">
+            <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location"></dp-straatbeeld-thumbnail>
+        </div>
     </div>
-
-    <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location"></dp-straatbeeld-thumbnail>
 
     <div ng-if="vm.apiData.results.verblijfsobjecten.count">
         <atlas-stelselpedia-header definition="NUMMERAANDUIDING" use-plural="true"></atlas-stelselpedia-header>

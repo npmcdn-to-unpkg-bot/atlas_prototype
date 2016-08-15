@@ -34,7 +34,9 @@
         </dl>
     </div>
 
-    <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location"></dp-straatbeeld-thumbnail>
+    <div class="u-col-sm--6">
+        <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location"></dp-straatbeeld-thumbnail>
+    </div>
 
     <atlas-api-call
         endpoint="{{vm.apiData.results._links.self.href}}"

@@ -21,7 +21,9 @@
     </div>
 
     <div class="u-row">
-        <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location"></dp-straatbeeld-thumbnail>
+        <div class="u-col-sm--6">
+            <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location"></dp-straatbeeld-thumbnail>
+        </div>
     </div>
 
     <div ng-if="vm.apiData.results.adressen.count" class="u-row">
