@@ -17,7 +17,8 @@
         'ACTIONS',
         'api',
         'endpointParser',
-        'geometry'
+        'geometry',
+        'geojson'
     ];
 
     function AtlasDetailController (
@@ -26,7 +27,8 @@
         ACTIONS,
         api,
         endpointParser,
-        geometry) {
+        geometry,
+        geojson) {
 
         var vm = this;
 
@@ -36,9 +38,13 @@
                     results: data
                 };
 
+                vm.location = null;
+
                 vm.includeSrc = endpointParser.getTemplateUrl(endpoint);
 
                 geometry.getGeoJSON(endpoint).then(function (geometry) {
+                    vm.location = geojson.getCenter(geometry);
+
                     store.dispatch({
                         type: ACTIONS.SHOW_DETAIL,
                         payload: geometry
