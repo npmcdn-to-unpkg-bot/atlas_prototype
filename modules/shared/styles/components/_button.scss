@@ -1,4 +1,4 @@
-.btn {
+.o-btn {
   /*
   @name Button - white
   @markup
@@ -26,7 +26,7 @@
   @markup
     <button class="btn btn--link">Lorem ipsum</button>
   */
-  &.btn--link {
+  &.o-btn--link {
     @extend %link--arrow;
 
     background-color: transparent;
@@ -34,5 +34,13 @@
     font-size: inherit;
     text-align: left;
     cursor: pointer;
+  }
+
+  &.o-btn--contrast {
+    color: $primary-contrast;
+
+    &:hover {
+      color: $secondary-gray60;
+    }
   }
 }
