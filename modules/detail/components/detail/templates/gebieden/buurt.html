@@ -10,7 +10,9 @@
     </div>
 
     <div ng-if="vm.apiData.results" class="u-row">
-      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+        <div class="u-col-sm--6 u-padding__left--0">
+            <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
+        </div>
     </div>
 
     <div ng-if="vm.apiData.results.bouwblokken.count">
