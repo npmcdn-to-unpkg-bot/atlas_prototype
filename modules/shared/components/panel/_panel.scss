@@ -7,8 +7,11 @@ $panel-heading-height: 30px;
 .o-panel__heading {
   position: relative;
   height: $panel-heading-height;
+  padding-right: $base-whitespace / 2;
+  padding-left: $base-whitespace / 2;
   background-color: $secondary-gray40;
   color: $primary-light;
+  line-height: $panel-heading-height;
 }
 
 .o-panel__heading__icon {
