@@ -7,7 +7,7 @@ describe('The dp-panel component', function () {
 
         angular.mock.inject(function (_$compile_, _$rootScope_) {
             $compile = _$compile_;
-            $rootScope = _$rootScope_
+            $rootScope = _$rootScope_;
         });
     });
 
@@ -23,11 +23,11 @@ describe('The dp-panel component', function () {
 
         panelIconElement = document.createElement('dp-panel-icon');
         panelIconElement.appendChild(icon);
-        panelElement.append(panelIconElement);
+        panelElement.appendChild(panelIconElement);
 
         panelBodyElement = document.createElement('dp-panel-body');
         panelBodyElement.appendChild(content);
-        panelElement.append(panelBodyElement);
+        panelElement.appendChild(panelBodyElement);
 
         scope = $rootScope.$new();
 
@@ -37,7 +37,21 @@ describe('The dp-panel component', function () {
         return component;
     }
 
-    it('creates a common HTML pattern (used by dp-layer-selection and the map legend', function () {
+    it('creates a common HTML pattern (used by dp-layer-selection and the map legend)', function () {
+        var component,
+            iconHtml,
+            bodyHtml;
 
+        iconHtml = document.createElement('span');
+        iconHtml.innerText = 'I_AM_AN_ICON';
+
+        bodyHtml = document.createElement('p');
+        bodyHtml.innerText = 'I_AM_A_PARAGRAPH';
+
+        component = getComponent('I_AM_THE_PANEL_HEADING', iconHtml, bodyHtml);
+
+        expect(component.find('.o-panel__heading').text()).toContain('I_AM_THE_PANEL_HEADING');
+        expect(component.find('.o-panel__heading__icon').text()).toContain('I_AM_AN_ICON');
+        expect(component.find('.o-panel__content').text()).toContain('I_AM_A_PARAGRAPH');
     });
 });
