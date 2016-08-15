@@ -61,6 +61,18 @@ describe('The atlas-layer-selection component', function () {
                         }
                     ]
                 });
+
+                $provide.factory('dpPanelDirective', function () {
+                    return {};
+                });
+
+                $provide.factory('dpPanelIconDirective', function () {
+                    return {};
+                });
+
+                $provide.factory('dpPanelBodyDirective', function () {
+                    return {};
+                });
             }
         );
 
@@ -133,29 +145,29 @@ describe('The atlas-layer-selection component', function () {
     describe('overlays', function () {
         it('lists all overlays as checkboxes w/ labels', function () {
             var component = getComponent('base_layer_a', [], 8);
+            console.log(component.find('div'));
+            expect(component.find('div').eq(1).find('h2').text()).toBe('Category 1');
+            expect(component.find('div').eq(1).find('li').eq(0).find('label').text().trim()).toBe('Overlay 1a');
+            expect(component.find('div').eq(1).find('li').eq(0).find('input').attr('type')).toBe('checkbox');
+            expect(component.find('div').eq(1).find('li').eq(0).find('input').val()).toBe('overlay_1_a');
 
-            expect(component.find('div').eq(2).find('h2').text()).toBe('Category 1');
-            expect(component.find('div').eq(2).find('li').eq(0).find('label').text().trim()).toBe('Overlay 1a');
+            expect(component.find('div').eq(1).find('li').eq(1).find('label').text().trim()).toBe('Overlay 1b');
+            expect(component.find('div').eq(1).find('li').eq(1).find('input').attr('type')).toBe('checkbox');
+            expect(component.find('div').eq(1).find('li').eq(1).find('input').val()).toBe('overlay_1_b');
+
+
+            expect(component.find('div').eq(2).find('h2').text()).toBe('Category 2');
+            expect(component.find('div').eq(2).find('li').eq(0).find('label').text().trim()).toBe('Overlay 2a');
             expect(component.find('div').eq(2).find('li').eq(0).find('input').attr('type')).toBe('checkbox');
-            expect(component.find('div').eq(2).find('li').eq(0).find('input').val()).toBe('overlay_1_a');
+            expect(component.find('div').eq(2).find('li').eq(0).find('input').val()).toBe('overlay_2_a');
 
-            expect(component.find('div').eq(2).find('li').eq(1).find('label').text().trim()).toBe('Overlay 1b');
+            expect(component.find('div').eq(2).find('li').eq(1).find('label').text().trim()).toBe('Overlay 2b');
             expect(component.find('div').eq(2).find('li').eq(1).find('input').attr('type')).toBe('checkbox');
-            expect(component.find('div').eq(2).find('li').eq(1).find('input').val()).toBe('overlay_1_b');
+            expect(component.find('div').eq(2).find('li').eq(1).find('input').val()).toBe('overlay_2_b');
 
-
-            expect(component.find('div').eq(3).find('h2').text()).toBe('Category 2');
-            expect(component.find('div').eq(3).find('li').eq(0).find('label').text().trim()).toBe('Overlay 2a');
-            expect(component.find('div').eq(3).find('li').eq(0).find('input').attr('type')).toBe('checkbox');
-            expect(component.find('div').eq(3).find('li').eq(0).find('input').val()).toBe('overlay_2_a');
-
-            expect(component.find('div').eq(3).find('li').eq(1).find('label').text().trim()).toBe('Overlay 2b');
-            expect(component.find('div').eq(3).find('li').eq(1).find('input').attr('type')).toBe('checkbox');
-            expect(component.find('div').eq(3).find('li').eq(1).find('input').val()).toBe('overlay_2_b');
-
-            expect(component.find('div').eq(3).find('li').eq(2).find('label').text().trim()).toBe('Overlay 2c');
-            expect(component.find('div').eq(3).find('li').eq(2).find('input').attr('type')).toBe('checkbox');
-            expect(component.find('div').eq(3).find('li').eq(2).find('input').val()).toBe('overlay_2_c');
+            expect(component.find('div').eq(2).find('li').eq(2).find('label').text().trim()).toBe('Overlay 2c');
+            expect(component.find('div').eq(2).find('li').eq(2).find('input').attr('type')).toBe('checkbox');
+            expect(component.find('div').eq(2).find('li').eq(2).find('input').val()).toBe('overlay_2_c');
         });
 
         it('marks the checkboxes for active overlays', function () {
@@ -164,20 +176,20 @@ describe('The atlas-layer-selection component', function () {
             //Nothing is checked if there are no overlays
             component = getComponent('base_layer_a', [], 8);
 
+            expect(component.find('div').eq(1).find('li').eq(0).find('input').attr('checked')).toBeUndefined();
+            expect(component.find('div').eq(1).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
             expect(component.find('div').eq(2).find('li').eq(0).find('input').attr('checked')).toBeUndefined();
             expect(component.find('div').eq(2).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
-            expect(component.find('div').eq(3).find('li').eq(0).find('input').attr('checked')).toBeUndefined();
-            expect(component.find('div').eq(3).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
-            expect(component.find('div').eq(3).find('li').eq(2).find('input').attr('checked')).toBeUndefined();
+            expect(component.find('div').eq(2).find('li').eq(2).find('input').attr('checked')).toBeUndefined();
 
             //With active overlays
             component = getComponent('base_layer_a', ['overlay_1_a', 'overlay_2_b'], 8);
 
-            expect(component.find('div').eq(2).find('li').eq(0).find('input').attr('checked')).toBe('checked');
-            expect(component.find('div').eq(2).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
-            expect(component.find('div').eq(3).find('li').eq(0).find('input').attr('checked')).toBeUndefined();
-            expect(component.find('div').eq(3).find('li').eq(1).find('input').attr('checked')).toBe('checked');
-            expect(component.find('div').eq(3).find('li').eq(2).find('input').attr('checked')).toBeUndefined();
+            expect(component.find('div').eq(1).find('li').eq(0).find('input').attr('checked')).toBe('checked');
+            expect(component.find('div').eq(1).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
+            expect(component.find('div').eq(2).find('li').eq(0).find('input').attr('checked')).toBeUndefined();
+            expect(component.find('div').eq(2).find('li').eq(1).find('input').attr('checked')).toBe('checked');
+            expect(component.find('div').eq(2).find('li').eq(2).find('input').attr('checked')).toBeUndefined();
         });
 
         it('can toggle overlays', function () {
@@ -220,43 +232,70 @@ describe('The atlas-layer-selection component', function () {
             for (zoom = 8; zoom <= 10; zoom++) {
                 component = getComponent('base_layer_a', allOverlays, zoom);
 
+                //overlay_1_a
+                expect(component.find('div').eq(1).find('li').eq(0).find('span').length).toBe(0);
+
+                //overlay_1_b
+                expect(component.find('div').eq(1).find('li').eq(1).find('span').length).toBe(0);
+
+                //overlay_2_a
                 expect(component.find('div').eq(2).find('li').eq(0).find('span').length).toBe(0);
-                expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(0);
-                expect(component.find('div').eq(3).find('li').eq(0).find('span').length).toBe(0);
-                expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(1);
-                expect(component.find('div').eq(3).find('li').eq(1).find('span').text().trim())
+
+                //overlay_2_b
+                expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(1);
+                expect(component.find('div').eq(2).find('li').eq(1).find('span').text().trim())
                     .toBe(expectedZoomIndicatorText);
-                expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(1);
-                expect(component.find('div').eq(3).find('li').eq(2).find('span').text().trim())
+
+                //overlay_2_c
+                expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(1);
+                expect(component.find('div').eq(2).find('li').eq(2).find('span').text().trim())
                     .toBe(expectedZoomIndicatorText);
             }
 
             for (zoom = 11; zoom <= 14; zoom++) {
                 component = getComponent('base_layer_a', allOverlays, zoom);
 
-                expect(component.find('div').eq(2).find('li').eq(0).find('span').length).toBe(0);
-                expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(0);
-                expect(component.find('div').eq(3).find('li').eq(0).find('span').length).toBe(1);
-                expect(component.find('div').eq(3).find('li').eq(0).find('span').text().trim())
+                //overlay_1_a
+                expect(component.find('div').eq(1).find('li').eq(0).find('span').length).toBe(0);
+
+                //overlay_1_b
+                expect(component.find('div').eq(1).find('li').eq(1).find('span').length).toBe(0);
+
+                //overlay_2_a
+                expect(component.find('div').eq(2).find('li').eq(0).find('span').length).toBe(1);
+                expect(component.find('div').eq(2).find('li').eq(0).find('span').text().trim())
                     .toBe(expectedZoomIndicatorText);
-                expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(0);
-                expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(1);
-                expect(component.find('div').eq(3).find('li').eq(2).find('span').text().trim())
+
+                //overlay_2_b
+                expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(0);
+
+                //overlay_2_c
+                expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(1);
+                expect(component.find('div').eq(2).find('li').eq(2).find('span').text().trim())
                     .toBe(expectedZoomIndicatorText);
             }
 
             for (zoom = 15; zoom <= 16; zoom++) {
                 component = getComponent('base_layer_a', allOverlays, zoom);
 
-                expect(component.find('div').eq(2).find('li').eq(0).find('span').length).toBe(0);
-                expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(0);
-                expect(component.find('div').eq(3).find('li').eq(0).find('span').length).toBe(1);
-                expect(component.find('div').eq(3).find('li').eq(0).find('span').text().trim())
+                //overlay_1_a
+                expect(component.find('div').eq(1).find('li').eq(0).find('span').length).toBe(0);
+
+                //overlay_1_b
+                expect(component.find('div').eq(1).find('li').eq(1).find('span').length).toBe(0);
+
+                //overlay_2_a
+                expect(component.find('div').eq(2).find('li').eq(0).find('span').length).toBe(1);
+                expect(component.find('div').eq(2).find('li').eq(0).find('span').text().trim())
                     .toBe(expectedZoomIndicatorText);
-                expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(1);
-                expect(component.find('div').eq(3).find('li').eq(1).find('span').text().trim())
+
+                //overlay_2_b
+                expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(1);
+                expect(component.find('div').eq(2).find('li').eq(1).find('span').text().trim())
                     .toBe(expectedZoomIndicatorText);
-                expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(0);
+
+                //overlay_2_c
+                expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(0);
             }
         });
 
@@ -265,23 +304,13 @@ describe('The atlas-layer-selection component', function () {
 
             //When the overlays are active
             component = getComponent('base_layer_a', ['overlay_2_b', 'overlay_2_c'], 8);
-            expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(1);
-            expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(1);
+            expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(1);
+            expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(1);
 
             //When the overlays are not active
             component = getComponent('base_layer_a', [], 8);
-            expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(0);
-            expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(0);
-        });
-    });
-
-    it('has a button to close the layer selection sidebar', function () {
-        var component = getComponent('base_layer_a', [], 8);
-
-        component.find('button')[0].click();
-
-        expect(store.dispatch).toHaveBeenCalledWith({
-            type: ACTIONS.HIDE_LAYER_SELECTION
+            expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(0);
+            expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(0);
         });
     });
 });
