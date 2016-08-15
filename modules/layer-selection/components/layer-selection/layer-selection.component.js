@@ -56,7 +56,12 @@
         };
 
         vm.isOverlayActive = function (overlay) {
-            return Object.keys(vm.activeOverlays).indexOf(overlay) > -1;
+            for(var i = 0;i < vm.activeOverlays.length;i++) {
+                if (vm.activeOverlays[i].id === overlay) {
+                    return true;
+                }
+            }
+            return false;
         };
 
         vm.isOverlayVisible = function (overlay) {
