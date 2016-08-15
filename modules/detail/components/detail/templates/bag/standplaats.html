@@ -1,19 +1,17 @@
-<div class="detail-page__content">
-    <div class="detail-page__content--main">
-        <!-- nummeraanduiding -->
-        <atlas-api-call 
-            endpoint="{{vm.apiData.results.hoofdadres._links.self.href}}"
-            partial="bag/nummeraanduiding">
-        </atlas-api-call>
+<div class="detail-page__content--main">
+    <!-- nummeraanduiding -->
+    <atlas-api-call 
+        endpoint="{{vm.apiData.results.hoofdadres._links.self.href}}"
+        partial="bag/nummeraanduiding">
+    </atlas-api-call>
 
-        <div ng-if="vm.apiData.results" class="u-row">
-            <atlas-parent-relations content="vm.apiData.results" class="u-col-sm--6 u-padding__left--0"></atlas-parent-relations>
-        </div>
-
-        <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location" class="u-col-sm--6"></dp-straatbeeld-thumbnail>
-
-        <!-- standplaats -->
-        <atlas-partial-select partial="bag/standplaats" api-data="vm.apiData"></atlas-partial-select>
-
+    <div ng-if="vm.apiData.results" class="u-row">
+        <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
     </div>
+
+    <dp-straatbeeld-thumbnail ng-if="vm.location" location="vm.location"></dp-straatbeeld-thumbnail>
+
+    <!-- standplaats -->
+    <atlas-partial-select partial="bag/standplaats" api-data="vm.apiData"></atlas-partial-select>
+
 </div>

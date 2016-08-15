@@ -8,19 +8,10 @@
       <dp-link type="FETCH_DETAIL" payload="object._links.self.href">
         {{ object._display }}
       </dp-link>
-<!-- komt nog in verdere wkpb uitwerking
-     <dp-link ng-if="object._brondocument.count > 1"type="FETCH_DETAIL" payload="object._brondocument._links.self.href">
-        WKPB-brondocumenten
-      </dp-link>
-      <dp-link ng-if="object.document.count === 1" type="FETCH_DETAIL" payload="object._brondocument.results[0].url">
-        WKPB-brondocument
-        <span ng-if="object.document.results[0].persoonsgegevens_afschermen">(persoonsgegevens afschermen)</span>
-      </dp-link> -->
     </li>
   </ul>
 
   <a class="loadmore" ng-click="loadMore()" ng-if="next">
     Meer
   </a>
-
 </div>

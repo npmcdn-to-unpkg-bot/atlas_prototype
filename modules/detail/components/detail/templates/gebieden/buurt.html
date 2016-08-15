@@ -1,5 +1,4 @@
-<div class="detail-page__content">
-  <div class="detail-page__content--main">
+<div>
     <div class="u-row">
       <atlas-stelselpedia-header heading="{{vm.apiData.results.naam}}" definition="BUURT" meta-data="vm.apiData">
       </atlas-stelselpedia-header>
@@ -11,7 +10,7 @@
     </div>
 
     <div ng-if="vm.apiData.results" class="u-row">
-      <atlas-parent-relations content="vm.apiData.results" class="u-col-sm--6 u-padding__left--0"></atlas-parent-relations>
+      <atlas-parent-relations content="vm.apiData.results"></atlas-parent-relations>
     </div>
 
     <div ng-if="vm.apiData.results.bouwblokken.count">
@@ -42,6 +41,4 @@
       gebied-heading="{{vm.apiData.results.naam}}"
       gebied-code="{{vm.apiData.results.volledige_code}}">
     </atlas-bbga-graphs>
-  </div>
-
 </div>
