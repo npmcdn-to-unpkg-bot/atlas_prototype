@@ -65,7 +65,7 @@ describe('The detailReducers factory', function () {
         var stateAfterFetchDetail = {
                 map: {
                     baseLayer: 'topografie',
-                    overlays: {},
+                    overlays: [],
                     viewCenter: [52.3719, 4.9012],
                     zoom: 12,
                     showLayerSelection: false,

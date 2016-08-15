@@ -6,7 +6,7 @@
         </div>
         <ul class="overlays">
         	<li>
-        		<dp-overlay-legenda ng-repeat="(overlay, visibile) in statusbar.overlays" overlay="overlay" visible="visible"></dp-overlay-legenda>
+        		<dp-overlay-legenda ng-repeat="overlay in statusbar.overlays" overlay="overlay" zoom="zoom"></dp-overlay-legenda>
         	</li>
         </ul>
         <div class="edit-overlayes" ng-class="{true:'show', flase:'hide'}[statusbar.visible]">

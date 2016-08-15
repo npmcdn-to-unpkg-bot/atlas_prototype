@@ -4,7 +4,7 @@
 | lat           | map.viewCenter[0]               | yes, see DEFAULT_STATE |
 | lon           | map.viewCenter[1]               | yes, see DEFAULT_STATE |
 | basiskaart    | map.baseLayer                   | yes, see DEFAULT_STATE |
-| lagen         | map.overlays                    | no, {}                 |
+| lagen         | map.overlays                    | no, []                 |
 | zoom          | map.zoom                        | yes, see DEFAULT_STATE |
 | selectie      | map.highlight                   | no, null               |
 | kaartlagen    | map.showLayerSelection          | false                  |

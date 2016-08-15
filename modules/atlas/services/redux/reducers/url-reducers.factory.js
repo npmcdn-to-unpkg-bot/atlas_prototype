@@ -65,11 +65,11 @@
             }
 
             function getMapState (payload) {
-                var overlays = {}, lagen;
+                var overlays = [], lagen;
                 if (payload && payload.lagen) {
                     lagen = payload.lagen.split(',');
                     for (var i = 0;i < lagen.length;i++) {
-                        overlays[lagen[i]] = true;
+                        overlays.push({id: lagen[i], visibility: true});
                     }
                 }
                 return {

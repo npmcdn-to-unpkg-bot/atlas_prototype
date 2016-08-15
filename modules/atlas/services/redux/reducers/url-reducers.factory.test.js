@@ -88,17 +88,20 @@ describe('The urlReducers factory', function () {
 
                 //No overlay
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.map.overlays).toEqual({});
+                expect(output.map.overlays).toEqual([]);
 
                 //One overlay
                 mockedSearchParams.lagen = 'munitie_opslag';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.map.overlays).toEqual({'munitie_opslag': true});
+                expect(output.map.overlays).toEqual([{id: 'munitie_opslag', visibility: true}]);
 
                 //Two overlays
                 mockedSearchParams.lagen = 'munitie_opslag,geldkluizen';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.map.overlays).toEqual({'munitie_opslag': true, 'geldkluizen': true});
+                expect(output.map.overlays).toEqual([
+                    {id: 'munitie_opslag', visibility: true},
+                    {id: 'geldkluizen', visibility: true}
+                ]);
             });
 
             it('sets the center', function () {
