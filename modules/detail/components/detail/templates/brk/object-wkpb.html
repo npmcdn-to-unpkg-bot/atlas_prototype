@@ -1,17 +1,17 @@
 <div class="detail-page__content">
   <div class="detail-page__content--main">
 
-    <img class="u-pull--left" width="160" height="72" src="assets/gemeente-amsterdam.png" alt="Gemeente Amsterdam">
+    <img class="u-pull--left" width="160" height="72" src="assets/images/gemeente-amsterdam.png" alt="Gemeente Amsterdam">
 
     <a ui-sref="app">
-      <img class="u-pull--right" width="180" height="60" src="assets/atlas-logo-wkpb.png" alt="Atlas">
+      <img class="u-pull--right" width="180" height="60" src="assets/images/atlas-logo-wkpb.png" alt="Atlas">
     </a>
 
     <div class="clearfix"></div>
 
-    <div class="default-box">
+    <div class="u-row">
       <h2>Opgegeven zoekcriteria</h2>
-      <dl class="key-value-list">
+      <dl class="c-key-value-list">
         <dt>Datum rapport</dt>
         <dd>
           <atlas-current-date></atlas-current-date>
@@ -29,7 +29,7 @@
 
     <div class="default-box">
       <h2 class="default-box__header">Kadastraal object</h2>
-      <dl class="key-value-list">
+      <dl class="c-key-value-list">
         <dt>Gemeentecode</dt>
         <dd>{{vm.apiData.results.kadastrale_gemeente._display}}</dd>
         <dt>Sectie</dt>
@@ -56,7 +56,7 @@
     <div ng-if="vm.apiData.results.beperkingen">
       <div class="default-box" ng-repeat="beperking in vm.apiData.results.beperkingen">
         <h2 class="default-box__header">Gemeentelijke publiekrechtelijke beperking<sup>*</sup></h2>
-        <dl class="key-value-list">
+        <dl class="c-key-value-list">
           <dt>Inschrijfnummer</dt>
           <dd>{{beperking.inschrijfnummer}}</dd>
           <dt>Beperkingcode</dt>

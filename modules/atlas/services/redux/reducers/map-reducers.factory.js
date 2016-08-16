@@ -16,6 +16,7 @@
         reducers[ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY] = mapToggleVisibilityOverlay;
         reducers[ACTIONS.MAP_PAN] = mapPanReducer;
         reducers[ACTIONS.MAP_ZOOM] = mapZoomReducer;
+        reducers[ACTIONS.MAP_FULLSCREEN] = mapFullscreenReducer;
 
         return reducers;
 
@@ -102,7 +103,25 @@
         function mapZoomReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
-            newState.map.zoom = payload;
+            if (angular.isArray(payload.viewCenter)) {
+                newState.map.viewCenter = payload.viewCenter;
+            }
+
+            newState.map.zoom = payload.zoom;
+
+            return newState;
+        }
+
+        /**
+         * @param {Object} oldState
+         * @param {Number} payload - Boolean that defines whether or not fullscreen mode is enabled
+         *
+         * @returns {Object} newState
+         */
+        function mapFullscreenReducer (oldState, payload) {
+            var newState = angular.copy(oldState);
+
+            newState.map.isFullscreen = payload;
 
             return newState;
         }

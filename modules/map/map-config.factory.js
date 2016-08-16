@@ -40,7 +40,8 @@
                 position: 'bottomright',
                 zoomInTitle: 'Inzoomen',
                 zoomOutTitle: 'Uitzoomen'
-            }
+            },
+            DEFAULT_ZOOM_HIGHLIGHT: 14
         };
 
         environmentConfig = {

@@ -150,7 +150,7 @@ describe('The urlReducers factory', function () {
 
                 //With layer selection
                 mockedState.map.showLayerSelection = false;
-                mockedSearchParams.kaartlagen = '1';
+                mockedSearchParams.kaartlagen = 'aan';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.showLayerSelection).toBe(true);
 
@@ -159,6 +159,23 @@ describe('The urlReducers factory', function () {
                 delete mockedSearchParams.kaartlagen;
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.showLayerSelection).toBe(false);
+            });
+
+            it('sets the isFullscreen status', function () {
+                var output;
+
+                //With full screen enabled
+                mockedState.map.isFullscreen = false;
+                mockedSearchParams['volledig-scherm'] = 'aan';
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.map.isFullscreen).toBe(true);
+
+                //With full screen disabled
+                mockedState.map.isFullscreen = true;
+                delete mockedSearchParams['volledig-scherm'];
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.map.isFullscreen).toBe(false);
+
             });
         });
 

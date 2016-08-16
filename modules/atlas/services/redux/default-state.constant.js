@@ -9,13 +9,15 @@
                 zoom: 9,
                 highlight: null,
                 showLayerSelection: false,
+                isFullscreen: false,
                 isLoading: false
             },
             search: null,
             /*
             search: {
                 query: 'linnaeus',
-                location: [52.123, 4.789]
+                location: [52.123, 4.789],
+                category: null
             }
             */
             page: 'welkom',

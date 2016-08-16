@@ -73,6 +73,7 @@ describe('The stateToUrlMiddleware factory', function () {
             ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
             ACTIONS.SHOW_LAYER_SELECTION,
             ACTIONS.HIDE_LAYER_SELECTION,
+            ACTIONS.SHOW_HOME,
             ACTIONS.SHOW_PAGE
         ];
 
@@ -100,6 +101,7 @@ describe('The stateToUrlMiddleware factory', function () {
                 ACTIONS.SHOW_SEARCH_RESULTS_BY_QUERY,
                 ACTIONS.SHOW_SEARCH_RESULTS_BY_CLICK,
                 ACTIONS.SHOW_SEARCH_RESULTS_CATEGORY,
+                ACTIONS.MAP_FULLSCREEN,
                 ACTIONS.SHOW_DETAIL,
                 ACTIONS.SHOW_STRAATBEELD_INITIAL,
                 ACTIONS.SHOW_LAYER_SELECTION,

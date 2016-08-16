@@ -91,18 +91,56 @@ describe('The map reducers', function () {
     });
 
     describe('MAP_ZOOM', function () {
-        it('updates the zoom property', function () {
+        it('can update the zoom and viewCenter property', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
-            output = mapReducers.MAP_ZOOM(inputState, 8);
+            output = mapReducers.MAP_ZOOM(inputState, {
+                viewCenter: [4.9012, 52.3719],
+                zoom: 8
+            });
+            expect(output.map.viewCenter).toEqual([4.9012, 52.3719]);
             expect(output.map.zoom).toBe(8);
 
-            output = mapReducers.MAP_ZOOM(inputState, 15);
+            output = mapReducers.MAP_ZOOM(inputState, {
+                viewCenter: [52.3719, 4.9012],
+                zoom: 15
+            });
+            expect(output.map.viewCenter).toEqual([52.3719, 4.9012]);
             expect(output.map.zoom).toBe(15);
 
-            output = mapReducers.MAP_ZOOM(inputState, 16);
+            output = mapReducers.MAP_ZOOM(inputState, {
+                viewCenter: [53, 5],
+                zoom: 16
+            });
+            expect(output.map.viewCenter).toEqual([53, 5]);
             expect(output.map.zoom).toBe(16);
+        });
+
+        it('doesn\'t have to update the optional viewCenter property', function () {
+            var inputState = angular.copy(defaultState),
+                output;
+
+            output = mapReducers.MAP_ZOOM(inputState, {
+                zoom: 8
+            });
+            expect(output.map.viewCenter).toEqual([52.3719, 4.9012]);
+            expect(output.map.zoom).toBe(8);
+        });
+    });
+
+    describe('MAP_FULLSCREEN', function () {
+        it('can toggle the fullscreen mode', function () {
+            var inputState = angular.copy(defaultState),
+                output;
+
+            //Enable fullscreen
+            output = mapReducers.MAP_FULLSCREEN(inputState, true);
+            expect(output.map.isFullscreen).toBe(true);
+
+            //Disable fullscreen
+            output = mapReducers.MAP_FULLSCREEN(inputState, false);
+            expect(output.map.isFullscreen).toBe(false);
         });
     });
 });

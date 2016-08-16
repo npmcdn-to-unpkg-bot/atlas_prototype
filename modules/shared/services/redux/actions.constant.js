@@ -14,6 +14,7 @@
             MAP_TOGGLE_VISIBILITY_OVERLAY: 'MAP_TOGGLE_VISIBILITY_OVERLAY',
             MAP_PAN: 'MAP_PAN',
             MAP_ZOOM: 'MAP_ZOOM',
+            MAP_FULLSCREEN: 'MAP_FULLSCREEN',
 
             FETCH_DETAIL: 'FETCH_DETAIL',
             SHOW_DETAIL: 'SHOW_DETAIL',
@@ -26,6 +27,7 @@
             SHOW_LAYER_SELECTION: 'SHOW_LAYER_SELECTION',
             HIDE_LAYER_SELECTION: 'HIDE_LAYER_SELECTION',
 
+            SHOW_HOME: 'SHOW_HOME',
             SHOW_PAGE: 'SHOW_PAGE'
         });
 })();

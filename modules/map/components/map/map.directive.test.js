@@ -23,9 +23,15 @@ describe('The dp-map directive', function () {
                         someVariable: 4
                     }
                 },
+                highlight: {
+                    initialize: function () {},
+                    add: function () {},
+                    remove: function () {}
+                },
                 panning: {
                     initialize: function () {},
-                    panTo: function () {}
+                    panTo: function () {},
+                    setOption: function () {}
                 },
                 zoom: {
                     initialize: function () {},
@@ -41,6 +47,9 @@ describe('The dp-map directive', function () {
                     return {};
                 });
                 $provide.factory('dpMapStatusbarComponent', function () {
+                    return {};
+                });
+                $provide.factory('dpToggleFullscreenDirective', function () {
                     return {};
                 });
             }
@@ -65,12 +74,13 @@ describe('The dp-map directive', function () {
         spyOn(layers, 'setBaseLayer');
         spyOn(layers, 'addOverlay');
         spyOn(layers, 'removeOverlay');
-        //spyOn(layers, 'toggleVisibility');
+        spyOn(highlight, 'initialize');
         spyOn(highlight, 'add');
         spyOn(highlight, 'remove');
 
         spyOn(panning, 'initialize');
         spyOn(panning, 'panTo');
+        spyOn(panning, 'setOption');
         spyOn(zoom, 'initialize');
         spyOn(zoom, 'setZoom');
         spyOn(variableWidth, 'initialize');
@@ -80,11 +90,12 @@ describe('The dp-map directive', function () {
             baseLayer: 'topografie',
             overlays: {},
             viewCenter: [52.789, 4.123],
+            isFullscreen: false,
             zoom: 12
         };
     });
 
-    function getDirective (mapState, markers) {
+    function getDirective (mapState, markers, useRootScopeApply) {
         var directive,
             element,
             scope;
@@ -100,8 +111,24 @@ describe('The dp-map directive', function () {
         directive = $compile(element)(scope);
         scope.$apply();
 
+        if (angular.isUndefined(useRootScopeApply) || useRootScopeApply) {
+            $rootScope.$apply();
+        }
+
         return directive;
     }
+
+    it('doesn\'t initialize until the next digest cycle', function () {
+        /**
+         * This is needed to ensure that the map has a width. To have a width it needs to be appended to the DOM. And
+         * adding to the DOM happens the next digest cycle.
+         */
+        getDirective(mockedMapState, [], false);
+        expect(L.map).not.toHaveBeenCalled();
+
+        $rootScope.$apply();
+        expect(L.map).toHaveBeenCalled();
+    });
 
     it('creates a Leaflet map with options based on both the map state and mapConfig', function () {
         var directive,
@@ -169,7 +196,14 @@ describe('The dp-map directive', function () {
         });
     });
 
-    describe('has markers which', function () {
+    describe('has highlight options', function () {
+        it('that gets a call to .initialize() so it can configure Leaflet variables', function () {
+            expect(highlight.initialize).not.toHaveBeenCalled();
+
+            getDirective(mockedMapState, []);
+            expect(highlight.initialize).toHaveBeenCalled();
+        });
+
         it('can be added on initialisation', function () {
             getDirective(mockedMapState, [{id: 'FAKE_HIGHLIGHT_ITEM_A'}, {id: 'FAKE_HIGHLIGHT_ITEM_B'}]);
 
@@ -197,7 +231,6 @@ describe('The dp-map directive', function () {
             $rootScope.$apply();
 
             expect(highlight.remove).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', {id: 'FAKE_HIGHLIGHT_ITEM_B'});
-
         });
 
         it('deletes and re-adds changed icons', function () {
@@ -213,7 +246,11 @@ describe('The dp-map directive', function () {
             expect(highlight.remove).not.toHaveBeenCalled();
 
             //Change the marker
-            highlightItems[0].geometry = 'FAKE_GEOMETRY_B';
+            highlightItems.length = 0;
+            highlightItems.push({
+                id: 'FAKE_HIGHLIGHT_ITEM_A',
+                geometry: 'FAKE_GEOMETRY_B'
+            });
             $rootScope.$apply();
 
             expect(highlight.remove).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', {
