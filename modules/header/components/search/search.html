@@ -1,7 +1,7 @@
-<form class="search-form" ng-submit="formSubmit($event)">
+<form class="c-search-form" ng-submit="formSubmit($event)">
     <fieldset>
         <input
-            class="search-form__input js-search-input"
+            class="c-search-form__input js-search-input"
             type="text"
             ng-model="query"
             autocapitalize="off"
@@ -13,7 +13,7 @@
             ng-keydown="navigateSuggestions($event)"
             ng-blur="removeSuggestions($event)">
 
-        <button class="search-form__submit" type="submit">
+        <button class="c-search-form__submit" type="submit">
             <span class="u-sr-only">Zoek</span>
         </button>
 
