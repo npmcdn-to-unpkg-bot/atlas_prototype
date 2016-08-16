@@ -1,4 +1,4 @@
-describe('The dp-straatbeeld-thumbnail component', function () {
+describe('The atlas-straatbeeld-thumbnail component', function () {
     var $compile,
         $rootScope,
         store,
@@ -32,7 +32,7 @@ describe('The dp-straatbeeld-thumbnail component', function () {
             element,
             scope;
 
-        element = document.createElement('dp-straatbeeld-thumbnail');
+        element = document.createElement('atlas-straatbeeld-thumbnail');
         element.setAttribute('location', 'location');
 
         scope = $rootScope.$new();
