@@ -30,6 +30,25 @@
 			// Unknown overlay
 			vm.label = vm.overlay.id;
 		}
+		vm.getIcon = function() {
+			// Determining which icon to use based on visibility
+			var icon = '/assets/images/'; // The prefix path
+			// @TODO check logics
+			console.log(vm.overlay);
+			if (vm.overlay.visibility) {
+				if (vm.zoom >= OVERLAYS.SOURCES[vm.overlay.id].minZoom &&
+	            	vm.zoom <= OVERLAYS.SOURCES[vm.overlay.id].maxZoom) {
+					icon += 'icon-eye-show.svg';
+				} else {
+					icon += 'icon-eye-zoomhide.svg';
+				}
+			} else {
+				icon += 'icon-eye-hide.svg';
+			}
+			return icon;	
+		};
+		
+
 		vm.toggleVisibility = function() {
 			var action;
 
@@ -48,12 +67,6 @@
                 payload: vm.overlay.id
             });
 		};
-
-		vm.isOverlayVisible = function(overlay) {
-            return vm.zoom >= OVERLAYS.SOURCES[overlay.id].minZoom &&
-                vm.zoom <= OVERLAYS.SOURCES[overlay.id].maxZoom &&
-                vm.overlay.visibility;
-        };
 	}
 
 })();

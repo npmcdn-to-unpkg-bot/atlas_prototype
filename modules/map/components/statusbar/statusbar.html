@@ -1,15 +1,15 @@
 <div class="map-statusbar">
-    <div class="layers-labels" ng-class="{true:'show', flase:'hide'}[statusbar.visible]">
-        <div class="header" ng-click="statusbar.switchLegendPane()">
-            <button class="layers-label-icon" >{{ statusbar.buttonStatus }}</button>
-            <span class="layers-label-title">Kaartlagen ({{ statusbar.visibleLayers }}/{{ statusbar.activeLayers }})</span>
+    <div class="layers-labels" ng-class="{true:'show', flase:'hide'}[vm.visible]">
+        <div class="header" ng-click="vm.switchLegendPane()">
+            <button class="layers-label-icon" >{{ vm.buttonStatus }}</button>
+            <span class="layers-label-title">Kaartlagen ({{ vm.visibleLayers }}/{{ vm.activeLayers }})</span>
         </div>
         <ul class="overlays">
         	<li>
-        		<dp-overlay-legenda ng-repeat="overlay in statusbar.overlays" overlay="overlay" zoom="zoom"></dp-overlay-legenda>
+        		<dp-overlay-legenda ng-repeat="overlay in vm.overlays" overlay="overlay" zoom="vm.zoom"></dp-overlay-legenda>
         	</li>
         </ul>
-        <div class="edit-overlayes" ng-class="{true:'show', flase:'hide'}[statusbar.visible]">
+        <div class="edit-overlayes" ng-class="{true:'show', flase:'hide'}[vm.visible]">
             <dp-link type="SHOW_LAYER_SELECTION" class-name="edit-overlayes">&gt; Toevoegen / verwijderen</dp-link>
         </div>
     </div>

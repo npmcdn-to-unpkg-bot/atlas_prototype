@@ -166,7 +166,7 @@ describe('The dp-map directive', function () {
 
     describe('has overlays which', function () {
         it('can be added on initialization', function () {
-            mockedMapState.overlays = {'some_overlay': true};
+            mockedMapState.overlays = [{id: 'some_overlay', visibility: true}];
             getDirective(mockedMapState, []);
             expect(layers.addOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_overlay');
         });
@@ -175,7 +175,8 @@ describe('The dp-map directive', function () {
             getDirective(mockedMapState, []);
             expect(layers.addOverlay).not.toHaveBeenCalled();
 
-            mockedMapState.overlays = {'some_overlay': true, 'some_other_overlay': true};
+            mockedMapState.overlays = [{id:'some_overlay', visibility: true},
+                                        {id: 'some_other_overlay', visibility: true}];
             $rootScope.$apply();
 
             expect(layers.addOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_overlay');
@@ -183,7 +184,8 @@ describe('The dp-map directive', function () {
         });
 
         it('can be removed when the mapState changes', function () {
-            mockedMapState.overlays = {'some_overlay': true, 'some_other_overlay': true};
+            mockedMapState.overlays = [{id:'some_overlay', visibility: true},
+                                        {id: 'some_other_overlay', visibility: true}];
             getDirective(mockedMapState, []);
 
             expect(layers.removeOverlay).not.toHaveBeenCalled();

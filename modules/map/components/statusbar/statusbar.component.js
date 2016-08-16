@@ -11,33 +11,32 @@
             },
             templateUrl: 'modules/map/components/statusbar/statusbar.html',
             controller: StatusbarController,
-            controllerAs: 'statusbar'
+            controllerAs: 'vm'
         });
 
     function StatusbarController($scope) {
-        var statusbar = this;
-        statusbar.buttonStatus = '+';
-        statusbar.visible = false;
+        var vm = this;
+        vm.buttonStatus = '+';
+        vm.visible = false;
         // Layers counts
-        statusbar.activeLayers = Object.keys(statusbar.overlays).length;
-        // Watching from component scope where the controller is called statusbar
+        vm.activeLayers = vm.overlays.length;
+        // Watching from component scope where the controller is called vm
         // as per controllerAs
-        $scope.$watch('statusbar.overlays', function(newVal) {
+        $scope.$watch('vm.overlays', function(newVal) {
             if (newVal) {
-                statusbar.activeLayers = newVal.length;    
+                vm.activeLayers = newVal.length;    
             }
         });
         
-
-        statusbar.switchLegendPane = function () {
+        vm.switchLegendPane = function () {
             // Flipping the button
-            if (statusbar.buttonStatus === '+') {
-                statusbar.buttonStatus = '-';
-                statusbar.visible = true;
+            if (vm.buttonStatus === '+') {
+                vm.buttonStatus = '-';
+                vm.visible = true;
 
             } else {
-                statusbar.buttonStatus = '+';
-                statusbar.visible = false;
+                vm.buttonStatus = '+';
+                vm.visible = false;
             }
         };
     }
