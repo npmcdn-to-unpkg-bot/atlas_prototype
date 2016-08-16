@@ -35,7 +35,7 @@
 
 			store.dispatch({
                 type: ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY,
-                payload: vm.overlay
+                payload: vm.overlay.id
             });
             // Adding or removing
             if (vm.overlay.visibility) {
