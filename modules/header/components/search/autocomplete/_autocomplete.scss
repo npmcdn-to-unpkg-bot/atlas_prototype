@@ -21,6 +21,7 @@ $suggestion-offset: $base-font-size;
   .search-form__autocomplete__category {
     &:not(:first-of-type) {
       margin-top: $base-whitespace;
+      border-top: 1px solid $secondary-gray60;
     }
   }
 
