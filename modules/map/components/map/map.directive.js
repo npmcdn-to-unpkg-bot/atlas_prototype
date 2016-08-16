@@ -64,7 +64,6 @@
                 });
 
                 scope.$watch('mapState.overlays', function (newOverlays, oldOverlays) {
-                    console.log('overlays updated');
                     getRemovedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                         layers.removeOverlay(leafletMap, overlay);
                     });
@@ -72,7 +71,7 @@
                     getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                         layers.addOverlay(leafletMap, overlay);
                     });
-                }, true);
+                });
 
                 scope.$watch('markers', function (newCollection, oldCollection) {
                     if (angular.equals(newCollection, oldCollection)) {

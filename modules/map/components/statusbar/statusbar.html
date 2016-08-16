@@ -6,7 +6,7 @@
         </div>
         <ul class="overlays">
         	<li>
-        		<dp-overlay-legenda ng-repeat="overlay in vm.overlays" overlay="overlay" zoom="vm.zoom"></dp-overlay-legenda>
+        		<dp-overlay-legenda ng-repeat="overlay in vm.overlays track by overlay.id" overlay="overlay" zoom="vm.zoom"></dp-overlay-legenda>
         	</li>
         </ul>
         <div class="edit-overlayes" ng-class="{true:'show', flase:'hide'}[vm.visible]">
