@@ -1,3 +1,5 @@
+$suggestion-offset: $base-font-size;
+
 .search-form__autocomplete {
   position: absolute;
   top: $search-form-height + $base-whitespace;
@@ -31,8 +33,12 @@
   button {
     @include font-size($body-font);
     display: block;
+    position: relative;
     width: 100%;
-    padding: ($base-whitespace / 2) $base-whitespace;
+    padding-top: $base-whitespace / 2;
+    padding-right: $base-whitespace;
+    padding-bottom: $base-whitespace / 2;
+    padding-left: $base-whitespace + $suggestion-offset;
     background-color: transparent;
     color: $primary-dark;
     text-align: left;
@@ -42,6 +48,13 @@
     &.active {
       background-color: $secondary-gray20;
       font-weight: inherit;
+    }
+
+    &::before {
+      display: inline-block;
+      position: absolute;
+      left: $base-whitespace;
+      content: "›";
     }
   }
 }
