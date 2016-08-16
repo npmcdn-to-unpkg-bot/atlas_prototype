@@ -72,6 +72,11 @@ describe('the atlas-detail component', function() {
 
                         return q.promise;
                     }
+                },
+                geojson: {
+                    getCenter: function () {
+                        return 'FAKE_LOCATION';
+                    }
                 }
             },
             function ($provide) {
@@ -188,7 +193,7 @@ describe('the atlas-detail component', function() {
         });
     });
 
-    it('sets the SHOW_DETAIL location payload to null if there is no geometry', function () {
+    it('sets the SHOW_DETAIL payload to null if there is no geometry', function () {
         var component;
 
         component = getComponent('http://www.fake-endpoint.com/brk/subject/123/');
@@ -197,5 +202,20 @@ describe('the atlas-detail component', function() {
             type: ACTIONS.SHOW_DETAIL,
             payload: null
         });
+    });
+
+    it('sets the center location of the geometry on the scope (for the straatbeeld thumbnail)', function () {
+        var component,
+            scope;
+
+        //Something with geometry
+        component = getComponent('http://www.fake-endpoint.com/bag/nummeraanduiding/123/');
+        scope = component.isolateScope();
+        expect(scope.vm.location).toBe('FAKE_LOCATION');
+
+        //Something without geometry
+        scope.vm.endpoint = 'http://www.fake-endpoint.com/brk/subject/123/';
+        scope.$apply();
+        expect(scope.vm.location).toBeNull();
     });
 });
