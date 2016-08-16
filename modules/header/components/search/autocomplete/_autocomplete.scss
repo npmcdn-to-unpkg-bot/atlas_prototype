@@ -1,6 +1,6 @@
 $suggestion-offset: $base-font-size;
 
-.search-form__autocomplete {
+.c-autocomplete {
   position: absolute;
   top: $search-form-height + $base-whitespace;
   right: $base-whitespace - 1;
@@ -10,7 +10,7 @@ $suggestion-offset: $base-font-size;
   border-color: $secondary-gray60;
   background-color: $primary-light;
 
-  .search-form__autocomplete__tip {
+  .c-autocomplete__tip {
     @include font-size($body-font);
     color: $secondary-gray40;
     font-style: italic;
@@ -18,20 +18,21 @@ $suggestion-offset: $base-font-size;
     text-align: center;
   }
 
-  .search-form__autocomplete__category {
+  .c-autocomplete__category {
     &:not(:first-of-type) {
       margin-top: $base-whitespace;
       border-top: 1px solid $secondary-gray60;
     }
   }
 
-  h4 {
+  .c-autocomplete__category__heading {
+    padding-top: $base-whitespace;
     padding-right: $base-whitespace;
     padding-left: $base-whitespace;
     color: $secondary-gray40;
   }
 
-  button {
+  .c-autocomplete__category__suggestion {
     @include font-size($body-font);
     display: block;
     position: relative;
@@ -46,7 +47,7 @@ $suggestion-offset: $base-font-size;
     cursor: pointer;
 
     &:hover,
-    &.active {
+    &.c-autocomplete__category__suggestion--active {
       background-color: $secondary-gray20;
       font-weight: inherit;
     }
