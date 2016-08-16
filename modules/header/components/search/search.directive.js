@@ -138,10 +138,10 @@
                 }
 
                 function removeSuggestionFromScope () {
-                    //scope.suggestions = [];
-                    //scope.numberOfSuggestions = 0;
-                    //scope.activeSuggestionIndex = -1;
-                    //scope.originalQuery = scope._display;
+                    scope.suggestions = [];
+                    scope.numberOfSuggestions = 0;
+                    scope.activeSuggestionIndex = -1;
+                    scope.originalQuery = scope._display;
                 }
             }
 
