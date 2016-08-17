@@ -1,34 +1,41 @@
-.c-page-header {
+.o-content-header {
   position: relative;
 }
 
-.c-page-header__subtitle {
-  @include font-size($m-header-font);
-  display: block;
-  padding-top: 0 !important;
-  color: $primary-contrast;
+.o-content-header__title {
+  padding-top: $base-whitespace !important; //ivm padding in font-size mixin;
 }
 
-.c-page-header__buttongroup {
+.o-content-header__subtitle {
+  display: block;
+  padding-top: $base-whitespace * 2 !important; //ivm padding in font-size mixin
+  color: $primary-contrast;
+
+  .s-indented-list & {
+    color: $primary-dark;
+  }
+}
+
+.o-content-header__buttongroup {
   position: absolute;
   top: 20px;
   right: 0;
 }
 
-.c-page-header__button {
+.o-content-header__button {
   width: 26px;
   height: 26px;
   margin-left: $base-whitespace;
   float: right;
 }
 
-.c-page-header__button--image {
+.o-content-header__button--image {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.c-page-header__stelselpedia {
+.o-content-header__stelselpedia {
   background-image: url("assets/icons/stelselpedia.svg");
 
   &:hover {
@@ -36,7 +43,7 @@
   }
 }
 
-.is-page-header__stelselpedia--active {
+.is-content-header__stelselpedia--active {
   background-image: url("assets/icons/stelselpedia-active.svg");
 
   &:hover {
@@ -44,7 +51,7 @@
   }
 }
 
-.c-page-header__metadata {
+.o-content-header__metadata {
   background-image: url("assets/icons/metadata.svg");
 
   &:hover {
@@ -52,7 +59,7 @@
   }
 }
 
-.is-page-header__metadata--active {
+.is-content-header__metadata--active {
   background-image: url("assets/icons/metadata-active.svg");
 
   &:hover {

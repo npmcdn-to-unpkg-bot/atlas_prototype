@@ -31,7 +31,6 @@
 
     &:last-of-type {
       min-height: 30px; //anders klapt de hoogte in (lineheight x font-size + border)
-      margin-bottom: $base-whitespace * 2;
       border-bottom: 1px solid $secondary-gray20;
     }
   }
