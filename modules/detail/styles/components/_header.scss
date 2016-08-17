@@ -1,8 +1,8 @@
-.o-content-header {
+.o-header {
   position: relative;
 }
 
-.o-content-header__subtitle {
+.o-header__subtitle {
   display: block;
   padding-top: $base-whitespace * 2;
   color: $primary-contrast;
@@ -12,53 +12,21 @@
   }
 }
 
-.o-content-header__buttongroup {
+.o-header__buttongroup {
   position: absolute;
   top: 20px;
   right: 0;
 }
 
-.o-content-header__button {
-  width: 26px;
-  height: 26px;
+.o-header__button {
+  width: $button-size;
+  height: $button-size;
   margin-left: $base-whitespace;
   float: right;
 }
 
-.o-content-header__button--image {
+.o-header__button--image {
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.o-content-header__stelselpedia {
-  background-image: url("assets/icons/stelselpedia.svg");
-
-  &:hover {
-    background-image: url("assets/icons/stelselpedia-hover.svg");
-  }
-}
-
-.is-content-header__stelselpedia--active {
-  background-image: url("assets/icons/stelselpedia-active.svg");
-
-  &:hover {
-    background-image: url("assets/icons/stelselpedia-hover.svg");
-  }
-}
-
-.o-content-header__metadata {
-  background-image: url("assets/icons/metadata.svg");
-
-  &:hover {
-    background-image: url("assets/icons/metadata-hover.svg");
-  }
-}
-
-.is-content-header__metadata--active {
-  background-image: url("assets/icons/metadata-active.svg");
-
-  &:hover {
-    background-image: url("assets/icons/metadata-hover.svg");
-  }
 }
