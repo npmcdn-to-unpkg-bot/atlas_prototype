@@ -2,13 +2,9 @@
   position: relative;
 }
 
-.o-content-header__title {
-  padding-top: $base-whitespace !important; //ivm padding in font-size mixin;
-}
-
 .o-content-header__subtitle {
   display: block;
-  padding-top: $base-whitespace * 2 !important; //ivm padding in font-size mixin
+  padding-top: $base-whitespace * 2;
   color: $primary-contrast;
 
   .s-indented-list & {
