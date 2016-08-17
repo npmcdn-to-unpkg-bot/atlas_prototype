@@ -5,7 +5,7 @@
 </atlas-stelselpedia-header>
 
 <div ng-if="!vm.hoofdadres || vm.isGevormd">
-    <div ng-if="!vm.hoofdadres" class="badge badge--blue">Dit is een nevenadres</div>
+    <div ng-if="!vm.hoofdadres" class="c-nummeraanduiding c-nummeraanduiding--nevenadres">Dit is een nevenadres</div>
 
-    <div ng-if="vm.isGevormd" class="badge badge--red">{{vm.statusOmschrijving}}</div>
+    <div ng-if="vm.isGevormd" class="c-nummeraanduiding c-nummeraanduiding--gevormd">{{vm.statusOmschrijving}}</div>
 </div>
