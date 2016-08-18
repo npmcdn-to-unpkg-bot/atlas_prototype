@@ -8,12 +8,12 @@
 
     <div class="o-header__buttongroup">
         <button ng-click="vm.toggle('help')" class="o-header__button">
-            <span ng-if="!vm.isVisible('help')" class="o-header__button--image c-stelselpedia--button"><span class="u-sr-only">toon uitleg</span></span>
+            <span ng-if="!vm.isVisible('help')" class="o-header__button--image c-stelselpedia__button"><span class="u-sr-only">toon uitleg</span></span>
             <span ng-if="vm.isVisible('help')" class="o-header__button--image is-stelselpedia--active"><span class="u-sr-only">verberg uitleg</span></span>
         </button>
 
         <button ng-if="vm.hasMetaData" ng-click="vm.toggle('meta')" class="o-header__button">
-            <span ng-if="!vm.isVisible('meta')" class="o-header__button--image c-metadata--button"><span class="u-sr-only">toon metadata</span></span>
+            <span ng-if="!vm.isVisible('meta')" class="o-header__button--image c-metadata__button"><span class="u-sr-only">toon metadata</span></span>
             <span ng-if="vm.isVisible('meta')" class="o-header__button--image is-metadata--active"><span class="u-sr-only">verberg metadata</span></span>
         </button>
 

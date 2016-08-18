@@ -1,7 +1,7 @@
 .c-nummeraanduiding {
   position: absolute;
   top: $base-whitespace * 2;
-  right: 92px; //afstand berekend mbt metadata en stelselpedia buttons
+  right: $base-whitespace * 2 + ($button-size + $base-whitespace) * 2; //afstand berekend mbt metadata en stelselpedia buttons en grid afmetingen
   padding: 0 $base-whitespace;
   color: $primary-light;
   font-weight: bold;

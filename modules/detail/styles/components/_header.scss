@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.o-header__title {
+  padding-top: 0;
+}
+
 .o-header__subtitle {
   display: block;
   padding-top: $base-whitespace * 2;
@@ -14,7 +18,7 @@
 
 .o-header__buttongroup {
   position: absolute;
-  top: 20px;
+  top: $base-whitespace * 2;
   right: 0;
 }
 
