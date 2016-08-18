@@ -97,13 +97,13 @@
 
                 //intekenen x as
                 svg.append('g')
-                    .attr('class', 'c-meetbout__as')
+                    .attr('class', 'c-meetbout__axis')
                     .attr('transform', 'translate(0,' + height + ')')
                     .call(xAxis);
 
                 //intekenen y as zakking
                 svg.append('g')
-                    .attr('class', 'c-meetbout__as c-meetbout__as--y-zakking')
+                    .attr('class', 'c-meetbout__axis c-meetbout__axis--y-zakking')
                     .call(yZakkingAxis)
                     .append('text')
                     .attr('transform', d3.transform('rotate(-90) translate(-185, -60)'))
@@ -114,7 +114,7 @@
 
                 //intekenen y as zakkingssnelheid
                 svg.append('g')
-                    .attr('class', 'c-meetbout__as c-meetbout__as--y-zakkingssnelheid')
+                    .attr('class', 'c-meetbout__axis c-meetbout__axis--y-zakkingssnelheid')
                     .attr('transform', 'translate(' + width + ',0)')
                     .call(yzakkingssnelheidAxis)
                     .append('text')
