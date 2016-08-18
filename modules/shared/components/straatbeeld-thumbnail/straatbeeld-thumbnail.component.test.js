@@ -1,4 +1,4 @@
-describe('The atlas-straatbeeld-thumbnail component', function () {
+describe('The dp-straatbeeld-thumbnail component', function () {
     var $compile,
         $rootScope,
         store,
