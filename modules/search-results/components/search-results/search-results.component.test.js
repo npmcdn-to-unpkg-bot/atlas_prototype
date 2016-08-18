@@ -70,7 +70,7 @@ describe('The atlas-search-results component', function () {
                     ]
                 });
 
-                $provide.factory('atlasStraatbeeldThumbnailDirective', function () {
+                $provide.factory('dpStraatbeeldThumbnailDirective', function () {
                     return {};
                 });
 
