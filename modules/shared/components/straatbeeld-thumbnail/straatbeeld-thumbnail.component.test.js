@@ -32,7 +32,7 @@ describe('The atlas-straatbeeld-thumbnail component', function () {
             element,
             scope;
 
-        element = document.createElement('atlas-straatbeeld-thumbnail');
+        element = document.createElement('dp-straatbeeld-thumbnail');
         element.setAttribute('location', 'location');
 
         scope = $rootScope.$new();

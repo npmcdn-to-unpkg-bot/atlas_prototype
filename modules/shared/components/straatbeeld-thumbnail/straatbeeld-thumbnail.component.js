@@ -3,7 +3,7 @@
 
     angular
         .module('dpShared')
-        .component('atlasStraatbeeldThumbnail', {
+        .component('dpStraatbeeldThumbnail', {
             bindings: {
                 location: '='
             },
