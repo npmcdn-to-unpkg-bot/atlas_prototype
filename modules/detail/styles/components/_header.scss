@@ -12,6 +12,7 @@
   color: $primary-contrast;
 
   .s-indented-list & {
+    @include font-size($s-header-font);
     color: $primary-dark;
   }
 }
