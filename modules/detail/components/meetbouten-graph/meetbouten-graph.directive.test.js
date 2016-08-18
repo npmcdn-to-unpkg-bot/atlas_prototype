@@ -181,7 +181,7 @@ describe('The atlas-meetbout-graph directive', function () {
                 var yZakkingssnelheid = directive.find('svg > g > g:nth-of-type(3)');
 
                 expect(yZakkingssnelheid).toExist();
-                expect(yZakkingssnelheid.attr('class')).toBe('c-meetbout__axis c-meetbout__as--y-zakkingssnelheid');
+                expect(yZakkingssnelheid.attr('class')).toBe('c-meetbout__axis c-meetbout__axis--y-zakkingssnelheid');
                 expect(yZakkingssnelheid.attr('transform')).toBe('translate(630,0)');
             });
 
