@@ -9,6 +9,7 @@
     "d3": "^3.5.16",
     "leaflet": "https://github.com/DatapuntAmsterdam/datapunt_leaflet.git#master",
     "leaflet.wms": "~0.1.0",
+    "leaflet-measure": "^2.0.2",
     "leaflet-rotatedmarker": "https://npmcdn.com/leaflet-rotatedmarker/leaflet.rotatedMarker.js",
     "marzipano": "https://github.com/DatapuntAmsterdam/marzipano.git#master",
     "proj4": "*",
