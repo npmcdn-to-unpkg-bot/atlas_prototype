@@ -25,7 +25,7 @@ module.exports = {
                     '**/*.woff',
                     '**/*.woff2',
                 ],
-                dest: 'build/assets/fonts/',
+                dest: 'build/',
                 expand: true,
                 flatten: true
             }
