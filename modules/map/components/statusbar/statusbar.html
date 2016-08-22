@@ -2,7 +2,10 @@
     <div class="layers-labels" ng-class="{true:'show', flase:'hide'}[vm.visible]">
         <div class="header" ng-click="vm.switchLegendPane()">
             <button class="layers-label-icon" >{{ vm.buttonStatus }}</button>
-            <span class="layers-label-title">Kaartlagen ({{ vm.visibleLayers }}/{{ vm.activeLayers }})</span>
+            <span class="layers-label-title">Kaartlagen<span>
+            <span ng-if="vm.activeLayers > 0">
+                <span>(</span><span ng-if="vm.visibleLayers != vm.activeLayers">{{ vm.visibleLayers }}/</span><span>{{ vm.activeLayers }})</span>
+            </span>
         </div>
         <ul class="overlays">
         	<li>
