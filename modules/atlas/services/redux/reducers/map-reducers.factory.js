@@ -76,8 +76,13 @@
          */
         function mapToggleVisibilityOverlay (oldState, payload) {
             var newState = angular.copy(oldState);
-            newState.map.overlays[payload] = !newState.map.overlays[payload];
-
+            // Looking for the overlay to switch its visibility
+            for(var i = 0;i< newState.map.overlays.length;i++) {
+                if (newState.map.overlays[i].id === payload) {
+                    newState.map.overlays[i].visibility = !newState.map.overlays[i].visibility;
+                    break;
+                }
+            }
             return newState;
         }
         /**

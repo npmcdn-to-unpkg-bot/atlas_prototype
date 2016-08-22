@@ -71,7 +71,7 @@
                     getAddedOverlays(newOverlays, oldOverlays).forEach(function (overlay) {
                         layers.addOverlay(leafletMap, overlay);
                     });
-                });
+                }, true);
 
                 scope.$watch('markers', function (newCollection, oldCollection) {
                     if (angular.equals(newCollection, oldCollection)) {
@@ -93,15 +93,25 @@
             });
         }
 
-        function getDiffFromOverlays(over1, over2) {
+        function getDiffFromOverlays(over1, over2, visibility) {
             // Finds all the keys for items in over1 that
             // are not in over2
+            // Or if visibility was changed to match the value in visibility
             var keys = [], add;
             for (var i = 0;i < over1.length;i++) {
                 add = true;
                 for (var j = 0;j < over2.length;j++) {
                     if (over2[j].id === over1[i].id) {
-                        add = false; // Exists in both overlays
+                        // Checking visibility change
+                        if (over2[j].visibility !== over1[i].visibility) {
+                            // Making sure visibility was changed to what we expect
+                            if (visibility !== over1[i].visibility) {
+                                add = false;
+                            }
+                        } else {
+                            // No change was made
+                            add = false; // Exists in both overlays    
+                        }
                         break;
                     }
                 }
@@ -113,11 +123,11 @@
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {
-            return getDiffFromOverlays(newOverlays, oldOverlays);
+            return getDiffFromOverlays(newOverlays, oldOverlays, true);
         }
 
         function getRemovedOverlays (newOverlays, oldOverlays) {
-            return getDiffFromOverlays(oldOverlays, newOverlays);   
+            return getDiffFromOverlays(oldOverlays, newOverlays, false);   
         }
 
         function getAddedGeojson (newCollection, oldCollection) {

@@ -49,22 +49,22 @@
 		
 
 		vm.toggleVisibility = function() {
-			var action;
+			//var action;
 
 			store.dispatch({
                 type: ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY,
                 payload: vm.overlay.id
             });
             // Adding or removing
-            if (vm.overlay.visibility) {
-            	action = ACTIONS.MAP_REMOVE_OVERLAY;
-            } else {
-            	action = ACTIONS.MAP_ADD_OVERLAY;
-            }
-            store.dispatch({
-                type: action,
-                payload: vm.overlay.id
-            });
+            //if (vm.overlay.visibility) {
+            //	action = ACTIONS.MAP_REMOVE_OVERLAY;
+            //} else {
+            //	action = ACTIONS.MAP_ADD_OVERLAY;
+            //}
+            //store.dispatch({
+            //    type: action,
+            //    payload: vm.overlay.id
+            //});
 		};
 	}
 
