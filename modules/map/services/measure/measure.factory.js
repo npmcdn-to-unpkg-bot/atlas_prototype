@@ -13,9 +13,7 @@
         };
 
         function initialize (leafletMap) {
-            var measureControl = new L.Control.Measure(MEASURE_CONFIG);
-
-            measureControl.addTo(leafletMap);
+            L.control.Measure(MEASURE_CONFIG).addTo(leafletMap);
         }
     }
 })();
