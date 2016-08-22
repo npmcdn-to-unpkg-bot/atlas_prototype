@@ -93,10 +93,10 @@
             });
         }
 
-        function getDiffFromOverlays(over1, over2, visibility) {
+        function getDiffFromOverlays(over1, over2) {
             // Finds all the keys for items in over1 that
             // are not in over2
-            // Or if visibility was changed to match the value in visibility
+            // Or if visibility was changed.
             var keys = [], add;
             for (var i = 0;i < over1.length;i++) {
                 add = true;
@@ -105,7 +105,7 @@
                         // Checking visibility change
                         if (over2[j].visibility !== over1[i].visibility) {
                             // Making sure visibility was changed to what we expect
-                            if (visibility !== over1[i].visibility) {
+                            if (over2[j].visibility) {
                                 add = false;
                             }
                         } else {
@@ -123,11 +123,11 @@
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {
-            return getDiffFromOverlays(newOverlays, oldOverlays, true);
+            return getDiffFromOverlays(newOverlays, oldOverlays);
         }
 
         function getRemovedOverlays (newOverlays, oldOverlays) {
-            return getDiffFromOverlays(oldOverlays, newOverlays, false);   
+            return getDiffFromOverlays(oldOverlays, newOverlays);   
         }
 
         function getAddedGeojson (newCollection, oldCollection) {
