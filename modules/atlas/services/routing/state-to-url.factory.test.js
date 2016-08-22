@@ -108,7 +108,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                lagen: 'overlay_x'
+                lagen: 'overlay_x:zichtbaar'
             }));
 
             //Two overlays
@@ -120,7 +120,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                lagen: 'overlay_x,overlay_y'
+                lagen: 'overlay_x:zichtbaar,overlay_y:zichtbaar'
             }));
         });
 
