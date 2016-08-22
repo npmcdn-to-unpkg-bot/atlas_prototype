@@ -16,7 +16,7 @@
 
     function StatusbarController($scope) {
         var vm = this;
-        vm.buttonStatus = '+';
+        vm.buttonStatus = 'plus';
         vm.visible = false;
         // Layers counts
         vm.activeLayers = vm.overlays.length;
@@ -43,12 +43,12 @@
         
         vm.switchLegendPane = function () {
             // Flipping the button
-            if (vm.buttonStatus === '+') {
-                vm.buttonStatus = '-';
+            if (vm.buttonStatus === 'plus') {
+                vm.buttonStatus = 'minimize';
                 vm.visible = true;
 
             } else {
-                vm.buttonStatus = '+';
+                vm.buttonStatus = 'plus';
                 vm.visible = false;
             }
         };

@@ -32,10 +32,12 @@
   }
 
   .header {
+    display: block;
+    width: 100%;
     height: $statusbar-height;
     padding-left: .5rem;
     background-color: $secondary-gray60;
-    font-size: .8rem;
+    color: inherent;
     text-align: left;
     cursor: pointer;
   }
@@ -86,7 +88,12 @@
 }
 
 .layers-label-title {
+  position: relative;
+  top: -.6rem;
   margin-left: 1rem;
+  color: $primary-light;
+  font-weight: bold;
+  line-height: 2rem;
 }
 
 .layers-label-icon {
@@ -95,9 +102,4 @@
   top: -.3rem;
   width: 2rem;
   height: 2rem;
-  background-color: $primary-contrast;
-  color: $primary-light;
-  font-size: 1.4rem;
-  font-weight: bold;
-  line-height: 2rem;
 }

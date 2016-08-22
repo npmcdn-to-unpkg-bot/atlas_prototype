@@ -166,8 +166,11 @@ describe('The dp-map directive', function () {
 
     describe('has overlays which', function () {
         it('can be added on initialization', function () {
-            mockedMapState.overlays = [{id: 'some_overlay', visibility: true}];
             getDirective(mockedMapState, []);
+
+            mockedMapState.overlays = [{id: 'some_overlay', visibility: true}];
+            $rootScope.$apply();
+            
             expect(layers.addOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_overlay');
         });
 

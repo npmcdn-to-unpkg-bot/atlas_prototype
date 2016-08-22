@@ -1,12 +1,14 @@
 <div class="map-statusbar">
-    <div class="layers-labels" ng-class="{true:'show', flase:'hide'}[vm.visible]">
-        <div class="header" ng-click="vm.switchLegendPane()">
-            <button class="layers-label-icon" >{{ vm.buttonStatus }}</button>
+    <div class="layers-labels" ng-class="{true:'show', false:'hide'}[vm.visible]">
+        <button class="header" ng-click="vm.switchLegendPane()">
+            <div class="layers-label-icon" >
+                <img ng-src="/assets/icons/{{ vm.buttonStatus }}.svg">
+            </div>
             <span class="layers-label-title">Kaartlagen<span>
             <span ng-if="vm.activeLayers > 0">
-                <span>(</span><span ng-if="vm.visibleLayers != vm.activeLayers">{{ vm.visibleLayers }}/</span><span>{{ vm.activeLayers }})</span>
+                <span>(</span><span ng-if="vm.visibleLayers != vm.activeLayers" class="qa-show-visible-layers-count">{{ vm.visibleLayers }}/</span><span class="qa-show-active-layers-count">{{ vm.activeLayers }})</span>
             </span>
-        </div>
+        </button>
         <ul class="overlays">
         	<li>
         		<dp-overlay-legenda ng-repeat="overlay in vm.overlays track by overlay.id" overlay="overlay" zoom="vm.zoom"></dp-overlay-legenda>
