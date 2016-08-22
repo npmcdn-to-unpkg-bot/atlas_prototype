@@ -1,7 +1,9 @@
-<div class="js-marzipano-viewer marzipano-viewer" ng-mousemove="updateOrientation()"></div>
+<div class="c-straatbeeld">
+    <div class="js-marzipano-viewer c-straatbeeld__marzipano" ng-mousemove="updateOrientation()"></div>
 
-<dp-loading-indicator is-loading="state.isLoading" use-delay="true" show-inline="false"></dp-loading-indicator>
+    <dp-loading-indicator is-loading="state.isLoading" use-delay="true" show-inline="false"></dp-loading-indicator>
 
-<dp-status-bar>
-    <dp-straatbeeld-metadata date="state.date" location="state.car.location"></dp-straatbeeld-metadata>
-</dp-status-bar>
+    <dp-status-bar>
+        <dp-straatbeeld-metadata date="state.date" location="state.car.location"></dp-straatbeeld-metadata>
+    </dp-status-bar>
+</div>
