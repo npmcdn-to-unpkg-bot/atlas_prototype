@@ -43,6 +43,20 @@
             scope.$applyAsync(function () {
                 leafletMap = L.map(container, options);
 
+                var measureControl = new L.Control.Measure({
+                    position: 'bottomleft',
+                    primaryLengthUnit: 'meters',
+                    primaryAreaUnit: 'sqmeters',
+                    activeColor: '',
+                    completedColor: '',
+                    popupOptions: '',
+                    units: {
+
+                    },
+                    localization: 'nl'
+                });
+                measureControl.addTo(leafletMap);
+
                 panning.initialize(leafletMap);
                 highlight.initialize();
                 zoom.initialize(leafletMap);
