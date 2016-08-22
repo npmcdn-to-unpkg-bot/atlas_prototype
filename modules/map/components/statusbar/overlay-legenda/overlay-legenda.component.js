@@ -32,18 +32,17 @@
 		}
 		vm.getIcon = function() {
 			// Determining which icon to use based on visibility
-			var icon = '/assets/images/'; // The prefix path
+			var icon = '/assets/icons/'; // The prefix path
 			// @TODO check logics
-			console.log(vm.overlay);
 			if (vm.overlay.visibility) {
 				if (vm.zoom >= OVERLAYS.SOURCES[vm.overlay.id].minZoom &&
 	            	vm.zoom <= OVERLAYS.SOURCES[vm.overlay.id].maxZoom) {
-					icon += 'icon-eye-show.svg';
+					icon += 'visible.svg';
 				} else {
-					icon += 'icon-eye-zoomhide.svg';
+					icon += 'invisible-zoomlevel.svg';
 				}
 			} else {
-				icon += 'icon-eye-hide.svg';
+				icon += 'invisible-hidden.svg';
 			}
 			return icon;	
 		};
