@@ -304,11 +304,11 @@ describe('The atlas-layer-selection component', function () {
             var component;
 
             //Active and visible
-            component = getComponent('base_layer_a', ['overlay_2_a'], 8);
+            component = getComponent('base_layer_a', [{id: 'overlay_2_a', visibility: true}], 8);
             expect(component.find('div').eq(2).find('li').eq(0).find('strong').text()).toContain('Overlay 2a');
 
             //Active and invisible
-            component = getComponent('base_layer_a', ['overlay_2_a'], 16);
+            component = getComponent('base_layer_a', [{id: 'overlay_2_a', visibility: true}], 16);
             expect(component.find('div').eq(2).find('li').eq(0).find('strong').text()).toContain('Overlay 2a');
 
             //Non-active (still using strong)
@@ -323,13 +323,13 @@ describe('The atlas-layer-selection component', function () {
             //When the overlays are active
             component = getComponent('base_layer_a',
                 [{id: 'overlay_2_b', visibility: true}, {id: 'overlay_2_c', visibility: true}], 8);
-            expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(1);
-            expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(1);
+            expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(1);
+            expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(1);
 
             //When the overlays are not active
             component = getComponent('base_layer_a', [], 8);
-            expect(component.find('div').eq(3).find('li').eq(1).find('span').length).toBe(0);
-            expect(component.find('div').eq(3).find('li').eq(2).find('span').length).toBe(0);
+            expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(0);
+            expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(0);
         });
 
         it('has a button to close the layer selection sidebar', function () {
