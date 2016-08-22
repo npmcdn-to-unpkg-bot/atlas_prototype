@@ -20,7 +20,7 @@
 	function OverlayLegenda($scope, OVERLAYS, mapConfig, store, ACTIONS) {
 		var vm = this;
 		if (OVERLAYS.SOURCES[vm.overlay.id]) {
-			vm.label = OVERLAYS.SOURCES[vm.overlay.id].label;
+			vm.label = OVERLAYS.SOURCES[vm.overlay.id].label_short;
 			vm.legend = OVERLAYS.SOURCES[vm.overlay.id].legend;
 			// Checking for external link
 			if (vm.legend && !OVERLAYS.SOURCES[vm.overlay.id].external) {
