@@ -16,6 +16,12 @@
             var measureControl = new L.Control.Measure(MEASURE_CONFIG);
 
             measureControl.addTo(leafletMap);
+
+            //console.log();
+
+            document.querySelector('.status-bar').appendChild(
+                measureControl.getContainer().querySelector('a')
+            );
         }
     }
 })();

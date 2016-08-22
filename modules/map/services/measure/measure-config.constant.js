@@ -8,8 +8,8 @@
             primaryLengthUnit: 'meters',
             secondaryLengthUnit: null,
             primaryAreaUnit: 'sqmeters',
-            activeColor: '#f00000',
-            completedColor: '#f00000',
+            activeColor: '#333',
+            completedColor: '#333',
             localization: 'nl'
         });
 })();
