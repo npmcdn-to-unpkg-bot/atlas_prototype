@@ -1,13 +1,13 @@
 <div class="u-clearfix">
 	<div class="legenda-item-toggle u-pull--left">
 		<button ng-click="vm.toggleVisibility()">
-			<img ng-src="{{ vm.getIcon() }}">
+			<img ng-src="{{ vm.getIcon() }}" class="legend-visibility-icon">
 		</button>
 	</div>
 	<div class="legenda-item u-pull--left">
 		<span class="legenda-item-title">{{ vm.label }}</span>
 		<div class="legenda-item-legenda" ng-if="vm.legend">
-			<img ng-src="{{ vm.legend }}" />
+			<img ng-src="{{ vm.legend }}"/>
 		</div>
 	</div>
 </div>
