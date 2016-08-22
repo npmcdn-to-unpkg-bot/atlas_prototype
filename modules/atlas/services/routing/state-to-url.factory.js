@@ -45,9 +45,14 @@
         }
 
         function getMapParams (state) {
-            var lagen = [];
+            var lagen = [], visibility;
             for (var i = 0;i < state.map.overlays.length;i++) {
-                lagen.push(state.map.overlays[i].id);
+                if (state.map.overlays[i].visibility) {
+                    visibility = 'zichtbaar';
+                } else {
+                    visibility = 'onzichtbaar';
+                }
+                lagen.push(state.map.overlays[i].id + ':' + visibility);
             }
             return {
                 lat: String(state.map.viewCenter[0]),

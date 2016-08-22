@@ -65,11 +65,19 @@
             }
 
             function getMapState (payload) {
-                var overlays = [], lagen;
+                var overlays = [], lagen, laag, visibility;
                 if (payload && payload.lagen) {
                     lagen = payload.lagen.split(',');
                     for (var i = 0;i < lagen.length;i++) {
-                        overlays.push({id: lagen[i], visibility: true});
+                        laag = lagen[i].split(':');
+                        // checking visibility
+                        if (laag[1] === 'zichtbaar') {
+                            visibility = true;
+                        } else {
+                            visibility = false;
+                        }
+                        laag = laag[0];
+                        overlays.push({id: laag, visibility: visibility});
                     }
                 }
                 return {

@@ -12,12 +12,12 @@
                 ACTIONS.URL_CHANGE, //Prevent infinite loops
                 ACTIONS.FETCH_DETAIL, //Don't update the state before asynchronous call are finished
                 ACTIONS.FETCH_STRAATBEELD,
-                ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY
             ],
             useReplace = [
                 ACTIONS.MAP_SET_BASELAYER, //Replace the URL instead of adding a new entry to the browser history
                 ACTIONS.MAP_ADD_OVERLAY,
                 ACTIONS.MAP_REMOVE_OVERLAY,
+                ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY,
                 ACTIONS.MAP_PAN,
                 ACTIONS.MAP_ZOOM,
                 ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
@@ -39,7 +39,6 @@
                             useReplace.indexOf(action.type) !== -1
                         );
                     }
-
                     return returnValue;
                 };
             };
