@@ -46,7 +46,7 @@ describe('The dp-map directive', function () {
                 $provide.factory('dpLinkDirective', function () {
                     return {};
                 });
-                $provide.factory('dpMapStatusbarComponent', function () {
+                $provide.factory('dpMapStatusbarDirective', function () {
                     return {};
                 });
                 $provide.factory('dpToggleFullscreenDirective', function () {
