@@ -323,13 +323,13 @@ describe('The atlas-layer-selection component', function () {
             //When the overlays are active
             component = getComponent('base_layer_a',
                 [{id: 'overlay_2_b', visibility: true}, {id: 'overlay_2_c', visibility: true}], 8);
-            expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(1);
-            expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(1);
+            expect(component.find('div').eq(2).find('li').eq(1).find('.qa-show-invisble-by-zoom').length).toBe(1);
+            expect(component.find('div').eq(2).find('li').eq(2).find('.qa-show-invisble-by-zoom').length).toBe(1);
 
             //When the overlays are not active
             component = getComponent('base_layer_a', [], 8);
-            expect(component.find('div').eq(2).find('li').eq(1).find('span').length).toBe(0);
-            expect(component.find('div').eq(2).find('li').eq(2).find('span').length).toBe(0);
+            expect(component.find('div').eq(2).find('li').eq(1).find('.qa-show-invisble-by-zoom').length).toBe(0);
+            expect(component.find('div').eq(2).find('li').eq(2).find('.qa-show-invisble-by-zoom').length).toBe(0);
         });
 
         it('has a button to close the layer selection sidebar', function () {
