@@ -15,20 +15,20 @@ describe('The measure factory', function () {
             MEASURE_CONFIG = _MEASURE_CONFIG_;
         });
 
-        L.control.Measure = function () {};
+        L.Control.Measure = function () {};
 
         mockedMeasureControl = {
             addTo: function () {}
         };
 
-        spyOn(L.control, 'Measure').and.returnValue(mockedMeasureControl);
+        spyOn(L.Control, 'Measure').and.returnValue(mockedMeasureControl);
         spyOn(mockedMeasureControl, 'addTo');
     });
 
     it('adds a the measure control to the map', function () {
         measure.initialize('FAKE_LEAFLET_MAP');
 
-        expect(L.control.Measure).toHaveBeenCalledWith(MEASURE_CONFIG);
+        expect(L.Control.Measure).toHaveBeenCalledWith(MEASURE_CONFIG);
         expect(mockedMeasureControl.addTo).toHaveBeenCalledWith('FAKE_LEAFLET_MAP');
     });
 });
