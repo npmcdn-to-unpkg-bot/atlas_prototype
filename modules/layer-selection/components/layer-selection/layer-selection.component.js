@@ -34,7 +34,7 @@
             formattedOverlays.overlays = formattedOverlays.overlays.map(function (overlaySlug) {
                 return {
                     slug: overlaySlug,
-                    label: OVERLAYS.SOURCES[overlaySlug].label
+                    label: OVERLAYS.SOURCES[overlaySlug].label_long
                 };
             });
             return formattedOverlays;
@@ -67,12 +67,6 @@
         vm.isOverlayVisible = function (overlay) {
             return vm.zoom >= OVERLAYS.SOURCES[overlay].minZoom &&
                 vm.zoom <= OVERLAYS.SOURCES[overlay].maxZoom;
-        };
-
-        vm.hideLayerSelection = function () {
-            store.dispatch({
-                type: ACTIONS.HIDE_LAYER_SELECTION
-            });
         };
     }
 })();

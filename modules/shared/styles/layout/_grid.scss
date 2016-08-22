@@ -38,14 +38,12 @@
 .u-grid {
   .u-row {
     &::after {
-      @include clearfix;
+      @extend %clearfix;
     }
 
     [class*="u-col-"] {
       position: relative;
       min-height: 1px;
-      padding-right: $base-whitespace;
-      padding-left: $base-whitespace;
       float: left;
     }
 

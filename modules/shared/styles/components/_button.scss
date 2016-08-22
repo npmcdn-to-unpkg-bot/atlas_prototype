@@ -33,7 +33,6 @@
     font-family: inherit;
     font-size: inherit;
     text-align: left;
-    cursor: pointer;
   }
 
   &.o-btn--contrast {
@@ -42,5 +41,18 @@
     &:hover {
       color: $secondary-gray60;
     }
+  }
+}
+
+.o-button--close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $button-size;
+  height: $button-size;
+  background-image: url("assets/icons/close.svg");
+
+  &:hover {
+    background-image: url("assets/icons/close-hover.svg");
   }
 }
