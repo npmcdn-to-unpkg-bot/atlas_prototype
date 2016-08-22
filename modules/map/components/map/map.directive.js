@@ -10,11 +10,12 @@
         'highlight',
         'panning',
         'zoom',
+        'measure',
         'variableWidth',
         'searchByClick'
     ];
 
-    function dpMapDirective (L, mapConfig, layers, highlight, panning, zoom, variableWidth, searchByClick) {
+    function dpMapDirective (L, mapConfig, layers, highlight, panning, zoom, measure, variableWidth, searchByClick) {
         return {
             restrict: 'E',
             scope: {
@@ -43,23 +44,10 @@
             scope.$applyAsync(function () {
                 leafletMap = L.map(container, options);
 
-                var measureControl = new L.Control.Measure({
-                    position: 'bottomleft',
-                    primaryLengthUnit: 'meters',
-                    primaryAreaUnit: 'sqmeters',
-                    activeColor: '',
-                    completedColor: '',
-                    popupOptions: '',
-                    units: {
-
-                    },
-                    localization: 'nl'
-                });
-                measureControl.addTo(leafletMap);
-
                 panning.initialize(leafletMap);
                 highlight.initialize();
                 zoom.initialize(leafletMap);
+                measure.initialize(leafletMap);
                 variableWidth.initialize(container, leafletMap);
                 searchByClick.initialize(leafletMap);
 

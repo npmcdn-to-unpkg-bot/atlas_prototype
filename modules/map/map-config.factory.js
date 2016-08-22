@@ -32,12 +32,12 @@
                 transparent: true
             },
             SCALE_OPTIONS: {
-                position: 'bottomleft',
+                position: 'bottomright',
                 metric: true,
                 imperial: false
             },
             ZOOM_OPTIONS: {
-                position: 'bottomleft',
+                position: 'bottomright',
                 zoomInTitle: 'Inzoomen',
                 zoomOutTitle: 'Uitzoomen'
             },
