@@ -14,7 +14,7 @@ module.exports = {
             }
         ]
     },
-    bbga_fonts: {
+    bower_bbga_fonts: {
         files: [
             {
                 cwd: 'bower_components/bbga_visualisatie_d3/',
@@ -31,7 +31,19 @@ module.exports = {
             }
         ]
     },
-    leaflet_measure_images: {
+    bower_leaflet_images: {
+        files: [
+            {
+                cwd: 'bower_components/leaflet/images',
+                src: [
+                    '**/*.png'
+                ],
+                dest: 'build/assets',
+                expand: true
+            }
+        ]
+    },
+    bower_leaflet_measure_images: {
         files: [
             {
                 cwd: 'bower_components/leaflet-measure/dist/',

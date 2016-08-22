@@ -21,8 +21,9 @@ module.exports = function (grunt) {
 
         'copy:index',
         'copy:assets',
-        'copy:bbga_fonts',
-        'copy:leaflet_measure_images',
+        'copy:bower_bbga_fonts',
+        'copy:bower_leaflet_images',
+        'copy:bower_leaflet_measure_images',
 
         'build-js',
         'build-css'
