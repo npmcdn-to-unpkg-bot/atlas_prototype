@@ -6,7 +6,6 @@
 		.component('dpOverlayLegenda', {
 			bindings: {
 				overlay: '=',
-				visible: '=',
 				zoom: '='
 			},
 			resrict: 'E',
@@ -19,17 +18,15 @@
 
 	function OverlayLegenda($scope, OVERLAYS, mapConfig, store, ACTIONS) {
 		var vm = this;
-		if (OVERLAYS.SOURCES[vm.overlay.id]) {
-			vm.label = OVERLAYS.SOURCES[vm.overlay.id].label_short;
-			vm.legend = OVERLAYS.SOURCES[vm.overlay.id].legend;
-			// Checking for external link
-			if (vm.legend && !OVERLAYS.SOURCES[vm.overlay.id].external) {
-				vm.legend = mapConfig.OVERLAY_ROOT + vm.legend;
-			}	
-		} else {
-			// Unknown overlay
-			vm.label = vm.overlay.id;
-		}
+
+		// Setting legend and label
+		vm.label = OVERLAYS.SOURCES[vm.overlay.id].label_short;
+		vm.legend = OVERLAYS.SOURCES[vm.overlay.id].legend;
+		// Checking for external link
+		if (vm.legend && !OVERLAYS.SOURCES[vm.overlay.id].external) {
+			vm.legend = mapConfig.OVERLAY_ROOT + vm.legend;
+		}	
+		
 		vm.getIcon = function() {
 			// Determining which icon to use based on visibility
 			var icon = '/assets/icons/'; // The prefix path
@@ -49,8 +46,6 @@
 		
 
 		vm.toggleVisibility = function() {
-			//var action;
-
 			store.dispatch({
                 type: ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY,
                 payload: vm.overlay.id
