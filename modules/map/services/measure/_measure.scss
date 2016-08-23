@@ -1,0 +1,13 @@
+/*
+This CSS is used to overrule the third party CSS of leaflet-measure. We don't own the HTML code, we just add a class to
+the parent div of leaflet-measure.
+*/
+.s-leaflet-measure {
+  position: absolute;
+  bottom: 0;
+  color: $primary-dark;
+
+  .leaflet-control-measure-toggle {
+    color: $primary-contrast;
+  }
+}

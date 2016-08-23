@@ -13,15 +13,17 @@
         };
 
         function initialize (leafletMap) {
-            var measureControl = new L.Control.Measure(MEASURE_CONFIG);
+            var measureControl = new L.Control.Measure(MEASURE_CONFIG),
+                leafletMeasureHtml;
 
             measureControl.addTo(leafletMap);
 
-            /*
-            document.querySelector('.status-bar').appendChild(
-                measureControl.getContainer().querySelector('a')
-            );
-            */
+            leafletMeasureHtml = measureControl.getContainer();
+
+            //Add a class to the button (which is actually a link, because leaflet-measure is a moron)
+            leafletMeasureHtml.className += ' s-leaflet-measure';
+
+            document.querySelector('.js-status-bar').appendChild(leafletMeasureHtml);
         }
     }
 })();
