@@ -5,9 +5,9 @@
         .module('dpMap')
         .factory('measure', measureFactory);
 
-    measureFactory.$inject = ['L', 'MEASURE_CONFIG'];
+    measureFactory.$inject = ['$document', 'L', 'MEASURE_CONFIG'];
 
-    function measureFactory (L, MEASURE_CONFIG) {
+    function measureFactory ($document, L, MEASURE_CONFIG) {
         return {
             initialize: initialize
         };
@@ -20,10 +20,10 @@
 
             leafletMeasureHtml = measureControl.getContainer();
 
-            //Add a class to the button (which is actually a link, because leaflet-measure is a moron)
+            //Add a class to leaflet-measure control
             leafletMeasureHtml.className += ' s-leaflet-measure';
 
-            document.querySelector('.js-leaflet-measure').appendChild(leafletMeasureHtml);
+            $document[0].querySelector('.js-leaflet-measure').appendChild(leafletMeasureHtml);
         }
     }
 })();
