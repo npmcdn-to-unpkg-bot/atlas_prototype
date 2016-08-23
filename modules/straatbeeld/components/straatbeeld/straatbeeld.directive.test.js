@@ -205,6 +205,28 @@ describe('The dp-straatbeeld directive', function () {
         );
     });
 
+    it('doesn\'t call the orientation factory before the scene is done loading', function () {
+        var directive,
+            mockedState;
+
+        mockedState = {
+            id: 123,
+            isLoading: true
+        };
+
+        //When it is still loading
+        directive = getDirective(mockedState, false);
+        expect(orientation.update).not.toHaveBeenCalled();
+
+        triggerMousemove(directive.find('.js-marzipano-viewer'));
+        expect(orientation.update).not.toHaveBeenCalled();
+
+        //When it is done loading
+        mockedState.isLoading = false;
+        triggerMousemove(directive.find('.js-marzipano-viewer'));
+        expect(orientation.update).toHaveBeenCalled();
+    });
+
     it('loads a scene when there is a known car location', function () {
         getDirective({
             id: 123,
