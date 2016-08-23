@@ -193,11 +193,23 @@ describe('The dp-map directive', function () {
 
             expect(layers.removeOverlay).not.toHaveBeenCalled();
 
-            mockedMapState.overlays = {};
+            mockedMapState.overlays = [];
             $rootScope.$apply();
 
             expect(layers.removeOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_overlay');
             expect(layers.removeOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_other_overlay');
+        });
+        it('can be removed when visibility changes', function () {
+            mockedMapState.overlays = [{id:'some_overlay', visibility: true},
+                                        {id: 'some_other_overlay', visibility: true}];
+            getDirective(mockedMapState, []);
+
+            mockedMapState.overlays = [{id:'some_overlay', visibility: false},
+                                        {id: 'some_other_overlay', visibility: true}];
+            $rootScope.$apply();
+
+            expect(layers.removeOverlay).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_overlay');
+            expect(layers.removeOverlay).not.toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 'some_other_overlay');
         });
     });
 
