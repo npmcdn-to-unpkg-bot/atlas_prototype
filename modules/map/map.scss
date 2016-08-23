@@ -2,6 +2,7 @@
 
 @import "components/map/map";
 @import "components/toggle-fullscreen/toggle-fullscreen";
+@import "services/measure/measure";
 
 .is-print-mode {
   @import "components/map/map-print";

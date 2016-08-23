@@ -37,20 +37,14 @@ describe('The dp-straatbeeld-metadata component', function () {
         return component;
     }
 
-    it('always show the status bar (even if there is no data)', function () {
-        var component = getComponent(null, null);
-
-        expect(component.find('.straatbeeld-metadata').length).toBe(1);
-    });
-
     it('only shows the meta information if it has a valid date and location', function () {
         var component;
 
         component = getComponent(null, null);
-        expect(component.find('.straatbeeld-metadata').text().trim().length).toBe(0);
+        expect(component.text().trim().length).toBe(0);
 
         component = getComponent(new Date(), [52.123, 4.789]);
-        expect(component.find('.straatbeeld-metadata').text().trim().length).toBeGreaterThan(0);
+        expect(component.text().trim().length).toBeGreaterThan(0);
     });
 
     it('uses a date filter for formatting the date into dd-MM-yyyy', function () {

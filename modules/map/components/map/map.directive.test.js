@@ -6,6 +6,7 @@ describe('The dp-map directive', function () {
         highlight,
         panning,
         zoom,
+        measure,
         variableWidth,
         searchByClick,
         mockedMapState;
@@ -34,6 +35,9 @@ describe('The dp-map directive', function () {
                     initialize: function () {},
                     setZoom: function () {}
                 },
+                measure: {
+                    initialize: function () {}
+                },
                 searchByClick: {
                     initialize: function () {}
                 }
@@ -50,7 +54,16 @@ describe('The dp-map directive', function () {
         );
 
         angular.mock.inject(function (
-            _$compile_, _$rootScope_, _L_, _layers_, _highlight_, _panning_, _zoom_, _variableWidth_, _searchByClick_) {
+            _$compile_,
+            _$rootScope_,
+            _L_,
+            _layers_,
+            _highlight_,
+            _panning_,
+            _zoom_,
+            _measure_,
+            _variableWidth_,
+            _searchByClick_) {
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
                 L = _L_;
@@ -58,6 +71,7 @@ describe('The dp-map directive', function () {
                 highlight = _highlight_;
                 panning = _panning_;
                 zoom = _zoom_;
+                measure = _measure_;
                 variableWidth = _variableWidth_;
                 searchByClick = _searchByClick_;
             }
@@ -78,6 +92,7 @@ describe('The dp-map directive', function () {
         spyOn(panning, 'setOption');
         spyOn(zoom, 'initialize');
         spyOn(zoom, 'setZoom');
+        spyOn(measure, 'initialize');
         spyOn(variableWidth, 'initialize');
         spyOn(searchByClick, 'initialize');
 
@@ -286,12 +301,8 @@ describe('The dp-map directive', function () {
     });
 
     describe('zoom factory', function () {
-        var directive,
-            container;
-
         beforeEach(function () {
-            directive = getDirective(mockedMapState, []);
-            container = directive[0].querySelector('.js-leaflet-map');
+            getDirective(mockedMapState, []);
         });
 
         it('is initialized', function () {
@@ -308,6 +319,12 @@ describe('The dp-map directive', function () {
             expect(zoom.setZoom).toHaveBeenCalledTimes(2);
             expect(zoom.setZoom).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP', 11);
         });
+    });
+
+    it('initializes the measure factory', function () {
+        getDirective(mockedMapState, []);
+
+        expect(measure.initialize).toHaveBeenCalledWith('I_AM_A_FAKE_LEAFLET_MAP');
     });
 
     it('initializes the variableWidth factory', function () {

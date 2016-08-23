@@ -10,11 +10,12 @@
         'highlight',
         'panning',
         'zoom',
+        'measure',
         'variableWidth',
         'searchByClick'
     ];
 
-    function dpMapDirective (L, mapConfig, layers, highlight, panning, zoom, variableWidth, searchByClick) {
+    function dpMapDirective (L, mapConfig, layers, highlight, panning, zoom, measure, variableWidth, searchByClick) {
         return {
             restrict: 'E',
             scope: {
@@ -46,6 +47,7 @@
                 panning.initialize(leafletMap);
                 highlight.initialize();
                 zoom.initialize(leafletMap);
+                measure.initialize(leafletMap);
                 variableWidth.initialize(container, leafletMap);
                 searchByClick.initialize(leafletMap);
 
