@@ -123,6 +123,10 @@
         }
 
         function getAddedOverlays (newOverlays, oldOverlays) {
+            // checking for init state when both are the same
+            if (angular.equals(newOverlays, oldOverlays)) {
+                oldOverlays = [];
+            }
             return getDiffFromOverlays(newOverlays, oldOverlays);
         }
 
