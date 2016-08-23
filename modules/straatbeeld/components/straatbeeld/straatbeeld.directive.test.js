@@ -200,8 +200,7 @@ describe('The dp-straatbeeld directive', function () {
                 location: [52, 4],
                 heading: 275,
                 pitch: 0.8
-            },
-            false
+            }
         );
     });
 

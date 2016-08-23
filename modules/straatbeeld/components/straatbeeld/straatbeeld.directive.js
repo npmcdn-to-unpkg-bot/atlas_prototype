@@ -27,7 +27,7 @@
 
             scope.updateOrientation = function () {
                 if (!scope.state.isLoading) {
-                    orientation.update(viewer, scope.state.car, scope.state.isLoading);
+                    orientation.update(viewer, scope.state.car);
                 }
             };
 
