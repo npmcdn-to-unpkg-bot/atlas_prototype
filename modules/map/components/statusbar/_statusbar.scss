@@ -37,7 +37,6 @@
     height: $statusbar-height;
     padding-left: .5rem;
     background-color: $secondary-gray60;
-    color: inherent;
     text-align: left;
     cursor: pointer;
   }
@@ -100,6 +99,6 @@
   display: inline-block;
   position: relative;
   top: -.3rem;
-  width: 2rem;
-  height: 2rem;
+  width: 1.65rem;
+  height: 1.65rem;
 }
