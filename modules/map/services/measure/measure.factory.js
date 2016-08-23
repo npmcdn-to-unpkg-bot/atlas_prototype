@@ -23,7 +23,7 @@
             //Add a class to the button (which is actually a link, because leaflet-measure is a moron)
             leafletMeasureHtml.className += ' s-leaflet-measure';
 
-            document.querySelector('.js-status-bar').appendChild(leafletMeasureHtml);
+            document.querySelector('.js-leaflet-measure').appendChild(leafletMeasureHtml);
         }
     }
 })();

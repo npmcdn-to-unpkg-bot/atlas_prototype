@@ -16,8 +16,10 @@ the parent div of leaflet-measure.
     color: $primary-contrast;
   }
 
-  h3 {
-    //Overruling _typography.scss
-    padding-top: 0;
+  .leaflet-control-measure-interaction {
+    h3 {
+      //Overruling _typography.scss
+      padding-top: 0;
+    }
   }
 }

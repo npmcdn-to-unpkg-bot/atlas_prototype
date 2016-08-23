@@ -1,7 +1,9 @@
 <div class="c-map">
     <div class="c-map__leaflet js-leaflet-map"></div>
 
-    <dp-status-bar></dp-status-bar>
+    <dp-status-bar>
+        <div class="js-leaflet-measure"></div>
+    </dp-status-bar>
 </div>
 
 <dp-loading-indicator is-loading="mapState.isLoading" use-delay="true" show-inline="false"></dp-loading-indicator>
