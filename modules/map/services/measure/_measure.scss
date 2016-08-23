@@ -3,11 +3,21 @@ This CSS is used to overrule the third party CSS of leaflet-measure. We don't ow
 the parent div of leaflet-measure.
 */
 .s-leaflet-measure {
+  @include font-size($body-font);
   position: absolute;
-  bottom: 0;
+  bottom: 7px;
   color: $primary-dark;
 
   .leaflet-control-measure-toggle {
+    width: 26px;
+    height: 26px;
+    border-radius: 0;
+    background-image: url("assets/icons/icon-measure.png");
     color: $primary-contrast;
+  }
+
+  h3 {
+    //Overruling _typography.scss
+    padding-top: 0;
   }
 }
