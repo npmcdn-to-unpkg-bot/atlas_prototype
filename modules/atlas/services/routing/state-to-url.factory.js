@@ -18,7 +18,8 @@
                 getMapParams(state),
                 getPageParams(state),
                 getDetailParams(state),
-                getStraatbeeldParams(state)
+                getStraatbeeldParams(state),
+                getPrintParams(state)
             );
 
             if (useReplace) {
@@ -100,6 +101,12 @@
             }
 
             return params;
+        }
+
+        function getPrintParams (state) {
+            return {
+                'print-versie': state.isPrintMode ? 'aan' : null
+            };
         }
     }
 })();
