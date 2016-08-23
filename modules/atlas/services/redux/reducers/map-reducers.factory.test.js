@@ -76,7 +76,54 @@ describe('The map reducers', function () {
             expect(output.map.overlays).toEqual([]);
         });
     });
+    describe('MAP_TOGGILE_VISIBILITY', function() {
+        it('hides an overlay', function() {
+            var inputState = angular.copy(defaultState),
+                output;
 
+            inputState.map.overlays = [
+                {
+                    id: 'overlay_1',
+                    visibility: true
+                }, {
+                    id: 'overlay_2',
+                    visibility: true
+                }, {
+                    id: 'overlay_3',
+                    visibility: true
+                }];
+
+            output = mapReducers.MAP_TOGGLE_VISIBILITY_OVERLAY(inputState, 'overlay_2');
+            expect(output.map.overlays).toEqual([
+                {id: 'overlay_1', visibility: true},
+                {id: 'overlay_2', visibility: false},
+                {id: 'overlay_3', visibility: true}
+            ]);
+        });
+        it('hides an overlay', function() {
+            var inputState = angular.copy(defaultState),
+                output;
+
+            inputState.map.overlays = [
+                {
+                    id: 'overlay_1',
+                    visibility: false
+                }, {
+                    id: 'overlay_2',
+                    visibility: true
+                }, {
+                    id: 'overlay_3',
+                    visibility: true
+                }];
+
+            output = mapReducers.MAP_TOGGLE_VISIBILITY_OVERLAY(inputState, 'overlay_1');
+            expect(output.map.overlays).toEqual([
+                {id: 'overlay_1', visibility: true},
+                {id: 'overlay_2', visibility: true},
+                {id: 'overlay_3', visibility: true}
+            ]);
+        });
+    });
     describe('MAP_PAN', function () {
         it('updates the viewCenter', function () {
             var inputState = angular.copy(defaultState),

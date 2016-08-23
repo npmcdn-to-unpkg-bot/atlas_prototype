@@ -62,9 +62,8 @@
                     break;
                 }
             }
-            if (i <= newState.map.overlays.length) {
-                newState.map.overlays.splice(i, 1);
-            }
+            newState.map.overlays.splice(i, 1);
+
             return newState;
         }
 

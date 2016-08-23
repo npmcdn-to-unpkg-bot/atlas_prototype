@@ -114,13 +114,13 @@ describe('The stateToUrl factory', function () {
             //Two overlays
             mockedState.map.overlays = [
                 {id: 'overlay_x', visibility: true},
-                {id: 'overlay_y', visibility: true}
+                {id: 'overlay_y', visibility: false}
             ];
 
             stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                lagen: 'overlay_x:zichtbaar,overlay_y:zichtbaar'
+                lagen: 'overlay_x:zichtbaar,overlay_y:onzichtbaar'
             }));
         });
 
