@@ -30,13 +30,11 @@
         // as per controllerAs
         $scope.$watch('vm.overlays', function(newVal) {
             // Updating active and visible layers count
-            if (newVal) {
-                vm.activeLayers = newVal.length;
-                vm.visibleLayers = 0;
-                for (var i = 0;i < newVal.length;i++) {
-                    if (newVal[i].visibility) {
-                        vm.visibleLayers++;
-                    }
+            vm.activeLayers = newVal.length;
+            vm.visibleLayers = 0;
+            for (var i = 0;i < newVal.length;i++) {
+                if (newVal[i].visibility) {
+                    vm.visibleLayers++;
                 }
             }
         }, true);
