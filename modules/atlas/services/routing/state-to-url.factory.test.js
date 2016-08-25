@@ -103,7 +103,7 @@ describe('The stateToUrl factory', function () {
             }));
 
             //One overlay
-            mockedState.map.overlays = [{id: 'overlay_x', visibility: true}];
+            mockedState.map.overlays = [{id: 'overlay_x', isVisible: true}];
 
             stateToUrl.update(mockedState, false);
 
@@ -113,8 +113,8 @@ describe('The stateToUrl factory', function () {
 
             //Two overlays
             mockedState.map.overlays = [
-                {id: 'overlay_x', visibility: true},
-                {id: 'overlay_y', visibility: false}
+                {id: 'overlay_x', isVisible: true},
+                {id: 'overlay_y', isVisible: false}
             ];
 
             stateToUrl.update(mockedState, false);

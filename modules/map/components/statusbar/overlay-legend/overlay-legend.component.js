@@ -3,13 +3,13 @@
 
 	angular
 		.module('dpMap')
-		.component('dpOverlayLegenda', {
+		.component('dpOverlayLegend', {
 			bindings: {
 				overlay: '=',
 				zoom: '='
 			},
 			resrict: 'E',
-			templateUrl: 'modules/map/components/statusbar/overlay-legenda/overlay-legenda.html',
+			templateUrl: 'modules/map/components/statusbar/overlay-legend/overlay-legend.html',
 			controller: OverlayLegenda,
 			controllerAs: 'vm'
 		});
@@ -30,8 +30,7 @@
 		vm.getIcon = function() {
 			// Determining which icon to use based on visibility
 			var icon = '/assets/icons/'; // The prefix path
-			// @TODO check logics
-			if (vm.overlay.visibility) {
+			if (vm.overlay.isVisible) {
 				if (vm.zoom >= OVERLAYS.SOURCES[vm.overlay.id].minZoom &&
 	            	vm.zoom <= OVERLAYS.SOURCES[vm.overlay.id].maxZoom) {
 					icon += 'visible.svg';

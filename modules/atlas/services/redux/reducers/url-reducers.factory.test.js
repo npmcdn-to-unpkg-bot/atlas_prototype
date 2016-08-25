@@ -93,14 +93,14 @@ describe('The urlReducers factory', function () {
                 //One overlay
                 mockedSearchParams.lagen = 'munitie_opslag:zichtbaar';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.map.overlays).toEqual([{id: 'munitie_opslag', visibility: true}]);
+                expect(output.map.overlays).toEqual([{id: 'munitie_opslag', isVisible: true}]);
 
                 //Two overlays
                 mockedSearchParams.lagen = 'munitie_opslag:zichtbaar,geldkluizen:onzichtbaar';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.overlays).toEqual([
-                    {id: 'munitie_opslag', visibility: true},
-                    {id: 'geldkluizen', visibility: false}
+                    {id: 'munitie_opslag', isVisible: true},
+                    {id: 'geldkluizen', isVisible: false}
                 ]);
             });
 

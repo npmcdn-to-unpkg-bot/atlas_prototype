@@ -105,9 +105,9 @@
                 for (var j = 0;j < over2.length;j++) {
                     if (over2[j].id === over1[i].id) {
                         // Checking visibility change
-                        if (over2[j].visibility !== over1[i].visibility) {
+                        if (over2[j].isVisible !== over1[i].isVisible) {
                             // Making sure visibility was changed to what we expect
-                            if (over2[j].visibility) {
+                            if (over2[j].isVisible) {
                                 add = false;
                             }
                         } else {

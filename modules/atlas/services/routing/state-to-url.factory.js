@@ -46,14 +46,14 @@
         }
 
         function getMapParams (state) {
-            var lagen = [], visibility;
+            var lagen = [], isVisible;
             for (var i = 0;i < state.map.overlays.length;i++) {
-                if (state.map.overlays[i].visibility) {
-                    visibility = 'zichtbaar';
+                if (state.map.overlays[i].isVisible) {
+                    isVisible = 'zichtbaar';
                 } else {
-                    visibility = 'onzichtbaar';
+                    isVisible = 'onzichtbaar';
                 }
-                lagen.push(state.map.overlays[i].id + ':' + visibility);
+                lagen.push(state.map.overlays[i].id + ':' + isVisible);
             }
             return {
                 lat: String(state.map.viewCenter[0]),

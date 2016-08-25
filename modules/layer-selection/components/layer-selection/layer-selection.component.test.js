@@ -108,7 +108,7 @@ describe('The atlas-layer-selection component', function () {
 
     describe('base layer', function () {
         it('lists all base layers as radio buttons w/ labels', function () {
-            var component = getComponent('base_layer_a', {}, 8);
+            var component = getComponent('base_layer_a', [], 8);
 
             expect(component.find('ul').eq(0).find('li').length).toBe(2);
             expect(component.find('ul').eq(0).find('li').eq(0).find('label').text().trim()).toBe('Base layer A');
@@ -121,7 +121,7 @@ describe('The atlas-layer-selection component', function () {
         });
 
         it('can set the base layer', function () {
-            var component = getComponent('base_layer_a', {}, 8),
+            var component = getComponent('base_layer_a', [], 8),
                 scope = component.isolateScope();
 
             //Choose another base layer
@@ -144,7 +144,7 @@ describe('The atlas-layer-selection component', function () {
 
     describe('overlays', function () {
         it('lists all overlays as checkboxes w/ labels', function () {
-            var component = getComponent('base_layer_a', {}, 8);
+            var component = getComponent('base_layer_a', [], 8);
 
             expect(component.find('div').eq(1).find('h2').text()).toBe('Category 1');
             expect(component.find('div').eq(1).find('li').eq(0).find('label').text().trim()).toBe('Overlay 1a');
@@ -184,7 +184,7 @@ describe('The atlas-layer-selection component', function () {
 
             //With active overlays
             component = getComponent('base_layer_a',
-                [{id: 'overlay_1_a', visibility: true}, {id: 'overlay_2_b', visibility: true}], 8);
+                [{id: 'overlay_1_a', isVisible: true}, {id: 'overlay_2_b', isVisible: true}], 8);
 
             expect(component.find('div').eq(1).find('li').eq(0).find('input').attr('checked')).toBe('checked');
             expect(component.find('div').eq(1).find('li').eq(1).find('input').attr('checked')).toBeUndefined();
@@ -194,7 +194,7 @@ describe('The atlas-layer-selection component', function () {
         });
 
         it('can toggle overlays', function () {
-            var component = getComponent('base_layer_a', [{id: 'overlay_1_a', visibility: true}], 8),
+            var component = getComponent('base_layer_a', [{id: 'overlay_1_a', isVisible: true}], 8),
                 scope = component.isolateScope();
 
             //Add one
@@ -221,11 +221,11 @@ describe('The atlas-layer-selection component', function () {
                 expectedZoomIndicatorText;
 
             allOverlays = [
-                {id: 'overlay_1_a', visibility: true},
-                {id: 'overlay_1_b', visibility: true},
-                {id: 'overlay_2_a', visibility: true},
-                {id: 'overlay_2_b', visibility: true},
-                {id: 'overlay_2_c', visibility: true}
+                {id: 'overlay_1_a', isVisible: true},
+                {id: 'overlay_1_b', isVisible: true},
+                {id: 'overlay_2_a', isVisible: true},
+                {id: 'overlay_2_b', isVisible: true},
+                {id: 'overlay_2_c', isVisible: true}
             ];
 
             expectedZoomIndicatorText = '(deze kaartlaag is niet zichtbaar op dit zoomniveau)';
@@ -304,11 +304,11 @@ describe('The atlas-layer-selection component', function () {
             var component;
 
             //Active and visible
-            component = getComponent('base_layer_a', [{id: 'overlay_2_a', visibility: true}], 8);
+            component = getComponent('base_layer_a', [{id: 'overlay_2_a', isVisible: true}], 8);
             expect(component.find('div').eq(2).find('li').eq(0).find('strong').text()).toContain('Overlay 2a');
 
             //Active and invisible
-            component = getComponent('base_layer_a', [{id: 'overlay_2_a', visibility: true}], 16);
+            component = getComponent('base_layer_a', [{id: 'overlay_2_a', isVisible: true}], 16);
             expect(component.find('div').eq(2).find('li').eq(0).find('strong').text()).toContain('Overlay 2a');
 
             //Non-active (still using strong)
@@ -322,7 +322,7 @@ describe('The atlas-layer-selection component', function () {
 
             //When the overlays are active
             component = getComponent('base_layer_a',
-                [{id: 'overlay_2_b', visibility: true}, {id: 'overlay_2_c', visibility: true}], 8);
+                [{id: 'overlay_2_b', isVisible: true}, {id: 'overlay_2_c', isVisible: true}], 8);
             expect(component.find('div').eq(2).find('li').eq(1).find('.qa-show-invisble-by-zoom').length).toBe(1);
             expect(component.find('div').eq(2).find('li').eq(2).find('.qa-show-invisble-by-zoom').length).toBe(1);
 

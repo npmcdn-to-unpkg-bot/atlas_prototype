@@ -66,19 +66,20 @@
             }
 
             function getMapState (payload) {
-                var overlays = [], lagen, laag, visibility;
+                var overlays = [],
+                    layers,
+                    id,
+                    isVisible;
+
                 if (payload && payload.lagen) {
-                    lagen = payload.lagen.split(',');
-                    for (var i = 0;i < lagen.length;i++) {
-                        laag = lagen[i].split(':');
-                        // checking visibility
-                        if (laag[1] === 'zichtbaar') {
-                            visibility = true;
-                        } else {
-                            visibility = false;
-                        }
-                        laag = laag[0];
-                        overlays.push({id: laag, visibility: visibility});
+                    layers = payload.lagen.split(',');
+                    for (var i = 0; i < layers.length; i++) {
+                        // [id, isVisible] = layers[i].split(':');  This is ES6
+                        id = layers[i].split(':');
+                        // checking isVisible
+                        isVisible = id[1] === 'zichtbaar';
+                        id = id[0];
+                        overlays.push({id: id, isVisible: isVisible});
                     }
                 }
                 return {

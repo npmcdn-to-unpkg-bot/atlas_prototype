@@ -1,4 +1,4 @@
-.map-statusbar {
+.c-map-statusbar {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -23,11 +23,11 @@
   text-align: center;
   z-index: 1000;
 
-  &.show {
+  &.is-shown {
     bottom: $layers-label-height + $statusbar-height;
   }
 
-  &.hide {
+  &.is-hidden {
     bottom: 0;
   }
 
@@ -50,7 +50,7 @@
     text-align: left;
     overflow: scroll;
 
-    .legenda-item {
+    .legend-item {
       padding-top: .25rem;
       padding-bottom: .25rem;
     }
@@ -59,7 +59,7 @@
       width: 1.5em;
     }
 
-    .legenda-item-toggle {
+    .legend-item-toggle {
       margin-right: .5rem;
       padding-top: .25rem;
 
@@ -68,12 +68,12 @@
       }
     }
 
-    .legenda-item-title {
+    .legend-item-title {
       padding-bottom: .1rem;
     }
   }
 
-  .edit-overlayes {
+  .edit-overlays {
     position: relative;
     top: .2rem;
     margin-left: .5rem;

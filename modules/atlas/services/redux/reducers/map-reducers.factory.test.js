@@ -31,11 +31,11 @@ describe('The map reducers', function () {
 
             output = mapReducers.MAP_ADD_OVERLAY(inputState, 'meetbouten');
             expect(output.map.overlays.length).toBe(1);
-            expect(output.map.overlays[0].visibility).toBe(true);
+            expect(output.map.overlays[0].isVisible).toBe(true);
             expect(output.map.overlays[0].id).toBe('meetbouten');
 
             output = mapReducers.MAP_ADD_OVERLAY(output, 'parkeren');
-            expect(output.map.overlays[1].visibility).toBe(true);
+            expect(output.map.overlays[1].isVisible).toBe(true);
             expect(output.map.overlays[1].id).toBe('parkeren');
 
             expect(output.map.overlays.length).toBe(2);
@@ -50,19 +50,19 @@ describe('The map reducers', function () {
             inputState.map.overlays = [
                 {
                     id: 'overlay_1',
-                    visibility: true
+                    isVisible: true
                 }, {
                     id: 'overlay_2',
-                    visibility: true
+                    isVisible: true
                 }, {
                     id: 'overlay_3',
-                    visibility: true
+                    isVisible: true
                 }];
 
             output = mapReducers.MAP_REMOVE_OVERLAY(inputState, 'overlay_2');
             expect(output.map.overlays).toEqual([
-                {id: 'overlay_1', visibility: true},
-                {id: 'overlay_3', visibility: true}
+                {id: 'overlay_1', isVisible: true},
+                {id: 'overlay_3', isVisible: true}
             ]);
         });
 
@@ -70,7 +70,7 @@ describe('The map reducers', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
-            inputState.map.overlays = [{id: 'parkeren', visibility: true}];
+            inputState.map.overlays = [{id: 'parkeren', isVisible: true}];
 
             output = mapReducers.MAP_REMOVE_OVERLAY(inputState, 'parkeren');
             expect(output.map.overlays).toEqual([]);
@@ -84,20 +84,20 @@ describe('The map reducers', function () {
             inputState.map.overlays = [
                 {
                     id: 'overlay_1',
-                    visibility: true
+                    isVisible: true
                 }, {
                     id: 'overlay_2',
-                    visibility: true
+                    isVisible: true
                 }, {
                     id: 'overlay_3',
-                    visibility: true
+                    isVisible: true
                 }];
 
             output = mapReducers.MAP_TOGGLE_VISIBILITY_OVERLAY(inputState, 'overlay_2');
             expect(output.map.overlays).toEqual([
-                {id: 'overlay_1', visibility: true},
-                {id: 'overlay_2', visibility: false},
-                {id: 'overlay_3', visibility: true}
+                {id: 'overlay_1', isVisible: true},
+                {id: 'overlay_2', isVisible: false},
+                {id: 'overlay_3', isVisible: true}
             ]);
         });
         it('hides an overlay', function() {
@@ -107,20 +107,20 @@ describe('The map reducers', function () {
             inputState.map.overlays = [
                 {
                     id: 'overlay_1',
-                    visibility: false
+                    isVisible: false
                 }, {
                     id: 'overlay_2',
-                    visibility: true
+                    isVisible: true
                 }, {
                     id: 'overlay_3',
-                    visibility: true
+                    isVisible: true
                 }];
 
             output = mapReducers.MAP_TOGGLE_VISIBILITY_OVERLAY(inputState, 'overlay_1');
             expect(output.map.overlays).toEqual([
-                {id: 'overlay_1', visibility: true},
-                {id: 'overlay_2', visibility: true},
-                {id: 'overlay_3', visibility: true}
+                {id: 'overlay_1', isVisible: true},
+                {id: 'overlay_2', isVisible: true},
+                {id: 'overlay_3', isVisible: true}
             ]);
         });
     });

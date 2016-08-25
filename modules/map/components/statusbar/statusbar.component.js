@@ -4,7 +4,6 @@
     angular
         .module('dpMap')
         .component('dpMapStatusbar', {
-            restrict: 'E',
             bindings: {
                 overlays: '=',
                 zoom: '='
@@ -16,40 +15,26 @@
 
     function StatusbarController($scope) {
         var vm = this;
-        vm.buttonStatus = 'plus';
-        vm.visible = false;
+        vm.isLegendOpen = false;
         // Layers counts
         vm.activeLayers = vm.overlays.length;
-        vm.visibleLayers = 0;
-        for (var i = 0;i < vm.overlays.length;i++) {
-            if (vm.overlays[i].visibility) {
-                vm.visibleLayers++;
-            }
-        }
+        vm.visibleLayers = vm.overlays.filter(function(elem) {
+                return elem.isVisible;
+            }).length;
+
         // Watching from component scope where the controller is called vm
         // as per controllerAs
         $scope.$watch('vm.overlays', function(newVal) {
             // Updating active and visible layers count
             vm.activeLayers = newVal.length;
-            vm.visibleLayers = 0;
-            for (var i = 0;i < newVal.length;i++) {
-                if (newVal[i].visibility) {
-                    vm.visibleLayers++;
-                }
-            }
+            vm.visibleLayers = newVal.filter(function(elem) {
+                return elem.isVisible;
+            }).length;
         }, true);
         
         vm.switchLegendPane = function () {
             // Flipping the button
-            if (vm.buttonStatus === 'plus') {
-                vm.buttonStatus = 'minimize';
-                vm.visible = true;
-
-            } else {
-                vm.buttonStatus = 'plus';
-                vm.visible = false;
-            }
+            vm.isLegendOpen = !vm.isLegendOpen;
         };
     }
-    
 })();

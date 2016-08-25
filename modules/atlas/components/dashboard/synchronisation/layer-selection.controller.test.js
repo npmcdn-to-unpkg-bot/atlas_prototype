@@ -41,10 +41,10 @@ describe('The layerSelection controller', function () {
                     overlays: [
                         {
                             id: 'layer_1',
-                            visibility: true
+                            isVisible: true
                         }, {
                             id: 'layer_3',
-                            visibility: true
+                            isVisible: true
                         }
                     ],
                     zoom: 10
@@ -58,8 +58,8 @@ describe('The layerSelection controller', function () {
 
         expect(controller.baseLayer).toBe('topografie');
         expect(controller.overlays).toEqual([
-                        {id: 'layer_1', visibility: true},
-                        {id: 'layer_3', visibility: true}
+                        {id: 'layer_1', isVisible: true},
+                        {id: 'layer_3', isVisible: true}
                     ]);
         expect(controller.zoom).toBe(10);
     });
