@@ -32,7 +32,7 @@
                 transparent: true
             },
             SCALE_OPTIONS: {
-                position: 'bottomleft',
+                position: 'bottomright',
                 metric: true,
                 imperial: false
             },

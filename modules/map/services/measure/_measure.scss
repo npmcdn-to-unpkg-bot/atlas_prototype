@@ -1,0 +1,40 @@
+/*
+This CSS is used to overrule the third party CSS of leaflet-measure. We don't own the HTML code, we just add a class to
+the parent div of leaflet-measure.
+*/
+
+.js-leaflet-measure {
+  width: 26px;
+  height: 26px;
+  margin-right: .5rem;
+  float: right;
+}
+
+.s-leaflet-measure {
+  @include font-size($body-font);
+  position: absolute;
+  right: .5rem;
+  bottom: .5rem;
+  background-color: transparent;
+  color: $primary-dark;
+  z-index: 1000;
+
+  .leaflet-control-measure-toggle {
+    position: relative;
+    top: .38em;
+    width: 26px;
+    height: 26px;
+    border-radius: 0;
+    background-image: url("assets/icons/icon-measure.png");
+    color: $primary-contrast;
+  }
+
+  .leaflet-control-measure-interaction {
+    background-color: $primary-light;
+
+    h3 {
+      //Overruling _typography.scss
+      padding-top: 0;
+    }
+  }
+}
