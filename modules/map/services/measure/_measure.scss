@@ -23,3 +23,13 @@ the parent div of leaflet-measure.
     }
   }
 }
+
+//This is the popup that opens when finishing a measurement
+.leaflet-measure-resultpopup {
+  @include font-size($body-font);
+
+  h3 {
+    //Overruling _typography.scss
+    padding-top: 0;
+  }
+}
