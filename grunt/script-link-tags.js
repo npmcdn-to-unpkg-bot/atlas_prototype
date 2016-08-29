@@ -1,3 +1,5 @@
+var buildId = require('./config/build-id');
+
 module.exports = {
     options: {
         scriptTemplate: '<script src="{{path}}"></script>',
@@ -8,7 +10,7 @@ module.exports = {
             openTag: '<!-- SCRIPTS_START -->',
             closeTag: '<!-- SCRIPTS_END -->'
         },
-        src: ['build/atlas.js'],
+        src: ['build/atlas.' + buildId + '.js'],
         dest: 'build/index.html'
     },
     css: {
@@ -16,7 +18,7 @@ module.exports = {
             openTag: '<!-- STYLESHEETS_START -->',
             closeTag: '<!-- STYLESHEETS_END -->'
         },
-        src: ['build/atlas.css'],
+        src: ['build/atlas.' + buildId + '.css'],
         dest: 'build/index.html'
     }
 };

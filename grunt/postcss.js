@@ -1,3 +1,5 @@
+var buildId = require('./config/build-id');
+
 module.exports = {
     options: {
         map: true,
@@ -6,6 +8,6 @@ module.exports = {
         ]
     },
     dist: {
-        src: 'build/atlas.css'
+        src: 'build/atlas.' + buildId + '.css'
     }
 };
