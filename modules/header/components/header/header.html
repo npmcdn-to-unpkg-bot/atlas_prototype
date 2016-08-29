@@ -10,16 +10,16 @@
 
             <!-- Default -->
             <div ng-if="!vm.isPrintMode" class="u-col-sm--6">
-                <atlas-search query="{{vm.query}}"></atlas-search>
+                <atlas-search query="{{vm.query}}" title="Zoeken"></atlas-search>
             </div>
             <div ng-if="!vm.isPrintMode" class="u-col-sm--4 u-padding__right--2">
                 <nav class="site-header__menu">
                     <dp-link ng-if="!vm.isLoggedIn()"
-                        type="SHOW_PAGE" payload="'login'" class-name="site-header__menu__item">
+                        type="SHOW_PAGE" payload="'login'" class-name="site-header__menu__item" title="Inloggen">
                         Inloggen
                     </dp-link>
 
-                    <button ng-if="vm.isLoggedIn()" ng-click="vm.logout()" class="site-header__menu__item">
+                    <button ng-if="vm.isLoggedIn()" ng-click="vm.logout()" class="site-header__menu__item" title="Uitloggen">
                         Uitloggen
                     </button>
 
@@ -30,10 +30,10 @@
             <!-- When printing -->
             <div ng-if="vm.isPrintMode" class="u-col-sm--10">
                 <nav class="site-header__menu">
-                    <atlas-print-button>
+                    <atlas-print-button title="Afdrukken">
                         Afdrukken
                     </atlas-print-button>
-                    <dp-link type="HIDE_PRINT" class-name="site-header__menu__item">
+                    <dp-link type="HIDE_PRINT" class-name="site-header__menu__item" title="Verlaat printversie">
                         Verlaat printversie
                     </dp-link>
                 </nav>
