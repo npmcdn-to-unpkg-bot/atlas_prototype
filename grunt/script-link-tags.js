@@ -1,24 +1,26 @@
-var buildId = require('./config/build-id');
+module.exports = function (grunt) {
+    var buildId = grunt.config.get('buildId');
 
-module.exports = {
-    options: {
-        scriptTemplate: '<script src="{{path}}"></script>',
-        linkTemplate: '<link rel="stylesheet" href="{{path}}">'
-    },
-    js: {
+    return {
         options: {
-            openTag: '<!-- SCRIPTS_START -->',
-            closeTag: '<!-- SCRIPTS_END -->'
+            scriptTemplate: '<script src="{{path}}"></script>',
+            linkTemplate: '<link rel="stylesheet" href="{{path}}">'
         },
-        src: ['build/atlas.' + buildId + '.js'],
-        dest: 'build/index.html'
-    },
-    css: {
-        options: {
-            openTag: '<!-- STYLESHEETS_START -->',
-            closeTag: '<!-- STYLESHEETS_END -->'
+        js: {
+            options: {
+                openTag: '<!-- SCRIPTS_START -->',
+                closeTag: '<!-- SCRIPTS_END -->'
+            },
+            src: ['build/atlas.' + buildId + '.js'],
+            dest: 'build/index.html'
         },
-        src: ['build/atlas.' + buildId + '.css'],
-        dest: 'build/index.html'
-    }
+        css: {
+            options: {
+                openTag: '<!-- STYLESHEETS_START -->',
+                closeTag: '<!-- STYLESHEETS_END -->'
+            },
+            src: ['build/atlas.' + buildId + '.css'],
+            dest: 'build/index.html'
+        }
+    };
 };

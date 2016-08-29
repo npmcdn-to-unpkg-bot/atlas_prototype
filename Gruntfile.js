@@ -1,8 +1,19 @@
 module.exports = function (grunt) {
+    var buildId;
+
+    /**
+     * An ID that is unique for each build to prevent browser caching. This needs to be set before the other
+     * configuration which relies on this ID.
+     */
+    buildId = require('./grunt/config/build-id');
+
+    grunt.config.set('buildId', buildId);
+
+
     grunt.initConfig({
         bower_concat: require('./grunt/bower-concat'),
         clean: require('./grunt/clean'),
-        concat: require('./grunt/concat'),
+        concat: require('./grunt/concat')(grunt),
         connect: require('./grunt/connect'),
         'console-log-test': require('./grunt/console-log-test'),
         copy: require('./grunt/copy'),
@@ -12,7 +23,7 @@ module.exports = function (grunt) {
         postcss: require('./grunt/postcss'),
         sass: require('./grunt/sass'),
         sasslint: require('./grunt/sasslint'),
-        tags: require('./grunt/script-link-tags'),
+        tags: require('./grunt/script-link-tags')(grunt),
         watch: require('./grunt/watch')
     });
 
@@ -43,7 +54,6 @@ module.exports = function (grunt) {
     grunt.registerTask('test-css', [
         'sasslint'
     ]);
-
 
     /**
      * The output of build-js are two files 'build/atlas.js' and a source map.
