@@ -26,7 +26,9 @@
             viewer = marzipanoService.initialize(container);
 
             scope.updateOrientation = function () {
-                orientation.update(viewer, scope.state.car, scope.state.isLoading);
+                if (!scope.state.isLoading) {
+                    orientation.update(viewer, scope.state.car);
+                }
             };
 
             //Fetch the first scene (always based on location)
