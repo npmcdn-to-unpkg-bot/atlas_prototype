@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
-    var buildId = grunt.config.get('buildId');
+    var uniqueIdJs = grunt.config.get('uniqueIdJs'),
+        uniqueIdCss = grunt.config.get('uniqueIdCss');
 
     return {
         options: {
@@ -11,7 +12,7 @@ module.exports = function (grunt) {
                 openTag: '<!-- SCRIPTS_START -->',
                 closeTag: '<!-- SCRIPTS_END -->'
             },
-            src: ['build/atlas.' + buildId + '.js'],
+            src: ['build/atlas.' + uniqueIdJs + '.js'],
             dest: 'build/index.html'
         },
         css: {
@@ -19,7 +20,7 @@ module.exports = function (grunt) {
                 openTag: '<!-- STYLESHEETS_START -->',
                 closeTag: '<!-- STYLESHEETS_END -->'
             },
-            src: ['build/atlas.' + buildId + '.css'],
+            src: ['build/atlas.' + uniqueIdCss + '.css'],
             dest: 'build/index.html'
         }
     };

@@ -1,13 +1,12 @@
 module.exports = function (grunt) {
-    var buildId;
+    var shortid = require('shortid');
 
     /**
      * An ID that is unique for each build to prevent browser caching. This needs to be set before the other
      * configuration which relies on this ID.
      */
-    buildId = require('./grunt/config/build-id');
-
-    grunt.config.set('buildId', buildId);
+    grunt.config.set('uniqueIdJs', shortid.generate());
+    grunt.config.set('uniqueIdCss', shortid.generate());
 
 
     grunt.initConfig({
@@ -20,7 +19,7 @@ module.exports = function (grunt) {
         jshint: require('./grunt/jshint'),
         karma: require('./grunt/karma'),
         ngtemplates: require('./grunt/angular-templates'),
-        postcss: require('./grunt/postcss'),
+        postcss: require('./grunt/postcss')(grunt),
         sass: require('./grunt/sass'),
         sasslint: require('./grunt/sasslint'),
         tags: require('./grunt/script-link-tags')(grunt),

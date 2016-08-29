@@ -1,9 +1,11 @@
 module.exports = function (grunt) {
     var jsFiles = require('./config/js-files'),
         cssFiles = require('./config/css-files'),
-        buildId;
+        uniqueIdJs,
+        uniqueIdCss;
 
-    buildId = grunt.config.get('buildId');
+    uniqueIdJs = grunt.config.get('uniqueIdJs');
+    uniqueIdCss = grunt.config.get('uniqueIdCss');
 
     return {
         options: {
@@ -11,11 +13,11 @@ module.exports = function (grunt) {
         },
         js: {
             src: jsFiles,
-            dest: 'build/atlas.' + buildId + '.js'
+            dest: 'build/atlas.' + uniqueIdJs + '.js'
         },
         css: {
             src: cssFiles,
-            dest: 'build/atlas.' + buildId + '.css'
+            dest: 'build/atlas.' + uniqueIdCss + '.css'
         }
     };
 };
