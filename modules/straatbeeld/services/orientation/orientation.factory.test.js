@@ -56,10 +56,4 @@ describe('The orientation factory', function () {
             }
         });
     });
-
-    it('does nothing when the straatbeeld is loading', function () {
-        orientation.update(mockedViewer, mockedCamera, true);
-        
-        expect(store.dispatch).not.toHaveBeenCalled();
-    });
 });
