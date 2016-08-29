@@ -199,6 +199,18 @@ describe('The straatbeeldReducers factory', function () {
             expect(output.map.isLoading).toBe(false);
             expect(output.straatbeeld.isLoading).toBe(false);
         });
+
+        it('does nothing when straatbeeld is null', function () {
+            /**
+             * This can happen when a user triggers another action after FETCH_STRAATBEELD and before
+             * SHOW_STRAATBEELD_INITIAL OR SHOW_STRAATBEELD_SUBSEQUENT
+             */
+            var output;
+
+            expect(defaultState.straatbeeld).toBeNull();
+            output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(defaultState, showStraatbeeldPayload);
+            expect(output.straatbeeld).toBeNull();
+        });
     });
 
     it('STRAATBEELD_SHOW_SUBSEQUENT calls the same reducer as STRAATBEELD_SHOW_INITIAL', function () {
