@@ -7,5 +7,10 @@
 
   dd {
     width: 100% / 3 * 2;
+
+    & .o-btn--link {
+      width: calc(100% - #{$link-offset});
+      word-wrap: break-word;
+    }
   }
 }
