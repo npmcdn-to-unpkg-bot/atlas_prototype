@@ -12,12 +12,12 @@
             controllerAs: 'vm'
         });
 
-    AtlasStraatbeeldThumbnailController.$inject = ['detailConfig', 'store', 'ACTIONS'];
+    AtlasStraatbeeldThumbnailController.$inject = ['sharedConfig', 'store', 'ACTIONS'];
 
-    function AtlasStraatbeeldThumbnailController (detailConfig, store, ACTIONS) {
+    function AtlasStraatbeeldThumbnailController (sharedConfig, store, ACTIONS) {
         var vm = this;
 
-        vm.imageUrl = detailConfig.STRAATBEELD_THUMB_URL +
+        vm.imageUrl = sharedConfig.STRAATBEELD_THUMB_URL +
             '?lat=' + vm.location[0] +
             '&lon=' + vm.location[1] +
             '&width=240&height=135';

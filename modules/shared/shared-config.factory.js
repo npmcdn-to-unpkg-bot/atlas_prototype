@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('atlasDetail')
-        .factory('detailConfig', detailConfigFactory);
+        .module('dpShared')
+        .factory('sharedConfig', sharedConfigFactory);
 
-    detailConfigFactory.$inject = ['environment'];
+    sharedConfigFactory.$inject = ['environment'];
 
-    function detailConfigFactory (environment) {
+    function sharedConfigFactory (environment) {
         var globalConfig,
             environmentConfig;
 
