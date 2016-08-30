@@ -7,7 +7,7 @@
             </div>
             <span class="layers-label-title">Kaartlagen<span>
             <span ng-if="vm.activeLayers > 0" class="qa-show-layers-count">
-                <span>(</span><span ng-if="vm.visibleLayers != vm.activeLayers" class="qa-show-visible-layers-count">{{ vm.visibleLayers }}/</span><span class="qa-show-active-layers-count">{{ vm.activeLayers }})</span>
+                (<span ng-if="vm.visibleLayers != vm.activeLayers" class="qa-show-visible-layers-count">{{ vm.visibleLayers }}/</span><span class="qa-show-active-layers-count">{{ vm.activeLayers }}</span>)
             </span>
         </button>
         <ul class="overlays">
