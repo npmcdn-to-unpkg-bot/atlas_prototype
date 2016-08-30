@@ -1,9 +1,9 @@
-<h3 class="o-header__subtitle">Panorama</h3>
+<h3 class="o-header__subtitle">Straatbeeld</h3>
 
 <dp-loading-indicator is-loading="vm.isLoading" use-delay="false" show-inline="true"></dp-loading-indicator>
 
 <div ng-if="!vm.isLoading">
-    <button ng-if="vm.imageUrl" class="u-block u-width-100 u-padding__top--1 u-text-align--left" ng-click="vm.openStraatbeeld()">
+    <button ng-if="vm.imageUrl" class="u-block u-width-100 u-padding__top--05 u-text-align--left" ng-click="vm.openStraatbeeld()">
         <div class="u-aspect-ratio u-aspect-ratio--16-9">
             <img ng-src="{{vm.imageUrl}}" alt="Straatbeeld preview">
         </div>
