@@ -60,7 +60,7 @@ describe('The atlas statusbar component', function() {
             element,
             scope;
 
-        element = document.createElement('dp-overlay-legend');
+        element = document.createElement('dp-legend-item');
         element.setAttribute('overlay', 'overlay');
         element.setAttribute('zoom', 'zoom');
 

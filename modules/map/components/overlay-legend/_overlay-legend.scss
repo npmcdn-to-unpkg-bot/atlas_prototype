@@ -1,0 +1,74 @@
+.layers-labels {
+  position: relative;
+  width: $layers-label-width;
+  height: $layers-label-height;
+
+  float: left;
+  transition: .25s ease-in-out;
+
+  color: $primary-light;
+
+  font-family: $header-font-family;
+  font-weight: bold;
+
+  text-align: center;
+  z-index: 1000;
+
+  &.is-shown {
+    bottom: $layers-label-height + $statusbar-height;
+  }
+
+  &.is-hidden {
+    bottom: 0;
+  }
+
+  .header {
+    display: block;
+    width: 100%;
+    height: $statusbar-height;
+    padding-left: .5rem;
+    background-color: $secondary-gray60;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .overlays {
+    height: 100%;
+    padding-left: 1rem;
+    background-color: $primary-light;
+    color: $primary-dark;
+    font-weight: normal;
+    text-align: left;
+    overflow: scroll;
+
+  }
+
+  .edit-overlays {
+    position: relative;
+    top: .2rem;
+    margin-left: .5rem;
+    float: left;
+    background-color: $secondary-gray60;
+    color: $primary-light;
+    font-size: .8rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.layers-label-title {
+  position: relative;
+  top: -.4rem;
+  margin-left: 1rem;
+  color: $primary-light;
+  font-weight: bold;
+  line-height: 2rem;
+}
+
+.layers-label-icon {
+  display: inline-block;
+  position: relative;
+  top: -.3rem;
+  width: 1.65rem;
+  height: 1.65rem;
+}

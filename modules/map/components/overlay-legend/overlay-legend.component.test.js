@@ -9,7 +9,7 @@ describe('The atlas statusbar component', function() {
                 $provide.factory('dpLinkDirective', function () {
                     return {};
                 });
-                $provide.factory('dpOverlayLegendDirective', function () {
+                $provide.factory('dpLegendItemDirective', function () {
                     return {};
                 });
             }
@@ -27,7 +27,7 @@ describe('The atlas statusbar component', function() {
             element,
             scope;
 
-        element = document.createElement('dp-map-statusbar');
+        element = document.createElement('dp-overlay-legend');
         element.setAttribute('overlays', 'overlays');
         element.setAttribute('zoom', 'zoom');
 
@@ -73,25 +73,25 @@ describe('The atlas statusbar component', function() {
     	});
     	it('Starts empty', function() {
     		var component = getComponent([], 8);
-    		expect(component.find('dp-overlay-legend').length).toBe(0);
+    		expect(component.find('dp-legend-item').length).toBe(0);
     	});
     	it('Correctly adds a new active layer', function() {
             var overlays = [],
                 component = getComponent(overlays, 8);
-           expect(component.find('dp-overlay-legend').length).toBe(0);
+           expect(component.find('dp-legend-item').length).toBe(0);
            overlays = [{id: 'some_overlay', isVisible: true}];
            component.isolateScope().vm.overlays = overlays;
            $rootScope.$apply();
-           expect(component.find('dp-overlay-legend').length).toBe(1);
+           expect(component.find('dp-legend-item').length).toBe(1);
     	});
     	it ('Correctly removes a removed layer', function() {
             var overlays = [{id: 'some_overlay', isVisible: true}],
                 component = getComponent(overlays, 8);
-           expect(component.find('dp-overlay-legend').length).toBe(1);
+           expect(component.find('dp-legend-item').length).toBe(1);
            overlays = [];
            component.isolateScope().vm.overlays = overlays;
            $rootScope.$apply();
-           expect(component.find('dp-overlay-legend').length).toBe(0);
+           expect(component.find('dp-legend-item').length).toBe(0);
     	});
     });
     describe('Statusbar layer counts', function() {

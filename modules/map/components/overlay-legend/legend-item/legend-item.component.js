@@ -3,20 +3,20 @@
 
 	angular
 		.module('dpMap')
-		.component('dpOverlayLegend', {
+		.component('dpLegendItem', {
 			bindings: {
 				overlay: '=',
 				zoom: '='
 			},
 			resrict: 'E',
-			templateUrl: 'modules/map/components/statusbar/overlay-legend/overlay-legend.html',
-			controller: OverlayLegenda,
+			templateUrl: 'modules/map/components/overlay-legend/legend-item/legend-item.html',
+			controller: LegendItem,
 			controllerAs: 'vm'
 		});
 
-	OverlayLegenda.$inject = ['$scope', 'OVERLAYS', 'mapConfig', 'store', 'ACTIONS'];
+	LegendItem.$inject = ['$scope', 'OVERLAYS', 'mapConfig', 'store', 'ACTIONS'];
 
-	function OverlayLegenda($scope, OVERLAYS, mapConfig, store, ACTIONS) {
+	function LegendItem($scope, OVERLAYS, mapConfig, store, ACTIONS) {
 		var vm = this;
 
 		// Setting legend and label

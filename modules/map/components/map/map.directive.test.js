@@ -53,6 +53,9 @@ describe('The dp-map directive', function () {
                 $provide.factory('dpMapStatusbarDirective', function () {
                     return {};
                 });
+                $provide.factory('dpOverlayLegendDirective', function() {
+                    return {};
+                });
                 $provide.factory('dpToggleFullscreenDirective', function () {
                     return {};
                 });
