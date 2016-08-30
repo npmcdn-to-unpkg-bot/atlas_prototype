@@ -23,7 +23,7 @@
         url = sharedConfig.STRAATBEELD_THUMB_URL +
             '?lat=' + vm.location[0] +
             '&lon=' + vm.location[1] +
-            '&width=240' +
+            '&width=400' +
             '&radius=' + sharedConfig.STRAATBEELD_SEARCH_RADIUS;
 
         api.getByUrl(url).then(function (thumbnailData) {
