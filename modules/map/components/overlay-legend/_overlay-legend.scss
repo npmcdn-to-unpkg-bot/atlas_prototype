@@ -15,7 +15,7 @@
   z-index: 1000;
 
   &.c-overlay-legend__shown {
-    bottom: $layers-label-height + $statusbar-height;
+    bottom: $layers-label-height + $statusbar-height + $statusbar-height / 5;
   }
 
   &.c-overlay-legend__hidden {
@@ -70,4 +70,9 @@
   top: -.7rem;
   width: 1.7rem;
   height: 1.7rem;
+}
+
+.c-overlay-legend--edit-overlays__link {
+  color: $primary-light;
+  font-size: 1.1rem;
 }
