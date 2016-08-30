@@ -126,7 +126,7 @@
                     }
 
                     return {
-                        id: Number(payload.id) || null,
+                        id: payload.id || null,
                         searchLocation:
                             hasSearchLocation(payload) ? [Number(payload.plat), Number(payload.plon)] : null,
                         date: date,

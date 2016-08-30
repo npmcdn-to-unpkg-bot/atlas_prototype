@@ -27,21 +27,26 @@
          * @returns {Object} newState
          */
         function fetchStraatbeeldReducer (oldState, payload) {
+            //console.log(payload);
             var newState = angular.copy(oldState);
 
             if (newState.straatbeeld === null) {
                 newState.straatbeeld = {};
             }
 
-            if (angular.isNumber(payload)) {
+            if (angular.isString(payload)) {
+                //ID
+                console.log('we hebben een string en wel: ', payload);
                 newState.straatbeeld.id = payload;
                 newState.straatbeeld.searchLocation = null;
             } else {
+                //Array with [lat, lon]
                 newState.straatbeeld.id = null;
                 newState.straatbeeld.searchLocation = payload;
             }
 
             newState.straatbeeld.date = null;
+            newState.straatbeeld.image = null;
             newState.straatbeeld.car = null;
             newState.straatbeeld.camera = oldState.straatbeeld && oldState.straatbeeld.camera || null;
             newState.straatbeeld.hotspots = [];
@@ -67,9 +72,16 @@
 
             newState.straatbeeld.id = payload.id;
             newState.straatbeeld.searchLocation = null;
-            newState.straatbeeld.date = payload.date;
-            newState.straatbeeld.car = payload.car;
-            newState.straatbeeld.hotspots = payload.hotspots;
+            newState.straatbeeld.date = payload.timestamp;
+            newState.straatbeeld.image = payload.images.equirectangular;
+            newState.straatbeeld.car = {
+                location: [payload.geometrie.coordinates[1], payload.geometrie.coordinates[0]],
+                //Heading and pitch are both 0 because of the normalization
+                heading: 0,
+                pitch: 0
+            };
+
+            newState.straatbeeld.hotspots = payload.adjacent;
             newState.straatbeeld.isLoading = false;
 
             if (oldState.straatbeeld.camera === null) {

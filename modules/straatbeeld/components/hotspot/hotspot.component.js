@@ -6,7 +6,9 @@
         .component('dpHotspot', {
             bindings: {
                 sceneId: '=',
-                distance: '='
+                distance: '=',
+                heading: '=',
+                pitch: '='
             },
             templateUrl: 'modules/straatbeeld/components/hotspot/hotspot.html',
             controller: DpHotspotController,
@@ -17,10 +19,13 @@
 
     function DpHotspotController (store, ACTIONS) {
         var vm = this,
-            minimumSize = 30,
+            maximumDistance = 12,
+            minimumSize = 20,
             maximumSize = 60;
 
-        vm.size = Math.max(Math.round(maximumSize - vm.distance), minimumSize);
+        var ratio = (maximumSize - minimumSize) / maximumDistance;
+
+        vm.size = maximumSize - Math.round(ratio * vm.distance);
 
         vm.loadScene = function () {
             store.dispatch({

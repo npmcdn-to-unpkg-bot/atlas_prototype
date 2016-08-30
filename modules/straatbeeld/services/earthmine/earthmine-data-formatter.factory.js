@@ -21,13 +21,14 @@
                     heading: angleConversion.degreesToRadians(earthmineData['pano-orientation'].yaw),
                     pitch: angleConversion.degreesToRadians(earthmineData['pano-orientation'].pitch)
                 },
-                hotspots: earthmineData.connections.map(function (connection) {
+                hotspots: earthmineData.adjacent.map(function (hotspot) {
                     return {
-                        id: Number(connection['pano-id']),
+                        id: Number(hotspot['pano-id']),
+                        //relative to the normalized image
                         relativeLocation: {
-                            yaw: angleConversion.degreesToRadians(connection['relative-location'].yaw),
-                            pitch: angleConversion.degreesToRadians(connection['relative-location'].pitch),
-                            distance: connection['relative-location'].distance
+                            yaw: angleConversion.degreesToRadians(hotspot.heading),
+                            pitch: angleConversion.degreesToRadians(hotspot.pitch),
+                            distance: hotspot.distance
                         }
                     };
                 })
@@ -37,7 +38,8 @@
                 var year,
                     month,
                     day;
-
+                return new Date(dateString);
+                /*
                 year = Number(dateString.substr(0, 4));
                 month = Number(dateString.substr(5, 2));
                 day = Number(dateString.substr(8, 2));
@@ -46,6 +48,7 @@
                 month--;
 
                 return new Date(year, month, day);
+                */
             }
         }
     }

@@ -15,25 +15,34 @@
         };
 
         function getImageDataById (id) {
-            return getImageData({
-                id: id
-            });
+            //console.log(straatbeeldConfig.NEW_DATA_ENDPOINT + id + '/');
+            return getImageData(
+                straatbeeldConfig.NEW_DATA_ENDPOINT + id + '/',
+                {
+                    radius: 100
+                }
+            );
         }
 
         function getImageDataByCoordinates (latitude, longitude) {
-            return getImageData({
-                lat: latitude,
-                lon: longitude
-            });
+            return getImageData(
+                straatbeeldConfig.NEW_DATA_ENDPOINT,
+                {
+                    lat: latitude,
+                    lon: longitude,
+                    radius: 100
+                }
+            );
         }
 
-        function getImageData (searchParams) {
+        function getImageData (url, searchParams) {
+            //console.log(url, searchParams);
             return $http({
                 method: 'GET',
-                url: straatbeeldConfig.DATA_ENDPOINT,
+                url: url,
                 params: searchParams
             }).then(function (response) {
-                return earthmineDataFormatter.formatPanoramaState(response.data);
+                return response.data; //earthmineDataFormatter.formatPanoramaState(response.data);
             });
         }
 

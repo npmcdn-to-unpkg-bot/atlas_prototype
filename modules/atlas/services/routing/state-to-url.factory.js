@@ -75,7 +75,7 @@
 
             if (state.straatbeeld) {
                 if (state.straatbeeld.id) {
-                    params.id = String(state.straatbeeld.id);
+                    params.id = state.straatbeeld.id;
 
                     if (state.straatbeeld.camera) {
                         params.heading = String(state.straatbeeld.camera.heading);

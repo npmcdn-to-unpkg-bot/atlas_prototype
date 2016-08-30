@@ -48,7 +48,8 @@
 
             //Fetch scene #2-n
             scope.$watchCollection('state.id', function (id) {
-                if (angular.isNumber(id)) {
+                //console.log('state.id change', id);
+                if (angular.isString(id)) {
                     earthmine.getImageDataById(id).then(function (earthmineData) {
                         store.dispatch({
                             type: ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
@@ -63,6 +64,7 @@
                 if (angular.isArray(location)) {
                     marzipanoService.loadScene(
                         scope.state.id,
+                        scope.state.image,
                         scope.state.car,
                         scope.state.camera,
                         scope.state.hotspots

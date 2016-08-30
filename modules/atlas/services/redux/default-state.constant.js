@@ -35,6 +35,7 @@
                 id: 1,
                 searchLocation: null,
                 date: null,
+                image: 'http://api.example.com/normalized/lalalala.jpg',
                 car: {
                     location: [52.789, 4.123],
                     heading: 20,

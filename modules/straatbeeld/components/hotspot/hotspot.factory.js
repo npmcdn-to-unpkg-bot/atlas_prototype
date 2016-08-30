@@ -13,7 +13,7 @@
             calculateHotspotPosition: calculateHotspotPosition
         };
 
-        function createHotspotTemplate (sceneId, distance) {
+        function createHotspotTemplate (sceneId, distance, heading, pitch) {
             var q,
                 html,
                 element,
@@ -24,10 +24,14 @@
             element = $document[0].createElement('dp-hotspot');
             element.setAttribute('scene-id', 'sceneId');
             element.setAttribute('distance', 'distance');
+            element.setAttribute('heading', 'heading');
+            element.setAttribute('pitch', 'pitch');
 
             scope = $rootScope.$new();
             scope.sceneId = sceneId;
             scope.distance = distance;
+            scope.heading = heading;
+            scope.pitch = pitch;
 
             html = $compile(element)(scope)[0];
 
@@ -41,8 +45,8 @@
         //HELP: ik snap dit niet!
         function calculateHotspotPosition (camera, hotspot) {
             return {
-                yaw: hotspot.relativeLocation.yaw - camera.heading,
-                pitch: hotspot.relativeLocation.pitch + camera.pitch
+                yaw: hotspot.heading,
+                pitch: hotspot.pitch
             };
         }
     }
