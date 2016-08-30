@@ -48,7 +48,7 @@ describe('The dp-straatbeeld-thumbnail component', function () {
         var component = getComponent([52.369, 4.963]);
 
         expect(component.find('img').attr('src'))
-            .toBe('http://fake.straatbeeld.url/path/?lat=52.369&lon=4.963&width=240&height=135');
+            .toBe('http://fake.straatbeeld.url/path/?lat=52.369&lon=4.963&width=240');
     });
 
     it('wraps the thumbnail inside a button that triggers FETCH_STRAATBEELD', function () {
