@@ -1,20 +1,20 @@
-<div class="layers-labels" ng-class="{true:'is-shown', false:'is-hidden'}[vm.isLegendOpen]">
-    <button class="header" ng-click="vm.switchLegendPane()">
-        <div class="layers-label-icon" >
+<div class="c-overlay-legend" ng-class="{true:'c-overlay-legend__shown', false:'c-overlay-legend__hidden'}[vm.isLegendOpen]">
+    <button class="c-overlay-legend--header" ng-click="vm.switchLegendPane()">
+        <div class="c-overlay-legend--icon" >
             <img ng-src="/assets/icons/plus.svg" alt="Open legenda" ng-if="!vm.isLegendOpen">
             <img ng-src="/assets/icons/minimize.svg" alt="Sluit legenda" ng-if="vm.isLegendOpen">
         </div>
-        <span class="layers-label-title">Kaartlagen<span>
+        <span class="c-overlay-legend--title">Kaartlagen<span>
         <span ng-if="vm.activeLayers > 0" class="qa-show-layers-count">
             (<span ng-if="vm.visibleLayers != vm.activeLayers" class="qa-show-visible-layers-count">{{ vm.visibleLayers }}/</span><span class="qa-show-active-layers-count">{{ vm.activeLayers }}</span>)
         </span>
     </button>
-    <ul class="overlays">
+    <ul class="c-overlay-legend--overlays">
     	<li>
     		<dp-legend-item ng-repeat="overlay in vm.overlays track by overlay.id" overlay="overlay" zoom="vm.zoom"></dp-legend-item>
     	</li>
     </ul>
-    <div class="edit-overlays" ng-class="{true:'show', flase:'hide'}[vm.visible]">
+    <div class="c-overlay-legend--edit-overlays">
         <dp-link type="SHOW_LAYER_SELECTION" class-name="edit-overlayes">&gt; Toevoegen / verwijderen</dp-link>
     </div>
 </div>

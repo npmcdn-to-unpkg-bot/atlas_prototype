@@ -42,34 +42,34 @@ describe('The atlas statusbar component', function() {
     }
 
 
-    describe('Statusbar present', function() {
+    describe('overlay legend present', function() {
     	it('Has layers panel', function() {
     		var component = getComponent([], 8);
-    		expect(component.find('.layers-labels').length).toBe(1);
+    		expect(component.find('.c-overlay-legend').length).toBe(1);
     	});
     	it('Can open the legend', function() {
     		var component = getComponent([], 8);
-    		expect(component.find('.layers-labels.is-hidden').length).toBe(1);
-    		expect(component.find('.layers-labels.is-shown').length).toBe(0);
-    		component.find('.header').click();
-    		expect(component.find('.layers-labels.is-hidden').length).toBe(0);
-    		expect(component.find('.layers-labels.is-shown').length).toBe(1);
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__hidden').length).toBe(1);
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__shown').length).toBe(0);
+    		component.find('.c-overlay-legend--header').click();
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__hidden').length).toBe(0);
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__shown').length).toBe(1);
     	});
     	it('Can close the legend', function() {
     		var component = getComponent([], 8);
-    		expect(component.find('.layers-labels.is-hidden').length).toBe(1);
-    		expect(component.find('.layers-labels.is-showen').length).toBe(0);
-    		component.find('.header').click();
-    		component.find('.header').click();
-    		expect(component.find('.layers-labels.is-hidden').length).toBe(1);
-    		expect(component.find('.layers-labels.is-shown').length).toBe(0);
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__hidden').length).toBe(1);
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__showen').length).toBe(0);
+    		component.find('.c-overlay-legend--header').click();
+    		component.find('.c-overlay-legend--header').click();
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__hidden').length).toBe(1);
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__shown').length).toBe(0);
     	});
     });
     describe('Statusbar adds layer to legend', function() {
     	it('Starts closed', function() {
     		var component = getComponent([], 8);
-    		expect(component.find('.layers-labels.is-hidden').length).toBe(1);
-    		expect(component.find('.layers-labels.is-shown').length).toBe(0);
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__hidden').length).toBe(1);
+    		expect(component.find('.c-overlay-legend.c-overlay-legend__shown').length).toBe(0);
     	});
     	it('Starts empty', function() {
     		var component = getComponent([], 8);

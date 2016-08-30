@@ -8,7 +8,6 @@
 				overlay: '=',
 				zoom: '='
 			},
-			resrict: 'E',
 			templateUrl: 'modules/map/components/overlay-legend/legend-item/legend-item.html',
 			controller: LegendItem,
 			controllerAs: 'vm'
