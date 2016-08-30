@@ -18,7 +18,6 @@
         var vm = this,
             url;
 
-        vm.hasStraatbeeld = null;
         vm.isLoading = true;
 
         url = sharedConfig.STRAATBEELD_THUMB_URL +
@@ -28,12 +27,8 @@
             '&radius=' + sharedConfig.STRAATBEELD_SEARCH_RADIUS;
 
         api.getByUrl(url).then(function (thumbnailData) {
-            if (angular.isObject(thumbnailData)) {
+            if (angular.isString(thumbnailData.url)) {
                 vm.imageUrl = thumbnailData.url;
-
-                vm.hasStraatbeeld = true;
-            } else {
-                vm.hasStraatbeeld = false;
             }
 
             vm.isLoading = false;
