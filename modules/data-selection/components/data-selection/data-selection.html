@@ -1,4 +1,6 @@
-<div class="u-grid">
+<dp-loading-indicator is-loading="vm.isLoading" use-delay="false" show-inline="true"></dp-loading-indicator>
+
+<div ng-if="!vm.isLoading" class="u-grid">
     <div class="u-row">
         <div class="u-col-sm--2">
             <dp-data-selection-filters available-filters="vm.availableFilters" active-filters="vm.state.filters">

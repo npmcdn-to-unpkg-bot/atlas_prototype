@@ -10,7 +10,7 @@
             query: query
         };
 
-        function query (dataset, activeFilters) {
+        function query (dataset/*, activeFilters*/) {
             var filterParams = {};
 
             //Maak een API url op basis van de activeFilters

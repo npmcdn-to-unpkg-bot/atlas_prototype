@@ -20,7 +20,6 @@
         $scope.$watch('state', fetchData);
 
         function fetchData () {
-            console.log('fetchDtaa?');
             vm.isLoading = true;
 
             dataSelectionApi.query(vm.state.dataset, vm.state.filters).then(function (data) {
