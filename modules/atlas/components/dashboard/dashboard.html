@@ -38,7 +38,8 @@
                     class="u-col-sm--{{vm.columnSizes.middle}} qa-dashboard__content__column--middle u-height--100"
                     ng-class="{
                         'u-padding__right--1 u-padding__left--1': !vm.isPrintMode,
-                        'u-height--auto': vm.isPrintMode
+                        'u-height--auto': vm.isPrintMode,
+                        'c-dashboard__content--scrollable': vm.isMiddleColumnScrollable
                     }">
 
                     <div ng-if="vm.visibility.map" ng-controller="MapController as vm">

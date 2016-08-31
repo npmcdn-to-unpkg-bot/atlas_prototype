@@ -1,0 +1,6 @@
+<div ng-repeat="category in vm.availableFilters">
+    <h3>{{category.label}}</h3>
+    <ul>
+        <li ng-repeat="option in category.options | limitTo : 10">{{option.label}} ({{option.count | number}})</li>
+    </ul>
+</div>

@@ -26,6 +26,8 @@
 
             vm.isPrintMode = state.isPrintMode;
 
+            vm.isMiddleColumnScrollable = vm.visibility.dataSelection;
+
             vm.isRightColumnScrollable = !state.map.isFullscreen &&
                 (vm.visibility.page || vm.visibility.detail || vm.visibility.searchResults);
 

@@ -12,7 +12,23 @@
             controllerAs: 'vm'
         });
 
-    function DpDataSelectionController () {
-        //var vm = this;
+    DpDataSelectionController.$inject = ['$scope', 'dataSelectionApi'];
+
+    function DpDataSelectionController ($scope, dataSelectionApi) {
+        var vm = this;
+
+        $scope.$watch('state', fetchData);
+
+        function fetchData () {
+            console.log('fetchDtaa?');
+            vm.isLoading = true;
+
+            dataSelectionApi.query(vm.state.dataset, vm.state.filters).then(function (data) {
+                vm.availableFilters = data.filters;
+                vm.tableData = data.tableData;
+
+                vm.isLoading = false;
+            });
+        }
     }
 })();

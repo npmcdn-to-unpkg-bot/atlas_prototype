@@ -1,12 +1,11 @@
 <div class="u-grid">
     <div class="u-row">
         <div class="u-col-sm--2">
-            <h2>Filters</h2>
+            <dp-data-selection-filters available-filters="vm.availableFilters" active-filters="vm.state.filters">
+            </dp-data-selection-filters>
         </div>
         <div class="u-col-sm--10">
-            <h1>Catalogus</h1>
-            <p>Ik ben het data selection component.</p>
-            <p>{{vm.state}}</p>
+            <dp-data-selection-table content="vm.tableData"></dp-data-selection-table>
         </div>
     </div>
 </div>
