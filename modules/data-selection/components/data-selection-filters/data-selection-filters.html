@@ -3,4 +3,5 @@
     <ul>
         <li ng-repeat="option in category.options | limitTo : 10">{{option.label}} ({{option.count | number}})</li>
     </ul>
+    <button ng-if="category.options.length > 10"><strong>Toon meer</strong></button>
 </div>
