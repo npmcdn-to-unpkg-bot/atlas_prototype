@@ -28,17 +28,21 @@
   line-height: 26px;
   text-transform: lowercase;
 
-  &:hover {
-    text-decoration: underline;
-  }
-
   &::after {
     display: inline-block;
     width: 26px;
     height: 26px;
     margin-left: $base-whitespace / 2;
-    background-image: url("assets/icons/link-button.svg");
+    background-image: url("assets/icons/link-active.svg");
     content: "";
     vertical-align: middle;
+  }
+
+  &:hover {
+    color: $primary-contrast;
+
+    &::after {
+      background-image: url("assets/icons/link-hover.svg");
+    }
   }
 }
