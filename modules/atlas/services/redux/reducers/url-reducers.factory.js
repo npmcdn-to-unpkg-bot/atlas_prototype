@@ -25,7 +25,7 @@
                 newState.page = payload.pagina || null;
                 newState.detail = getDetailState(oldState, payload);
                 newState.straatbeeld = getStraatbeeldState(oldState, payload);
-                newState.dataSelection = getDataSelectionState(oldState, payload);
+                newState.dataSelection = getDataSelectionState(payload);
                 newState.isPrintMode = getPrintState(payload);
 
                 return newState;
