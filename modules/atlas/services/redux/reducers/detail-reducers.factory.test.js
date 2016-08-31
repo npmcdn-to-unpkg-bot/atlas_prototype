@@ -106,5 +106,14 @@ describe('The detailReducers factory', function () {
             expect(output.map.isLoading).toBe(false);
             expect(output.detail.isLoading).toBe(false);
         });
+
+        it('does nothing when detail is null', function () {
+            //This can happen when a user triggers another action after FETCH_DETAIL and before SHOW_DETAIL
+            var output;
+
+            expect(defaultState.detail).toBeNull();
+            output = detailReducers.SHOW_DETAIL(defaultState, payload);
+            expect(output.detail).toBeNull();
+        });
     });
 });

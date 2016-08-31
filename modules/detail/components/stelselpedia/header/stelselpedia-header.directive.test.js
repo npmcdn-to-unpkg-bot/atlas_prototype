@@ -225,7 +225,7 @@ describe('The atlas-stelselpedia-header directive', function () {
             expect(directive.find('.c-stelselpedia').length).toBe(1);
 
             //Close uitleg with the cross
-            directive.find('.o-button--close').click();
+            directive.find('.o-btn--close').click();
             expect(directive.find('.c-stelselpedia').length).toBe(0);
 
             //Open metadata
@@ -233,7 +233,7 @@ describe('The atlas-stelselpedia-header directive', function () {
             expect(directive.find('.c-metadata').length).toBe(1);
 
             //Close metadata with the cross
-            directive.find('.o-button--close').click();
+            directive.find('.o-btn--close').click();
             expect(directive.find('.c-metadatat').length).toBe(0);
         });
 
