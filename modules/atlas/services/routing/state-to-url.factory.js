@@ -19,6 +19,7 @@
                 getPageParams(state),
                 getDetailParams(state),
                 getStraatbeeldParams(state),
+                getDataSelectionParams(state),
                 getPrintParams(state)
             );
 
@@ -89,6 +90,27 @@
                     params.plat = String(state.straatbeeld.searchLocation[0]);
                     params.plon = String(state.straatbeeld.searchLocation[1]);
                 }
+            }
+
+            return params;
+        }
+
+        function getDataSelectionParams (state) {
+            var params = {},
+                datasetFilters = [];
+
+            if (angular.isObject(state.dataSelection)) {
+                params.dataset = state.dataSelection.dataset;
+
+                angular.forEach(state.dataSelection.filters, function(value, key) {
+                    datasetFilters.push(key + ':' + value);
+                });
+
+                if (datasetFilters.length) {
+                    params['dataset-filters'] = datasetFilters.join(',');
+                }
+
+                params['dataset-pagina'] = state.dataSelection.page;
             }
 
             return params;
