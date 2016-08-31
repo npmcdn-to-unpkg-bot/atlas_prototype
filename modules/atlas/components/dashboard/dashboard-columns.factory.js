@@ -55,10 +55,18 @@
         }
 
         function determineColumnSizes (visibility, hasFullscreenMap, isPrintMode) {
-            var columnSizes = {};
+            var isFullscreen = hasFullscreenMap || visibility.dataSelection;
 
             if (!isPrintMode) {
-                if (hasFullscreenMap) {
+                return determineColumnSizesDefault(visibility, isFullscreen);
+            } else {
+                return determineColumnSizesPrint(visibility, isFullscreen);
+            }
+
+            function determineColumnSizesDefault (visibility, isFullscreen) {
+                var columnSizes = {};
+
+                if (isFullscreen) {
                     columnSizes.left = 0;
                     columnSizes.middle = 12;
                 } else if (visibility.layerSelection) {
@@ -70,8 +78,14 @@
                 }
 
                 columnSizes.right = 12 - columnSizes.left - columnSizes.middle;
-            } else {
-                if (hasFullscreenMap) {
+
+                return columnSizes;
+            }
+
+            function determineColumnSizesPrint (visibility, isFullscreen) {
+                var columnSizes = {};
+
+                if (isFullscreen) {
                     columnSizes.left = 0;
                     columnSizes.middle = 12;
                     columnSizes.right = 0;
@@ -88,9 +102,9 @@
                     columnSizes.middle = 12;
                     columnSizes.right = 12;
                 }
-            }
 
-            return columnSizes;
+                return columnSizes;
+            }
         }
     }
 })();
