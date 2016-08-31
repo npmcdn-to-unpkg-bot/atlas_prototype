@@ -14,29 +14,41 @@
         function determineVisibility (state) {
             var visibility = {};
 
-            if (!state.isPrintMode) {
-                visibility.map = true;
-            } else {
-                visibility.map = state.map.isFullscreen ||
-                    (
-                        !state.map.showLayerSelection &&
-                        (angular.isObject(state.detail) || angular.isObject(state.straatbeeld))
-                    );
-            }
+            if (angular.isObject(state.dataSelection)) {
+                visibility.dataSelection = true;
 
-            visibility.layerSelection = state.map.showLayerSelection;
-
-            if (state.map.showLayerSelection || state.map.isFullscreen) {
+                visibility.map = false;
                 visibility.detail = false;
                 visibility.page = false;
                 visibility.searchResults = false;
                 visibility.straatbeeld = false;
             } else {
-                visibility.detail = angular.isObject(state.detail);
-                visibility.page = angular.isString(state.page);
-                visibility.searchResults = angular.isObject(state.search) &&
-                    (angular.isString(state.search.query) || angular.isArray(state.search.location));
-                visibility.straatbeeld = angular.isObject(state.straatbeeld);
+                if (!state.isPrintMode) {
+                    visibility.map = true;
+                } else {
+                    visibility.map = state.map.isFullscreen ||
+                        (
+                            !state.map.showLayerSelection &&
+                            (angular.isObject(state.detail) || angular.isObject(state.straatbeeld))
+                        );
+                }
+
+                visibility.layerSelection = state.map.showLayerSelection;
+
+                if (state.map.showLayerSelection || state.map.isFullscreen) {
+                    visibility.detail = false;
+                    visibility.page = false;
+                    visibility.searchResults = false;
+                    visibility.straatbeeld = false;
+                } else {
+                    visibility.detail = angular.isObject(state.detail);
+                    visibility.page = angular.isString(state.page);
+                    visibility.searchResults = angular.isObject(state.search) &&
+                        (angular.isString(state.search.query) || angular.isArray(state.search.location));
+                    visibility.straatbeeld = angular.isObject(state.straatbeeld);
+                }
+
+                visibility.dataSelection = false;
             }
 
             return visibility;
