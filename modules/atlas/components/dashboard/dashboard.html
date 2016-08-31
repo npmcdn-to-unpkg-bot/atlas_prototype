@@ -38,8 +38,7 @@
                     class="u-col-sm--{{vm.columnSizes.middle}} qa-dashboard__content__column--middle u-height--100"
                     ng-class="{
                         'u-padding__right--1 u-padding__left--1': !vm.isPrintMode,
-                        'u-height--auto': vm.isPrintMode,
-                        'c-dashboard__content--scrollable': vm.isMiddleColumnScrollable
+                        'u-height--auto': vm.isPrintMode
                     }">
 
                     <div ng-if="vm.visibility.map" ng-controller="MapController as vm">
@@ -48,10 +47,6 @@
                             markers="vm.markers">
 
                         </dp-map>
-                    </div>
-
-                    <div ng-if="vm.visibility.dataSelection" ng-controller="DataSelectionController as vm">
-                        <dp-data-selection state="vm.dataSelectionState"></dp-data-selection>
                     </div>
                 </div>
 
@@ -86,6 +81,10 @@
 
                     <div ng-if="vm.visibility.straatbeeld" ng-controller="StraatbeeldController as straatbeeld">
                         <dp-straatbeeld state="straatbeeld.straatbeeldState" is-print-mode="vm.isPrintMode"></dp-straatbeeld>
+                    </div>
+
+                    <div ng-if="vm.visibility.dataSelection" ng-controller="DataSelectionController as vm">
+                        <dp-data-selection state="vm.dataSelectionState"></dp-data-selection>
                     </div>
                 </div>
             </div>

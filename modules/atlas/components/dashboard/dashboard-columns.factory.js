@@ -55,23 +55,24 @@
         }
 
         function determineColumnSizes (visibility, hasFullscreenMap, isPrintMode) {
-            var isFullscreen = hasFullscreenMap || visibility.dataSelection;
-
             if (!isPrintMode) {
-                return determineColumnSizesDefault(visibility, isFullscreen);
+                return determineColumnSizesDefault(visibility, hasFullscreenMap);
             } else {
-                return determineColumnSizesPrint(visibility, isFullscreen);
+                return determineColumnSizesPrint(visibility, hasFullscreenMap);
             }
 
-            function determineColumnSizesDefault (visibility, isFullscreen) {
+            function determineColumnSizesDefault (visibility, hasFullscreenMap) {
                 var columnSizes = {};
 
-                if (isFullscreen) {
+                if (hasFullscreenMap) {
                     columnSizes.left = 0;
                     columnSizes.middle = 12;
                 } else if (visibility.layerSelection) {
                     columnSizes.left = 8;
                     columnSizes.middle = 4;
+                } else if (visibility.dataSelection) {
+                    columnSizes.left = 0;
+                    columnSizes.middle = 0;
                 } else {
                     columnSizes.left = 0;
                     columnSizes.middle = 4;
@@ -82,10 +83,10 @@
                 return columnSizes;
             }
 
-            function determineColumnSizesPrint (visibility, isFullscreen) {
+            function determineColumnSizesPrint (visibility, hasFullscreenMap) {
                 var columnSizes = {};
 
-                if (isFullscreen) {
+                if (hasFullscreenMap) {
                     columnSizes.left = 0;
                     columnSizes.middle = 12;
                     columnSizes.right = 0;
@@ -93,7 +94,7 @@
                     columnSizes.left = 12;
                     columnSizes.middle = 0;
                     columnSizes.right = 0;
-                } else if (visibility.page || visibility.searchResults) {
+                } else if (visibility.page || visibility.searchResults || visibility.dataSelection) {
                     columnSizes.left = 0;
                     columnSizes.middle = 0;
                     columnSizes.right = 12;
