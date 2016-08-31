@@ -52,7 +52,7 @@
             /*
             dataSelection: {
                 dataset: 'bag',
-                activeFilters: {
+                filters: {
                     buurtcombinatie: 'Geuzenbuurt',
                     buurt: 'Trompbuurt'
                 },

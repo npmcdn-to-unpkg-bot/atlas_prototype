@@ -17,7 +17,7 @@
 
         /**
          * @param {Object} oldState
-         * @param {Object} payload - On object with two keys: dataset (String) and activeFilters (Object)
+         * @param {Object} payload - On object with two keys: dataset (String) and filters (Object)
          *
          * @returns {Object} newState
          */
