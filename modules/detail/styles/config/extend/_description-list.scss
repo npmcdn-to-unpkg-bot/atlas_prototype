@@ -27,7 +27,7 @@
     }
 
     &:last-of-type {
-      min-height: 29px; //anders klapt de hoogte in (lineheight x font-size + border)
+      min-height: 30px; //anders klapt de hoogte in (lineheight x font-size + border)
     }
   }
 
