@@ -14,7 +14,7 @@
                     maxZoom: 16
                 },
                 gemeentelijke_beperkingen: {
-                    url: 'maps/wkpb&service=wms',
+                    url: 'maps/wkpb',
                     label_short: 'Gemeentelijke beperkingen',
                     label_long: 'Gemeentelijke beperkingen',
                     layers: ['wkpb'],
@@ -114,7 +114,7 @@
                     external: true
                 },
                 nap: {
-                    url: 'maps/nap&service=wms',
+                    url: 'maps/nap',
                     label_short: 'Normaal Amsterdams Peil (NAP)',
                     label_long: 'Normaal Amsterdams Peil (NAP)',
                     layers: ['peilmerk_hoogte', 'peilmerk_label'],
@@ -144,7 +144,7 @@
                         'LegendGraphic&sld_version=1.1.0&layer=meetbouten_zaksnelheid&format=image/png&STYLE=default'
                 },
                 meetbouten_referentiepunten: {
-                    url: 'maps/meetbouten&service=wms',
+                    url: 'maps/meetbouten',
                     label_short: 'Meetbouten - Referentiepunten',
                     label_long: 'Meetbouten - Referentiepunten',
                     layers: ['referentiepunten'],
@@ -154,7 +154,7 @@
                         'LegendGraphic&sld_version=1.1.0&layer=referentiepunten&format=image/png&STYLE=default'
                 },
                 panorama_rijlijnen_2012: {
-                    url: 'maps/panorama&service=wms',
+                    url: 'maps/panorama',
                     label_short: 'Straatbeeld rijlijnen 2012',
                     label_long: 'Straatbeeld rijlijnen 2012',
                     layers: ['panorama'],
@@ -164,7 +164,7 @@
                         'gendGraphic&sld_version=1.1.0&layer=panorama_punt&format=image/png&STYLE=default'
                 },
                 milieu_bodem_grondmonsters: {
-                    url: 'maps/bodem&service=wms',
+                    url: 'maps/bodem',
                     label_short: 'Grondmonster',
                     label_long: 'Grondmonster',
                     layers: ['grondmonsters'],
@@ -174,7 +174,7 @@
                         'dGraphic&sld_version=1.1.0&layer=grondmonsters&format=image/png&STYLE=default'
                 },
                 milieu_bodem_grondwatermonsters: {
-                    url: 'maps/bodem&service=wms',
+                    url: 'maps/bodem',
                     label_short: 'Grondwatermonster',
                     label_long: 'Grondwatermonster',
                     layers: ['grondwatermonsters'],
@@ -184,7 +184,7 @@
                         'dGraphic&sld_version=1.1.0&layer=grondwatermonsters&format=image/png&STYLE=default'
                 },
                 milieu_bodem_asbest_in_grond: {
-                    url: 'maps/bodem&service=wms',
+                    url: 'maps/bodem',
                     label_short: 'Asbest in grond',
                     label_long: 'Asbest in grond',
                     layers: ['asbest'],
@@ -194,7 +194,7 @@
                         'dGraphic&sld_version=1.1.0&layer=asbest&format=image/png&STYLE=default'
                 },
                 milieu_veiligheid_lpg_vulpunt: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'LPG-vulpunt - Risicozones',
                     label_long: 'LPG-vulpunt - Risicozones',
                     layers: [
@@ -210,7 +210,7 @@
                         'STYLE=default'
                 },
                 milieu_veiligheid_lpg_afleverzuil: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'LPG-afleverzuil - Risicozones',
                     label_long: 'LPG-afleverzuil - Risicozones',
                     layers: ['milieu_veiligheid_lpg_afleverzuil'],
@@ -221,7 +221,7 @@
                         'png&STYLE=default'
                 },
                 milieu_veiligheid_lpg_tank: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'LPG-tank - Risicozones',
                     label_long: 'LPG-tank - Risicozones',
                     layers: ['lpgtankinvloedsgebied', 'lpgtankplaatsgebondenrisico', 'lpgtankligging'],
@@ -232,7 +232,7 @@
                         'LE=default'
                 },
                 milieu_veiligheid_lpg_station: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'LPG-station - Risicozones',
                     label_long: 'LPG-station - Risicozones',
                     layers: ['lpgstationcontouren', 'lpgstationslocaties'],
@@ -243,7 +243,7 @@
                         'STYLE=default'
                 },
                 milieu_veiligheid_bron: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Bron - Risicozones',
                     label_long: 'Bron - Risicozones',
                     layers: ['overigerisicobedrijven'],
@@ -254,7 +254,7 @@
                         'efault'
                 },
                 milieu_veiligheid_bedrijf: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Bedrijf - Risicozones',
                     label_long: 'Bedrijf - Risicozones',
                     layers: ['milieu_veiligheid_bedrijf'],
@@ -265,7 +265,7 @@
                         'E=default'
                 },
                 milieu_veiligheid_aardgasbuisleidingen: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Aardgasbuisleid. - Risicozones',
                     label_long: 'Aardgasbuisleidingen - Risicozones',
                     layers: ['milieu_veiligheid_aardgasbuisleidingen'],
@@ -276,7 +276,7 @@
                         'mage/png&STYLE=default'
                 },
                 milieu_veiligheid_spoorwegen: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Spoorwegen - Risicozones',
                     label_long: 'Spoorwegen - Risicozones',
                     layers: ['risicozonesspoorweg'],
@@ -287,7 +287,7 @@
                         'ult'
                 },
                 milieu_veiligheid_vaarwegen: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Vaarwegen - Risicozones',
                     label_long: 'Vaarwegen - Risicozones',
                     layers: ['risicozonesvaarweg'],
@@ -297,7 +297,7 @@
                         'est=GetLegendGraphic&sld_version=1.1.0&layer=risicozonesvaarweg&format=image/png&STYLE=default'
                 },
                 milieu_veiligheid_wegen: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Wegen - Risicozones',
                     label_long: 'Wegen - Risicozones',
                     layers: ['risicozonesweg'],
@@ -307,7 +307,7 @@
                         'est=GetLegendGraphic&sld_version=1.1.0&layer=risicozonesweg&format=image/png&STYLE=default'
                 },
                 milieu_veiligheid_vuurwerkopslag: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Vuurwerkopslag - Veilig.afst.',
                     label_long: 'Vuurwerkopslag - Veiligheidsafstanden',
                     layers: ['milieu_veiligheid_vuurwerk'],
@@ -318,7 +318,7 @@
                         'LE=default'
                 },
                 milieu_veiligheid_munitieopslag: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Munitieopslag - Veilig.afst.',
                     label_long: 'Munitieopslag - Veiligheidsafstanden',
                     layers: ['milieu_veiligheid_munitie'],
@@ -329,7 +329,7 @@
                         'E=default'
                 },
                 milieu_veiligheid_gasdrukregel_en_meetstations: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Gasdruk...stations - Veilig.afst.',
                     label_long: 'Gasdrukregel- en meetstation - Veiligheidsafstanden',
                     layers: ['milieu_veiligheid_gasdrukregel_meetstation'],
@@ -340,7 +340,7 @@
                         'at=image/png&STYLE=default'
                 },
                 milieu_veiligheid_sluis: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Sluis - Veilig.afst.',
                     label_long: 'Sluis - Veiligheidsafstanden',
                     layers: ['milieu_veiligheid_sluis'],
@@ -351,7 +351,7 @@
                         'default'
                 },
                 milieu_veiligheid_wachtplaatsen: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Wachtplaatsen - Veilig.afst.',
                     label_long: 'Wachtplaatsen - Veiligheidsafstanden',
                     layers: ['milieu_veiligheid_wachtplaats'],
@@ -362,7 +362,7 @@
                         'STYLE=default'
                 },
                 milieu_veiligheid_bunkerschepen: {
-                    url: 'maps/externeveiligheid&service=wms',
+                    url: 'maps/externeveiligheid',
                     label_short: 'Bunkerschepen - Veilig.afst.',
                     label_long: 'Bunkerschepen - Veiligheidsafstanden',
                     layers: ['milieu_veiligheid_bunkerschepen'],
@@ -373,7 +373,7 @@
                         'g&STYLE=default'
                 },
                 milieu_veiligheid_vogelvrijwaringsgebied_schiphol: {
-                    url: 'maps/planologischezonesschiphol&service=wms',
+                    url: 'maps/planologischezonesschiphol',
                     label_short: 'Schiphol - Vogelvrijwaring',
                     label_long: 'Schiphol - Vogelvrijwaring',
                     layers: ['vogelvrijwaringsgebiedschiphol'],
@@ -384,7 +384,7 @@
                         'image/png&STYLE=default'
                 },
                 milieu_geluid_planologisch_schiphol: {
-                    url: 'maps/planologischezonesschiphol&service=wms',
+                    url: 'maps/planologischezonesschiphol',
                     label_short: 'Schiphol',
                     label_long: 'Schiphol',
                     layers: ['geluidszoneschiphol'],
@@ -395,7 +395,7 @@
                         'TYLE=default'
                 },
                 milieu_hoogtebeperkende_vlakken: {
-                    url: 'maps/planologischezonesschiphol&service=wms',
+                    url: 'maps/planologischezonesschiphol',
                     label_short: 'Schiphol - Hoogtebeperking',
                     label_long: 'Schiphol - Hoogtebeperking',
                     layers: ['hoogtebeperkingschiphol'],
@@ -406,7 +406,7 @@
                         'ng&STYLE=default'
                 },
                 milieu_geluid_planologisch_spoorwegen: {
-                    url: 'maps/planologischegeluidszones&service=wms',
+                    url: 'maps/planologischegeluidszones',
                     label_short: 'Spoorwegen - Geluidszones',
                     label_long: 'Spoorwegen - Geluidszones',
                     layers: ['spoorwegen'],
@@ -416,7 +416,7 @@
                         'WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=spoorwegen&format=image/png&STYLE=default'
                 },
                 milieu_geluid_planologisch_metro: {
-                    url: 'maps/planologischegeluidszones&service=wms',
+                    url: 'maps/planologischegeluidszones',
                     label_short: 'Metro - Geluidszones',
                     label_long: 'Metro - Geluidszones',
                     layers: ['metro'],
@@ -426,7 +426,7 @@
                         'WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=metro&format=image/png&STYLE=default'
                 },
                 milieu_geluid_planologisch_industrie: {
-                    url: 'maps/planologischegeluidszones&service=wms',
+                    url: 'maps/planologischegeluidszones',
                     label_short: 'Industrie - Geluidszones',
                     label_long: 'Industrie - Geluidszones',
                     layers: [
@@ -441,7 +441,7 @@
                         'rmat=image/png&STYLE=default'
                 },
                 parkeervakken: {
-                    url: 'maps/parkeervakken&service=wms',
+                    url: 'maps/parkeervakken',
                     label_short: 'Parkeervakken',
                     label_long: 'Parkeervakken',
                     layers: ['alle_parkeervakken', 'parkeervakken_label'],
@@ -449,7 +449,7 @@
                     maxZoom: 16
                 },
                 parkeervakken_bord: {
-                    url: 'maps/parkeervakken&service=wms',
+                    url: 'maps/parkeervakken',
                     label_short: 'Parkeervakken - Borden',
                     label_long: 'Parkeervakken - Borden',
                     layers: ['alle_parkeervakken', 'parkeervakken_bord'],
@@ -457,7 +457,7 @@
                     maxZoom: 16
                 },
                 parkeervakken_reservering: {
-                    url: 'maps/parkeervakken&service=wms',
+                    url: 'maps/parkeervakken',
                     label_short: 'Parkeervakken - Gereserveerd',
                     label_long: 'Parkeervakken - Gereserveerd',
                     layers: ['parkeervakken_reservering', 'parkeervakken_reservering_label'],
