@@ -13,9 +13,9 @@
 			controllerAs: 'vm'
 		});
 
-	LegendItem.$inject = ['$scope', 'OVERLAYS', 'mapConfig', 'store', 'ACTIONS'];
+	LegendItem.$inject = ['$scope', 'OVERLAYS', 'mapConfig'];
 
-	function LegendItem($scope, OVERLAYS, mapConfig, store, ACTIONS) {
+	function LegendItem($scope, OVERLAYS, mapConfig) {
 		var vm = this;
 
 		// Setting legend and label
@@ -45,14 +45,7 @@
 			}
 			return icon;	
 		};
-		
 
-		vm.toggleVisibility = function() {
-			store.dispatch({
-                type: ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY,
-                payload: vm.overlay.id
-            });
-		};
 	}
 
 })();
