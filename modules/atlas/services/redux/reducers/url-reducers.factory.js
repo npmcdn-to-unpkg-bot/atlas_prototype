@@ -155,7 +155,7 @@
             }
 
             function getDataSelectionState (payload) {
-                var filters = [];
+                var filters = {};
 
                 if (angular.isString(payload.dataset)) {
                     if (angular.isString(payload['dataset-filters'])) {
@@ -169,7 +169,7 @@
                     return {
                         dataset: payload.dataset,
                         filters: filters,
-                        page: payload['dataset-pagina']
+                        page: Number(payload['dataset-pagina'])
                     };
                 } else {
                     return null;
