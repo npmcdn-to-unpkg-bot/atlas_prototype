@@ -40,13 +40,7 @@
             newState.detail = null;
             newState.straatbeeld = null;
 
-            newState.dataSelection = angular.merge(
-                {},
-                payload,
-                {
-                    page: 1
-                }
-            );
+            newState.dataSelection = payload;
 
             return newState;
         }
