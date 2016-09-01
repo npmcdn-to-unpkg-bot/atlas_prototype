@@ -13,7 +13,9 @@
             controllerAs: 'vm'
         });
 
-    function OverlayLegend($scope) {
+    OverlayLegend.$inject = ['$scope', 'store', 'ACTIONS'];
+
+    function OverlayLegend($scope, store, ACTIONS) {
         var vm = this;
         vm.isLegendOpen = false;
         // Layers counts
@@ -33,8 +35,15 @@
         }, true);
         
         vm.switchLegendPane = function () {
-            // Flipping the button
-            vm.isLegendOpen = !vm.isLegendOpen;
+            if (vm.activeLayerCount > 0) {
+                // Flipping the button
+                vm.isLegendOpen = !vm.isLegendOpen;    
+            } else {
+                // Moving to layer selection
+                store.dispatch({
+                    type: ACTIONS.SHOW_LAYER_SELECTION
+                });
+            }
         };
     }
 })();

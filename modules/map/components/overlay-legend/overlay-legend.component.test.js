@@ -1,10 +1,17 @@
 describe('The atlas statusbar component', function() {
 	var $compile,
+        store,
+        ACTIONS,
         $rootScope;
 
     beforeEach(function () {
         angular.mock.module(
             'dpMap',
+            {
+                store: {
+                    dispatch: function () {}
+                }
+            },
             function ($provide) {
                 $provide.factory('dpLinkDirective', function () {
                     return {};
@@ -15,11 +22,15 @@ describe('The atlas statusbar component', function() {
             }
         );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _store_, _ACTIONS_) {
                 $compile = _$compile_;
                 $rootScope = _$rootScope_;
+                store = _store_;
+                ACTIONS = _ACTIONS_;
             }
         );
+
+        spyOn(store, 'dispatch');
     });
 
     function getComponent (overlays, zoom) {
@@ -48,15 +59,18 @@ describe('The atlas statusbar component', function() {
     		expect(component.find('.c-overlay-legend').length).toBe(1);
     	});
     	it('Can open the legend', function() {
-    		var component = getComponent([], 8);
+    		var component = getComponent([{id: 'some_overlay', isVisible: true}], 8);
     		expect(component.find('.c-overlay-legend.c-overlay-legend--hidden').length).toBe(1);
     		expect(component.find('.c-overlay-legend.c-overlay-legend--shown').length).toBe(0);
     		component.find('.c-overlay-legend__header').click();
     		expect(component.find('.c-overlay-legend.c-overlay-legend--hidden').length).toBe(0);
     		expect(component.find('.c-overlay-legend.c-overlay-legend--shown').length).toBe(1);
+            expect(store.dispatch).not.toHaveBeenCalledWith({
+                type: ACTIONS.SHOW_LAYER_SELECTION,
+            });
     	});
     	it('Can close the legend', function() {
-    		var component = getComponent([], 8);
+    		var component = getComponent([{id: 'some_overlay', isVisible: true}], 8);
     		expect(component.find('.c-overlay-legend.c-overlay-legend--hidden').length).toBe(1);
     		expect(component.find('.c-overlay-legend.c-overlay-legend__showen').length).toBe(0);
     		component.find('.c-overlay-legend__header').click();
@@ -64,6 +78,13 @@ describe('The atlas statusbar component', function() {
     		expect(component.find('.c-overlay-legend.c-overlay-legend--hidden').length).toBe(1);
     		expect(component.find('.c-overlay-legend.c-overlay-legend--shown').length).toBe(0);
     	});
+        it('Opens layer selector when no layers are active', function() {
+            var component = getComponent([], 8);
+            component.find('.c-overlay-legend__header').click();
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: ACTIONS.SHOW_LAYER_SELECTION,
+            });
+        });
     });
     describe('Statusbar adds layer to legend', function() {
     	it('Starts closed', function() {
