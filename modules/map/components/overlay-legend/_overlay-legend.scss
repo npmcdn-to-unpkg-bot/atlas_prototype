@@ -30,7 +30,8 @@
   color: $primary-dark;
   font-weight: normal;
   text-align: left;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .c-overlay-legend__header {

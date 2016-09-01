@@ -13,9 +13,6 @@
         };
 
         function initialize (leafletMap) {
-            MEASURE_CONFIG.popupOptions = {
-                offset: L.Point(-10, -10)
-            };
             var measureControl = new L.Control.Measure(MEASURE_CONFIG),
                 leafletMeasureHtml;
 
