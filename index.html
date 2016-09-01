@@ -10,6 +10,20 @@
     <body>
         <atlas-dashboard></atlas-dashboard>
 
+        <script>
+            /*
+            tg-1306: scrolling can make the page partially black
+            ====================================================
+            ADW doesn't support hardware-accelerated CSS 3D transforms.
+
+            Leaflet uses Global Switches to disable these 3D transforms. They can't be set after the Leaflet JavaScript
+            has been loaded.
+
+            http://leafletjs.com/reference.html#global
+            */
+            var L_DISABLE_3D = true;
+        </script>
+
         <!-- SCRIPTS_START -->
         <!-- SCRIPTS_END -->
     </body>
