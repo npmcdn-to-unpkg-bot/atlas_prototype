@@ -77,7 +77,7 @@ describe('The atlas statusbar component', function() {
     describe('Legend creation', function() {
         it('Creates a legend using label_short for title', function() {
             var component = getComponent({id: 'overlay_1_a', isVisible: true}, 8);
-            expect(component.find('.legend-item--title').text()).toBe('Ov-1a');
+            expect(component.find('.legend-item__title').text()).toBe('Ov-1a');
         });
         it('Correctly creates legend if available', function() {
             var component = getComponent({id: 'overlay_1_a', isVisible: true}, 8);
@@ -96,7 +96,7 @@ describe('The atlas statusbar component', function() {
     describe('Changes visibility', function() {
         it('Changes visibility on click', function() {
             var component = getComponent({id: 'overlay_1_a', isVisible: true}, 8);
-            component.find('.legend-item--toggle button').click();
+            component.find('.legend-item__toggle button').click();
             expect(store.dispatch).toHaveBeenCalledWith({
                 payload: 'overlay_1_a',
                 type: ACTIONS.MAP_TOGGLE_VISIBILITY_OVERLAY
@@ -106,19 +106,19 @@ describe('The atlas statusbar component', function() {
     describe('Show correct icon', function() {
         it('Shows visible icon when visible', function() {
             var component = getComponent({id: 'overlay_1_a', isVisible: true}, 8);
-            expect(component.find('.legend-item--toggle img')[0].src.split('/').pop()).toBe('visible.svg');
+            expect(component.find('.legend-item__toggle img')[0].src.split('/').pop()).toBe('visible.svg');
         });
         it('Shows hidden icon when hidden', function() {
             var component = getComponent({id: 'overlay_1_a', isVisible: false}, 8);
-            expect(component.find('.legend-item--toggle img')[0].src.split('/').pop()).toBe('invisible-hidden.svg');
+            expect(component.find('.legend-item__toggle img')[0].src.split('/').pop()).toBe('invisible-hidden.svg');
         });
         it('Shows hidden by zoom icon when visible but on wrong zoom', function() {
             var component = getComponent({id: 'overlay_1_a', isVisible: true}, 4);
-            expect(component.find('.legend-item--toggle img')[0].src.split('/').pop()).toBe('invisible-zoomlevel.svg');
+            expect(component.find('.legend-item__toggle img')[0].src.split('/').pop()).toBe('invisible-zoomlevel.svg');
         });
         it('Shows hidden icon even in wrong zoom', function() {
             var component = getComponent({id: 'overlay_1_a', isVisible: false}, 4);
-            expect(component.find('.legend-item--toggle img')[0].src.split('/').pop()).toBe('invisible-hidden.svg');
+            expect(component.find('.legend-item__toggle img')[0].src.split('/').pop()).toBe('invisible-hidden.svg');
         });
     });
 });

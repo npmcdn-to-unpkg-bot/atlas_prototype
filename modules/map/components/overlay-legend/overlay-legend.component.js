@@ -17,8 +17,8 @@
         var vm = this;
         vm.isLegendOpen = false;
         // Layers counts
-        vm.activeLayers = vm.overlays.length;
-        vm.visibleLayers = vm.overlays.filter(function(elem) {
+        vm.activeLayerCount = vm.overlays.length;
+        vm.visibleLayersCount = vm.overlays.filter(function(elem) {
                 return elem.isVisible;
             }).length;
 
@@ -26,8 +26,8 @@
         // as per controllerAs
         $scope.$watch('vm.overlays', function(newVal) {
             // Updating active and visible layers count
-            vm.activeLayers = newVal.length;
-            vm.visibleLayers = newVal.filter(function(elem) {
+            vm.activeLayerCount = newVal.length;
+            vm.visibleLayersCount = newVal.filter(function(elem) {
                 return elem.isVisible;
             }).length;
         }, true);

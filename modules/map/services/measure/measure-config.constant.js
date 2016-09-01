@@ -4,6 +4,7 @@
     angular
         .module('dpMap')
         .constant('MEASURE_CONFIG', {
+            position: 'bottomright',
             primaryLengthUnit: 'meters',
             secondaryLengthUnit: null,
             primaryAreaUnit: 'sqmeters',

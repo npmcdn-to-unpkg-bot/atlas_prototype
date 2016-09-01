@@ -12,20 +12,20 @@
   font-weight: bold;
 
   text-align: center;
-  z-index: 1000;
+  z-index: 4;
 
-  &.c-overlay-legend__shown {
+  &.c-overlay-legend--shown {
     bottom: $layers-label-height + $statusbar-height + $statusbar-height / 5;
   }
 
-  &.c-overlay-legend__hidden {
+  &.c-overlay-legend--hidden {
     bottom: $statusbar-height / 5;
   }
 }
 
-.c-overlay-legend--overlays {
+.c-overlay-legend__overlays {
   height: 100%;
-  padding-left: 1rem;
+  padding-left: $base-whitespace;
   background-color: $primary-light;
   color: $primary-dark;
   font-weight: normal;
@@ -33,38 +33,26 @@
   overflow: scroll;
 }
 
-.c-overlay-legend--edit-overlays {
-  position: relative;
-  top: .2rem;
-  margin-left: .5rem;
-  float: left;
-  background-color: $secondary-gray60;
-  color: $primary-light;
-  font-size: .8rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.c-overlay-legend--header {
+.c-overlay-legend__header {
   display: block;
   width: 100%;
   height: $statusbar-height;
-  padding-left: .5rem;
+  padding-left: $base-whitespace;
   background-color: $secondary-gray60;
-  font-size: 1.1rem;
+  font-size: .8rem;
   text-align: left;
   cursor: pointer;
 }
 
-.c-overlay-legend--title {
+.c-overlay-legend__title {
   position: relative;
-  margin-left: 1rem;
+  margin-left: $base-whitespace;
   color: $primary-light;
   font-weight: bold;
   line-height: 2rem;
 }
 
-.c-overlay-legend--icon {
+.c-overlay-legend__icon {
   display: inline-block;
   position: relative;
   top: -.7rem;
@@ -72,7 +60,18 @@
   height: 1.7rem;
 }
 
-.c-overlay-legend--edit-overlays__link {
+.c-overlay-legend__edit-overlays {
+  position: relative;
+  top: .8rem;
+  margin-left: $base-whitespace;
+  float: left;
+  background-color: $secondary-gray60;
   color: $primary-light;
-  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.c-overlay-legend__edit-overlays__link {
+  color: $primary-light;
+  font-size: .9rem;
+  font-weight: bold;
 }

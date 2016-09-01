@@ -7,15 +7,15 @@
   width: 1.5em;
 }
 
-.legend-item--toggle {
+.legend-item__toggle {
   margin-right: .5rem;
   padding-top: .25rem;
 
-  button {
+  .legend-item__toggle__button {
     background-color: inherit;
   }
 }
 
-.legend-item--title {
+.legend-item__title {
   padding-bottom: .1rem;
 }

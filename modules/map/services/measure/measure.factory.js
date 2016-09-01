@@ -14,7 +14,6 @@
 
         function initialize (leafletMap) {
             MEASURE_CONFIG.popupOptions = {
-                className: 'add-to-popup',
                 offset: L.Point(-10, -10)
             };
             var measureControl = new L.Control.Measure(MEASURE_CONFIG),
