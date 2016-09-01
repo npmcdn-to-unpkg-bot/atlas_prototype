@@ -11,7 +11,7 @@
     </button>
     <ul class="c-overlay-legend__overlays">
     	<li>
-    		<dp-legend-item ng-repeat="overlay in vm.overlays track by overlay.id" overlay="overlay" zoom="vm.zoom"></dp-legend-item>
+    		<dp-legend-item ng-repeat="overlay in vm.overlays | orderBy:'-' track by overlay.id" overlay="overlay" zoom="vm.zoom"></dp-legend-item>
     	</li>
     </ul>
     <div class="c-overlay-legend__edit-overlays">
