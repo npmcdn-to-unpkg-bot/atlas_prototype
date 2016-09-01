@@ -1,12 +1,12 @@
 <div class="u-clearfix">
 	<div class="legend-item__toggle u-pull--left">
-		<button class="legend-item__toggle__button" ng-click="vm.toggleVisibility()">
+		<dp-link type="MAP_TOGGLE_VISIBILITY_OVERLAY" payload="vm.overlay.id" class-name="legend-item__toggle__button">
 			<img ng-src="{{ vm.getIcon() }}" class="legend-visibility-icon">
-		</button>
+		</dp-link>
 	</div>
 	<div class="legend-item u-pull--left">
 		<span class="legend-item__title">{{ vm.label }}</span>
-		<div class="legend-item--legend" ng-if="vm.legend">
+		<div class="legend-item__legend" ng-if="vm.legend">
 			<img ng-src="{{ vm.legend }}"/>
 		</div>
 	</div>

@@ -81,16 +81,16 @@ describe('The atlas statusbar component', function() {
         });
         it('Correctly creates legend if available', function() {
             var component = getComponent({id: 'overlay_1_a', isVisible: true}, 8);
-            expect(component.find('.legend-item--legend').length).toBe(1);
-            expect(component.find('.legend-item--legend img')[0].src).toContain('/legends/over1a');
+            expect(component.find('.legend-item__legend').length).toBe(1);
+            expect(component.find('.legend-item__legend img')[0].src).toContain('/legends/over1a');
         });
         it('Correctly handles external legend', function() {
             var component = getComponent({id: 'overlay_1_b', isVisible: true}, 8);
-            expect(component.find('.legend-item--legend img')[0].src).toBe('http://external.local/legends/over1a');
+            expect(component.find('.legend-item__legend img')[0].src).toBe('http://external.local/legends/over1a');
         });
         it('does not creates legend if unavailable', function() {
             var component = getComponent({id: 'overlay_1_c', isVisible: true}, 8);
-            expect(component.find('.legend-item--legend').length).toBe(0);
+            expect(component.find('.legend-item__legend').length).toBe(0);
         });
     });
     describe('Changes visibility', function() {
