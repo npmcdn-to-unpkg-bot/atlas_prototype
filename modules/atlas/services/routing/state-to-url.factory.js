@@ -110,7 +110,7 @@
                     params['dataset-filters'] = datasetFilters.join(',');
                 }
 
-                params['dataset-pagina'] = state.dataSelection.page;
+                params['dataset-pagina'] = String(state.dataSelection.page);
             }
 
             return params;
