@@ -17,7 +17,7 @@
 <div ng-repeat="category in vm.availableFilters">
     <h3>{{category.label}}</h3>
     <ul>
-        <li ng-repeat="option in category.options | limitTo : 10">
+        <li ng-repeat="option in category.options | limitTo : vm.isExpandedCategory(category.slug) ? 100 : 10">
             <button
                 class="o-btn o-btn--link"
                 ng-class="{
@@ -30,5 +30,16 @@
             ({{option.count | number}})
         </li>
     </ul>
-    <button ng-if="category.options.length > 10"><strong>Toon meer</strong></button>
+    <!--
+    Todo:
+    Add an indicator that says there are more than 100 options, but we're not showing them, right now the frontend
+    doesn't know the total amount of options.
+    -->
+
+    <button
+        ng-if="!vm.isExpandedCategory(category.slug)"
+        ng-click="vm.expandCategory(category.slug)">
+
+        <strong>Toon meer</strong>
+    </button>
 </div>

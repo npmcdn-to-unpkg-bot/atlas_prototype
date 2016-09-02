@@ -17,7 +17,8 @@
     DpDataSelectionFilterController.$inject = ['$scope', 'store', 'ACTIONS', 'DATA_SELECTION_CONFIG'];
 
     function DpDataSelectionFilterController ($scope, store, ACTIONS, DATA_SELECTION_CONFIG) {
-        var vm = this;
+        var vm = this,
+            expandedCategories = [];
 
         $scope.$watch('vm.activeFilters', updateFilters, true);
 
@@ -39,6 +40,14 @@
             delete filters[categorySlug];
 
             applyFilters(filters);
+        };
+
+        vm.expandCategory = function (categorySlug) {
+            expandedCategories.push(categorySlug);
+        };
+
+        vm.isExpandedCategory = function (categorySlug) {
+            return expandedCategories.indexOf(categorySlug) !== -1;
         };
 
         function updateFilters () {
