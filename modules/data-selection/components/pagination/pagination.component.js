@@ -29,25 +29,25 @@
             vm.firstPage = {
                 label: 'Eerste',
                 page: 1,
-                disabled: isFirstPage
+                enabled: !isFirstPage
             };
 
             vm.previousPage = {
                 label: 'Vorige',
                 page: isFirstPage ? null : vm.currentPage - 1,
-                disabled: isFirstPage
+                enabled: !isFirstPage
             };
 
             vm.nextPage = {
                 label: 'Volgende',
                 page: isLastPage ? null : vm.currentPage + 1,
-                disabled: isLastPage
+                enabled: !isLastPage
             };
 
             vm.lastPage = {
                 label: 'Laatste',
                 page: vm.numberOfPages,
-                disabled: isLastPage
+                enabled: !isLastPage
             };
         }
 

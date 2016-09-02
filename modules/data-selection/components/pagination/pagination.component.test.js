@@ -73,13 +73,13 @@ describe('The dp-data-selection-pagination component', function () {
         expect(scope.vm.firstPage).toEqual({
             label: 'Eerste',
             page: 1,
-            disabled: true
+            enabled: false
         });
 
         expect(scope.vm.previousPage).toEqual({
             label: 'Vorige',
             page: null,
-            disabled: true
+            enabled: false
         });
 
         //When not on the first page
@@ -89,13 +89,13 @@ describe('The dp-data-selection-pagination component', function () {
         expect(scope.vm.firstPage).toEqual({
             label: 'Eerste',
             page: 1,
-            disabled: false
+            enabled: true
         });
 
         expect(scope.vm.previousPage).toEqual({
             label: 'Vorige',
             page: 12,
-            disabled: false
+            enabled: true
         });
     });
 
@@ -110,13 +110,13 @@ describe('The dp-data-selection-pagination component', function () {
         expect(scope.vm.nextPage).toEqual({
             label: 'Volgende',
             page: null,
-            disabled: true
+            enabled: false
         });
 
         expect(scope.vm.lastPage).toEqual({
             label: 'Laatste',
             page: 14,
-            disabled: true
+            enabled: false
         });
 
         //When not on the first page
@@ -126,13 +126,13 @@ describe('The dp-data-selection-pagination component', function () {
         expect(scope.vm.nextPage).toEqual({
             label: 'Volgende',
             page: 14,
-            disabled: false
+            enabled: true
         });
 
         expect(scope.vm.lastPage).toEqual({
             label: 'Laatste',
             page: 14,
-            disabled: false
+            enabled: true
         });
     });
 
