@@ -13,7 +13,9 @@
             controllerAs: 'vm'
         });
 
-    function DpDataSelectionPaginationController () {
+    DpDataSelectionPaginationController.$inject = ['store', 'ACTIONS'];
+
+    function DpDataSelectionPaginationController (store, ACTIONS) {
         var vm = this,
             isFirstPage,
             isLastPage;
@@ -32,13 +34,13 @@
 
             vm.previousPage = {
                 label: 'Vorige',
-                page: isFirstPage ? null : --vm.currentPage,
+                page: isFirstPage ? null : vm.currentPage - 1,
                 disabled: isFirstPage
             };
 
             vm.nextPage = {
                 label: 'Volgende',
-                page: isLastPage ? null : ++vm.currentPage,
+                page: isLastPage ? null : vm.currentPage + 1,
                 disabled: isLastPage
             };
 
@@ -48,5 +50,14 @@
                 disabled: isLastPage
             };
         }
+
+        vm.goToPage = function (event) {
+            event.preventDefault();
+
+            store.dispatch({
+                type: ACTIONS.NAVIGATE_DATA_SELECTION,
+                payload: vm.targetPage
+            });
+        };
     }
 })();

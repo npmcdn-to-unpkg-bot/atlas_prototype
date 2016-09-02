@@ -20,8 +20,7 @@
                 ACTIONS.MAP_PAN,
                 ACTIONS.MAP_ZOOM,
                 ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
-                ACTIONS.STRAATBEELD_SET_ORIENTATION,
-                ACTIONS.NAVIGATE_DATA_SELECTION
+                ACTIONS.STRAATBEELD_SET_ORIENTATION
             ];
 
         return function (store) {
