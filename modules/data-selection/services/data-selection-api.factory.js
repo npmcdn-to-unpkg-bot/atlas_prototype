@@ -10,8 +10,15 @@
             query: query
         };
 
-        function query (dataset, activeFilters) {
-            return api.getByUrl(DATA_SELECTION_CONFIG[dataset].ENDPOINT, activeFilters).then(function (data) {
+        function query (dataset, activeFilters, page) {
+            var searchParams = angular.merge(
+                {
+                    page: page
+                },
+                activeFilters
+            );
+
+            return api.getByUrl(DATA_SELECTION_CONFIG[dataset].ENDPOINT, searchParams).then(function (data) {
                 return {
                     filters: formatFilters(dataset, data.aggs_list),
                     tableData: formatTableData(dataset, data.object_list)
