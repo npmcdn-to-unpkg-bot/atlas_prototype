@@ -10,7 +10,7 @@
             query: query
         };
 
-        function query (dataset/*, activeFilters*/) {
+        function query (dataset, activeFilters) {
             var filterParams = {};
 
             //Maak een API url op basis van de activeFilters
@@ -24,7 +24,9 @@
         }
 
         function formatFilters (dataset, rawData) {
-            return DATA_SELECTION_CONFIG[dataset].FILTERS.filter(function (filter) {
+            var formattedFilters = angular.copy(DATA_SELECTION_CONFIG[dataset].FILTERS);
+
+            return formattedFilters.filter(function (filter) {
                 //Only show the filters that are returned by the API
                 return angular.isObject(rawData[filter.slug]);
             }).map(function (filter) {

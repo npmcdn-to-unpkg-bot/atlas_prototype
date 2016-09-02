@@ -3,7 +3,11 @@
 <div ng-if="!vm.isLoading" class="u-grid">
     <div class="u-row">
         <div class="u-col-sm--2">
-            <dp-data-selection-filters available-filters="vm.availableFilters" active-filters="vm.state.filters">
+            <dp-data-selection-filters
+                dataset="{{vm.state.dataset}}"
+                available-filters="vm.availableFilters"
+                active-filters="vm.state.filters">
+
             </dp-data-selection-filters>
         </div>
         <div class="u-col-sm--10">
