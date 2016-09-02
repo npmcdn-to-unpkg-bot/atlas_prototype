@@ -9,25 +9,17 @@
                 availableFilters: '=',
                 activeFilters: '='
             },
-            templateUrl: 'modules/data-selection/components/data-selection-filters/data-selection-filters.html',
+            templateUrl: 'modules/data-selection/components/filters/filters.html',
             controller: DpDataSelectionFilterController,
             controllerAs: 'vm'
         });
 
-    DpDataSelectionFilterController.$inject = ['store', 'ACTIONS', 'DATA_SELECTION_CONFIG'];
+    DpDataSelectionFilterController.$inject = ['$scope', 'store', 'ACTIONS', 'DATA_SELECTION_CONFIG'];
 
-    function DpDataSelectionFilterController (store, ACTIONS, DATA_SELECTION_CONFIG) {
+    function DpDataSelectionFilterController ($scope, store, ACTIONS, DATA_SELECTION_CONFIG) {
         var vm = this;
 
-        vm.formattedActiveFilters = DATA_SELECTION_CONFIG[vm.dataset].FILTERS.filter(function (filter) {
-            return angular.isString(vm.activeFilters[filter.slug]);
-        }).map(function (filter) {
-            return {
-                categorySlug: filter.slug,
-                categoryLabel: filter.label,
-                option: vm.activeFilters[filter.slug]
-            };
-        });
+        $scope.$watch('vm.activeFilters', updateFilters, true);
 
         vm.isFilterActive = function (categorySlug, filterLabel) {
             return vm.activeFilters[categorySlug] === filterLabel;
@@ -48,6 +40,18 @@
 
             applyFilters(filters);
         };
+
+        function updateFilters () {
+            vm.formattedActiveFilters = DATA_SELECTION_CONFIG[vm.dataset].FILTERS.filter(function (filter) {
+                return angular.isString(vm.activeFilters[filter.slug]);
+            }).map(function (filter) {
+                return {
+                    categorySlug: filter.slug,
+                    categoryLabel: filter.label,
+                    option: vm.activeFilters[filter.slug]
+                };
+            });
+        }
 
         function applyFilters (filters) {
             store.dispatch({

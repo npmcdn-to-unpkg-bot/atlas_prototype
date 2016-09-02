@@ -11,11 +11,7 @@
         };
 
         function query (dataset, activeFilters) {
-            var filterParams = {};
-
-            //Maak een API url op basis van de activeFilters
-
-            return api.getByUrl(DATA_SELECTION_CONFIG[dataset].ENDPOINT, filterParams).then(function (data) {
+            return api.getByUrl(DATA_SELECTION_CONFIG[dataset].ENDPOINT, activeFilters).then(function (data) {
                 return {
                     filters: formatFilters(dataset, data.aggs_list),
                     tableData: formatTableData(dataset, data.object_list)

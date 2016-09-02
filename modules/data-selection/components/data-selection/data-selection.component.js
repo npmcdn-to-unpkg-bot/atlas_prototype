@@ -17,12 +17,14 @@
     function DpDataSelectionController ($scope, dataSelectionApi) {
         var vm = this;
 
-        $scope.$watch('state', fetchData);
+        $scope.$watch('vm.state', fetchData, true);
 
         function fetchData () {
             vm.isLoading = true;
 
-            dataSelectionApi.query(vm.state.dataset, vm.state.filters).then(function (data) {
+            vm.currentPage = vm.state.page;
+
+            dataSelectionApi.query(vm.state.dataset, vm.state.filters, vm.currentPage).then(function (data) {
                 vm.availableFilters = data.filters;
                 vm.tableData = data.tableData;
 

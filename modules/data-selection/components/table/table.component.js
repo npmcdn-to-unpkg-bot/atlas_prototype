@@ -7,7 +7,7 @@
             bindings: {
                 content: '='
             },
-            templateUrl: 'modules/data-selection/components/data-selection-table/data-selection-table.html',
+            templateUrl: 'modules/data-selection/components/table/table.html',
             controller: DpDataSelectionTableController,
             controllerAs: 'vm'
         });
