@@ -54,10 +54,12 @@
         vm.goToPage = function (event) {
             event.preventDefault();
 
-            store.dispatch({
-                type: ACTIONS.NAVIGATE_DATA_SELECTION,
-                payload: vm.targetPage
-            });
+            if (angular.isNumber(vm.targetPage) && vm.targetPage >= 1 && vm.targetPage <= vm.numberOfPages) {
+                store.dispatch({
+                    type: ACTIONS.NAVIGATE_DATA_SELECTION,
+                    payload: vm.targetPage
+                });
+            }
         };
     }
 })();
