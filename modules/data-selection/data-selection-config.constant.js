@@ -6,12 +6,19 @@
         .constant('DATA_SELECTION_CONFIG', {
             bag: {
                 ENDPOINT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/',
-                FILTER_PRIORITY: [
-                    'buurtcombinaties',
-                    'buurten',
-                    'postcode'
+                FILTERS: [
+                    {
+                        slug: 'buurtcombinaties',
+                        label: 'Buurtcombinaties'
+                    }, {
+                        slug: 'buurten',
+                        label: 'Buurten'
+                    }, {
+                        slug: 'postcode',
+                        label: 'Postcode'
+                    }
                 ],
-                TABLE_FIELDS: [
+                FIELDS: [
                     {
                         slug: 'stadsdeel_naam',
                         label: 'Stadsdeel naam'
