@@ -67,9 +67,25 @@
             }
 
             function getMapState (payload) {
+                var overlays = [],
+                    layers,
+                    id,
+                    isVisible;
+
+                if (payload && payload.lagen) {
+                    layers = payload.lagen.split(',');
+                    for (var i = 0; i < layers.length; i++) {
+                        // [id, isVisible] = layers[i].split(':');  This is ES6
+                        id = layers[i].split(':');
+                        // checking isVisible
+                        isVisible = id[1] === 'zichtbaar';
+                        id = id[0];
+                        overlays.push({id: id, isVisible: isVisible});
+                    }
+                }
                 return {
                     baseLayer: payload.basiskaart,
-                    overlays: payload.lagen ? payload.lagen.split(',') : [],
+                    overlays: overlays,
                     viewCenter: [
                         Number(payload.lat),
                         Number(payload.lon)

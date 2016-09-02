@@ -91,14 +91,17 @@ describe('The urlReducers factory', function () {
                 expect(output.map.overlays).toEqual([]);
 
                 //One overlay
-                mockedSearchParams.lagen = 'munitie_opslag';
+                mockedSearchParams.lagen = 'munitie_opslag:zichtbaar';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.map.overlays).toEqual(['munitie_opslag']);
+                expect(output.map.overlays).toEqual([{id: 'munitie_opslag', isVisible: true}]);
 
                 //Two overlays
-                mockedSearchParams.lagen = 'munitie_opslag,geldkluizen';
+                mockedSearchParams.lagen = 'munitie_opslag:zichtbaar,geldkluizen:onzichtbaar';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
-                expect(output.map.overlays).toEqual(['munitie_opslag', 'geldkluizen']);
+                expect(output.map.overlays).toEqual([
+                    {id: 'munitie_opslag', isVisible: true},
+                    {id: 'geldkluizen', isVisible: false}
+                ]);
             });
 
             it('sets the center', function () {
