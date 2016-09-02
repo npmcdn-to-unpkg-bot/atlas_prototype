@@ -377,4 +377,38 @@ describe('The dashboardColumns factory', function () {
             });
         });
     });
+
+    describe('when visiting dataSelection', function () {
+        beforeEach(function () {
+            mockedState.dataSelection = {
+                dataset: 'bag',
+                filters: {
+                    buurt: 'Trompbuurt'
+                },
+                page: 7
+            };
+
+            mockedState.page = null;
+
+            visibility = dashboardColumns.determineVisibility(mockedState);
+            columnSizes = dashboardColumns.determineColumnSizes(visibility, false, false);
+        });
+
+        it('only shows dataSelection', function () {
+            expect(visibility.dataSelection).toBe(true);
+
+            expect(visibility.map).toBe(false);
+            expect(visibility.detail).toBe(false);
+            expect(visibility.layerSelection).toBe(false);
+            expect(visibility.page).toBe(false);
+            expect(visibility.searchResults).toBe(false);
+            expect(visibility.straatbeeld).toBe(false);
+        });
+
+        it('left column: 0/3, middle column: 0/3, right column 3/3', function () {
+            expect(columnSizes.left).toBe(0);
+            expect(columnSizes.middle).toBe(0);
+            expect(columnSizes.right).toBe(12);
+        });
+    });
 });

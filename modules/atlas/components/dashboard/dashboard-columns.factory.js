@@ -18,6 +18,7 @@
                 visibility.dataSelection = true;
 
                 visibility.map = false;
+                visibility.layerSelection = false;
                 visibility.detail = false;
                 visibility.page = false;
                 visibility.searchResults = false;
