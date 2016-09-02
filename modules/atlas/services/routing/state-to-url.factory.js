@@ -5,9 +5,9 @@
         .module('atlas')
         .service('stateToUrl', stateToUrlFactory);
 
-    stateToUrlFactory.$inject = ['$location'];
+    stateToUrlFactory.$inject = ['$location', '$window'];
 
-    function stateToUrlFactory ($location) {
+    function stateToUrlFactory ($location, $window) {
         return {
             update: update
         };
@@ -112,7 +112,7 @@
                 params.dataset = state.dataSelection.dataset;
 
                 angular.forEach(state.dataSelection.filters, function(value, key) {
-                    datasetFilters.push(key + ':' + value);
+                    datasetFilters.push(key + ':' + $window.encodeURIComponent(value));
                 });
 
                 if (datasetFilters.length) {

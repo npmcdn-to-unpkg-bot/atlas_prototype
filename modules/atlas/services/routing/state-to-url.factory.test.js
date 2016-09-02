@@ -368,7 +368,7 @@ describe('The stateToUrl factory', function () {
             }));
         });
 
-        it('can set a dataset with filters and page number', function () {
+        it('can set a dataset with (URL encoded) filters and a page number', function () {
             mockedState.dataSelection = {
                 dataset: 'bag',
                 filters: {},
@@ -398,9 +398,8 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                'dataset-filters': 'buurt:Mijn buurt'
+                'dataset-filters': 'buurt:Mijn%20buurt'
             }));
-
 
             //With two filters
             mockedState.dataSelection.filters.buurtcombinatie = 'Mijn buurtcombinatie';
@@ -408,7 +407,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                'dataset-filters': 'buurt:Mijn buurt,buurtcombinatie:Mijn buurtcombinatie'
+                'dataset-filters': 'buurt:Mijn%20buurt,buurtcombinatie:Mijn%20buurtcombinatie'
             }));
         });
     });

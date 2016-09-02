@@ -374,6 +374,17 @@ describe('The urlReducers factory', function () {
                 expect(output.dataSelection.page).not.toBe('4');
                 expect(output.dataSelection.page).toBe(4);
             });
+
+            it('decodes the names of active filters', function () {
+                mockedSearchParamsWithDataSelection['dataset-filters'] =
+                    'buurtcombinatie:Bijlmeer%20Oost%20(D%2CF%2CH),buurt:Belgi%C3%ABplein%20e.o.';
+
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParamsWithDataSelection);
+                expect(output.dataSelection.filters).toEqual({
+                    buurtcombinatie: 'Bijlmeer Oost (D,F,H)',
+                    buurt: 'Belgiëplein e.o.'
+                });
+            });
         });
 
         describe('print', function () {

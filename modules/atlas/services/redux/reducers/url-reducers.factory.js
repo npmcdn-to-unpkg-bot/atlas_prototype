@@ -5,9 +5,9 @@
         .module('atlas')
         .factory('urlReducers', urlReducersFactory);
 
-    urlReducersFactory.$inject = ['ACTIONS', 'DEFAULT_STATE'];
+    urlReducersFactory.$inject = ['$window', 'ACTIONS', 'DEFAULT_STATE'];
 
-    function urlReducersFactory (ACTIONS, DEFAULT_STATE) {
+    function urlReducersFactory ($window, ACTIONS, DEFAULT_STATE) {
         var reducers = {};
 
         reducers[ACTIONS.URL_CHANGE] = urlChangeReducer;
@@ -178,7 +178,7 @@
                         payload['dataset-filters'].split(',').forEach(function (filterFromUrl) {
                             var keyValueArray = filterFromUrl.split(':');
 
-                            filters[keyValueArray[0]] = keyValueArray[1];
+                            filters[keyValueArray[0]] = $window.decodeURIComponent(keyValueArray[1]);
                         });
                     }
 
