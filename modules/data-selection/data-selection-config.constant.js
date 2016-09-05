@@ -8,14 +8,20 @@
                 ENDPOINT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/',
                 FILTERS: [
                     {
-                        slug: 'buurtcombinaties',
+                        slug: 'stadsdeel_naam',
+                        label: 'Stadsdelen'
+                    }, {
+                        slug: 'buurtcombinatie_naam',
                         label: 'Buurtcombinaties'
                     }, {
-                        slug: 'buurten',
+                        slug: 'buurt_naam',
                         label: 'Buurten'
                     }, {
                         slug: 'postcode',
                         label: 'Postcode'
+                    }, {
+                        slug: 'ggw_naam',
+                        label: 'Gebiedsgerichtwerken gebieden'
                     }
                 ],
                 FIELDS: [

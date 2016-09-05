@@ -43,6 +43,16 @@
             applyFilters(filters);
         };
 
+        vm.showExpandButton = function (categorySlug) {
+            var numberOfOptions;
+
+            numberOfOptions = vm.availableFilters.filter(function (availableFilter) {
+                return availableFilter.slug === categorySlug;
+            })[0].options.length;
+
+            return numberOfOptions > 10;
+        };
+
         vm.expandCategory = function (categorySlug) {
             expandedCategories.push(categorySlug);
         };
@@ -64,6 +74,7 @@
         }
 
         function applyFilters (filters) {
+            console.log('apply', filters);
             store.dispatch({
                 type: ACTIONS.SHOW_DATA_SELECTION,
                 payload: {
