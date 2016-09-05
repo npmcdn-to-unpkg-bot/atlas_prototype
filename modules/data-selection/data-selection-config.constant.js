@@ -17,6 +17,9 @@
                         slug: 'buurt_naam',
                         label: 'Buurten'
                     }, {
+                        slug: 'naam',
+                        label: 'Straatnamen'
+                    }, {
                         slug: 'postcode',
                         label: 'Postcode'
                     }, {
