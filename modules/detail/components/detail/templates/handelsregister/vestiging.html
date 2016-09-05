@@ -5,7 +5,25 @@
     </atlas-stelselpedia-header>
 
     <dl class="c-key-value-list">
-        <dt></dt>
-        <dd></dd>
+        <dt>Handelsnaam</dt>
+        <dd> {{  }} </dd>
+        <dt>KvK-nummer</dt>
+        <dd> {{  }} </dd>
+        <dt>Postadres</dt>
+        <dd> {{ vm.apiData.results.postadres.volledig_adres }} </dd>
+        <dt>Bezoekadres</dt>
+        <dd> {{ vm.apiData.results.bezoekadres.volledig_adres }} </dd>
+        <dt>Type vestiging</dt>
+        <dd> {{  }} </dd>
+        <dt>SBI-code van nevenvestiging</dt>
+        <dd> {{ vm.apiData.results.activiteiten.sbi_code }} </dd>
+        <dt>SBI branch</dt>
+        <dd> {{ vm.apiData.results.activiteiten.sbi_omschrijving }} </dd>
+        <dt>Vestigingsnummer</dt>
+        <dd> {{  vm.apiData.results.vestigingsnummer }} </dd>
+        <dt>Datum aanvang</dt>
+        <dd> {{ vm.apiData.results.datum_aanvang }} </dd>
+        <dt>Datum einde</dt>
+        <dd> {{ vm.apiData.results.datum_einde }} </dd>
     </dl>
 </div>
