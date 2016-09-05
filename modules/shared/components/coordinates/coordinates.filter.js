@@ -18,7 +18,7 @@
                 formattedWgs84Location;
 
             formattedWgs84Location = wgs84Location.map(function (coordinate) {
-                return coordinate.toFixed('6');
+                return coordinate.toFixed('7');
             }).join(', ');
 
             return rdLocation.join(', ') + ' (' + formattedWgs84Location + ')';

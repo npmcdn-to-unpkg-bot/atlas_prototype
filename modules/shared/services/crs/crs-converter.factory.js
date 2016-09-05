@@ -22,7 +22,7 @@
         function wgs84ToRd (wgs84Coordinates){
             var rd = proj4(CRS_CONFIG.RD.projection, angular.copy(wgs84Coordinates).reverse());
 
-            return [Math.round(rd[0]), Math.round(rd[1])];
+            return [rd[0].toFixed(2), rd[1].toFixed(2)];
         }
 
         /*
@@ -31,7 +31,9 @@
          * @returns {Array} wgs84 - An An array with this structure: [lat, lon]
          */
         function rdToWgs84 (rdCoordinates){
-            return proj4(CRS_CONFIG.RD.projection, CRS_CONFIG.WGS84.projection, rdCoordinates).reverse();
+            var wgs84 = proj4(CRS_CONFIG.RD.projection, CRS_CONFIG.WGS84.projection, rdCoordinates).reverse();
+
+            return [wgs84[0].toFixed(7), wgs84[1].toFixed(7)];
         }
     }
 })();
