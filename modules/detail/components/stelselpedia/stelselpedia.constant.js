@@ -145,6 +145,15 @@
                     url: 'https://www.amsterdam.nl/stelselpedia/meetbouten-index/catalogus-amsterdams/meetbout/',
                     meta: []
                 },
+                MAC: {
+                    label_singular: 'Maatschappelijke activiteit',
+                    label_plural: 'Maatschappelijke activiteiten',
+                    description: 'De Maatschappelijke Activiteit is het totaal van alle activiteiten uitgeoefend ' +
+                        'door een Natuurlijk Persoon of een Niet-natuurlijk Persoon. Een Maatschappelijke Activiteit ' +
+                        'kan ook als Onderneming voorkomen.',
+                    url: 'https://www.amsterdam.nl/stelselpedia/hr-index/catalogus/maatschappelijke/',
+                    meta: []
+                },
                 METING: {
                     label_singular: 'Meting',
                     label_plural: 'Metingen',
@@ -284,6 +293,14 @@
                         'verblijfsobjectidentificatie',
                         'sleutelverzendend'
                     ]
+                },
+                VESTIGING: {
+                    label_singular: 'Vestiging',
+                    label_plural: 'Vestigingen',
+                    description: 'Een Vestiging is gebouw of een complex van gebouwen waar duurzame uitoefening ' +
+                        'van activiteiten van een Onderneming of Rechtspersoon plaatsvindt.',
+                    url: 'https://www.amsterdam.nl/stelselpedia/hr-index/catalogus/vestiging/',
+                    meta: []
                 },
                 WOONPLAATS: {
                     label_singular: 'Woonplaats',
