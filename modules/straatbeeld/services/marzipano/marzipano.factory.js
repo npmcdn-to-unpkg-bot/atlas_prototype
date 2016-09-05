@@ -66,7 +66,7 @@
             });
 
             //Set orientation
-            view.setYaw(car.heading); /* TODO: Refactor candidate */
+            view.setYaw(car.heading);
             view.setPitch(camera.pitch);
             view.setFov(camera.fov || straatbeeldConfig.DEFAULT_FOV);
 

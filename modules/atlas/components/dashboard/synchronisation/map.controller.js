@@ -39,7 +39,7 @@
                 vm.markers.push({
                     id: 'straatbeeld_orientation',
                     geometry: convertLocationToGeoJSON(state.straatbeeld.car.location),
-                    orientation: state.straatbeeld.car.heading,
+                    orientation: state.straatbeeld.heading,
                     useAutoFocus: false
                 });
                 vm.markers.push({
