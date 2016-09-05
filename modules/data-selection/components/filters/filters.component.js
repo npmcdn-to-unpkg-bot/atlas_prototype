@@ -50,7 +50,7 @@
                 return availableFilter.slug === categorySlug;
             })[0].options.length;
 
-            return numberOfOptions > 10;
+            return !vm.isExpandedCategory(categorySlug) && numberOfOptions > 10;
         };
 
         vm.expandCategory = function (categorySlug) {

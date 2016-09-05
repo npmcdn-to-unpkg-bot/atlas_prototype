@@ -319,5 +319,8 @@ describe('The dp-data-selection-filters component', function () {
             .toContain('Optie A-11');
         expect(component.find('.qa-available-filters > div').eq(0).find('li button').eq(11).text())
             .toContain('Optie A-12');
+
+        //Make sure the show more button is gone now
+        expect(component.find('.qa-available-filters > div').eq(0).text()).not.toContain('Toon meer');
     });
 });
