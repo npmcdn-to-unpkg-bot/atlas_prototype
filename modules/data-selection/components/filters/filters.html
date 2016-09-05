@@ -11,11 +11,12 @@
     </ul>
 </div>
 
-<dp-loading-indicator is-loading="vm.isLoading" use-delay="true" show-inline="true"></dp-loading-indicator>
-
-<div ng-if="!vm.isLoading" class="qa-available-filters">
+<div class="qa-available-filters">
     <h2>Beschikbare filters</h2>
-    <div ng-repeat="category in vm.availableFilters">
+
+    <dp-loading-indicator is-loading="vm.isLoading" use-delay="true" show-inline="true"></dp-loading-indicator>
+
+    <div ng-if="!vm.isLoading" ng-repeat="category in vm.availableFilters">
         <h3>{{category.label}}</h3>
         <ul>
             <li ng-repeat="option in category.options | limitTo : vm.isExpandedCategory(category.slug) ? undefined : 10">
