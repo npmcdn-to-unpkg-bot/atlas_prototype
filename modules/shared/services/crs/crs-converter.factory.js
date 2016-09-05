@@ -22,7 +22,7 @@
         function wgs84ToRd (wgs84Coordinates){
             var rd = proj4(CRS_CONFIG.RD.projection, angular.copy(wgs84Coordinates).reverse());
 
-            return [rd[0].toFixed(2), rd[1].toFixed(2)];
+            return [Number(rd[0].toFixed(2)), Number(rd[1].toFixed(2))];
         }
 
         /*
@@ -33,7 +33,7 @@
         function rdToWgs84 (rdCoordinates){
             var wgs84 = proj4(CRS_CONFIG.RD.projection, CRS_CONFIG.WGS84.projection, rdCoordinates).reverse();
 
-            return [wgs84[0].toFixed(7), wgs84[1].toFixed(7)];
+            return [Number(wgs84[0].toFixed(7)), Number(wgs84[1].toFixed(7))];
         }
     }
 })();
