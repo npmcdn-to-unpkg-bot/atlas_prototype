@@ -16,7 +16,8 @@ module.exports = function (config) {
             'karma-jasmine',
             'karma-mocha-reporter',
             'karma-coverage',
-            'karma-phantomjs-launcher'
+            'karma-phantomjs-launcher',
+            'karma-spec-reporter'
         ],
 
         // level of logging
@@ -32,8 +33,10 @@ module.exports = function (config) {
         // - junit
         // - growl
         // - coverage
-        reporters: ['coverage'],
-
+        reporters: ['spec','coverage'],
+        specReporter: {
+            suppressSkipped: true,  // do not print information about skipped tests 
+        },
         preprocessors: {
             // source files, that you wanna generate coverage for
             // do not include tests or libraries

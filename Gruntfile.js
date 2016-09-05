@@ -44,6 +44,10 @@ module.exports = function (grunt) {
         'clean:temp'
     ]);
 
+    grunt.registerTask('k', [
+        'karma:coverage'
+    ]);
+    
     grunt.registerTask('test-js', [
         'jshint',
         'karma:coverage',

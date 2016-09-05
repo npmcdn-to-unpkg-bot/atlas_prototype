@@ -21,7 +21,8 @@ describe('The dp-straatbeeld-thumbnail component', function () {
 
                         if (hasNearbyPanorama) {
                             response = {
-                                url: 'http://www.example.com/panorama-plaatjes/abf123/'
+                                url: 'http://www.example.com/panorama-plaatjes/abf123/',
+                                heading: 0
                             };
                         } else {
                             response = [];
@@ -58,26 +59,23 @@ describe('The dp-straatbeeld-thumbnail component', function () {
 
         element = document.createElement('dp-straatbeeld-thumbnail');
         element.setAttribute('location', 'location');
-
         scope = $rootScope.$new();
         scope.location = location;
 
         component = $compile(element)(scope);
+
         scope.$apply();
 
         return component;
     }
 
-    it('uses a loading indicator', function () {
-
-    });
-
     describe('when a panorama has been found', function () {
+        beforeEach(function() {
+            hasNearbyPanorama = true;
+        });
+
         it('shows a thumbnail based on a location', function () {
-            var component = getComponent({ id: [52.369, 4.963], heading: 180 });
-
-            //$rootScope.$apply();
-
+            var component = getComponent([52.369, 4.963]);
             expect(component.find('img').attr('src'))
                 .toBe('http://www.example.com/panorama-plaatjes/abf123/');
         });
@@ -93,14 +91,19 @@ describe('The dp-straatbeeld-thumbnail component', function () {
 
             expect(store.dispatch).toHaveBeenCalledWith({
                 type: ACTIONS.FETCH_STRAATBEELD,
-                payload: [52.369, 4.963]
+                payload: { id: [ 52.369, 4.963 ], heading: 0 }
             });
         });
     });
 
     describe('when there is no nearby panorama', function () {
-        it('shows a message that there is nothing to show here', function () {
+        beforeEach(function () {
+            hasNearbyPanorama = false;
+        });
 
+        it('shows a message that there is nothing to show here', function () {
+             var component = getComponent([52.369, 4.963]);
+             expect( component.find('p').text()).toBe('Geen straatbeeld beschikbaar.');
         });
     });
 });

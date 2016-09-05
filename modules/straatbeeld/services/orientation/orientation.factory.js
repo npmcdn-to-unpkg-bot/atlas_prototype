@@ -23,7 +23,7 @@
             cameraFov = viewer.view().fov();
 
             cameraHeading = straatbeeld.heading + cameraYaw;
-            
+             
             store.dispatch({
                 type: ACTIONS.STRAATBEELD_SET_ORIENTATION,
                 payload: {
