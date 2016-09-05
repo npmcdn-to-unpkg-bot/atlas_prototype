@@ -37,11 +37,11 @@
                         label: 'Stadsdeel code'
                     },
                     {
-                        slug: '',
+                        slug: 'ggw_naam',
                         label: 'Gebiedsnaam (gebiedsgerichtwerken)'
                     },
                     {
-                        slug: '',
+                        slug: 'ggw_code',
                         label: 'Gebiedsnaam code'
                     },
                     {
