@@ -74,7 +74,7 @@ describe('The dp-straatbeeld-thumbnail component', function () {
 
     describe('when a panorama has been found', function () {
         it('shows a thumbnail based on a location', function () {
-            var component = getComponent([52.369, 4.963]);
+            var component = getComponent({ id: [52.369, 4.963], heading: 180 });
 
             //$rootScope.$apply();
 

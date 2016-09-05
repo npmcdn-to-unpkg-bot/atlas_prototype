@@ -16,10 +16,11 @@
 
     function AtlasStraatbeeldThumbnailController (sharedConfig, api, store, ACTIONS) {
         var vm = this,
-            url;
+            url, 
+            heading;
 
         vm.isLoading = true;
-
+        
         url = sharedConfig.STRAATBEELD_THUMB_URL +
             '?lat=' + vm.location[0] +
             '&lon=' + vm.location[1] +
@@ -27,17 +28,19 @@
             '&radius=' + sharedConfig.STRAATBEELD_SEARCH_RADIUS;
 
         api.getByUrl(url).then(function (thumbnailData) {
+            heading = thumbnailData.heading; 
+            
             if (angular.isString(thumbnailData.url)) {
                 vm.imageUrl = thumbnailData.url;
             }
 
             vm.isLoading = false;
         });
-
-        vm.openStraatbeeld = function () {
+         
+        vm.openStraatbeeld = function () { 
             store.dispatch({
                 type: ACTIONS.FETCH_STRAATBEELD,
-                payload: vm.location
+                payload: { id: vm.location, heading: heading }   
             });
         };
     }
