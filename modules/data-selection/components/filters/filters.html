@@ -12,34 +12,35 @@
 </div>
 
 
-
-<h2>Beschikbare filters</h2>
-<div ng-repeat="category in vm.availableFilters">
-    <h3>{{category.label}}</h3>
-    <ul>
-        <li ng-repeat="option in category.options | limitTo : vm.isExpandedCategory(category.slug) ? undefined : 10">
-            <button
-                class="o-btn o-btn--link"
-                ng-class="{
+<div ng-if="!vm.isLoading">
+    <h2>Beschikbare filters</h2>
+    <div ng-repeat="category in vm.availableFilters">
+        <h3>{{category.label}}</h3>
+        <ul>
+            <li ng-repeat="option in category.options | limitTo : vm.isExpandedCategory(category.slug) ? undefined : 10">
+                <button
+                    class="o-btn o-btn--link"
+                    ng-class="{
                     'u-color__primary--dark': vm.isFilterActive(category.slug, option.label)
                 }"
-                ng-click="vm.addFilter(category.slug, option.label)">
-                {{option.label}}
-            </button>
+                    ng-click="vm.addFilter(category.slug, option.label)">
+                    {{option.label}}
+                </button>
 
-            ({{option.count | number}})
-        </li>
-    </ul>
-    <!--
-    Todo:
-    Add an indicator that says there are more than 100 options, but we're not showing them, right now the frontend
-    doesn't know the total amount of options.
-    -->
+                ({{option.count | number}})
+            </li>
+        </ul>
+        <!--
+        Todo:
+        Add an indicator that says there are more than 100 options, but we're not showing them, right now the frontend
+        doesn't know the total amount of options.
+        -->
 
-    <button
-        ng-if="!vm.isExpandedCategory(category.slug)"
-        ng-click="vm.expandCategory(category.slug)">
+        <button
+            ng-if="!vm.isExpandedCategory(category.slug)"
+            ng-click="vm.expandCategory(category.slug)">
 
-        <strong>Toon meer</strong>
-    </button>
+            <strong>Toon meer</strong>
+        </button>
+    </div>
 </div>
