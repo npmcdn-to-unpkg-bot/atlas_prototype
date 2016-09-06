@@ -161,6 +161,22 @@ describe('The urlReducers factory', function () {
                 expect(output.map.showLayerSelection).toBe(false);
             });
 
+            it('sets the showActiveOverlays status', function () {
+                var output;
+
+                //With active overlays
+                mockedState.map.showActiveOverlays = false;
+                mockedSearchParams['actieve-kaartlagen'] = 'aan';
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.map.showActiveOverlays).toBe(true);
+
+                //Without active overlays
+                mockedState.map.showActiveOverlays = true;
+                delete mockedSearchParams['actieve-kaartlagen'];
+                output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
+                expect(output.map.showActiveOverlays).toBe(false);
+            });
+
             it('sets the isFullscreen status', function () {
                 var output;
 
