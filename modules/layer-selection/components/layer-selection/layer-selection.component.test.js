@@ -26,27 +26,27 @@ describe('The atlas-layer-selection component', function () {
                 $provide.constant('OVERLAYS', {
                     SOURCES: {
                         overlay_1_a: {
-                            label_long: 'Overlay 1a',
+                            label_short: 'Overlay 1a',
                             minZoom: 8,
                             maxZoom: 16
                         },
                         overlay_1_b: {
-                            label_long: 'Overlay 1b',
+                            label_short: 'Overlay 1b',
                             minZoom: 8,
                             maxZoom: 16
                         },
                         overlay_2_a: {
-                            label_long: 'Overlay 2a',
+                            label_short: 'Overlay 2a',
                             minZoom: 8,
                             maxZoom: 10
                         },
                         overlay_2_b: {
-                            label_long: 'Overlay 2b',
+                            label_short: 'Overlay 2b',
                             minZoom: 11,
                             maxZoom: 14
                         },
                         overlay_2_c: {
-                            label_long: 'Overlay 2c',
+                            label_short: 'Overlay 2c',
                             minZoom: 15,
                             maxZoom: 16
                         }
