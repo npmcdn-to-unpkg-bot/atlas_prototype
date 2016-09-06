@@ -159,7 +159,7 @@ describe('The straatbeeldReducers factory', function () {
             expect(output.straatbeeld.date).toEqual(new Date(2016, 6, 8));
             expect(output.straatbeeld.car).toEqual({
                 location: [51.5, 4.5],
-                heading: 180,
+                heading: 240,
                 pitch: 0.01
             });
             expect(output.straatbeeld.hotspots).toEqual(['FAKE_HOTSPOT_A', 'FAKE_HOTSPOT_B']);
@@ -181,7 +181,7 @@ describe('The straatbeeldReducers factory', function () {
             inputState.straatbeeld.camera = null;
             output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(inputState, showStraatbeeldPayload);
             expect(output.straatbeeld.camera).toEqual({
-                heading: 180,
+                heading: 240,
                 pitch: 0.01
             });
         });
@@ -204,10 +204,13 @@ describe('The straatbeeldReducers factory', function () {
              * This can happen when a user triggers another action after FETCH_STRAATBEELD and before
              * SHOW_STRAATBEELD_INITIAL OR SHOW_STRAATBEELD_SUBSEQUENT
              */
-            var output;
+            var inputState = angular.copy(defaultState),
+                output;
 
-            expect(defaultState.straatbeeld).toBeNull();
-            output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(defaultState, showStraatbeeldPayload);
+     
+            expect(inputState.straatbeeld).toBeNull();
+            output = straatbeeldReducers.SHOW_STRAATBEELD_INITIAL(inputState, showStraatbeeldPayload);
+ 
             expect(output.straatbeeld).toBeNull();
         });
     });
@@ -232,3 +235,4 @@ describe('The straatbeeldReducers factory', function () {
         });
     });
 });
+ 
