@@ -20,9 +20,9 @@
          * @returns {Array} - RD - An array with this structure: [x, y]
          */
         function wgs84ToRd (wgs84Coordinates){
-            var rd = proj4(CRS_CONFIG.RD.projection, angular.copy(wgs84Coordinates).reverse());
+            return proj4(CRS_CONFIG.RD.projection, angular.copy(wgs84Coordinates).reverse());
 
-            return [Number(rd[0].toFixed(2)), Number(rd[1].toFixed(2))];
+            //return [Math.round(rd[0]), Math.round(rd[1])];
         }
 
         /*
@@ -31,9 +31,7 @@
          * @returns {Array} wgs84 - An An array with this structure: [lat, lon]
          */
         function rdToWgs84 (rdCoordinates){
-            var wgs84 = proj4(CRS_CONFIG.RD.projection, CRS_CONFIG.WGS84.projection, rdCoordinates).reverse();
-
-            return [Number(wgs84[0].toFixed(7)), Number(wgs84[1].toFixed(7))];
+            return proj4(CRS_CONFIG.RD.projection, CRS_CONFIG.WGS84.projection, rdCoordinates).reverse();
         }
     }
 })();
