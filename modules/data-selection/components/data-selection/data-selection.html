@@ -12,11 +12,19 @@
         <div class="u-col-sm--10">
             <dp-loading-indicator is-loading="vm.isLoading" use-delay="true" show-inline="true"></dp-loading-indicator>
 
-            <dp-data-selection-table ng-if="!vm.isLoading"
-                content="vm.tableData"
-                current-page="vm.currentPage">
+            <div ng-if="!vm.isLoading">
+                <dp-data-selection-download-button
+                    dataset="{{vm.state.dataset}}"
+                    active-filters="vm.state.filters">
 
-            </dp-data-selection-table>
+                </dp-data-selection-download-button>
+
+                <dp-data-selection-table
+                    content="vm.tableData"
+                    current-page="vm.currentPage">
+
+                </dp-data-selection-table>
+            </div>
         </div>
     </div>
 </div>
