@@ -16,26 +16,19 @@
     DpDataSelectionDownloadButtonController.$inject = ['$scope', '$window', 'DATA_SELECTION_CONFIG'];
 
     function DpDataSelectionDownloadButtonController ($scope, $window, DATA_SELECTION_CONFIG) {
-        var vm = this;
+        var vm = this,
+            filterParams = [];
 
-        $scope.$watchCollection(function () {
-            return [vm.dataset, vm.activeFilters];
-        }, setDownloadUrl);
+        vm.downloadUrl = DATA_SELECTION_CONFIG[vm.dataset].ENDPOINT + 'export/';
 
-        function setDownloadUrl () {
-            var filterParams = [];
-
-            vm.downloadUrl = DATA_SELECTION_CONFIG[vm.dataset].ENDPOINT + 'export/';
-
-            DATA_SELECTION_CONFIG[vm.dataset].FILTERS.forEach(function (filter) {
-                if (angular.isString(vm.activeFilters[filter.slug])) {
-                    filterParams.push(filter.slug + '=' + $window.encodeURIComponent(vm.activeFilters[filter.slug]));
-                }
-            });
-
-            if (filterParams.length) {
-                vm.downloadUrl += '?' + filterParams.join('&');
+        DATA_SELECTION_CONFIG[vm.dataset].FILTERS.forEach(function (filter) {
+            if (angular.isString(vm.activeFilters[filter.slug])) {
+                filterParams.push(filter.slug + '=' + $window.encodeURIComponent(vm.activeFilters[filter.slug]));
             }
+        });
+
+        if (filterParams.length) {
+            vm.downloadUrl += '?' + filterParams.join('&');
         }
     }
 })();
