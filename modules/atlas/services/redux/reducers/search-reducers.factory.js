@@ -56,7 +56,7 @@
                 category: null
             };
 
-            if (oldState.map.isFullscreen) {
+            if (oldState.map.showLayerSelection || oldState.map.isFullscreen) {
                 newState.map.viewCenter = payload;
             }
 
