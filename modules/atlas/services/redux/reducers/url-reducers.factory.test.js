@@ -150,13 +150,13 @@ describe('The urlReducers factory', function () {
 
                 //With layer selection
                 mockedState.map.showLayerSelection = false;
-                mockedSearchParams.kaartlagen = 'aan';
+                mockedSearchParams['kaartlagen-selectie'] = 'aan';
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.showLayerSelection).toBe(true);
 
                 //Without layer selection
                 mockedState.map.showLayerSelection = true;
-                delete mockedSearchParams.kaartlagen;
+                delete mockedSearchParams['kaartlagen-selectie'];
                 output = urlReducers.URL_CHANGE(mockedState, mockedSearchParams);
                 expect(output.map.showLayerSelection).toBe(false);
             });

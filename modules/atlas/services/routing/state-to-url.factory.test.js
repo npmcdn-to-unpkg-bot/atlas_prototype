@@ -150,7 +150,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState, false);
 
             expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
-                kaartlagen: jasmine.anything()
+                'kaartlagen-selectie': jasmine.anything()
             }));
 
             //Opened
@@ -158,7 +158,7 @@ describe('The stateToUrl factory', function () {
             stateToUrl.update(mockedState, false);
 
             expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
-                kaartlagen: 'aan'
+                'kaartlagen-selectie': 'aan'
             }));
         });
 
