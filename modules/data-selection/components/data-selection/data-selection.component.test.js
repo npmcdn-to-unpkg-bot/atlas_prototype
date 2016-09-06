@@ -36,6 +36,10 @@ describe('The dp-data-selection component', function () {
                 $provide.factory('dpDataSelectionTableDirective', function () {
                     return {};
                 });
+
+                $provide.factory('dpDataSelectionPaginationDirective', function () {
+                    return {};
+                });
             }
         );
 
@@ -55,6 +59,7 @@ describe('The dp-data-selection component', function () {
         };
 
         mockedApiData = {
+            number_of_pages: 7,
             filters: 'MOCKED_FILTER_DATA',
             tableData: 'MOCKED_TABLE_DATA'
         };
@@ -94,9 +99,14 @@ describe('The dp-data-selection component', function () {
 
         expect(component.find('dp-data-selection-table').length).toBe(1);
         expect(component.find('dp-data-selection-table').attr('content')).toBe('vm.tableData');
-        expect(component.find('dp-data-selection-table').attr('current-page')).toBe('vm.currentPage');
         expect(scope.vm.tableData).toBe('MOCKED_TABLE_DATA');
         expect(scope.vm.currentPage).toBe(2);
+
+        expect(component.find('dp-data-selection-pagination').length).toBe(1);
+        expect(component.find('dp-data-selection-pagination').attr('current-page')).toBe('vm.currentPage');
+        expect(component.find('dp-data-selection-pagination').attr('number-of-pages')).toBe('vm.numberOfPages');
+        expect(scope.vm.currentPage).toBe(2);
+        expect(scope.vm.numberOfPages).toBe(7);
     });
 
     it('retrieves new data when the state changes', function () {

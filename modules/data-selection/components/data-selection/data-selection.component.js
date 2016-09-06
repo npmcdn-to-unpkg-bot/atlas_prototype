@@ -27,6 +27,7 @@
             dataSelectionApi.query(vm.state.dataset, vm.state.filters, vm.currentPage).then(function (data) {
                 vm.availableFilters = data.filters;
                 vm.tableData = data.tableData;
+                vm.numberOfPages = data.number_of_pages;
 
                 vm.isLoading = false;
             });

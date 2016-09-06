@@ -90,7 +90,8 @@ describe('The dataSelectionApi factory', function () {
                     adres: 'Marnixstraat 1',
                     openingstijden: 'Ligt er een beetje aan'
                 }
-            ]
+            ],
+            page_count: 2
         };
 
         spyOn(api, 'getByUrl').and.callThrough();
@@ -114,6 +115,17 @@ describe('The dataSelectionApi factory', function () {
             water: 'Verwarmd',
             page: 27
         });
+    });
+
+    it('returns the total number of pages', function () {
+        var output;
+
+        dataSelectionApi.query('zwembaden', {}, 1).then(function (_output_) {
+            output = _output_;
+        });
+        $rootScope.$apply();
+
+        expect(output.number_of_pages).toBe(2);
     });
 
     describe('it returns all available filters', function () {

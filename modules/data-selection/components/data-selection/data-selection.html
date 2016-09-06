@@ -20,10 +20,13 @@
                 </dp-data-selection-download-button>
 
                 <dp-data-selection-table
-                    content="vm.tableData"
-                    current-page="vm.currentPage">
+                    content="vm.tableData">
 
                 </dp-data-selection-table>
+
+                <dp-data-selection-pagination current-page="vm.currentPage" number-of-pages="vm.numberOfPages">
+
+                </dp-data-selection-pagination>
             </div>
         </div>
     </div>

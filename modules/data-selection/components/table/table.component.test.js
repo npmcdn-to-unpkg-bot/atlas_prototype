@@ -3,14 +3,7 @@ describe('The dp-data-selection-table component', function () {
         $rootScope;
 
     beforeEach(function () {
-        angular.mock.module(
-            'dpDataSelection',
-            function ($provide) {
-                $provide.factory('dpDataSelectionPaginationDirective', function () {
-                    return {};
-                });
-            }
-        );
+        angular.mock.module('dpDataSelection');
 
         angular.mock.inject(function (_$compile_, _$rootScope_) {
             $compile = _$compile_;
