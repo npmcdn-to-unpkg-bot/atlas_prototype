@@ -162,6 +162,24 @@ describe('The stateToUrl factory', function () {
             }));
         });
 
+        it('keeps track of the active overlays (opened or closed', function () {
+            //Closed
+            mockedState.map.showActiveOverlays = false;
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).not.toHaveBeenCalledWith(jasmine.objectContaining({
+                'actieve-kaartlagen': jasmine.anything()
+            }));
+
+            //Opened
+            mockedState.map.showActiveOverlays = true;
+            stateToUrl.update(mockedState, false);
+
+            expect($location.search).toHaveBeenCalledWith(jasmine.objectContaining({
+                'actieve-kaartlagen': 'aan'
+            }));
+        });
+
         it('keeps track of the isFullscreen state', function () {
             //Closed
             mockedState.map.isFullscreen = false;
