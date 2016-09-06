@@ -56,6 +56,7 @@ describe('The dataSelectionApi factory', function () {
         mockedApiResponse = {
             aggs_list: {
                 water: {
+                    doc_count: 3,
                     buckets: [
                         {
                             doc_count: 1,
@@ -70,6 +71,7 @@ describe('The dataSelectionApi factory', function () {
                     ]
                 },
                 type: {
+                    doc_count: 2,
                     buckets: [
                         {
                             doc_count: 4,
@@ -141,6 +143,7 @@ describe('The dataSelectionApi factory', function () {
                 {
                     slug: 'type',
                     label: 'Type accomodatie',
+                    numberOfOptions: 2,
                     options: [
                         {
                             label: 'Buitenbad',
@@ -154,6 +157,7 @@ describe('The dataSelectionApi factory', function () {
                 }, {
                     slug: 'water',
                     label: 'Watersoort',
+                    numberOfOptions: 3,
                     options: [
                         {
                             label: 'Tropisch',

@@ -42,6 +42,9 @@
                     };
                 });
 
+                //Note: filter.options is limited to 100 results
+                filter.numberOfOptions = rawData[filter.slug].doc_count;
+
                 return filter;
             });
         }

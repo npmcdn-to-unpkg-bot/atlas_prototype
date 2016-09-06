@@ -53,6 +53,10 @@
             return !vm.isExpandedCategory(categorySlug) && numberOfOptions > 10;
         };
 
+        vm.showHiddenOptionsMessage = function (category) {
+            return vm.isExpandedCategory(category.slug) && category.numberOfOptions > category.options.length;
+        };
+
         vm.expandCategory = function (categorySlug) {
             expandedCategories.push(categorySlug);
         };

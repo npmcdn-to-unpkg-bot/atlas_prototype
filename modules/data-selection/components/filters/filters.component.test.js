@@ -72,7 +72,8 @@ describe('The dp-data-selection-filters component', function () {
                         count: 20,
                         label: 'Optie A-10'
                     }
-                ]
+                ],
+                numberOfOptions: 10
             }, {
                 slug: 'filterb',
                 label: 'Filter B',
@@ -87,7 +88,8 @@ describe('The dp-data-selection-filters component', function () {
                         count: 6,
                         label: 'Optie B-3'
                     }
-                ]
+                ],
+                numberOfOptions: 3
             }
         ];
 
@@ -305,6 +307,8 @@ describe('The dp-data-selection-filters component', function () {
             label: 'Optie A-12'
         });
 
+        availableFilters[0].numberOfOptions = 12;
+
         component = getComponent({}, false);
         expect(component.find('.qa-available-filters > div').eq(0).find('li').length).toBe(10);
         expect(component.find('.qa-available-filters > div').eq(0).find('button').length).toBe(11);
@@ -322,5 +326,30 @@ describe('The dp-data-selection-filters component', function () {
 
         //Make sure the show more button is gone now
         expect(component.find('.qa-available-filters > div').eq(0).text()).not.toContain('Toon meer');
+    });
+
+    it('expanded categories have a message when there are more options that 100', function () {
+        //When there are less than 100 options
+        var component;
+
+        //Making sure the mocked category has more than 10 options
+        availableFilters[0].options.push({
+            count: 4,
+            label: 'Optie A-11'
+        });
+
+        //When there are 100 or less available options
+        component = getComponent({}, false);
+        expect(component.find('.qa-available-filters > div').eq(0).find('.qa-hidden-options').length).toBe(0);
+        component.find('.qa-available-filters > div').eq(0).find('.qa-show-more-button').click();
+        expect(component.find('.qa-available-filters > div').eq(0).find('.qa-hidden-options').length).toBe(0);
+
+
+        //When there are more then 100 available options: show the message after expanding the category
+        availableFilters[0].numberOfOptions = 101;
+        component = getComponent({}, false);
+        expect(component.find('.qa-available-filters > div').eq(0).find('.qa-hidden-options').length).toBe(0);
+        component.find('.qa-available-filters > div').eq(0).find('.qa-show-more-button').click();
+        expect(component.find('.qa-available-filters > div').eq(0).find('.qa-hidden-options').length).toBe(1);
     });
 });
