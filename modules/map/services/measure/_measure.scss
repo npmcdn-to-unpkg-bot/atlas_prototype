@@ -5,14 +5,14 @@ the parent div of leaflet-measure.
 
 .s-leaflet-measure {
   @include font-size($body-font);
-  position: absolute;
-  right: $base-whitespace;
-  bottom: $base-whitespace;
   background-color: transparent;
   color: $primary-dark;
   z-index: 5;
 
   .leaflet-control-measure-toggle {
+    position: absolute;
+    bottom: 26px + $base-whitespace;
+    left: $base-whitespace;
     width: 26px;
     height: 26px;
     border-radius: 0;

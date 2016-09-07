@@ -18,9 +18,8 @@
 
             measureControl.addTo(leafletMap);
 
-            leafletMeasureHtml = measureControl.getContainer();
-            leafletMeasureHtml.className += ' s-leaflet-measure';
-            $document[0].querySelector('.js-leaflet-measure').appendChild(leafletMeasureHtml);
+            //leafletMeasureHtml = measureControl.getContainer();
+            //leafletMeasureHtml.className += ' s-leaflet-measure';
 
             leafletMap.on('measurestart', function () {
                 $rootScope.$applyAsync(function () {

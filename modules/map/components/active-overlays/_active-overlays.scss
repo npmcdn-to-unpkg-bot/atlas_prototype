@@ -5,7 +5,7 @@
   height: 26px;
   text-align: left;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
 }
 
 .c-toggle-active-overlays__icon {
@@ -23,8 +23,7 @@
 }
 
 .c-toggle-active-overlays__text {
-  position: absolute;
-  top: 0;
+  position: relative;
   left: 26px;
   min-width: 98px;
   height: 26px;
@@ -35,4 +34,21 @@
   border-color: $secondary-gray40;
   background-color: $primary-light;
   line-height: 24px;
+  white-space: nowrap;
+}
+
+.c-active-overlays {
+  position: absolute;
+  bottom: 1px;
+  left: 1px;
+  width: 400px;
+  max-height: 80%;
+  padding: $base-whitespace;
+  border-width: 1px 1px 26px 0;
+  border-style: solid;
+  border-top-color: $secondary-gray40;
+  border-right-color: $secondary-gray40;
+  border-bottom-color: $primary-light;
+  background-color: $primary-light;
+  z-index: 2;
 }
