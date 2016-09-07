@@ -13,8 +13,8 @@
         };
 
         function initialize (leafletMap) {
-            var measureControl = new L.Control.Measure(MEASURE_CONFIG),
-                leafletMeasureHtml;
+            var measureControl = new L.Control.Measure(MEASURE_CONFIG);//,
+                //leafletMeasureHtml;
 
             measureControl.addTo(leafletMap);
 
