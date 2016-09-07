@@ -1,11 +1,3 @@
-<dp-link ng-if="vm.hasShowActiveOverlaysButton" type="SHOW_ACTIVE_OVERLAYS" class-name="u-color__primary--light">
-    Toon actieve kaartlagen
-</dp-link>
-
-<dp-link ng-if="vm.hasHideActiveOverlaysButton" type="HIDE_ACTIVE_OVERLAYS" class-name="u-color__primary--light">
-    Verberg actieve kaartlagen
-</dp-link>
-
-<dp-link ng-if="vm.hasShowLayerSelectionButton" type="SHOW_LAYER_SELECTION" class-name="u-color__primary--light">
-    Kaartlagen toevoegen
-</dp-link>
+<button ng-click="vm.toggleActiveOverlays()">
+    {{vm.buttonText}}
+</button>

@@ -14,7 +14,11 @@
             controllerAs: 'vm'
         });
 
+    DpActiveOverlaysController.$inject = [];
+
     function DpActiveOverlaysController () {
         //var vm = this;
+
+
     }
 })();

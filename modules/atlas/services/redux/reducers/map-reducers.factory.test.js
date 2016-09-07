@@ -40,14 +40,6 @@ describe('The map reducers', function () {
 
             expect(output.map.overlays.length).toBe(2);
         });
-
-        it('sets showActiveOverlays to true', function () {
-            var inputState = angular.copy(defaultState),
-                output;
-
-            output = mapReducers.MAP_ADD_OVERLAY(inputState, 'meetbouten');
-            expect(output.map.showActiveOverlays).toBe(true);
-        });
     });
 
     describe('MAP_REMOVE_OVERLAY', function () {
