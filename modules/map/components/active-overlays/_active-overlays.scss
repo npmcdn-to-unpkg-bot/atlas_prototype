@@ -4,7 +4,7 @@
   position: absolute;
   bottom: $statusbar-height;
   width: 300px;
-  max-height: 400px;
+  max-height: calc(80% - #{$statusbar-height});
   padding: $base-whitespace;
   border-width: 1px 1px 0;
   border-style: solid;

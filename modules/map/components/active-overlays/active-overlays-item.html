@@ -5,9 +5,9 @@
         Kaartlaag uitzetten
     </dp-link>
 
-    <img ng-if="vm.hasLegend && vm.isOverlayVisible"
-        ng-src="{{vm.legendImageSrc}}"
-        alt="Legenda voor {{vm.overlayLabel}}">
+    <div ng-if="vm.hasLegend && vm.isOverlayVisible">
+        <img ng-src="{{vm.legendImageSrc}}" alt="Legenda voor {{vm.overlayLabel}}">
+    </div>
 
     <p ng-if="!vm.isOverlayVisible">{{vm.invisibleMessage}}</p>
 
