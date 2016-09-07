@@ -1,23 +1,21 @@
+<dp-loading-indicator is-loading="mapState.isLoading" use-delay="true" show-inline="false"></dp-loading-indicator>
+
 <div class="c-map">
     <div class="c-map__leaflet js-leaflet-map"></div>
 
-    <dp-active-overlays
+    <!--dp-active-overlays
         overlays="mapState.overlays"
         zoom="mapState.zoom"
         show-active-overlays="mapState.showActiveOverlays">
     </dp-active-overlays>
 
-    <dp-status-bar>
-        <dp-active-overlays-button
-            overlays="mapState.overlays"
-            zoom="mapState.zoom"
-            show-active-overlays="mapState.showActiveOverlays">
-        </dp-active-overlays-button>
+    <dp-active-overlays-button
+        overlays="mapState.overlays"
+        zoom="mapState.zoom"
+        show-active-overlays="mapState.showActiveOverlays">
+    </dp-active-overlays-button-->
 
-    	<div class="js-leaflet-measure"></div>
-    </dp-status-bar>
+    <dp-toggle-fullscreen is-fullscreen="mapState.isFullscreen"></dp-toggle-fullscreen>
+    <div class="js-leaflet-measure"></div>
 </div>
-
-<dp-loading-indicator is-loading="mapState.isLoading" use-delay="true" show-inline="false"></dp-loading-indicator>
-<dp-toggle-fullscreen is-fullscreen="mapState.isFullscreen"></dp-toggle-fullscreen>
 
