@@ -1,11 +1,11 @@
-<div ng-if="vm.showActiveOverlays" class="c-active-overlays">
-    <dp-link type="SHOW_LAYER_SELECTION">Kaartlaag selectie aanpassen</dp-link>
+<div ng-if="!vm.hideEverything">
+    <button class="c-toggle-active-overlays" ng-click="vm.toggle()">
+        <img class="c-toggle-active-overlays__icon"
+             ng-class="{'c-toggle-layer-selection__icon--mirrored': vm.showActiveOverlays}"
+             src="assets/icons/link-hover.svg" alt="">
 
-    <dp-active-overlays-item ng-repeat="overlay in vm.overlays track by overlay.id"
-        overlay="{{overlay.id}}"
-        is-visible="overlay.isVisible"
-        zoom="vm.zoom">
-    </dp-active-overlays-item>
-
-    <p ng-if="vm.overlays.length === 0"><em>Er zijn geen kaartlagen geselecteerd.</em></p>
+        <div class="c-toggle-active-overlays__text">
+            Kaartlagen
+        </div>
+    </button>
 </div>

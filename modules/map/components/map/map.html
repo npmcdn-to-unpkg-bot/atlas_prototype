@@ -3,23 +3,26 @@
 <div class="c-map">
     <div class="c-map__leaflet js-leaflet-map"></div>
 
-    <!--dp-active-overlays
-        overlays="mapState.overlays"
-        zoom="mapState.zoom"
-        show-active-overlays="mapState.showActiveOverlays">
-    </dp-active-overlays>
-
-    <dp-active-overlays-button
+    <!-dp-active-overlays-button
         overlays="mapState.overlays"
         zoom="mapState.zoom"
         show-active-overlays="mapState.showActiveOverlays">
     </dp-active-overlays-button-->
+
+
     <dp-toggle-layer-selection
         overlays="mapState.overlays"
         show-layer-selection="mapState.showLayerSelection">
     </dp-toggle-layer-selection>
 
+    <dp-active-overlays
+        overlays="mapState.overlays"
+        zoom="mapState.zoom"
+        show-active-overlays="mapState.showActiveOverlays">
+    </dp-active-overlays>
+
     <dp-toggle-fullscreen is-fullscreen="mapState.isFullscreen"></dp-toggle-fullscreen>
+
     <div class="js-leaflet-measure"></div>
 </div>
 

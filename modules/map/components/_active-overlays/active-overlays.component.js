@@ -3,7 +3,7 @@
 
     angular
         .module('dpMap')
-        .component('dpActiveOverlays', {
+        .component('_dpActiveOverlays', {
             bindings: {
                 overlays: '=',
                 zoom: '=',
@@ -14,13 +14,11 @@
             controllerAs: 'vm'
         });
 
-    DpActiveOverlaysController.$inject = ['$scope'];
+    DpActiveOverlaysController.$inject = [];
 
-    function DpActiveOverlaysController ($scope) {
-        var vm = this;
+    function DpActiveOverlaysController () {
+        //var vm = this;
 
-        $scope.$watchCollection('vm.overlays', function () {
-            vm.hideEverything = vm.overlays.length === 0;
-        });
+
     }
 })();

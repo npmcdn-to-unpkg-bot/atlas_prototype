@@ -1,0 +1,11 @@
+<div ng-if="vm.showActiveOverlays" class="c-active-overlays">
+    <dp-link type="SHOW_LAYER_SELECTION">Kaartlaag selectie aanpassen</dp-link>
+
+    <dp-active-overlays-item ng-repeat="overlay in vm.overlays track by overlay.id"
+        overlay="{{overlay.id}}"
+        is-visible="overlay.isVisible"
+        zoom="vm.zoom">
+    </dp-active-overlays-item>
+
+    <p ng-if="vm.overlays.length === 0"><em>Er zijn geen kaartlagen geselecteerd.</em></p>
+</div>
