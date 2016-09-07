@@ -44,6 +44,7 @@
             var newState = angular.copy(oldState);
 
             newState.map.overlays.push({id: payload, isVisible: true});
+            newState.map.showActiveOverlays = true;
 
             return newState;
         }

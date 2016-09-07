@@ -27,7 +27,6 @@
         }, updateVisibility);
 
         function updateVisibility () {
-            console.log(vm.isVisible);
             if (vm.hasLegend) {
                 vm.legendImageSrc = getLegendImageSrc(vm.overlay);
             }
