@@ -7,18 +7,29 @@
     </h2>
 
     <div class="o-header__buttongroup">
-        <button ng-click="vm.toggle('help')" ng-if="!vm.isVisible('help')" class="o-header__button c-stelselpedia__button" title="Toon uitleg">
-            <span  class="o-header__button--image " ><span class="u-sr-only">Toon uitleg</span></span>
-        </button>
-        <button ng-click="vm.toggle('help')" ng-if="vm.isVisible('help')" class="o-header__button  is-stelselpedia--active" title="Verberg uitleg">
-            <span class="o-header__button--image "><span class="u-sr-only">Verberg uitleg</span></span>
+        <button ng-click="vm.toggle('help')" 
+            class="o-header__button c-stelselpedia__button" 
+            ng-class="{
+                'is-stelselpedia--active' : vm.isVisible('help'),
+                'c-stelselpedia__button': !vm.isVisible('help')
+            }"
+            title="{{ !vm.isVisible('help') ? 'Toon uitleg' : 'Verberg uitleg' }}">
+            <span class="o-header__button--image ">
+                <span class="u-sr-only">{{ !vm.isVisible('help') ? 'Toon uitleg' : 'Verberg uitleg' }}</span>
+            </span>
         </button>
 
-        <button ng-if="vm.hasMetaData && !vm.isVisible('meta')" ng-click="vm.toggle('meta')" class="o-header__button c-metadata__button" title="Toon metadata">
-            <span  class="o-header__button--image"><span class="u-sr-only">Toon metadata</span></span>
-        </button>
-        <button ng-if="vm.hasMetaData && vm.isVisible('meta')" ng-click="vm.toggle('meta')" class="o-header__button is-metadata--active" title="Verberg metadata">
-            <span class="o-header__button--image "><span class="u-sr-only">Verberg metadata</span></span>
+        <button ng-if="vm.hasMetaData"
+            ng-click="vm.toggle('meta')"
+            class="o-header__button"
+            ng-class="{
+                'is-metadata--active' : vm.isVisible('meta'),
+                'c-metadata__button': !vm.isVisible('meta')
+            }"
+            title="{{ !vm.isVisible('meta') ? 'Toon metadata' : 'Verberg metadata' }}">
+            <span class="o-header__button--image ">
+                <span class="u-sr-only">{{ !vm.isVisible('meta') ? 'Toon metadata' : 'Verberg metadata' }}</span>
+            </span>
         </button>
 
         <atlas-wkpb-link ng-if="vm.brk" brk-id="{{vm.brk.id}}"></atlas-wkpb-link>
