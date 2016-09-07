@@ -1,0 +1,13 @@
+.c-active-overlays {
+  position: absolute;
+  bottom: $statusbar-height;
+  width: 300px;
+  max-height: 400px;
+  padding: $base-whitespace;
+  border-width: 1px 1px 0;
+  border-style: solid;
+  border-color: $secondary-gray40;
+  background-color: $primary-light;
+  z-index: 2;
+  overflow-y: auto;
+}
