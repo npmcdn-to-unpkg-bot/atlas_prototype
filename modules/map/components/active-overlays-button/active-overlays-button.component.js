@@ -25,7 +25,6 @@
             vm.hasHideActiveOverlaysButton = vm.overlays.length > 0 && vm.showActiveOverlays;
 
             vm.hasShowLayerSelectionButton = vm.overlays.length === 0;
-            console.log(vm);
         }
     }
 })();

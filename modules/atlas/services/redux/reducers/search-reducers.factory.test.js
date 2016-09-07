@@ -98,11 +98,12 @@ describe('The search-reducers factory', function () {
             expect(output.map.highlight).toBeNull();
         });
 
-        it('hides the layer selection, page, detail and straatbeeld', function () {
+        it('hides the layer selection, active overlays, page, detail and straatbeeld', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
             inputState.map.showLayerSelection = true;
+            inputState.map.showActiveOverlays = true;
             inputState.page = 'somePage';
             inputState.detail = {some: 'object'};
             inputState.staatbeeld = {some: 'object'};
@@ -110,6 +111,7 @@ describe('The search-reducers factory', function () {
             output = searchReducers.SHOW_SEARCH_RESULTS_BY_CLICK(inputState, [52.001, 4.002]);
 
             expect(output.map.showLayerSelection).toBe(false);
+            expect(output.map.showActiveOverlays).toBe(false);
             expect(output.page).toBeNull();
             expect(output.detail).toBeNull();
             expect(output.straatbeeld).toBeNull();
