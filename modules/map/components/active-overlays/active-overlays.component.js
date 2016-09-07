@@ -46,8 +46,6 @@
 
                 vm.buttonText += numberOfActiveOverlays + ')';
             }
-
-            console.log(vm.buttonText);
         });
 
         function isVisibleAtCurrentZoom (overlay, zoom) {

@@ -1,3 +1,5 @@
+@import "active-overlays-item";
+
 .c-toggle-active-overlays {
   position: absolute;
   bottom: 0;
@@ -51,4 +53,5 @@
   border-bottom-color: $primary-light;
   background-color: $primary-light;
   z-index: 2;
+  overflow-y: scroll;
 }
