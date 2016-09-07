@@ -1,0 +1,5 @@
+.c-active-overlays__item {
+  &:not(:last-child) {
+    margin-bottom: $base-whitespace;
+  }
+}

@@ -15,6 +15,8 @@
         });
 
     function DpActiveOverlaysController () {
-        //var vm = this;
+        var vm = this;
+
+        console.log(vm.overlays);
     }
 })();
