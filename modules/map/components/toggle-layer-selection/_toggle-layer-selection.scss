@@ -1,0 +1,50 @@
+.c-toggle-layer-selection {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 26px;
+  //text-align: left;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.c-toggle-layer-selection__icon {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+}
+
+.c-toggle-layer-selection__icon--mirrored {
+  transform: rotate(180deg);
+}
+
+.c-toggle-layer-selection__text {
+  position: absolute;
+  top: 0;
+  left: 26px;
+  height: 26px;
+  border-width: 1px 1px 1px 0;
+  border-style: solid;
+  border-color: $secondary-gray40;
+  background-color: $primary-light;
+  line-height: 24px;
+}
+
+.c-toggle-layer-selection--small {
+  width: 70px;
+
+  .c-toggle-layer-selection__text {
+    width: 54px;
+  }
+}
+
+.c-toggle-layer-selection--large {
+  width: 160px;
+
+  .c-toggle-layer-selection__text {
+    width: 134px;
+  }
+}
