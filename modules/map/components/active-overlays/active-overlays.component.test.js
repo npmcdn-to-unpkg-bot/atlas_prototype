@@ -136,6 +136,6 @@ describe('The dp-active-overlays component', function () {
         );
 
         expect(component.find('dp-active-overlays-item').eq(0).attr('overlay')).toBe('overlay_b');
-        expect(component.find('dp-active-overlays-item').eq(0).attr('overlay')).toBe('overlay_a');
+        expect(component.find('dp-active-overlays-item').eq(1).attr('overlay')).toBe('overlay_a');
     });
 });
