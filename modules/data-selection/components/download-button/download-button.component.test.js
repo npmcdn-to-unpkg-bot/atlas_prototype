@@ -9,6 +9,7 @@ describe('The dp-data-selection-download-button component', function () {
                 $provide.constant('DATA_SELECTION_CONFIG', {
                     dataset_a: {
                         ENDPOINT: 'http://www.example.com/datasets/a/',
+                        ENDPOINT_EXPORT: 'http://www.example.com/datasets/a/download/',
                         FILTERS: [
                             {
                                 slug: 'filter_a'
@@ -48,7 +49,7 @@ describe('The dp-data-selection-download-button component', function () {
     it('will generate a download link for the current dataset', function () {
         var component = getComponent('dataset_a', {});
 
-        expect(component.find('a').attr('href')).toBe('http://www.example.com/datasets/a/export/');
+        expect(component.find('a').attr('href')).toBe('http://www.example.com/datasets/a/download/');
     });
 
     it('can will add filters as parameters to the download link', function () {
@@ -60,7 +61,7 @@ describe('The dp-data-selection-download-button component', function () {
         });
 
         expect(component.find('a').attr('href'))
-            .toBe('http://www.example.com/datasets/a/export/?filter_b=eenofanderewaarde');
+            .toBe('http://www.example.com/datasets/a/download/?filter_b=eenofanderewaarde');
 
         //With two active filters
         component = getComponent('dataset_a', {
@@ -69,7 +70,7 @@ describe('The dp-data-selection-download-button component', function () {
         });
 
         expect(component.find('a').attr('href'))
-            .toBe('http://www.example.com/datasets/a/export/?filter_a=ingeschakeld&filter_b=eenofanderewaarde');
+            .toBe('http://www.example.com/datasets/a/download/?filter_a=ingeschakeld&filter_b=eenofanderewaarde');
     });
 
     it('uses URL encoding for the values of the active filters', function () {
@@ -81,6 +82,6 @@ describe('The dp-data-selection-download-button component', function () {
         });
 
         expect(component.find('a').attr('href'))
-            .toBe('http://www.example.com/datasets/a/export/?filter_b=Waarde%20met%20spaties');
+            .toBe('http://www.example.com/datasets/a/download/?filter_b=Waarde%20met%20spaties');
     });
 });

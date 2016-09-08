@@ -6,6 +6,7 @@
         .constant('DATA_SELECTION_CONFIG', {
             bag: {
                 ENDPOINT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/',
+                ENDPOINT_EXPORT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/export/',
                 FILTERS: [
                     {
                         slug: 'stadsdeel_naam',

@@ -19,7 +19,7 @@
         var vm = this,
             filterParams = [];
 
-        vm.downloadUrl = DATA_SELECTION_CONFIG[vm.dataset].ENDPOINT + 'export/';
+        vm.downloadUrl = DATA_SELECTION_CONFIG[vm.dataset].ENDPOINT_EXPORT;
 
         DATA_SELECTION_CONFIG[vm.dataset].FILTERS.forEach(function (filter) {
             if (angular.isString(vm.activeFilters[filter.slug])) {
