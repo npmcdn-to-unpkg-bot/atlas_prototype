@@ -35,13 +35,10 @@
 
             //Fetch scene
             scope.$watch('state.id', function (id) {
-                console.log('watched');
-                console.log(id);
                 if (angular.isString(id)) {
                    
                     earthmine.getImageDataById(id).then(function (earthmineData) {
                         if (scope.state.isInitial) {
-                            console.log('initial');
                             store.dispatch({
                                 type: ACTIONS.SHOW_STRAATBEELD_INITIAL,
                                 payload: earthmineData

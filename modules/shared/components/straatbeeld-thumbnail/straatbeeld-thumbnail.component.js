@@ -16,7 +16,9 @@
 
     function AtlasStraatbeeldThumbnailController (detailConfig, api, store, ACTIONS) {
         var vm = this,
-            imageUrl;
+            imageUrl,
+            heading,
+            panoId
 
         imageUrl = detailConfig.STRAATBEELD_THUMB_URL +
             '?lat=' + vm.location[0] +
@@ -25,15 +27,22 @@
             '&radius=100';
 
         api.getByUrl(imageUrl).then(function (thumbnailData) {
+            heading = thumbnailData.heading; 
+            panoId = thumbnailData['pano_id'];
+
+             
             if (angular.isObject(thumbnailData)) {
                 vm.imageUrl = thumbnailData.url;
             }
         });
-        
+
+        //TODO: Brittle code. Dependend on if getByUrl has finished succesfully
+
         vm.openStraatbeeld = function () {
+            console.log(panoId);
             store.dispatch({
                 type: ACTIONS.FETCH_STRAATBEELD,
-                payload: { id: 'TMX7315120208-000073_pano_0004_000316', heading: 180, isInitial: true }   
+                payload: { id: panoId, heading: heading, isInitial: true }   
             });
         };
     }

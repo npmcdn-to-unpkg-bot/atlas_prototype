@@ -36,7 +36,7 @@
 
             newState.straatbeeld.isInitial = payload.isInitial;
             newState.straatbeeld.id = payload.id;
-            console.log('fetch'  , payload);
+            
             newState.straatbeeld.date = null;
             newState.straatbeeld.image = null;
             newState.straatbeeld.car = null;
@@ -52,7 +52,7 @@
             newState.search = null;
             newState.page = null;
             newState.detail = null;
-   
+           
             return newState;
         }
 
