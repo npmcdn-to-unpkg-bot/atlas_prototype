@@ -52,7 +52,7 @@ describe('The dp-data-selection-download-button component', function () {
         expect(component.find('a').attr('href')).toBe('http://www.example.com/datasets/a/download/');
     });
 
-    it('can will add filters as parameters to the download link', function () {
+    it('will filters as parameters to the download link', function () {
         var component;
 
         //With one active filter
