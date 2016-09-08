@@ -32,7 +32,7 @@
             if (newState.straatbeeld === null) {
                 newState.straatbeeld = {};
             }
-
+            console.log(payload);
             if (angular.isString(payload)) {
                 //ID
                 newState.straatbeeld.id = payload;
@@ -58,7 +58,7 @@
             newState.search = null;
             newState.page = null;
             newState.detail = null;
-
+   
             return newState;
         }
 
