@@ -78,10 +78,11 @@ describe('The dp-data-selection-download-button component', function () {
 
         //With one active filter
         component = getComponent('dataset_a', {
+            filter_a: 'äéë',
             filter_b: 'Waarde met spaties'
         });
 
-        expect(component.find('a').attr('href'))
-            .toBe('http://www.example.com/datasets/a/download/?filter_b=Waarde%20met%20spaties');
+        expect(component.find('a').attr('href')).toContain('filter_a=%C3%A4%C3%A9%C3%AB');
+        expect(component.find('a').attr('href')).toContain('filter_b=Waarde%20met%20spaties');
     });
 });
