@@ -23,6 +23,8 @@
 
         $scope.$watch('vm.activeFilters', updateFilters, true);
 
+        vm.showMoreThreshold = 10;
+
         vm.isFilterActive = function (categorySlug, filterLabel) {
             return vm.activeFilters[categorySlug] === filterLabel;
         };
@@ -50,7 +52,7 @@
                 return availableFilter.slug === categorySlug;
             })[0].options.length;
 
-            return !vm.isExpandedCategory(categorySlug) && numberOfOptions > 10;
+            return !vm.isExpandedCategory(categorySlug) && numberOfOptions > vm.showMoreThreshold;
         };
 
         vm.showHiddenOptionsMessage = function (category) {

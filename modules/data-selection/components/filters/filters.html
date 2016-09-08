@@ -19,7 +19,7 @@
     <div ng-if="!vm.isLoading" ng-repeat="category in vm.availableFilters">
         <h3>{{category.label}}</h3>
         <ul>
-            <li ng-repeat="option in category.options | limitTo : vm.isExpandedCategory(category.slug) ? undefined : 10">
+            <li ng-repeat="option in category.options | limitTo : vm.isExpandedCategory(category.slug) ? undefined : vm.showMoreThreshold">
                 <button
                     class="o-btn o-btn--link"
                     ng-class="{
