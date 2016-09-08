@@ -15,12 +15,12 @@
                 atlasMeters: {
                     factor: 1,
                     display: 'm',
-                    decimals: 1
+                    decimals: 2
                 },
                 atlasVierkanteMeters: {
                     factor: 1,
                     display: 'm2',
-                    decimals: 1
+                    decimals: 2
                 }
             }
         });
