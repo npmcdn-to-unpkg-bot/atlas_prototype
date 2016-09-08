@@ -7,7 +7,7 @@
 
     straatbeeldReducersFactory.$inject = ['ACTIONS'];
 
-    function straatbeeldReducersFactory (ACTIONS) {
+    function straatbeeldReducersFactory(ACTIONS) {
         var reducers = {};
 
         reducers[ACTIONS.FETCH_STRAATBEELD] = fetchStraatbeeldReducer;
@@ -26,8 +26,7 @@
          *
          * @returns {Object} newState
          */
-        function fetchStraatbeeldReducer (oldState, payload) {
-            //console.log(payload);
+        function fetchStraatbeeldReducer(oldState, payload) {
             var newState = angular.copy(oldState);
 
             if (newState.straatbeeld === null) {
@@ -36,7 +35,6 @@
 
             if (angular.isString(payload)) {
                 //ID
-                console.log('we hebben een string en wel: ', payload);
                 newState.straatbeeld.id = payload;
                 newState.straatbeeld.searchLocation = null;
             } else {
@@ -48,6 +46,9 @@
             newState.straatbeeld.date = null;
             newState.straatbeeld.image = null;
             newState.straatbeeld.car = null;
+            newState.straatbeeld.car = {};
+            newState.straatbeeld.car.heading = payload.heading;
+
             newState.straatbeeld.camera = oldState.straatbeeld && oldState.straatbeeld.camera || null;
             newState.straatbeeld.hotspots = [];
             newState.straatbeeld.isLoading = true;
@@ -67,36 +68,38 @@
          *
          * @returns {Object} newState
          */
-        function showStraatbeeldReducer (oldState, payload) {
+        function showStraatbeeldReducer(oldState, payload) {
             var newState = angular.copy(oldState);
-
-            newState.straatbeeld.id = payload.id;
-            newState.straatbeeld.searchLocation = null;
-            newState.straatbeeld.date = payload.timestamp;
-            newState.straatbeeld.image = payload.images.equirectangular;
-            newState.straatbeeld.car = {
-                location: [payload.geometrie.coordinates[1], payload.geometrie.coordinates[0]],
-                //Heading and pitch are both 0 because of the normalization
-                heading: 0,
-                pitch: 0
-            };
-
-            newState.straatbeeld.hotspots = payload.adjacent;
-            newState.straatbeeld.isLoading = false;
-
-            if (oldState.straatbeeld.camera === null) {
-                newState.straatbeeld.camera = {
-                    heading: newState.straatbeeld.car.heading,
-                    pitch: newState.straatbeeld.car.pitch
+            
+            //Straatbeeld can be null if another action gets triggered between FETCH_STRAATBEELD and SHOW_STRAATBEELD
+            if (angular.isObject(newState.straatbeeld)) {
+                newState.straatbeeld.id = payload.id;
+                newState.straatbeeld.searchLocation = null;
+                newState.straatbeeld.date = payload.timestamp;
+                newState.straatbeeld.image = payload.images.equirectangular;
+                newState.straatbeeld.car = {
+                    location: [payload.geometrie.coordinates[1], payload.geometrie.coordinates[0]],
+                    //Heading and pitch are both 0 because of the normalization
+                    heading: 0,
+                    pitch: 0
                 };
+
+                newState.straatbeeld.hotspots = payload.adjacent;
+                newState.straatbeeld.isLoading = false;
+
+                if (oldState.straatbeeld.camera === null) {
+                    newState.straatbeeld.camera = {
+                        heading: newState.straatbeeld.car.heading,
+                        pitch: newState.straatbeeld.car.pitch
+                    };
+                }
+
+                newState.map.isLoading = false;
             }
-
-            newState.map.isLoading = false;
-
             return newState;
         }
 
-        function setOrientationReducer (oldState, payload) {
+        function setOrientationReducer(oldState, payload) {
             var newState = angular.copy(oldState);
 
             newState.straatbeeld.camera = payload;

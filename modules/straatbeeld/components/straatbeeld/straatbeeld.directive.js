@@ -48,7 +48,6 @@
 
             //Fetch scene #2-n
             scope.$watchCollection('state.id', function (id) {
-                //console.log('state.id change', id);
                 if (angular.isString(id)) {
                     earthmine.getImageDataById(id).then(function (earthmineData) {
                         store.dispatch({

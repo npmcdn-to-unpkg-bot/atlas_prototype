@@ -86,6 +86,7 @@
                         }
                     }
                 } else {
+                    console.log('state', state.straatbeeld);
                     params.plat = String(state.straatbeeld.searchLocation[0]);
                     params.plon = String(state.straatbeeld.searchLocation[1]);
                 }
