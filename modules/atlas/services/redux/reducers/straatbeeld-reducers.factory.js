@@ -96,6 +96,7 @@
 
                 newState.map.isLoading = false;
             }
+
             return newState;
         }
 

@@ -72,7 +72,7 @@
 
         function getStraatbeeldParams (state) {
             var params = {};
-
+            console.log('state', state);
             if (state.straatbeeld) {
                 if (state.straatbeeld.id) {
                     params.id = state.straatbeeld.id;
@@ -86,7 +86,6 @@
                         }
                     }
                 } else {
-                    console.log('state', state.straatbeeld);
                     params.plat = String(state.straatbeeld.searchLocation[0]);
                     params.plon = String(state.straatbeeld.searchLocation[1]);
                 }
