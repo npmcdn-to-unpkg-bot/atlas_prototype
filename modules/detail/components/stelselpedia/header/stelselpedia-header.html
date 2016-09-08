@@ -13,9 +13,9 @@
                 'is-stelselpedia--active' : vm.isVisible('help'),
                 'c-stelselpedia__button': !vm.isVisible('help')
             }"
-            title="{{ !vm.isVisible('help') ? 'Toon uitleg' : 'Verberg uitleg' }}">
+            title="{{ vm.stelselpediaTitle }}">
             <span class="o-header__button--image ">
-                <span class="u-sr-only">{{ !vm.isVisible('help') ? 'Toon uitleg' : 'Verberg uitleg' }}</span>
+                <span class="u-sr-only">{{ vm.stelselpediaTitle  }}</span>
             </span>
         </button>
 
@@ -26,9 +26,9 @@
                 'is-metadata--active' : vm.isVisible('meta'),
                 'c-metadata__button': !vm.isVisible('meta')
             }"
-            title="{{ !vm.isVisible('meta') ? 'Toon metadata' : 'Verberg metadata' }}">
+            title="{{ vm.metaDataTitle  }}">
             <span class="o-header__button--image ">
-                <span class="u-sr-only">{{ !vm.isVisible('meta') ? 'Toon metadata' : 'Verberg metadata' }}</span>
+                <span class="u-sr-only">{{ vm.metaDataTitle  }}</span>
             </span>
         </button>
 
