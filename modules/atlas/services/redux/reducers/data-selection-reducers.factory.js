@@ -24,16 +24,12 @@
         function showDataSelectionReducer (oldState, payload) {
             var newState = angular.copy(oldState);
 
-            newState.map = {
-                baseLayer: oldState.map.baseLayer,
-                overlays: oldState.map.overlays,
-                viewCenter: DEFAULT_STATE.map.viewCenter,
-                zoom: DEFAULT_STATE.map.zoom,
-                highlight: null,
-                showLayerSelection: false,
-                isFullscreen: false,
-                isLoading: false
-            };
+            newState.map.viewCenter = DEFAULT_STATE.map.viewCenter;
+            newState.map.zoom = DEFAULT_STATE.map.zoom;
+            newState.map.highlight = null;
+            newState.map.showLayerSelection = false;
+            newState.map.isFullscreen = false;
+            newState.map.isLoading = false;
 
             newState.search = null;
             newState.page = null;
