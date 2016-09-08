@@ -72,7 +72,7 @@
 
         function getStraatbeeldParams (state) {
             var params = {};
-            console.log('state', state);
+     
             if (state.straatbeeld) {
                 if (state.straatbeeld.id) {
                     params.id = state.straatbeeld.id;

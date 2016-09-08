@@ -29,11 +29,11 @@
                 vm.imageUrl = thumbnailData.url;
             }
         });
-
+        
         vm.openStraatbeeld = function () {
             store.dispatch({
                 type: ACTIONS.FETCH_STRAATBEELD,
-                payload: vm.location
+                payload: { id: 'TMX7315120208-000073_pano_0004_000316', heading: 180, isInitial: true }   
             });
         };
     }

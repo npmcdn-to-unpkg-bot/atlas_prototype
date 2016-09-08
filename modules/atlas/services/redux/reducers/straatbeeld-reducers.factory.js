@@ -31,18 +31,12 @@
 
             if (newState.straatbeeld === null) {
                 newState.straatbeeld = {};
-            }
-            console.log(payload);
-            if (angular.isString(payload)) {
-                //ID
-                newState.straatbeeld.id = payload;
-                newState.straatbeeld.searchLocation = null;
-            } else {
-                //Array with [lat, lon]
-                newState.straatbeeld.id = null;
-                newState.straatbeeld.searchLocation = payload;
+                
             }
 
+            newState.straatbeeld.isInitial = payload.isInitial;
+            newState.straatbeeld.id = payload.id;
+            console.log('fetch'  , payload);
             newState.straatbeeld.date = null;
             newState.straatbeeld.image = null;
             newState.straatbeeld.car = null;
@@ -73,7 +67,8 @@
             
             //Straatbeeld can be null if another action gets triggered between FETCH_STRAATBEELD and SHOW_STRAATBEELD
             if (angular.isObject(newState.straatbeeld)) {
-                newState.straatbeeld.id = payload.id;
+                newState.straatbeeld.id = payload['pano_id'];
+
                 newState.straatbeeld.searchLocation = null;
                 newState.straatbeeld.date = payload.timestamp;
                 newState.straatbeeld.image = payload.images.equirectangular;
@@ -89,7 +84,7 @@
 
                 if (oldState.straatbeeld.camera === null) {
                     newState.straatbeeld.camera = {
-                        heading: newState.straatbeeld.car.heading,
+                        heading: oldState.straatbeeld.car.heading || newState.straatbeeld.car.heading,
                         pitch: newState.straatbeeld.car.pitch
                     };
                 }

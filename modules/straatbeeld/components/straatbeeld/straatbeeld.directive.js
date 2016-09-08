@@ -31,29 +31,28 @@
                 }
             };
 
-            //Fetch the first scene (always based on location)
-            scope.$watchCollection('state.searchLocation', function (location) {
-                if (angular.isArray(location)) {
-                    earthmine.getImageDataByCoordinates(
-                        location[0],
-                        location[1]
-                    ).then(function (earthmineData) {
-                        store.dispatch({
-                            type: ACTIONS.SHOW_STRAATBEELD_INITIAL,
-                            payload: earthmineData
-                        });
-                    });
-                }
-            });
+          
 
-            //Fetch scene #2-n
-            scope.$watchCollection('state.id', function (id) {
+            //Fetch scene
+            scope.$watch('state.id', function (id) {
+                console.log('watched');
+                console.log(id);
                 if (angular.isString(id)) {
+                   
                     earthmine.getImageDataById(id).then(function (earthmineData) {
-                        store.dispatch({
-                            type: ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
-                            payload: earthmineData
-                        });
+                        if (scope.state.isInitial) {
+                            console.log('initial');
+                            store.dispatch({
+                                type: ACTIONS.SHOW_STRAATBEELD_INITIAL,
+                                payload: earthmineData
+                            });
+                        } else {
+                            store.dispatch({
+                                type: ACTIONS.SHOW_STRAATBEELD_SUBSEQUENT,
+                                payload: earthmineData
+                            });
+                        }
+                       
                     });
                 }
             });

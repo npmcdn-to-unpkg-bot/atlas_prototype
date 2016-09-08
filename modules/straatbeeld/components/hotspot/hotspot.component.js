@@ -30,7 +30,7 @@
         vm.loadScene = function () {
             store.dispatch({
                 type: ACTIONS.FETCH_STRAATBEELD,
-                payload: vm.sceneId
+                payload: { id: vm.location, heading: heading, isInitial: false }   
             });
         };
     }
