@@ -69,7 +69,7 @@ describe('The atlas-header component', function () {
 
             component = getComponent('', false);
 
-            expect(component.find('.site-header__menu dp-link').length).toBe(2);
+            expect(component.find('.site-header__menu dp-link').length).toBe(1);
 
             //Show the login button
             expect(component.find('.site-header__menu dp-link').eq(0).attr('type')).toBe('SHOW_PAGE');
@@ -89,7 +89,7 @@ describe('The atlas-header component', function () {
             component = getComponent('', false);
 
             //Hide the login button
-            expect(component.find('.site-header__menu dp-link').length).toBe(1);
+            expect(component.find('.site-header__menu dp-link').length).toBe(0);
             expect(component.find('.site-header__menu dp-link').eq(0).attr('payload')).not.toBe('\'login\'');
 
             //Show the logout button
