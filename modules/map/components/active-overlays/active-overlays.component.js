@@ -35,17 +35,13 @@
             numberOfActiveOverlays = vm.overlays.length;
 
             vm.hideEverything = numberOfActiveOverlays === 0;
-            vm.buttonText = 'Kaartlagen';
+            vm.buttonText = 'Kaartlagen (';
 
-            if (numberOfActiveOverlays) {
-                vm.buttonText += ' (';
-
-                if (numberOfShownOverlays !== numberOfActiveOverlays) {
-                    vm.buttonText += numberOfShownOverlays + '/';
-                }
-
-                vm.buttonText += numberOfActiveOverlays + ')';
+            if (numberOfShownOverlays !== numberOfActiveOverlays) {
+                vm.buttonText += numberOfShownOverlays + '/';
             }
+
+            vm.buttonText += numberOfActiveOverlays + ')';
         });
 
         function isVisibleAtCurrentZoom (overlay, zoom) {
