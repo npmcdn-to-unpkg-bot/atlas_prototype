@@ -98,11 +98,12 @@ describe('The search-reducers factory', function () {
             expect(output.map.highlight).toBeNull();
         });
 
-        it('hides the layer selection, page, detail and straatbeeld', function () {
+        it('hides the layer selection, active overlays, page, detail and straatbeeld', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
             inputState.map.showLayerSelection = true;
+            inputState.map.showActiveOverlays = true;
             inputState.page = 'somePage';
             inputState.detail = {some: 'object'};
             inputState.staatbeeld = {some: 'object'};
@@ -110,12 +111,13 @@ describe('The search-reducers factory', function () {
             output = searchReducers.SHOW_SEARCH_RESULTS_BY_CLICK(inputState, [52.001, 4.002]);
 
             expect(output.map.showLayerSelection).toBe(false);
+            expect(output.map.showActiveOverlays).toBe(false);
             expect(output.page).toBeNull();
             expect(output.detail).toBeNull();
             expect(output.straatbeeld).toBeNull();
         });
 
-        it('changes the viewCenter (only when) fullscreen mode is enabled', function () {
+        it('changes the viewCenter when showLayerSelection or fullscreen mode is enabled', function () {
             var inputState = angular.copy(defaultState),
                 output;
 
@@ -130,6 +132,11 @@ describe('The search-reducers factory', function () {
             inputState.map.isFullscreen = true;
             output = searchReducers.SHOW_SEARCH_RESULTS_BY_CLICK(inputState, [52.001, 4.002]);
 
+            expect(output.map.viewCenter).toEqual([52.001, 4.002]);
+
+            //With layer selection enabled
+            inputState.map.showLayerSelection = true;
+            output = searchReducers.SHOW_SEARCH_RESULTS_BY_CLICK(inputState, [52.001, 4.002]);
             expect(output.map.viewCenter).toEqual([52.001, 4.002]);
         });
 

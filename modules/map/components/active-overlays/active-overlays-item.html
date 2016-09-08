@@ -1,0 +1,17 @@
+<div class="c-active-overlays__item">
+    <h3>{{vm.overlayLabel}}</h3>
+
+    <dp-link ng-if="vm.isVisible" type="MAP_TOGGLE_VISIBILITY_OVERLAY" payload="vm.overlay">
+        Kaartlaag onzichtbaar maken
+    </dp-link>
+
+    <div ng-if="vm.hasLegend && vm.isOverlayVisible">
+        <img ng-src="{{vm.legendImageSrc}}" alt="Legenda voor {{vm.overlayLabel}}">
+    </div>
+
+    <p ng-if="!vm.isOverlayVisible">{{vm.invisibleMessage}}</p>
+
+    <dp-link ng-if="!vm.isVisible" type="MAP_TOGGLE_VISIBILITY_OVERLAY" payload="vm.overlay">
+        Kaartlaag zichtbaar maken
+    </dp-link>
+</div>

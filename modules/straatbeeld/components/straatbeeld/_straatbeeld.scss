@@ -1,3 +1,5 @@
+$statusbar-height: 3rem;
+
 .c-straatbeeld {
   position: absolute;
   top: $base-whitespace * 2;
@@ -16,4 +18,17 @@
   border-width: 1px 1px 0;
   border-style: solid;
   border-color: $secondary-gray40;
+}
+
+.c-straatbeeld__status-bar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: $statusbar-height;
+  padding: $base-whitespace;
+  background-color: $secondary-gray60;
+  color: $primary-light;
+  line-height: $statusbar-height / 2;
+  z-index: 2;
 }
