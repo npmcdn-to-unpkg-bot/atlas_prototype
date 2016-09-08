@@ -2,7 +2,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 26px;
+  height: $button-size;
   cursor: pointer;
   z-index: 3;
 }
@@ -12,8 +12,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 26px;
-  height: 26px;
+  width: $button-size;
+  height: $button-size;
 }
 
 .c-toggle-layer-selection__icon--mirrored {
@@ -23,8 +23,8 @@
 .c-toggle-layer-selection__text {
   position: absolute;
   top: 0;
-  left: 26px;
-  height: 26px;
+  left: $button-size;
+  height: $button-size;
   border-width: 1px 1px 1px 0;
   border-style: solid;
   border-color: $secondary-gray40;
@@ -36,7 +36,7 @@
   width: 90px;
 
   .c-toggle-layer-selection__text {
-    width: 64px;
+    width: 90px - $button-size;
   }
 }
 
@@ -44,6 +44,6 @@
   width: 170px;
 
   .c-toggle-layer-selection__text {
-    width: 144px;
+    width: 170px - $button-size;
   }
 }
