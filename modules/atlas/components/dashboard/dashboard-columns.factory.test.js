@@ -391,24 +391,56 @@ describe('The dashboardColumns factory', function () {
             mockedState.page = null;
 
             visibility = dashboardColumns.determineVisibility(mockedState);
-            columnSizes = dashboardColumns.determineColumnSizes(visibility, false, false);
         });
 
-        it('only shows dataSelection', function () {
-            expect(visibility.dataSelection).toBe(true);
+        describe('the default non-print version', function () {
+            beforeEach(function () {
+                mockedState.isPrintMode = false;
 
-            expect(visibility.map).toBe(false);
-            expect(visibility.detail).toBe(false);
-            expect(visibility.layerSelection).toBe(false);
-            expect(visibility.page).toBe(false);
-            expect(visibility.searchResults).toBe(false);
-            expect(visibility.straatbeeld).toBe(false);
+                columnSizes = dashboardColumns.determineColumnSizes(visibility, false, false);
+            });
+
+            it('only shows dataSelection', function () {
+                expect(visibility.dataSelection).toBe(true);
+
+                expect(visibility.map).toBe(false);
+                expect(visibility.detail).toBe(false);
+                expect(visibility.layerSelection).toBe(false);
+                expect(visibility.page).toBe(false);
+                expect(visibility.searchResults).toBe(false);
+                expect(visibility.straatbeeld).toBe(false);
+            });
+
+            it('left column: 0/3, middle column: 0/3, right column 3/3', function () {
+                expect(columnSizes.left).toBe(0);
+                expect(columnSizes.middle).toBe(0);
+                expect(columnSizes.right).toBe(12);
+            });
         });
 
-        it('left column: 0/3, middle column: 0/3, right column 3/3', function () {
-            expect(columnSizes.left).toBe(0);
-            expect(columnSizes.middle).toBe(0);
-            expect(columnSizes.right).toBe(12);
+        describe('the print version', function () {
+            beforeEach(function () {
+                mockedState.isPrintMode = true;
+
+                columnSizes = dashboardColumns.determineColumnSizes(visibility, false, true);
+            });
+
+            it('only shows dataSelection', function () {
+                expect(visibility.dataSelection).toBe(true);
+
+                expect(visibility.map).toBe(false);
+                expect(visibility.detail).toBe(false);
+                expect(visibility.layerSelection).toBe(false);
+                expect(visibility.page).toBe(false);
+                expect(visibility.searchResults).toBe(false);
+                expect(visibility.straatbeeld).toBe(false);
+            });
+
+            it('left column: 0/3, middle column: 0/3, right column 3/3', function () {
+                expect(columnSizes.left).toBe(0);
+                expect(columnSizes.middle).toBe(0);
+                expect(columnSizes.right).toBe(12);
+            });
         });
     });
 });
