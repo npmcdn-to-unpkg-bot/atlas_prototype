@@ -1,12 +1,12 @@
 <table class="o-table">
     <thead>
-        <tr>
+        <tr ng-click="vm.dpLog('boo')">
             <th ng-repeat="field in vm.content.head track by $index">{{field}}</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="row in vm.content.body track by $index">
-            <td ng-repeat="field in row track by $index">
+        <tr ng-repeat="row in vm.content.body track by $index" ng-click="vm.dpLog(row)">
+            <td ng-repeat="field in row.data track by $index">
                 {{field}}
             </td>
         </tr>

@@ -3,10 +3,30 @@
 
     angular
         .module('dpDataSelection')
-        .constant('DATA_SELECTION_CONFIG', {
+        .factory('dpDataSelectionConfig', dpDataSelectionConfigFactory);
+
+    dpDataSelectionConfigFactory.$inject = ['environment'];
+
+    function dpDataSelectionConfigFactory(environment) {
+        var globalConfig,
+            envConfig;
+
+        envConfig = {
+            DEVELOPMENT: {
+                bag: {
+                    ENDPOINT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/',
+                    ENDPOINT_EXPORT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/export/'
+                }
+            },
+            PRODUCTION: {
+                bag: {
+                    ENDPOINT: 'https://api.datapunt.amsterdam.nl/zelfbediening/bag/',
+                    ENDPOINT_EXPORT: 'https://api.datapunt.amsterdam.nl/zelfbediening/bag/export/'
+                }
+            }
+        };
+        globalConfig = {
             bag: {
-                ENDPOINT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/',
-                ENDPOINT_EXPORT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/export/',
                 FILTERS: [
                     {
                         slug: 'stadsdeel_naam',
@@ -81,7 +101,10 @@
                         slug: 'postcode',
                         label: 'Postcode'
                     }
-                ]
+                ],
+                ITEM_ID: 'id'
             }
-        });
+        };
+        return angular.merge(globalConfig, envConfig[environment.NAME]);
+    }
 })();

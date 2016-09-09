@@ -36,11 +36,13 @@ describe('The dp-data-selection-table component', function () {
 
         content = {
             head: ['Field A', 'Field B'],
-            body: [
+            body: {
+                data: [
                 ['Cell A1', 'Cell B1'],
                 ['Cell A2', 'Cell B2'],
                 ['Cell A3', 'Cell B3']
             ]
+            }
         };
 
         component = getComponent(content);

@@ -20,7 +20,7 @@ describe('The dataSelectionApi factory', function () {
                 }
             },
             function ($provide) {
-                $provide.constant('DATA_SELECTION_CONFIG', {
+                $provide.constant('dpDataSelectionConfig', {
                     zwembaden: {
                         ENDPOINT: 'https://api.amsterdam.nl/zwembaden/',
                         FILTERS: [
@@ -40,7 +40,8 @@ describe('The dataSelectionApi factory', function () {
                                 slug: 'openingstijden',
                                 label: 'Openingstijden'
                             }
-                        ]
+                        ],
+                        ITEM_ID: 'id'
                     }
                 });
             }
@@ -87,10 +88,12 @@ describe('The dataSelectionApi factory', function () {
             object_list: [
                 {
                     openingstijden: 'Alleen op dinsdag',
-                    adres: 'Sneeuwbalweg 24'
+                    adres: 'Sneeuwbalweg 24',
+                    id: '1'
                 }, {
                     adres: 'Marnixstraat 1',
-                    openingstijden: 'Ligt er een beetje aan'
+                    openingstijden: 'Ligt er een beetje aan',
+                    id: '2'
                 }
             ],
             page_count: 2
