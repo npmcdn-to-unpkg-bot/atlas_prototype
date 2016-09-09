@@ -63,12 +63,15 @@ describe('The dp-data-selection-table component', function () {
         expect(component.find('thead tr th').eq(1).text()).toContain('Field B');
 
         expect(component.find('tbody tr').length).toBe(3);
+        expect(component.find('tbody tr:nth-child(1)').attr('ng-click')).toBe('vm.dpGotoItem(row.link)');
         expect(component.find('tbody tr:nth-child(1) td:nth-child(1)').text()).toContain('Cell A1');
         expect(component.find('tbody tr:nth-child(1) td:nth-child(2)').text()).toContain('Cell B1');
 
+        expect(component.find('tbody tr:nth-child(2)').attr('ng-click')).toBe('vm.dpGotoItem(row.link)');
         expect(component.find('tbody tr:nth-child(2) td:nth-child(1)').text()).toContain('Cell A2');
         expect(component.find('tbody tr:nth-child(2) td:nth-child(2)').text()).toContain('Cell B2');
 
+        expect(component.find('tbody tr:nth-child(3)').attr('ng-click')).toBe('vm.dpGotoItem(row.link)');
         expect(component.find('tbody tr:nth-child(3) td:nth-child(1)').text()).toContain('Cell A3');
         expect(component.find('tbody tr:nth-child(3) td:nth-child(2)').text()).toContain('Cell B3');
     });
