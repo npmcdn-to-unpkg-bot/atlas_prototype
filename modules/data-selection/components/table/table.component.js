@@ -12,11 +12,15 @@
             controllerAs: 'vm'
         });
 
-    function DpDataSelectionTableController() {
+    DpDataSelectionTableController.$inject = ['store', 'ACTIONS'];
+    function DpDataSelectionTableController(store, ACTIONS) {
         var vm = this;
 
-        vm.dpLog = function(text) {
-            console.log(text);
+        vm.dpGotoItem = function(link) {
+            store.dispatch({
+                action: ACTIONS.FETCH_DETAIL,
+                payload: link
+            });
         };
     }
 })();

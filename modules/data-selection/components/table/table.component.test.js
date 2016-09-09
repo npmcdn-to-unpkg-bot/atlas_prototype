@@ -1,13 +1,24 @@
 describe('The dp-data-selection-table component', function () {
     var $compile,
-        $rootScope;
+        $rootScope,
+        store,
+        ACTIONS;
 
     beforeEach(function () {
-        angular.mock.module('dpDataSelection');
+        angular.mock.module(
+            'dpDataSelection',
+            {
+                store: {
+                    dispatch: function () {}
+                }
+            }
+        );
 
-        angular.mock.inject(function (_$compile_, _$rootScope_) {
+        angular.mock.inject(function (_$compile_, _$rootScope_, _store_, _ACTIONS_) {
             $compile = _$compile_;
             $rootScope = _$rootScope_;
+            store = _store_;
+            ACTIONS = _ACTIONS_;
         });
     });
 
