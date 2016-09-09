@@ -15,13 +15,15 @@
             DEVELOPMENT: {
                 bag: {
                     ENDPOINT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/',
-                    ENDPOINT_EXPORT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/export/'
+                    ENDPOINT_EXPORT: 'https://api-acc.datapunt.amsterdam.nl/zelfbediening/bag/export/',
+                    ENDPOINT_API: 'https://api-acc.datapunt.amsterdam.nl/bag/nummeraanduiding/'
                 }
             },
             PRODUCTION: {
                 bag: {
                     ENDPOINT: 'https://api.datapunt.amsterdam.nl/zelfbediening/bag/',
-                    ENDPOINT_EXPORT: 'https://api.datapunt.amsterdam.nl/zelfbediening/bag/export/'
+                    ENDPOINT_EXPORT: 'https://api.datapunt.amsterdam.nl/zelfbediening/bag/export/',
+                    ENDPOINT_API: 'https://api.datapunt.amsterdam.nl/bag/nummeraanduiding/'
                 }
             }
         };

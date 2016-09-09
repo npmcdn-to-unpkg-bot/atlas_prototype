@@ -62,7 +62,7 @@
                     data;
 
                 // Generating a link
-                link = 'https://api-acc.datapunt.amsterdam.nl/bag/nummeraanduiding/' + 
+                link = dpDataSelectionConfig[dataset].ENDPOINT_API + 
                                     rawDataRow[dpDataSelectionConfig[dataset].ITEM_ID];
                 // Saving the fields
                 data = dpDataSelectionConfig[dataset].FIELDS.map(function (field) {

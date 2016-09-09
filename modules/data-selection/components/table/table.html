@@ -5,9 +5,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="row in vm.content.body track by $index" ng-click="vm.dpLog(row)">
+        <tr ng-repeat="row in vm.content.body track by $index" ng-click="vm.dpLog(row.link)">
             <td ng-repeat="field in row.data track by $index">
-                {{field}}
+                {{ field }}
             </td>
         </tr>
     </tbody>
