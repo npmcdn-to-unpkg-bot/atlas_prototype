@@ -18,7 +18,7 @@
 
         vm.dpGotoItem = function(link) {
             store.dispatch({
-                action: ACTIONS.FETCH_DETAIL,
+                type: ACTIONS.FETCH_DETAIL,
                 payload: link
             });
         };
